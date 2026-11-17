@@ -53,29 +53,6 @@ const initialMockEvents: EventItem[] = [
     createdAt: '2026-09-13T11:26:46.901Z',
     updatedAt: '2026-09-13T11:26:46.901Z',
   },
-  {
-    id: 'evt-002',
-    name: 'Tollywood Film Awards Gala',
-    code: 'tfa-2026',
-    description: 'Annual grand celebration of Telugu Cinema excellence and star performances.',
-    type: 'Awards Show',
-    images: ['https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&q=80'],
-    date: '2026-10-15T19:00:00.000Z',
-    endDate: '2026-10-15T23:00:00.000Z',
-    time: '07:00 PM',
-    location: 'HICC Novotel',
-    city: 'Hyderabad',
-    availability: true,
-    totalSeats: 3000,
-    availableSeats: 450,
-    language: 'Telugu',
-    ageLimit: 'All Ages',
-    duration: '4h 00m',
-    organizer: 'BigTV Media & Entertainment',
-    terms: 'Formal attire required. Ticket scanning at main gate.',
-    status: 'UPCOMING',
-    createdAt: '2026-09-05T12:00:00.000Z',
-  },
 ];
 
 let localEventsStore: EventItem[] = [...initialMockEvents];
@@ -266,8 +243,15 @@ export const eventsRepository = {
 
       const res: any = await client.get('/events', params);
       if (res) {
-        if (Array.isArray(res.data)) return res.data;
-        if (res.data && Array.isArray(res.data.data)) return res.data.data;
+        let eventsList: EventItem[] | null = null;
+        if (Array.isArray(res)) eventsList = res;
+        else if (Array.isArray(res.data)) eventsList = res.data;
+        else if (res.data && Array.isArray(res.data.data)) eventsList = res.data.data;
+
+        if (eventsList) {
+          localEventsStore = eventsList;
+          return eventsList;
+        }
       }
     } catch {}
 

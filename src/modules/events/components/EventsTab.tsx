@@ -27,6 +27,8 @@ import {
   MeetingRoom,
   LocalOffer,
   Settings,
+  BookOnline,
+  QrCodeScanner,
 } from '@mui/icons-material';
 import { useLanguageStore } from '@/core/storage/language-store';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
@@ -38,6 +40,12 @@ import { TicketModal } from './TicketModal';
 import { CouponsTable } from './CouponsTable';
 import { CouponModal } from './CouponModal';
 import { AppConfigPanel } from './AppConfigPanel';
+import { BookingAnalyticsCards } from './BookingAnalyticsCards';
+import { BookingsTable } from './BookingsTable';
+import { BookingStatusModal } from './BookingStatusModal';
+import { CreateBookingModal } from './CreateBookingModal';
+import { TicketQrModal } from './TicketQrModal';
+import { QrCheckInModal } from './QrCheckInModal';
 import { Loader } from '@/shared/components/Loader';
 import { eventTranslations } from '../translations';
 
@@ -76,6 +84,38 @@ export const EventsTab: React.FC = () => {
     handleDeleteEvent,
     handleToggleAvailability,
 
+    // Bookings
+    bookings,
+    bookingStats,
+    bookingSearch,
+    setBookingSearch,
+    selectedBookingStatus,
+    setSelectedBookingStatus,
+    selectedPaymentStatus,
+    setSelectedPaymentStatus,
+    bookingPage,
+    setBookingPage,
+    bookingTotalPages,
+    selectedBooking,
+    isBookingStatusModalOpen,
+    handleOpenStatusModal,
+    handleCloseStatusModal,
+    handleUpdateBookingStatus,
+    isCreateBookingModalOpen,
+    handleOpenCreateBookingModal,
+    handleCloseCreateBookingModal,
+    handleCreateBooking,
+    isTicketQrModalOpen,
+    handleOpenTicketQrModal,
+    handleCloseTicketQrModal,
+    isCheckInModalOpen,
+    handleOpenCheckInModal,
+    handleCloseCheckInModal,
+    handleVerifyQr,
+    handleCheckIn,
+    syncingInventory,
+    handleSyncInventory,
+
     // Tickets
     tickets,
     selectedTicketEventId,
@@ -108,22 +148,27 @@ export const EventsTab: React.FC = () => {
   } = useEventsController();
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-      {/* Sub-Header / Action Bar */}
+    <Box sx={{ width: '100%' }}>
+      {/* Top Bar with Tabs and Action Button */}
       <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
+          mb: 3,
           flexWrap: 'wrap',
           gap: 2,
+          borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+          pb: 1,
         }}
       >
-        {/* Navigation Sub-Tabs */}
-        <Box sx={{ borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)' }}>
+        {/* Navigation Tabs */}
+        <Box sx={{ overflowX: 'auto', maxWidth: '100%' }}>
           <Tabs
             value={activeTab}
             onChange={(_, val) => setActiveTab(val)}
+            variant="scrollable"
+            scrollButtons="auto"
             sx={{
               '& .MuiTab-root': {
                 textTransform: 'none',
@@ -138,6 +183,7 @@ export const EventsTab: React.FC = () => {
             }}
           >
             <Tab label={t.tabEvents} icon={<EventIcon />} iconPosition="start" value="events" />
+            <Tab label={t.tabBookings || 'Folk Night Bookings'} icon={<BookOnline />} iconPosition="start" value="bookings" />
             <Tab label={t.tabTickets} icon={<ConfirmationNumber />} iconPosition="start" value="tickets" />
             <Tab label={t.tabCoupons} icon={<LocalOffer />} iconPosition="start" value="coupons" />
             <Tab label={t.tabConfig} icon={<Settings />} iconPosition="start" value="config" />
@@ -164,6 +210,48 @@ export const EventsTab: React.FC = () => {
             >
               {t.addEvent}
             </Button>
+          )}
+
+          {activeTab === 'bookings' && (
+            <Box sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap' }}>
+              <Button
+                variant="outlined"
+                startIcon={<QrCodeScanner />}
+                onClick={() => handleOpenCheckInModal()}
+                sx={{
+                  borderRadius: '12px',
+                  px: 2,
+                  py: 1,
+                  fontWeight: 700,
+                  textTransform: 'none',
+                  borderColor: '#ea580c',
+                  color: '#ea580c',
+                  '&:hover': {
+                    borderColor: '#c2410c',
+                    backgroundColor: 'rgba(234, 88, 12, 0.08)',
+                  },
+                }}
+              >
+                {t.btnGateCheckIn || 'Gate Check-in / Verify'}
+              </Button>
+              <Button
+                variant="contained"
+                startIcon={<Add />}
+                onClick={handleOpenCreateBookingModal}
+                sx={{
+                  borderRadius: '12px',
+                  px: 2.5,
+                  py: 1,
+                  fontWeight: 700,
+                  textTransform: 'none',
+                  backgroundColor: '#ea580c',
+                  boxShadow: '0 4px 14px rgba(234, 88, 12, 0.35)',
+                  '&:hover': { backgroundColor: '#c2410c' },
+                }}
+              >
+                {t.btnNewBooking || 'New Ticket Booking'}
+              </Button>
+            </Box>
           )}
 
           {activeTab === 'tickets' && (
@@ -218,7 +306,7 @@ export const EventsTab: React.FC = () => {
           {activeTab === 'events' && (
             <>
               {/* Stat Cards */}
-              <Grid container spacing={2.5}>
+              <Grid container spacing={2.5} sx={{ mb: 3 }}>
                 <Grid item xs={12} sm={6} md={3}>
                   <Card
                     sx={{
@@ -280,7 +368,7 @@ export const EventsTab: React.FC = () => {
                   >
                     <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                       <Box sx={{ p: 1.5, borderRadius: 2.5, backgroundColor: 'rgba(34, 197, 94, 0.15)', color: '#22c55e' }}>
-                        <ConfirmationNumber />
+                        <EventAvailable />
                       </Box>
                       <Box>
                         <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
@@ -321,7 +409,7 @@ export const EventsTab: React.FC = () => {
               </Grid>
 
               {/* Search & Filter Row */}
-              <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap', alignItems: 'center' }}>
                 <TextField
                   placeholder={t.searchPlaceholder}
                   value={search}
@@ -378,7 +466,7 @@ export const EventsTab: React.FC = () => {
               />
 
               {totalPages > 1 && (
-                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
                   <Pagination count={totalPages} page={page} onChange={(_, val) => setPage(val)} color="primary" />
                 </Box>
               )}
@@ -386,16 +474,99 @@ export const EventsTab: React.FC = () => {
           )}
 
           {/* ======================================================= */}
-          {/* 2. TICKETS SUB-TAB */}
+          {/* 2. FOLK NIGHT BOOKINGS SUB-TAB */}
+          {/* ======================================================= */}
+          {activeTab === 'bookings' && (
+            <Box>
+              <BookingAnalyticsCards
+                stats={bookingStats}
+                onSyncInventory={handleSyncInventory}
+                isSyncing={syncingInventory}
+                translations={t}
+              />
+
+              {/* Search & Filter Row */}
+              <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap', alignItems: 'center' }}>
+                <TextField
+                  placeholder={t.searchPlaceholder || 'Search booking code, customer, mobile...'}
+                  value={bookingSearch}
+                  onChange={(e) => setBookingSearch(e.target.value)}
+                  size="small"
+                  sx={{ flexGrow: 1, minWidth: 260 }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Search sx={{ color: isDark ? '#94a3b8' : '#64748b' }} />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+
+                <FormControl size="small" sx={{ minWidth: 160 }}>
+                  <InputLabel>{t.filterPaymentStatus || 'Payment Status'}</InputLabel>
+                  <Select
+                    value={selectedPaymentStatus}
+                    label={t.filterPaymentStatus || 'Payment Status'}
+                    onChange={(e) => setSelectedPaymentStatus(e.target.value)}
+                  >
+                    <MenuItem value="ALL">{t.allPaymentStatuses || 'All Payments'}</MenuItem>
+                    <MenuItem value="PAID">PAID</MenuItem>
+                    <MenuItem value="PENDING">PENDING</MenuItem>
+                    <MenuItem value="FAILED">FAILED</MenuItem>
+                    <MenuItem value="REFUNDED">REFUNDED</MenuItem>
+                  </Select>
+                </FormControl>
+
+                <FormControl size="small" sx={{ minWidth: 160 }}>
+                  <InputLabel>{t.filterBookingStatus || 'Booking Status'}</InputLabel>
+                  <Select
+                    value={selectedBookingStatus}
+                    label={t.filterBookingStatus || 'Booking Status'}
+                    onChange={(e) => setSelectedBookingStatus(e.target.value)}
+                  >
+                    <MenuItem value="ALL">{t.allBookingStatuses || 'All Bookings'}</MenuItem>
+                    <MenuItem value="CONFIRMED">CONFIRMED</MenuItem>
+                    <MenuItem value="COMPLETED">COMPLETED</MenuItem>
+                    <MenuItem value="PENDING">PENDING</MenuItem>
+                    <MenuItem value="CANCELLED">CANCELLED</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+
+              <BookingsTable
+                bookings={bookings}
+                onOpenStatusModal={handleOpenStatusModal}
+                onOpenTicketQrModal={handleOpenTicketQrModal}
+                onCheckIn={handleCheckIn}
+                translations={t}
+              />
+
+              {bookingTotalPages > 1 && (
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+                  <Pagination
+                    count={bookingTotalPages}
+                    page={bookingPage}
+                    onChange={(_, val) => setBookingPage(val)}
+                    color="primary"
+                  />
+                </Box>
+              )}
+            </Box>
+          )}
+
+          {/* ======================================================= */}
+          {/* 3. TICKETS SUB-TAB */}
           {/* ======================================================= */}
           {activeTab === 'tickets' && (
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <FormControl size="small" sx={{ minWidth: 300 }}>
-                  <InputLabel>{t.labelSelectEvent || 'Filter by Event'}</InputLabel>
+            <Box>
+              {/* Event Filter dropdown */}
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+                <FormControl size="small" sx={{ minWidth: 260 }}>
+                  <InputLabel id="event-select-label">Filter by Event</InputLabel>
                   <Select
+                    labelId="event-select-label"
                     value={selectedTicketEventId}
-                    label={t.labelSelectEvent || 'Filter by Event'}
+                    label="Filter by Event"
                     onChange={(e) => setSelectedTicketEventId(e.target.value)}
                   >
                     <MenuItem value="ALL">All Events</MenuItem>
@@ -419,7 +590,7 @@ export const EventsTab: React.FC = () => {
           )}
 
           {/* ======================================================= */}
-          {/* 3. COUPONS SUB-TAB */}
+          {/* 4. COUPONS SUB-TAB */}
           {/* ======================================================= */}
           {activeTab === 'coupons' && (
             <CouponsTable
@@ -432,7 +603,7 @@ export const EventsTab: React.FC = () => {
           )}
 
           {/* ======================================================= */}
-          {/* 4. CONFIG SUB-TAB */}
+          {/* 5. CONFIG SUB-TAB */}
           {/* ======================================================= */}
           {activeTab === 'config' && (
             <AppConfigPanel
@@ -450,6 +621,38 @@ export const EventsTab: React.FC = () => {
         onClose={handleCloseDrawer}
         onSave={handleSaveEvent}
         event={selectedEvent}
+        translations={t}
+      />
+
+      <BookingStatusModal
+        open={isBookingStatusModalOpen}
+        booking={selectedBooking}
+        onClose={handleCloseStatusModal}
+        onSave={handleUpdateBookingStatus}
+        translations={t}
+      />
+
+      <CreateBookingModal
+        open={isCreateBookingModalOpen}
+        onClose={handleCloseCreateBookingModal}
+        onSave={handleCreateBooking}
+        translations={t}
+      />
+
+      <TicketQrModal
+        open={isTicketQrModalOpen}
+        booking={selectedBooking}
+        onClose={handleCloseTicketQrModal}
+        onCheckIn={handleCheckIn}
+        translations={t}
+      />
+
+      <QrCheckInModal
+        open={isCheckInModalOpen}
+        initialCode={selectedBooking?.bookingCode}
+        onClose={handleCloseCheckInModal}
+        onVerify={handleVerifyQr}
+        onCheckIn={handleCheckIn}
         translations={t}
       />
 

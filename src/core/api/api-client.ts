@@ -82,9 +82,25 @@ export class ApiClient {
     // Request Interceptor
     this.axiosInstance.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
-        const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
-        if (token && config.headers) {
-          config.headers.Authorization = `Bearer ${token}`;
+        try {
+          const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
+          if (token && config.headers) {
+            config.headers.Authorization = `Bearer ${token}`;
+          }
+        } catch {
+          // Ignore localStorage access restrictions (e.g. Incognito or partitioned storage)
+        }
+
+        // GET, DELETE and HEAD requests do not have a body; remove Content-Type to avoid unnecessary CORS preflight headers
+        if (
+          config.method?.toLowerCase() === 'get' ||
+          config.method?.toLowerCase() === 'delete' ||
+          config.method?.toLowerCase() === 'head'
+        ) {
+          if (config.headers) {
+            delete config.headers['Content-Type'];
+            delete config.headers['content-type'];
+          }
         }
 
         // When sending FormData, delete Content-Type so Axios/browser sets multipart boundary correctly
@@ -117,6 +133,9 @@ export class ApiClient {
               config.url?.includes('/games') ||
               config.url?.includes('/cricket') ||
               config.url?.includes('/matches') ||
+              config.url?.includes('/reels') ||
+              config.url?.includes('/events') ||
+              config.url?.includes('/bookings') ||
               config.url?.includes('/sendNotification');
 
             const isCreateOrUpdateMethod =
@@ -165,6 +184,9 @@ export class ApiClient {
               config.url?.includes('/creators') ||
               config.url?.includes('/video-tags') ||
               config.url?.includes('/reporters') ||
+              config.url?.includes('/reels') ||
+              config.url?.includes('/events') ||
+              config.url?.includes('/bookings') ||
               config.url?.includes('/sendNotification') ||
               config.url?.includes('/admin') ||
               config.url?.includes('/games') ||
@@ -175,14 +197,15 @@ export class ApiClient {
               const isPreserveLangApi =
                 config.url?.includes('/video-tags') ||
                 config.url?.includes('/reporters') ||
+                config.url?.includes('/reels') ||
                 config.url?.includes('/sendNotification');
               if (config.headers) {
                 delete config.headers['Accept-Language'];
                 delete config.headers['accept-language'];
               }
               if (config.params) {
-                delete config.params.lang;
                 if (!isPreserveLangApi) {
+                  delete config.params.lang;
                   delete config.params.language;
                 }
                 delete config.params.language_code;
@@ -332,6 +355,11 @@ export class ApiClient {
   }
 }
 
+export const normalizeApiV1BaseUrl = (url?: string, defaultUrl: string = 'https://api.pravasamedia.com/api/v1'): string => {
+  const base = (url || defaultUrl).trim().replace(/\/$/, '');
+  return base.endsWith('/api/v1') ? base : `${base}/api/v1`;
+};
+
 export const apiClient = new ApiClient(
   (
     process.env.NEXT_PUBLIC_API_BASE_URL ||
@@ -341,17 +369,11 @@ export const apiClient = new ApiClient(
 );
 
 export const eventsApiClient = new ApiClient(
-  (
-    process.env.NEXT_PUBLIC_EVENTS_API_BASE_URL ||
-    'https://api.pravasamedia.com/api/v1'
-  ).replace(/\/$/, '')
+  normalizeApiV1BaseUrl(process.env.NEXT_PUBLIC_EVENTS_API_BASE_URL, 'https://api.pravasamedia.com/api/v1')
 );
 
 export const videoApiClient = new ApiClient(
-  (
-    process.env.NEXT_PUBLIC_VIDEO_API_BASE_URL ||
-    'https://api.pravasamedia.com/api/v1'
-  ).replace(/\/$/, '')
+  normalizeApiV1BaseUrl(process.env.NEXT_PUBLIC_VIDEO_API_BASE_URL, 'https://api.pravasamedia.com/api/v1')
 );
 
 export const ttsApiClient = new ApiClient(
@@ -362,11 +384,10 @@ export const ttsApiClient = new ApiClient(
 );
 
 export const gamesApiClient = new ApiClient(
-  (
-    process.env.NEXT_PUBLIC_GAMES_API_BASE_URL ||
-    process.env.NEXT_PUBLIC_EVENTS_API_BASE_URL ||
+  normalizeApiV1BaseUrl(
+    process.env.NEXT_PUBLIC_GAMES_API_BASE_URL || process.env.NEXT_PUBLIC_EVENTS_API_BASE_URL,
     'https://api.pravasamedia.com/api/v1'
-  ).replace(/\/$/, '')
+  )
 );
 
 export const cricketApiClient = new ApiClient(

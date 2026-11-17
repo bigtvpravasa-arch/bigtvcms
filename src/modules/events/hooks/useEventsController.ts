@@ -9,10 +9,15 @@ import {
   CouponItem,
   CreateCouponInput,
   AppConfigItem,
+  BookingItem,
+  CreateBookingInput,
+  UpdateBookingStatusInput,
+  VerifyQrResult,
+  BookingAdminStats,
 } from '../domain/event.types';
-import { eventsRepository } from '../repositories/events.repository';
+import { eventsRepository, FOLK_NIGHT_EVENT_ID } from '../repositories/events.repository';
 
-export type EventTabType = 'events' | 'tickets' | 'coupons' | 'config';
+export type EventTabType = 'events' | 'bookings' | 'tickets' | 'coupons' | 'config';
 
 export const useEventsController = () => {
   const [activeTab, setActiveTab] = useState<EventTabType>('events');
@@ -97,6 +102,21 @@ export const useEventsController = () => {
     maintenanceMode: false,
   });
 
+  // Bookings State
+  const [bookings, setBookings] = useState<BookingItem[]>([]);
+  const [bookingStats, setBookingStats] = useState<BookingAdminStats | null>(null);
+  const [bookingSearch, setBookingSearch] = useState<string>('');
+  const [selectedBookingStatus, setSelectedBookingStatus] = useState<string>('ALL');
+  const [selectedPaymentStatus, setSelectedPaymentStatus] = useState<string>('ALL');
+  const [bookingPage, setBookingPage] = useState<number>(1);
+  const bookingItemsPerPage = 6;
+  const [selectedBooking, setSelectedBooking] = useState<BookingItem | null>(null);
+  const [isBookingStatusModalOpen, setIsBookingStatusModalOpen] = useState<boolean>(false);
+  const [isCreateBookingModalOpen, setIsCreateBookingModalOpen] = useState<boolean>(false);
+  const [isTicketQrModalOpen, setIsTicketQrModalOpen] = useState<boolean>(false);
+  const [isCheckInModalOpen, setIsCheckInModalOpen] = useState<boolean>(false);
+  const [syncingInventory, setSyncingInventory] = useState<boolean>(false);
+
   // Drawer State for Events
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
@@ -104,13 +124,20 @@ export const useEventsController = () => {
   const fetchAllData = useCallback(async () => {
     setLoading(true);
     try {
-      const [fetchedEvents, fetchedStats, fetchedTickets, fetchedCoupons, fetchedConfig] =
+      const [fetchedEvents, fetchedStats, fetchedTickets, fetchedCoupons, fetchedConfig, fetchedBookings, fetchedBookingStats] =
         await Promise.all([
           eventsRepository.getEvents(search, selectedCity, selectedStatus),
           eventsRepository.getStats(),
           eventsRepository.getTicketTypes(selectedTicketEventId),
           eventsRepository.getCoupons(),
           eventsRepository.getAppConfig(),
+          eventsRepository.getBookings({
+            eventId: FOLK_NIGHT_EVENT_ID,
+            bookingStatus: selectedBookingStatus,
+            paymentStatus: selectedPaymentStatus,
+            search: bookingSearch,
+          }),
+          eventsRepository.getBookingAdminStats(FOLK_NIGHT_EVENT_ID),
         ]);
 
       setEvents(fetchedEvents);
@@ -118,12 +145,14 @@ export const useEventsController = () => {
       setTickets(fetchedTickets);
       setCoupons(fetchedCoupons);
       if (fetchedConfig) setAppConfig(fetchedConfig);
+      setBookings(fetchedBookings.data || []);
+      if (fetchedBookingStats) setBookingStats(fetchedBookingStats);
     } catch {
       // Handled in repository fallback
     } finally {
       setLoading(false);
     }
-  }, [search, selectedCity, selectedStatus, selectedTicketEventId]);
+  }, [search, selectedCity, selectedStatus, selectedTicketEventId, bookingSearch, selectedBookingStatus, selectedPaymentStatus]);
 
   useEffect(() => {
     fetchAllData();
@@ -212,6 +241,81 @@ export const useEventsController = () => {
     setAppConfig(newConfig);
   };
 
+  // Bookings Handlers & Pagination
+  const bookingTotalPages = Math.max(1, Math.ceil(bookings.length / bookingItemsPerPage));
+  const paginatedBookings = bookings.slice((bookingPage - 1) * bookingItemsPerPage, bookingPage * bookingItemsPerPage);
+
+  const handleOpenStatusModal = (booking: BookingItem) => {
+    setSelectedBooking(booking);
+    setIsBookingStatusModalOpen(true);
+  };
+
+  const handleCloseStatusModal = () => {
+    setIsBookingStatusModalOpen(false);
+    setSelectedBooking(null);
+  };
+
+  const handleUpdateBookingStatus = async (input: UpdateBookingStatusInput) => {
+    if (!selectedBooking) return;
+    await eventsRepository.updateBookingStatus(selectedBooking.id, input);
+    handleCloseStatusModal();
+    fetchAllData();
+  };
+
+  const handleOpenCreateBookingModal = () => {
+    setIsCreateBookingModalOpen(true);
+  };
+
+  const handleCloseCreateBookingModal = () => {
+    setIsCreateBookingModalOpen(false);
+  };
+
+  const handleCreateBooking = async (input: CreateBookingInput) => {
+    await eventsRepository.createBooking(input);
+    handleCloseCreateBookingModal();
+    fetchAllData();
+  };
+
+  const handleOpenTicketQrModal = (booking: BookingItem) => {
+    setSelectedBooking(booking);
+    setIsTicketQrModalOpen(true);
+  };
+
+  const handleCloseTicketQrModal = () => {
+    setIsTicketQrModalOpen(false);
+    setSelectedBooking(null);
+  };
+
+  const handleOpenCheckInModal = (booking?: BookingItem) => {
+    setSelectedBooking(booking || null);
+    setIsCheckInModalOpen(true);
+  };
+
+  const handleCloseCheckInModal = () => {
+    setIsCheckInModalOpen(false);
+    setSelectedBooking(null);
+  };
+
+  const handleVerifyQr = async (code: string) => {
+    return await eventsRepository.verifyQrCode(code);
+  };
+
+  const handleCheckIn = async (code: string) => {
+    const res = await eventsRepository.checkInTicket(code);
+    fetchAllData();
+    return res;
+  };
+
+  const handleSyncInventory = async () => {
+    setSyncingInventory(true);
+    try {
+      await eventsRepository.syncInventory(FOLK_NIGHT_EVENT_ID);
+      await fetchAllData();
+    } finally {
+      setSyncingInventory(false);
+    }
+  };
+
   return {
     activeTab,
     setActiveTab,
@@ -240,6 +344,39 @@ export const useEventsController = () => {
     handleSaveEvent,
     handleDeleteEvent,
     handleToggleAvailability,
+
+    // Bookings
+    bookings: paginatedBookings,
+    allBookings: bookings,
+    bookingStats,
+    bookingSearch,
+    setBookingSearch,
+    selectedBookingStatus,
+    setSelectedBookingStatus,
+    selectedPaymentStatus,
+    setSelectedPaymentStatus,
+    bookingPage,
+    setBookingPage,
+    bookingTotalPages,
+    selectedBooking,
+    isBookingStatusModalOpen,
+    handleOpenStatusModal,
+    handleCloseStatusModal,
+    handleUpdateBookingStatus,
+    isCreateBookingModalOpen,
+    handleOpenCreateBookingModal,
+    handleCloseCreateBookingModal,
+    handleCreateBooking,
+    isTicketQrModalOpen,
+    handleOpenTicketQrModal,
+    handleCloseTicketQrModal,
+    isCheckInModalOpen,
+    handleOpenCheckInModal,
+    handleCloseCheckInModal,
+    handleVerifyQr,
+    handleCheckIn,
+    syncingInventory,
+    handleSyncInventory,
 
     // Tickets
     tickets,

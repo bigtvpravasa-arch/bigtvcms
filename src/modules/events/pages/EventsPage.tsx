@@ -29,8 +29,8 @@ import {
   MeetingRoom,
   LocalOffer,
   Settings,
-  ConfirmationNumberOutlined,
-  Discount,
+  BookOnline,
+  QrCodeScanner,
 } from '@mui/icons-material';
 import { useLanguageStore } from '@/core/storage/language-store';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
@@ -42,368 +42,20 @@ import { TicketModal } from '../components/TicketModal';
 import { CouponsTable } from '../components/CouponsTable';
 import { CouponModal } from '../components/CouponModal';
 import { AppConfigPanel } from '../components/AppConfigPanel';
+import { BookingAnalyticsCards } from '../components/BookingAnalyticsCards';
+import { BookingsTable } from '../components/BookingsTable';
+import { BookingStatusModal } from '../components/BookingStatusModal';
+import { CreateBookingModal } from '../components/CreateBookingModal';
+import { TicketQrModal } from '../components/TicketQrModal';
+import { QrCheckInModal } from '../components/QrCheckInModal';
 import { Loader } from '@/shared/components/Loader';
-
-const translations: Record<string, any> = {
-  en: {
-    pageTitle: 'Events & Booking CMS',
-    subTitle: 'Manage live shows, concerts, ticket categories, promo coupons, and system settings',
-    tabEvents: 'Events',
-    tabTickets: 'Ticket Types',
-    tabCoupons: 'Discount Coupons',
-    tabConfig: 'App Config',
-    statTotal: 'Total Events',
-    statUpcoming: 'Upcoming Events',
-    statLive: 'Live Now',
-    statSeats: 'Available Seats',
-    searchPlaceholder: 'Search by event name, code, venue...',
-    filterCity: 'Filter City',
-    filterStatus: 'Filter Status',
-    allCities: 'All Cities',
-    allStatuses: 'All Statuses',
-    addEvent: 'Add Event',
-    addTicket: 'Add Ticket Tier',
-    addCoupon: 'Create Coupon',
-    colCode: 'Event Code',
-    colEvent: 'Event Name',
-    colType: 'Category',
-    colDateTime: 'Date & Time',
-    colLocation: 'Location',
-    colSeats: 'Seat Availability',
-    colStatus: 'Status',
-    colActive: 'Active',
-    colActions: 'Actions',
-    colTicketTier: 'Ticket Tier Name',
-    colEventName: 'Event Name',
-    colPrice: 'Price (₹)',
-    colCapacity: 'Capacity (Available / Total)',
-    colDescription: 'Perks & Access',
-    colCouponCode: 'Promo Code',
-    colDiscount: 'Discount Value',
-    colEventCode: 'Target Event',
-    colUsage: 'Usage Limit',
-    colValidUntil: 'Valid Until',
-    statusUpcoming: 'UPCOMING',
-    statusLive: 'LIVE',
-    statusCompleted: 'COMPLETED',
-    statusCancelled: 'CANCELLED',
-    noEvents: 'No events found.',
-    noTickets: 'No ticket categories found.',
-    noCoupons: 'No discount coupons found.',
-    btnEdit: 'Edit Event',
-    btnDelete: 'Delete',
-    modalAddTitle: 'Add New Event',
-    modalEditTitle: 'Edit Event',
-    modalAddTicketTitle: 'Add Ticket Category Tier',
-    modalAddCouponTitle: 'Create Discount Promo Coupon',
-    labelName: 'Event Name',
-    labelCode: 'Event Code',
-    labelType: 'Category / Type',
-    labelCity: 'City',
-    labelLocation: 'Venue / Location',
-    labelDate: 'Start Date',
-    labelTime: 'Time',
-    labelStatus: 'Status',
-    labelTotalSeats: 'Total Seats',
-    labelAvailableSeats: 'Available Seats',
-    labelOrganizer: 'Organizer',
-    labelImage: 'Banner Image URL',
-    labelAvailability: 'Active for Booking',
-    labelDescription: 'Description',
-    labelSelectEvent: 'Select Event',
-    labelTicketTier: 'Tier Name (e.g. VIP Pass, Early Bird)',
-    labelPrice: 'Price (₹)',
-    labelCapacity: 'Total Quantity / Capacity',
-    labelCouponCode: 'Promo Code (e.g. FESTIVE25)',
-    labelDiscountType: 'Discount Type',
-    labelDiscountValue: 'Discount Value',
-    labelTargetEvent: 'Target Event (Optional)',
-    labelMaxUses: 'Max Usage Limit',
-    labelValidUntil: 'Valid Until Date',
-    configFeatureFlagsTitle: 'Feature Flags & System Controls',
-    configPaymentTitle: 'Payment Gateway Credentials',
-    flagEventsEnable: 'Events & Ticket Booking System',
-    flagBannersEnable: 'Hero Banner Highlights',
-    flagFolkNight: 'Folk Night & Cultural Special',
-    flagCricket: 'Sports & Cricket Match Screenings',
-    flagMaintenance: 'Maintenance Mode',
-    flagTestMode: 'Razorpay Sandbox / Test Mode',
-    labelRazorpayKey: 'Razorpay Public Key ID',
-    btnCancel: 'Cancel',
-    btnSave: 'Save',
-    btnUpdate: 'Update',
-  },
-  te: {
-    pageTitle: 'ఈవెంట్లు & బుకింగ్ CMS',
-    subTitle: 'లైవ్ షోలు, కాన్సర్ట్‌లు, టికెట్ కేటగిరీలు, డిస్కౌంట్ కూపన్లు మరియు సిస్టమ్ సెట్టింగులను నిర్వహించండి',
-    tabEvents: 'ఈవెంట్లు',
-    tabTickets: 'టికెట్ రకాలు',
-    tabCoupons: 'డిస్కౌంట్ కూపన్లు',
-    tabConfig: 'యాప్ కాన్ఫిగ్',
-    statTotal: 'మొత్తం ఈవెంట్లు',
-    statUpcoming: 'రాబోయే ఈవెంట్లు',
-    statLive: 'ప్రస్తుతం లైవ్',
-    statSeats: 'అందుబాటులో ఉన్న సీట్లు',
-    searchPlaceholder: 'ఈవెంట్ పేరు, కోడ్, వేదికతో శోధించండి...',
-    filterCity: 'నగరం వడపోత',
-    filterStatus: 'స్థితి వడపోత',
-    allCities: 'అన్ని నగరాలు',
-    allStatuses: 'అన్ని స్థితులు',
-    addEvent: 'ఈవెంట్ జోడించండి',
-    addTicket: 'టికెట్ కేటగిరీ జోడించండి',
-    addCoupon: 'కూపన్ సృష్టించండి',
-    colCode: 'ఈవెంట్ కోడ్',
-    colEvent: 'ఈవెంట్ పేరు',
-    colType: 'విభాగం',
-    colDateTime: 'తేదీ & సమయం',
-    colLocation: 'ప్రాంతం',
-    colSeats: 'సీట్ల లభ్యత',
-    colStatus: 'స్థితి',
-    colActive: 'యాక్టివ్',
-    colActions: 'చర్యలు',
-    colTicketTier: 'టికెట్ కేటగిరీ పేరు',
-    colEventName: 'ఈవెంట్ పేరు',
-    colPrice: 'ధర (₹)',
-    colCapacity: 'సీట్ల సామర్థ్యం',
-    colDescription: 'సౌకర్యాలు & వివరాలు',
-    colCouponCode: 'ప్రోమో కోడ్',
-    colDiscount: 'డిస్కౌంట్ విలువ',
-    colEventCode: 'లక్ష్య ఈవెంట్',
-    colUsage: 'పరిమితి',
-    colValidUntil: 'చెల్లుబాటు తేదీ',
-    statusUpcoming: 'రాబోయేవి',
-    statusLive: 'లైవ్',
-    statusCompleted: 'పూర్తయినవి',
-    statusCancelled: 'రద్దయినవి',
-    noEvents: 'ఈవెంట్లు ఏవీ కనుగొనబడలేదు.',
-    noTickets: 'టికెట్ కేటగిరీలు ఏవీ లేవు.',
-    noCoupons: 'కూపన్లు ఏవీ కనుగొనబడలేదు.',
-    btnEdit: 'సవరించు',
-    btnDelete: 'తొలగించు',
-    modalAddTitle: 'కొత్త ఈవెంట్‌ను జోడించండి',
-    modalEditTitle: 'ఈవెంట్‌ను సవరించండి',
-    modalAddTicketTitle: 'కొత్త టికెట్ కేటగిరీ జోడించండి',
-    modalAddCouponTitle: 'డిస్కౌంట్ ప్రోమో కూపన్ సృష్టించండి',
-    labelName: 'ఈవెంట్ పేరు',
-    labelCode: 'ఈవెంట్ కోడ్',
-    labelType: 'విభాగం / రకం',
-    labelCity: 'నగరం',
-    labelLocation: 'వేదిక / ప్రాంతం',
-    labelDate: 'ప్రారంభ తేదీ',
-    labelTime: 'సమయం',
-    labelStatus: 'స్థితి',
-    labelTotalSeats: 'మొత్తం సీట్లు',
-    labelAvailableSeats: 'అందుబాటులో ఉన్న సీట్లు',
-    labelOrganizer: 'నిర్వాహకుడు',
-    labelImage: 'బ్యానర్ చిత్రం URL',
-    labelAvailability: 'బుకింగ్‌కు అందుబాటులో ఉంది',
-    labelDescription: 'వివరాలు',
-    labelSelectEvent: 'ఈవెంట్‌ను ఎంచుకోండి',
-    labelTicketTier: 'టికెట్ పేరు (ఉదా. VIP పాస్)',
-    labelPrice: 'ధర (₹)',
-    labelCapacity: 'మొత్తం సీట్లు',
-    labelCouponCode: 'ప్రోమో కోడ్ (ఉదా. FESTIVE25)',
-    labelDiscountType: 'డిస్కౌంట్ రకం',
-    labelDiscountValue: 'డిస్కౌంట్ విలువ',
-    labelTargetEvent: 'లక్ష్య ఈవెంట్',
-    labelMaxUses: 'గరిష్ట వినియోగం',
-    labelValidUntil: 'చెల్లుబాటు తేదీ',
-    configFeatureFlagsTitle: 'ఫీచర్ ఫ్లాగ్స్ & సిస్టమ్ కంట్రోల్స్',
-    configPaymentTitle: 'పేమెంట్ గేట్‌వే వివరాలు',
-    flagEventsEnable: 'ఈవెంట్లు & టికెట్ బుకింగ్ సిస్టమ్',
-    flagBannersEnable: 'హీరో బ్యానర్ హైలైట్స్',
-    flagFolkNight: 'ఫోక్ నైట్ & సాంస్కృతిక కార్యక్రమాలు',
-    flagCricket: 'క్రీడలు & క్రికెట్ మ్యాచ్ స్క్రీనింగ్',
-    flagMaintenance: 'మెయింటెనెన్స్ మోడ్',
-    flagTestMode: 'రేజర్‌పే టెస్ట్ మోడ్',
-    labelRazorpayKey: 'రేజర్‌పే పబ్లిక్ కీ ID',
-    btnCancel: 'రద్దు చేయి',
-    btnSave: 'సమర్పించు',
-    btnUpdate: 'నవీకరించు',
-  },
-  hi: {
-    pageTitle: 'इवेंट्स & बुकिंग CMS',
-    subTitle: 'लाइव शो, कॉन्सर्ट, टिकट श्रेणियां, कूपन और सिस्टम सेटिंग्स प्रबंधित करें',
-    tabEvents: 'इवेंट्स (Events)',
-    tabTickets: 'टिकट के प्रकार (Tickets)',
-    tabCoupons: 'डिस्काउंट कूपन (Coupons)',
-    tabConfig: 'ऐप कॉन्फ़िगरेशन (Config)',
-    statTotal: 'कुल इवेंट्स',
-    statUpcoming: 'आगामी इवेंट्स',
-    statLive: 'लाइव इवेंट्स',
-    statSeats: 'उपलब्ध सीटें',
-    searchPlaceholder: 'इवेंट नाम, कोड, स्थान से खोजें...',
-    filterCity: 'शहर फ़िल्टर',
-    filterStatus: 'स्थिति फ़िल्टर',
-    allCities: 'सभी शहर',
-    allStatuses: 'सभी स्थितियाँ',
-    addEvent: 'इवेंट जोड़ें',
-    addTicket: 'टिकट श्रेणी जोड़ें',
-    addCoupon: 'कूपन बनाएं',
-    colCode: 'इवेंट कोड',
-    colEvent: 'इवेंट का नाम',
-    colType: 'श्रेणी',
-    colDateTime: 'दिनांक और समय',
-    colLocation: 'स्थान',
-    colSeats: 'सीट उपलब्धता',
-    colStatus: 'स्थिति',
-    colActive: 'सक्रिय',
-    colActions: 'कार्रवाई',
-    colTicketTier: 'टिकट श्रेणी',
-    colEventName: 'इवेंट का नाम',
-    colPrice: 'मूल्य (₹)',
-    colCapacity: 'क्षमता',
-    colDescription: 'सुविधाएं',
-    colCouponCode: 'प्रोमो कोड',
-    colDiscount: 'छूट मान',
-    colEventCode: 'लक्ष्य इवेंट',
-    colUsage: 'उपयोग सीमा',
-    colValidUntil: 'वैधता तिथि',
-    statusUpcoming: 'आगामी',
-    statusLive: 'लाइव',
-    statusCompleted: 'पूर्ण',
-    statusCancelled: 'रद्द',
-    noEvents: 'कोई इवेंट नहीं मिला।',
-    noTickets: 'कोई टिकट श्रेणी नहीं मिली।',
-    noCoupons: 'कोई कूपन नहीं मिला।',
-    btnEdit: 'संपादित करें',
-    btnDelete: 'हटाएं',
-    modalAddTitle: 'नया इवेंट जोड़ें',
-    modalEditTitle: 'इवेंट संपादित करें',
-    modalAddTicketTitle: 'टिकट श्रेणी जोड़ें',
-    modalAddCouponTitle: 'प्रोमो कूपन बनाएं',
-    labelName: 'इवेंट का नाम',
-    labelCode: 'इवेंट कोड',
-    labelType: 'श्रेणी / प्रकार',
-    labelCity: 'शहर',
-    labelLocation: 'स्थान',
-    labelDate: 'प्रारंभ तिथि',
-    labelTime: 'समय',
-    labelStatus: 'स्थिति',
-    labelTotalSeats: 'कुल सीटें',
-    labelAvailableSeats: 'उपलब्ध सीटें',
-    labelOrganizer: 'आयोजक',
-    labelImage: 'बैनर छवि URL',
-    labelAvailability: 'बुकिंग के लिए सक्रिय',
-    labelDescription: 'विवरण',
-    labelSelectEvent: 'इवेंट चुनें',
-    labelTicketTier: 'श्रेणी का नाम',
-    labelPrice: 'मूल्य (₹)',
-    labelCapacity: 'कुल सीटें',
-    labelCouponCode: 'प्रोमो कोड',
-    labelDiscountType: 'छूट का प्रकार',
-    labelDiscountValue: 'छूट मान',
-    labelTargetEvent: 'लक्ष्य इवेंट',
-    labelMaxUses: 'उपयोग सीमा',
-    labelValidUntil: 'वैधता तिथि',
-    configFeatureFlagsTitle: 'फ़ीचर फ़्लैग और सिस्टम नियंत्रण',
-    configPaymentTitle: 'पेमेंट गेटवे क्रेडेंशियल',
-    flagEventsEnable: 'इवेंट्स और टिकट बुकिंग सिस्टम',
-    flagBannersEnable: 'हीरो बैनर हाइलाइट्स',
-    flagFolkNight: 'लोक नाइट सांस्कृतिक कार्यक्रम',
-    flagCricket: 'खेल और क्रिकेट मैच स्क्रीनिंग',
-    flagMaintenance: 'मेंटेनेंस मोड',
-    flagTestMode: 'रेज़रपे टेस्ट मोड',
-    labelRazorpayKey: 'रेज़रपे पब्लिक की ID',
-    btnCancel: 'रद्द करें',
-    btnSave: 'सहेजें',
-    btnUpdate: 'अद्यतन करें',
-  },
-  ml: {
-    pageTitle: 'ഇവന്റുകൾ & ബുക്കിംഗ് CMS',
-    subTitle: 'ലൈവ് ഷോകൾ, കച്ചേരികൾ, ടിക്കറ്റ് തരങ്ങൾ, കൂപ്പണുകൾ, ക്രമീകരണങ്ങൾ എന്നിവ കൈകാര്യം ചെയ്യുക',
-    tabEvents: 'ഇവന്റുകൾ (Events)',
-    tabTickets: 'ടിക്കറ്റ് തരങ്ങൾ (Tickets)',
-    tabCoupons: 'ഡിസ്കൗണ്ട് കൂപ്പണുകൾ (Coupons)',
-    tabConfig: 'ആപ്പ് കോൺഫിഗറേഷൻ (Config)',
-    statTotal: 'ആകെ ഇവന്റുകൾ',
-    statUpcoming: 'വരാനിരിക്കുന്ന ഇവന്റുകൾ',
-    statLive: 'ലൈവ് ഇവന്റുകൾ',
-    statSeats: 'ലഭ്യമായ സീറ്റുകൾ',
-    searchPlaceholder: 'ഇവന്റ് പേര്, കോഡ്, സ്ഥലം തിരയുക...',
-    filterCity: 'നഗരം ഫിൽട്ടർ',
-    filterStatus: 'സ്റ്റാറ്റസ് ഫിൽട്ടർ',
-    allCities: 'എല്ലാ നഗരങ്ങളും',
-    allStatuses: 'എല്ലാ സ്റ്റാറ്റസുകളും',
-    addEvent: 'ഇവന്റ് ചേർക്കുക',
-    addTicket: 'ടിക്കറ്റ് തരം ചേർക്കുക',
-    addCoupon: 'കൂപ്പൺ സൃഷ്ടിക്കുക',
-    colCode: 'ഇവന്റ് കോഡ്',
-    colEvent: 'ഇവന്റ് പേര്',
-    colType: 'വിഭാഗം',
-    colDateTime: 'തീയതി & സമയം',
-    colLocation: 'സ്ഥലം',
-    colSeats: 'സീറ്റ് ലഭ്യത',
-    colStatus: 'സ്റ്റാറ്റസ്',
-    colActive: 'സജീവം',
-    colActions: 'നടപടികൾ',
-    colTicketTier: 'ടിക്കറ്റ് പേര്',
-    colEventName: 'ഇവന്റ് പേര്',
-    colPrice: 'വില (₹)',
-    colCapacity: 'സീറ്റ് ശേഷി',
-    colDescription: 'വിവരങ്ങൾ',
-    colCouponCode: 'പ്രൊമോ കോഡ്',
-    colDiscount: 'ഡിസ്കൗണ്ട് മൂല്യം',
-    colEventCode: 'ലക്ഷ്യ ഇവന്റ്',
-    colUsage: 'ഉപയോഗ പരിധി',
-    colValidUntil: 'അവസാന തീയതി',
-    statusUpcoming: 'വരാനിരിക്കുന്നത്',
-    statusLive: 'ലൈവ്',
-    statusCompleted: 'പൂർത്തിയായി',
-    statusCancelled: 'റദ്ദാക്കി',
-    noEvents: 'ഇവന്റുകളൊന്നും കണ്ടെത്തിയില്ല.',
-    noTickets: 'ടിക്കറ്റ് വിഭാഗങ്ങളൊന്നും ലഭ്യമല്ല.',
-    noCoupons: 'കൂപ്പണുകളൊന്നും ലഭ്യമല്ല.',
-    btnEdit: 'തിരുത്തുക',
-    btnDelete: 'ഇല്ലാതാക്കുക',
-    modalAddTitle: 'പുതിയ ഇവന്റ് ചേർക്കുക',
-    modalEditTitle: 'ഇവന്റ് തിരുത്തുക',
-    modalAddTicketTitle: 'ടിക്കറ്റ് തരം ചേർക്കുക',
-    modalAddCouponTitle: 'ഡിസ്കൗണ്ട് കൂപ്പൺ സൃഷ്ടിക്കുക',
-    labelName: 'ഇവന്റ് പേര്',
-    labelCode: 'ഇവന്റ് കോഡ്',
-    labelType: 'വിഭാഗം',
-    labelCity: 'നഗരം',
-    labelLocation: 'സ്ഥലം',
-    labelDate: 'ആരംഭ തീയതി',
-    labelTime: 'സമയം',
-    labelStatus: 'സ്റ്റാറ്റസ്',
-    labelTotalSeats: 'ആകെ സീറ്റുകൾ',
-    labelAvailableSeats: 'ലഭ്യമായ സീറ്റുകൾ',
-    labelOrganizer: 'സംഘാടകൻ',
-    labelImage: 'ബാനർ ചിത്രം URL',
-    labelAvailability: 'ബുക്കിംഗിനായി സജീവം',
-    labelDescription: 'വിവരണം',
-    labelSelectEvent: 'ഇവന്റ് തിരഞ്ഞെടുക്കുക',
-    labelTicketTier: 'ടിക്കറ്റ് തരം',
-    labelPrice: 'വില (₹)',
-    labelCapacity: 'ആകെ സീറ്റുകൾ',
-    labelCouponCode: 'പ്രൊമോ കോഡ്',
-    labelDiscountType: 'ഡിസ്കൗണ്ട് തരം',
-    labelDiscountValue: 'ഡിസ്കൗണ്ട് മൂല്യം',
-    labelTargetEvent: 'ലക്ഷ്യ ഇവന്റ്',
-    labelMaxUses: 'ഉപയോഗ പരിധി',
-    labelValidUntil: 'അവസാന തീയതി',
-    configFeatureFlagsTitle: 'ഫീച്ചർ ഫ്ലാഗുകളും സിസ്റ്റം നിയന്ത്രണങ്ങളും',
-    configPaymentTitle: 'പേയ്‌മെന്റ് ഗേറ്റ്‌വേ വിവരങ്ങൾ',
-    flagEventsEnable: 'ഇവന്റുകൾ & ബുക്കിംഗ് സിസ്റ്റം',
-    flagBannersEnable: 'ഹീറോ ബാനർ ഹൈലൈറ്റുകൾ',
-    flagFolkNight: 'ഫോക്ക് നൈറ്റ് സാംസ്കാരിക പരിപാടികൾ',
-    flagCricket: 'കായിക മത്സരങ്ങൾ & ക്രിക്കറ്റ് സ്ക്രീനിംഗ്',
-    flagMaintenance: 'മെയിന്റനൻസ് മോഡ്',
-    flagTestMode: 'റേസർപേ ടെസ്റ്റ് മോഡ്',
-    labelRazorpayKey: 'റേസർപേ പബ്ലിക് കീ ID',
-    btnCancel: 'റദ്ദാക്കുക',
-    btnSave: 'സേവ് ചെയ്യുക',
-    btnUpdate: 'അപ്‌ഡേറ്റ് ചെയ്യുക',
-  },
-};
+import { eventTranslations } from '../translations';
 
 export const EventsPage: React.FC = () => {
   const { language } = useLanguageStore();
   const { mode } = useAppTheme();
   const isDark = mode === 'dark';
-  const t = translations[language] || translations.en;
+  const t = eventTranslations[language] || eventTranslations.en;
 
   const {
     activeTab,
@@ -433,6 +85,38 @@ export const EventsPage: React.FC = () => {
     handleSaveEvent,
     handleDeleteEvent,
     handleToggleAvailability,
+
+    // Bookings
+    bookings,
+    bookingStats,
+    bookingSearch,
+    setBookingSearch,
+    selectedBookingStatus,
+    setSelectedBookingStatus,
+    selectedPaymentStatus,
+    setSelectedPaymentStatus,
+    bookingPage,
+    setBookingPage,
+    bookingTotalPages,
+    selectedBooking,
+    isBookingStatusModalOpen,
+    handleOpenStatusModal,
+    handleCloseStatusModal,
+    handleUpdateBookingStatus,
+    isCreateBookingModalOpen,
+    handleOpenCreateBookingModal,
+    handleCloseCreateBookingModal,
+    handleCreateBooking,
+    isTicketQrModalOpen,
+    handleOpenTicketQrModal,
+    handleCloseTicketQrModal,
+    isCheckInModalOpen,
+    handleOpenCheckInModal,
+    handleCloseCheckInModal,
+    handleVerifyQr,
+    handleCheckIn,
+    syncingInventory,
+    handleSyncInventory,
 
     // Tickets
     tickets,
@@ -473,18 +157,28 @@ export const EventsPage: React.FC = () => {
         <Header />
 
         <Box
+          component="main"
           sx={{
             flexGrow: 1,
-            p: 3,
             overflowY: 'auto',
-            backgroundColor: isDark ? '#0f0c29' : '#f8fafc',
-            color: isDark ? '#ffffff' : '#0f172a',
+            p: { xs: 2, sm: 3, md: 4 },
+            backgroundColor: isDark ? '#0b0f19' : '#f8fafc',
+            color: isDark ? '#f8fafc' : '#0f172a',
           }}
         >
-          {/* Header Banner */}
-          <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {/* Header Row */}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              mb: 3,
+              flexWrap: 'wrap',
+              gap: 2,
+            }}
+          >
             <Box>
-              <Typography variant="h5" sx={{ fontWeight: 800, letterSpacing: '-0.5px' }}>
+              <Typography variant="h4" sx={{ fontWeight: 800, letterSpacing: '-0.5px' }}>
                 {t.pageTitle}
               </Typography>
               <Typography variant="body2" sx={{ color: isDark ? '#94a3b8' : '#64748b', mt: 0.5 }}>
@@ -492,65 +186,110 @@ export const EventsPage: React.FC = () => {
               </Typography>
             </Box>
 
-            {activeTab === 'events' && (
-              <Button
-                variant="contained"
-                startIcon={<Add />}
-                onClick={handleOpenAddModal}
-                sx={{
-                  borderRadius: '12px',
-                  px: 2.5,
-                  py: 1.2,
-                  fontWeight: 700,
-                  textTransform: 'none',
-                  backgroundColor: '#2563eb',
-                  boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
-                  '&:hover': { backgroundColor: '#1d4ed8' },
-                }}
-              >
-                {t.addEvent}
-              </Button>
-            )}
+            {/* Top Action Buttons based on Active Tab */}
+            <Box sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap' }}>
+              {activeTab === 'events' && (
+                <Button
+                  variant="contained"
+                  startIcon={<Add />}
+                  onClick={handleOpenAddModal}
+                  sx={{
+                    borderRadius: '12px',
+                    px: 2.5,
+                    py: 1.2,
+                    fontWeight: 700,
+                    textTransform: 'none',
+                    backgroundColor: '#2563eb',
+                    boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
+                    '&:hover': { backgroundColor: '#1d4ed8' },
+                  }}
+                >
+                  {t.addEvent}
+                </Button>
+              )}
 
-            {activeTab === 'tickets' && (
-              <Button
-                variant="contained"
-                startIcon={<Add />}
-                onClick={handleOpenAddTicketModal}
-                sx={{
-                  borderRadius: '12px',
-                  px: 2.5,
-                  py: 1.2,
-                  fontWeight: 700,
-                  textTransform: 'none',
-                  backgroundColor: '#2563eb',
-                  boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
-                  '&:hover': { backgroundColor: '#1d4ed8' },
-                }}
-              >
-                {t.addTicket}
-              </Button>
-            )}
+              {activeTab === 'bookings' && (
+                <>
+                  <Button
+                    variant="outlined"
+                    startIcon={<QrCodeScanner />}
+                    onClick={() => handleOpenCheckInModal()}
+                    sx={{
+                      borderRadius: '12px',
+                      px: 2,
+                      py: 1.2,
+                      fontWeight: 700,
+                      textTransform: 'none',
+                      borderColor: '#ea580c',
+                      color: '#ea580c',
+                      '&:hover': {
+                        borderColor: '#c2410c',
+                        backgroundColor: 'rgba(234, 88, 12, 0.08)',
+                      },
+                    }}
+                  >
+                    {t.btnGateCheckIn || 'Gate Check-in / Verify'}
+                  </Button>
+                  <Button
+                    variant="contained"
+                    startIcon={<Add />}
+                    onClick={handleOpenCreateBookingModal}
+                    sx={{
+                      borderRadius: '12px',
+                      px: 2.5,
+                      py: 1.2,
+                      fontWeight: 700,
+                      textTransform: 'none',
+                      backgroundColor: '#ea580c',
+                      boxShadow: '0 4px 14px rgba(234, 88, 12, 0.35)',
+                      '&:hover': { backgroundColor: '#c2410c' },
+                    }}
+                  >
+                    {t.btnNewBooking || 'New Ticket Booking'}
+                  </Button>
+                </>
+              )}
 
-            {activeTab === 'coupons' && (
-              <Button
-                variant="contained"
-                startIcon={<Add />}
-                onClick={handleOpenAddCouponModal}
-                sx={{
-                  borderRadius: '12px',
-                  px: 2.5,
-                  py: 1.2,
-                  fontWeight: 700,
-                  textTransform: 'none',
-                  backgroundColor: '#10b981',
-                  boxShadow: '0 4px 14px rgba(16, 185, 129, 0.35)',
-                  '&:hover': { backgroundColor: '#059669' },
-                }}
-              >
-                {t.addCoupon}
-              </Button>
-            )}
+              {activeTab === 'tickets' && (
+                <Button
+                  variant="contained"
+                  startIcon={<Add />}
+                  onClick={handleOpenAddTicketModal}
+                  sx={{
+                    borderRadius: '12px',
+                    px: 2.5,
+                    py: 1.2,
+                    fontWeight: 700,
+                    textTransform: 'none',
+                    backgroundColor: '#2563eb',
+                    boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
+                    '&:hover': { backgroundColor: '#1d4ed8' },
+                  }}
+                >
+                  {t.addTicket}
+                </Button>
+              )}
+
+              {activeTab === 'coupons' && (
+                <Button
+                  variant="contained"
+                  startIcon={<Add />}
+                  onClick={handleOpenAddCouponModal}
+                  sx={{
+                    borderRadius: '12px',
+                    px: 2.5,
+                    py: 1.2,
+                    fontWeight: 700,
+                    textTransform: 'none',
+                    backgroundColor: '#10b981',
+                    boxShadow: '0 4px 14px rgba(16, 185, 129, 0.35)',
+                    '&:hover': { backgroundColor: '#059669' },
+                  }}
+                >
+                  {t.addCoupon}
+                </Button>
+              )}
+            </Box>
           </Box>
 
           {/* Top Tabs Bar */}
@@ -558,6 +297,8 @@ export const EventsPage: React.FC = () => {
             <Tabs
               value={activeTab}
               onChange={(_, val) => setActiveTab(val)}
+              variant="scrollable"
+              scrollButtons="auto"
               sx={{
                 '& .MuiTab-root': {
                   textTransform: 'none',
@@ -572,6 +313,7 @@ export const EventsPage: React.FC = () => {
               }}
             >
               <Tab label={t.tabEvents} icon={<EventIcon />} iconPosition="start" value="events" />
+              <Tab label={t.tabBookings || 'Folk Night Bookings'} icon={<BookOnline />} iconPosition="start" value="bookings" />
               <Tab label={t.tabTickets} icon={<ConfirmationNumber />} iconPosition="start" value="tickets" />
               <Tab label={t.tabCoupons} icon={<LocalOffer />} iconPosition="start" value="coupons" />
               <Tab label={t.tabConfig} icon={<Settings />} iconPosition="start" value="config" />
@@ -582,7 +324,9 @@ export const EventsPage: React.FC = () => {
             <Loader />
           ) : (
             <>
-              {/* Events Tab */}
+              {/* ======================================================= */}
+              {/* 1. EVENTS SUB-TAB */}
+              {/* ======================================================= */}
               {activeTab === 'events' && (
                 <>
                   {/* Stat Cards */}
@@ -648,7 +392,7 @@ export const EventsPage: React.FC = () => {
                       >
                         <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                           <Box sx={{ p: 1.5, borderRadius: 2.5, backgroundColor: 'rgba(34, 197, 94, 0.15)', color: '#22c55e' }}>
-                            <ConfirmationNumber />
+                            <EventAvailable />
                           </Box>
                           <Box>
                             <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
@@ -753,10 +497,94 @@ export const EventsPage: React.FC = () => {
                 </>
               )}
 
-              {/* Tickets Tab */}
+              {/* ======================================================= */}
+              {/* 2. FOLK NIGHT BOOKINGS SUB-TAB */}
+              {/* ======================================================= */}
+              {activeTab === 'bookings' && (
+                <Box>
+                  <BookingAnalyticsCards
+                    stats={bookingStats}
+                    onSyncInventory={handleSyncInventory}
+                    isSyncing={syncingInventory}
+                    translations={t}
+                  />
+
+                  {/* Search & Filter Row */}
+                  <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap', alignItems: 'center' }}>
+                    <TextField
+                      placeholder={t.searchPlaceholder || 'Search booking code, customer, mobile...'}
+                      value={bookingSearch}
+                      onChange={(e) => setBookingSearch(e.target.value)}
+                      size="small"
+                      sx={{ flexGrow: 1, minWidth: 260 }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <Search sx={{ color: isDark ? '#94a3b8' : '#64748b' }} />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+
+                    <FormControl size="small" sx={{ minWidth: 160 }}>
+                      <InputLabel>{t.filterPaymentStatus || 'Payment Status'}</InputLabel>
+                      <Select
+                        value={selectedPaymentStatus}
+                        label={t.filterPaymentStatus || 'Payment Status'}
+                        onChange={(e) => setSelectedPaymentStatus(e.target.value)}
+                      >
+                        <MenuItem value="ALL">{t.allPaymentStatuses || 'All Payments'}</MenuItem>
+                        <MenuItem value="PAID">PAID</MenuItem>
+                        <MenuItem value="PENDING">PENDING</MenuItem>
+                        <MenuItem value="FAILED">FAILED</MenuItem>
+                        <MenuItem value="REFUNDED">REFUNDED</MenuItem>
+                      </Select>
+                    </FormControl>
+
+                    <FormControl size="small" sx={{ minWidth: 160 }}>
+                      <InputLabel>{t.filterBookingStatus || 'Booking Status'}</InputLabel>
+                      <Select
+                        value={selectedBookingStatus}
+                        label={t.filterBookingStatus || 'Booking Status'}
+                        onChange={(e) => setSelectedBookingStatus(e.target.value)}
+                      >
+                        <MenuItem value="ALL">{t.allBookingStatuses || 'All Bookings'}</MenuItem>
+                        <MenuItem value="CONFIRMED">CONFIRMED</MenuItem>
+                        <MenuItem value="COMPLETED">COMPLETED</MenuItem>
+                        <MenuItem value="PENDING">PENDING</MenuItem>
+                        <MenuItem value="CANCELLED">CANCELLED</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+
+                  <BookingsTable
+                    bookings={bookings}
+                    onOpenStatusModal={handleOpenStatusModal}
+                    onOpenTicketQrModal={handleOpenTicketQrModal}
+                    onCheckIn={handleCheckIn}
+                    translations={t}
+                  />
+
+                  {bookingTotalPages > 1 && (
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+                      <Pagination
+                        count={bookingTotalPages}
+                        page={bookingPage}
+                        onChange={(_, val) => setBookingPage(val)}
+                        color="primary"
+                      />
+                    </Box>
+                  )}
+                </Box>
+              )}
+
+              {/* ======================================================= */}
+              {/* 3. TICKETS SUB-TAB */}
+              {/* ======================================================= */}
               {activeTab === 'tickets' && (
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Box>
+                  {/* Event Filter dropdown */}
+                  <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
                     <FormControl size="small" sx={{ minWidth: 300 }}>
                       <InputLabel>{t.labelSelectEvent || 'Filter by Event'}</InputLabel>
                       <Select
@@ -784,7 +612,9 @@ export const EventsPage: React.FC = () => {
                 </Box>
               )}
 
-              {/* Coupons Tab */}
+              {/* ======================================================= */}
+              {/* 4. COUPONS SUB-TAB */}
+              {/* ======================================================= */}
               {activeTab === 'coupons' && (
                 <CouponsTable
                   coupons={coupons}
@@ -795,7 +625,9 @@ export const EventsPage: React.FC = () => {
                 />
               )}
 
-              {/* Config Tab */}
+              {/* ======================================================= */}
+              {/* 5. CONFIG SUB-TAB */}
+              {/* ======================================================= */}
               {activeTab === 'config' && (
                 <AppConfigPanel
                   config={appConfig}
@@ -806,12 +638,44 @@ export const EventsPage: React.FC = () => {
             </>
           )}
 
-          {/* Side Window Drawer */}
+          {/* Modals & Side Windows */}
           <EventDrawer
             open={isDrawerOpen}
             onClose={handleCloseDrawer}
             onSave={handleSaveEvent}
             event={selectedEvent}
+            translations={t}
+          />
+
+          <BookingStatusModal
+            open={isBookingStatusModalOpen}
+            booking={selectedBooking}
+            onClose={handleCloseStatusModal}
+            onSave={handleUpdateBookingStatus}
+            translations={t}
+          />
+
+          <CreateBookingModal
+            open={isCreateBookingModalOpen}
+            onClose={handleCloseCreateBookingModal}
+            onSave={handleCreateBooking}
+            translations={t}
+          />
+
+          <TicketQrModal
+            open={isTicketQrModalOpen}
+            booking={selectedBooking}
+            onClose={handleCloseTicketQrModal}
+            onCheckIn={handleCheckIn}
+            translations={t}
+          />
+
+          <QrCheckInModal
+            open={isCheckInModalOpen}
+            initialCode={selectedBooking?.bookingCode}
+            onClose={handleCloseCheckInModal}
+            onVerify={handleVerifyQr}
+            onCheckIn={handleCheckIn}
             translations={t}
           />
 

@@ -14,8 +14,19 @@ export const useInhouseReelsController = () => {
 
   const fetchReels = async () => {
     setLoading(true);
+    setError(null);
     try {
-      const params = filterLang && filterLang !== 'all' ? { language: filterLang } : {};
+      const activeLang = filterLang && filterLang !== 'all' ? filterLang : 'te';
+      const params: Record<string, any> = {
+        lang: activeLang,
+        page: 1,
+        limit: 100,
+        skip: 0,
+        take: 100,
+      };
+      if (filterLang === 'all') {
+        params.lang = 'all';
+      }
       const response = await eventsApiClient.get<any>('/reels', params);
       let reelsArray: UploadedReel[] = [];
       if (Array.isArray(response)) {

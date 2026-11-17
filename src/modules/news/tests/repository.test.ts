@@ -41,7 +41,7 @@ describe('NewsRepository', () => {
 
     const result = await NewsRepository.getById(2);
 
-    expect(apiClient.get).toHaveBeenCalledWith('/news-posts/2');
+    expect(apiClient.get).toHaveBeenCalledWith('/news-posts/2', undefined);
     expect(result).toEqual(mockPost);
   });
 
@@ -159,7 +159,10 @@ describe('NewsRepository', () => {
 
     const result = await NewsRepository.update(2, updateDto);
 
-    expect(apiClient.put).toHaveBeenCalledWith('/news-posts/2', updateDto);
+    expect(apiClient.put).toHaveBeenCalledWith('/news-posts/2', updateDto, {
+      params: { language_code: 'en', lang: 'en' },
+      headers: { 'Accept-Language': 'en' },
+    });
     expect(result).toEqual(updatedResponse);
   });
 

@@ -134,6 +134,7 @@ export class ApiClient {
               config.url?.includes('/cricket') ||
               config.url?.includes('/matches') ||
               config.url?.includes('/reels') ||
+              config.url?.includes('/bookings') ||
               config.url?.includes('/sendNotification');
 
             const isCreateOrUpdateMethod =
@@ -183,6 +184,7 @@ export class ApiClient {
               config.url?.includes('/video-tags') ||
               config.url?.includes('/reporters') ||
               config.url?.includes('/reels') ||
+              config.url?.includes('/bookings') ||
               config.url?.includes('/sendNotification') ||
               config.url?.includes('/admin') ||
               config.url?.includes('/games') ||

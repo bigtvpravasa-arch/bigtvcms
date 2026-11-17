@@ -71,9 +71,28 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
   };
 
   const handleLink = () => {
-    const url = prompt('Enter link URL (e.g. https://google.com):');
+    let existingUrl = '';
+    if (typeof window !== 'undefined') {
+      const selection = window.getSelection();
+      if (selection && selection.rangeCount > 0) {
+        let node: Node | null = selection.anchorNode;
+        if (node && node.nodeType === Node.TEXT_NODE) {
+          node = node.parentElement;
+        }
+        const anchor = (node as HTMLElement | null)?.closest?.('a');
+        if (anchor) {
+          existingUrl = anchor.getAttribute('href') || '';
+        }
+      }
+    }
+    const url = prompt('Enter link URL (e.g. https://google.com):', existingUrl);
     if (url !== null) {
-      executeCommand('createLink', url);
+      const trimmed = url.trim();
+      if (trimmed) {
+        executeCommand('createLink', trimmed);
+      } else {
+        executeCommand('unlink');
+      }
     }
   };
 
@@ -138,6 +157,7 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
           }}
         >
           <Tooltip title="Bold">
+            <span>
             <IconButton
               size="small"
               onClick={() => executeCommand('bold')}
@@ -146,9 +166,11 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             >
               <FormatBold fontSize="small" />
             </IconButton>
+          </span>
           </Tooltip>
 
           <Tooltip title="Italic">
+            <span>
             <IconButton
               size="small"
               onClick={() => executeCommand('italic')}
@@ -157,9 +179,11 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             >
               <FormatItalic fontSize="small" />
             </IconButton>
+          </span>
           </Tooltip>
 
           <Tooltip title="Underline">
+            <span>
             <IconButton
               size="small"
               onClick={() => executeCommand('underline')}
@@ -168,11 +192,13 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             >
               <FormatUnderlined fontSize="small" />
             </IconButton>
+          </span>
           </Tooltip>
 
           <Divider orientation="vertical" flexItem sx={{ mx: 0.5, my: 0.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
 
           <Tooltip title="Text Align Left">
+            <span>
             <IconButton
               size="small"
               onClick={() => executeCommand('justifyLeft')}
@@ -181,9 +207,11 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             >
               <FormatAlignLeft fontSize="small" />
             </IconButton>
+          </span>
           </Tooltip>
 
           <Tooltip title="Text Align Center">
+            <span>
             <IconButton
               size="small"
               onClick={() => executeCommand('justifyCenter')}
@@ -192,9 +220,11 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             >
               <FormatAlignCenter fontSize="small" />
             </IconButton>
+          </span>
           </Tooltip>
 
           <Tooltip title="Text Align Right">
+            <span>
             <IconButton
               size="small"
               onClick={() => executeCommand('justifyRight')}
@@ -203,11 +233,13 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             >
               <FormatAlignRight fontSize="small" />
             </IconButton>
+          </span>
           </Tooltip>
 
           <Divider orientation="vertical" flexItem sx={{ mx: 0.5, my: 0.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
 
           <Tooltip title="Bullet List">
+            <span>
             <IconButton
               size="small"
               onClick={() => executeCommand('insertUnorderedList')}
@@ -216,9 +248,11 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             >
               <FormatListBulleted fontSize="small" />
             </IconButton>
+          </span>
           </Tooltip>
 
           <Tooltip title="Ordered List">
+            <span>
             <IconButton
               size="small"
               onClick={() => executeCommand('insertOrderedList')}
@@ -227,6 +261,7 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             >
               <FormatListNumbered fontSize="small" />
             </IconButton>
+          </span>
           </Tooltip>
 
           <Divider orientation="vertical" flexItem sx={{ mx: 0.5, my: 0.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
@@ -301,18 +336,17 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             </Box>
           </Tooltip>
 
-          <Tooltip title="Link">
-            <IconButton
+          <Tooltip title="Link"><span><IconButton
               size="small"
               onClick={handleLink}
               disabled={isCodeMode}
               sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
             >
               <Link fontSize="small" />
-            </IconButton>
-          </Tooltip>
+            </IconButton></span></Tooltip>
 
           <Tooltip title="Clear Formatting">
+            <span>
             <IconButton
               size="small"
               onClick={() => executeCommand('removeFormat')}
@@ -321,6 +355,7 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             >
               <FormatClear fontSize="small" />
             </IconButton>
+          </span>
           </Tooltip>
 
           <Divider orientation="vertical" flexItem sx={{ mx: 0.5, my: 0.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
@@ -381,6 +416,11 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
                 color: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)',
                 pointerEvents: 'none',
                 display: 'block',
+              },
+              '& a': {
+                color: isDark ? '#60a5fa' : '#2563eb',
+                textDecoration: 'underline',
+                cursor: 'pointer',
               },
             }}
           />

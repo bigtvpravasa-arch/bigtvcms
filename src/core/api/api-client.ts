@@ -30,7 +30,12 @@ export function formatApiErrorMessage(apiError: any, defaultMessage: string): st
     return apiError.detail;
   }
 
-  // 3. If details is a record of string/string arrays
+  // 3. If message is an array of strings (NestJS / class-validator validation errors)
+  if (Array.isArray(apiError.message)) {
+    return apiError.message.filter(Boolean).join(', ');
+  }
+
+  // 4. If details is a record of string/string arrays
   if (apiError.details && typeof apiError.details === 'object') {
     const messages: string[] = [];
     for (const [key, value] of Object.entries(apiError.details)) {
@@ -45,9 +50,13 @@ export function formatApiErrorMessage(apiError: any, defaultMessage: string): st
     }
   }
 
-  // 4. Fallback to message
-  if (typeof apiError.message === 'string') {
+  // 5. Fallback to message
+  if (typeof apiError.message === 'string' && apiError.message.trim().length > 0) {
     return apiError.message;
+  }
+
+  if (typeof apiError.error === 'string' && apiError.error.trim().length > 0) {
+    return apiError.error;
   }
 
   return defaultMessage;
@@ -77,6 +86,12 @@ export class ApiClient {
         if (token && config.headers) {
           config.headers.Authorization = `Bearer ${token}`;
         }
+
+        // When sending FormData, delete Content-Type so Axios/browser sets multipart boundary correctly
+        if (typeof FormData !== 'undefined' && config.data instanceof FormData && config.headers) {
+          delete config.headers['Content-Type'];
+          delete config.headers['content-type'];
+        }
         
         // Append device_id and language key header to every outgoing API request
         if (typeof window !== 'undefined') {
@@ -97,7 +112,12 @@ export class ApiClient {
               config.url?.includes('/categories') ||
               config.url?.includes('/aitags') ||
               config.url?.includes('/states') ||
-              config.url?.includes('/locations');
+              config.url?.includes('/locations') ||
+              config.url?.includes('/admin') ||
+              config.url?.includes('/games') ||
+              config.url?.includes('/cricket') ||
+              config.url?.includes('/matches') ||
+              config.url?.includes('/sendNotification');
 
             const isCreateOrUpdateMethod =
               config.method?.toLowerCase() === 'post' ||
@@ -132,7 +152,7 @@ export class ApiClient {
           }
 
           try {
-            // Bypass language filter for /events, /ticket-types, /coupons, /categories, /post-types, /languages, /admin/states, /states, /locations, and /creators endpoints
+            // Bypass language filter for /events, /ticket-types, /coupons, /categories, /post-types, /languages, /admin, /games, /admin/states, /states, /locations, /creators, and /sendNotification endpoints
             const isBypassLangApi =
               config.url?.includes('/events') ||
               config.url?.includes('/ticket-types') ||
@@ -144,25 +164,41 @@ export class ApiClient {
               config.url?.includes('/locations') ||
               config.url?.includes('/creators') ||
               config.url?.includes('/video-tags') ||
+              config.url?.includes('/reporters') ||
+              config.url?.includes('/sendNotification') ||
+              config.url?.includes('/admin') ||
+              config.url?.includes('/games') ||
+              config.url?.includes('/streak-recovery-requests') ||
               config.params?.skip_lang_param;
 
             if (isBypassLangApi) {
+              const isPreserveLangApi =
+                config.url?.includes('/video-tags') ||
+                config.url?.includes('/reporters') ||
+                config.url?.includes('/sendNotification');
               if (config.headers) {
                 delete config.headers['Accept-Language'];
                 delete config.headers['accept-language'];
               }
               if (config.params) {
                 delete config.params.lang;
-                delete config.params.language;
+                if (!isPreserveLangApi) {
+                  delete config.params.language;
+                }
                 delete config.params.language_code;
                 if ('skip_lang_param' in config.params) {
                   delete config.params.skip_lang_param;
                 }
               }
               if (config.data && typeof config.data === 'object' && !Array.isArray(config.data)) {
-                delete (config.data as any).language;
+                if (!isPreserveLangApi) {
+                  delete (config.data as any).language;
+                  delete (config.data as any).lan;
+                }
                 delete (config.data as any).language_code;
-                delete (config.data as any).lang;
+                if (!isPreserveLangApi) {
+                  delete (config.data as any).lang;
+                }
               }
             } else {
               // Determine active language from params or localStorage
@@ -279,15 +315,15 @@ export class ApiClient {
     return promise;
   }
 
-  public async post<T, R = unknown>(url: string, data: R, config?: { headers?: any; params?: any }): Promise<T> {
+  public async post<T, R = unknown>(url: string, data?: R, config?: { headers?: any; params?: any }): Promise<T> {
     return this.request<T>({ method: 'post', url, data, ...config });
   }
 
-  public async put<T, R = unknown>(url: string, data: R, config?: { headers?: any; params?: any }): Promise<T> {
+  public async put<T, R = unknown>(url: string, data?: R, config?: { headers?: any; params?: any }): Promise<T> {
     return this.request<T>({ method: 'put', url, data, ...config });
   }
 
-  public async patch<T, R = unknown>(url: string, data: R, config?: { headers?: any; params?: any }): Promise<T> {
+  public async patch<T, R = unknown>(url: string, data?: R, config?: { headers?: any; params?: any }): Promise<T> {
     return this.request<T>({ method: 'patch', url, data, ...config });
   }
 
@@ -317,5 +353,32 @@ export const videoApiClient = new ApiClient(
     'https://api.pravasamedia.com/api/v1'
   ).replace(/\/$/, '')
 );
+
+export const ttsApiClient = new ApiClient(
+  (
+    process.env.NEXT_PUBLIC_TTS_API_BASE_URL ||
+    'https://api.pravasamedia.com'
+  ).replace(/\/$/, '')
+);
+
+export const gamesApiClient = new ApiClient(
+  (
+    process.env.NEXT_PUBLIC_GAMES_API_BASE_URL ||
+    process.env.NEXT_PUBLIC_EVENTS_API_BASE_URL ||
+    'https://api.pravasamedia.com/api/v1'
+  ).replace(/\/$/, '')
+);
+
+export const cricketApiClient = new ApiClient(
+  (
+    process.env.NEXT_PUBLIC_CRICKET_API_BASE_URL ||
+    (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:1122/api/v1'
+      : 'https://api.pravasamedia.com/api/v1')
+  ).replace(/\/$/, '')
+);
+
+
+
 
 

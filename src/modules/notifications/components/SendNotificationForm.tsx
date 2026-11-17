@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Drawer,
   Box,
@@ -15,6 +15,7 @@ import {
 import { Close, Send as SendIcon } from '@mui/icons-material';
 import { SendNotificationDto } from '../dto/notification.dto';
 import { NotificationRepository } from '../repositories/notification.repository';
+import { useLanguageStore } from '@/core/storage/language-store';
 
 interface SendNotificationFormProps {
   open: boolean;
@@ -31,6 +32,9 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
   isDark,
   t,
 }) => {
+  const { language } = useLanguageStore();
+  const defaultLan = language === 'en' ? 'en' : language === 'ml' ? 'ml' : 'te';
+
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [postId, setPostId] = useState<string>('');
@@ -38,8 +42,14 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
   const [imageUrl, setImageUrl] = useState<string>('');
   const [brandName, setBrandName] = useState<string>('BigTV');
   const [brandLogo, setBrandLogo] = useState<string>('www.logo.com');
-  const [lan, setLan] = useState<string>('en');
+  const [lan, setLan] = useState<string>(defaultLan);
   const [sendTime, setSendTime] = useState<string>('');
+
+  useEffect(() => {
+    if (open) {
+      setLan(defaultLan);
+    }
+  }, [open, defaultLan]);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -102,6 +112,7 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
       brandName: brandName.trim() || 'BigTV',
       brandLogo: brandLogo.trim() || 'www.logo.com',
       lan,
+      language: lan,
     };
 
     if (sendTime) {
@@ -116,7 +127,7 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
       setPostId('');
       setLink('');
       setImageUrl('');
-      setLan('en');
+      setLan(defaultLan);
       setSendTime('');
       onSuccess();
       onClose();
@@ -336,10 +347,9 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
                 label={t.lblLanguage || 'Language'}
                 onChange={(e) => setLan(e.target.value)}
               >
-                <MenuItem value="en">English (en)</MenuItem>
-                <MenuItem value="te">Telugu (te)</MenuItem>
-                <MenuItem value="hi">Hindi (hi)</MenuItem>
-                <MenuItem value="ml">Malayalam (ml)</MenuItem>
+                <MenuItem value="te">{t.langTelugu || 'Telugu (te)'}</MenuItem>
+                <MenuItem value="en">{t.langEnglish || 'English (en)'}</MenuItem>
+                <MenuItem value="ml">{t.langMalayalam || 'Malayalam (ml)'}</MenuItem>
               </Select>
             </FormControl>
           </Grid>

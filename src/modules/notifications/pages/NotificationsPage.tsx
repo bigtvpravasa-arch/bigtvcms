@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -27,7 +27,7 @@ import { useAppTheme } from '@/shared/providers/ThemeProvider';
 import { useNotificationsController } from '../hooks/useNotificationsController';
 import { NotificationsTable } from '../components/NotificationsTable';
 import { SendNotificationForm } from '../components/SendNotificationForm';
-import { NotificationItem } from '../dto/notification.dto';
+import { NotificationItem, NotificationLanguage } from '../dto/notification.dto';
 import { Loader } from '@/shared/components/Loader';
 
 const translations: Record<string, any> = {
@@ -45,10 +45,20 @@ const translations: Record<string, any> = {
     colStatus: 'Status',
     colDelivery: 'Delivery Stats',
     colTimestamps: 'Sent / Created At',
+    colLanguage: 'Language',
+    colActions: 'Actions',
+    tabTelugu: 'Telugu (te)',
+    tabEnglish: 'English (en)',
+    tabMalayalam: 'Malayalam (ml)',
+    tabAll: 'All Languages',
+    langTelugu: 'Telugu (te)',
+    langEnglish: 'English (en)',
+    langMalayalam: 'Malayalam (ml)',
+    lblLanguage: 'Language',
     noRecords: 'No notification records found.',
     btnSendNotification: 'Send Notification',
     clearFilters: 'Clear Filters',
-    totalRecords: (n: number) => `Total ${n} notifications`,
+    totalRecords: 'Total notifications',
     targeted: 'Targeted',
     delivered: 'Delivered',
     failedCount: 'Failed',
@@ -81,10 +91,20 @@ const translations: Record<string, any> = {
     colStatus: 'స్థితి',
     colDelivery: 'డెలివరీ గణాంకాలు',
     colTimestamps: 'పంపిన / సృష్టించిన సమయం',
+    colLanguage: 'భాష',
+    colActions: 'చర్యలు',
+    tabTelugu: 'తెలుగు (te)',
+    tabEnglish: 'ఇంగ్లీష్ (en)',
+    tabMalayalam: 'మలయాళం (ml)',
+    tabAll: 'అన్ని భాషలు',
+    langTelugu: 'తెలుగు (te)',
+    langEnglish: 'ఇంగ్లీష్ (en)',
+    langMalayalam: 'మలయాళం (ml)',
+    lblLanguage: 'భాష',
     noRecords: 'నోటిఫికేషన్లు కనుగొనబడలేదు.',
     btnSendNotification: 'నోటిఫికేషన్ పంపు',
     clearFilters: 'ఫిల్టర్‌లు తీసివేయి',
-    totalRecords: (n: number) => `మొత్తం ${n} నోటిఫికేషన్లు`,
+    totalRecords: 'మొత్తం నోటిఫికేషన్లు',
     targeted: 'లక్ష్యం',
     delivered: 'అందించబడింది',
     failedCount: 'విఫలమైంది',
@@ -117,10 +137,20 @@ const translations: Record<string, any> = {
     colStatus: 'स्थिति',
     colDelivery: 'वितरण आंकड़े',
     colTimestamps: 'भेजा / बनाया गया समय',
+    colLanguage: 'भाषा',
+    colActions: 'कार्रवाई',
+    tabTelugu: 'तेलुगु (te)',
+    tabEnglish: 'अंग्रेज़ी (en)',
+    tabMalayalam: 'मलयालम (ml)',
+    tabAll: 'सभी भाषाएं',
+    langTelugu: 'तेलुगु (te)',
+    langEnglish: 'अंग्रेज़ी (en)',
+    langMalayalam: 'मलयालम (ml)',
+    lblLanguage: 'भाषा',
     noRecords: 'कोई सूचना नहीं मिली।',
     btnSendNotification: 'सूचना भेजें',
     clearFilters: 'फ़िल्टर हटाएं',
-    totalRecords: (n: number) => `कुल ${n} सूचनाएं`,
+    totalRecords: 'कुल सूचनाएं',
     targeted: 'लक्षित',
     delivered: 'वितरित',
     failedCount: 'विफल',
@@ -153,10 +183,20 @@ const translations: Record<string, any> = {
     colStatus: 'നില',
     colDelivery: 'ഡെലിവറി സ്ഥിതിവിവരക്കണക്കുകൾ',
     colTimestamps: 'അയച്ച / സൃഷ്ടിച്ച സമയം',
+    colLanguage: 'ഭാഷ',
+    colActions: 'പ്രവർത്തനങ്ങൾ',
+    tabTelugu: 'തെലുങ്ക് (te)',
+    tabEnglish: 'ഇംഗ്ലീഷ് (en)',
+    tabMalayalam: 'മലയാളം (ml)',
+    tabAll: 'എല്ലാ ഭാഷകളും',
+    langTelugu: 'തെലുങ്ക് (te)',
+    langEnglish: 'ഇംഗ്ലീഷ് (en)',
+    langMalayalam: 'മലയാളം (ml)',
+    lblLanguage: 'ഭാഷ',
     noRecords: 'അറിയിപ്പുകളൊന്നും കണ്ടെത്തിയില്ല.',
     btnSendNotification: 'അറിയിപ്പ് അയക്കുക',
     clearFilters: 'ഫിൽട്ടറുകൾ നീക്കം ചെയ്യുക',
-    totalRecords: (n: number) => `ആകെ ${n} അറിയിപ്പുകൾ`,
+    totalRecords: 'ആകെ അറിയിപ്പുകൾ',
     targeted: 'ലക്ഷ്യമിട്ടത്',
     delivered: 'ഡെലിവർ ചെയ്തു',
     failedCount: 'പരാജയപ്പെട്ടു',
@@ -184,15 +224,48 @@ export const NotificationsPage: React.FC = () => {
   const t = translations[language] || translations.en;
 
   const recordsPerPage = 20;
+
+  const getEffectiveNotificationLanguage = (): NotificationLanguage => {
+    if (typeof window !== 'undefined') {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const urlLang = (
+          params.get('lang') ||
+          params.get('language') ||
+          params.get('lan') ||
+          params.get('from') ||
+          ''
+        ).toLowerCase();
+        if (urlLang === 'ml' || urlLang === 'malayala' || urlLang === 'malayalam') return 'ml';
+        if (urlLang === 'en' || urlLang === 'english') return 'en';
+        if (urlLang === 'te' || urlLang === 'telugu') return 'te';
+      } catch {
+        // Fallback
+      }
+    }
+    if (language === 'ml') return 'ml';
+    if (language === 'en') return 'en';
+    return 'te';
+  };
+
+  const initialLang = getEffectiveNotificationLanguage();
+
   const {
     notifications,
     total,
     skip,
     setSkip,
+    selectedLanguage,
+    handleLanguageChange,
     loading,
     error,
     fetchNotifications,
-  } = useNotificationsController(0, recordsPerPage);
+  } = useNotificationsController(0, recordsPerPage, initialLang);
+
+  useEffect(() => {
+    const nextLang = getEffectiveNotificationLanguage();
+    handleLanguageChange(nextLang);
+  }, [language]);
 
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedStatus, setSelectedStatus] = useState<string>('All');
@@ -284,6 +357,7 @@ export const NotificationsPage: React.FC = () => {
                 }}
               >
                 <IconButton
+                  aria-label={t.back || 'Back to Notifications'}
                   onClick={() => setViewingItem(null)}
                   size="small"
                   sx={{
@@ -463,6 +537,58 @@ export const NotificationsPage: React.FC = () => {
             </Box>
           ) : (
             <>
+              {/* ── Language Filter Tab (Only ONE tab based on selected language) ── */}
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 1,
+                  mb: 2,
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                }}
+              >
+                {(() => {
+                  const effectiveLang: NotificationLanguage =
+                    selectedLanguage && selectedLanguage !== 'all'
+                      ? selectedLanguage
+                      : getEffectiveNotificationLanguage();
+
+                  const tabLabel =
+                    effectiveLang === 'en'
+                      ? t.tabEnglish || 'English (en)'
+                      : effectiveLang === 'ml'
+                      ? t.tabMalayalam || 'Malayalam (ml)'
+                      : t.tabTelugu || 'Telugu (te)';
+
+                  return (
+                    <Button
+                      id={`notification-lang-tab-${effectiveLang}`}
+                      variant="contained"
+                      size="small"
+                      onClick={() => handleLanguageChange(effectiveLang)}
+                      sx={{
+                        textTransform: 'none',
+                        fontWeight: 700,
+                        fontSize: '0.8rem',
+                        borderRadius: '10px',
+                        px: 2,
+                        py: 0.6,
+                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#1c1445' : '#ffffff',
+                        borderColor: 'transparent',
+                        boxShadow: 'none',
+                        '&:hover': {
+                          backgroundColor: isDark ? '#8cd5ed' : '#2d2270',
+                          boxShadow: 'none',
+                        },
+                      }}
+                    >
+                      {tabLabel}
+                    </Button>
+                  );
+                })()}
+              </Box>
+
               {/* ── Single-Line Filter Panel with Send Notification Button ── */}
               <Box
                 sx={{

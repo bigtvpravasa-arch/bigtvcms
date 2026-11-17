@@ -82,9 +82,25 @@ export class ApiClient {
     // Request Interceptor
     this.axiosInstance.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
-        const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
-        if (token && config.headers) {
-          config.headers.Authorization = `Bearer ${token}`;
+        try {
+          const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
+          if (token && config.headers) {
+            config.headers.Authorization = `Bearer ${token}`;
+          }
+        } catch {
+          // Ignore localStorage access restrictions (e.g. Incognito or partitioned storage)
+        }
+
+        // GET, DELETE and HEAD requests do not have a body; remove Content-Type to avoid unnecessary CORS preflight headers
+        if (
+          config.method?.toLowerCase() === 'get' ||
+          config.method?.toLowerCase() === 'delete' ||
+          config.method?.toLowerCase() === 'head'
+        ) {
+          if (config.headers) {
+            delete config.headers['Content-Type'];
+            delete config.headers['content-type'];
+          }
         }
 
         // When sending FormData, delete Content-Type so Axios/browser sets multipart boundary correctly

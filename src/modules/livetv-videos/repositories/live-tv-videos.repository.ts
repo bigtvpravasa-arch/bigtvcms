@@ -260,11 +260,12 @@ export class LiveTvVideosRepository {
     slug: string,
     videoId: string,
     payloadOrFileName: UpdateTagVideoDto | string,
-    viewCount?: number
+    viewCount?: number,
+    thumbnailUrl?: string
   ): Promise<TagVideo> {
     const payload: UpdateTagVideoDto =
       typeof payloadOrFileName === 'string'
-        ? { fileName: payloadOrFileName, viewCount }
+        ? { fileName: payloadOrFileName, viewCount, thumbnailUrl }
         : payloadOrFileName;
 
     try {
@@ -273,8 +274,11 @@ export class LiveTvVideosRepository {
         payload,
         { headers: { 'Content-Type': 'application/json' } }
       );
-      if (res && res.data) {
-        return res.data;
+      if (res && (res as any).data) {
+        return (res as any).data;
+      }
+      if (res && (res as any).id) {
+        return res as any;
       }
     } catch (err: any) {
       if (err.response?.data?.message) {

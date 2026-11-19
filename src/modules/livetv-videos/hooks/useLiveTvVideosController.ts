@@ -355,17 +355,21 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
     setEditVideoModalOpen(true);
   };
 
-  const handleUpdateVideo = async (videoId: string, fileName: string, viewCount: number) => {
+  const handleUpdateVideo = async (
+    videoId: string,
+    fileName: string,
+    viewCount: number,
+    thumbnailUrl?: string
+  ) => {
     if (!selectedTagSlug) return;
     setActionError(null);
     try {
       const updatedVideo = await liveTvVideosRepository.updateVideoFromTag(
         selectedTagSlug,
         videoId,
-        fileName,
-        viewCount
+        { fileName, viewCount, thumbnailUrl }
       );
-      setVideos((prev) => prev.map((v) => (v.id === videoId ? updatedVideo : v)));
+      setVideos((prev) => prev.map((v) => (v.id === videoId ? { ...v, ...updatedVideo } : v)));
       setActionSuccess('Video updated successfully');
       setEditVideoModalOpen(false);
     } catch (err: any) {

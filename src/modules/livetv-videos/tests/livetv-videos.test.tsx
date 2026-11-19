@@ -13,6 +13,13 @@ import { ThemeProvider } from '@/shared/providers/ThemeProvider';
 import { liveTvVideosRepository } from '../repositories/live-tv-videos.repository';
 import { VideoTag, TagVideo } from '../domain/LiveTvVideo';
 import { videoApiClient } from '@/core/api/api-client';
+import { UploadService } from '@/modules/media/services/upload.service';
+
+jest.mock('@/modules/media/services/upload.service', () => ({
+  UploadService: {
+    uploadImage: jest.fn().mockResolvedValue('https://media.istockphoto.com/test-uploaded-thumbnail.jpg'),
+  },
+}));
 
 jest.mock('@/shared/components/Header', () => ({
   Header: () => <div data-testid="mock-header">Header</div>,
@@ -1378,5 +1385,346 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
 
     // Verify Telugu full bar is removed
     expect(screen.queryByText(/తెలుగు \(te\) ★డిఫాల్ట్/i)).not.toBeInTheDocument();
+  });
+
+  it('handles VideoEditModal thumbnail preview, file upload, URL typing, removal, and saving', async () => {
+    const onSave = jest.fn().mockResolvedValue(undefined);
+    const onClose = jest.fn();
+    const testVideo: TagVideo = {
+      id: 'vid-99',
+      fileName: 'test_bulletin.mp4',
+      folder: 'today',
+      sizeBytes: 1000,
+      viewCount: 15,
+      createdAt: '2026-09-15T10:00:00Z',
+      url: 'https://example.com/video.mp4',
+      thumbnailUrl: 'https://media.istockphoto.com/initial-thumbnail.jpg',
+    };
+
+    render(
+      <VideoEditModal
+        open={true}
+        onClose={onClose}
+        video={testVideo}
+        onSave={onSave}
+        isDark={false}
+        t={{
+          editVideo: 'Edit Video',
+          colFileName: 'File Name',
+          colViewCount: 'View Count',
+          thumbnailLabel: 'Thumbnail Image',
+          uploadThumbnail: 'Upload Thumbnail',
+          removeThumbnail: 'Remove Thumbnail',
+          thumbnailUrlLabel: 'Thumbnail URL',
+          save: 'Save',
+        }}
+      />
+    );
+
+    // Initial preview must be rendered
+    const preview = screen.getByTestId('edit-video-thumbnail-preview');
+    expect(preview).toHaveAttribute('src', 'https://media.istockphoto.com/initial-thumbnail.jpg');
+
+    // Trigger image load error branch on preview
+    fireEvent.error(preview);
+
+    // Remove thumbnail button
+    const removeBtn = screen.getByRole('button', { name: /Remove Thumbnail/i });
+    fireEvent.click(removeBtn);
+    expect(screen.queryByTestId('edit-video-thumbnail-preview')).not.toBeInTheDocument();
+
+    // Upload a new thumbnail file
+    const fileInput = screen.getByTestId('video-thumbnail-file-input');
+    const fakeFile = new File(['dummy-content'], 'test-image.png', { type: 'image/png' });
+    await act(async () => {
+      fireEvent.change(fileInput, { target: { files: [fakeFile] } });
+    });
+
+    expect(UploadService.uploadImage).toHaveBeenCalledWith(fakeFile);
+    await waitFor(() => {
+      expect(screen.getByTestId('edit-video-thumbnail-preview')).toHaveAttribute(
+        'src',
+        'https://media.istockphoto.com/test-uploaded-thumbnail.jpg'
+      );
+    });
+
+    // Manually edit the thumbnail URL
+    const urlInput = screen.getByLabelText(/Thumbnail URL/i);
+    fireEvent.change(urlInput, { target: { value: 'https://media.istockphoto.com/manual-thumbnail.jpg' } });
+
+    // Save
+    const saveBtn = screen.getByRole('button', { name: /Save/i });
+    await act(async () => {
+      fireEvent.click(saveBtn);
+    });
+
+    expect(onSave).toHaveBeenCalledWith(
+      'vid-99',
+      'test_bulletin.mp4',
+      15,
+      'https://media.istockphoto.com/manual-thumbnail.jpg'
+    );
+    expect(onClose).toHaveBeenCalled();
+  });
+
+  it('handles VideoEditModal validation errors and upload failure', async () => {
+    const onSave = jest.fn();
+    const onClose = jest.fn();
+    const testVideo: TagVideo = {
+      id: 'vid-100',
+      fileName: 'valid.mp4',
+      folder: 'today',
+      sizeBytes: 1000,
+      viewCount: 5,
+      createdAt: '2026-09-15T10:00:00Z',
+      url: 'https://example.com/video.mp4',
+    };
+
+    render(
+      <VideoEditModal
+        open={true}
+        onClose={onClose}
+        video={testVideo}
+        onSave={onSave}
+        isDark={true}
+        t={{
+          editVideo: 'Edit Video',
+          colFileName: 'File Name',
+          colViewCount: 'View Count',
+          thumbnailLabel: 'Thumbnail Image',
+          uploadThumbnail: 'Upload Thumbnail',
+          thumbnailUrlLabel: 'Thumbnail URL',
+          errorFileNameRequired: 'File name is required',
+          errorInvalidViewCount: 'View count cannot be negative',
+          save: 'Save',
+        }}
+      />
+    );
+
+    // Empty file name error
+    const nameInput = screen.getByLabelText(/File Name/i);
+    fireEvent.change(nameInput, { target: { value: '   ' } });
+    const saveBtn = screen.getByRole('button', { name: /Save/i });
+    await act(async () => {
+      fireEvent.click(saveBtn);
+    });
+    expect(screen.getByText('File name is required')).toBeInTheDocument();
+
+    // Negative view count error
+    fireEvent.change(nameInput, { target: { value: 'fixed_name.mp4' } });
+    const viewCountInput = screen.getByLabelText(/View Count/i);
+    fireEvent.change(viewCountInput, { target: { value: '-10' } });
+    await act(async () => {
+      fireEvent.click(saveBtn);
+    });
+    expect(screen.getByText('View count cannot be negative')).toBeInTheDocument();
+
+    // Upload failure error
+    (UploadService.uploadImage as jest.Mock).mockRejectedValueOnce(new Error('S3 upload rejected'));
+    const fileInput = screen.getByTestId('video-thumbnail-file-input');
+    const badFile = new File(['fail'], 'bad.png', { type: 'image/png' });
+    await act(async () => {
+      fireEvent.change(fileInput, { target: { files: [badFile] } });
+    });
+    await waitFor(() => {
+      expect(screen.getByText('S3 upload rejected')).toBeInTheDocument();
+    });
+
+    // Save failure error
+    onSave.mockRejectedValueOnce(new Error('Network error on save'));
+    fireEvent.change(viewCountInput, { target: { value: '10' } });
+    await act(async () => {
+      fireEvent.click(saveBtn);
+    });
+    await waitFor(() => {
+      expect(screen.getByText('Network error on save')).toBeInTheDocument();
+    });
+  });
+
+  it('renders thumbnail image and fallback icon in LiveTvVideosTable', () => {
+    const handlePlay = jest.fn();
+    const videosWithThumbnails: TagVideo[] = [
+      {
+        id: 'vid-thumb-1',
+        fileName: 'has_thumbnail.mp4',
+        folder: 'today',
+        sizeBytes: 1048576,
+        viewCount: 20,
+        createdAt: '2026-09-15T10:00:00Z',
+        url: 'https://example.com/v1.mp4',
+        thumbnailUrl: 'https://example.com/thumb1.jpg',
+      },
+      {
+        id: 'vid-thumb-2',
+        fileName: 'no_thumbnail.mp4',
+        folder: 'today',
+        sizeBytes: 1048576,
+        viewCount: 0,
+        createdAt: '2026-09-15T10:00:00Z',
+        url: 'https://example.com/v2.mp4',
+        thumbnailUrl: null,
+      },
+    ];
+
+    render(
+      <LiveTvVideosTable
+        videos={videosWithThumbnails}
+        t={{ colFileName: 'File Name', folder: 'Folder', views: 'views' }}
+        isDark={true}
+        onPlay={handlePlay}
+      />
+    );
+
+    const thumbImg = screen.getByTestId('video-thumbnail-0');
+    expect(thumbImg).toHaveAttribute('src', 'https://example.com/thumb1.jpg');
+
+    // Simulate image onError fallback
+    fireEvent.error(thumbImg);
+    expect(thumbImg.style.display).toBe('none');
+
+    // Second video has no thumbnail, LiveTv icon is rendered
+    expect(screen.queryByTestId('video-thumbnail-1')).not.toBeInTheDocument();
+  });
+
+  it('tests VideoPlayerModal poster attribute with video thumbnailUrl', () => {
+    render(
+      <VideoPlayerModal
+        open={true}
+        onClose={jest.fn()}
+        video={{
+          id: 'vid-poster',
+          fileName: 'poster_video.mp4',
+          folder: 'root',
+          sizeBytes: 2000,
+          createdAt: '2026-09-15T10:00:00Z',
+          url: 'https://example.com/video.mp4',
+          thumbnailUrl: 'https://media.istockphoto.com/poster.jpg',
+        }}
+        isDark={false}
+        t={{}}
+      />
+    );
+
+    const videoEl = document.querySelector('video');
+    expect(videoEl).toBeInTheDocument();
+    expect(videoEl).toHaveAttribute('poster', 'https://media.istockphoto.com/poster.jpg');
+  });
+
+  it('tests liveTvVideosRepository.updateVideoFromTag with thumbnailUrl', async () => {
+    (videoApiClient.patch as jest.Mock).mockResolvedValueOnce({
+      success: true,
+      message: 'Video updated successfully',
+      data: {
+        id: '4c5c65771c81b2ad7a240e8aa023718f',
+        fileName: '1 DNA TUMMIDIHETTI WAR.mp4',
+        thumbnailUrl: 'https://media.istockphoto.com/mountain-landscape.jpg',
+        viewCount: 69,
+      },
+    });
+
+    const res = await liveTvVideosRepository.updateVideoFromTag(
+      'DNA',
+      '4c5c65771c81b2ad7a240e8aa023718f',
+      '1 DNA TUMMIDIHETTI WAR.mp4',
+      69,
+      'https://media.istockphoto.com/mountain-landscape.jpg'
+    );
+
+    expect(videoApiClient.patch).toHaveBeenCalledWith(
+      '/video-tags/DNA/videos/4c5c65771c81b2ad7a240e8aa023718f',
+      {
+        fileName: '1 DNA TUMMIDIHETTI WAR.mp4',
+        viewCount: 69,
+        thumbnailUrl: 'https://media.istockphoto.com/mountain-landscape.jpg',
+      },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+    expect(res.thumbnailUrl).toBe('https://media.istockphoto.com/mountain-landscape.jpg');
+  });
+
+  it('tests handleUpdateTag and handleDeleteTag in controller for same language branch', async () => {
+    (videoApiClient.get as jest.Mock).mockImplementation((url: string) => {
+      if (url === '/video-tags/segregated') {
+        return Promise.resolve({
+          data: {
+            te: [{ id: 'te-1', name: 'Show A', slug: 'show-a', language: 'te' }],
+            ml: [],
+            en: [],
+          },
+        });
+      }
+      if (url.includes('/videos')) {
+        return Promise.resolve({ data: [] });
+      }
+      return Promise.resolve({ data: [{ id: 'te-1', name: 'Show A', slug: 'show-a', language: 'te' }] });
+    });
+
+    const { result } = renderHook(() => useLiveTvVideosController());
+    await waitFor(() => expect(result.current.loading).toBe(false));
+
+    (videoApiClient.patch as jest.Mock).mockResolvedValueOnce({
+      data: { id: 'te-1', name: 'Updated Show A', slug: 'show-a', language: 'te' },
+    });
+
+    await act(async () => {
+      await result.current.handleUpdateTag('show-a', { name: 'Updated Show A', language: 'te' });
+    });
+    expect(result.current.actionSuccess).toBe('Video tag updated successfully');
+
+    (videoApiClient.delete as jest.Mock).mockResolvedValueOnce({ success: true, message: 'Deleted' });
+    await act(async () => {
+      await result.current.handleDeleteTag('show-a');
+    });
+    expect(result.current.actionSuccess).toBe('Video tag deleted successfully');
+    expect(result.current.tags.length).toBe(0);
+  });
+
+  it('tests TagEditModal description change and preview clear', () => {
+    const onSave = jest.fn();
+    const onClose = jest.fn();
+    const tag: VideoTag = {
+      id: 'tag-1',
+      name: 'Test Tag',
+      slug: 'test-tag',
+      language: 'te',
+      description: 'Test Description',
+      thumbnailUrl: 'https://example.com/thumb.jpg',
+      createdAt: '2026-01-01',
+      updatedAt: '2026-01-01',
+    };
+
+    render(
+      <TagEditModal
+        open={true}
+        onClose={onClose}
+        tag={tag}
+        onSave={onSave}
+        isDark={false}
+        t={{
+          editTagModalTitle: 'Edit Video Tag',
+          tagNameLabel: 'Tag Name',
+          tagSlugLabel: 'Tag Slug',
+          language: 'Language',
+          descriptionLabel: 'Description',
+          tagImageLabel: 'Thumbnail Image (Optional)',
+          uploadImage: 'Upload Image',
+          save: 'Save',
+        }}
+      />
+    );
+
+    const descInput = screen.getByLabelText(/Description/i);
+    fireEvent.change(descInput, { target: { value: 'New Description Text' } });
+
+    // The clear preview button inside TagEditModal preview
+    const closeBtns = screen.getAllByTestId('CloseIcon');
+    // Find the one inside preview container
+    for (const icon of closeBtns) {
+      const btn = icon.closest('button');
+      if (btn && btn.parentElement?.querySelector('img')) {
+        fireEvent.click(btn);
+        break;
+      }
+    }
   });
 });

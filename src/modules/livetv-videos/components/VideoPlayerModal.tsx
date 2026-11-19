@@ -63,6 +63,7 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
           {video.url ? (
             <video
               src={video.url}
+              poster={video.thumbnailUrl || undefined}
               controls
               autoPlay
               playsInline

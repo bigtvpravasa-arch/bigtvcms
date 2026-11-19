@@ -20,7 +20,10 @@ export class MoviesUploadService {
    * 2. PUT upload_url with raw file payload & Content-Type header
    * 3. Returns { success, upload_url, file_url, key }
    */
-  static async uploadMovieFile(file: File, folder: string = 'images'): Promise<PresignedUrlResponse> {
+  static async uploadMovieFile(
+    file: File,
+    folder: string = 'images'
+  ): Promise<PresignedUrlResponse> {
     const contentType = file.type || 'application/octet-stream';
     const payload = {
       file_name: file.name,
@@ -58,7 +61,10 @@ export class MoviesUploadService {
         },
       });
     } catch (putError) {
-      console.warn('PUT upload to presigned URL returned notice, proceeding with file_url:', putError);
+      console.warn(
+        'PUT upload to presigned URL returned notice, proceeding with file_url:',
+        putError
+      );
     }
 
     // 3. Return response with file_url and key

@@ -15,7 +15,9 @@ describe('stripHtml utility', () => {
 
   it('strips nested and script HTML tags', () => {
     expect(stripHtml('<div><p>Title <span>Text</span></p></div>')).toBe('Title Text');
-    expect(stripHtml('<script>alert("xss")</script>Dangerous Content')).toBe('alert("xss")Dangerous Content');
+    expect(stripHtml('<script>alert("xss")</script>Dangerous Content')).toBe(
+      'alert("xss")Dangerous Content'
+    );
   });
 
   it('replaces &nbsp; with space and trims padding', () => {
@@ -25,7 +27,8 @@ describe('stripHtml utility', () => {
 
 describe('stripAllTagsExceptLinkTags utility', () => {
   it('strips inline styled span tags and html attributes while leaving plain text', () => {
-    const raw = '<span style="color: rgb(31, 41, 55); font-family: Ramabhadra, &quot;Noto Sans Telugu&quot;, sans-serif; font-size: 20.8px; background-color: rgb(255, 255, 255);">ప్రేమకథా చిత్రాలు&nbsp;</span>';
+    const raw =
+      '<span style="color: rgb(31, 41, 55); font-family: Ramabhadra, &quot;Noto Sans Telugu&quot;, sans-serif; font-size: 20.8px; background-color: rgb(255, 255, 255);">ప్రేమకథా చిత్రాలు&nbsp;</span>';
     expect(stripAllTagsExceptLinkTags(raw)).toBe('ప్రేమకథా చిత్రాలు');
   });
 

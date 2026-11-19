@@ -51,7 +51,9 @@ export const AppConfigPanel: React.FC<AppConfigPanelProps> = ({
                 {t.configFeatureFlagsTitle || 'Feature Flags & System Controls'}
               </Typography>
             </Box>
-            <Divider sx={{ mb: 2.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+            <Divider
+              sx={{ mb: 2.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+            />
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <FormControlLabel
@@ -144,7 +146,13 @@ export const AppConfigPanel: React.FC<AppConfigPanelProps> = ({
                 }
                 label={
                   <Box>
-                    <Typography variant="body2" sx={{ fontWeight: 600, color: config.maintenanceMode ? '#ef4444' : 'inherit' }}>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontWeight: 600,
+                        color: config.maintenanceMode ? '#ef4444' : 'inherit',
+                      }}
+                    >
                       {t.flagMaintenance || 'Maintenance Mode'}
                     </Typography>
                     <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
@@ -176,7 +184,9 @@ export const AppConfigPanel: React.FC<AppConfigPanelProps> = ({
                 {t.configPaymentTitle || 'Payment Gateway Credentials'}
               </Typography>
             </Box>
-            <Divider sx={{ mb: 2.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+            <Divider
+              sx={{ mb: 2.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+            />
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
               <TextField

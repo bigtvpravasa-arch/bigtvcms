@@ -26,7 +26,11 @@ interface AudienceReviewsModalProps {
   onClose: () => void;
 }
 
-export const AudienceReviewsModal: React.FC<AudienceReviewsModalProps> = ({ open, data, onClose }) => {
+export const AudienceReviewsModal: React.FC<AudienceReviewsModalProps> = ({
+  open,
+  data,
+  onClose,
+}) => {
   const { language } = useLanguageStore();
   const { mode } = useAppTheme();
   const isDark = mode === 'dark';
@@ -107,10 +111,21 @@ export const AudienceReviewsModal: React.FC<AudienceReviewsModalProps> = ({ open
         >
           {/* Audience Score */}
           <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Typography
+              variant="caption"
+              sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+            >
               {t.audienceOverallScore}
             </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.5, mt: 0.5 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 0.5,
+                mt: 0.5,
+              }}
+            >
               <Typography variant="h4" sx={{ fontWeight: 800, color: '#f59e0b' }}>
                 {overallRating}
               </Typography>
@@ -121,17 +136,38 @@ export const AudienceReviewsModal: React.FC<AudienceReviewsModalProps> = ({ open
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 0.5 }}>
               <Rating value={Number(overallRating)} precision={0.1} readOnly size="small" />
             </Box>
-            <Typography variant="caption" sx={{ color: isDark ? '#9e96c7' : '#736b9e', display: 'block', mt: 0.5 }}>
+            <Typography
+              variant="caption"
+              sx={{ color: isDark ? '#9e96c7' : '#736b9e', display: 'block', mt: 0.5 }}
+            >
               ({totalReviews} {t.audienceTotalReviews})
             </Typography>
           </Box>
 
           {/* Critic Score */}
-          <Box sx={{ textAlign: 'center', borderLeft: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)' }}>
-            <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+          <Box
+            sx={{
+              textAlign: 'center',
+              borderLeft: isDark
+                ? '1px solid rgba(255,255,255,0.08)'
+                : '1px solid rgba(0,0,0,0.08)',
+            }}
+          >
+            <Typography
+              variant="caption"
+              sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+            >
               {t.criticEditorialScore}
             </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.5, mt: 0.5 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 0.5,
+                mt: 0.5,
+              }}
+            >
               <Typography variant="h4" sx={{ fontWeight: 800, color: '#10b981' }}>
                 {typeof criticRating === 'string' ? criticRating.replace('/5', '') : criticRating}
               </Typography>
@@ -139,7 +175,10 @@ export const AudienceReviewsModal: React.FC<AudienceReviewsModalProps> = ({ open
                 / 5
               </Typography>
             </Box>
-            <Typography variant="caption" sx={{ color: '#10b981', fontWeight: 600, display: 'block', mt: 1 }}>
+            <Typography
+              variant="caption"
+              sx={{ color: '#10b981', fontWeight: 600, display: 'block', mt: 1 }}
+            >
               ★ BIG TV ChotaMeter
             </Typography>
           </Box>
@@ -189,12 +228,23 @@ export const AudienceReviewsModal: React.FC<AudienceReviewsModalProps> = ({ open
                     p: 1.5,
                     borderRadius: '10px',
                     backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f8fafc',
-                    border: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.06)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.06)'
+                      : '1px solid rgba(0,0,0,0.06)',
                   }}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 0.5 }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      mb: 0.5,
+                    }}
+                  >
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <Avatar sx={{ width: 26, height: 26, fontSize: '0.75rem', bgcolor: '#3b82f6' }}>
+                      <Avatar
+                        sx={{ width: 26, height: 26, fontSize: '0.75rem', bgcolor: '#3b82f6' }}
+                      >
                         <Person fontSize="inherit" />
                       </Avatar>
                       <Typography variant="body2" sx={{ fontWeight: 600 }}>
@@ -203,7 +253,10 @@ export const AudienceReviewsModal: React.FC<AudienceReviewsModalProps> = ({ open
                     </Box>
                     <Rating value={rev.rating || 4} precision={0.5} readOnly size="small" />
                   </Box>
-                  <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#4b5563', mt: 0.5 }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: isDark ? '#d0caeb' : '#4b5563', mt: 0.5 }}
+                  >
                     "{rev.comment}"
                   </Typography>
                 </Box>

@@ -268,4 +268,3 @@ export interface BookingAdminStats {
     revenue: number;
   }>;
 }
-

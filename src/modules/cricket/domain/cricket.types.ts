@@ -207,4 +207,3 @@ export interface CricketFilterParams {
   state?: 'live' | 'recent' | 'upcoming';
   search?: string;
 }
-

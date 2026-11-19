@@ -10,8 +10,14 @@ export class UserRepository {
     return apiClient.post<CreatorResponseDto, CreateCreatorRequestDto>('/creators', dto);
   }
 
-  static async update(creatorId: number, dto: Partial<CreateCreatorRequestDto>): Promise<CreatorResponseDto> {
-    return apiClient.put<CreatorResponseDto, Partial<CreateCreatorRequestDto>>(`/creators/${creatorId}`, dto);
+  static async update(
+    creatorId: number,
+    dto: Partial<CreateCreatorRequestDto>
+  ): Promise<CreatorResponseDto> {
+    return apiClient.put<CreatorResponseDto, Partial<CreateCreatorRequestDto>>(
+      `/creators/${creatorId}`,
+      dto
+    );
   }
 
   static async delete(creatorId: number): Promise<void> {

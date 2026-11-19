@@ -51,7 +51,7 @@ export const useInhouseReelsController = () => {
     let result = Array.isArray(data) ? data : [];
     if (filterTitle) {
       const lowerFilter = filterTitle.toLowerCase();
-      result = result.filter(r => (r?.title || '').toLowerCase().includes(lowerFilter));
+      result = result.filter((r) => (r?.title || '').toLowerCase().includes(lowerFilter));
     }
     return result;
   }, [data, filterTitle]);
@@ -101,11 +101,11 @@ export const useInhouseReelsController = () => {
     try {
       const currentStatus = reel.publishing?.isActive ?? false;
       const nextIsActive = !currentStatus;
-      await eventsApiClient.patch(`/reels/${reel.id}`, { 
-        publishing: { 
+      await eventsApiClient.patch(`/reels/${reel.id}`, {
+        publishing: {
           isActive: nextIsActive,
-          status: nextIsActive ? 'published' : 'draft'
-        } 
+          status: nextIsActive ? 'published' : 'draft',
+        },
       });
       fetchReels();
     } catch (err: any) {

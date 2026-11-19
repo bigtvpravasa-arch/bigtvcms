@@ -23,11 +23,15 @@ export class NotificationRepository {
       language: payload.language || payload.lan || 'te',
       lan: payload.lan || payload.language || 'te',
     };
-    const response = await axios.post<SendNotificationResponse>(this.NOTIFICATION_API_URL, normalizedPayload, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const response = await axios.post<SendNotificationResponse>(
+      this.NOTIFICATION_API_URL,
+      normalizedPayload,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
     return response.data;
   }
 
@@ -74,7 +78,8 @@ export class NotificationRepository {
         const notificationsObj = raw.data.notifications;
         if (Array.isArray(notificationsObj.items)) {
           items = notificationsObj.items.map(NotificationRepository.mapRawNotificationItem);
-          total = typeof notificationsObj.total === 'number' ? notificationsObj.total : items.length;
+          total =
+            typeof notificationsObj.total === 'number' ? notificationsObj.total : items.length;
         }
       } else if (Array.isArray(raw.data.items)) {
         items = raw.data.items.map(NotificationRepository.mapRawNotificationItem);
@@ -96,8 +101,18 @@ export class NotificationRepository {
       data: {
         items,
         total,
-        skip: typeof raw.data?.skip === 'number' ? raw.data.skip : (typeof raw.data?.notifications?.skip === 'number' ? raw.data.notifications.skip : skip),
-        take: typeof raw.data?.take === 'number' ? raw.data.take : (typeof raw.data?.notifications?.take === 'number' ? raw.data.notifications.take : take),
+        skip:
+          typeof raw.data?.skip === 'number'
+            ? raw.data.skip
+            : typeof raw.data?.notifications?.skip === 'number'
+              ? raw.data.notifications.skip
+              : skip,
+        take:
+          typeof raw.data?.take === 'number'
+            ? raw.data.take
+            : typeof raw.data?.notifications?.take === 'number'
+              ? raw.data.notifications.take
+              : take,
       },
       timestamp: raw.timestamp || new Date().toISOString(),
     };
@@ -120,7 +135,7 @@ export class NotificationRepository {
       id: item.id || '',
       title: item.title || '',
       content: item.content || '',
-      postId: item.postId !== undefined ? item.postId : (item.post_id || 0),
+      postId: item.postId !== undefined ? item.postId : item.post_id || 0,
       link: item.link || '',
       imageUrl: item.imageUrl || item.image_url || '',
       brandName: item.brandName || item.brand_name || null,
@@ -128,9 +143,12 @@ export class NotificationRepository {
       lan: item.lan || item.language || 'te',
       language: item.language || item.lan || 'te',
       status: item.status || 'PENDING',
-      totalTargeted: item.totalTargeted !== undefined ? item.totalTargeted : (item.totalTargetedUsers || 0),
-      successCount: item.successCount !== undefined ? item.successCount : (item.receivedUsersCount || 0),
-      failureCount: item.failureCount !== undefined ? item.failureCount : (item.droppedUsersCount || 0),
+      totalTargeted:
+        item.totalTargeted !== undefined ? item.totalTargeted : item.totalTargetedUsers || 0,
+      successCount:
+        item.successCount !== undefined ? item.successCount : item.receivedUsersCount || 0,
+      failureCount:
+        item.failureCount !== undefined ? item.failureCount : item.droppedUsersCount || 0,
       statusMessage: item.statusMessage || null,
       sentAt: item.sentAt || null,
       createdAt: item.createdAt || '',

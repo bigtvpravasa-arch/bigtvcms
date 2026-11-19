@@ -61,8 +61,17 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
 
   const handlePostIdChange = (val: string) => {
     setPostId(val);
-    if (errors.postId) setErrors((prev) => { const n = { ...prev }; delete n.postId; return n; });
-    if (!link || link.startsWith('https://app.chotanews.com/individualPage?postId=') || link.startsWith('myapp://post/')) {
+    if (errors.postId)
+      setErrors((prev) => {
+        const n = { ...prev };
+        delete n.postId;
+        return n;
+      });
+    if (
+      !link ||
+      link.startsWith('https://app.chotanews.com/individualPage?postId=') ||
+      link.startsWith('myapp://post/')
+    ) {
       setLink(val ? `https://app.chotanews.com/individualPage?postId=${val}` : '');
     }
   };
@@ -163,12 +172,17 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
           justifyContent: 'space-between',
           px: 3,
           py: 2.2,
-          borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
+          borderBottom: isDark
+            ? '1px solid rgba(255, 255, 255, 0.08)'
+            : '1px solid rgba(0, 0, 0, 0.08)',
           backgroundColor: isDark ? 'rgba(38, 28, 86, 0.7)' : '#f8f7ff',
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.2 }}>
-          <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445', fontSize: '1.1rem' }}>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445', fontSize: '1.1rem' }}
+          >
             🔔 {t.btnSendNotification || 'Send Notification'}
           </Typography>
         </Box>
@@ -180,7 +194,10 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
       {/* Side Menu Drawer Body Content */}
       <Box sx={{ p: 3, flex: 1, overflowY: 'auto' }}>
         {errors.api && (
-          <Typography variant="caption" sx={{ color: '#f44336', fontWeight: 600, display: 'block', mb: 2 }}>
+          <Typography
+            variant="caption"
+            sx={{ color: '#f44336', fontWeight: 600, display: 'block', mb: 2 }}
+          >
             {errors.api}
           </Typography>
         )}
@@ -196,7 +213,12 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
               value={title}
               onChange={(e) => {
                 setTitle(e.target.value);
-                if (errors.title) setErrors((prev) => { const n = { ...prev }; delete n.title; return n; });
+                if (errors.title)
+                  setErrors((prev) => {
+                    const n = { ...prev };
+                    delete n.title;
+                    return n;
+                  });
               }}
               error={!!errors.title}
               helperText={errors.title || ''}
@@ -212,8 +234,16 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
             <Typography
               variant="caption"
               sx={{
-                color: countWords(title) > 10 ? '#f44336' : (isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)'),
-                display: 'block', mt: 0.3, textAlign: 'right', fontSize: '0.7rem',
+                color:
+                  countWords(title) > 10
+                    ? '#f44336'
+                    : isDark
+                      ? 'rgba(255,255,255,0.35)'
+                      : 'rgba(0,0,0,0.35)',
+                display: 'block',
+                mt: 0.3,
+                textAlign: 'right',
+                fontSize: '0.7rem',
               }}
             >
               {countWords(title)}/10 words
@@ -255,7 +285,12 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
               value={content}
               onChange={(e) => {
                 setContent(e.target.value);
-                if (errors.content) setErrors((prev) => { const n = { ...prev }; delete n.content; return n; });
+                if (errors.content)
+                  setErrors((prev) => {
+                    const n = { ...prev };
+                    delete n.content;
+                    return n;
+                  });
               }}
               error={!!errors.content}
               helperText={errors.content || ''}
@@ -271,8 +306,16 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
             <Typography
               variant="caption"
               sx={{
-                color: countWords(content) > 50 ? '#f44336' : (isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)'),
-                display: 'block', mt: 0.3, textAlign: 'right', fontSize: '0.7rem',
+                color:
+                  countWords(content) > 50
+                    ? '#f44336'
+                    : isDark
+                      ? 'rgba(255,255,255,0.35)'
+                      : 'rgba(0,0,0,0.35)',
+                display: 'block',
+                mt: 0.3,
+                textAlign: 'right',
+                fontSize: '0.7rem',
               }}
             >
               {countWords(content)}/50 words
@@ -289,7 +332,12 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
               value={link}
               onChange={(e) => {
                 setLink(e.target.value);
-                if (errors.link) setErrors((prev) => { const n = { ...prev }; delete n.link; return n; });
+                if (errors.link)
+                  setErrors((prev) => {
+                    const n = { ...prev };
+                    delete n.link;
+                    return n;
+                  });
               }}
               error={!!errors.link}
               helperText={errors.link || ''}
@@ -314,7 +362,12 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
               value={imageUrl}
               onChange={(e) => {
                 setImageUrl(e.target.value);
-                if (errors.imageUrl) setErrors((prev) => { const n = { ...prev }; delete n.imageUrl; return n; });
+                if (errors.imageUrl)
+                  setErrors((prev) => {
+                    const n = { ...prev };
+                    delete n.imageUrl;
+                    return n;
+                  });
               }}
               error={!!errors.imageUrl}
               helperText={errors.imageUrl || ''}
@@ -331,7 +384,9 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
 
           {/* Language Selection */}
           <Grid item xs={12} sm={6}>
-            <FormControl fullWidth size="small"
+            <FormControl
+              fullWidth
+              size="small"
               sx={{
                 '& .MuiOutlinedInput-root': {
                   color: isDark ? '#ffffff' : '#1c1445',
@@ -385,7 +440,9 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
           display: 'flex',
           justifyContent: 'flex-end',
           gap: 2,
-          borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
+          borderTop: isDark
+            ? '1px solid rgba(255, 255, 255, 0.08)'
+            : '1px solid rgba(0, 0, 0, 0.08)',
           backgroundColor: isDark ? 'rgba(38, 28, 86, 0.5)' : '#fafafa',
         }}
       >
@@ -418,7 +475,7 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
             '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270', boxShadow: 'none' },
           }}
         >
-          {loading ? 'Sending...' : (t.btnSendNotification || 'Send Notification')}
+          {loading ? 'Sending...' : t.btnSendNotification || 'Send Notification'}
         </Button>
       </Box>
     </Drawer>

@@ -82,7 +82,8 @@ export interface CricketTranslations {
 export const cricketTranslations: Record<string, CricketTranslations> = {
   en: {
     pageTitle: 'Cricket Matches & Live Scores Management',
-    pageSubtitle: 'View real-time scores, search match catalogues, publish to mobile apps, and execute bulk actions',
+    pageSubtitle:
+      'View real-time scores, search match catalogues, publish to mobile apps, and execute bulk actions',
     syncButton: 'Sync Live Scores',
     syncing: 'Synchronizing...',
     statTotal: 'Total Matches',
@@ -162,7 +163,8 @@ export const cricketTranslations: Record<string, CricketTranslations> = {
   },
   te: {
     pageTitle: 'క్రికెట్ మ్యాచ్‌లు & లైవ్ స్కోర్ల నిర్వహణ (Cricket Management)',
-    pageSubtitle: 'రియల్-టైమ్ స్కోర్లు, సిరీస్ వివరాలు, మొబైల్ యాప్‌లకు ప్రచురణ మరియు బల్క్ చర్యలు నిర్వహించండి',
+    pageSubtitle:
+      'రియల్-టైమ్ స్కోర్లు, సిరీస్ వివరాలు, మొబైల్ యాప్‌లకు ప్రచురణ మరియు బల్క్ చర్యలు నిర్వహించండి',
     syncButton: 'లైవ్ స్కోర్లు సమకాలీకరించు (Sync)',
     syncing: 'సమకాలీకరిస్తోంది...',
     statTotal: 'మొత్తం మ్యాచ్‌లు',
@@ -242,7 +244,8 @@ export const cricketTranslations: Record<string, CricketTranslations> = {
   },
   hi: {
     pageTitle: 'क्रिकेट मैच और लाइव स्कोर प्रबंधन (Cricket Management)',
-    pageSubtitle: 'रीयल-टाइम स्कोर, मैच कैटलॉग खोजें, मोबाइल ऐप पर प्रकाशित करें और बल्क एक्शन प्रबंधित करें',
+    pageSubtitle:
+      'रीयल-टाइम स्कोर, मैच कैटलॉग खोजें, मोबाइल ऐप पर प्रकाशित करें और बल्क एक्शन प्रबंधित करें',
     syncButton: 'लाइव स्कोर सिंक करें',
     syncing: 'सिंक हो रहा है...',
     statTotal: 'कुल मैच',
@@ -322,7 +325,8 @@ export const cricketTranslations: Record<string, CricketTranslations> = {
   },
   ml: {
     pageTitle: 'ക്രിക്കറ്റ് മത്സരങ്ങളും ലൈവ് സ്കോറുകളും (Cricket Management)',
-    pageSubtitle: 'തത്സമയ സ്കോറുകൾ കാണുക, മൊബൈൽ ആപ്പുകളിലേക്ക് പ്രസിദ്ധീകരിക്കുക, ബൾക്ക് പ്രവർത്തനങ്ങൾ കൈകാര്യം ചെയ്യുക',
+    pageSubtitle:
+      'തത്സമയ സ്കോറുകൾ കാണുക, മൊബൈൽ ആപ്പുകളിലേക്ക് പ്രസിദ്ധീകരിക്കുക, ബൾക്ക് പ്രവർത്തനങ്ങൾ കൈകാര്യം ചെയ്യുക',
     syncButton: 'ലൈവ് സ്കോറുകൾ സമന്വയിപ്പിക്കുക',
     syncing: 'സമന്വയിപ്പിക്കുന്നു...',
     statTotal: 'ആകെ മത്സരങ്ങൾ',

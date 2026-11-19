@@ -19,7 +19,13 @@ import {
   Switch,
   Divider,
 } from '@mui/material';
-import { Close, AddCircleOutline, DeleteOutline, StarRate, SmartDisplay } from '@mui/icons-material';
+import {
+  Close,
+  AddCircleOutline,
+  DeleteOutline,
+  StarRate,
+  SmartDisplay,
+} from '@mui/icons-material';
 import {
   MovieReviewItem,
   CreateMovieReviewDto,
@@ -78,9 +84,7 @@ export const MovieReviewModal: React.FC<MovieReviewModalProps> = ({
         movie.gallery && Array.isArray(movie.gallery)
           ? movie.gallery
               .map((g: any) =>
-                typeof g === 'string'
-                  ? { Url: g }
-                  : { Url: g?.Url || g?.url || '' }
+                typeof g === 'string' ? { Url: g } : { Url: g?.Url || g?.url || '' }
               )
               .filter((g: any) => Boolean(g.Url))
           : []
@@ -117,7 +121,11 @@ export const MovieReviewModal: React.FC<MovieReviewModalProps> = ({
     setExternalRatings((prev) => prev.filter((_, idx) => idx !== index));
   };
 
-  const handlePlatformChange = (index: number, field: 'platform_name' | 'platform_rating', value: string) => {
+  const handlePlatformChange = (
+    index: number,
+    field: 'platform_name' | 'platform_rating',
+    value: string
+  ) => {
     setExternalRatings((prev) => {
       const updated = [...prev];
       updated[index] = { ...updated[index], [field]: value };
@@ -209,7 +217,9 @@ export const MovieReviewModal: React.FC<MovieReviewModalProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+            borderBottom: isDark
+              ? '1px solid rgba(255,255,255,0.08)'
+              : '1px solid rgba(0,0,0,0.08)',
             pb: 2,
           }}
         >
@@ -338,17 +348,20 @@ export const MovieReviewModal: React.FC<MovieReviewModalProps> = ({
           <Divider sx={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
 
           {/* Gallery Videos & Clips Uploader */}
-          <MovieReviewGalleryUploader
-            gallery={gallery}
-            onChange={setGallery}
-            disabled={isSaving}
-          />
+          <MovieReviewGalleryUploader gallery={gallery} onChange={setGallery} disabled={isSaving} />
 
           <Divider sx={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
 
           {/* External Platform Ratings Section */}
           <Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                mb: 1.5,
+              }}
+            >
               <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                 {t.labelExternalRatings}
               </Typography>
@@ -374,7 +387,9 @@ export const MovieReviewModal: React.FC<MovieReviewModalProps> = ({
                     p: 1.5,
                     borderRadius: '10px',
                     backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
-                    border: isDark ? '1px solid rgba(255,255,255,0.05)' : '1px solid rgba(0,0,0,0.05)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.05)'
+                      : '1px solid rgba(0,0,0,0.05)',
                   }}
                 >
                   <TextField
@@ -407,7 +422,11 @@ export const MovieReviewModal: React.FC<MovieReviewModalProps> = ({
           {/* Draft Toggle */}
           <FormControlLabel
             control={
-              <Switch checked={draft} onChange={(e) => setDraft(e.target.checked)} color="warning" />
+              <Switch
+                checked={draft}
+                onChange={(e) => setDraft(e.target.checked)}
+                color="warning"
+              />
             }
             label={t.labelDraft}
           />

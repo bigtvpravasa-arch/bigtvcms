@@ -23,8 +23,10 @@ const MOCK_INITIAL_MOVIES: MovieItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400',
     banner: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=600',
     thumbnail: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400',
-    videoUrl: 'https://bigtv-app.b1656d3be9835befd7b0266af4373b81.r2.cloudflarestorage.com/movies/videos/video.mp4',
-    trailerUrl: 'https://bigtv-app.b1656d3be9835befd7b0266af4373b81.r2.cloudflarestorage.com/movies/videos/video.mp4',
+    videoUrl:
+      'https://bigtv-app.b1656d3be9835befd7b0266af4373b81.r2.cloudflarestorage.com/movies/videos/video.mp4',
+    trailerUrl:
+      'https://bigtv-app.b1656d3be9835befd7b0266af4373b81.r2.cloudflarestorage.com/movies/videos/video.mp4',
     genres: ['Sci-Fi', 'Action'],
     genre: 'Sci-Fi / Action',
     languages: ['Telugu', 'English', 'Hindi', 'Malayalam'],
@@ -51,12 +53,18 @@ const MOCK_INITIAL_MOVIES: MovieItem[] = [
     titleEn: 'Nikhil Kumar',
     titleTe: 'నిఖిల్ కుమార్',
     description: 'A thief who steals corporate secrets through dream-sharing technology.',
-    poster: 'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
-    posterUrl: 'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
-    imageUrl: 'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
-    banner: 'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
-    bannerUrl: 'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
-    thumbnail: 'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
+    poster:
+      'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
+    posterUrl:
+      'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
+    imageUrl:
+      'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
+    banner:
+      'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
+    bannerUrl:
+      'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
+    thumbnail:
+      'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
     videoUrl: 'https://streamable.com/f673g4',
     trailerUrl: 'https://streamable.com/f673g4',
     genres: ['Sci-Fi', 'Action'],
@@ -158,7 +166,8 @@ const MOCK_INITIAL_MOVIES: MovieItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400',
     banner: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=600',
     thumbnail: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400',
-    videoUrl: 'https://bigtv-app.b1656d3be9835befd7b0266af4373b81.r2.cloudflarestorage.com/movies/videos/video.mp4',
+    videoUrl:
+      'https://bigtv-app.b1656d3be9835befd7b0266af4373b81.r2.cloudflarestorage.com/movies/videos/video.mp4',
     genres: ['Trailer', 'Sci-Fi'],
     genre: 'Trailer',
     languages: ['Telugu', 'English', 'Hindi'],
@@ -193,7 +202,8 @@ const MOCK_INITIAL_MOVIES: MovieItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=400',
     banner: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=600',
     thumbnail: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=400',
-    videoUrl: 'https://bigtv-app.b1656d3be9835befd7b0266af4373b81.r2.cloudflarestorage.com/movies/videos/video.mp4',
+    videoUrl:
+      'https://bigtv-app.b1656d3be9835befd7b0266af4373b81.r2.cloudflarestorage.com/movies/videos/video.mp4',
     genres: ['Trailer', 'Action'],
     genre: 'Trailer',
     languages: ['Telugu', 'Hindi'],
@@ -218,16 +228,24 @@ export class MoviesRepository {
     let baseUrl = LOCAL_BACKEND_URL;
     if (envBase) {
       baseUrl = `${envBase.replace(/\/$/, '')}/admin/content/movie`;
-    } else if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    } else if (
+      typeof window !== 'undefined' &&
+      window.location.hostname !== 'localhost' &&
+      window.location.hostname !== '127.0.0.1'
+    ) {
       baseUrl = PROXY_API_URL;
     }
     return pathExtension ? `${baseUrl}/${pathExtension}` : baseUrl;
   }
 
-  private static mapApiToItem(apiData: any, defaultContentType?: 'movie' | 'series' | 'trailer' | 'episode'): MovieItem {
+  private static mapApiToItem(
+    apiData: any,
+    defaultContentType?: 'movie' | 'series' | 'trailer' | 'episode'
+  ): MovieItem {
     const id = apiData.id || apiData.movieId || `mov_${Math.random().toString(36).substr(2, 9)}`;
     const title = apiData.title || apiData.movieTitle || 'Untitled Movie';
-    const poster = apiData.poster || apiData.posterUrl || apiData.poster_url || apiData.imageUrl || '';
+    const poster =
+      apiData.poster || apiData.posterUrl || apiData.poster_url || apiData.imageUrl || '';
     const banner = apiData.banner || apiData.bannerUrl || apiData.banner_url || poster;
     const thumbnail = apiData.thumbnail || poster;
 
@@ -235,30 +253,33 @@ export class MoviesRepository {
       apiData.contentType ||
       apiData.type ||
       defaultContentType ||
-      (Array.isArray(apiData.episodes) || String(id).startsWith('series') || String(id).startsWith('ser')
+      (Array.isArray(apiData.episodes) ||
+      String(id).startsWith('series') ||
+      String(id).startsWith('ser')
         ? 'series'
         : String(id).startsWith('tr') || String(id).startsWith('trailer')
-        ? 'trailer'
-        : 'movie');
-    
+          ? 'trailer'
+          : 'movie');
+
     const genres = Array.isArray(apiData.genres)
       ? apiData.genres
       : apiData.genre
-      ? [apiData.genre]
-      : ['Sci-Fi', 'Action'];
-      
+        ? [apiData.genre]
+        : ['Sci-Fi', 'Action'];
+
     const languages = Array.isArray(apiData.languages)
       ? apiData.languages
       : apiData.language
-      ? [apiData.language]
-      : ['Telugu'];
+        ? [apiData.language]
+        : ['Telugu'];
 
     const status = apiData.status || (apiData.isPublished ? 'published' : 'draft');
     const isPublished = status === 'published' || status === 'active';
 
-    const durationMins = typeof apiData.duration === 'number' && apiData.duration < 10 
-      ? apiData.duration * 60 
-      : (apiData.durationMinutes || apiData.duration_minutes || 120);
+    const durationMins =
+      typeof apiData.duration === 'number' && apiData.duration < 10
+        ? apiData.duration * 60
+        : apiData.durationMinutes || apiData.duration_minutes || 120;
 
     const episodesCount = Array.isArray(apiData.episodes)
       ? apiData.episodes.length
@@ -289,8 +310,11 @@ export class MoviesRepository {
       language: languages[0] || 'Telugu',
       duration: apiData.duration ?? 2,
       durationMinutes: durationMins,
-      releaseDate: apiData.releaseDate || apiData.release_date || `${apiData.releaseYear || 2024}-01-01`,
-      releaseYear: apiData.releaseDate ? parseInt(apiData.releaseDate.split('-')[0]) : (apiData.releaseYear || 2024),
+      releaseDate:
+        apiData.releaseDate || apiData.release_date || `${apiData.releaseYear || 2024}-01-01`,
+      releaseYear: apiData.releaseDate
+        ? parseInt(apiData.releaseDate.split('-')[0])
+        : apiData.releaseYear || 2024,
       rating: apiData.rating ?? 8.0,
       ageRestriction: apiData.ageRestriction || 'PG-13',
       featured: apiData.featured ?? true,
@@ -312,16 +336,18 @@ export class MoviesRepository {
     const poster = item.poster || item.posterUrl || item.imageUrl || '';
     const banner = item.banner || item.bannerUrl || poster;
     const thumbnail = item.thumbnail || poster;
-    const genres = Array.isArray(item.genres) && item.genres.length > 0
-      ? item.genres
-      : item.genre
-      ? item.genre.split(',').map((g) => g.trim())
-      : ['Sci-Fi', 'Action'];
-    const languages = Array.isArray(item.languages) && item.languages.length > 0
-      ? item.languages
-      : item.language
-      ? [item.language]
-      : ['English', 'Spanish'];
+    const genres =
+      Array.isArray(item.genres) && item.genres.length > 0
+        ? item.genres
+        : item.genre
+          ? item.genre.split(',').map((g) => g.trim())
+          : ['Sci-Fi', 'Action'];
+    const languages =
+      Array.isArray(item.languages) && item.languages.length > 0
+        ? item.languages
+        : item.language
+          ? [item.language]
+          : ['English', 'Spanish'];
 
     return {
       title: item.title || item.movieTitle || item.titleEn || 'Untitled Movie',
@@ -332,7 +358,12 @@ export class MoviesRepository {
       videoUrl: item.videoUrl || '',
       genres,
       languages,
-      duration: typeof item.duration === 'number' ? item.duration : (item.durationMinutes ? Math.round(item.durationMinutes / 60) : 2),
+      duration:
+        typeof item.duration === 'number'
+          ? item.duration
+          : item.durationMinutes
+            ? Math.round(item.durationMinutes / 60)
+            : 2,
       releaseDate: item.releaseDate || `${item.releaseYear || 2024}-07-16`,
       rating: Number(item.rating) || 8.8,
       ageRestriction: item.ageRestriction || 'PG-13',
@@ -361,7 +392,10 @@ export class MoviesRepository {
     } catch (e) {}
   }
 
-  private static parseApiResponse(data: any[], defaultContentType?: 'movie' | 'series' | 'trailer' | 'episode'): MovieItem[] {
+  private static parseApiResponse(
+    data: any[],
+    defaultContentType?: 'movie' | 'series' | 'trailer' | 'episode'
+  ): MovieItem[] {
     const result: MovieItem[] = [];
     data.forEach((item: any) => {
       const movie = MoviesRepository.mapApiToItem(item, defaultContentType);
@@ -391,9 +425,7 @@ export class MoviesRepository {
     };
     const headers = getHeaders();
 
-    const endpoints = [
-      { url: `${baseUrl}?type=series`, defaultType: 'series' as const },
-    ];
+    const endpoints = [{ url: `${baseUrl}?type=series`, defaultType: 'series' as const }];
 
     let combinedItems: MovieItem[] = [];
     const seenIds = new Set<string | number>();

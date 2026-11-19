@@ -110,7 +110,10 @@ describe('useCricketController', () => {
     });
     (CricketRepository.syncScores as jest.Mock).mockResolvedValue({
       success: true,
-      data: { message: 'Synced', result: { liveCount: 1, recentCount: 0, upcomingCount: 1, syncedAt: '' } },
+      data: {
+        message: 'Synced',
+        result: { liveCount: 1, recentCount: 0, upcomingCount: 1, syncedAt: '' },
+      },
     });
   });
 
@@ -169,7 +172,9 @@ describe('useCricketController', () => {
   });
 
   it('reverts optimistic toggle on error', async () => {
-    (CricketRepository.publishMatch as jest.Mock).mockRejectedValueOnce(new Error('Network failure'));
+    (CricketRepository.publishMatch as jest.Mock).mockRejectedValueOnce(
+      new Error('Network failure')
+    );
 
     const { result } = renderHook(() => useCricketController());
 

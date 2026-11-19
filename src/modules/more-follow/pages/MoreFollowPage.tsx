@@ -12,12 +12,7 @@ import {
   Pagination,
   Grid,
 } from '@mui/material';
-import {
-  Search,
-  Add,
-  RssFeed,
-  Lock,
-} from '@mui/icons-material';
+import { Search, Add, RssFeed, Lock } from '@mui/icons-material';
 import { useLanguageStore } from '@/core/storage/language-store';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
 import { useUserStore } from '@/core/storage/user-store';
@@ -57,7 +52,8 @@ const translations = {
     saveBtn: 'Save Menu',
     updateBtn: 'Update Menu',
     accessDeniedTitle: 'Access Restricted',
-    accessDeniedDesc: 'Only Administrators and SuperAdmins can access the More Follow Menu configuration.',
+    accessDeniedDesc:
+      'Only Administrators and SuperAdmins can access the More Follow Menu configuration.',
     noRecordsFound: 'No MoreFollow menu items found.',
   },
   te: {
@@ -196,11 +192,20 @@ export const MoreFollowPage: React.FC = () => {
 
   if (!canAccess) {
     return (
-      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: isDark ? '#140e2b' : '#f0eff5' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100vh',
+          backgroundColor: isDark ? '#140e2b' : '#f0eff5',
+        }}
+      >
         <Header />
         <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
           <Sidebar activeHref="/more-follow" />
-          <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', p: 3 }}>
+          <Box
+            sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', p: 3 }}
+          >
             <Box
               sx={{
                 maxWidth: 480,
@@ -228,7 +233,10 @@ export const MoreFollowPage: React.FC = () => {
               >
                 <Lock sx={{ fontSize: 32 }} />
               </Box>
-              <Typography variant="h5" sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445', mb: 1 }}>
+              <Typography
+                variant="h5"
+                sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445', mb: 1 }}
+              >
                 {t.accessDeniedTitle}
               </Typography>
               <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#757575' }}>
@@ -245,15 +253,39 @@ export const MoreFollowPage: React.FC = () => {
   const inactiveCount = data.length - activeCount;
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: isDark ? '#140e2b' : '#f0eff5' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+        backgroundColor: isDark ? '#140e2b' : '#f0eff5',
+      }}
+    >
       <Header />
       <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         <Sidebar activeHref="/more-follow" />
 
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto', p: { xs: 2, md: 3.5 } }}>
+        <Box
+          sx={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            overflowY: 'auto',
+            p: { xs: 2, md: 3.5 },
+          }}
+        >
           {/* Top Title Bar & Stats */}
           <Box sx={{ mb: 3 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 2, mb: 2.5 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: 2,
+                mb: 2.5,
+              }}
+            >
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <Box
                   sx={{
@@ -270,10 +302,20 @@ export const MoreFollowPage: React.FC = () => {
                   <RssFeed />
                 </Box>
                 <Box>
-                  <Typography variant="h5" sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445', fontSize: '1.4rem' }}>
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      fontWeight: 800,
+                      color: isDark ? '#ffffff' : '#1c1445',
+                      fontSize: '1.4rem',
+                    }}
+                  >
                     {t.pageTitle}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#757575', fontSize: '0.82rem' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: isDark ? '#d0caeb' : '#757575', fontSize: '0.82rem' }}
+                  >
                     {t.pageSubtitle}
                   </Typography>
                 </Box>
@@ -310,13 +352,21 @@ export const MoreFollowPage: React.FC = () => {
                     p: 2,
                     borderRadius: '16px',
                     backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
-                    border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(0,0,0,0.08)',
                   }}
                 >
-                  <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#757575', fontWeight: 600 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: isDark ? '#d0caeb' : '#757575', fontWeight: 600 }}
+                  >
                     {t.totalMenus}
                   </Typography>
-                  <Typography variant="h4" sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445', mt: 0.5 }}>
+                  <Typography
+                    variant="h4"
+                    sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445', mt: 0.5 }}
+                  >
                     {data.length}
                   </Typography>
                 </Box>
@@ -327,13 +377,21 @@ export const MoreFollowPage: React.FC = () => {
                     p: 2,
                     borderRadius: '16px',
                     backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
-                    border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(0,0,0,0.08)',
                   }}
                 >
-                  <Typography variant="caption" sx={{ color: isDark ? '#81c784' : '#2e7d32', fontWeight: 600 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: isDark ? '#81c784' : '#2e7d32', fontWeight: 600 }}
+                  >
                     {t.activeMenus}
                   </Typography>
-                  <Typography variant="h4" sx={{ fontWeight: 800, color: isDark ? '#81c784' : '#2e7d32', mt: 0.5 }}>
+                  <Typography
+                    variant="h4"
+                    sx={{ fontWeight: 800, color: isDark ? '#81c784' : '#2e7d32', mt: 0.5 }}
+                  >
                     {activeCount}
                   </Typography>
                 </Box>
@@ -344,13 +402,21 @@ export const MoreFollowPage: React.FC = () => {
                     p: 2,
                     borderRadius: '16px',
                     backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
-                    border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(0,0,0,0.08)',
                   }}
                 >
-                  <Typography variant="caption" sx={{ color: isDark ? '#e57373' : '#c62828', fontWeight: 600 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: isDark ? '#e57373' : '#c62828', fontWeight: 600 }}
+                  >
                     {t.inactiveMenus}
                   </Typography>
-                  <Typography variant="h4" sx={{ fontWeight: 800, color: isDark ? '#e57373' : '#c62828', mt: 0.5 }}>
+                  <Typography
+                    variant="h4"
+                    sx={{ fontWeight: 800, color: isDark ? '#e57373' : '#c62828', mt: 0.5 }}
+                  >
                     {inactiveCount}
                   </Typography>
                 </Box>
@@ -381,8 +447,12 @@ export const MoreFollowPage: React.FC = () => {
                   color: isDark ? '#ffffff' : '#1c1445',
                   backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
                   borderRadius: '12px',
-                  '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' },
-                  '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(28,20,69,0.3)' },
+                  '& fieldset': {
+                    borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(28,20,69,0.3)',
+                  },
                   '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
                 },
               }}

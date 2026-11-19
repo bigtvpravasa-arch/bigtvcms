@@ -76,9 +76,7 @@ export const useEventsController = () => {
   };
 
   const handleToggleCouponStatus = async (id: string) => {
-    setCoupons((prev) =>
-      prev.map((c) => (c.id === id ? { ...c, isActive: !c.isActive } : c))
-    );
+    setCoupons((prev) => prev.map((c) => (c.id === id ? { ...c, isActive: !c.isActive } : c)));
     await eventsRepository.toggleCouponStatus(id);
     fetchAllData();
   };
@@ -124,21 +122,28 @@ export const useEventsController = () => {
   const fetchAllData = useCallback(async () => {
     setLoading(true);
     try {
-      const [fetchedEvents, fetchedStats, fetchedTickets, fetchedCoupons, fetchedConfig, fetchedBookings, fetchedBookingStats] =
-        await Promise.all([
-          eventsRepository.getEvents(search, selectedCity, selectedStatus),
-          eventsRepository.getStats(),
-          eventsRepository.getTicketTypes(selectedTicketEventId),
-          eventsRepository.getCoupons(),
-          eventsRepository.getAppConfig(),
-          eventsRepository.getBookings({
-            eventId: FOLK_NIGHT_EVENT_ID,
-            bookingStatus: selectedBookingStatus,
-            paymentStatus: selectedPaymentStatus,
-            search: bookingSearch,
-          }),
-          eventsRepository.getBookingAdminStats(FOLK_NIGHT_EVENT_ID),
-        ]);
+      const [
+        fetchedEvents,
+        fetchedStats,
+        fetchedTickets,
+        fetchedCoupons,
+        fetchedConfig,
+        fetchedBookings,
+        fetchedBookingStats,
+      ] = await Promise.all([
+        eventsRepository.getEvents(search, selectedCity, selectedStatus),
+        eventsRepository.getStats(),
+        eventsRepository.getTicketTypes(selectedTicketEventId),
+        eventsRepository.getCoupons(),
+        eventsRepository.getAppConfig(),
+        eventsRepository.getBookings({
+          eventId: FOLK_NIGHT_EVENT_ID,
+          bookingStatus: selectedBookingStatus,
+          paymentStatus: selectedPaymentStatus,
+          search: bookingSearch,
+        }),
+        eventsRepository.getBookingAdminStats(FOLK_NIGHT_EVENT_ID),
+      ]);
 
       setEvents(fetchedEvents);
       setStats(fetchedStats);
@@ -152,7 +157,15 @@ export const useEventsController = () => {
     } finally {
       setLoading(false);
     }
-  }, [search, selectedCity, selectedStatus, selectedTicketEventId, bookingSearch, selectedBookingStatus, selectedPaymentStatus]);
+  }, [
+    search,
+    selectedCity,
+    selectedStatus,
+    selectedTicketEventId,
+    bookingSearch,
+    selectedBookingStatus,
+    selectedPaymentStatus,
+  ]);
 
   useEffect(() => {
     fetchAllData();
@@ -243,7 +256,10 @@ export const useEventsController = () => {
 
   // Bookings Handlers & Pagination
   const bookingTotalPages = Math.max(1, Math.ceil(bookings.length / bookingItemsPerPage));
-  const paginatedBookings = bookings.slice((bookingPage - 1) * bookingItemsPerPage, bookingPage * bookingItemsPerPage);
+  const paginatedBookings = bookings.slice(
+    (bookingPage - 1) * bookingItemsPerPage,
+    bookingPage * bookingItemsPerPage
+  );
 
   const handleOpenStatusModal = (booking: BookingItem) => {
     setSelectedBooking(booking);

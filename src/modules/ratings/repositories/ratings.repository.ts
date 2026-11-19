@@ -22,16 +22,22 @@ const INITIAL_MOCK_MOVIES: MovieReviewItem[] = [
   {
     id: 1051,
     title: 'Devara Movie Review & Analysis',
-    content: 'Director Koratala Siva delivers an intense coastal action drama with NTR Jr in top form.',
+    content:
+      'Director Koratala Siva delivers an intense coastal action drama with NTR Jr in top form.',
     type: 'Standard',
     subType: 'Reviews',
     language_code: 'te',
     category_ids: [5],
-    image_url: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80',
+    image_url:
+      'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80',
     video_url: 'https://www.youtube.com/watch?v=0k1JzU0XQzE',
     gallery: [
-      { Url: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80' },
-      { Url: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80' },
+      {
+        Url: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80',
+      },
+      {
+        Url: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80',
+      },
     ],
     chotarating: '3.5/5',
     externalRatings: [
@@ -49,15 +55,19 @@ const INITIAL_MOCK_MOVIES: MovieReviewItem[] = [
   {
     id: 1052,
     title: 'Pushpa 2: The Rule - Mega Blockbuster Review',
-    content: 'Allu Arjun and Sukumar raise the stakes in this roaring mass spectacle with spectacular punchlines.',
+    content:
+      'Allu Arjun and Sukumar raise the stakes in this roaring mass spectacle with spectacular punchlines.',
     type: 'Standard',
     subType: 'Reviews',
     language_code: 'te',
     category_ids: [5],
-    image_url: 'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=800&q=80',
+    image_url:
+      'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=800&q=80',
     video_url: 'https://www.youtube.com/watch?v=g3JUbgyljio',
     gallery: [
-      { Url: 'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=800&q=80' },
+      {
+        Url: 'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=800&q=80',
+      },
     ],
     chotarating: '4.0/5',
     externalRatings: [
@@ -75,15 +85,19 @@ const INITIAL_MOCK_MOVIES: MovieReviewItem[] = [
   {
     id: 1053,
     title: 'Kalki 2898 AD - Cinematic Marvel Review',
-    content: 'Nag Ashwin blazes a trail for Indian sci-fi mythology with stunning VFX and Amitabh Bachchan masterclass.',
+    content:
+      'Nag Ashwin blazes a trail for Indian sci-fi mythology with stunning VFX and Amitabh Bachchan masterclass.',
     type: 'Standard',
     subType: 'Reviews',
     language_code: 'en',
     category_ids: [5],
-    image_url: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80',
+    image_url:
+      'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80',
     video_url: 'https://www.youtube.com/watch?v=kQDd1AhGIHk',
     gallery: [
-      { Url: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80' },
+      {
+        Url: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80',
+      },
     ],
     chotarating: '4.2/5',
     externalRatings: [
@@ -109,7 +123,8 @@ const INITIAL_MOCK_POLLS: PollItem[] = [
     subType: 'Poll',
     language_code: 'te',
     category_ids: [1],
-    image_url: 'https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=800&q=80',
+    image_url:
+      'https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=800&q=80',
     poll_options: [
       { option: 1, option_name: 'Ruling Party', votes: 852, percentage: 60.0 },
       { option: 2, option_name: 'Opposition Coalition', votes: 426, percentage: 30.0 },
@@ -129,7 +144,8 @@ const INITIAL_MOCK_POLLS: PollItem[] = [
     subType: 'Poll',
     language_code: 'en',
     category_ids: [5],
-    image_url: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=800&q=80',
+    image_url:
+      'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=800&q=80',
     poll_options: [
       { option: 1, option_name: 'Game Changer', votes: 620, percentage: 41.3 },
       { option: 2, option_name: 'Varanasi Chronicles', votes: 480, percentage: 32.0 },
@@ -148,7 +164,8 @@ const INITIAL_MOCK_POLLS: PollItem[] = [
     subType: 'Poll',
     language_code: 'hi',
     category_ids: [4],
-    image_url: 'https://images.unsplash.com/photo-1531415074868-036b1c57e329?auto=format&fit=crop&w=800&q=80',
+    image_url:
+      'https://images.unsplash.com/photo-1531415074868-036b1c57e329?auto=format&fit=crop&w=800&q=80',
     poll_options: [
       { option: 1, option_name: 'Yes, gives bowlers more weapon', votes: 710, percentage: 71.0 },
       { option: 2, option_name: 'No, keep batting favorable', votes: 290, percentage: 29.0 },
@@ -194,8 +211,24 @@ const INITIAL_MOCK_CRICKET: CricketMatchItem[] = [
     tossWinner: 'India',
     tossDecision: 'opted to bowl first',
     batsmen: [
-      { name: 'Hardik Pandya', runs: 42, balls: 22, fours: 3, sixes: 3, strikeRate: 190.9, isNotOut: true },
-      { name: 'Rinku Singh', runs: 28, balls: 14, fours: 2, sixes: 2, strikeRate: 200.0, isNotOut: true },
+      {
+        name: 'Hardik Pandya',
+        runs: 42,
+        balls: 22,
+        fours: 3,
+        sixes: 3,
+        strikeRate: 190.9,
+        isNotOut: true,
+      },
+      {
+        name: 'Rinku Singh',
+        runs: 28,
+        balls: 14,
+        fours: 2,
+        sixes: 2,
+        strikeRate: 200.0,
+        isNotOut: true,
+      },
       { name: 'Suryakumar Yadav', runs: 56, balls: 31, fours: 6, sixes: 2, strikeRate: 180.6 },
     ],
     bowlers: [
@@ -310,9 +343,7 @@ export class RatingsRepository {
             gallery: Array.isArray(p.gallery)
               ? p.gallery
                   .map((g: any) =>
-                    typeof g === 'string'
-                      ? { Url: g }
-                      : { Url: g?.Url || g?.url || '' }
+                    typeof g === 'string' ? { Url: g } : { Url: g?.Url || g?.url || '' }
                   )
                   .filter((g: any) => Boolean(g.Url))
               : [],
@@ -464,9 +495,24 @@ export class RatingsRepository {
         { platform_name: 'BookMyShow', platform_rating: '84%' },
       ],
       user_reviews: [
-        { id: 1, user_name: 'Suresh Kumar', rating: 4.5, comment: 'Breathtaking action sequences and thumping BGM!' },
-        { id: 2, user_name: 'Ananya Reddy', rating: 4.0, comment: 'Great performance by lead actors. Well paced.' },
-        { id: 3, user_name: 'Vikram Singh', rating: 4.0, comment: 'Intermission block was pure goosebumps.' },
+        {
+          id: 1,
+          user_name: 'Suresh Kumar',
+          rating: 4.5,
+          comment: 'Breathtaking action sequences and thumping BGM!',
+        },
+        {
+          id: 2,
+          user_name: 'Ananya Reddy',
+          rating: 4.0,
+          comment: 'Great performance by lead actors. Well paced.',
+        },
+        {
+          id: 3,
+          user_name: 'Vikram Singh',
+          rating: 4.0,
+          comment: 'Intermission block was pure goosebumps.',
+        },
       ],
     };
   }
@@ -663,28 +709,36 @@ export class RatingsRepository {
       userVotedOption: poll?.userVotedOption || null,
       options: poll?.poll_options || [],
       topComments: [
-        { userName: 'Ramesh Reddy', comment: 'Insightful debate on AP assembly proceedings.', createdAt: '2026-11-02T10:00:00Z' },
-        { userName: 'Pooja Sharma', comment: 'Good initiative to track public opinion.', createdAt: '2026-11-02T11:30:00Z' },
+        {
+          userName: 'Ramesh Reddy',
+          comment: 'Insightful debate on AP assembly proceedings.',
+          createdAt: '2026-11-02T10:00:00Z',
+        },
+        {
+          userName: 'Pooja Sharma',
+          comment: 'Good initiative to track public opinion.',
+          createdAt: '2026-11-02T11:30:00Z',
+        },
       ],
     };
   }
 
   // ----------------------------------------------------
-  
+
   // ----------------------------------------------------
   // CRICBUZZ LIVE & PUBLISHING SERVICE
   // ----------------------------------------------------
-  static async getLiveMatches(cbTz = "+05:30", cbLoc = "IN"): Promise<CricbuzzLiveResponse> {
+  static async getLiveMatches(cbTz = '+05:30', cbLoc = 'IN'): Promise<CricbuzzLiveResponse> {
     try {
-      const res = await cricketApiClient.get<any>("/cricket/matches/live", {
+      const res = await cricketApiClient.get<any>('/cricket/matches/live', {
         params: {
-          "CB-TZ": cbTz,
-          "CB-loc": cbLoc,
+          'CB-TZ': cbTz,
+          'CB-loc': cbLoc,
         },
       });
       return res || { typeMatches: [] };
     } catch (err) {
-      console.error("Failed to fetch live cricket feed:", err);
+      console.error('Failed to fetch live cricket feed:', err);
       return { typeMatches: [] };
     }
   }
@@ -716,12 +770,12 @@ export class RatingsRepository {
 
   static async getRecentMatches(limit = 20): Promise<PublishedCricketMatch[]> {
     try {
-      const res = await cricketApiClient.get<any>("/cricket/matches/recent", {
+      const res = await cricketApiClient.get<any>('/cricket/matches/recent', {
         params: { limit },
       });
       return res?.data?.matches || res?.matches || [];
     } catch (err) {
-      console.error("Failed to fetch recent cricket matches:", err);
+      console.error('Failed to fetch recent cricket matches:', err);
       return [];
     }
   }
@@ -731,14 +785,16 @@ export class RatingsRepository {
       const res = await cricketApiClient.get<any>(`/cricket/matches/${matchId}/livescore`);
       return res?.data || res;
     } catch (err) {
-      console.error("Failed to fetch match livescore:", err);
+      console.error('Failed to fetch match livescore:', err);
       return null;
     }
   }
 
   // CRICKET MATCHES REPOSITORY
   // ----------------------------------------------------
-  static async getCricketMatches(filter?: 'all' | 'live' | 'upcoming' | 'recent'): Promise<CricketMatchItem[]> {
+  static async getCricketMatches(
+    filter?: 'all' | 'live' | 'upcoming' | 'recent'
+  ): Promise<CricketMatchItem[]> {
     let items = this.localCricket.filter((m) => m.status !== 'recent');
     if (filter && filter !== 'all') {
       items = items.filter((m) => m.status === filter);
@@ -746,7 +802,10 @@ export class RatingsRepository {
     return items;
   }
 
-  static async updateCricketMatch(id: number, dto: UpdateCricketMatchDto): Promise<CricketMatchItem> {
+  static async updateCricketMatch(
+    id: number,
+    dto: UpdateCricketMatchDto
+  ): Promise<CricketMatchItem> {
     const index = this.localCricket.findIndex((m) => m.id === id);
     if (index !== -1) {
       const current = this.localCricket[index];

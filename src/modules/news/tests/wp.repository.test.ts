@@ -12,8 +12,12 @@ describe('WpRepository', () => {
   describe('getEndpoint', () => {
     it('returns Malayalam endpoint for ml, malayalam, and malayala', () => {
       expect(WpRepository.getEndpoint('ml')).toBe('https://bigtv24x7.com/wp-json/wp/v2/posts');
-      expect(WpRepository.getEndpoint('malayalam')).toBe('https://bigtv24x7.com/wp-json/wp/v2/posts');
-      expect(WpRepository.getEndpoint('malayala')).toBe('https://bigtv24x7.com/wp-json/wp/v2/posts');
+      expect(WpRepository.getEndpoint('malayalam')).toBe(
+        'https://bigtv24x7.com/wp-json/wp/v2/posts'
+      );
+      expect(WpRepository.getEndpoint('malayala')).toBe(
+        'https://bigtv24x7.com/wp-json/wp/v2/posts'
+      );
       expect(WpRepository.getEndpoint('  ML  ')).toBe('https://bigtv24x7.com/wp-json/wp/v2/posts');
     });
 
@@ -52,12 +56,9 @@ describe('WpRepository', () => {
 
       const posts = await WpRepository.getPosts(1, 100, 'ml');
 
-      expect(mockedAxios.get).toHaveBeenCalledWith(
-        'https://bigtv24x7.com/wp-json/wp/v2/posts',
-        {
-          params: { page: 1, per_page: 100 },
-        }
-      );
+      expect(mockedAxios.get).toHaveBeenCalledWith('https://bigtv24x7.com/wp-json/wp/v2/posts', {
+        params: { page: 1, per_page: 100 },
+      });
 
       expect(posts).toHaveLength(1);
       expect(posts[0].id).toBe(8959);

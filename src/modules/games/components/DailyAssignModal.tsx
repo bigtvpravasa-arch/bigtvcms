@@ -162,7 +162,10 @@ export const DailyAssignModal: React.FC<DailyAssignModalProps> = ({
       </DialogContent>
 
       <DialogActions
-        sx={{ p: 2, borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)' }}
+        sx={{
+          p: 2,
+          borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+        }}
       >
         <Button
           onClick={onClose}

@@ -40,9 +40,8 @@ export const TagCreateModal: React.FC<TagCreateModalProps> = ({
   initialLanguage = 'te',
   allowedLanguages,
 }) => {
-  const effectiveAllowed: TagLanguage[] = allowedLanguages && allowedLanguages.length > 0
-    ? allowedLanguages
-    : ['te', 'ml', 'en'];
+  const effectiveAllowed: TagLanguage[] =
+    allowedLanguages && allowedLanguages.length > 0 ? allowedLanguages : ['te', 'ml', 'en'];
   const defaultLang: TagLanguage = effectiveAllowed.includes(initialLanguage)
     ? initialLanguage
     : effectiveAllowed[0];
@@ -134,7 +133,11 @@ export const TagCreateModal: React.FC<TagCreateModalProps> = ({
         <Typography component="span" variant="h6" sx={{ fontWeight: 700 }}>
           {t.createTagModalTitle || 'Create Video Tag'}
         </Typography>
-        <IconButton onClick={onClose} disabled={isSubmitting} sx={{ color: isDark ? '#ffffff' : '#1c1445' }}>
+        <IconButton
+          onClick={onClose}
+          disabled={isSubmitting}
+          sx={{ color: isDark ? '#ffffff' : '#1c1445' }}
+        >
           <Close />
         </IconButton>
       </DialogTitle>
@@ -165,7 +168,9 @@ export const TagCreateModal: React.FC<TagCreateModalProps> = ({
             value={slug}
             onChange={(e) => setSlug(e.target.value)}
             disabled={isSubmitting}
-            helperText={t.tagSlugHelper || 'Used for physical folder name. Alphanumeric and dashes only.'}
+            helperText={
+              t.tagSlugHelper || 'Used for physical folder name. Alphanumeric and dashes only.'
+            }
             FormHelperTextProps={{ style: { color: isDark ? '#94a3b8' : undefined } }}
             InputLabelProps={{ style: { color: isDark ? '#94a3b8' : undefined } }}
             InputProps={{
@@ -179,7 +184,10 @@ export const TagCreateModal: React.FC<TagCreateModalProps> = ({
           />
 
           <FormControl fullWidth>
-            <InputLabel id="tag-language-select-label" sx={{ color: isDark ? '#94a3b8' : undefined }}>
+            <InputLabel
+              id="tag-language-select-label"
+              sx={{ color: isDark ? '#94a3b8' : undefined }}
+            >
               {t.language || 'Language'}
             </InputLabel>
             <Select
@@ -281,7 +289,11 @@ export const TagCreateModal: React.FC<TagCreateModalProps> = ({
         </Box>
       </DialogContent>
       <DialogActions sx={{ p: 2 }}>
-        <Button onClick={onClose} disabled={isSubmitting} sx={{ color: isDark ? '#94a3b8' : undefined }}>
+        <Button
+          onClick={onClose}
+          disabled={isSubmitting}
+          sx={{ color: isDark ? '#94a3b8' : undefined }}
+        >
           {t.cancel || 'Cancel'}
         </Button>
         <Button

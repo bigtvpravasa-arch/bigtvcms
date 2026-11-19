@@ -64,10 +64,21 @@ export const GroqKeyCard: React.FC<GroqKeyCardProps> = ({ isDark, translations =
       }}
     >
       <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 1 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: 1,
+          }}
+        >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
             <KeyIcon sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }} />
-            <Typography variant="h6" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}>
+            <Typography
+              variant="h6"
+              sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}
+            >
               {title}
             </Typography>
           </Box>
@@ -80,7 +91,9 @@ export const GroqKeyCard: React.FC<GroqKeyCardProps> = ({ isDark, translations =
                   label={`Model: ${keyStatusInfo.model}`}
                   size="small"
                   sx={{
-                    backgroundColor: isDark ? 'rgba(166, 226, 245, 0.12)' : 'rgba(28, 20, 69, 0.08)',
+                    backgroundColor: isDark
+                      ? 'rgba(166, 226, 245, 0.12)'
+                      : 'rgba(28, 20, 69, 0.08)',
                     color: isDark ? '#a6e2f5' : '#1c1445',
                     fontSize: '0.75rem',
                     fontWeight: 500,
@@ -101,7 +114,9 @@ export const GroqKeyCard: React.FC<GroqKeyCardProps> = ({ isDark, translations =
           )}
         </Box>
 
-        <Divider sx={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }} />
+        <Divider
+          sx={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}
+        />
 
         <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
           {description}
@@ -119,7 +134,14 @@ export const GroqKeyCard: React.FC<GroqKeyCardProps> = ({ isDark, translations =
           </Alert>
         )}
 
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1.5, alignItems: 'stretch' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            gap: 1.5,
+            alignItems: 'stretch',
+          }}
+        >
           <TextField
             fullWidth
             size="small"

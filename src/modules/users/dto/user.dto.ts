@@ -19,4 +19,3 @@ export interface CreatorResponseDto {
   user_type?: string;
   language_code?: string | null;
 }
-

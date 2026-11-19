@@ -15,20 +15,13 @@ import {
   Snackbar,
   Alert,
 } from '@mui/material';
-import {
-  Sync,
-  Search,
-  Refresh,
-  SportsCricket,
-  FiberManualRecord,
-} from '@mui/icons-material';
+import { Sync, Search, Refresh, SportsCricket, FiberManualRecord } from '@mui/icons-material';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
 import { useCricketController } from '../hooks/useCricketController';
 import { CricketStatsCards } from '../components/CricketStatsCards';
 import { CricketBulkBar } from '../components/CricketBulkBar';
 import { CricketTable } from '../components/CricketTable';
 import { CricketScorecardModal } from '../components/CricketScorecardModal';
-
 
 export const CricketPage: React.FC = () => {
   const { mode } = useAppTheme();
@@ -370,7 +363,9 @@ export const CricketPage: React.FC = () => {
         open={Boolean(scorecardModalMatch)}
         onClose={closeScorecardModal}
         onTogglePublish={handleTogglePublish}
-        isToggling={Boolean(togglingMatchId && scorecardModalMatch && togglingMatchId === scorecardModalMatch.matchId)}
+        isToggling={Boolean(
+          togglingMatchId && scorecardModalMatch && togglingMatchId === scorecardModalMatch.matchId
+        )}
         onRefreshScorecard={refreshScorecard}
         isLoadingScorecard={isLoadingScorecard}
         t={t}

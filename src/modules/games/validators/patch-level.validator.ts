@@ -1,6 +1,6 @@
 /**
  * Patch (Block Fitting / Shikaku) Puzzle Level Validator
- * 
+ *
  * Enforces the core geometric and mathematical rules:
  * Rule 1: Pure Rectangles Only (w * h === cells.length)
  * Rule 2: Max Piece Area Cap (<= 6 on 5x5, <= 4 on 4x4, <= 9 on 6x6, <= 12 on 6x8)
@@ -70,16 +70,22 @@ export class PatchLevelValidator {
 
         // Shape must never be 'poly'
         if (shape === 'poly') {
-          errors.push(`Clue #${idx + 1} has shape "poly". Pure rectangles only ('sq' | 'wide' | 'tall').`);
+          errors.push(
+            `Clue #${idx + 1} has shape "poly". Pure rectangles only ('sq' | 'wide' | 'tall').`
+          );
         } else if (!['sq', 'wide', 'tall'].includes(shape)) {
-          errors.push(`Clue #${idx + 1} shape must be 'sq', 'wide', or 'tall', received "${shape}".`);
+          errors.push(
+            `Clue #${idx + 1} shape must be 'sq', 'wide', or 'tall', received "${shape}".`
+          );
         }
 
         // Rule 3: Odd number constraint for clues
         if (val && val % 2 !== 0) {
           const isSquare = Number.isInteger(Math.sqrt(val));
           if (shape === 'sq' && !isSquare) {
-            errors.push(`Clue #${idx + 1} has odd value ${val} marked as 'sq' but is not a perfect square.`);
+            errors.push(
+              `Clue #${idx + 1} has odd value ${val} marked as 'sq' but is not a perfect square.`
+            );
           }
         }
       });
@@ -112,12 +118,16 @@ export class PatchLevelValidator {
 
         // Rule 1: Pure Rectangle Only
         if (w * h !== area) {
-          errors.push(`Piece "${pId}" is not a pure rectangle (${area} cells within ${w}x${h} bounds). Irregular polyominoes are not allowed.`);
+          errors.push(
+            `Piece "${pId}" is not a pure rectangle (${area} cells within ${w}x${h} bounds). Irregular polyominoes are not allowed.`
+          );
         }
 
         // Rule 2: Max Size Cap
         if (area > maxAllowedArea) {
-          errors.push(`Piece "${pId}" area ${area} exceeds maximum allowed size (${maxAllowedArea}) for a ${rows}x${cols} board.`);
+          errors.push(
+            `Piece "${pId}" area ${area} exceeds maximum allowed size (${maxAllowedArea}) for a ${rows}x${cols} board.`
+          );
         }
 
         // Rule 3: Odd Number Constraint
@@ -125,7 +135,9 @@ export class PatchLevelValidator {
           const isSquare = w === h;
           const isLine = w === 1 || h === 1;
           if (!isSquare && !isLine) {
-            errors.push(`Odd piece "${pId}" (area ${area}, ${w}x${h}) must be strictly single-line vertical, single-line horizontal, or square.`);
+            errors.push(
+              `Odd piece "${pId}" (area ${area}, ${w}x${h}) must be strictly single-line vertical, single-line horizontal, or square.`
+            );
           }
         }
       });
@@ -158,17 +170,23 @@ export class PatchLevelValidator {
         const h = maxR - minR + 1;
 
         if (w * h !== coords.length) {
-          errors.push(`Solution piece "${pId}" is not a rectangle (${coords.length} cells in ${w}x${h} bbox).`);
+          errors.push(
+            `Solution piece "${pId}" is not a rectangle (${coords.length} cells in ${w}x${h} bbox).`
+          );
         }
 
         coords.forEach(([r, c]: [number, number]) => {
           if (r < 0 || r >= rows || c < 0 || c >= cols) {
-            errors.push(`Solution piece "${pId}" placed at (${r}, ${c}) outside grid (0..${rows - 1}, 0..${cols - 1}).`);
+            errors.push(
+              `Solution piece "${pId}" placed at (${r}, ${c}) outside grid (0..${rows - 1}, 0..${cols - 1}).`
+            );
             return;
           }
           const key = `${r}-${c}`;
           if (covered.has(key)) {
-            errors.push(`Collision at cell (${r}, ${c}) between "${pId}" and "${covered.get(key)}".`);
+            errors.push(
+              `Collision at cell (${r}, ${c}) between "${pId}" and "${covered.get(key)}".`
+            );
           } else {
             covered.set(key, pId);
           }
@@ -176,7 +194,9 @@ export class PatchLevelValidator {
       });
 
       if (covered.size !== rows * cols) {
-        errors.push(`Board coverage incomplete: ${covered.size} cells covered out of ${rows * cols}. All cells must be covered.`);
+        errors.push(
+          `Board coverage incomplete: ${covered.size} cells covered out of ${rows * cols}. All cells must be covered.`
+        );
       }
     }
 

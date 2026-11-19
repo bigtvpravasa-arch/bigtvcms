@@ -19,15 +19,8 @@ import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
 import { useLoginController } from '@/modules/auth/hooks/useLoginController';
 
 export default function LoginPage() {
-  const {
-    form,
-    errors,
-    isPending,
-    toast,
-    handleFieldChange,
-    handleToastClose,
-    handleLoginSubmit,
-  } = useLoginController();
+  const { form, errors, isPending, toast, handleFieldChange, handleToastClose, handleLoginSubmit } =
+    useLoginController();
   const [showPassword, setShowPassword] = React.useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = React.useState(true);
   const [hasToken, setHasToken] = React.useState(false);
@@ -53,7 +46,8 @@ export default function LoginPage() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'radial-gradient(circle at 10% 20%, rgba(234, 179, 8, 0.12) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.15) 0%, transparent 45%), linear-gradient(135deg, #161202 0%, #261e05 45%, #181300 100%)',
+        background:
+          'radial-gradient(circle at 10% 20%, rgba(234, 179, 8, 0.12) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.15) 0%, transparent 45%), linear-gradient(135deg, #161202 0%, #261e05 45%, #181300 100%)',
         overflow: 'hidden',
         position: 'relative',
         p: 2,
@@ -141,17 +135,24 @@ export default function LoginPage() {
                   filter: 'drop-shadow(0px 4px 10px rgba(0,0,0,0.3))',
                 }}
               />
-              <Typography variant="caption" sx={{ color: '#fde68a', pl: 1, fontWeight: 500, letterSpacing: 0.5 }}>
+              <Typography
+                variant="caption"
+                sx={{ color: '#fde68a', pl: 1, fontWeight: 500, letterSpacing: 0.5 }}
+              >
                 Breaking News Portal
               </Typography>
             </Box>
 
             <Typography variant="h3" sx={{ fontWeight: 600, mb: 4, lineHeight: 1.2 }}>
               Enterprise Digital News & Content Hub: <br />
-              <span style={{ color: '#facc15', textShadow: '0 0 25px rgba(250, 204, 21, 0.4)' }}>BigTV CMS™</span>
+              <span style={{ color: '#facc15', textShadow: '0 0 25px rgba(250, 204, 21, 0.4)' }}>
+                BigTV CMS™
+              </span>
             </Typography>
 
-            <Box sx={{ display: 'flex', gap: 2, justifyContent: { xs: 'center', md: 'flex-start' } }}>
+            <Box
+              sx={{ display: 'flex', gap: 2, justifyContent: { xs: 'center', md: 'flex-start' } }}
+            >
               <Button
                 variant="outlined"
                 sx={{
@@ -196,7 +197,10 @@ export default function LoginPage() {
               boxShadow: '0 24px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(234, 179, 8, 0.12)',
             }}
           >
-            <Typography variant="h5" sx={{ color: '#ffffff', fontWeight: 700, mb: 4, letterSpacing: 0.3 }}>
+            <Typography
+              variant="h5"
+              sx={{ color: '#ffffff', fontWeight: 700, mb: 4, letterSpacing: 0.3 }}
+            >
               Log In to BigTV CMS™
             </Typography>
 
@@ -227,7 +231,10 @@ export default function LoginPage() {
                       borderRadius: '12px',
                       '& fieldset': { borderColor: 'rgba(250, 204, 21, 0.25)' },
                       '&:hover fieldset': { borderColor: 'rgba(250, 204, 21, 0.5)' },
-                      '&.Mui-focused fieldset': { borderColor: '#facc15', boxShadow: '0 0 10px rgba(250, 204, 21, 0.25)' },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#facc15',
+                        boxShadow: '0 0 10px rgba(250, 204, 21, 0.25)',
+                      },
                     },
                     '& .MuiInputBase-input': { color: '#ffffff' },
                     '& .MuiFormHelperText-root': { color: '#f87171' },
@@ -268,7 +275,10 @@ export default function LoginPage() {
                       borderRadius: '12px',
                       '& fieldset': { borderColor: 'rgba(250, 204, 21, 0.25)' },
                       '&:hover fieldset': { borderColor: 'rgba(250, 204, 21, 0.5)' },
-                      '&.Mui-focused fieldset': { borderColor: '#facc15', boxShadow: '0 0 10px rgba(250, 204, 21, 0.25)' },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#facc15',
+                        boxShadow: '0 0 10px rgba(250, 204, 21, 0.25)',
+                      },
                     },
                     '& .MuiInputBase-input': { color: '#ffffff' },
                     '& .MuiFormHelperText-root': { color: '#f87171' },
@@ -279,10 +289,25 @@ export default function LoginPage() {
               {/* Options */}
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <FormControlLabel
-                  control={<Checkbox sx={{ color: '#fde68a', '&.Mui-checked': { color: '#facc15' } }} />}
-                  label={<Typography variant="body2" sx={{ color: '#fef3c7' }}>Remember</Typography>}
+                  control={
+                    <Checkbox sx={{ color: '#fde68a', '&.Mui-checked': { color: '#facc15' } }} />
+                  }
+                  label={
+                    <Typography variant="body2" sx={{ color: '#fef3c7' }}>
+                      Remember
+                    </Typography>
+                  }
                 />
-                <Link href="#" underline="hover" sx={{ color: '#facc15', fontSize: '0.875rem', fontWeight: 500, '&:hover': { color: '#fde047' } }}>
+                <Link
+                  href="#"
+                  underline="hover"
+                  sx={{
+                    color: '#facc15',
+                    fontSize: '0.875rem',
+                    fontWeight: 500,
+                    '&:hover': { color: '#fde047' },
+                  }}
+                >
                   Forgotten?
                 </Link>
               </Box>
@@ -358,7 +383,8 @@ export default function LoginPage() {
                 left: 0,
                 height: '4px',
                 width: '100%',
-                backgroundColor: toast.severity === 'success' ? '#fde047' : 'rgba(255, 255, 255, 0.7)',
+                backgroundColor:
+                  toast.severity === 'success' ? '#fde047' : 'rgba(255, 255, 255, 0.7)',
                 animation: 'drain 3s linear forwards',
                 '@keyframes drain': {
                   '0%': { width: '100%' },

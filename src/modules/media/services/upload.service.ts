@@ -6,7 +6,12 @@ export class UploadService {
     const rawExt = file.name.split('.').pop()?.toLowerCase() || '';
     let mimeType = file.type || '';
 
-    if (rawExt === 'jpg' || rawExt === 'jpeg' || mimeType.includes('jpeg') || mimeType.includes('jpg')) {
+    if (
+      rawExt === 'jpg' ||
+      rawExt === 'jpeg' ||
+      mimeType.includes('jpeg') ||
+      mimeType.includes('jpg')
+    ) {
       mimeType = 'image/jpeg';
     } else if (rawExt === 'webp' || mimeType.includes('webp')) {
       mimeType = 'image/webp';
@@ -14,13 +19,10 @@ export class UploadService {
       mimeType = 'image/png';
     }
 
-    const response: any = await apiClient.post(
-      '/cms/generate-upload-url',
-      {
-        filename: file.name,
-        content_type: mimeType,
-      }
-    );
+    const response: any = await apiClient.post('/cms/generate-upload-url', {
+      filename: file.name,
+      content_type: mimeType,
+    });
 
     const upload_url = response?.upload_url || response?.url;
     const final_image_url =

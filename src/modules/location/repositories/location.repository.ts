@@ -2,7 +2,10 @@ import { apiClient } from '@/core/api/api-client';
 import { CreateStateDto, StateResponseDto, UpdateStateDto } from '../dto/location.dto';
 
 export class LocationRepository {
-  static async getAll(skipOrLang: number | string = 0, limit: number = 100): Promise<StateResponseDto[]> {
+  static async getAll(
+    skipOrLang: number | string = 0,
+    limit: number = 100
+  ): Promise<StateResponseDto[]> {
     const params: Record<string, any> =
       typeof skipOrLang === 'number'
         ? { skip: skipOrLang, limit }
@@ -27,7 +30,10 @@ export class LocationRepository {
     }
   }
 
-  static async getLocations(skipOrLang: number | string = 0, limit: number = 100): Promise<StateResponseDto[]> {
+  static async getLocations(
+    skipOrLang: number | string = 0,
+    limit: number = 100
+  ): Promise<StateResponseDto[]> {
     return this.getAll(skipOrLang, limit);
   }
 

@@ -103,7 +103,15 @@ export const MoviesDrawer: React.FC<MoviesDrawerProps> = ({
         },
       }}
     >
-      <Box sx={{ display: 'flex', flexShrink: 0, alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexShrink: 0,
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          mb: 2,
+        }}
+      >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <LocalMovies sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.5rem' }} />
           <Typography variant="h6" sx={{ fontWeight: 700 }}>
@@ -115,14 +123,25 @@ export const MoviesDrawer: React.FC<MoviesDrawerProps> = ({
         </IconButton>
       </Box>
 
-      <Divider sx={{ mb: 2.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
+      <Divider
+        sx={{ mb: 2.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
+      />
 
       {!isEditMode ? (
         <Box sx={{ overflowY: 'auto', flex: 1, pr: 0.5 }}>
-          <ContentForm isDark={isDark} initialContentType={activeTab} onSuccess={() => { onSubmit(); onClose(); }} />
+          <ContentForm
+            isDark={isDark}
+            initialContentType={activeTab}
+            onSuccess={() => {
+              onSubmit();
+              onClose();
+            }}
+          />
         </Box>
       ) : (
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, overflowY: 'auto', pr: 1, pb: 4 }}>
+        <Box
+          sx={{ display: 'flex', flexDirection: 'column', gap: 2, overflowY: 'auto', pr: 1, pb: 4 }}
+        >
           {/* Title */}
           <TextField
             label="Movie Title *"
@@ -215,7 +234,9 @@ export const MoviesDrawer: React.FC<MoviesDrawerProps> = ({
               label="Genres (comma separated)"
               variant="outlined"
               size="small"
-              value={Array.isArray(form.genres) ? form.genres.join(', ') : form.genre || 'Sci-Fi, Action'}
+              value={
+                Array.isArray(form.genres) ? form.genres.join(', ') : form.genre || 'Sci-Fi, Action'
+              }
               onChange={(e) => {
                 const list = e.target.value.split(',').map((g) => g.trim());
                 onFieldChange('genres', list);
@@ -236,7 +257,11 @@ export const MoviesDrawer: React.FC<MoviesDrawerProps> = ({
               label="Languages (comma separated)"
               variant="outlined"
               size="small"
-              value={Array.isArray(form.languages) ? form.languages.join(', ') : form.language || 'English, Spanish'}
+              value={
+                Array.isArray(form.languages)
+                  ? form.languages.join(', ')
+                  : form.language || 'English, Spanish'
+              }
               onChange={(e) => {
                 const list = e.target.value.split(',').map((l) => l.trim());
                 onFieldChange('languages', list);

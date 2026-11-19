@@ -2,7 +2,14 @@
 
 import React from 'react';
 import { Box, Typography, IconButton, Tooltip, Chip } from '@mui/material';
-import { PlayCircleOutline, LiveTv, DeleteOutline, Edit, FolderOpen, Visibility } from '@mui/icons-material';
+import {
+  PlayCircleOutline,
+  LiveTv,
+  DeleteOutline,
+  Edit,
+  FolderOpen,
+  Visibility,
+} from '@mui/icons-material';
 import { TagVideo } from '../domain/LiveTvVideo';
 
 interface LiveTvVideosTableProps {
@@ -90,9 +97,7 @@ export const LiveTvVideosTable: React.FC<LiveTvVideosTableProps> = ({
                 color: isDark ? '#ffffff' : '#1c1445',
                 transition: 'background-color 0.2s ease',
                 '&:hover': {
-                  backgroundColor: isDark
-                    ? 'rgba(255,255,255,0.04)'
-                    : 'rgba(92,84,138,0.04)',
+                  backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(92,84,138,0.04)',
                 },
               }}
             >
@@ -107,7 +112,13 @@ export const LiveTvVideosTable: React.FC<LiveTvVideosTableProps> = ({
               <Box sx={colStyle(3.5)}>
                 <Box
                   onClick={() => onPlay(item)}
-                  sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 1.5, minWidth: 0 }}
+                  sx={{
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1.5,
+                    minWidth: 0,
+                  }}
                 >
                   {item.thumbnailUrl ? (
                     <Box
@@ -117,7 +128,8 @@ export const LiveTvVideosTable: React.FC<LiveTvVideosTableProps> = ({
                       data-testid={`video-thumbnail-${idx}`}
                       onError={(e: any) => {
                         e.currentTarget.style.display = 'none';
-                        const fallbackIcon = e.currentTarget.parentElement?.querySelector('.video-fallback-icon');
+                        const fallbackIcon =
+                          e.currentTarget.parentElement?.querySelector('.video-fallback-icon');
                         if (fallbackIcon) {
                           (fallbackIcon as HTMLElement).style.display = 'block';
                         }
@@ -128,7 +140,9 @@ export const LiveTvVideosTable: React.FC<LiveTvVideosTableProps> = ({
                         borderRadius: '6px',
                         objectFit: 'cover',
                         flexShrink: 0,
-                        border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.12)',
+                        border: isDark
+                          ? '1px solid rgba(255,255,255,0.15)'
+                          : '1px solid rgba(0,0,0,0.12)',
                         backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
                       }}
                     />
@@ -145,7 +159,11 @@ export const LiveTvVideosTable: React.FC<LiveTvVideosTableProps> = ({
                   <Box sx={{ minWidth: 0, overflow: 'hidden' }}>
                     <Typography
                       variant="body2"
-                      sx={{ fontWeight: 600, wordBreak: 'break-all', '&:hover': { color: '#2563eb' } }}
+                      sx={{
+                        fontWeight: 600,
+                        wordBreak: 'break-all',
+                        '&:hover': { color: '#2563eb' },
+                      }}
                     >
                       {item.fileName}
                     </Typography>

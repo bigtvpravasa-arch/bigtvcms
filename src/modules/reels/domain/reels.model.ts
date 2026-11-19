@@ -47,7 +47,6 @@ export interface CreateYouTubeVideoPayload {
   titleMl?: string;
 }
 
-
 export interface YouTubeShortItem {
   id: number | string;
   title: string;

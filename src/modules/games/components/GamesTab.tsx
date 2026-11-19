@@ -186,9 +186,21 @@ export const GamesTab: React.FC = () => {
             },
           }}
         >
-          <Tab icon={<SportsEsports sx={{ fontSize: '1.1rem' }} />} iconPosition="start" label={t.tabGames} />
-          <Tab icon={<Layers sx={{ fontSize: '1.1rem' }} />} iconPosition="start" label={t.tabLevels} />
-          <Tab icon={<Whatshot sx={{ fontSize: '1.1rem' }} />} iconPosition="start" label={t.tabStreaks} />
+          <Tab
+            icon={<SportsEsports sx={{ fontSize: '1.1rem' }} />}
+            iconPosition="start"
+            label={t.tabGames}
+          />
+          <Tab
+            icon={<Layers sx={{ fontSize: '1.1rem' }} />}
+            iconPosition="start"
+            label={t.tabLevels}
+          />
+          <Tab
+            icon={<Whatshot sx={{ fontSize: '1.1rem' }} />}
+            iconPosition="start"
+            label={t.tabStreaks}
+          />
         </Tabs>
       </Box>
 
@@ -332,10 +344,16 @@ export const GamesTab: React.FC = () => {
                   border: isDark ? '1px solid rgba(59, 130, 246, 0.25)' : '1px solid #bfdbfe',
                 }}
               >
-                <Typography variant="caption" sx={{ color: isDark ? '#93c5fd' : '#1e40af', fontWeight: 600 }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: isDark ? '#93c5fd' : '#1e40af', fontWeight: 600 }}
+                >
                   {t.totalPlayed || 'Total Played'}
                 </Typography>
-                <Typography variant="h5" sx={{ color: isDark ? '#bfdbfe' : '#1d4ed8', fontWeight: 800, mt: 0.5 }}>
+                <Typography
+                  variant="h5"
+                  sx={{ color: isDark ? '#bfdbfe' : '#1d4ed8', fontWeight: 800, mt: 0.5 }}
+                >
                   {levelsAggregateStats.totalPlayed}
                 </Typography>
               </Box>
@@ -348,10 +366,16 @@ export const GamesTab: React.FC = () => {
                   border: isDark ? '1px solid rgba(34, 197, 94, 0.25)' : '1px solid #bbf7d0',
                 }}
               >
-                <Typography variant="caption" sx={{ color: isDark ? '#86efac' : '#166534', fontWeight: 600 }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: isDark ? '#86efac' : '#166534', fontWeight: 600 }}
+                >
                   {t.totalCompleted || 'Total Completed'}
                 </Typography>
-                <Typography variant="h5" sx={{ color: isDark ? '#bbf7d0' : '#15803d', fontWeight: 800, mt: 0.5 }}>
+                <Typography
+                  variant="h5"
+                  sx={{ color: isDark ? '#bbf7d0' : '#15803d', fontWeight: 800, mt: 0.5 }}
+                >
                   {levelsAggregateStats.totalCompleted}
                 </Typography>
               </Box>
@@ -364,10 +388,16 @@ export const GamesTab: React.FC = () => {
                   border: isDark ? '1px solid rgba(245, 158, 11, 0.25)' : '1px solid #fde68a',
                 }}
               >
-                <Typography variant="caption" sx={{ color: isDark ? '#fcd34d' : '#92400e', fontWeight: 600 }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: isDark ? '#fcd34d' : '#92400e', fontWeight: 600 }}
+                >
                   {t.totalDropped || 'Total Middle Drop'}
                 </Typography>
-                <Typography variant="h5" sx={{ color: isDark ? '#fef08a' : '#b45309', fontWeight: 800, mt: 0.5 }}>
+                <Typography
+                  variant="h5"
+                  sx={{ color: isDark ? '#fef08a' : '#b45309', fontWeight: 800, mt: 0.5 }}
+                >
                   {levelsAggregateStats.totalDropped}
                 </Typography>
               </Box>
@@ -380,10 +410,16 @@ export const GamesTab: React.FC = () => {
                   border: isDark ? '1px solid rgba(239, 68, 68, 0.25)' : '1px solid #fecaca',
                 }}
               >
-                <Typography variant="caption" sx={{ color: isDark ? '#fca5a5' : '#991b1b', fontWeight: 600 }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: isDark ? '#fca5a5' : '#991b1b', fontWeight: 600 }}
+                >
                   {t.totalFailed || 'Total Failed'}
                 </Typography>
-                <Typography variant="h5" sx={{ color: isDark ? '#fecaca' : '#dc2626', fontWeight: 800, mt: 0.5 }}>
+                <Typography
+                  variant="h5"
+                  sx={{ color: isDark ? '#fecaca' : '#dc2626', fontWeight: 800, mt: 0.5 }}
+                >
                   {levelsAggregateStats.totalFailed}
                 </Typography>
               </Box>
@@ -392,7 +428,9 @@ export const GamesTab: React.FC = () => {
             {/* Toolbar */}
             <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'center', flexWrap: 'wrap' }}>
               <FormControl size="small" sx={{ minWidth: 160 }}>
-                <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>{t.selectGame}</InputLabel>
+                <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+                  {t.selectGame}
+                </InputLabel>
                 <Select
                   value={selectedGameId}
                   label={t.selectGame}
@@ -447,7 +485,9 @@ export const GamesTab: React.FC = () => {
               />
 
               <FormControl size="small" sx={{ minWidth: 130 }}>
-                <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>{t.colDifficulty}</InputLabel>
+                <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+                  {t.colDifficulty}
+                </InputLabel>
                 <Select
                   value={difficultyFilter}
                   label={t.colDifficulty}
@@ -467,7 +507,9 @@ export const GamesTab: React.FC = () => {
               </FormControl>
 
               <FormControl size="small" sx={{ minWidth: 120 }}>
-                <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>{t.colStatus}</InputLabel>
+                <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+                  {t.colStatus}
+                </InputLabel>
                 <Select
                   value={statusFilter}
                   label={t.colStatus}
@@ -636,7 +678,9 @@ export const GamesTab: React.FC = () => {
               />
 
               <FormControl size="small" sx={{ minWidth: 140 }}>
-                <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>{t.colStatus}</InputLabel>
+                <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+                  {t.colStatus}
+                </InputLabel>
                 <Select
                   value={streakStatusFilter}
                   label={t.colStatus}
@@ -779,7 +823,10 @@ export const GamesTab: React.FC = () => {
       <GenerateLevelsModal
         open={generateModalOpen}
         gameId={selectedGameId}
-        gameType={games.find((g) => g.slug === selectedGameId || g.id === selectedGameId)?.gameType || selectedGameId}
+        gameType={
+          games.find((g) => g.slug === selectedGameId || g.id === selectedGameId)?.gameType ||
+          selectedGameId
+        }
         onClose={() => setGenerateModalOpen(false)}
         onSuccess={fetchLevels}
         isDark={isDark}

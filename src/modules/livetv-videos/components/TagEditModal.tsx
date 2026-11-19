@@ -41,9 +41,8 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
   t,
   allowedLanguages,
 }) => {
-  const effectiveAllowed: TagLanguage[] = allowedLanguages && allowedLanguages.length > 0
-    ? allowedLanguages
-    : ['te', 'ml', 'en'];
+  const effectiveAllowed: TagLanguage[] =
+    allowedLanguages && allowedLanguages.length > 0 ? allowedLanguages : ['te', 'ml', 'en'];
 
   const [name, setName] = useState('');
   const [language, setLanguage] = useState<TagLanguage>('te');
@@ -127,7 +126,11 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
         <Typography component="span" variant="h6" sx={{ fontWeight: 700 }}>
           {t.editTagModalTitle || 'Edit Video Tag'}
         </Typography>
-        <IconButton onClick={onClose} disabled={isSubmitting} sx={{ color: isDark ? '#ffffff' : '#1c1445' }}>
+        <IconButton
+          onClick={onClose}
+          disabled={isSubmitting}
+          sx={{ color: isDark ? '#ffffff' : '#1c1445' }}
+        >
           <Close />
         </IconButton>
       </DialogTitle>
@@ -170,7 +173,10 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
           />
 
           <FormControl fullWidth>
-            <InputLabel id="edit-tag-language-select-label" sx={{ color: isDark ? '#94a3b8' : undefined }}>
+            <InputLabel
+              id="edit-tag-language-select-label"
+              sx={{ color: isDark ? '#94a3b8' : undefined }}
+            >
               {t.language || 'Language'}
             </InputLabel>
             <Select
@@ -278,7 +284,11 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
         </Box>
       </DialogContent>
       <DialogActions sx={{ p: 2 }}>
-        <Button onClick={onClose} disabled={isSubmitting} sx={{ color: isDark ? '#94a3b8' : undefined }}>
+        <Button
+          onClick={onClose}
+          disabled={isSubmitting}
+          sx={{ color: isDark ? '#94a3b8' : undefined }}
+        >
           {t.cancel || 'Cancel'}
         </Button>
         <Button

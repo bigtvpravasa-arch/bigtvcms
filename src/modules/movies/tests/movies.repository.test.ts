@@ -44,7 +44,10 @@ describe('MoviesRepository', () => {
 
     const result = await MoviesRepository.getAll();
 
-    expect(mockedAxios.get).toHaveBeenCalledWith(expect.stringMatching(/\/api\/content\?type=series/), expect.anything());
+    expect(mockedAxios.get).toHaveBeenCalledWith(
+      expect.stringMatching(/\/api\/content\?type=series/),
+      expect.anything()
+    );
     expect(result.length).toBeGreaterThan(0);
     expect(result[0].title).toBe('Nikhil Kumar');
     expect(result[0].rating).toBe(8.8);
@@ -64,9 +67,12 @@ describe('MoviesRepository', () => {
         id: '7c740c5e-521c-4ec2-afc1-1136dccd3868',
         title: 'Nikhil Kumar',
         description: 'A thief who steals corporate secrets through dream-sharing technology.',
-        poster: 'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
-        banner: 'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
-        thumbnail: 'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
+        poster:
+          'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
+        banner:
+          'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
+        thumbnail:
+          'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
         videoUrl: 'https://streamable.com/f673g4',
         genres: ['Sci-Fi', 'Action'],
         languages: ['English', 'Spanish'],
@@ -87,9 +93,12 @@ describe('MoviesRepository', () => {
     const inputData = {
       title: 'Nikhil Kumar',
       description: 'A thief who steals corporate secrets through dream-sharing technology.',
-      poster: 'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
-      banner: 'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
-      thumbnail: 'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
+      poster:
+        'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
+      banner:
+        'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
+      thumbnail:
+        'https://marvel-b1-cdn.bc0a.com/f00000000280066/cover.hoopladigital.com/asy_asy3612_640.jpeg',
       videoUrl: 'https://streamable.com/f673g4',
       genres: ['Sci-Fi', 'Action'],
       languages: ['English', 'Spanish'],
@@ -130,7 +139,9 @@ describe('MoviesRepository', () => {
 
     mockedAxios.put.mockResolvedValueOnce(mockApiResponse);
 
-    const updated = await MoviesRepository.update('7c740c5e-521c-4ec2-afc1-1136dccd3868', { title: 'Nikhil Kumar Updated' });
+    const updated = await MoviesRepository.update('7c740c5e-521c-4ec2-afc1-1136dccd3868', {
+      title: 'Nikhil Kumar Updated',
+    });
     expect(mockedAxios.put).toHaveBeenCalledWith(
       expect.stringMatching(/\/api\/admin\/content\/movie\/7c740c5e-521c-4ec2-afc1-1136dccd3868/),
       expect.objectContaining({ title: 'Nikhil Kumar Updated' })

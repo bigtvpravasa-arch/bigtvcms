@@ -10,7 +10,8 @@ import { UploadService } from '@/modules/media/services/upload.service';
 export function useLocationController() {
   const { activeLanguages, setLocations } = useLanguageStore();
   const [loading, setLoading] = useState(true);
-  const effectiveActiveLangs = activeLanguages && activeLanguages.length > 0 ? activeLanguages : ['en', 'te', 'hi', 'ml'];
+  const effectiveActiveLangs =
+    activeLanguages && activeLanguages.length > 0 ? activeLanguages : ['en', 'te', 'hi', 'ml'];
   const schema = createLocationSchema(effectiveActiveLangs);
 
   const [rows, setRows] = useState<LocationState[]>([]);
@@ -85,9 +86,7 @@ export function useLocationController() {
 
     const newFollow = !target.isFollowed;
     // Optimistic update
-    setRows((prev) =>
-      prev.map((l) => (l.stateId === id ? { ...l, isFollowed: newFollow } : l))
-    );
+    setRows((prev) => prev.map((l) => (l.stateId === id ? { ...l, isFollowed: newFollow } : l)));
 
     try {
       const updatePayload: UpdateStateDto = {
@@ -103,9 +102,7 @@ export function useLocationController() {
     } catch (error) {
       console.error('Failed to update state status:', error);
       // Revert on failure
-      setRows((prev) =>
-        prev.map((l) => (l.stateId === id ? { ...l, isFollowed: !newFollow } : l))
-      );
+      setRows((prev) => prev.map((l) => (l.stateId === id ? { ...l, isFollowed: !newFollow } : l)));
     }
   };
 
@@ -196,7 +193,13 @@ export function useLocationController() {
         };
         const dto = await LocationRepository.update(editingId, updatePayload);
         const updatedItem = LocationMapper.toDomain(dto);
-        setRows((prev) => prev.map((l) => (l.stateId === editingId ? { ...updatedItem, imageUrl: finalImageUrl || updatedItem.imageUrl } : l)));
+        setRows((prev) =>
+          prev.map((l) =>
+            l.stateId === editingId
+              ? { ...updatedItem, imageUrl: finalImageUrl || updatedItem.imageUrl }
+              : l
+          )
+        );
       } else {
         const createPayload: CreateStateDto = {
           translations: {

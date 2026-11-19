@@ -160,18 +160,76 @@ const humanizeEventName = (name: string): string => {
     .join(' ');
 };
 
-const CATEGORY_COLORS: Record<string, { stroke: string; fill: string; badgeBg: string; text: string }> = {
-  catLifecycle: { stroke: '#10B981', fill: '#10B981', badgeBg: 'rgba(16, 185, 129, 0.15)', text: '#10B981' },
-  catUser: { stroke: '#3B82F6', fill: '#3B82F6', badgeBg: 'rgba(59, 130, 246, 0.15)', text: '#3B82F6' },
-  catNavigation: { stroke: '#8B5CF6', fill: '#8B5CF6', badgeBg: 'rgba(139, 92, 246, 0.15)', text: '#8B5CF6' },
-  catArticles: { stroke: '#06B6D4', fill: '#06B6D4', badgeBg: 'rgba(6, 182, 212, 0.15)', text: '#06B6D4' },
-  catReels: { stroke: '#EC4899', fill: '#EC4899', badgeBg: 'rgba(236, 72, 153, 0.15)', text: '#EC4899' },
-  catLiveTv: { stroke: '#F59E0B', fill: '#F59E0B', badgeBg: 'rgba(245, 158, 11, 0.15)', text: '#F59E0B' },
-  catVideos: { stroke: '#6366F1', fill: '#6366F1', badgeBg: 'rgba(99, 102, 241, 0.15)', text: '#6366F1' },
-  catEpapers: { stroke: '#14B8A6', fill: '#14B8A6', badgeBg: 'rgba(20, 184, 166, 0.15)', text: '#14B8A6' },
-  catGames: { stroke: '#F43F5E', fill: '#F43F5E', badgeBg: 'rgba(244, 63, 94, 0.15)', text: '#F43F5E' },
-  catReporters: { stroke: '#84CC16', fill: '#84CC16', badgeBg: 'rgba(132, 204, 22, 0.15)', text: '#84CC16' },
-  catAds: { stroke: '#EAB308', fill: '#EAB308', badgeBg: 'rgba(234, 179, 8, 0.15)', text: '#EAB308' },
+const CATEGORY_COLORS: Record<
+  string,
+  { stroke: string; fill: string; badgeBg: string; text: string }
+> = {
+  catLifecycle: {
+    stroke: '#10B981',
+    fill: '#10B981',
+    badgeBg: 'rgba(16, 185, 129, 0.15)',
+    text: '#10B981',
+  },
+  catUser: {
+    stroke: '#3B82F6',
+    fill: '#3B82F6',
+    badgeBg: 'rgba(59, 130, 246, 0.15)',
+    text: '#3B82F6',
+  },
+  catNavigation: {
+    stroke: '#8B5CF6',
+    fill: '#8B5CF6',
+    badgeBg: 'rgba(139, 92, 246, 0.15)',
+    text: '#8B5CF6',
+  },
+  catArticles: {
+    stroke: '#06B6D4',
+    fill: '#06B6D4',
+    badgeBg: 'rgba(6, 182, 212, 0.15)',
+    text: '#06B6D4',
+  },
+  catReels: {
+    stroke: '#EC4899',
+    fill: '#EC4899',
+    badgeBg: 'rgba(236, 72, 153, 0.15)',
+    text: '#EC4899',
+  },
+  catLiveTv: {
+    stroke: '#F59E0B',
+    fill: '#F59E0B',
+    badgeBg: 'rgba(245, 158, 11, 0.15)',
+    text: '#F59E0B',
+  },
+  catVideos: {
+    stroke: '#6366F1',
+    fill: '#6366F1',
+    badgeBg: 'rgba(99, 102, 241, 0.15)',
+    text: '#6366F1',
+  },
+  catEpapers: {
+    stroke: '#14B8A6',
+    fill: '#14B8A6',
+    badgeBg: 'rgba(20, 184, 166, 0.15)',
+    text: '#14B8A6',
+  },
+  catGames: {
+    stroke: '#F43F5E',
+    fill: '#F43F5E',
+    badgeBg: 'rgba(244, 63, 94, 0.15)',
+    text: '#F43F5E',
+  },
+  catReporters: {
+    stroke: '#84CC16',
+    fill: '#84CC16',
+    badgeBg: 'rgba(132, 204, 22, 0.15)',
+    text: '#84CC16',
+  },
+  catAds: {
+    stroke: '#EAB308',
+    fill: '#EAB308',
+    badgeBg: 'rgba(234, 179, 8, 0.15)',
+    text: '#EAB308',
+  },
 };
 
 const DEFAULT_CATEGORY_COLOR = {
@@ -206,8 +264,8 @@ export const AnalyticsEventGraphs: React.FC = () => {
       const batchList: BatchEnvelope[] = Array.isArray(res.data?.data)
         ? res.data.data
         : Array.isArray(res.data)
-        ? res.data
-        : [];
+          ? res.data
+          : [];
       setBatches(batchList);
     } catch (err: unknown) {
       const axiosErr = err as { response?: { data?: { message?: string } } };
@@ -472,19 +530,15 @@ export const AnalyticsEventGraphs: React.FC = () => {
                   cursor: 'pointer',
                   transition: 'all 0.2s',
                   background:
-                    daysWindow === tw.val
-                      ? isDark
-                        ? '#2563eb'
-                        : '#ffffff'
-                      : 'transparent',
+                    daysWindow === tw.val ? (isDark ? '#2563eb' : '#ffffff') : 'transparent',
                   color:
                     daysWindow === tw.val
                       ? isDark
                         ? '#ffffff'
                         : '#0f172a'
                       : isDark
-                      ? '#d0caeb'
-                      : '#64748b',
+                        ? '#d0caeb'
+                        : '#64748b',
                   boxShadow:
                     daysWindow === tw.val && !isDark ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
                 }}
@@ -820,8 +874,8 @@ export const AnalyticsEventGraphs: React.FC = () => {
                   border: isSelected
                     ? `1px solid ${catColor.stroke}`
                     : isDark
-                    ? '1px solid rgba(255,255,255,0.08)'
-                    : '1px solid #e2e8f0',
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid #e2e8f0',
                   padding: '5px 11px',
                   borderRadius: '20px',
                   fontSize: '0.775rem',
@@ -832,15 +886,15 @@ export const AnalyticsEventGraphs: React.FC = () => {
                       ? 'rgba(38,28,86,0.9)'
                       : '#eff6ff'
                     : isDark
-                    ? 'rgba(38,28,86,0.2)'
-                    : '#ffffff',
+                      ? 'rgba(38,28,86,0.2)'
+                      : '#ffffff',
                   color: isSelected
                     ? isDark
                       ? '#ffffff'
                       : '#1e40af'
                     : isDark
-                    ? '#d0caeb'
-                    : '#64748b',
+                      ? '#d0caeb'
+                      : '#64748b',
                   transition: 'all 0.15s ease',
                 }}
               >
@@ -922,8 +976,8 @@ export const AnalyticsEventGraphs: React.FC = () => {
                       ? '1px solid rgba(255,255,255,0.1)'
                       : '1px solid rgba(255,255,255,0.04)'
                     : hasHits
-                    ? '1px solid #e2e8f0'
-                    : '1px dashed #cbd5e1',
+                      ? '1px solid #e2e8f0'
+                      : '1px dashed #cbd5e1',
                   boxShadow: hasHits
                     ? isDark
                       ? '0 4px 16px rgba(0,0,0,0.25)'
@@ -1023,8 +1077,8 @@ export const AnalyticsEventGraphs: React.FC = () => {
                             ? '#a6e2f5'
                             : '#2563eb'
                           : isDark
-                          ? '#64748b'
-                          : '#94a3b8',
+                            ? '#64748b'
+                            : '#94a3b8',
                       }}
                     >
                       {event.totalHits.toLocaleString()}
@@ -1104,13 +1158,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
                       margin={{ top: 8, right: 8, left: -25, bottom: 0 }}
                     >
                       <defs>
-                        <linearGradient
-                          id={`grad_${event.eventName}`}
-                          x1="0"
-                          y1="0"
-                          x2="0"
-                          y2="1"
-                        >
+                        <linearGradient id={`grad_${event.eventName}`} x1="0" y1="0" x2="0" y2="1">
                           <stop offset="5%" stopColor={colorMeta.stroke} stopOpacity={0.4} />
                           <stop offset="95%" stopColor={colorMeta.stroke} stopOpacity={0.0} />
                         </linearGradient>
@@ -1142,10 +1190,12 @@ export const AnalyticsEventGraphs: React.FC = () => {
                           fontSize: '12px',
                           color: isDark ? '#ffffff' : '#0f172a',
                         }}
-                        formatter={((val: any) => [
-                          `${val} ${t.eventGraphTooltipCount || 'Events'}`,
-                          event.displayName,
-                        ]) as any}
+                        formatter={
+                          ((val: any) => [
+                            `${val} ${t.eventGraphTooltipCount || 'Events'}`,
+                            event.displayName,
+                          ]) as any
+                        }
                       />
                       <Area
                         type="monotone"

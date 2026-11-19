@@ -86,10 +86,10 @@ export const MoreFollowTable: React.FC<MoreFollowTableProps> = ({
             (language === 'te'
               ? trans.te
               : language === 'hi'
-              ? trans.hi
-              : language === 'ml'
-              ? trans.ml
-              : trans.en) ||
+                ? trans.hi
+                : language === 'ml'
+                  ? trans.ml
+                  : trans.en) ||
             trans.en ||
             item.morefollowName ||
             'Untitled Menu';
@@ -103,12 +103,21 @@ export const MoreFollowTable: React.FC<MoreFollowTableProps> = ({
                   px: 2,
                   py: 1.8,
                   transition: 'all 0.2s ease',
-                  '&:hover': { backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(28,20,69,0.02)' },
+                  '&:hover': {
+                    backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(28,20,69,0.02)',
+                  },
                 }}
               >
                 {/* Row # */}
                 <Box sx={{ ...colStyle(0.6) }}>
-                  <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', fontWeight: 600, fontSize: '0.8rem' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: isDark ? '#d0caeb' : '#9e9e9e',
+                      fontWeight: 600,
+                      fontSize: '0.8rem',
+                    }}
+                  >
                     {idx + 1 + (page - 1) * recordsPerPage}
                   </Typography>
                 </Box>
@@ -149,11 +158,26 @@ export const MoreFollowTable: React.FC<MoreFollowTableProps> = ({
                 {/* Name & Translations */}
                 <Box sx={{ ...colStyle(3.0) }}>
                   <Box>
-                    <Typography variant="body2" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445', fontSize: '0.9rem' }}>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontWeight: 700,
+                        color: isDark ? '#ffffff' : '#1c1445',
+                        fontSize: '0.9rem',
+                      }}
+                    >
                       {primaryName}
                     </Typography>
-                    <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#757575', fontSize: '0.76rem', display: 'block' }}>
-                      Default: {item.morefollowName} {trans.en && trans.en !== primaryName ? `• EN: ${trans.en}` : ''}
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: isDark ? '#d0caeb' : '#757575',
+                        fontSize: '0.76rem',
+                        display: 'block',
+                      }}
+                    >
+                      Default: {item.morefollowName}{' '}
+                      {trans.en && trans.en !== primaryName ? `• EN: ${trans.en}` : ''}
                     </Typography>
                   </Box>
                 </Box>
@@ -174,10 +198,18 @@ export const MoreFollowTable: React.FC<MoreFollowTableProps> = ({
                             ? 'rgba(76, 175, 80, 0.2)'
                             : 'rgba(76, 175, 80, 0.12)'
                           : isDark
-                          ? 'rgba(255, 255, 255, 0.05)'
-                          : 'rgba(0, 0, 0, 0.05)',
-                        color: lang.present ? (isDark ? '#81c784' : '#2e7d32') : isDark ? '#757575' : '#9e9e9e',
-                        border: lang.present ? '1px solid rgba(76, 175, 80, 0.3)' : '1px solid transparent',
+                            ? 'rgba(255, 255, 255, 0.05)'
+                            : 'rgba(0, 0, 0, 0.05)',
+                        color: lang.present
+                          ? isDark
+                            ? '#81c784'
+                            : '#2e7d32'
+                          : isDark
+                            ? '#757575'
+                            : '#9e9e9e',
+                        border: lang.present
+                          ? '1px solid rgba(76, 175, 80, 0.3)'
+                          : '1px solid transparent',
                       }}
                     />
                   ))}
@@ -196,9 +228,15 @@ export const MoreFollowTable: React.FC<MoreFollowTableProps> = ({
                           ? 'rgba(76, 175, 80, 0.15)'
                           : 'rgba(76, 175, 80, 0.1)'
                         : isDark
-                        ? 'rgba(239, 83, 80, 0.15)'
-                        : 'rgba(239, 83, 80, 0.1)',
-                      color: item.isActive ? (isDark ? '#81c784' : '#2e7d32') : isDark ? '#e57373' : '#c62828',
+                          ? 'rgba(239, 83, 80, 0.15)'
+                          : 'rgba(239, 83, 80, 0.1)',
+                      color: item.isActive
+                        ? isDark
+                          ? '#81c784'
+                          : '#2e7d32'
+                        : isDark
+                          ? '#e57373'
+                          : '#c62828',
                       borderRadius: '6px',
                     }}
                   />
@@ -228,7 +266,9 @@ export const MoreFollowTable: React.FC<MoreFollowTableProps> = ({
                     onClick={() => handleEditClick(item)}
                     sx={{
                       color: isDark ? '#a6e2f5' : '#1c1445',
-                      '&:hover': { backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(28,20,69,0.06)' },
+                      '&:hover': {
+                        backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(28,20,69,0.06)',
+                      },
                     }}
                   >
                     <Edit fontSize="small" />
@@ -240,7 +280,9 @@ export const MoreFollowTable: React.FC<MoreFollowTableProps> = ({
                       onClick={() => handleDeleteClick(item.id)}
                       sx={{
                         color: isDark ? '#ef5350' : '#d32f2f',
-                        '&:hover': { backgroundColor: isDark ? 'rgba(239,83,80,0.1)' : 'rgba(211,47,47,0.06)' },
+                        '&:hover': {
+                          backgroundColor: isDark ? 'rgba(239,83,80,0.1)' : 'rgba(211,47,47,0.06)',
+                        },
                       }}
                     >
                       <Delete fontSize="small" />

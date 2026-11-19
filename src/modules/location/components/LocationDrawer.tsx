@@ -68,9 +68,7 @@ export const LocationDrawer: React.FC<LocationDrawerProps> = ({
   };
 
   const activeLangsSet = new Set(
-    activeLanguages && activeLanguages.length > 0
-      ? activeLanguages
-      : ['en', 'te', 'ml']
+    activeLanguages && activeLanguages.length > 0 ? activeLanguages : ['en', 'te', 'ml']
   );
 
   const allStateFields = [
@@ -143,7 +141,12 @@ export const LocationDrawer: React.FC<LocationDrawerProps> = ({
           <Box>
             <Typography
               variant="h6"
-              sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 700, fontSize: '1rem', lineHeight: 1.2 }}
+              sx={{
+                color: isDark ? '#ffffff' : '#1c1445',
+                fontWeight: 700,
+                fontSize: '1rem',
+                lineHeight: 1.2,
+              }}
             >
               {isEditMode
                 ? t?.editLocationTitle || 'Edit Location'
@@ -162,7 +165,17 @@ export const LocationDrawer: React.FC<LocationDrawerProps> = ({
       </Box>
 
       {/* Drawer Form Body */}
-      <Box sx={{ flex: 1, overflowY: 'auto', px: 3, py: 3, display: 'flex', flexDirection: 'column', gap: 3 }}>
+      <Box
+        sx={{
+          flex: 1,
+          overflowY: 'auto',
+          px: 3,
+          py: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 3,
+        }}
+      >
         {/* Image Uploader */}
         <Box>
           <Typography
@@ -254,8 +267,8 @@ export const LocationDrawer: React.FC<LocationDrawerProps> = ({
                       ? '#a6e2f5'
                       : '#1c1445'
                     : isDark
-                    ? 'rgba(255,255,255,0.2)'
-                    : 'rgba(0,0,0,0.18)'
+                      ? 'rgba(255,255,255,0.2)'
+                      : 'rgba(0,0,0,0.18)'
                 }`,
                 borderRadius: '12px',
                 p: 3,
@@ -265,7 +278,9 @@ export const LocationDrawer: React.FC<LocationDrawerProps> = ({
                 '&:hover': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
               }}
             >
-              <CloudUpload sx={{ fontSize: '2rem', color: isDark ? '#d0caeb' : '#9e9e9e', mb: 0.5 }} />
+              <CloudUpload
+                sx={{ fontSize: '2rem', color: isDark ? '#d0caeb' : '#9e9e9e', mb: 0.5 }}
+              />
               <Typography
                 variant="body2"
                 sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600, fontSize: '0.85rem' }}
@@ -299,7 +314,12 @@ export const LocationDrawer: React.FC<LocationDrawerProps> = ({
               <Box key={field}>
                 <Typography
                   variant="caption"
-                  sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700, display: 'block', mb: 0.6 }}
+                  sx={{
+                    color: isDark ? '#a6e2f5' : '#1c1445',
+                    fontWeight: 700,
+                    display: 'block',
+                    mb: 0.6,
+                  }}
                 >
                   {label}
                 </Typography>
@@ -321,8 +341,8 @@ export const LocationDrawer: React.FC<LocationDrawerProps> = ({
                         borderColor: errors[field]
                           ? '#f44336'
                           : isDark
-                          ? 'rgba(255,255,255,0.12)'
-                          : 'rgba(0,0,0,0.15)',
+                            ? 'rgba(255,255,255,0.12)'
+                            : 'rgba(0,0,0,0.15)',
                       },
                       '&:hover fieldset': {
                         borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
@@ -341,7 +361,9 @@ export const LocationDrawer: React.FC<LocationDrawerProps> = ({
                             borderRadius: '6px',
                             fontSize: '0.65rem',
                             fontWeight: 700,
-                            backgroundColor: isDark ? 'rgba(166,226,245,0.12)' : 'rgba(28,20,69,0.08)',
+                            backgroundColor: isDark
+                              ? 'rgba(166,226,245,0.12)'
+                              : 'rgba(28,20,69,0.08)',
                             color: isDark ? '#a6e2f5' : '#1c1445',
                           }}
                         >
@@ -371,7 +393,10 @@ export const LocationDrawer: React.FC<LocationDrawerProps> = ({
           }}
         >
           <Box>
-            <Typography variant="body2" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}>
+            <Typography
+              variant="body2"
+              sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}
+            >
               Location Status ({form.status !== false ? 'ON' : 'OFF'})
             </Typography>
             <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#9e9e9e' }}>
@@ -383,7 +408,9 @@ export const LocationDrawer: React.FC<LocationDrawerProps> = ({
             onChange={(e) => onFieldChange('status', e.target.checked as any)}
             sx={{
               '& .MuiSwitch-switchBase.Mui-checked': { color: '#10b981' },
-              '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': { backgroundColor: '#10b981' },
+              '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                backgroundColor: '#10b981',
+              },
             }}
           />
         </Box>
@@ -429,9 +456,7 @@ export const LocationDrawer: React.FC<LocationDrawerProps> = ({
             '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270', boxShadow: 'none' },
           }}
         >
-          {isEditMode
-            ? t?.updateLocation || 'Update Location'
-            : t?.saveLocation || 'Save Location'}
+          {isEditMode ? t?.updateLocation || 'Update Location' : t?.saveLocation || 'Save Location'}
         </Button>
       </Box>
     </Drawer>

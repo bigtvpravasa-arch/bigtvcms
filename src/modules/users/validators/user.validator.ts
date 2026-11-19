@@ -1,11 +1,7 @@
 import { z } from 'zod';
 
 export const userSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(1, 'Name is required')
-    .min(6, 'Name must be at least 6 characters'),
+  name: z.string().trim().min(1, 'Name is required').min(6, 'Name must be at least 6 characters'),
   username: z
     .string()
     .trim()
@@ -16,9 +12,21 @@ export const userSchema = z.object({
     .min(1, 'Password is required')
     .min(6, 'Password must be at least 6 characters'),
   location: z.string().trim().min(1, 'Location is required'),
-  role: z.enum(['superadmin', 'admin', 'creator', 'epaper_creator', 'movie_creator', 'notification_creator', 'adsdynapic', 'ads_dynapic', 'adsdynapix', 'ads_dynapix']).default('creator'),
+  role: z
+    .enum([
+      'superadmin',
+      'admin',
+      'creator',
+      'epaper_creator',
+      'movie_creator',
+      'notification_creator',
+      'adsdynapic',
+      'ads_dynapic',
+      'adsdynapix',
+      'ads_dynapix',
+    ])
+    .default('creator'),
   languageCode: z.string().nullable().optional(),
 });
 
 export type UserFormData = z.infer<typeof userSchema>;
-

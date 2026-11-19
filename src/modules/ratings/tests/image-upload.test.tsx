@@ -162,7 +162,9 @@ describe('Ratings Image Upload', () => {
       );
 
       expect(screen.getByText('Image Attached')).toBeInTheDocument();
-      expect(screen.getByText('https://api.pravasamedia.com/api/v1/files/sample.png')).toBeInTheDocument();
+      expect(
+        screen.getByText('https://api.pravasamedia.com/api/v1/files/sample.png')
+      ).toBeInTheDocument();
       expect(screen.getByText(/Remove/i)).toBeInTheDocument();
 
       fireEvent.click(screen.getByText(/Remove/i));
@@ -171,15 +173,13 @@ describe('Ratings Image Upload', () => {
 
     it('handles file selection and uploads successfully', async () => {
       const handleChange = jest.fn();
-      jest.spyOn(RatingsRepository, 'uploadImage').mockResolvedValueOnce('https://api.pravasamedia.com/api/v1/files/uploaded-123.jpg');
+      jest
+        .spyOn(RatingsRepository, 'uploadImage')
+        .mockResolvedValueOnce('https://api.pravasamedia.com/api/v1/files/uploaded-123.jpg');
 
       const { container } = render(
         <ThemeProvider>
-          <RatingsImageUploader
-            label="Poster Image"
-            value=""
-            onChange={handleChange}
-          />
+          <RatingsImageUploader label="Poster Image" value="" onChange={handleChange} />
         </ThemeProvider>
       );
 
@@ -191,21 +191,21 @@ describe('Ratings Image Upload', () => {
 
       await waitFor(() => {
         expect(RatingsRepository.uploadImage).toHaveBeenCalledWith(testFile);
-        expect(handleChange).toHaveBeenCalledWith('https://api.pravasamedia.com/api/v1/files/uploaded-123.jpg');
+        expect(handleChange).toHaveBeenCalledWith(
+          'https://api.pravasamedia.com/api/v1/files/uploaded-123.jpg'
+        );
       });
     });
 
     it('handles drag and drop upload', async () => {
       const handleChange = jest.fn();
-      jest.spyOn(RatingsRepository, 'uploadImage').mockResolvedValueOnce('https://api.pravasamedia.com/api/v1/files/dragged.png');
+      jest
+        .spyOn(RatingsRepository, 'uploadImage')
+        .mockResolvedValueOnce('https://api.pravasamedia.com/api/v1/files/dragged.png');
 
       render(
         <ThemeProvider>
-          <RatingsImageUploader
-            label="Poster Image"
-            value=""
-            onChange={handleChange}
-          />
+          <RatingsImageUploader label="Poster Image" value="" onChange={handleChange} />
         </ThemeProvider>
       );
 
@@ -225,7 +225,9 @@ describe('Ratings Image Upload', () => {
 
       await waitFor(() => {
         expect(RatingsRepository.uploadImage).toHaveBeenCalledWith(testFile);
-        expect(handleChange).toHaveBeenCalledWith('https://api.pravasamedia.com/api/v1/files/dragged.png');
+        expect(handleChange).toHaveBeenCalledWith(
+          'https://api.pravasamedia.com/api/v1/files/dragged.png'
+        );
       });
     });
 
@@ -233,11 +235,7 @@ describe('Ratings Image Upload', () => {
       const handleChange = jest.fn();
       const { container } = render(
         <ThemeProvider>
-          <RatingsImageUploader
-            label="Poster Image"
-            value=""
-            onChange={handleChange}
-          />
+          <RatingsImageUploader label="Poster Image" value="" onChange={handleChange} />
         </ThemeProvider>
       );
 
@@ -256,11 +254,7 @@ describe('Ratings Image Upload', () => {
       const handleChange = jest.fn();
       const { container } = render(
         <ThemeProvider>
-          <RatingsImageUploader
-            label="Poster Image"
-            value=""
-            onChange={handleChange}
-          />
+          <RatingsImageUploader label="Poster Image" value="" onChange={handleChange} />
         </ThemeProvider>
       );
 
@@ -278,15 +272,13 @@ describe('Ratings Image Upload', () => {
 
     it('displays error alert when upload fails', async () => {
       const handleChange = jest.fn();
-      jest.spyOn(RatingsRepository, 'uploadImage').mockRejectedValueOnce(new Error('Network upload error'));
+      jest
+        .spyOn(RatingsRepository, 'uploadImage')
+        .mockRejectedValueOnce(new Error('Network upload error'));
 
       const { container } = render(
         <ThemeProvider>
-          <RatingsImageUploader
-            label="Poster Image"
-            value=""
-            onChange={handleChange}
-          />
+          <RatingsImageUploader label="Poster Image" value="" onChange={handleChange} />
         </ThemeProvider>
       );
 

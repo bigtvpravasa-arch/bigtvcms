@@ -17,7 +17,9 @@ import { UploadService } from '@/modules/media/services/upload.service';
 
 jest.mock('@/modules/media/services/upload.service', () => ({
   UploadService: {
-    uploadImage: jest.fn().mockResolvedValue('https://media.istockphoto.com/test-uploaded-thumbnail.jpg'),
+    uploadImage: jest
+      .fn()
+      .mockResolvedValue('https://media.istockphoto.com/test-uploaded-thumbnail.jpg'),
   },
 }));
 
@@ -463,7 +465,9 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
     fireEvent.click(mlOption);
 
     expect(
-      screen.getByText(/Changing language will automatically relocate the show folder on the server/i)
+      screen.getByText(
+        /Changing language will automatically relocate the show folder on the server/i
+      )
     ).toBeInTheDocument();
 
     const saveBtn = screen.getByRole('button', { name: /Save/i });
@@ -696,7 +700,10 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
     expect(updatedVid.fileName).toBe('new.mp4');
 
     // 8. deleteVideoFromTag
-    const deletedVid = await liveTvVideosRepository.deleteVideoFromTag('DNA', 'morning_bulletin.mp4');
+    const deletedVid = await liveTvVideosRepository.deleteVideoFromTag(
+      'DNA',
+      'morning_bulletin.mp4'
+    );
     expect(deletedVid).toBe(true);
 
     // 9. deleteVideoTag
@@ -725,9 +732,9 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
     (videoApiClient.patch as jest.Mock).mockRejectedValueOnce({
       response: { data: { message: 'Cannot rename' } },
     });
-    await expect(
-      liveTvVideosRepository.updateVideoTag('tag', { name: 'New' })
-    ).rejects.toThrow('Cannot rename');
+    await expect(liveTvVideosRepository.updateVideoTag('tag', { name: 'New' })).rejects.toThrow(
+      'Cannot rename'
+    );
 
     (videoApiClient.delete as jest.Mock).mockRejectedValueOnce({
       response: { data: { message: 'Cannot delete folder' } },
@@ -1273,16 +1280,12 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
 
   it('tests TagCreateModal and TagEditModal language select onChange handlers', () => {
     const { unmount } = render(
-      <TagCreateModal
-        open={true}
-        onClose={jest.fn()}
-        onSave={jest.fn()}
-        isDark={false}
-        t={{}}
-      />
+      <TagCreateModal open={true} onClose={jest.fn()} onSave={jest.fn()} isDark={false} t={{}} />
     );
 
-    const langSelectInput = document.querySelector('input[name="language"]') || document.querySelector('#tag-language-select-label + div input');
+    const langSelectInput =
+      document.querySelector('input[name="language"]') ||
+      document.querySelector('#tag-language-select-label + div input');
     if (langSelectInput) {
       fireEvent.change(langSelectInput, { target: { value: 'ml' } });
     }
@@ -1299,7 +1302,9 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
       />
     );
 
-    const editLangInput = document.querySelector('input[name="language"]') || document.querySelector('#edit-tag-language-select-label + div input');
+    const editLangInput =
+      document.querySelector('input[name="language"]') ||
+      document.querySelector('#edit-tag-language-select-label + div input');
     if (editLangInput) {
       fireEvent.change(editLangInput, { target: { value: 'ml' } });
     }
@@ -1486,7 +1491,9 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
 
     // Manually edit the thumbnail URL
     const urlInput = screen.getByLabelText(/Thumbnail URL/i);
-    fireEvent.change(urlInput, { target: { value: 'https://media.istockphoto.com/manual-thumbnail.jpg' } });
+    fireEvent.change(urlInput, {
+      target: { value: 'https://media.istockphoto.com/manual-thumbnail.jpg' },
+    });
 
     // Save
     const saveBtn = screen.getByRole('button', { name: /Save/i });
@@ -1692,7 +1699,9 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
       if (url.includes('/videos')) {
         return Promise.resolve({ data: [] });
       }
-      return Promise.resolve({ data: [{ id: 'te-1', name: 'Show A', slug: 'show-a', language: 'te' }] });
+      return Promise.resolve({
+        data: [{ id: 'te-1', name: 'Show A', slug: 'show-a', language: 'te' }],
+      });
     });
 
     const { result } = renderHook(() => useLiveTvVideosController());
@@ -1707,7 +1716,10 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
     });
     expect(result.current.actionSuccess).toBe('Video tag updated successfully');
 
-    (videoApiClient.delete as jest.Mock).mockResolvedValueOnce({ success: true, message: 'Deleted' });
+    (videoApiClient.delete as jest.Mock).mockResolvedValueOnce({
+      success: true,
+      message: 'Deleted',
+    });
     await act(async () => {
       await result.current.handleDeleteTag('show-a');
     });

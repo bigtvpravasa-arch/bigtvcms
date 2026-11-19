@@ -29,7 +29,9 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
           params.get('lan') ||
           params.get('from') ||
           ''
-        ).toLowerCase().trim();
+        )
+          .toLowerCase()
+          .trim();
         if (urlLang === 'ml' || urlLang === 'malayala' || urlLang === 'malayalam') return 'ml';
         if (urlLang === 'te' || urlLang === 'telugu') return 'te';
         if (urlLang === 'en' || urlLang === 'english') return 'en';
@@ -50,7 +52,10 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
 
   useEffect(() => {
     const currentLang = (appLanguage || '').toLowerCase().trim();
-    if ((currentLang === 'ml' || currentLang === 'malayala' || currentLang === 'malayalam') && selectedLanguage !== 'ml') {
+    if (
+      (currentLang === 'ml' || currentLang === 'malayala' || currentLang === 'malayalam') &&
+      selectedLanguage !== 'ml'
+    ) {
       setSelectedLanguage('ml');
     } else if ((currentLang === 'te' || currentLang === 'telugu') && selectedLanguage !== 'te') {
       setSelectedLanguage('te');
@@ -99,7 +104,9 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
           setTags(allTags || []);
           setSegregatedTags(segregated || { te: [], ml: [], en: [] });
           if (allTags && allTags.length > 0) {
-            setSelectedTagSlug((prev) => (allTags.some((t) => t.slug === prev) ? prev : allTags[0].slug));
+            setSelectedTagSlug((prev) =>
+              allTags.some((t) => t.slug === prev) ? prev : allTags[0].slug
+            );
           } else {
             setSelectedTagSlug('');
             setVideos([]);
@@ -253,9 +260,7 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
       const updatedLang = updatedTag.language || 'te';
 
       if (selectedLanguage === 'all') {
-        setTags((prev) =>
-          prev.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t))
-        );
+        setTags((prev) => prev.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t)));
         setSegregatedTags((prev) => {
           const next: SegregatedVideoTags = {
             te: prev.te.filter((t) => t.slug !== slug),
@@ -277,9 +282,7 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
           }
         }
       } else {
-        setTags((prev) =>
-          prev.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t))
-        );
+        setTags((prev) => prev.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t)));
       }
 
       setActionSuccess('Video tag updated successfully');

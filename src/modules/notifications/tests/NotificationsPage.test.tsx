@@ -208,7 +208,9 @@ describe('NotificationsPage', () => {
 
     // Find and click view button
     const viewButtons = screen.getAllByRole('button');
-    const eyeButton = viewButtons.find((btn) => btn.querySelector('svg[data-testid="VisibilityIcon"]'));
+    const eyeButton = viewButtons.find((btn) =>
+      btn.querySelector('svg[data-testid="VisibilityIcon"]')
+    );
     expect(eyeButton).toBeDefined();
     if (eyeButton) {
       fireEvent.click(eyeButton);
@@ -221,7 +223,9 @@ describe('NotificationsPage', () => {
 
     // Copy deep link inside detail view
     const detailCopyBtns = screen.getAllByRole('button');
-    const copyDeepLinkBtn = detailCopyBtns.find((btn) => btn.querySelector('svg[data-testid="ContentCopyIcon"]'));
+    const copyDeepLinkBtn = detailCopyBtns.find((btn) =>
+      btn.querySelector('svg[data-testid="ContentCopyIcon"]')
+    );
     if (copyDeepLinkBtn) {
       fireEvent.click(copyDeepLinkBtn);
     }
@@ -314,7 +318,9 @@ describe('NotificationsPage', () => {
     });
 
     const copyButtons = screen.getAllByRole('button');
-    const copyBtn = copyButtons.find((btn) => btn.querySelector('svg[data-testid="ContentCopyIcon"]'));
+    const copyBtn = copyButtons.find((btn) =>
+      btn.querySelector('svg[data-testid="ContentCopyIcon"]')
+    );
     if (copyBtn) {
       fireEvent.click(copyBtn);
       expect(navigator.clipboard.writeText).toHaveBeenCalled();
@@ -359,10 +365,16 @@ describe('NotificationsPage', () => {
       expect(screen.getByText('🔔 Send Notification')).toBeInTheDocument();
     });
 
-    fireEvent.change(screen.getByLabelText(/Notification Title/i), { target: { value: 'New Test' } });
+    fireEvent.change(screen.getByLabelText(/Notification Title/i), {
+      target: { value: 'New Test' },
+    });
     fireEvent.change(screen.getByLabelText(/Post ID/i), { target: { value: '111' } });
-    fireEvent.change(screen.getByLabelText(/Notification Content/i), { target: { value: 'Content body' } });
-    fireEvent.change(screen.getByLabelText(/Image URL \*/i), { target: { value: 'https://img.com' } });
+    fireEvent.change(screen.getByLabelText(/Notification Content/i), {
+      target: { value: 'Content body' },
+    });
+    fireEvent.change(screen.getByLabelText(/Image URL \*/i), {
+      target: { value: 'https://img.com' },
+    });
 
     const sendButtons = screen.getAllByRole('button', { name: /Send Notification/i });
     const submitBtn = sendButtons[sendButtons.length - 1];

@@ -95,8 +95,13 @@ export const GenerateLevelsModal: React.FC<GenerateLevelsModalProps> = ({
       setErrorMessage('Batch count must be between 1 and 20.');
       return;
     }
-    if (isZip && (isNaN(numCheckpoints) || numCheckpoints < 2 || numCheckpoints > (numRows * numCols - 1))) {
-      setErrorMessage(`Checkpoint count for Zip puzzle must be between 2 and ${numRows * numCols - 1}.`);
+    if (
+      isZip &&
+      (isNaN(numCheckpoints) || numCheckpoints < 2 || numCheckpoints > numRows * numCols - 1)
+    ) {
+      setErrorMessage(
+        `Checkpoint count for Zip puzzle must be between 2 and ${numRows * numCols - 1}.`
+      );
       return;
     }
 
@@ -178,7 +183,11 @@ export const GenerateLevelsModal: React.FC<GenerateLevelsModalProps> = ({
 
       <DialogContent sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
         {errorMessage && (
-          <Alert severity="error" onClose={() => setErrorMessage(null)} sx={{ borderRadius: '10px' }}>
+          <Alert
+            severity="error"
+            onClose={() => setErrorMessage(null)}
+            sx={{ borderRadius: '10px' }}
+          >
             {errorMessage}
           </Alert>
         )}
@@ -281,7 +290,10 @@ export const GenerateLevelsModal: React.FC<GenerateLevelsModalProps> = ({
             }}
           />
           <Box sx={{ flex: 1, minWidth: 0 }}>
-            <Typography variant="caption" sx={{ color: colorLabel, fontWeight: 600, display: 'block' }}>
+            <Typography
+              variant="caption"
+              sx={{ color: colorLabel, fontWeight: 600, display: 'block' }}
+            >
               {t.levelIcon || 'Level Icon'} (Auto-Attached)
             </Typography>
             <Typography
@@ -303,7 +315,10 @@ export const GenerateLevelsModal: React.FC<GenerateLevelsModalProps> = ({
       </DialogContent>
 
       <DialogActions
-        sx={{ p: 2, borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)' }}
+        sx={{
+          p: 2,
+          borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+        }}
       >
         <Button
           onClick={onClose}

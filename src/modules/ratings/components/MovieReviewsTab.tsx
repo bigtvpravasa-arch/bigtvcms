@@ -115,8 +115,13 @@ export const MovieReviewsTab: React.FC<MovieReviewsTabProps> = ({
           }}
         >
           <CardContent sx={{ p: 2.5 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 {t.movieStatTotal}
               </Typography>
               <Box
@@ -150,8 +155,13 @@ export const MovieReviewsTab: React.FC<MovieReviewsTabProps> = ({
           }}
         >
           <CardContent sx={{ p: 2.5 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 {t.movieStatPublished}
               </Typography>
               <Box
@@ -185,8 +195,13 @@ export const MovieReviewsTab: React.FC<MovieReviewsTabProps> = ({
           }}
         >
           <CardContent sx={{ p: 2.5 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 {t.movieStatDrafts}
               </Typography>
               <Box
@@ -220,8 +235,13 @@ export const MovieReviewsTab: React.FC<MovieReviewsTabProps> = ({
           }}
         >
           <CardContent sx={{ p: 2.5 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 {t.movieStatAvgRating}
               </Typography>
               <Box
@@ -361,7 +381,9 @@ export const MovieReviewsTab: React.FC<MovieReviewsTabProps> = ({
                 },
               }}
             >
-              <CardContent sx={{ p: 2.5, display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <CardContent
+                sx={{ p: 2.5, display: 'flex', flexDirection: 'column', height: '100%' }}
+              >
                 <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
                   {/* Poster Thumbnail */}
                   <Box
@@ -391,7 +413,15 @@ export const MovieReviewsTab: React.FC<MovieReviewsTabProps> = ({
 
                   {/* Title & Content */}
                   <Box sx={{ flex: 1, minWidth: 0 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 1, mb: 0.5 }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexWrap: 'wrap',
+                        gap: 1,
+                        mb: 0.5,
+                      }}
+                    >
                       <Chip
                         label={movie.language_code.toUpperCase()}
                         size="small"
@@ -410,7 +440,11 @@ export const MovieReviewsTab: React.FC<MovieReviewsTabProps> = ({
                       />
                       {movie.video_url && (
                         <Chip
-                          icon={<SmartDisplay sx={{ color: '#ef4444 !important', fontSize: '0.85rem' }} />}
+                          icon={
+                            <SmartDisplay
+                              sx={{ color: '#ef4444 !important', fontSize: '0.85rem' }}
+                            />
+                          }
                           label={t.btnWatchTrailer}
                           size="small"
                           component="a"
@@ -527,7 +561,9 @@ export const MovieReviewsTab: React.FC<MovieReviewsTabProps> = ({
                     justifyContent: 'space-between',
                     mt: 'auto',
                     pt: 1.5,
-                    borderTop: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.06)',
+                    borderTop: isDark
+                      ? '1px solid rgba(255,255,255,0.06)'
+                      : '1px solid rgba(0,0,0,0.06)',
                   }}
                 >
                   <Button
@@ -541,7 +577,11 @@ export const MovieReviewsTab: React.FC<MovieReviewsTabProps> = ({
 
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     <Tooltip title={t.btnEdit}>
-                      <IconButton size="small" onClick={() => onEditMovie(movie)} sx={{ color: '#2563eb' }}>
+                      <IconButton
+                        size="small"
+                        onClick={() => onEditMovie(movie)}
+                        sx={{ color: '#2563eb' }}
+                      >
                         <Edit fontSize="small" />
                       </IconButton>
                     </Tooltip>

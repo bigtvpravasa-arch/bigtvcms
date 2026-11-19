@@ -108,11 +108,12 @@ export class ApiClient {
           delete config.headers['Content-Type'];
           delete config.headers['content-type'];
         }
-        
+
         // Append device_id and language key header to every outgoing API request
         if (typeof window !== 'undefined') {
           try {
-            let deviceId = localStorage.getItem('bigtv_cms_device_id') || localStorage.getItem('device_id');
+            let deviceId =
+              localStorage.getItem('bigtv_cms_device_id') || localStorage.getItem('device_id');
             if (!deviceId) {
               const uuid =
                 typeof crypto !== 'undefined' && crypto.randomUUID
@@ -225,7 +226,8 @@ export class ApiClient {
               }
             } else {
               // Determine active language from params or localStorage
-              let lang = config.params?.language_code || config.params?.lang || config.params?.language;
+              let lang =
+                config.params?.language_code || config.params?.lang || config.params?.language;
               if (!lang) {
                 const langStoreRaw = localStorage.getItem('bigtv-language-store');
                 if (langStoreRaw) {
@@ -258,7 +260,8 @@ export class ApiClient {
       (response: AxiosResponse) => response,
       async (error) => {
         const originalRequest = error.config;
-        const isAuthRequest = originalRequest?.url?.includes('/login') || originalRequest?.url?.includes('/refresh');
+        const isAuthRequest =
+          originalRequest?.url?.includes('/login') || originalRequest?.url?.includes('/refresh');
         if (error.response?.status === 401 && !originalRequest._retry && !isAuthRequest) {
           originalRequest._retry = true;
           try {
@@ -281,7 +284,10 @@ export class ApiClient {
         }
 
         const apiError = error.response?.data as any;
-        const errorMessage = formatApiErrorMessage(apiError, error.message || 'An unexpected error occurred');
+        const errorMessage = formatApiErrorMessage(
+          apiError,
+          error.message || 'An unexpected error occurred'
+        );
 
         if (typeof window !== 'undefined') {
           window.dispatchEvent(
@@ -304,11 +310,18 @@ export class ApiClient {
   }
 
   private async refreshToken(): Promise<AxiosResponse<{ accessToken: string }>> {
-    const refreshToken = typeof window !== 'undefined' ? localStorage.getItem('refresh_token') : null;
+    const refreshToken =
+      typeof window !== 'undefined' ? localStorage.getItem('refresh_token') : null;
     return axios.post(`${this.axiosInstance.defaults.baseURL}/auth/refresh`, { refreshToken });
   }
 
-  private async request<T>(config: { method: string; url: string; data?: unknown; params?: Record<string, unknown>; headers?: any }): Promise<T> {
+  private async request<T>(config: {
+    method: string;
+    url: string;
+    data?: unknown;
+    params?: Record<string, unknown>;
+    headers?: any;
+  }): Promise<T> {
     const response = await this.axiosInstance.request<T>(config);
     return response.data;
   }
@@ -338,15 +351,27 @@ export class ApiClient {
     return promise;
   }
 
-  public async post<T, R = unknown>(url: string, data?: R, config?: { headers?: any; params?: any }): Promise<T> {
+  public async post<T, R = unknown>(
+    url: string,
+    data?: R,
+    config?: { headers?: any; params?: any }
+  ): Promise<T> {
     return this.request<T>({ method: 'post', url, data, ...config });
   }
 
-  public async put<T, R = unknown>(url: string, data?: R, config?: { headers?: any; params?: any }): Promise<T> {
+  public async put<T, R = unknown>(
+    url: string,
+    data?: R,
+    config?: { headers?: any; params?: any }
+  ): Promise<T> {
     return this.request<T>({ method: 'put', url, data, ...config });
   }
 
-  public async patch<T, R = unknown>(url: string, data?: R, config?: { headers?: any; params?: any }): Promise<T> {
+  public async patch<T, R = unknown>(
+    url: string,
+    data?: R,
+    config?: { headers?: any; params?: any }
+  ): Promise<T> {
     return this.request<T>({ method: 'patch', url, data, ...config });
   }
 
@@ -355,7 +380,10 @@ export class ApiClient {
   }
 }
 
-export const normalizeApiV1BaseUrl = (url?: string, defaultUrl: string = 'https://api.pravasamedia.com/api/v1'): string => {
+export const normalizeApiV1BaseUrl = (
+  url?: string,
+  defaultUrl: string = 'https://api.pravasamedia.com/api/v1'
+): string => {
   const base = (url || defaultUrl).trim().replace(/\/$/, '');
   return base.endsWith('/api/v1') ? base : `${base}/api/v1`;
 };
@@ -369,18 +397,21 @@ export const apiClient = new ApiClient(
 );
 
 export const eventsApiClient = new ApiClient(
-  normalizeApiV1BaseUrl(process.env.NEXT_PUBLIC_EVENTS_API_BASE_URL, 'https://api.pravasamedia.com/api/v1')
+  normalizeApiV1BaseUrl(
+    process.env.NEXT_PUBLIC_EVENTS_API_BASE_URL,
+    'https://api.pravasamedia.com/api/v1'
+  )
 );
 
 export const videoApiClient = new ApiClient(
-  normalizeApiV1BaseUrl(process.env.NEXT_PUBLIC_VIDEO_API_BASE_URL, 'https://api.pravasamedia.com/api/v1')
+  normalizeApiV1BaseUrl(
+    process.env.NEXT_PUBLIC_VIDEO_API_BASE_URL,
+    'https://api.pravasamedia.com/api/v1'
+  )
 );
 
 export const ttsApiClient = new ApiClient(
-  (
-    process.env.NEXT_PUBLIC_TTS_API_BASE_URL ||
-    'https://api.pravasamedia.com'
-  ).replace(/\/$/, '')
+  (process.env.NEXT_PUBLIC_TTS_API_BASE_URL || 'https://api.pravasamedia.com').replace(/\/$/, '')
 );
 
 export const gamesApiClient = new ApiClient(
@@ -393,13 +424,9 @@ export const gamesApiClient = new ApiClient(
 export const cricketApiClient = new ApiClient(
   (
     process.env.NEXT_PUBLIC_CRICKET_API_BASE_URL ||
-    (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    (typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
       ? 'http://localhost:1122/api/v1'
       : 'https://api.pravasamedia.com/api/v1')
   ).replace(/\/$/, '')
 );
-
-
-
-
-

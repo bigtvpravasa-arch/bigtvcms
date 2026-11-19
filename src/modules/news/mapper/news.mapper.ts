@@ -1,7 +1,10 @@
 import { CreateNewsPostDto, NewsPostDto, UpdateNewsPostDto } from '../dto/news.dto';
 import { NewsPost } from '../domain/news.model';
 import { stripAllTagsExceptLinkTags, stripHtml } from '@/shared/utils/html.utils';
-import { extractBulletPoints, formatBulletPostContentAndBullets } from '@/shared/utils/bullet.utils';
+import {
+  extractBulletPoints,
+  formatBulletPostContentAndBullets,
+} from '@/shared/utils/bullet.utils';
 import { formatLinks, formatLinksAndContent } from '@/shared/utils/link.utils';
 
 export class NewsMapper {
@@ -48,7 +51,8 @@ export class NewsMapper {
       isHomePost: Boolean(dto.is_home_post ?? dto.isHomePost ?? false),
       is_home_post: Boolean(dto.is_home_post ?? dto.isHomePost ?? false),
       colorCode: dto.colorCode || (dto as any).color_code || '',
-      web_post_url: dto.web_post_url || (dto as any).webPostUrl || (dto as any).webUrl || dto.postUrl || '',
+      web_post_url:
+        dto.web_post_url || (dto as any).webPostUrl || (dto as any).webUrl || dto.postUrl || '',
       createdAt: dto.createdAt,
       updatedAt: dto.updatedAt,
       translations: dto.translations,
@@ -66,13 +70,20 @@ export class NewsMapper {
     let rawType = domain.type || (domain as any).post_type || domain.postType || 'Standed';
     let subTypeVal = domain.subType || '';
 
-    if (rawType.toLowerCase() === 'bulletpost' || rawType.toLowerCase() === 'bullet post' || rawType.toLowerCase() === 'bulite post') {
+    if (
+      rawType.toLowerCase() === 'bulletpost' ||
+      rawType.toLowerCase() === 'bullet post' ||
+      rawType.toLowerCase() === 'bulite post'
+    ) {
       rawType = 'Standed';
       subTypeVal = 'BulletPost';
     } else if (rawType.toLowerCase() === 'bulletin') {
       rawType = 'Bulletin';
       subTypeVal = 'Bulletin';
-    } else if (rawType.toLowerCase() === 'standardlink' || rawType.toLowerCase() === 'standard link') {
+    } else if (
+      rawType.toLowerCase() === 'standardlink' ||
+      rawType.toLowerCase() === 'standard link'
+    ) {
       rawType = 'Standed';
       subTypeVal = 'StandardLink';
     } else if (
@@ -101,12 +112,21 @@ export class NewsMapper {
       subTypeVal = subTypeVal || 'Image';
     }
 
-    const isStickyVal = domain.isStickyPost ?? (domain as any).is_sticky ?? domain.isSticky ?? false;
-    const webUrlVal = (domain as any).web_post_url || (domain as any).webPostUrl || (domain as any).webUrl || domain.postUrl || '';
+    const isStickyVal =
+      domain.isStickyPost ?? (domain as any).is_sticky ?? domain.isSticky ?? false;
+    const webUrlVal =
+      (domain as any).web_post_url ||
+      (domain as any).webPostUrl ||
+      (domain as any).webUrl ||
+      domain.postUrl ||
+      '';
 
     let bulletsVal: string[] = [];
     if (subTypeVal === 'BulletPost' || subTypeVal === 'Bulletin') {
-      const formatted = formatBulletPostContentAndBullets(domain.content || '', domain.bulletPoints);
+      const formatted = formatBulletPostContentAndBullets(
+        domain.content || '',
+        domain.bulletPoints
+      );
       bulletsVal = formatted.bulletPoints;
       cleanContent = formatted.content;
     } else if (
@@ -117,11 +137,21 @@ export class NewsMapper {
       rawType !== 'Video' &&
       rawType !== 'Image'
     ) {
-      bulletsVal = domain.bulletPoints.map((pt) => String(pt).replace(/[\[\]]/g, '').trim()).filter(Boolean);
+      bulletsVal = domain.bulletPoints
+        .map((pt) =>
+          String(pt)
+            .replace(/[\[\]]/g, '')
+            .trim()
+        )
+        .filter(Boolean);
     }
 
     let linksVal: any = domain.links || [];
-    if (subTypeVal === 'StandardLink' || (Array.isArray(domain.links) && domain.links.length > 0) || (typeof domain.links === 'string' && domain.links.trim())) {
+    if (
+      subTypeVal === 'StandardLink' ||
+      (Array.isArray(domain.links) && domain.links.length > 0) ||
+      (typeof domain.links === 'string' && domain.links.trim())
+    ) {
       const formatted = formatLinksAndContent(domain.links, cleanContent);
       linksVal = formatted.links;
       cleanContent = formatted.content;
@@ -143,7 +173,7 @@ export class NewsMapper {
       cleanContent = stripHtml(cleanContent);
     }
 
-    const isWebPostVal = (
+    const isWebPostVal =
       subTypeVal === 'BulletPost' ||
       subTypeVal === 'Bulletin' ||
       subTypeVal === 'StandardLink' ||
@@ -151,9 +181,10 @@ export class NewsMapper {
       subTypeVal === 'BigBlackStanded' ||
       rawType === 'Video' ||
       rawType === 'Image'
-    )
-      ? false
-      : Boolean((domain as any).isWebPost || (domain as any).is_web_post || (domain as any).isWebpost);
+        ? false
+        : Boolean(
+            (domain as any).isWebPost || (domain as any).is_web_post || (domain as any).isWebpost
+          );
 
     return {
       title: cleanTitle,
@@ -186,10 +217,20 @@ export class NewsMapper {
       trash: domain.trash ?? false,
       schedule: domain.schedule || now,
       language_id: domain.languageId ?? (domain as any).language_id ?? 0,
-      language_code: (domain as any).languageCode ?? (domain as any).language_code ?? (domain as any).postLanguage ?? 'en',
-      category_ids: (domain.categoryIds ?? (domain as any).category_ids ?? []).filter((id: number) => typeof id === 'number' && id > 0),
-      location_ids: (domain.locationIds ?? (domain as any).location_ids ?? []).filter((id: number) => typeof id === 'number' && id > 0),
-      aitag_ids: (domain.aitagIds ?? (domain as any).aitag_ids ?? []).filter((id: number) => typeof id === 'number' && id > 0),
+      language_code:
+        (domain as any).languageCode ??
+        (domain as any).language_code ??
+        (domain as any).postLanguage ??
+        'en',
+      category_ids: (domain.categoryIds ?? (domain as any).category_ids ?? []).filter(
+        (id: number) => typeof id === 'number' && id > 0
+      ),
+      location_ids: (domain.locationIds ?? (domain as any).location_ids ?? []).filter(
+        (id: number) => typeof id === 'number' && id > 0
+      ),
+      aitag_ids: (domain.aitagIds ?? (domain as any).aitag_ids ?? []).filter(
+        (id: number) => typeof id === 'number' && id > 0
+      ),
       isWebPost: isWebPostVal,
       isHomePost: Boolean((domain as any).isHomePost ?? (domain as any).is_home_post ?? false),
       is_home_post: Boolean((domain as any).isHomePost ?? (domain as any).is_home_post ?? false),
@@ -226,7 +267,13 @@ export class NewsMapper {
     if (rawDomain.is_sticky !== undefined || rawDomain.isSticky !== undefined) {
       dto.is_sticky = rawDomain.is_sticky ?? rawDomain.isSticky ?? fullDto.isStickyPost;
     }
-    if (domain.content !== undefined && !domain.subType && !rawDomain.sub_type && !domain.type && !rawDomain.post_type) {
+    if (
+      domain.content !== undefined &&
+      !domain.subType &&
+      !rawDomain.sub_type &&
+      !domain.type &&
+      !rawDomain.post_type
+    ) {
       dto.content = stripHtml(domain.content);
     }
 

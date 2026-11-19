@@ -91,8 +91,15 @@ export const TicketModal: React.FC<TicketModalProps> = ({
       }}
     >
       <form onSubmit={handleSubmit}>
-        <DialogTitle sx={{ fontWeight: 700, borderBottom: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)' }}>
-          {ticket ? t.modalEditTicketTitle || 'Edit Ticket Tier' : t.modalAddTicketTitle || 'Add Ticket Tier Category'}
+        <DialogTitle
+          sx={{
+            fontWeight: 700,
+            borderBottom: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+          }}
+        >
+          {ticket
+            ? t.modalEditTicketTitle || 'Edit Ticket Tier'
+            : t.modalAddTicketTitle || 'Add Ticket Tier Category'}
         </DialogTitle>
         <DialogContent sx={{ pt: 3 }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, mt: 1 }}>
@@ -158,7 +165,12 @@ export const TicketModal: React.FC<TicketModalProps> = ({
             />
           </Box>
         </DialogContent>
-        <DialogActions sx={{ p: 2.5, borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)' }}>
+        <DialogActions
+          sx={{
+            p: 2.5,
+            borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+          }}
+        >
           <Button onClick={onClose} variant="outlined" color="inherit">
             {t.btnCancel || 'Cancel'}
           </Button>

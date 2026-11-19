@@ -196,9 +196,19 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}>
       {/* Header with Title & Badge */}
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 1 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: 1,
+        }}
+      >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <VideoLibrary sx={{ color: gallery.length > 0 ? '#10b981' : '#3b82f6', fontSize: '1.25rem' }} />
+          <VideoLibrary
+            sx={{ color: gallery.length > 0 ? '#10b981' : '#3b82f6', fontSize: '1.25rem' }}
+          />
           <Typography
             variant="body2"
             sx={{
@@ -215,8 +225,8 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
             isFull
               ? '6/6 (Max)'
               : gallery.length > 0
-              ? `${gallery.length}/6`
-              : `0/6 (${t.badgeOptional || 'Optional'})`
+                ? `${gallery.length}/6`
+                : `0/6 (${t.badgeOptional || 'Optional'})`
           }
           size="small"
           color={isFull ? 'primary' : gallery.length > 0 ? 'success' : 'default'}
@@ -225,18 +235,29 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
       </Box>
 
       {/* Helper text */}
-      <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)', mt: -1 }}>
+      <Typography
+        variant="caption"
+        sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)', mt: -1 }}
+      >
         {t.hintGalleryOptional || t.hintGalleryMinMax}
       </Typography>
 
       {errorMsg && (
-        <Alert severity="error" onClose={() => setErrorMsg(null)} sx={{ py: 0.5, fontSize: '0.825rem' }}>
+        <Alert
+          severity="error"
+          onClose={() => setErrorMsg(null)}
+          sx={{ py: 0.5, fontSize: '0.825rem' }}
+        >
           {errorMsg}
         </Alert>
       )}
 
       {successMsg && (
-        <Alert severity="success" onClose={() => setSuccessMsg(null)} sx={{ py: 0.5, fontSize: '0.825rem' }}>
+        <Alert
+          severity="success"
+          onClose={() => setSuccessMsg(null)}
+          sx={{ py: 0.5, fontSize: '0.825rem' }}
+        >
           {successMsg}
         </Alert>
       )}
@@ -267,8 +288,8 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
           borderColor: isDragOver
             ? '#2563eb'
             : isDark
-            ? 'rgba(255, 255, 255, 0.18)'
-            : 'rgba(0, 0, 0, 0.18)',
+              ? 'rgba(255, 255, 255, 0.18)'
+              : 'rgba(0, 0, 0, 0.18)',
           borderRadius: '12px',
           p: { xs: 2, sm: 2.5 },
           textAlign: 'center',
@@ -278,8 +299,8 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
               ? 'rgba(37, 99, 235, 0.15)'
               : 'rgba(37, 99, 235, 0.08)'
             : isDark
-            ? 'rgba(255, 255, 255, 0.02)'
-            : 'rgba(0, 0, 0, 0.02)',
+              ? 'rgba(255, 255, 255, 0.02)'
+              : 'rgba(0, 0, 0, 0.02)',
           transition: 'all 0.2s ease-in-out',
           '&:hover': {
             borderColor: disabled || isUploading || isFull ? undefined : '#3b82f6',
@@ -287,8 +308,8 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
               disabled || isUploading || isFull
                 ? undefined
                 : isDark
-                ? 'rgba(255, 255, 255, 0.04)'
-                : 'rgba(0, 0, 0, 0.04)',
+                  ? 'rgba(255, 255, 255, 0.04)'
+                  : 'rgba(0, 0, 0, 0.04)',
           },
           display: 'flex',
           flexDirection: 'column',
@@ -298,9 +319,14 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
         }}
       >
         {isUploading ? (
-          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, py: 1 }}>
+          <Box
+            sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, py: 1 }}
+          >
             <CircularProgress size={32} sx={{ color: '#3b82f6' }} />
-            <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#64748b', fontWeight: 500 }}>
+            <Typography
+              variant="body2"
+              sx={{ color: isDark ? '#d0caeb' : '#64748b', fontWeight: 500 }}
+            >
               {uploadProgressText || t.uploadingGalleryFiles}
             </Typography>
           </Box>
@@ -328,7 +354,9 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
                 fontSize: '0.9rem',
               }}
             >
-              {isFull ? (t.errGalleryMax || 'Maximum 6 gallery items allowed') : t.dragDropGalleryFiles}
+              {isFull
+                ? t.errGalleryMax || 'Maximum 6 gallery items allowed'
+                : t.dragDropGalleryFiles}
             </Typography>
             <Typography
               variant="caption"
@@ -398,7 +426,10 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
             border: isDark ? '1px dashed rgba(255,255,255,0.1)' : '1px dashed rgba(0,0,0,0.1)',
           }}
         >
-          <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)' }}>
+          <Typography
+            variant="body2"
+            sx={{ color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)' }}
+          >
             {t.galleryNoItems}
           </Typography>
         </Box>
@@ -425,7 +456,9 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
                   p: 1.25,
                   borderRadius: '10px',
                   backgroundColor: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.03)',
-                  border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                  border: isDark
+                    ? '1px solid rgba(255,255,255,0.08)'
+                    : '1px solid rgba(0,0,0,0.08)',
                   position: 'relative',
                   overflow: 'hidden',
                 }}

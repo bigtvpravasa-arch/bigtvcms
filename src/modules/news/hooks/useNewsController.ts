@@ -38,10 +38,13 @@ export function useNewsController() {
     }
   }, []);
 
-  const fetchPage = useCallback(async (pageNumber: number = 1, limit: number = 100) => {
-    const skip = Math.max(0, pageNumber - 1) * limit;
-    return fetchPosts(skip, limit);
-  }, [fetchPosts]);
+  const fetchPage = useCallback(
+    async (pageNumber: number = 1, limit: number = 100) => {
+      const skip = Math.max(0, pageNumber - 1) * limit;
+      return fetchPosts(skip, limit);
+    },
+    [fetchPosts]
+  );
 
   const getPostById = useCallback(async (id: number) => {
     setLoading(true);

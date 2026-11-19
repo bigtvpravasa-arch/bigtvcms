@@ -160,11 +160,18 @@ export const SyncChannelModal: React.FC<SyncChannelModalProps> = ({
         )}
       </DialogTitle>
 
-      <DialogContent sx={{ px: 3, py: 3, display: 'flex', flexDirection: 'column', gap: 2.5, mt: 1 }}>
+      <DialogContent
+        sx={{ px: 3, py: 3, display: 'flex', flexDirection: 'column', gap: 2.5, mt: 1 }}
+      >
         <Box>
           <Typography
             variant="caption"
-            sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700, display: 'block', mb: 0.6 }}
+            sx={{
+              color: isDark ? '#a6e2f5' : '#1c1445',
+              fontWeight: 700,
+              display: 'block',
+              mb: 0.6,
+            }}
           >
             {t.channelIdLabel} *
           </Typography>
@@ -188,7 +195,12 @@ export const SyncChannelModal: React.FC<SyncChannelModalProps> = ({
         <Box>
           <Typography
             variant="caption"
-            sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700, display: 'block', mb: 0.6 }}
+            sx={{
+              color: isDark ? '#a6e2f5' : '#1c1445',
+              fontWeight: 700,
+              display: 'block',
+              mb: 0.6,
+            }}
           >
             {t.languageLabel} *
           </Typography>
@@ -235,7 +247,12 @@ export const SyncChannelModal: React.FC<SyncChannelModalProps> = ({
         <Box>
           <Typography
             variant="caption"
-            sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700, display: 'block', mb: 0.6 }}
+            sx={{
+              color: isDark ? '#a6e2f5' : '#1c1445',
+              fontWeight: 700,
+              display: 'block',
+              mb: 0.6,
+            }}
           >
             {t.maxResultsLabel}
           </Typography>

@@ -12,7 +12,15 @@ import {
   Alert,
   Collapse,
 } from '@mui/material';
-import { Add, Delete, PlayCircleOutline, Movie, ExpandMore, ExpandLess, CloudUpload } from '@mui/icons-material';
+import {
+  Add,
+  Delete,
+  PlayCircleOutline,
+  Movie,
+  ExpandMore,
+  ExpandLess,
+  CloudUpload,
+} from '@mui/icons-material';
 import { ImageUploader } from './ImageUploader';
 import { VideoUploader } from './VideoUploader';
 import { useLanguageStore } from '@/core/storage/language-store';
@@ -63,7 +71,8 @@ const translations: Record<string, any> = {
     duration: 'వ్యవధి (నిమిషాలు)',
     saveEpisode: 'ఎపిసోడ్‌ని జోడించు',
     cancel: 'రద్దు చేయి',
-    noEpisodes: 'ఇంకా ఎలాంటి ఎపిసోడ్‌లు జోడించబడలేదు. మొదటి ఎపిసోడ్‌ని జోడించడానికి "+ Add Episode" క్లిక్ చేయండి.',
+    noEpisodes:
+      'ఇంకా ఎలాంటి ఎపిసోడ్‌లు జోడించబడలేదు. మొదటి ఎపిసోడ్‌ని జోడించడానికి "+ Add Episode" క్లిక్ చేయండి.',
     deleteEp: 'ఎపిసోడ్‌ని తొలగించు',
   },
   hi: {
@@ -93,7 +102,8 @@ const translations: Record<string, any> = {
     duration: 'ദൈർഘ്യം (മിനിറ്റ്)',
     saveEpisode: 'എപ്പിസോഡ് ചേർക്കുക',
     cancel: 'റദ്ദാക്കുക',
-    noEpisodes: 'ഇതുവരെ എപ്പിസോഡുകളൊന്നും ചേർത്തിട്ടില്ല. ആദ്യ എപ്പിസോഡ് ചേർക്കാൻ "+ Add Episode" ക്ലിക്ക് ചെയ്യുക.',
+    noEpisodes:
+      'ഇതുവരെ എപ്പിസോഡുകളൊന്നും ചേർത്തിട്ടില്ല. ആദ്യ എപ്പിസോഡ് ചേർക്കാൻ "+ Add Episode" ക്ലിക്ക് ചെയ്യുക.',
     deleteEp: 'എപ്പിസോഡ് നീക്കംചെയ്യുക',
   },
 };
@@ -170,11 +180,23 @@ export const EpisodesSectionUI: React.FC<EpisodesSectionUIProps> = ({
       }}
     >
       {/* Section Header */}
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5, flexWrap: 'wrap', gap: 1 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          mb: 1.5,
+          flexWrap: 'wrap',
+          gap: 1,
+        }}
+      >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Movie sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.4rem' }} />
           <Box>
-            <Typography variant="subtitle1" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445', lineHeight: 1.2 }}>
+            <Typography
+              variant="subtitle1"
+              sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445', lineHeight: 1.2 }}
+            >
               {t.sectionTitle} ({episodes.length})
             </Typography>
             <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
@@ -218,11 +240,18 @@ export const EpisodesSectionUI: React.FC<EpisodesSectionUIProps> = ({
             gap: 2,
           }}
         >
-          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#1c1445' }}>
+          <Typography
+            variant="subtitle2"
+            sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#1c1445' }}
+          >
             ➕ {t.addEpisode}
           </Typography>
 
-          {error && <Alert severity="error" sx={{ borderRadius: '8px' }}>{error}</Alert>}
+          {error && (
+            <Alert severity="error" sx={{ borderRadius: '8px' }}>
+              {error}
+            </Alert>
+          )}
 
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 3fr' }, gap: 2 }}>
             <TextField
@@ -230,9 +259,14 @@ export const EpisodesSectionUI: React.FC<EpisodesSectionUIProps> = ({
               type="number"
               size="small"
               value={newEp.episodeNumber || 1}
-              onChange={(e) => setNewEp((prev) => ({ ...prev, episodeNumber: parseInt(e.target.value, 10) || 1 }))}
+              onChange={(e) =>
+                setNewEp((prev) => ({ ...prev, episodeNumber: parseInt(e.target.value, 10) || 1 }))
+              }
               sx={{
-                '& .MuiOutlinedInput-root': { color: isDark ? '#ffffff' : '#1c1445', borderRadius: '10px' },
+                '& .MuiOutlinedInput-root': {
+                  color: isDark ? '#ffffff' : '#1c1445',
+                  borderRadius: '10px',
+                },
                 '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
               }}
             />
@@ -242,7 +276,10 @@ export const EpisodesSectionUI: React.FC<EpisodesSectionUIProps> = ({
               value={newEp.title || ''}
               onChange={(e) => setNewEp((prev) => ({ ...prev, title: e.target.value }))}
               sx={{
-                '& .MuiOutlinedInput-root': { color: isDark ? '#ffffff' : '#1c1445', borderRadius: '10px' },
+                '& .MuiOutlinedInput-root': {
+                  color: isDark ? '#ffffff' : '#1c1445',
+                  borderRadius: '10px',
+                },
                 '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
               }}
             />
@@ -256,7 +293,10 @@ export const EpisodesSectionUI: React.FC<EpisodesSectionUIProps> = ({
             value={newEp.description || ''}
             onChange={(e) => setNewEp((prev) => ({ ...prev, description: e.target.value }))}
             sx={{
-              '& .MuiOutlinedInput-root': { color: isDark ? '#ffffff' : '#1c1445', borderRadius: '10px' },
+              '& .MuiOutlinedInput-root': {
+                color: isDark ? '#ffffff' : '#1c1445',
+                borderRadius: '10px',
+              },
               '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
             }}
           />
@@ -286,10 +326,15 @@ export const EpisodesSectionUI: React.FC<EpisodesSectionUIProps> = ({
             type="number"
             size="small"
             value={newEp.duration || 45}
-            onChange={(e) => setNewEp((prev) => ({ ...prev, duration: parseInt(e.target.value, 10) || 45 }))}
+            onChange={(e) =>
+              setNewEp((prev) => ({ ...prev, duration: parseInt(e.target.value, 10) || 45 }))
+            }
             sx={{
               width: { xs: '100%', sm: '220px' },
-              '& .MuiOutlinedInput-root': { color: isDark ? '#ffffff' : '#1c1445', borderRadius: '10px' },
+              '& .MuiOutlinedInput-root': {
+                color: isDark ? '#ffffff' : '#1c1445',
+                borderRadius: '10px',
+              },
               '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
             }}
           />
@@ -345,20 +390,31 @@ export const EpisodesSectionUI: React.FC<EpisodesSectionUIProps> = ({
                 borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
               }}
             >
-              <CardContent sx={{ p: '12px 16px !important', display: 'flex', alignItems: 'center', gap: 2 }}>
+              <CardContent
+                sx={{ p: '12px 16px !important', display: 'flex', alignItems: 'center', gap: 2 }}
+              >
                 <Box
                   component="img"
-                  src={ep.thumbnail || 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=200'}
+                  src={
+                    ep.thumbnail ||
+                    'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=200'
+                  }
                   alt={ep.title}
                   sx={{ width: 64, height: 44, borderRadius: '8px', objectFit: 'cover' }}
                 />
 
                 <Box sx={{ flex: 1 }}>
-                  <Typography variant="subtitle2" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}
+                  >
                     Ep {ep.episodeNumber}: {ep.title}
                   </Typography>
                   {ep.description && (
-                    <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', display: 'block' }}>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: isDark ? '#d0caeb' : '#5c548a', display: 'block' }}
+                    >
                       {ep.description}
                     </Typography>
                   )}

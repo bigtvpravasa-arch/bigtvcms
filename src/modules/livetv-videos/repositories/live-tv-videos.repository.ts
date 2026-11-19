@@ -1,5 +1,11 @@
 import { videoApiClient } from '@/core/api/api-client';
-import { VideoTag, TagVideo, LanguageCode, TagLanguage, SegregatedVideoTags } from '../domain/LiveTvVideo';
+import {
+  VideoTag,
+  TagVideo,
+  LanguageCode,
+  TagLanguage,
+  SegregatedVideoTags,
+} from '../domain/LiveTvVideo';
 
 export interface CreateVideoTagDto {
   name: string;

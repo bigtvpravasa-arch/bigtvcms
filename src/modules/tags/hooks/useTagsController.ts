@@ -164,9 +164,7 @@ export function useTagsController() {
         const updateDto = TagMapper.toUpdateDto(form, undefined, currentTag?.isActive);
         const response = await TagsRepository.update(editingId, updateDto);
         const updatedDomainTag = TagMapper.toDomain(response.data);
-        setRows((prev) =>
-          prev.map((t) => (t.aitagid === editingId ? updatedDomainTag : t))
-        );
+        setRows((prev) => prev.map((t) => (t.aitagid === editingId ? updatedDomainTag : t)));
         showToast('AI Tag updated successfully!', 'success');
         handleCloseDrawer();
       } else {
@@ -205,9 +203,7 @@ export function useTagsController() {
       );
       const response = await TagsRepository.update(id, updateDto);
       const updatedDomainTag = TagMapper.toDomain(response.data);
-      setRows((prev) =>
-        prev.map((t) => (t.aitagid === id ? updatedDomainTag : t))
-      );
+      setRows((prev) => prev.map((t) => (t.aitagid === id ? updatedDomainTag : t)));
       setError(null);
       showToast(`AI Tag ${nextActiveState ? 'activated' : 'deactivated'} successfully!`, 'info');
     } catch (err: any) {
@@ -264,4 +260,3 @@ export function useTagsController() {
     toggleActive,
   };
 }
-

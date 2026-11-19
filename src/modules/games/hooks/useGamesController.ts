@@ -149,7 +149,10 @@ export const useGamesController = () => {
 
   // Sync selectedGameId if games change and selectedGameId is not valid
   useEffect(() => {
-    if (games.length > 0 && !games.some((g) => g.slug === selectedGameId || g.id === selectedGameId)) {
+    if (
+      games.length > 0 &&
+      !games.some((g) => g.slug === selectedGameId || g.id === selectedGameId)
+    ) {
       setSelectedGameId(games[0].slug || games[0].id);
     }
   }, [games, selectedGameId]);
@@ -183,7 +186,8 @@ export const useGamesController = () => {
       // Merge daily assignments if available
       if (dailyResult.status === 'fulfilled' && dailyResult.value) {
         const dRes = dailyResult.value as any;
-        const dailyItems: any[] = dRes.items || dRes.data?.items || (Array.isArray(dRes) ? dRes : []);
+        const dailyItems: any[] =
+          dRes.items || dRes.data?.items || (Array.isArray(dRes) ? dRes : []);
         const dailyMap = new Map<string, { puzzleDate: string; isToday?: boolean }>();
         dailyItems.forEach((d) => {
           if (d.levelId && d.puzzleDate && !dailyMap.has(d.levelId)) {
@@ -329,7 +333,8 @@ export const useGamesController = () => {
   };
 
   const handleDeleteLevel = async (level: LevelItem) => {
-    if (!window.confirm(`Are you sure you want to delete level '${level.title || level.levelId}'?`)) return;
+    if (!window.confirm(`Are you sure you want to delete level '${level.title || level.levelId}'?`))
+      return;
     try {
       await GamesRepository.deleteLevel(selectedGameId, level.levelId || level.id);
       fetchLevels();
@@ -349,7 +354,9 @@ export const useGamesController = () => {
   const [streaksFilter, setStreaksFilter] = useState('');
   const [streakStatusFilter, setStreakStatusFilter] = useState('all');
   const [streakActionDialogOpen, setStreakActionDialogOpen] = useState(false);
-  const [selectedStreakRequest, setSelectedStreakRequest] = useState<StreakRecoveryItem | null>(null);
+  const [selectedStreakRequest, setSelectedStreakRequest] = useState<StreakRecoveryItem | null>(
+    null
+  );
   const [streakActionType, setStreakActionType] = useState<'approve' | 'reject'>('approve');
   const streaksPerPage = 10;
 

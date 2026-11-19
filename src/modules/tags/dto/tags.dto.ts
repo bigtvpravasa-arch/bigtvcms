@@ -43,4 +43,3 @@ export interface UpdateAiTagResponse {
   message: string;
   data: AiTagDto;
 }
-

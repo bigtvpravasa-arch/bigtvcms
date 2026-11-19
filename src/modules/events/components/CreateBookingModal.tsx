@@ -114,7 +114,10 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
       </DialogTitle>
 
       <form onSubmit={handleSubmit}>
-        <DialogContent dividers sx={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}>
+        <DialogContent
+          dividers
+          sx={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+        >
           {error && (
             <Typography variant="body2" sx={{ color: '#ef4444', mb: 2 }}>
               {error}
@@ -122,29 +125,52 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
           )}
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Box sx={{ p: 1.5, borderRadius: 1.5, bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)' }}>
-              <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary', display: 'block' }}>
+            <Box
+              sx={{
+                p: 1.5,
+                borderRadius: 1.5,
+                bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+              }}
+            >
+              <Typography
+                variant="caption"
+                sx={{
+                  color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary',
+                  display: 'block',
+                }}
+              >
                 Target Event:
               </Typography>
               <Typography variant="subtitle2" fontWeight={700} sx={{ color: '#ea580c' }}>
                 BIGTV Folk Night 2026 (Bigtv-2026)
               </Typography>
-              <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}>
+              <Typography
+                variant="caption"
+                sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}
+              >
                 Dec 12, 2026, 06:00 PM IST • Boulder Hills Golf Club, Hyderabad
               </Typography>
             </Box>
 
             <FormControl fullWidth size="small">
-              <InputLabel id="tier-select-label">{t.lblSelectTier || 'Select Ticket Tier'}</InputLabel>
+              <InputLabel id="tier-select-label">
+                {t.lblSelectTier || 'Select Ticket Tier'}
+              </InputLabel>
               <Select
                 labelId="tier-select-label"
                 value={ticketTypeId}
                 label={t.lblSelectTier || 'Select Ticket Tier'}
                 onChange={(e) => setTicketTypeId(e.target.value)}
               >
-                <MenuItem value="db5b7a7b-61d8-4460-bd63-f23acfe8ed53">Regular — ₹500 (5,000 Seats)</MenuItem>
-                <MenuItem value="690b2622-f9b4-457a-843e-a9cf2c7a15fb">Early Bird — ₹1,000 (3,000 Seats)</MenuItem>
-                <MenuItem value="6676784b-e4f5-4c35-ae35-244d322854dd">Fanpit — ₹3,000 (300 VIP Seats)</MenuItem>
+                <MenuItem value="db5b7a7b-61d8-4460-bd63-f23acfe8ed53">
+                  Regular — ₹500 (5,000 Seats)
+                </MenuItem>
+                <MenuItem value="690b2622-f9b4-457a-843e-a9cf2c7a15fb">
+                  Early Bird — ₹1,000 (3,000 Seats)
+                </MenuItem>
+                <MenuItem value="6676784b-e4f5-4c35-ae35-244d322854dd">
+                  Fanpit — ₹3,000 (300 VIP Seats)
+                </MenuItem>
               </Select>
             </FormControl>
 
@@ -154,7 +180,9 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
               size="small"
               fullWidth
               value={quantity}
-              onChange={(e) => setQuantity(Math.max(1, Math.min(10, parseInt(e.target.value) || 1)))}
+              onChange={(e) =>
+                setQuantity(Math.max(1, Math.min(10, parseInt(e.target.value) || 1)))
+              }
               inputProps={{ min: 1, max: 10 }}
             />
 
@@ -216,12 +244,26 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
             </Box>
 
             {/* Price Breakdown */}
-            <Box sx={{ p: 2, borderRadius: 1.5, bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)', mt: 1 }}>
+            <Box
+              sx={{
+                p: 2,
+                borderRadius: 1.5,
+                bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+                mt: 1,
+              }}
+            >
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
-                <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'text.secondary' }}>
+                <Typography
+                  variant="body2"
+                  sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'text.secondary' }}
+                >
                   Subtotal ({quantity} × ₹{unitPrice}):
                 </Typography>
-                <Typography variant="body2" fontWeight={600} sx={{ color: isDark ? '#FFFFFF' : '#1e293b' }}>
+                <Typography
+                  variant="body2"
+                  fontWeight={600}
+                  sx={{ color: isDark ? '#FFFFFF' : '#1e293b' }}
+                >
                   ₹{subTotal.toLocaleString('en-IN')}
                 </Typography>
               </Box>
@@ -235,9 +277,15 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
                   </Typography>
                 </Box>
               )}
-              <Divider sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+              <Divider
+                sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+              />
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Typography variant="subtitle1" fontWeight={700} sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}>
+                <Typography
+                  variant="subtitle1"
+                  fontWeight={700}
+                  sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}
+                >
                   Total Payable:
                 </Typography>
                 <Typography variant="h6" fontWeight={700} sx={{ color: '#ea580c' }}>
@@ -248,7 +296,9 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
           </Box>
         </DialogContent>
 
-        <DialogActions sx={{ p: 2, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}>
+        <DialogActions
+          sx={{ p: 2, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+        >
           <Button onClick={onClose} disabled={loading} sx={{ textTransform: 'none' }}>
             {t.btnCancel || 'Cancel'}
           </Button>
@@ -262,7 +312,7 @@ export const CreateBookingModal: React.FC<CreateBookingModalProps> = ({
               '&:hover': { bgcolor: '#c2410c' },
             }}
           >
-            {loading ? 'Creating...' : (t.btnSave || 'Create Booking')}
+            {loading ? 'Creating...' : t.btnSave || 'Create Booking'}
           </Button>
         </DialogActions>
       </form>

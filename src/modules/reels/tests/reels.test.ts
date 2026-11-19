@@ -15,7 +15,9 @@ jest.mock('@/core/api/api-client', () => ({
 
 describe('extractYouTubeVideoId helper', () => {
   it('should extract video ID from various YouTube URL formats', () => {
-    expect(extractYouTubeVideoId('https://www.youtube.com/watch?v=GSgLMsux9zM')).toBe('GSgLMsux9zM');
+    expect(extractYouTubeVideoId('https://www.youtube.com/watch?v=GSgLMsux9zM')).toBe(
+      'GSgLMsux9zM'
+    );
     expect(extractYouTubeVideoId('https://youtu.be/GSgLMsux9zM')).toBe('GSgLMsux9zM');
     expect(extractYouTubeVideoId('https://www.youtube.com/shorts/GSgLMsux9zM')).toBe('GSgLMsux9zM');
     expect(extractYouTubeVideoId('GSgLMsux9zM')).toBe('GSgLMsux9zM');
@@ -81,7 +83,11 @@ describe('ReelsService API Methods', () => {
     (apiClient.get as jest.Mock).mockResolvedValueOnce(mockData);
 
     const res = await ReelsService.fetchYouTubeShorts(0, 20, 'te');
-    expect(apiClient.get).toHaveBeenCalledWith('/youtube/videos', { skip: 0, limit: 20, lang: 'te' });
+    expect(apiClient.get).toHaveBeenCalledWith('/youtube/videos', {
+      skip: 0,
+      limit: 20,
+      lang: 'te',
+    });
     expect(res).toEqual(mockData);
   });
 
@@ -112,7 +118,11 @@ describe('ReelsService API Methods', () => {
     (apiClient.get as jest.Mock).mockResolvedValueOnce(mockData);
 
     const res = await ReelsService.fetchYouTubeVideos(0, 50, 'te');
-    expect(apiClient.get).toHaveBeenCalledWith('/youtube/videos', { skip: 0, limit: 50, lang: 'te' });
+    expect(apiClient.get).toHaveBeenCalledWith('/youtube/videos', {
+      skip: 0,
+      limit: 50,
+      lang: 'te',
+    });
     expect(res).toEqual(mockData);
   });
 
@@ -203,7 +213,13 @@ describe('ReelsService API Methods', () => {
   });
 
   it('should call uploaded reels CRUD methods in ReelsService', async () => {
-    const mockReel = { title: 'Test Reel', description: 'Desc', videoUrl: 'http://video.mp4', thumbnailUrl: 'http://img.jpg', durationSeconds: 30 };
+    const mockReel = {
+      title: 'Test Reel',
+      description: 'Desc',
+      videoUrl: 'http://video.mp4',
+      thumbnailUrl: 'http://img.jpg',
+      durationSeconds: 30,
+    };
 
     (apiClient.post as jest.Mock).mockResolvedValueOnce(mockReel);
     const created = await ReelsService.createUploadedReel(mockReel as any);
@@ -225,7 +241,10 @@ describe('ReelsService API Methods', () => {
     expect(apiClient.put).toHaveBeenCalledWith('/reels/123', mockReel);
     expect(updated).toEqual(mockReel);
 
-    (apiClient.delete as jest.Mock).mockResolvedValueOnce({ status: 'success', message: 'deleted' });
+    (apiClient.delete as jest.Mock).mockResolvedValueOnce({
+      status: 'success',
+      message: 'deleted',
+    });
     const deleted = await ReelsService.deleteUploadedReel('123');
     expect(apiClient.delete).toHaveBeenCalledWith('/reels/123');
     expect(deleted.status).toBe('success');
@@ -254,10 +273,9 @@ describe('useReelsController hook', () => {
       await result.current.togglePublish(result.current.rows[0].reelId);
     });
     expect(result.current.rows[0].isPublished).toBe(true);
-    expect(apiClient.put).toHaveBeenCalledWith(
-      `/youtube/videos/${result.current.rows[0].reelId}`,
-      { isPublish: true }
-    );
+    expect(apiClient.put).toHaveBeenCalledWith(`/youtube/videos/${result.current.rows[0].reelId}`, {
+      isPublish: true,
+    });
   });
 
   it('should open and close drawer properly', () => {
@@ -295,7 +313,9 @@ describe('useReelsController hook', () => {
     });
     expect(result.current.form.videoUrl).toBe('https://www.youtube.com/watch?v=GSgLMsux9zM');
     expect(result.current.form.videoId).toBe('GSgLMsux9zM');
-    expect(result.current.uploadedImage).toBe('https://i.ytimg.com/vi/GSgLMsux9zM/maxresdefault.jpg');
+    expect(result.current.uploadedImage).toBe(
+      'https://i.ytimg.com/vi/GSgLMsux9zM/maxresdefault.jpg'
+    );
   });
 
   it('should auto-populate videoUrl when videoId is entered directly', () => {
@@ -412,11 +432,17 @@ describe('useReelsController hook', () => {
     expect(result.current.rows[0].titleEn).toBe('CM Revanth Fires on KCR');
     expect(result.current.rows[0].views).toBe('18');
     expect(result.current.rows[0].isPublished).toBe(true);
-    expect(result.current.rows[0].imageUrl).toBe('https://i.ytimg.com/vi/-TxWeXwuPx8/maxresdefault.jpg');
+    expect(result.current.rows[0].imageUrl).toBe(
+      'https://i.ytimg.com/vi/-TxWeXwuPx8/maxresdefault.jpg'
+    );
   });
 
   it('should send selected language code in create reel API call', async () => {
-    (apiClient.post as jest.Mock).mockResolvedValueOnce({ id: '999', title: 'Malayalam Reel', lang: 'ml' });
+    (apiClient.post as jest.Mock).mockResolvedValueOnce({
+      id: '999',
+      title: 'Malayalam Reel',
+      lang: 'ml',
+    });
 
     const { result } = renderHook(() => useReelsController());
     act(() => {
@@ -444,7 +470,11 @@ describe('useReelsController hook', () => {
   });
 
   it('should send updated language code in update reel API call', async () => {
-    (apiClient.put as jest.Mock).mockResolvedValueOnce({ id: '101', title: 'Updated Reel', lang: 'en' });
+    (apiClient.put as jest.Mock).mockResolvedValueOnce({
+      id: '101',
+      title: 'Updated Reel',
+      lang: 'en',
+    });
 
     const { result } = renderHook(() => useReelsController());
     const targetReel = result.current.rows[0];

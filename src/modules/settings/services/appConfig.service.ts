@@ -11,7 +11,10 @@ export const appConfigService = {
   },
 
   async updateAppConfig(id: string, data: Partial<AppConfigData>): Promise<AppConfigData> {
-    const response = await eventsApiClient.patch<{ success: boolean; data: AppConfigData }>(`/app-config/${id}`, data);
+    const response = await eventsApiClient.patch<{ success: boolean; data: AppConfigData }>(
+      `/app-config/${id}`,
+      data
+    );
     return response.data;
   },
 };

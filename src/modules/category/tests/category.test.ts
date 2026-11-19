@@ -115,9 +115,12 @@ describe('useCategoryController hook with API integration', () => {
     });
 
     expect(result.current.rows[0].isFollowed).toBe(true);
-    expect(CategoryRepository.update).toHaveBeenCalledWith(296, expect.objectContaining({
-      is_active: true,
-    }));
+    expect(CategoryRepository.update).toHaveBeenCalledWith(
+      296,
+      expect.objectContaining({
+        is_active: true,
+      })
+    );
   });
 
   it('should rollback follow state if update API fails', async () => {

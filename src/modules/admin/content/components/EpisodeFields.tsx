@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  TextField,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Select,
-} from '@mui/material';
+import { Box, TextField, MenuItem, FormControl, InputLabel, Select } from '@mui/material';
 import { UseFormReturn, Controller } from 'react-hook-form';
 import { StandaloneEpisodeFormValues } from '../schemas/content.schema';
 import { ParentContentItem } from '../domain/content.model';
@@ -72,7 +65,10 @@ export const EpisodeFields: React.FC<EpisodeFieldsProps> = ({
 }) => {
   const { language } = useLanguageStore();
   const t = translations[language] || translations.en;
-  const { control, formState: { errors } } = form;
+  const {
+    control,
+    formState: { errors },
+  } = form;
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
@@ -191,7 +187,10 @@ export const EpisodeFields: React.FC<EpisodeFieldsProps> = ({
                 onUploadStateChange={onUploadStateChange}
               />
               {errors.video && (
-                <Box component="span" sx={{ color: 'error.main', fontSize: '0.75rem', mt: 0.5, display: 'block' }}>
+                <Box
+                  component="span"
+                  sx={{ color: 'error.main', fontSize: '0.75rem', mt: 0.5, display: 'block' }}
+                >
                   {errors.video.message}
                 </Box>
               )}

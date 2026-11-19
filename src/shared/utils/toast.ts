@@ -6,11 +6,7 @@ export interface ToastDetail {
   title?: string;
 }
 
-export function showToast(
-  message: string,
-  severity: ToastSeverity = 'info',
-  title?: string
-): void {
+export function showToast(message: string, severity: ToastSeverity = 'info', title?: string): void {
   if (typeof window !== 'undefined') {
     window.dispatchEvent(
       new CustomEvent<ToastDetail>('app-toast', {

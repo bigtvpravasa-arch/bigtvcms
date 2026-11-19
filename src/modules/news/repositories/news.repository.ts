@@ -30,19 +30,32 @@ export class NewsRepository {
 
   static async create(dto: CreateNewsPostDto): Promise<NewsPostDto> {
     const cleaned = cleanPayload(dto);
-    const createdPost = await apiClient.post<NewsPostDto, CreateNewsPostDto>('/news-posts', cleaned);
+    const createdPost = await apiClient.post<NewsPostDto, CreateNewsPostDto>(
+      '/news-posts',
+      cleaned
+    );
 
     if (createdPost && createdPost.id && dto.sendNotification) {
       try {
         const rawContent = createdPost.content || dto.content || 'Read our latest article now';
-        const cleanContent = rawContent.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim() || 'Read our latest article now';
+        const cleanContent =
+          rawContent
+            .replace(/<[^>]*>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim() || 'Read our latest article now';
         const rawLink = createdPost.postUrl || dto.postUrl || (cleaned as any).webUrl || '';
-        const link = rawLink.startsWith('http') || rawLink.startsWith('myapp://')
-          ? rawLink
-          : `https://app.chotanews.com/individualPage?postId=${createdPost.id}`;
+        const link =
+          rawLink.startsWith('http') || rawLink.startsWith('myapp://')
+            ? rawLink
+            : `https://app.chotanews.com/individualPage?postId=${createdPost.id}`;
 
         const notificationPayload: SendNotificationDto = {
-          title: createdPost.notificationtitle || createdPost.title || dto.notificationtitle || dto.title || 'New Blog Published',
+          title:
+            createdPost.notificationtitle ||
+            createdPost.title ||
+            dto.notificationtitle ||
+            dto.title ||
+            'New Blog Published',
           content: cleanContent,
           post_id: createdPost.id,
           link,

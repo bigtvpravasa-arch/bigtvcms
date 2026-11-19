@@ -20,7 +20,12 @@ interface VideoEditModalProps {
   open: boolean;
   onClose: () => void;
   video: TagVideo | null;
-  onSave: (videoId: string, fileName: string, viewCount: number, thumbnailUrl?: string) => Promise<void>;
+  onSave: (
+    videoId: string,
+    fileName: string,
+    viewCount: number,
+    thumbnailUrl?: string
+  ) => Promise<void>;
   isDark: boolean;
   t: Record<string, string>;
 }
@@ -112,7 +117,14 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
         },
       }}
     >
-      <DialogTitle sx={{ fontWeight: 700, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <DialogTitle
+        sx={{
+          fontWeight: 700,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
         <span>{t.editVideo || 'Edit Video'}</span>
         <IconButton
           onClick={onClose}
@@ -123,7 +135,10 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
           <Close fontSize="small" />
         </IconButton>
       </DialogTitle>
-      <DialogContent dividers sx={{ borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
+      <DialogContent
+        dividers
+        sx={{ borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
+      >
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, mt: 1 }}>
           {error && (
             <Typography variant="body2" color="error">
@@ -184,7 +199,10 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
               backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#fafafa',
             }}
           >
-            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: isDark ? '#a5b4fc' : '#5c548a' }}>
+            <Typography
+              variant="subtitle2"
+              sx={{ fontWeight: 600, color: isDark ? '#a5b4fc' : '#5c548a' }}
+            >
               {t.thumbnailLabel || 'Thumbnail Image'}
             </Typography>
 
@@ -197,7 +215,9 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
                   height: 160,
                   borderRadius: '8px',
                   overflow: 'hidden',
-                  border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.15)',
+                  border: isDark
+                    ? '1px solid rgba(255,255,255,0.15)'
+                    : '1px solid rgba(0,0,0,0.15)',
                   backgroundColor: isDark ? 'rgba(0,0,0,0.4)' : '#000000',
                   display: 'flex',
                   alignItems: 'center',
@@ -263,8 +283,8 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
                 }}
               >
                 {uploading
-                  ? (t.uploading || 'Uploading...')
-                  : (t.uploadThumbnail || 'Upload Thumbnail')}
+                  ? t.uploading || 'Uploading...'
+                  : t.uploadThumbnail || 'Upload Thumbnail'}
                 <input
                   type="file"
                   hidden
@@ -312,7 +332,11 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
         </Box>
       </DialogContent>
       <DialogActions sx={{ p: 2 }}>
-        <Button onClick={onClose} disabled={loading || uploading} sx={{ color: isDark ? '#94a3b8' : undefined }}>
+        <Button
+          onClick={onClose}
+          disabled={loading || uploading}
+          sx={{ color: isDark ? '#94a3b8' : undefined }}
+        >
           {t.cancel || 'Cancel'}
         </Button>
         <Button
@@ -325,7 +349,7 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
             '&:hover': { backgroundColor: '#1d4ed8' },
           }}
         >
-          {loading ? (t.saving || 'Saving...') : (t.save || 'Save')}
+          {loading ? t.saving || 'Saving...' : t.save || 'Save'}
         </Button>
       </DialogActions>
     </Dialog>

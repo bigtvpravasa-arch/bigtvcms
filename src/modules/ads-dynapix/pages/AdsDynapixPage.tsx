@@ -38,9 +38,11 @@ const translations = {
     searchId: 'Filter by Banner ID...',
     addBannerBtn: 'Add Banner Record',
     accessDenied: 'Access Denied',
-    accessDeniedDesc: 'You do not have sufficient permissions to access Ads Dynapix. Only Administrators and SuperAdmins can manage ad banners.',
+    accessDeniedDesc:
+      'You do not have sufficient permissions to access Ads Dynapix. Only Administrators and SuperAdmins can manage ad banners.',
     noCampaignsFound: 'No Ad Banners Found',
-    noCampaignsSub: 'Try adjusting your search query or click "Add Banner Record" to upload new banners.',
+    noCampaignsSub:
+      'Try adjusting your search query or click "Add Banner Record" to upload new banners.',
     viewDetails: 'View Details',
     delete: 'Delete Banner',
   },
@@ -56,7 +58,8 @@ const translations = {
     searchId: 'బ్యానర్ ID తో శోధించండి...',
     addBannerBtn: 'బ్యానర్ రికార్డ్‌ను జోడించండి',
     accessDenied: 'అనుమతి తిరస్కరించబడింది',
-    accessDeniedDesc: 'యాడ్స్ డైనాపిక్స్ యాక్సెస్ చేయడానికి మీకు సరిపోవు అనుమతులు లేవు. నిర్వాహకులు మాత్రమే దీన్ని నిర్వహించగలరు.',
+    accessDeniedDesc:
+      'యాడ్స్ డైనాపిక్స్ యాక్సెస్ చేయడానికి మీకు సరిపోవు అనుమతులు లేవు. నిర్వాహకులు మాత్రమే దీన్ని నిర్వహించగలరు.',
     noCampaignsFound: 'యాడ్ బ్యానర్‌లు కనుగొనబడలేదు',
     noCampaignsSub: 'ఫిల్టర్‌లను సరిచేసి మళ్లీ ప్రయత్నించండి.',
     viewDetails: 'వివరాలను చూడండి',
@@ -74,7 +77,8 @@ const translations = {
     searchId: 'बैनर ID से खोजें...',
     addBannerBtn: 'बैनर रिकॉर्ड जोड़ें',
     accessDenied: 'अभिगम अस्वीकृत',
-    accessDeniedDesc: 'आपके पास ऐड्स डायनापिक्स तक पहुँचने के लिए पर्याप्त अनुमतियाँ नहीं हैं। केवल प्रशासक ही इसे प्रबंधित कर सकते हैं।',
+    accessDeniedDesc:
+      'आपके पास ऐड्स डायनापिक्स तक पहुँचने के लिए पर्याप्त अनुमतियाँ नहीं हैं। केवल प्रशासक ही इसे प्रबंधित कर सकते हैं।',
     noCampaignsFound: 'कोई विज्ञापन बैनर नहीं मिला',
     noCampaignsSub: 'फ़िल्टर समायोजित करें और पुनः प्रयास करें।',
     viewDetails: 'विवरण देखें',
@@ -92,7 +96,8 @@ const translations = {
     searchId: 'ബാനർ ID തിരയുക...',
     addBannerBtn: 'ബാനർ റെക്കോർഡ് ചേർക്കുക',
     accessDenied: 'അനുമതി നിഷേധിച്ചു',
-    accessDeniedDesc: 'ആഡ്സ് ഡൈനാപിക്സ് ആക്സസ് ചെയ്യാൻ നിങ്ങൾക്ക് മതിയായ അനുമതികളില്ല. അഡ്മിനിസ്ട്രേറ്റർമാർക്ക് മാത്രമേ ഇത് മാനേജ് ചെയ്യാനാകൂ.',
+    accessDeniedDesc:
+      'ആഡ്സ് ഡൈനാപിക്സ് ആക്സസ് ചെയ്യാൻ നിങ്ങൾക്ക് മതിയായ അനുമതികളില്ല. അഡ്മിനിസ്ട്രേറ്റർമാർക്ക് മാത്രമേ ഇത് മാനേജ് ചെയ്യാനാകൂ.',
     noCampaignsFound: 'പരസ്യ ബാനറുകളൊന്നും കണ്ടെത്തിയില്ല',
     noCampaignsSub: 'തിരയൽ ക്രമീകരിക്കുക.',
     viewDetails: 'വിശദാംശങ്ങൾ കാണുക',
@@ -166,7 +171,15 @@ export const AdsDynapixPage: React.FC = () => {
       <Sidebar activeHref="/ads-dynapix" />
 
       {/* Main Container */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
         <Header title={t.pageTitle} />
 
         <Box sx={{ pt: 2, px: 3, pb: 4, flex: 1, overflowY: 'auto' }}>
@@ -186,7 +199,10 @@ export const AdsDynapixPage: React.FC = () => {
               }}
             >
               <Lock sx={{ fontSize: '3rem', color: '#f44336', mb: 2 }} />
-              <Typography variant="h5" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 700, mb: 1 }}>
+              <Typography
+                variant="h5"
+                sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 700, mb: 1 }}
+              >
                 {t.accessDenied}
               </Typography>
               <Typography variant="body1" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
@@ -214,12 +230,18 @@ export const AdsDynapixPage: React.FC = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <Search sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontSize: '1.1rem' }} />
+                        <Search
+                          sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontSize: '1.1rem' }}
+                        />
                       </InputAdornment>
                     ),
                     endAdornment: filterTitle ? (
                       <InputAdornment position="end">
-                        <IconButton size="small" onClick={() => setFilterTitle('')} sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}>
+                        <IconButton
+                          size="small"
+                          onClick={() => setFilterTitle('')}
+                          sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}
+                        >
                           <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
                         </IconButton>
                       </InputAdornment>
@@ -244,12 +266,24 @@ export const AdsDynapixPage: React.FC = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <Typography sx={{ fontSize: '0.75rem', color: isDark ? '#d0caeb' : '#9e9e9e', fontWeight: 700 }}>#</Typography>
+                        <Typography
+                          sx={{
+                            fontSize: '0.75rem',
+                            color: isDark ? '#d0caeb' : '#9e9e9e',
+                            fontWeight: 700,
+                          }}
+                        >
+                          #
+                        </Typography>
                       </InputAdornment>
                     ),
                     endAdornment: filterId ? (
                       <InputAdornment position="end">
-                        <IconButton size="small" onClick={() => setFilterId('')} sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}>
+                        <IconButton
+                          size="small"
+                          onClick={() => setFilterId('')}
+                          sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}
+                        >
                           <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
                         </IconButton>
                       </InputAdornment>
@@ -306,7 +340,9 @@ export const AdsDynapixPage: React.FC = () => {
                     '& .MuiPaginationItem-root': {
                       color: isDark ? '#d0caeb' : '#5c548a',
                       borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
-                      '&:hover': { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' },
+                      '&:hover': {
+                        backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+                      },
                       '&.Mui-selected': {
                         backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
                         color: isDark ? '#a6e2f5' : '#1c1445',

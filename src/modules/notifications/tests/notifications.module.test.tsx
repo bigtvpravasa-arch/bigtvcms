@@ -157,14 +157,7 @@ describe('NotificationsTable Component', () => {
   });
 
   it('renders correctly in light mode with no items', () => {
-    render(
-      <NotificationsTable
-        items={[]}
-        isDark={false}
-        t={dummyT}
-        skip={0}
-      />
-    );
+    render(<NotificationsTable items={[]} isDark={false} t={dummyT} skip={0} />);
 
     expect(screen.getByText('No notification records found.')).toBeInTheDocument();
   });

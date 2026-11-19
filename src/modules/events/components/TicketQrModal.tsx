@@ -12,13 +12,7 @@ import {
   Chip,
   Divider,
 } from '@mui/material';
-import {
-  Festival,
-  CalendarToday,
-  LocationOn,
-  QrCode2,
-  CheckCircle,
-} from '@mui/icons-material';
+import { Festival, CalendarToday, LocationOn, QrCode2, CheckCircle } from '@mui/icons-material';
 import { BookingItem } from '../domain/event.types';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
 
@@ -45,7 +39,8 @@ export const TicketQrModal: React.FC<TicketQrModalProps> = ({
   const qrSrc =
     booking.qrCodeBase64 ||
     `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(
-      booking.verifyUrl || `https://api.pravasamedia.com/api/v1/bookings/verify-qr/${booking.bookingCode}`
+      booking.verifyUrl ||
+        `https://api.pravasamedia.com/api/v1/bookings/verify-qr/${booking.bookingCode}`
     )}`;
 
   const isConfirmed = booking.bookingStatus === 'CONFIRMED' && booking.paymentStatus === 'PAID';
@@ -80,7 +75,8 @@ export const TicketQrModal: React.FC<TicketQrModalProps> = ({
           BIGTV FOLK NIGHT 2026
         </Typography>
         <Typography variant="caption" sx={{ opacity: 0.9, display: 'block' }}>
-          Official Gate Entry Pass • {booking.ticketType?.name || booking.ticketTypeName || 'Concert Ticket'}
+          Official Gate Entry Pass •{' '}
+          {booking.ticketType?.name || booking.ticketTypeName || 'Concert Ticket'}
         </Typography>
       </Box>
 
@@ -122,7 +118,10 @@ export const TicketQrModal: React.FC<TicketQrModalProps> = ({
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <CalendarToday sx={{ fontSize: 18, color: '#ea580c' }} />
-            <Typography variant="body2" sx={{ color: isDark ? '#FFFFFF' : '#1e293b', fontWeight: 600 }}>
+            <Typography
+              variant="body2"
+              sx={{ color: isDark ? '#FFFFFF' : '#1e293b', fontWeight: 600 }}
+            >
               Saturday, Dec 12, 2026 • 06:00 PM IST
             </Typography>
           </Box>
@@ -134,19 +133,31 @@ export const TicketQrModal: React.FC<TicketQrModalProps> = ({
             </Typography>
           </Box>
 
-          <Divider sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+          <Divider
+            sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+          />
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}>
+            <Typography
+              variant="caption"
+              sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}
+            >
               Attendee:
             </Typography>
-            <Typography variant="body2" fontWeight={600} sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}>
+            <Typography
+              variant="body2"
+              fontWeight={600}
+              sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}
+            >
               {booking.userName}
             </Typography>
           </Box>
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}>
+            <Typography
+              variant="caption"
+              sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}
+            >
               Mobile Phone:
             </Typography>
             <Typography variant="body2" sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}>
@@ -155,16 +166,29 @@ export const TicketQrModal: React.FC<TicketQrModalProps> = ({
           </Box>
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}>
+            <Typography
+              variant="caption"
+              sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}
+            >
               Quantity & Tier:
             </Typography>
-            <Typography variant="body2" fontWeight={600} sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}>
-              {booking.quantity} × {booking.ticketType?.name || booking.ticketTypeName || 'Ticket'} (₹{booking.totalAmount})
+            <Typography
+              variant="body2"
+              fontWeight={600}
+              sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}
+            >
+              {booking.quantity} × {booking.ticketType?.name || booking.ticketTypeName || 'Ticket'}{' '}
+              (₹{booking.totalAmount})
             </Typography>
           </Box>
 
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 0.5 }}>
-            <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}>
+          <Box
+            sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 0.5 }}
+          >
+            <Typography
+              variant="caption"
+              sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}
+            >
               Status:
             </Typography>
             <Box sx={{ display: 'flex', gap: 1 }}>
@@ -173,7 +197,10 @@ export const TicketQrModal: React.FC<TicketQrModalProps> = ({
                 size="small"
                 sx={{
                   fontWeight: 600,
-                  bgcolor: booking.paymentStatus === 'PAID' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                  bgcolor:
+                    booking.paymentStatus === 'PAID'
+                      ? 'rgba(16, 185, 129, 0.15)'
+                      : 'rgba(239, 68, 68, 0.15)',
                   color: booking.paymentStatus === 'PAID' ? '#10b981' : '#ef4444',
                 }}
               />
@@ -185,8 +212,8 @@ export const TicketQrModal: React.FC<TicketQrModalProps> = ({
                   bgcolor: isCompleted
                     ? 'rgba(59, 130, 246, 0.15)'
                     : isConfirmed
-                    ? 'rgba(16, 185, 129, 0.15)'
-                    : 'rgba(245, 158, 11, 0.15)',
+                      ? 'rgba(16, 185, 129, 0.15)'
+                      : 'rgba(245, 158, 11, 0.15)',
                   color: isCompleted ? '#3b82f6' : isConfirmed ? '#10b981' : '#f59e0b',
                 }}
               />
@@ -195,7 +222,9 @@ export const TicketQrModal: React.FC<TicketQrModalProps> = ({
         </Box>
       </DialogContent>
 
-      <DialogActions sx={{ p: 2, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}>
+      <DialogActions
+        sx={{ p: 2, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+      >
         <Button onClick={onClose} sx={{ textTransform: 'none' }}>
           {t.btnCancel || 'Close'}
         </Button>

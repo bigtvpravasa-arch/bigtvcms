@@ -18,7 +18,10 @@ export const MovieFields: React.FC<MovieFieldsProps> = ({
   onUploadStateChange,
   trailerOptions = [],
 }) => {
-  const { control, formState: { errors } } = form;
+  const {
+    control,
+    formState: { errors },
+  } = form;
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>

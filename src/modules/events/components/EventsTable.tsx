@@ -43,13 +43,41 @@ export const EventsTable: React.FC<EventsTableProps> = ({
   const getStatusChip = (status: string) => {
     switch (status) {
       case 'UPCOMING':
-        return <Chip label={t.statusUpcoming || 'UPCOMING'} size="small" color="primary" sx={{ fontWeight: 600 }} />;
+        return (
+          <Chip
+            label={t.statusUpcoming || 'UPCOMING'}
+            size="small"
+            color="primary"
+            sx={{ fontWeight: 600 }}
+          />
+        );
       case 'LIVE':
-        return <Chip label={t.statusLive || 'LIVE'} size="small" color="success" sx={{ fontWeight: 600 }} />;
+        return (
+          <Chip
+            label={t.statusLive || 'LIVE'}
+            size="small"
+            color="success"
+            sx={{ fontWeight: 600 }}
+          />
+        );
       case 'COMPLETED':
-        return <Chip label={t.statusCompleted || 'COMPLETED'} size="small" color="default" sx={{ fontWeight: 600 }} />;
+        return (
+          <Chip
+            label={t.statusCompleted || 'COMPLETED'}
+            size="small"
+            color="default"
+            sx={{ fontWeight: 600 }}
+          />
+        );
       case 'CANCELLED':
-        return <Chip label={t.statusCancelled || 'CANCELLED'} size="small" color="error" sx={{ fontWeight: 600 }} />;
+        return (
+          <Chip
+            label={t.statusCancelled || 'CANCELLED'}
+            size="small"
+            color="error"
+            sx={{ fontWeight: 600 }}
+          />
+        );
       default:
         return <Chip label={status} size="small" />;
     }
@@ -75,7 +103,9 @@ export const EventsTable: React.FC<EventsTableProps> = ({
               '& th': {
                 fontWeight: 700,
                 color: isDark ? '#a5b4fc' : '#475569',
-                borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                borderBottom: isDark
+                  ? '1px solid rgba(255,255,255,0.08)'
+                  : '1px solid rgba(0,0,0,0.08)',
               },
             }}
           >
@@ -113,13 +143,22 @@ export const EventsTable: React.FC<EventsTableProps> = ({
                   sx={{
                     '&:last-child td, &:last-child th': { border: 0 },
                     '& td': {
-                      borderBottom: isDark ? '1px solid rgba(255,255,255,0.05)' : '1px solid rgba(0,0,0,0.05)',
+                      borderBottom: isDark
+                        ? '1px solid rgba(255,255,255,0.05)'
+                        : '1px solid rgba(0,0,0,0.05)',
                       color: isDark ? '#e2e8f0' : '#1e293b',
                     },
                   }}
                 >
                   <TableCell>
-                    <Typography variant="caption" sx={{ fontFamily: 'monospace', fontWeight: 600, color: isDark ? '#818cf8' : '#2563eb' }}>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        fontFamily: 'monospace',
+                        fontWeight: 600,
+                        color: isDark ? '#818cf8' : '#2563eb',
+                      }}
+                    >
                       {evt.code}
                     </Typography>
                   </TableCell>
@@ -136,7 +175,10 @@ export const EventsTable: React.FC<EventsTableProps> = ({
                         <Typography variant="body2" sx={{ fontWeight: 600 }}>
                           {evt.name}
                         </Typography>
-                        <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
+                        <Typography
+                          variant="caption"
+                          sx={{ color: isDark ? '#94a3b8' : '#64748b' }}
+                        >
                           {evt.organizer}
                         </Typography>
                       </Box>
@@ -159,7 +201,12 @@ export const EventsTable: React.FC<EventsTableProps> = ({
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                       <CalendarToday sx={{ fontSize: 14, color: isDark ? '#94a3b8' : '#64748b' }} />
                       <Typography variant="body2">
-                        {evt.date ? (evt.date.includes('T') ? evt.date.split('T')[0] : evt.date) : ''} ({evt.time})
+                        {evt.date
+                          ? evt.date.includes('T')
+                            ? evt.date.split('T')[0]
+                            : evt.date
+                          : ''}{' '}
+                        ({evt.time})
                       </Typography>
                     </Box>
                   </TableCell>
@@ -179,7 +226,10 @@ export const EventsTable: React.FC<EventsTableProps> = ({
                         <Typography variant="caption" sx={{ fontWeight: 600 }}>
                           {evt.availableSeats} / {evt.totalSeats} seats
                         </Typography>
-                        <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
+                        <Typography
+                          variant="caption"
+                          sx={{ color: isDark ? '#94a3b8' : '#64748b' }}
+                        >
                           {bookedPct}% booked
                         </Typography>
                       </Box>

@@ -140,7 +140,11 @@ describe('usePostTypeController', () => {
   });
 
   it('should toggle active status optimistic update and call update API', async () => {
-    (apiClient.put as jest.Mock).mockResolvedValue({ typeId: 1, typename: 'Hai', typeStatus: false });
+    (apiClient.put as jest.Mock).mockResolvedValue({
+      typeId: 1,
+      typename: 'Hai',
+      typeStatus: false,
+    });
     const { result } = renderHook(() => usePostTypeController());
     await act(async () => {});
 
@@ -148,7 +152,10 @@ describe('usePostTypeController', () => {
       await result.current.toggleActive(1);
     });
 
-    expect(apiClient.put).toHaveBeenCalledWith('/post-types/1', { typename: 'Hai', typeStatus: false });
+    expect(apiClient.put).toHaveBeenCalledWith('/post-types/1', {
+      typename: 'Hai',
+      typeStatus: false,
+    });
     expect(result.current.rows.find((r) => r.typeId === 1)?.typeStatus).toBe(false);
   });
 
@@ -178,7 +185,11 @@ describe('usePostTypeController', () => {
   });
 
   it('should handle open drawer, edit mode, and submit new post type', async () => {
-    (apiClient.post as jest.Mock).mockResolvedValue({ typeId: 3, typename: 'NewType', typeStatus: true });
+    (apiClient.post as jest.Mock).mockResolvedValue({
+      typeId: 3,
+      typename: 'NewType',
+      typeStatus: true,
+    });
     const { result } = renderHook(() => usePostTypeController());
     await act(async () => {});
 
@@ -199,11 +210,18 @@ describe('usePostTypeController', () => {
 
     expect(success).toBe(true);
     expect(result.current.drawerOpen).toBe(false);
-    expect(apiClient.post).toHaveBeenCalledWith('/post-types', { typename: 'NewType', typeStatus: true });
+    expect(apiClient.post).toHaveBeenCalledWith('/post-types', {
+      typename: 'NewType',
+      typeStatus: true,
+    });
   });
 
   it('should handle update post type submit in edit mode', async () => {
-    (apiClient.put as jest.Mock).mockResolvedValue({ typeId: 1, typename: 'UpdatedType', typeStatus: true });
+    (apiClient.put as jest.Mock).mockResolvedValue({
+      typeId: 1,
+      typename: 'UpdatedType',
+      typeStatus: true,
+    });
     const { result } = renderHook(() => usePostTypeController());
     await act(async () => {});
 
@@ -222,6 +240,9 @@ describe('usePostTypeController', () => {
     });
 
     expect(success).toBe(true);
-    expect(apiClient.put).toHaveBeenCalledWith('/post-types/1', { typename: 'UpdatedType', typeStatus: true });
+    expect(apiClient.put).toHaveBeenCalledWith('/post-types/1', {
+      typename: 'UpdatedType',
+      typeStatus: true,
+    });
   });
 });

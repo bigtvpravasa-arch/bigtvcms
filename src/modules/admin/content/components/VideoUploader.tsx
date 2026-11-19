@@ -81,7 +81,10 @@ export const VideoUploader: React.FC<VideoUploaderProps> = ({
           },
         });
       } catch (putErr: any) {
-        console.warn('Direct PUT upload returned warning/CORS notice, proceeding with file_url:', putErr);
+        console.warn(
+          'Direct PUT upload returned warning/CORS notice, proceeding with file_url:',
+          putErr
+        );
       }
 
       setUploadProgress(100);
@@ -107,7 +110,17 @@ export const VideoUploader: React.FC<VideoUploaderProps> = ({
 
   return (
     <Box>
-      <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, mb: 1, display: 'flex', alignItems: 'center', gap: 0.8 }}>
+      <Typography
+        variant="body2"
+        sx={{
+          color: isDark ? '#d0caeb' : '#5c548a',
+          fontWeight: 600,
+          mb: 1,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 0.8,
+        }}
+      >
         <VideoLibrary sx={{ fontSize: '1.1rem' }} /> {label}
       </Typography>
 
@@ -137,14 +150,45 @@ export const VideoUploader: React.FC<VideoUploaderProps> = ({
             component="video"
             controls={!isUploading}
             src={displayVideo}
-            sx={{ width: '100%', maxHeight: '220px', display: 'block', borderRadius: '12px', opacity: isUploading ? 0.5 : 1 }}
+            sx={{
+              width: '100%',
+              maxHeight: '220px',
+              display: 'block',
+              borderRadius: '12px',
+              opacity: isUploading ? 0.5 : 1,
+            }}
           />
           {isUploading && (
-            <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '80%', textAlign: 'center', backgroundColor: 'rgba(0,0,0,0.7)', p: 2, borderRadius: '12px', backdropFilter: 'blur(4px)' }}>
-              <Typography variant="body2" sx={{ color: '#ffffff', fontWeight: 600, display: 'block', mb: 1 }}>
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '80%',
+                textAlign: 'center',
+                backgroundColor: 'rgba(0,0,0,0.7)',
+                p: 2,
+                borderRadius: '12px',
+                backdropFilter: 'blur(4px)',
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: '#ffffff', fontWeight: 600, display: 'block', mb: 1 }}
+              >
                 Uploading video file ({uploadProgress}%)...
               </Typography>
-              <LinearProgress variant="determinate" value={uploadProgress} sx={{ borderRadius: '4px', height: '6px', '& .MuiLinearProgress-bar': { backgroundColor: '#a6e2f5' }, backgroundColor: 'rgba(255,255,255,0.2)' }} />
+              <LinearProgress
+                variant="determinate"
+                value={uploadProgress}
+                sx={{
+                  borderRadius: '4px',
+                  height: '6px',
+                  '& .MuiLinearProgress-bar': { backgroundColor: '#a6e2f5' },
+                  backgroundColor: 'rgba(255,255,255,0.2)',
+                }}
+              />
             </Box>
           )}
           <IconButton
@@ -161,7 +205,7 @@ export const VideoUploader: React.FC<VideoUploaderProps> = ({
               backgroundColor: 'rgba(0,0,0,0.7)',
               color: '#ffffff',
               '&:hover': { backgroundColor: '#f44336' },
-              ...(isUploading && { opacity: 0.5, pointerEvents: 'none' })
+              ...(isUploading && { opacity: 0.5, pointerEvents: 'none' }),
             }}
           >
             <Delete fontSize="small" />
@@ -169,7 +213,10 @@ export const VideoUploader: React.FC<VideoUploaderProps> = ({
         </Box>
       ) : (
         <Box
-          onDragOver={(e) => { e.preventDefault(); setIsDragOver(true); }}
+          onDragOver={(e) => {
+            e.preventDefault();
+            setIsDragOver(true);
+          }}
           onDragLeave={() => setIsDragOver(false)}
           onDrop={handleDrop}
           onClick={() => {
@@ -181,13 +228,15 @@ export const VideoUploader: React.FC<VideoUploaderProps> = ({
             border: isDragOver
               ? '2px dashed #3b82f6'
               : isDark
-              ? '2px dashed rgba(166,226,245,0.25)'
-              : '2px dashed rgba(28,20,69,0.2)',
+                ? '2px dashed rgba(166,226,245,0.25)'
+                : '2px dashed rgba(28,20,69,0.2)',
             backgroundColor: isDragOver
-              ? (isDark ? 'rgba(59,130,246,0.15)' : 'rgba(59,130,246,0.08)')
+              ? isDark
+                ? 'rgba(59,130,246,0.15)'
+                : 'rgba(59,130,246,0.08)'
               : isDark
-              ? 'rgba(255,255,255,0.03)'
-              : '#f8fafc',
+                ? 'rgba(255,255,255,0.03)'
+                : '#f8fafc',
             textAlign: 'center',
             cursor: disabled || isUploading ? 'default' : 'pointer',
             transition: 'all 0.2s ease',
@@ -199,18 +248,38 @@ export const VideoUploader: React.FC<VideoUploaderProps> = ({
         >
           {isUploading ? (
             <Box sx={{ width: '100%' }}>
-              <Typography variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600, display: 'block', mb: 1 }}>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: isDark ? '#a6e2f5' : '#1c1445',
+                  fontWeight: 600,
+                  display: 'block',
+                  mb: 1,
+                }}
+              >
                 Uploading video file ({uploadProgress}%)...
               </Typography>
-              <LinearProgress variant="determinate" value={uploadProgress} sx={{ borderRadius: '4px', height: '6px' }} />
+              <LinearProgress
+                variant="determinate"
+                value={uploadProgress}
+                sx={{ borderRadius: '4px', height: '6px' }}
+              />
             </Box>
           ) : (
             <>
-              <CloudUpload sx={{ fontSize: '2.4rem', color: isDark ? '#a6e2f5' : '#1c1445', mb: 0.5 }} />
-              <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}>
+              <CloudUpload
+                sx={{ fontSize: '2.4rem', color: isDark ? '#a6e2f5' : '#1c1445', mb: 0.5 }}
+              />
+              <Typography
+                variant="body2"
+                sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}
+              >
                 Drag & drop {label.toLowerCase()} or click to browse
               </Typography>
-              <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', display: 'block', mt: 0.5 }}>
+              <Typography
+                variant="caption"
+                sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', display: 'block', mt: 0.5 }}
+              >
                 Supports MP4, MKV, MOV, WebM (Direct Presigned R2 Upload)
               </Typography>
             </>

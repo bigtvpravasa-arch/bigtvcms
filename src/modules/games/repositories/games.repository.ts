@@ -25,7 +25,9 @@ export class GamesRepository {
   }
 
   static async getGame(idOrSlug: string): Promise<GameItem> {
-    const res = await gamesApiClient.get<{ data?: GameItem } | GameItem>(`/admin/games/${idOrSlug}`);
+    const res = await gamesApiClient.get<{ data?: GameItem } | GameItem>(
+      `/admin/games/${idOrSlug}`
+    );
     if (res && typeof res === 'object' && 'data' in res && (res as any).data) {
       return (res as any).data;
     }
@@ -36,12 +38,23 @@ export class GamesRepository {
     return gamesApiClient.post<{ message: string; data: GameItem }>('/admin/games', dto);
   }
 
-  static async updateGame(idOrSlug: string, dto: UpdateGameDto): Promise<{ message: string; data: GameItem }> {
-    return gamesApiClient.patch<{ message: string; data: GameItem }>(`/admin/games/${idOrSlug}`, dto);
+  static async updateGame(
+    idOrSlug: string,
+    dto: UpdateGameDto
+  ): Promise<{ message: string; data: GameItem }> {
+    return gamesApiClient.patch<{ message: string; data: GameItem }>(
+      `/admin/games/${idOrSlug}`,
+      dto
+    );
   }
 
-  static async toggleGameActive(idOrSlug: string, isActive: boolean): Promise<{ message: string; data: GameItem }> {
-    return gamesApiClient.patch<{ message: string; data: GameItem }>(`/admin/games/${idOrSlug}`, { isActive });
+  static async toggleGameActive(
+    idOrSlug: string,
+    isActive: boolean
+  ): Promise<{ message: string; data: GameItem }> {
+    return gamesApiClient.patch<{ message: string; data: GameItem }>(`/admin/games/${idOrSlug}`, {
+      isActive,
+    });
   }
 
   static async deleteGame(idOrSlug: string): Promise<{ message: string; data?: unknown }> {
@@ -60,8 +73,14 @@ export class GamesRepository {
     return gamesApiClient.post<unknown>(`/admin/games/${gameId}/levels/generate`, params);
   }
 
-  static async validateLevel(gameId: string, payload: ValidateLevelDto): Promise<ValidateLevelResponse> {
-    return gamesApiClient.post<ValidateLevelResponse>(`/admin/games/${gameId}/levels/validate`, payload);
+  static async validateLevel(
+    gameId: string,
+    payload: ValidateLevelDto
+  ): Promise<ValidateLevelResponse> {
+    return gamesApiClient.post<ValidateLevelResponse>(
+      `/admin/games/${gameId}/levels/validate`,
+      payload
+    );
   }
 
   static async createLevel(gameId: string, dto: CreateLevelDto): Promise<unknown> {
@@ -72,8 +91,13 @@ export class GamesRepository {
     return gamesApiClient.patch<unknown>(`/admin/games/${gameId}/levels/${levelId}`, dto);
   }
 
-  static async deleteLevel(gameId: string, levelId: string): Promise<{ message: string; deletedLevelId?: string }> {
-    return gamesApiClient.delete<{ message: string; deletedLevelId?: string }>(`/admin/games/${gameId}/levels/${levelId}`);
+  static async deleteLevel(
+    gameId: string,
+    levelId: string
+  ): Promise<{ message: string; deletedLevelId?: string }> {
+    return gamesApiClient.delete<{ message: string; deletedLevelId?: string }>(
+      `/admin/games/${gameId}/levels/${levelId}`
+    );
   }
 
   static async publishLevel(gameId: string, levelId: string): Promise<unknown> {
@@ -92,17 +116,25 @@ export class GamesRepository {
     gameId: string,
     page = 1,
     pageSize = 100
-  ): Promise<{ items: Array<{ id?: string; puzzleDate: string; levelId: string; isToday?: boolean }> }> {
-    return gamesApiClient.get<{ items: Array<{ id?: string; puzzleDate: string; levelId: string; isToday?: boolean }> }>(
-      `/admin/games/${gameId}/daily-levels`,
-      { page, pageSize }
-    );
+  ): Promise<{
+    items: Array<{ id?: string; puzzleDate: string; levelId: string; isToday?: boolean }>;
+  }> {
+    return gamesApiClient.get<{
+      items: Array<{ id?: string; puzzleDate: string; levelId: string; isToday?: boolean }>;
+    }>(`/admin/games/${gameId}/daily-levels`, { page, pageSize });
   }
 
-  static async assignDailyLevel(gameId: string, date: string, levelIds: string[]): Promise<AssignDailyLevelResponse> {
-    return gamesApiClient.put<AssignDailyLevelResponse>(`/admin/games/${gameId}/daily-levels/${date}`, {
-      levelIds,
-    });
+  static async assignDailyLevel(
+    gameId: string,
+    date: string,
+    levelIds: string[]
+  ): Promise<AssignDailyLevelResponse> {
+    return gamesApiClient.put<AssignDailyLevelResponse>(
+      `/admin/games/${gameId}/daily-levels/${date}`,
+      {
+        levelIds,
+      }
+    );
   }
 
   static async importLevels(gameId: string, data: ImportLevelsDto): Promise<unknown> {

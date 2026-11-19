@@ -58,7 +58,9 @@ export const TicketsTable: React.FC<TicketsTableProps> = ({
               '& th': {
                 fontWeight: 700,
                 color: isDark ? '#a5b4fc' : '#475569',
-                borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                borderBottom: isDark
+                  ? '1px solid rgba(255,255,255,0.08)'
+                  : '1px solid rgba(0,0,0,0.08)',
               },
             }}
           >
@@ -88,7 +90,9 @@ export const TicketsTable: React.FC<TicketsTableProps> = ({
                 sx={{
                   '&:last-child td, &:last-child th': { border: 0 },
                   '& td': {
-                    borderBottom: isDark ? '1px solid rgba(255,255,255,0.05)' : '1px solid rgba(0,0,0,0.05)',
+                    borderBottom: isDark
+                      ? '1px solid rgba(255,255,255,0.05)'
+                      : '1px solid rgba(0,0,0,0.05)',
                     color: isDark ? '#e2e8f0' : '#1e293b',
                   },
                 }}
@@ -101,10 +105,10 @@ export const TicketsTable: React.FC<TicketsTableProps> = ({
                           tkt.name.toLowerCase() === 'gold'
                             ? '#f59e0b'
                             : tkt.name.toLowerCase() === 'silver'
-                            ? '#94a3b8'
-                            : tkt.name.toLowerCase() === 'bronze'
-                            ? '#cd7f32'
-                            : '#3b82f6',
+                              ? '#94a3b8'
+                              : tkt.name.toLowerCase() === 'bronze'
+                                ? '#cd7f32'
+                                : '#3b82f6',
                       }}
                     />
                     <Box>
@@ -122,18 +126,20 @@ export const TicketsTable: React.FC<TicketsTableProps> = ({
                             tkt.name.toLowerCase() === 'gold'
                               ? 'rgba(245, 158, 11, 0.15)'
                               : tkt.name.toLowerCase() === 'silver'
-                              ? 'rgba(148, 163, 184, 0.15)'
-                              : tkt.name.toLowerCase() === 'bronze'
-                              ? 'rgba(205, 127, 50, 0.15)'
-                              : 'rgba(59, 130, 246, 0.15)',
+                                ? 'rgba(148, 163, 184, 0.15)'
+                                : tkt.name.toLowerCase() === 'bronze'
+                                  ? 'rgba(205, 127, 50, 0.15)'
+                                  : 'rgba(59, 130, 246, 0.15)',
                           color:
                             tkt.name.toLowerCase() === 'gold'
                               ? '#f59e0b'
                               : tkt.name.toLowerCase() === 'silver'
-                              ? isDark ? '#cbd5e1' : '#475569'
-                              : tkt.name.toLowerCase() === 'bronze'
-                              ? '#d97706'
-                              : '#3b82f6',
+                                ? isDark
+                                  ? '#cbd5e1'
+                                  : '#475569'
+                                : tkt.name.toLowerCase() === 'bronze'
+                                  ? '#d97706'
+                                  : '#3b82f6',
                         }}
                       />
                     </Box>
@@ -162,7 +168,10 @@ export const TicketsTable: React.FC<TicketsTableProps> = ({
                 </TableCell>
 
                 <TableCell sx={{ maxWidth: 220 }}>
-                  <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b', display: 'block' }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: isDark ? '#94a3b8' : '#64748b', display: 'block' }}
+                  >
                     {tkt.description}
                   </Typography>
                 </TableCell>
@@ -189,7 +198,11 @@ export const TicketsTable: React.FC<TicketsTableProps> = ({
                     </Tooltip>
                   )}
                   <Tooltip title={t.btnDelete || 'Delete Category'}>
-                    <IconButton size="small" onClick={() => onDelete(tkt.id)} sx={{ color: '#ef4444' }}>
+                    <IconButton
+                      size="small"
+                      onClick={() => onDelete(tkt.id)}
+                      sx={{ color: '#ef4444' }}
+                    >
                       <Delete fontSize="small" />
                     </IconButton>
                   </Tooltip>

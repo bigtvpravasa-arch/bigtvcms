@@ -18,7 +18,11 @@ import {
   Divider,
 } from '@mui/material';
 import { Close, SportsCricket } from '@mui/icons-material';
-import { CricketMatchItem, UpdateCricketMatchDto, CricketMatchStatus } from '../domain/ratings.types';
+import {
+  CricketMatchItem,
+  UpdateCricketMatchDto,
+  CricketMatchStatus,
+} from '../domain/ratings.types';
 import { useLanguageStore } from '@/core/storage/language-store';
 import { ratingsTranslations } from '../translations';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
@@ -110,7 +114,9 @@ export const CricketMatchModal: React.FC<CricketMatchModalProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+            borderBottom: isDark
+              ? '1px solid rgba(255,255,255,0.08)'
+              : '1px solid rgba(0,0,0,0.08)',
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>

@@ -32,7 +32,7 @@ export const useAppConfigController = () => {
     try {
       const updatedData = { ...config, [key]: value };
       setConfig(updatedData);
-      
+
       await appConfigService.updateAppConfig(config.id, { [key]: value });
     } catch (err: any) {
       setError(err.message || 'Failed to update config');
@@ -50,7 +50,7 @@ export const useAppConfigController = () => {
       const updatedExtraFlags = { ...config.extraFlags, [key]: value };
       const updatedData = { ...config, extraFlags: updatedExtraFlags };
       setConfig(updatedData);
-      
+
       await appConfigService.updateAppConfig(config.id, { extraFlags: updatedExtraFlags });
     } catch (err: any) {
       setError(err.message || 'Failed to update config');
@@ -66,6 +66,6 @@ export const useAppConfigController = () => {
     saving,
     error,
     updateConfig,
-    updateExtraFlag
+    updateExtraFlag,
   };
 };

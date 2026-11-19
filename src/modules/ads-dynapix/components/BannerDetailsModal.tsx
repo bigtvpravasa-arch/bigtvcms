@@ -46,13 +46,24 @@ export const BannerDetailsModal: React.FC<BannerDetailsModalProps> = ({
           mb: 2,
         }}
       >
-        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#2563eb', mb: 1 }}>
+        <Typography
+          variant="subtitle2"
+          sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#2563eb', mb: 1 }}
+        >
           {title}
         </Typography>
 
         {/* Horizontal Banners */}
         <Box sx={{ mb: 1.5 }}>
-          <Typography variant="caption" sx={{ fontWeight: 600, color: isDark ? '#d0caeb' : '#5c548a', display: 'block', mb: 0.5 }}>
+          <Typography
+            variant="caption"
+            sx={{
+              fontWeight: 600,
+              color: isDark ? '#d0caeb' : '#5c548a',
+              display: 'block',
+              mb: 0.5,
+            }}
+          >
             Horizontal Banners ({group.HBanner?.length || 0})
           </Typography>
           {hasH ? (
@@ -78,7 +89,10 @@ export const BannerDetailsModal: React.FC<BannerDetailsModalProps> = ({
               ))}
             </Box>
           ) : (
-            <Typography variant="caption" sx={{ color: isDark ? '#8d87b3' : '#9e9e9e', fontStyle: 'italic' }}>
+            <Typography
+              variant="caption"
+              sx={{ color: isDark ? '#8d87b3' : '#9e9e9e', fontStyle: 'italic' }}
+            >
               No horizontal banners configured
             </Typography>
           )}
@@ -86,7 +100,15 @@ export const BannerDetailsModal: React.FC<BannerDetailsModalProps> = ({
 
         {/* Vertical Banners */}
         <Box>
-          <Typography variant="caption" sx={{ fontWeight: 600, color: isDark ? '#d0caeb' : '#5c548a', display: 'block', mb: 0.5 }}>
+          <Typography
+            variant="caption"
+            sx={{
+              fontWeight: 600,
+              color: isDark ? '#d0caeb' : '#5c548a',
+              display: 'block',
+              mb: 0.5,
+            }}
+          >
             Vertical Banners ({group.VBanner?.length || 0})
           </Typography>
           {hasV ? (
@@ -112,7 +134,10 @@ export const BannerDetailsModal: React.FC<BannerDetailsModalProps> = ({
               ))}
             </Box>
           ) : (
-            <Typography variant="caption" sx={{ color: isDark ? '#8d87b3' : '#9e9e9e', fontStyle: 'italic' }}>
+            <Typography
+              variant="caption"
+              sx={{ color: isDark ? '#8d87b3' : '#9e9e9e', fontStyle: 'italic' }}
+            >
               No vertical banners configured
             </Typography>
           )}
@@ -137,12 +162,19 @@ export const BannerDetailsModal: React.FC<BannerDetailsModalProps> = ({
           },
         }}
       >
-        <DialogTitle component="div" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', pb: 1 }}>
+        <DialogTitle
+          component="div"
+          sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', pb: 1 }}
+        >
           <Box>
             <Typography component="div" variant="h6" sx={{ fontWeight: 700 }}>
               {banner.productName}
             </Typography>
-            <Typography component="div" variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#2563eb', fontWeight: 600 }}>
+            <Typography
+              component="div"
+              variant="caption"
+              sx={{ color: isDark ? '#a6e2f5' : '#2563eb', fontWeight: 600 }}
+            >
               ID: {banner.id}
             </Typography>
           </Box>

@@ -111,7 +111,10 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
               color: '#ffffff',
               fontSize: '0.8rem',
               borderRadius: '8px',
-              border: mode === 'dark' ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(0, 0, 0, 0.08)',
+              border:
+                mode === 'dark'
+                  ? '1px solid rgba(255, 255, 255, 0.15)'
+                  : '1px solid rgba(0, 0, 0, 0.08)',
               boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
               padding: '8px 12px',
             },

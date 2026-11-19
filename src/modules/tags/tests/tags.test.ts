@@ -159,7 +159,7 @@ describe('useTagsController hook', () => {
 
   it('should initialize and fetch tags from repository', async () => {
     const { result } = renderHook(() => useTagsController());
-    
+
     // Wait for the async useEffect to complete
     await act(async () => {
       await Promise.resolve();
@@ -298,7 +298,12 @@ describe('useTagsController hook', () => {
       data: {
         aitagid: targetId,
         aitagname: 'Trending',
-        aitagnameTranslations: { en: 'Trending', te: 'ట్రెండింగ్', hi: 'ట్రెండింగ్', ml: 'ട്രെൻഡിംഗ്' },
+        aitagnameTranslations: {
+          en: 'Trending',
+          te: 'ట్రెండింగ్',
+          hi: 'ట్రెండింగ్',
+          ml: 'ട്രെൻഡിംഗ്',
+        },
         is_active: !initialStatus,
       },
     });

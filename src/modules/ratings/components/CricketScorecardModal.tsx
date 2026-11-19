@@ -92,8 +92,24 @@ export const CricketScorecardModal: React.FC<CricketScorecardModalProps> = ({
           : null,
       ].filter(Boolean)
     : match.batsmen || [
-        { name: 'Shubman Gill', runs: 48, balls: 32, fours: 5, sixes: 2, strikeRate: 150.0, isNotOut: true },
-        { name: 'KL Rahul', runs: 24, balls: 18, fours: 2, sixes: 1, strikeRate: 133.3, isNotOut: true },
+        {
+          name: 'Shubman Gill',
+          runs: 48,
+          balls: 32,
+          fours: 5,
+          sixes: 2,
+          strikeRate: 150.0,
+          isNotOut: true,
+        },
+        {
+          name: 'KL Rahul',
+          runs: 24,
+          balls: 18,
+          fours: 2,
+          sixes: 1,
+          strikeRate: 133.3,
+          isNotOut: true,
+        },
       ];
 
   // Bowlers from live API miniscore or match prop or fallback
@@ -159,7 +175,10 @@ export const CricketScorecardModal: React.FC<CricketScorecardModalProps> = ({
             <SportsCricket />
           </Box>
           <Box>
-            <Typography variant="h6" sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445' }}>
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445' }}
+            >
               {match.title}
             </Typography>
             <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#64748b' }}>
@@ -195,7 +214,9 @@ export const CricketScorecardModal: React.FC<CricketScorecardModalProps> = ({
             <Chip
               label={match.status.toUpperCase()}
               size="small"
-              color={match.status === 'live' ? 'error' : match.status === 'upcoming' ? 'info' : 'default'}
+              color={
+                match.status === 'live' ? 'error' : match.status === 'upcoming' ? 'info' : 'default'
+              }
               sx={{ fontWeight: 800, height: 22 }}
             />
           </Box>
@@ -207,7 +228,11 @@ export const CricketScorecardModal: React.FC<CricketScorecardModalProps> = ({
               </Typography>
               <Typography variant="h5" sx={{ fontWeight: 800, color: '#2563eb' }}>
                 {match.team1.runs}/{match.team1.wickets}
-                <Typography component="span" variant="body2" sx={{ ml: 1, color: isDark ? '#d0caeb' : '#64748b' }}>
+                <Typography
+                  component="span"
+                  variant="body2"
+                  sx={{ ml: 1, color: isDark ? '#d0caeb' : '#64748b' }}
+                >
                   ({match.team1.overs} ov)
                 </Typography>
               </Typography>
@@ -219,7 +244,11 @@ export const CricketScorecardModal: React.FC<CricketScorecardModalProps> = ({
               </Typography>
               <Typography variant="h5" sx={{ fontWeight: 800, color: '#10b981' }}>
                 {match.team2.runs}/{match.team2.wickets}
-                <Typography component="span" variant="body2" sx={{ ml: 1, color: isDark ? '#d0caeb' : '#64748b' }}>
+                <Typography
+                  component="span"
+                  variant="body2"
+                  sx={{ ml: 1, color: isDark ? '#d0caeb' : '#64748b' }}
+                >
                   ({match.team2.overs} ov)
                 </Typography>
               </Typography>
@@ -227,20 +256,42 @@ export const CricketScorecardModal: React.FC<CricketScorecardModalProps> = ({
           </Box>
 
           {/* Rates and Target Banner */}
-          {(currentRunRate !== undefined || requiredRunRate !== undefined || target !== undefined) && (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, pt: 1, borderTop: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.06)' }}>
+          {(currentRunRate !== undefined ||
+            requiredRunRate !== undefined ||
+            target !== undefined) && (
+            <Box
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: 2,
+                pt: 1,
+                borderTop: isDark
+                  ? '1px solid rgba(255,255,255,0.06)'
+                  : '1px solid rgba(0,0,0,0.06)',
+              }}
+            >
               {currentRunRate !== undefined && (
-                <Typography variant="caption" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
+                <Typography
+                  variant="caption"
+                  sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                >
                   CRR: <span style={{ color: '#2563eb' }}>{Number(currentRunRate).toFixed(2)}</span>
                 </Typography>
               )}
               {requiredRunRate !== undefined && (
-                <Typography variant="caption" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
-                  Req RR: <span style={{ color: '#ef4444' }}>{Number(requiredRunRate).toFixed(2)}</span>
+                <Typography
+                  variant="caption"
+                  sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                >
+                  Req RR:{' '}
+                  <span style={{ color: '#ef4444' }}>{Number(requiredRunRate).toFixed(2)}</span>
                 </Typography>
               )}
               {target !== undefined && (
-                <Typography variant="caption" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
+                <Typography
+                  variant="caption"
+                  sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                >
                   Target: <span style={{ color: '#10b981' }}>{target}</span>
                 </Typography>
               )}
@@ -264,21 +315,36 @@ export const CricketScorecardModal: React.FC<CricketScorecardModalProps> = ({
           {/* Recent Overs Commentary */}
           {recentOvers && (
             <Typography variant="caption" sx={{ color: isDark ? '#9e96c7' : '#64748b' }}>
-              Recent Overs: <span style={{ fontFamily: 'monospace', fontWeight: 700 }}>{recentOvers}</span>
+              Recent Overs:{' '}
+              <span style={{ fontFamily: 'monospace', fontWeight: 700 }}>{recentOvers}</span>
             </Typography>
           )}
         </Box>
 
         {/* Sub-tabs: Batting vs Bowling */}
-        <Box sx={{ borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)' }}>
+        <Box
+          sx={{
+            borderBottom: isDark
+              ? '1px solid rgba(255,255,255,0.08)'
+              : '1px solid rgba(0,0,0,0.08)',
+          }}
+        >
           <Tabs
             value={activeTab}
             onChange={(_, val) => setActiveTab(val)}
             textColor="primary"
             indicatorColor="primary"
           >
-            <Tab label={t.tabBatting || 'Batting Scorecard'} value="batting" sx={{ textTransform: 'none', fontWeight: 700 }} />
-            <Tab label={t.tabBowling || 'Bowling Figures'} value="bowling" sx={{ textTransform: 'none', fontWeight: 700 }} />
+            <Tab
+              label={t.tabBatting || 'Batting Scorecard'}
+              value="batting"
+              sx={{ textTransform: 'none', fontWeight: 700 }}
+            />
+            <Tab
+              label={t.tabBowling || 'Bowling Figures'}
+              value="bowling"
+              sx={{ textTransform: 'none', fontWeight: 700 }}
+            />
           </Tabs>
         </Box>
 
@@ -294,19 +360,34 @@ export const CricketScorecardModal: React.FC<CricketScorecardModalProps> = ({
                   <TableCell sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
                     {t.colBatsman || 'Batsman'}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
+                  <TableCell
+                    align="right"
+                    sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                  >
                     {t.colRuns || 'R'}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
+                  <TableCell
+                    align="right"
+                    sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                  >
                     {t.colBalls || 'B'}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
+                  <TableCell
+                    align="right"
+                    sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                  >
                     {t.colFours || '4s'}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
+                  <TableCell
+                    align="right"
+                    sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                  >
                     {t.colSixes || '6s'}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
+                  <TableCell
+                    align="right"
+                    sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                  >
                     {t.colStrikeRate || 'SR'}
                   </TableCell>
                 </TableRow>
@@ -315,9 +396,17 @@ export const CricketScorecardModal: React.FC<CricketScorecardModalProps> = ({
                 {batsmen.map((b: any, idx: number) => (
                   <TableRow key={idx}>
                     <TableCell sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}>
-                      {b.name} {b.isNotOut && <Typography component="span" sx={{ color: '#10b981' }}>*</Typography>}
+                      {b.name}{' '}
+                      {b.isNotOut && (
+                        <Typography component="span" sx={{ color: '#10b981' }}>
+                          *
+                        </Typography>
+                      )}
                     </TableCell>
-                    <TableCell align="right" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}>
+                    <TableCell
+                      align="right"
+                      sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}
+                    >
                       {b.runs}
                     </TableCell>
                     <TableCell align="right" sx={{ color: isDark ? '#d0caeb' : '#64748b' }}>
@@ -345,19 +434,34 @@ export const CricketScorecardModal: React.FC<CricketScorecardModalProps> = ({
                   <TableCell sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
                     {t.colBowler || 'Bowler'}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
+                  <TableCell
+                    align="right"
+                    sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                  >
                     {t.colOvers || 'O'}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
+                  <TableCell
+                    align="right"
+                    sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                  >
                     {t.colMaidens || 'M'}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
+                  <TableCell
+                    align="right"
+                    sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                  >
                     {t.colRuns || 'R'}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
+                  <TableCell
+                    align="right"
+                    sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                  >
                     {t.colWickets || 'W'}
                   </TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}>
+                  <TableCell
+                    align="right"
+                    sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#475569' }}
+                  >
                     {t.colEconomy || 'Econ'}
                   </TableCell>
                 </TableRow>

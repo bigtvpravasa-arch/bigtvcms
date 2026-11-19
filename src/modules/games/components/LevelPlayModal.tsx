@@ -61,7 +61,8 @@ const playTranslations: Record<SupportedLanguage, Record<string, string>> = {
     closePreview: 'Close Preview',
     levelSolved: 'Puzzle Solved! 🎉',
     boardComplete: 'Board Complete! 🎉',
-    howToPlayZip: 'How to Play: Start at ①. Draw an unbroken path through ②, ③... to the final checkpoint without crossing yourself.',
+    howToPlayZip:
+      'How to Play: Start at ①. Draw an unbroken path through ②, ③... to the final checkpoint without crossing yourself.',
     sudokuSolved: 'Sudoku Solved! 🎉',
     patchPreview: 'Patch puzzle preview — select a piece below, then click a cell to place it.',
     noPreview: 'No interactive preview available for game type: ',
@@ -74,7 +75,8 @@ const playTranslations: Record<SupportedLanguage, Record<string, string>> = {
     patchWide: 'Wide',
     patchTall: 'Tall',
     patchPoly: 'Poly',
-    patchHelp: 'How to Play: Drag to form rectangular patches or tap pieces below to place them. Each patch must contain exactly 1 number matching its area. Tap any patch to remove it.',
+    patchHelp:
+      'How to Play: Drag to form rectangular patches or tap pieces below to place them. Each patch must contain exactly 1 number matching its area. Tap any patch to remove it.',
   },
   te: {
     startFromOne: 'ప్రారంభించడానికి చెక్‌పాయింట్ 1 (①) క్లిక్ చేయండి',
@@ -94,9 +96,11 @@ const playTranslations: Record<SupportedLanguage, Record<string, string>> = {
     closePreview: 'ప్రివ్యూ మూసివేయి',
     levelSolved: 'స్థాయి పూర్తయింది! 🎉',
     boardComplete: 'బోర్డు పూర్తయింది! 🎉',
-    howToPlayZip: 'ఎలా ఆడాలి: ① వద్ద ప్రారంభించండి. ②, ③... చివరి చెక్‌పాయింట్ వరకు ఒకదాని తర్వాత ఒకటి మార్గం గీయండి.',
+    howToPlayZip:
+      'ఎలా ఆడాలి: ① వద్ద ప్రారంభించండి. ②, ③... చివరి చెక్‌పాయింట్ వరకు ఒకదాని తర్వాత ఒకటి మార్గం గీయండి.',
     sudokuSolved: 'సుడోకు పూర్తయింది! 🎉',
-    patchPreview: 'ప్యాచ్ పజిల్ ప్రివ్యూ — క్రింద ఒక ముక్కను ఎంచుకుని, బోర్డులో ఉంచడానికి క్లిక్ చేయండి.',
+    patchPreview:
+      'ప్యాచ్ పజిల్ ప్రివ్యూ — క్రింద ఒక ముక్కను ఎంచుకుని, బోర్డులో ఉంచడానికి క్లిక్ చేయండి.',
     noPreview: 'ఈ ఆట రకానికి ఇంటరాక్టివ్ ప్రివ్యూ లేదు: ',
     puzzle: 'పజిల్',
     patchDrag: 'లాగండి (Drag)',
@@ -107,7 +111,8 @@ const playTranslations: Record<SupportedLanguage, Record<string, string>> = {
     patchWide: 'వెడల్పు (Wide)',
     patchTall: 'పొడవు (Tall)',
     patchPoly: 'పాలీ (Poly)',
-    patchHelp: 'ఎలా ఆడాలి: ప్యాచ్‌లను ఉంచడానికి లాగండి లేదా క్రింద ఉన్న ముక్కలను ఎంచుకుని ఉంచండి. ప్రతి ప్యాచ్‌లో దాని వైశాల్యానికి సమానమైన ఒక సంఖ్య ఉండాలి.',
+    patchHelp:
+      'ఎలా ఆడాలి: ప్యాచ్‌లను ఉంచడానికి లాగండి లేదా క్రింద ఉన్న ముక్కలను ఎంచుకుని ఉంచండి. ప్రతి ప్యాచ్‌లో దాని వైశాల్యానికి సమానమైన ఒక సంఖ్య ఉండాలి.',
   },
   hi: {
     startFromOne: 'शुरू करने के लिए चेकपॉइंट 1 (①) पर क्लिक करें',
@@ -127,9 +132,11 @@ const playTranslations: Record<SupportedLanguage, Record<string, string>> = {
     closePreview: 'पूर्वावलोकन बंद करें',
     levelSolved: 'पहेली हल हुई! 🎉',
     boardComplete: 'बोर्ड पूरा हुआ! 🎉',
-    howToPlayZip: 'कैसे खेलें: ① से शुरू करें। ②, ③... और आगे अंतिम चेकपॉइंट तक एक अटूट रेखा खींचें।',
+    howToPlayZip:
+      'कैसे खेलें: ① से शुरू करें। ②, ③... और आगे अंतिम चेकपॉइंट तक एक अटूट रेखा खींचें।',
     sudokuSolved: 'सुडोकू हल हुआ! 🎉',
-    patchPreview: 'पैच पहेली पूर्वावलोकन — नीचे एक टुकड़ा चुनें, फिर उसे बोर्ड पर रखने के लिए क्लिक करें।',
+    patchPreview:
+      'पैच पहेली पूर्वावलोकन — नीचे एक टुकड़ा चुनें, फिर उसे बोर्ड पर रखने के लिए क्लिक करें।',
     noPreview: 'इस गेम प्रकार के लिए कोई पूर्वावलोकन उपलब्ध नहीं है: ',
     puzzle: 'पहेली',
     patchDrag: 'ड्रैग करें',
@@ -140,7 +147,8 @@ const playTranslations: Record<SupportedLanguage, Record<string, string>> = {
     patchWide: 'चौड़ा (Wide)',
     patchTall: 'लंबा (Tall)',
     patchPoly: 'पॉली (Poly)',
-    patchHelp: 'कैसे खेलें: पैच रखने के लिए ग्रिड पर ड्रैग करें या नीचे से पीस चुनकर रखें। प्रत्येक पैच में उसके क्षेत्रफल से मेल खाती ठीक 1 संख्या होनी चाहिए।',
+    patchHelp:
+      'कैसे खेलें: पैच रखने के लिए ग्रिड पर ड्रैग करें या नीचे से पीस चुनकर रखें। प्रत्येक पैच में उसके क्षेत्रफल से मेल खाती ठीक 1 संख्या होनी चाहिए।',
   },
   ml: {
     startFromOne: 'ആരംഭിക്കാൻ ചെക്ക്പോയിന്റ് 1 (①) ക്ലിക്ക് ചെയ്യുക',
@@ -160,7 +168,8 @@ const playTranslations: Record<SupportedLanguage, Record<string, string>> = {
     closePreview: 'പ്രിവ്യൂ അടയ്ക്കുക',
     levelSolved: 'ലെവൽ പൂർത്തിയായി! 🎉',
     boardComplete: 'ബോർഡ് പൂർത്തിയായി! 🎉',
-    howToPlayZip: 'എങ്ങനെ കളിക്കാം: ①-ൽ നിന്ന് തുടങ്ങി ②, ③ വഴി അവസാന ചെക്ക്പോയിന്റ് വരെ പാത വരയ്ക്കുക.',
+    howToPlayZip:
+      'എങ്ങനെ കളിക്കാം: ①-ൽ നിന്ന് തുടങ്ങി ②, ③ വഴി അവസാന ചെക്ക്പോയിന്റ് വരെ പാത വരയ്ക്കുക.',
     sudokuSolved: 'സുഡോകു പൂർത്തിയായി! 🎉',
     patchPreview: 'പാച്ച് പസിൽ പ്രിവ്യൂ — ഒരു കഷണം തിരഞ്ഞെടുത്ത് സെല്ലിൽ ക്ലിക്ക് ചെയ്യുക.',
     noPreview: 'ഈ ഗെയിം തരത്തിന് ഇന്ററാക്ടീവ് പ്രിവ്യൂ ലഭ്യമല്ല: ',
@@ -173,7 +182,8 @@ const playTranslations: Record<SupportedLanguage, Record<string, string>> = {
     patchWide: 'വീതിയുള്ളത് (Wide)',
     patchTall: 'നീളമുള്ളത് (Tall)',
     patchPoly: 'പോളി (Poly)',
-    patchHelp: 'എങ്ങനെ കളിക്കാം: പാച്ചുകൾ സ്ഥാപിക്കാൻ ഡ്രാഗ് ചെയ്യുക അല്ലെങ്കിൽ താഴെയുള്ള പീസുകൾ തിരഞ്ഞെടുക്കുക. ഓരോ പാച്ചിലും അതിന്റെ വിസ്തീർണ്ണവുമായി പൊരുത്തപ്പെടുന്ന കൃത്യം ഒരു സംఖ്യ ഉണ്ടായിരിക്കണം.',
+    patchHelp:
+      'എങ്ങനെ കളിക്കാം: പാച്ചുകൾ സ്ഥാപിക്കാൻ ഡ്രാഗ് ചെയ്യുക അല്ലെങ്കിൽ താഴെയുള്ള പീസുകൾ തിരഞ്ഞെടുക്കുക. ഓരോ പാച്ചിലും അതിന്റെ വിസ്തീർണ്ണവുമായി പൊരുത്തപ്പെടുന്ന കൃത്യം ഒരു സംఖ്യ ഉണ്ടായിരിക്കണം.',
   },
 };
 
@@ -283,7 +293,7 @@ const SudokuPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, 
 
   const buildEmpty = () =>
     Array.from({ length: rows }, (_, r) =>
-      Array.from({ length: cols }, (_, c) => (initialGrid[r]?.[c] ?? 0))
+      Array.from({ length: cols }, (_, c) => initialGrid[r]?.[c] ?? 0)
     );
 
   const [grid, setGrid] = useState<number[][]>(buildEmpty);
@@ -333,13 +343,27 @@ const SudokuPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, 
     const thickColor = isDark ? 'rgba(166,226,245,0.6)' : '#1c1445';
     const thinColor = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)';
     return {
-      borderRight: (c + 1) % boxSize[1] === 0 && c !== cols - 1 ? `${borderW} ${thickColor}` : `1px solid ${thinColor}`,
-      borderBottom: (r + 1) % boxSize[0] === 0 && r !== rows - 1 ? `${borderW} ${thickColor}` : `1px solid ${thinColor}`,
+      borderRight:
+        (c + 1) % boxSize[1] === 0 && c !== cols - 1
+          ? `${borderW} ${thickColor}`
+          : `1px solid ${thinColor}`,
+      borderBottom:
+        (r + 1) % boxSize[0] === 0 && r !== rows - 1
+          ? `${borderW} ${thickColor}`
+          : `1px solid ${thinColor}`,
     };
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, position: 'relative' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 2,
+        position: 'relative',
+      }}
+    >
       {solved && <BigTVBackgroundWatermark isDark={isDark} />}
       {solved && (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, color: '#4caf50' }}>
@@ -521,7 +545,10 @@ interface PlacedPatch {
   pieceId?: string;
 }
 
-const ClueIcon: React.FC<{ shape: 'sq' | 'wide' | 'tall' | 'poly'; isDark: boolean }> = ({ shape, isDark }) => {
+const ClueIcon: React.FC<{ shape: 'sq' | 'wide' | 'tall' | 'poly'; isDark: boolean }> = ({
+  shape,
+  isDark,
+}) => {
   const color = isDark ? '#94a3b8' : '#78716c';
   if (shape === 'sq') {
     return <Box sx={{ width: 8, height: 8, bgcolor: color, borderRadius: '1.5px', mb: 0.3 }} />;
@@ -532,7 +559,11 @@ const ClueIcon: React.FC<{ shape: 'sq' | 'wide' | 'tall' | 'poly'; isDark: boole
   if (shape === 'tall') {
     return <Box sx={{ width: 5, height: 14, bgcolor: color, borderRadius: '1.5px', mb: 0.3 }} />;
   }
-  return <Box sx={{ width: 10, height: 10, border: `2px dashed ${color}`, borderRadius: '2px', mb: 0.3 }} />;
+  return (
+    <Box
+      sx={{ width: 10, height: 10, border: `2px dashed ${color}`, borderRadius: '2px', mb: 0.3 }}
+    />
+  );
 };
 
 // Normalize any piece format to array of [row, col] coordinates
@@ -704,71 +735,136 @@ const PatchPlayer: React.FC<{
       return [
         {
           id: 'sol-5x5-0',
-          rMin: 0, rMax: 0, cMin: 0, cMax: 1,
-          cells: [[0, 0], [0, 1]],
+          rMin: 0,
+          rMax: 0,
+          cMin: 0,
+          cMax: 1,
+          cells: [
+            [0, 0],
+            [0, 1],
+          ],
           color: '#489d6a',
           pieceId: 'p_1',
         },
         {
           id: 'sol-5x5-1',
-          rMin: 0, rMax: 0, cMin: 2, cMax: 4,
-          cells: [[0, 2], [0, 3], [0, 4]],
+          rMin: 0,
+          rMax: 0,
+          cMin: 2,
+          cMax: 4,
+          cells: [
+            [0, 2],
+            [0, 3],
+            [0, 4],
+          ],
           color: '#d65b3c',
           pieceId: 'p_2',
         },
         {
           id: 'sol-5x5-2',
-          rMin: 1, rMax: 1, cMin: 0, cMax: 1,
-          cells: [[1, 0], [1, 1]],
+          rMin: 1,
+          rMax: 1,
+          cMin: 0,
+          cMax: 1,
+          cells: [
+            [1, 0],
+            [1, 1],
+          ],
           color: '#3373dc',
           pieceId: 'p_3',
         },
         {
           id: 'sol-5x5-3',
-          rMin: 1, rMax: 1, cMin: 2, cMax: 4,
-          cells: [[1, 2], [1, 3], [1, 4]],
+          rMin: 1,
+          rMax: 1,
+          cMin: 2,
+          cMax: 4,
+          cells: [
+            [1, 2],
+            [1, 3],
+            [1, 4],
+          ],
           color: '#9353b3',
           pieceId: 'p_4',
         },
         {
           id: 'sol-5x5-4',
-          rMin: 2, rMax: 2, cMin: 0, cMax: 2,
-          cells: [[2, 0], [2, 1], [2, 2]],
+          rMin: 2,
+          rMax: 2,
+          cMin: 0,
+          cMax: 2,
+          cells: [
+            [2, 0],
+            [2, 1],
+            [2, 2],
+          ],
           color: '#e07a22',
           pieceId: 'p_5',
         },
         {
           id: 'sol-5x5-5',
-          rMin: 3, rMax: 4, cMin: 0, cMax: 0,
-          cells: [[3, 0], [4, 0]],
+          rMin: 3,
+          rMax: 4,
+          cMin: 0,
+          cMax: 0,
+          cells: [
+            [3, 0],
+            [4, 0],
+          ],
           color: '#12bda0',
           pieceId: 'p_6',
         },
         {
           id: 'sol-5x5-6',
-          rMin: 3, rMax: 4, cMin: 1, cMax: 1,
-          cells: [[3, 1], [4, 1]],
+          rMin: 3,
+          rMax: 4,
+          cMin: 1,
+          cMax: 1,
+          cells: [
+            [3, 1],
+            [4, 1],
+          ],
           color: '#bf9334',
           pieceId: 'p_7',
         },
         {
           id: 'sol-5x5-7',
-          rMin: 3, rMax: 4, cMin: 2, cMax: 2,
-          cells: [[3, 2], [4, 2]],
+          rMin: 3,
+          rMax: 4,
+          cMin: 2,
+          cMax: 2,
+          cells: [
+            [3, 2],
+            [4, 2],
+          ],
           color: '#db3888',
           pieceId: 'p_8',
         },
         {
           id: 'sol-5x5-8',
-          rMin: 2, rMax: 4, cMin: 3, cMax: 3,
-          cells: [[2, 3], [3, 3], [4, 3]],
+          rMin: 2,
+          rMax: 4,
+          cMin: 3,
+          cMax: 3,
+          cells: [
+            [2, 3],
+            [3, 3],
+            [4, 3],
+          ],
           color: '#6366f1',
           pieceId: 'p_9',
         },
         {
           id: 'sol-5x5-9',
-          rMin: 2, rMax: 4, cMin: 4, cMax: 4,
-          cells: [[2, 4], [3, 4], [4, 4]],
+          rMin: 2,
+          rMax: 4,
+          cMin: 4,
+          cMax: 4,
+          cells: [
+            [2, 4],
+            [3, 4],
+            [4, 4],
+          ],
           color: '#0ea5e9',
           pieceId: 'p_10',
         },
@@ -785,9 +881,15 @@ const PatchPlayer: React.FC<{
           cMin: 0,
           cMax: 2,
           cells: [
-            [0, 0], [0, 1], [0, 2],
-            [1, 0], [1, 1], [1, 2],
-            [2, 0], [2, 1], [2, 2],
+            [0, 0],
+            [0, 1],
+            [0, 2],
+            [1, 0],
+            [1, 1],
+            [1, 2],
+            [2, 0],
+            [2, 1],
+            [2, 2],
           ],
           color: '#489d6a', // Green 3×3
         },
@@ -798,9 +900,15 @@ const PatchPlayer: React.FC<{
           cMin: 3,
           cMax: 5,
           cells: [
-            [0, 3], [0, 4], [0, 5],
-            [1, 3], [1, 4], [1, 5],
-            [2, 3], [2, 4], [2, 5],
+            [0, 3],
+            [0, 4],
+            [0, 5],
+            [1, 3],
+            [1, 4],
+            [1, 5],
+            [2, 3],
+            [2, 4],
+            [2, 5],
           ],
           color: '#d65b3c', // Red-orange 3×3
         },
@@ -810,7 +918,10 @@ const PatchPlayer: React.FC<{
           rMax: 4,
           cMin: 0,
           cMax: 0,
-          cells: [[3, 0], [4, 0]],
+          cells: [
+            [3, 0],
+            [4, 0],
+          ],
           color: '#3373dc', // Blue 1×2
         },
         {
@@ -820,8 +931,10 @@ const PatchPlayer: React.FC<{
           cMin: 1,
           cMax: 2,
           cells: [
-            [3, 1], [3, 2],
-            [4, 1], [4, 2],
+            [3, 1],
+            [3, 2],
+            [4, 1],
+            [4, 2],
           ],
           color: '#9353b3', // Purple 2×2
         },
@@ -831,7 +944,11 @@ const PatchPlayer: React.FC<{
           rMax: 3,
           cMin: 3,
           cMax: 5,
-          cells: [[3, 3], [3, 4], [3, 5]],
+          cells: [
+            [3, 3],
+            [3, 4],
+            [3, 5],
+          ],
           color: '#e07a22', // Orange 3×1
         },
         {
@@ -840,7 +957,11 @@ const PatchPlayer: React.FC<{
           rMax: 5,
           cMin: 0,
           cMax: 2,
-          cells: [[5, 0], [5, 1], [5, 2]],
+          cells: [
+            [5, 0],
+            [5, 1],
+            [5, 2],
+          ],
           color: '#bf9334', // Gold 3×1
         },
         {
@@ -850,8 +971,10 @@ const PatchPlayer: React.FC<{
           cMin: 3,
           cMax: 4,
           cells: [
-            [4, 3], [4, 4],
-            [5, 3], [5, 4],
+            [4, 3],
+            [4, 4],
+            [5, 3],
+            [5, 4],
           ],
           color: '#12bda0', // Teal 2×2
         },
@@ -861,7 +984,10 @@ const PatchPlayer: React.FC<{
           rMax: 5,
           cMin: 5,
           cMax: 5,
-          cells: [[4, 5], [5, 5]],
+          cells: [
+            [4, 5],
+            [5, 5],
+          ],
           color: '#db3888', // Pink 1×2
         },
       ];
@@ -1040,13 +1166,22 @@ const PatchPlayer: React.FC<{
 
   return (
     <Box
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', gap: 1.5, position: 'relative' }}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%',
+        gap: 1.5,
+        position: 'relative',
+      }}
       onMouseUp={handleMouseUp}
     >
       {solved && <BigTVBackgroundWatermark isDark={isDark} />}
       {/* Title & Difficulty Pill Badge */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
-        <Typography sx={{ fontWeight: 700, fontSize: '1.05rem', color: isDark ? '#ffffff' : '#292524' }}>
+        <Typography
+          sx={{ fontWeight: 700, fontSize: '1.05rem', color: isDark ? '#ffffff' : '#292524' }}
+        >
           {t.puzzle} #{level?.levelNumber || 1}
         </Typography>
         <Chip
@@ -1150,15 +1285,36 @@ const PatchPlayer: React.FC<{
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-            <Box sx={{ width: 8, height: 8, bgcolor: isDark ? '#94a3b8' : '#78716c', borderRadius: '1.5px' }} />
+            <Box
+              sx={{
+                width: 8,
+                height: 8,
+                bgcolor: isDark ? '#94a3b8' : '#78716c',
+                borderRadius: '1.5px',
+              }}
+            />
             <span>{t.patchSq}</span>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-            <Box sx={{ width: 14, height: 5, bgcolor: isDark ? '#94a3b8' : '#78716c', borderRadius: '1.5px' }} />
+            <Box
+              sx={{
+                width: 14,
+                height: 5,
+                bgcolor: isDark ? '#94a3b8' : '#78716c',
+                borderRadius: '1.5px',
+              }}
+            />
             <span>{t.patchWide}</span>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-            <Box sx={{ width: 5, height: 14, bgcolor: isDark ? '#94a3b8' : '#78716c', borderRadius: '1.5px' }} />
+            <Box
+              sx={{
+                width: 5,
+                height: 14,
+                bgcolor: isDark ? '#94a3b8' : '#78716c',
+                borderRadius: '1.5px',
+              }}
+            />
             <span>{t.patchTall}</span>
           </Box>
           <Box
@@ -1203,7 +1359,9 @@ const PatchPlayer: React.FC<{
           boxSizing: 'border-box',
         }}
       >
-        <Typography sx={{ fontSize: '0.85rem', fontWeight: 600, color: isDark ? '#d0caeb' : '#6b5e52' }}>
+        <Typography
+          sx={{ fontSize: '0.85rem', fontWeight: 600, color: isDark ? '#d0caeb' : '#6b5e52' }}
+        >
           <span style={{ color: '#c2410c', fontWeight: 700 }}>{t.patchDrag}</span>
           {t.patchToPlace}
           <span style={{ color: '#c2410c', fontWeight: 700 }}>{t.patchTap}</span>
@@ -1244,9 +1402,7 @@ const PatchPlayer: React.FC<{
           bgcolor: isDark ? '#140f2b' : '#221c19',
           overflow: 'hidden',
           userSelect: 'none',
-          boxShadow: isDark
-            ? '0 10px 30px rgba(0,0,0,0.5)'
-            : '0 8px 24px rgba(51,45,41,0.14)',
+          boxShadow: isDark ? '0 10px 30px rgba(0,0,0,0.5)' : '0 8px 24px rgba(51,45,41,0.14)',
         }}
       >
         {/* Underlay Grid Cells & Clues */}
@@ -1263,8 +1419,12 @@ const PatchPlayer: React.FC<{
                   sx={{
                     width: cellSize,
                     height: cellSize,
-                    borderRight: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(255,255,255,0.12)',
-                    borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(255,255,255,0.12)',
+                    borderRight: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(255,255,255,0.12)',
+                    borderBottom: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(255,255,255,0.12)',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -1362,48 +1522,50 @@ const PatchPlayer: React.FC<{
         })}
 
         {/* Live Dragging Rectangle Preview with Dimension Label */}
-        {dragStart && dragCurrent && (() => {
-          const rMin = Math.min(dragStart[0], dragCurrent[0]);
-          const rMax = Math.max(dragStart[0], dragCurrent[0]);
-          const cMin = Math.min(dragStart[1], dragCurrent[1]);
-          const cMax = Math.max(dragStart[1], dragCurrent[1]);
-          const gap = 3;
-          const dragW = cMax - cMin + 1;
-          const dragH = rMax - rMin + 1;
-          return (
-            <Box
-              sx={{
-                position: 'absolute',
-                top: rMin * cellSize + gap / 2,
-                left: cMin * cellSize + gap / 2,
-                width: dragW * cellSize - gap,
-                height: dragH * cellSize - gap,
-                boxSizing: 'border-box',
-                bgcolor: 'rgba(214, 91, 60, 0.72)',
-                borderRadius: '8px',
-                border: '2px dashed #ffffff',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                pointerEvents: 'none',
-                zIndex: 3,
-              }}
-            >
-              <Typography
+        {dragStart &&
+          dragCurrent &&
+          (() => {
+            const rMin = Math.min(dragStart[0], dragCurrent[0]);
+            const rMax = Math.max(dragStart[0], dragCurrent[0]);
+            const cMin = Math.min(dragStart[1], dragCurrent[1]);
+            const cMax = Math.max(dragStart[1], dragCurrent[1]);
+            const gap = 3;
+            const dragW = cMax - cMin + 1;
+            const dragH = rMax - rMin + 1;
+            return (
+              <Box
                 sx={{
-                  color: '#ffffff',
-                  fontWeight: 800,
-                  fontSize: Math.min(24, Math.max(14, cellSize * 0.38)),
-                  letterSpacing: '0.5px',
-                  textShadow: '0 1px 3px rgba(0,0,0,0.35)',
-                  fontFamily: 'system-ui, -apple-system, sans-serif',
+                  position: 'absolute',
+                  top: rMin * cellSize + gap / 2,
+                  left: cMin * cellSize + gap / 2,
+                  width: dragW * cellSize - gap,
+                  height: dragH * cellSize - gap,
+                  boxSizing: 'border-box',
+                  bgcolor: 'rgba(214, 91, 60, 0.72)',
+                  borderRadius: '8px',
+                  border: '2px dashed #ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  pointerEvents: 'none',
+                  zIndex: 3,
                 }}
               >
-                {dragW}×{dragH}
-              </Typography>
-            </Box>
-          );
-        })()}
+                <Typography
+                  sx={{
+                    color: '#ffffff',
+                    fontWeight: 800,
+                    fontSize: Math.min(24, Math.max(14, cellSize * 0.38)),
+                    letterSpacing: '0.5px',
+                    textShadow: '0 1px 3px rgba(0,0,0,0.35)',
+                    fontFamily: 'system-ui, -apple-system, sans-serif',
+                  }}
+                >
+                  {dragW}×{dragH}
+                </Typography>
+              </Box>
+            );
+          })()}
 
         {/* BigTV Watermark Stamp over completed board */}
         {solved && <BigTVBoardWatermark isDark={isDark} />}
@@ -1429,8 +1591,8 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
     if (!Array.isArray(raw)) return [];
     return raw
       .map((cp: any, idx: number) => {
-        const r = cp.row ?? cp.r ?? (Array.isArray(cp) ? cp[0] : cp.y ?? 0);
-        const c = cp.col ?? cp.c ?? (Array.isArray(cp) ? cp[1] : cp.x ?? 0);
+        const r = cp.row ?? cp.r ?? (Array.isArray(cp) ? cp[0] : (cp.y ?? 0));
+        const c = cp.col ?? cp.c ?? (Array.isArray(cp) ? cp[1] : (cp.x ?? 0));
         const order = cp.order ?? cp.index ?? cp.number ?? cp.value ?? idx + 1;
         return { order, r, c };
       })
@@ -1465,10 +1627,7 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
       return raw as [number, number][];
     }
     if (typeof raw[0] === 'object' && raw[0] !== null) {
-      return raw.map((pt: any) => [
-        pt.row ?? pt.r ?? pt.y ?? 0,
-        pt.col ?? pt.c ?? pt.x ?? 0,
-      ]);
+      return raw.map((pt: any) => [pt.row ?? pt.r ?? pt.y ?? 0, pt.col ?? pt.c ?? pt.x ?? 0]);
     }
     return [];
   }, [content, rows, cols]);
@@ -1515,8 +1674,7 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
     setWarningMessage(null);
   };
 
-  const isInPath = (r: number, c: number) =>
-    path.some(([pr, pc]) => pr === r && pc === c);
+  const isInPath = (r: number, c: number) => path.some(([pr, pc]) => pr === r && pc === c);
 
   // Extend or backtrack path
   const tryExtendPath = (r: number, c: number) => {
@@ -1563,7 +1721,7 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
     // Validate checkpoint order
     const cpOrder = checkpointMap.get(`${r}-${c}`);
     if (cpOrder !== undefined) {
-      const expected = (nextExpectedCheckpoint ?? 1);
+      const expected = nextExpectedCheckpoint ?? 1;
       if (cpOrder !== expected) {
         setWarningMessage(
           t.wrongCheckpoint
@@ -1581,9 +1739,8 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
     // Check if complete
     if (parsedCheckpoints.length > 0) {
       const totalCp = parsedCheckpoints.length;
-      const cpCountAfter = cpOrder !== undefined
-        ? visitedCheckpointOrders.length + 1
-        : visitedCheckpointOrders.length;
+      const cpCountAfter =
+        cpOrder !== undefined ? visitedCheckpointOrders.length + 1 : visitedCheckpointOrders.length;
       if (cpCountAfter === totalCp) {
         setSolved(true);
       }
@@ -1606,8 +1763,8 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
   const pathPoints = useMemo(() => {
     return path
       .map((pt) => {
-        const r = Array.isArray(pt) ? pt[0] : (pt as any)?.r ?? (pt as any)?.row ?? 0;
-        const c = Array.isArray(pt) ? pt[1] : (pt as any)?.c ?? (pt as any)?.col ?? 0;
+        const r = Array.isArray(pt) ? pt[0] : ((pt as any)?.r ?? (pt as any)?.row ?? 0);
+        const c = Array.isArray(pt) ? pt[1] : ((pt as any)?.c ?? (pt as any)?.col ?? 0);
         return `${c * cellSize + cellSize / 2},${r * cellSize + cellSize / 2}`;
       })
       .join(' ');
@@ -1616,8 +1773,8 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
   const solutionPoints = useMemo(() => {
     return solutionPath
       .map((pt) => {
-        const r = Array.isArray(pt) ? pt[0] : (pt as any)?.r ?? (pt as any)?.row ?? 0;
-        const c = Array.isArray(pt) ? pt[1] : (pt as any)?.c ?? (pt as any)?.col ?? 0;
+        const r = Array.isArray(pt) ? pt[0] : ((pt as any)?.r ?? (pt as any)?.row ?? 0);
+        const c = Array.isArray(pt) ? pt[1] : ((pt as any)?.c ?? (pt as any)?.col ?? 0);
         return `${c * cellSize + cellSize / 2},${r * cellSize + cellSize / 2}`;
       })
       .join(' ');
@@ -1628,7 +1785,14 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
 
   return (
     <Box
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, width: '100%', position: 'relative' }}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 2,
+        width: '100%',
+        position: 'relative',
+      }}
       onMouseUp={handleMouseUp}
     >
       {solved && <BigTVBackgroundWatermark isDark={isDark} />}
@@ -1655,7 +1819,15 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
 
       {/* Checkpoints Progress Strip */}
       {parsedCheckpoints.length > 0 && (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap', justifyContent: 'center' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+        >
           {parsedCheckpoints.map((cp) => {
             const isVisited = visitedCheckpointOrders.includes(cp.order);
             const isCurrentTarget = nextExpectedCheckpoint === cp.order && !solved;
@@ -1735,7 +1907,10 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
         >
           {path.length === 0
             ? t.startFromOne
-            : t.nextTarget.replace('{n}', String(nextExpectedCheckpoint ?? parsedCheckpoints.length))}
+            : t.nextTarget.replace(
+                '{n}',
+                String(nextExpectedCheckpoint ?? parsedCheckpoints.length)
+              )}
         </Box>
       )}
 
@@ -1749,9 +1924,7 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
           borderRadius: '12px',
           overflow: 'hidden',
           userSelect: 'none',
-          boxShadow: isDark
-            ? '0 8px 32px rgba(0,0,0,0.4)'
-            : '0 8px 24px rgba(28,20,69,0.08)',
+          boxShadow: isDark ? '0 8px 32px rgba(0,0,0,0.4)' : '0 8px 24px rgba(28,20,69,0.08)',
         }}
       >
         {/* Cells */}
@@ -1775,8 +1948,12 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
                     alignItems: 'center',
                     justifyContent: 'center',
                     position: 'relative',
-                    borderRight: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
-                    borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                    borderRight: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(0,0,0,0.08)',
+                    borderBottom: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(0,0,0,0.08)',
                     backgroundColor: isDark
                       ? inPath
                         ? 'rgba(56,189,248,0.12)'
@@ -1871,8 +2048,8 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
 
           {/* Center dots on path */}
           {path.map((pt, i) => {
-            const r = Array.isArray(pt) ? pt[0] : (pt as any)?.r ?? (pt as any)?.row ?? 0;
-            const c = Array.isArray(pt) ? pt[1] : (pt as any)?.c ?? (pt as any)?.col ?? 0;
+            const r = Array.isArray(pt) ? pt[0] : ((pt as any)?.r ?? (pt as any)?.row ?? 0);
+            const c = Array.isArray(pt) ? pt[1] : ((pt as any)?.c ?? (pt as any)?.col ?? 0);
             return (
               <circle
                 key={i}
@@ -1890,7 +2067,15 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
       </Box>
 
       {/* Control Buttons */}
-      <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 1.5,
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+        }}
+      >
         <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', mr: 1 }}>
           {t.pathLength.replace('{len}', String(path.length))}
         </Typography>
@@ -1969,7 +2154,9 @@ export const LevelPlayModal: React.FC<LevelPlayModalProps> = ({
   isDark,
 }) => {
   const { language } = useLanguageStore();
-  const currentLang = (['en', 'te', 'hi', 'ml'].includes(language) ? language : 'en') as SupportedLanguage;
+  const currentLang = (
+    ['en', 'te', 'hi', 'ml'].includes(language) ? language : 'en'
+  ) as SupportedLanguage;
   const t = playTranslations[currentLang];
 
   if (!level) return null;
@@ -2047,9 +2234,7 @@ export const LevelPlayModal: React.FC<LevelPlayModalProps> = ({
                   fontWeight: 700,
                   color: level.status === 'published' ? '#4caf50' : '#ff9800',
                   backgroundColor:
-                    level.status === 'published'
-                      ? 'rgba(76,175,80,0.15)'
-                      : 'rgba(255,152,0,0.15)',
+                    level.status === 'published' ? 'rgba(76,175,80,0.15)' : 'rgba(255,152,0,0.15)',
                 }}
               />
             </Box>
@@ -2064,7 +2249,9 @@ export const LevelPlayModal: React.FC<LevelPlayModalProps> = ({
 
       <DialogContent sx={{ py: 3, display: 'flex', justifyContent: 'center' }}>
         {gType === 'sudoku' && <SudokuPlayer content={level.content} isDark={isDark} t={t} />}
-        {gType === 'patch' && <PatchPlayer content={level.content} isDark={isDark} t={t} level={level} />}
+        {gType === 'patch' && (
+          <PatchPlayer content={level.content} isDark={isDark} t={t} level={level} />
+        )}
         {gType === 'zip' && <ZipPlayer content={level.content} isDark={isDark} t={t} />}
         {!['sudoku', 'patch', 'zip'].includes(gType) && (
           <Box sx={{ textAlign: 'center', py: 4 }}>

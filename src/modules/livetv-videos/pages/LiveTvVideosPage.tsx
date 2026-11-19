@@ -88,7 +88,8 @@ const translations = {
     teluguOption: 'Telugu (te)',
     malayalamOption: 'Malayalam (ml)',
     englishOption: 'English (en)',
-    slugChangeWarning: 'Changing language will automatically relocate the show folder on the server.',
+    slugChangeWarning:
+      'Changing language will automatically relocate the show folder on the server.',
     descriptionLabel: 'Description',
     descriptionPlaceholder: 'Enter brief show summary...',
     tagNameLabel: 'Tag Name',
@@ -125,7 +126,8 @@ const translations = {
   },
   te: {
     pageTitle: 'వీడియో ట్యాగ్‌లు & స్ట్రీమ్ నిర్వహణ',
-    pageSubtitle: 'డైనమిక్ వీడియో ఫోల్డర్‌లను నిర్వహించండి మరియు వివిధ భాషలలో స్ట్రీమింగ్ కంటెంట్‌ను వీక్షించండి',
+    pageSubtitle:
+      'డైనమిక్ వీడియో ఫోల్డర్‌లను నిర్వహించండి మరియు వివిధ భాషలలో స్ట్రీమింగ్ కంటెంట్‌ను వీక్షించండి',
     createTagBtn: '+ కొత్త వీడియో ట్యాగ్',
     allLanguagesTab: 'అన్ని భాషలు',
     teluguTab: 'తెలుగు (te) ★డిఫాల్ట్',
@@ -151,7 +153,8 @@ const translations = {
     delete: 'తొలగించు',
     editVideo: 'వీడియోను సవరించండి',
     noTagsFound: 'ఈ భాష కోసం వీడియో ట్యాగ్‌లు కనుగొనబడలేదు.',
-    selectTagPrompt: 'వీడియోలు మరియు స్ట్రీమింగ్ ఫైళ్ళను వీక్షించడానికి వీడియో ట్యాగ్‌ని ఎంచుకోండి.',
+    selectTagPrompt:
+      'వీడియోలు మరియు స్ట్రీమింగ్ ఫైళ్ళను వీక్షించడానికి వీడియో ట్యాగ్‌ని ఎంచుకోండి.',
     viewVideosBtn: 'వీడియోలను చూడండి',
     folder: 'ఫోల్డర్',
     views: 'వీక్షణలు',
@@ -196,7 +199,8 @@ const translations = {
   },
   hi: {
     pageTitle: 'वीडियो टैग और स्ट्रीम प्रबंधन',
-    pageSubtitle: 'डायनामिक वीडियो फ़ोल्डर्स प्रबंधित करें और विभिन्न भाषाओं में स्ट्रीमिंग सामग्री देखें',
+    pageSubtitle:
+      'डायनामिक वीडियो फ़ोल्डर्स प्रबंधित करें और विभिन्न भाषाओं में स्ट्रीमिंग सामग्री देखें',
     createTagBtn: '+ नया वीडियो टैग',
     allLanguagesTab: 'सभी भाषाएं',
     teluguTab: 'तेलुगु (te) ★डिफ़ॉल्ट',
@@ -267,7 +271,8 @@ const translations = {
   },
   ml: {
     pageTitle: 'വീഡിയോ ടാഗുകളും സ്ട്രീം മാനേജ്മെൻ്റും',
-    pageSubtitle: 'ഡൈനാമിക് വീഡിയോ ഫോൾഡറുകൾ നിയന്ത്രിക്കുകയും ഭാഷകളിലുടനീളം സ്ട്രീമിംഗ് ഉള്ളടക്കം കാണുകയും ചെയ്യുക',
+    pageSubtitle:
+      'ഡൈനാമിക് വീഡിയോ ഫോൾഡറുകൾ നിയന്ത്രിക്കുകയും ഭാഷകളിലുടനീളം സ്ട്രീമിംഗ് ഉള്ളടക്കം കാണുകയും ചെയ്യുക',
     createTagBtn: '+ പുതിയ വീഡിയോ ടാഗ്',
     allLanguagesTab: 'എല്ലാ ഭാഷകളും',
     teluguTab: 'തെലുങ്ക് (te) ★സ്ഥിരസ്ഥിതി',
@@ -413,7 +418,9 @@ export const LiveTvVideosPage: React.FC = () => {
           params.get('lan') ||
           params.get('from') ||
           ''
-        ).toLowerCase().trim();
+        )
+          .toLowerCase()
+          .trim();
         if (urlLang === 'ml' || urlLang === 'malayala' || urlLang === 'malayalam') return ['ml'];
         if (urlLang === 'te' || urlLang === 'telugu') return ['te'];
         if (urlLang === 'en' || urlLang === 'english') return ['en'];
@@ -601,8 +608,6 @@ export const LiveTvVideosPage: React.FC = () => {
                 </Alert>
               )}
 
-
-
               {/* Categorized Accordions if "All Languages" is selected */}
               {selectedLanguage === 'all' && (
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
@@ -613,11 +618,15 @@ export const LiveTvVideosPage: React.FC = () => {
                       backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#ffffff',
                       color: isDark ? '#ffffff' : '#1c1445',
                       borderRadius: '16px !important',
-                      border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.08)'
+                        : '1px solid rgba(0,0,0,0.08)',
                       '&:before': { display: 'none' },
                     }}
                   >
-                    <AccordionSummary expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}
+                    >
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                         <Typography sx={{ fontWeight: 700 }}>{t.teluguShowsHeading}</Typography>
                         <Chip
@@ -659,11 +668,15 @@ export const LiveTvVideosPage: React.FC = () => {
                       backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#ffffff',
                       color: isDark ? '#ffffff' : '#1c1445',
                       borderRadius: '16px !important',
-                      border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.08)'
+                        : '1px solid rgba(0,0,0,0.08)',
                       '&:before': { display: 'none' },
                     }}
                   >
-                    <AccordionSummary expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}
+                    >
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                         <Typography sx={{ fontWeight: 700 }}>{t.malayalamShowsHeading}</Typography>
                         <Chip
@@ -705,11 +718,15 @@ export const LiveTvVideosPage: React.FC = () => {
                       backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#ffffff',
                       color: isDark ? '#ffffff' : '#1c1445',
                       borderRadius: '16px !important',
-                      border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.08)'
+                        : '1px solid rgba(0,0,0,0.08)',
                       '&:before': { display: 'none' },
                     }}
                   >
-                    <AccordionSummary expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}
+                    >
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                         <Typography sx={{ fontWeight: 700 }}>{t.englishShowsHeading}</Typography>
                         <Chip
@@ -819,7 +836,9 @@ export const LiveTvVideosPage: React.FC = () => {
                           width: 38,
                           height: 38,
                           borderRadius: '10px',
-                          backgroundColor: isDark ? 'rgba(147,197,253,0.15)' : 'rgba(37,99,235,0.1)',
+                          backgroundColor: isDark
+                            ? 'rgba(147,197,253,0.15)'
+                            : 'rgba(37,99,235,0.1)',
                           color: isDark ? '#93c5fd' : '#2563eb',
                         }}
                       >
@@ -885,7 +904,9 @@ export const LiveTvVideosPage: React.FC = () => {
                     <Button
                       variant="outlined"
                       size="small"
-                      startIcon={isSyncing ? <CircularProgress size={14} /> : <Sync sx={{ fontSize: 18 }} />}
+                      startIcon={
+                        isSyncing ? <CircularProgress size={14} /> : <Sync sx={{ fontSize: 18 }} />
+                      }
                       disabled={isSyncing}
                       onClick={() => handleDailySync(selectedTag.slug)}
                       sx={{
@@ -898,9 +919,7 @@ export const LiveTvVideosPage: React.FC = () => {
                         color: isDark ? '#93c5fd' : '#2563eb',
                         '&:hover': {
                           borderColor: '#2563eb',
-                          backgroundColor: isDark
-                            ? 'rgba(37,99,235,0.1)'
-                            : 'rgba(37,99,235,0.06)',
+                          backgroundColor: isDark ? 'rgba(37,99,235,0.1)' : 'rgba(37,99,235,0.06)',
                         },
                       }}
                     >
@@ -922,9 +941,7 @@ export const LiveTvVideosPage: React.FC = () => {
                         color: isDark ? '#ffffff' : '#1c1445',
                         '&:hover': {
                           borderColor: isDark ? '#ffffff' : '#1c1445',
-                          backgroundColor: isDark
-                            ? 'rgba(255,255,255,0.05)'
-                            : 'rgba(0,0,0,0.04)',
+                          backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)',
                         },
                       }}
                     >
@@ -1004,7 +1021,7 @@ export const LiveTvVideosPage: React.FC = () => {
                 t={t}
                 initialLanguage={
                   (selectedLanguage === 'all'
-                    ? (allowedLanguages[0] || 'te')
+                    ? allowedLanguages[0] || 'te'
                     : selectedLanguage) as TagLanguage
                 }
                 allowedLanguages={allowedLanguages}

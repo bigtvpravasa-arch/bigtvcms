@@ -315,7 +315,15 @@ export const ReportersPage: React.FC = () => {
     >
       <Sidebar activeHref="/reporters" />
 
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
         <Header title={t.pageTitle} />
 
         <Box sx={{ pt: 2, px: { xs: 2, sm: 3 }, pb: 4, flex: 1, overflowY: 'auto' }}>
@@ -339,8 +347,8 @@ export const ReportersPage: React.FC = () => {
                 currentLang === 'en'
                   ? t.englishTab || 'English (en)'
                   : currentLang === 'ml'
-                  ? t.malayalamTab || 'Malayalam (ml)'
-                  : t.teluguTab || 'Telugu (te) ★Default';
+                    ? t.malayalamTab || 'Malayalam (ml)'
+                    : t.teluguTab || 'Telugu (te) ★Default';
 
               const count = languageCounts[currentLang] || 0;
 
@@ -475,7 +483,9 @@ export const ReportersPage: React.FC = () => {
               }}
             >
               <Table>
-                <TableHead sx={{ backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)' }}>
+                <TableHead
+                  sx={{ backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)' }}
+                >
                   <TableRow>
                     <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
                       {t.colName}
@@ -509,7 +519,11 @@ export const ReportersPage: React.FC = () => {
                 <TableBody>
                   {paginatedData.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={8} align="center" sx={{ py: 6, color: isDark ? '#d0caeb' : '#5c548a' }}>
+                      <TableCell
+                        colSpan={8}
+                        align="center"
+                        sx={{ py: 6, color: isDark ? '#d0caeb' : '#5c548a' }}
+                      >
                         <Typography>{t.noData}</Typography>
                       </TableCell>
                     </TableRow>
@@ -544,7 +558,10 @@ export const ReportersPage: React.FC = () => {
                                 {row.name}
                               </Typography>
                               {row.isVerified && (
-                                <Typography variant="caption" sx={{ color: '#4caf50', display: 'block' }}>
+                                <Typography
+                                  variant="caption"
+                                  sx={{ color: '#4caf50', display: 'block' }}
+                                >
                                   Verified
                                 </Typography>
                               )}
@@ -577,7 +594,10 @@ export const ReportersPage: React.FC = () => {
                               </Typography>
                             </Box>
                           ) : (
-                            <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+                            <Typography
+                              variant="body2"
+                              sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+                            >
                               N/A
                             </Typography>
                           )}
@@ -588,7 +608,10 @@ export const ReportersPage: React.FC = () => {
                               {row.employment?.workPhone || row.mediaChannel?.phone}
                             </Typography>
                           ) : (
-                            <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+                            <Typography
+                              variant="body2"
+                              sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+                            >
                               N/A
                             </Typography>
                           )}
@@ -604,8 +627,8 @@ export const ReportersPage: React.FC = () => {
                                   ? 'rgba(76, 175, 80, 0.15)'
                                   : '#e8f5e9'
                                 : isDark
-                                ? 'rgba(244, 67, 54, 0.15)'
-                                : '#ffebee',
+                                  ? 'rgba(244, 67, 54, 0.15)'
+                                  : '#ffebee',
                               color: row.isActive ? '#4caf50' : '#f44336',
                               fontWeight: 600,
                               fontSize: '0.75rem',
@@ -714,19 +737,25 @@ export const ReportersPage: React.FC = () => {
           },
         }}
       >
-        <DialogTitle sx={{ fontWeight: 700, color: '#ef4444' }}>
-          {t.deleteConfirmTitle}
-        </DialogTitle>
+        <DialogTitle sx={{ fontWeight: 700, color: '#ef4444' }}>{t.deleteConfirmTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ color: isDark ? '#d0caeb' : '#475569' }}>
             {t.deleteConfirmDesc}
           </DialogContentText>
         </DialogContent>
         <DialogActions sx={{ p: 2 }}>
-          <Button onClick={() => setDeleteConfirmOpen(false)} sx={{ color: isDark ? '#94a3b8' : undefined }}>
+          <Button
+            onClick={() => setDeleteConfirmOpen(false)}
+            sx={{ color: isDark ? '#94a3b8' : undefined }}
+          >
             {t.cancel}
           </Button>
-          <Button onClick={handleConfirmDelete} color="error" variant="contained" sx={{ borderRadius: '8px' }}>
+          <Button
+            onClick={handleConfirmDelete}
+            color="error"
+            variant="contained"
+            sx={{ borderRadius: '8px' }}
+          >
             {t.delete}
           </Button>
         </DialogActions>

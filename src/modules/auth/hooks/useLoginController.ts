@@ -145,9 +145,14 @@ export function useLoginController() {
         });
 
         const defaultSuccess = toastMessages[language]?.success || toastMessages.en.success;
-        const successMsg = typeof res.message === 'string' ? res.message :
-                           typeof res.detail === 'string' ? res.detail :
-                           (res.message || res.detail ? formatApiErrorMessage(res, defaultSuccess) : defaultSuccess);
+        const successMsg =
+          typeof res.message === 'string'
+            ? res.message
+            : typeof res.detail === 'string'
+              ? res.detail
+              : res.message || res.detail
+                ? formatApiErrorMessage(res, defaultSuccess)
+                : defaultSuccess;
 
         setToast({
           open: true,
@@ -160,7 +165,8 @@ export function useLoginController() {
           router.push('/language');
         }, 3000);
       } catch (err: any) {
-        const errorMsg = err.message || toastMessages[language]?.unexpected || toastMessages.en.unexpected;
+        const errorMsg =
+          err.message || toastMessages[language]?.unexpected || toastMessages.en.unexpected;
         setToast({
           open: true,
           message: errorMsg,

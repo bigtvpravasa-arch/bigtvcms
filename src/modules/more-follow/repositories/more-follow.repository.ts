@@ -1,59 +1,66 @@
 import { apiClient } from '@/core/api/api-client';
 import axios from 'axios';
 import { MoreFollowItem } from '../domain/more-follow.model';
-import { CreateMoreFollowDto, CreateMoreFollowResponse, UpdateMoreFollowDto, UpdateMoreFollowResponse } from '../dto/more-follow.dto';
+import {
+  CreateMoreFollowDto,
+  CreateMoreFollowResponse,
+  UpdateMoreFollowDto,
+  UpdateMoreFollowResponse,
+} from '../dto/more-follow.dto';
 
 const MOCK_API_RESPONSE: MoreFollowItem[] = [
   {
     id: 4,
     morefollowId: 4,
-    morefollowName: "ట్రెండింగ్",
+    morefollowName: 'ట్రెండింగ్',
     morefollowNameTranslations: {
-      en: "Trending",
-      ml: "ട്രെൻഡിംഗ്",
-      te: "ట్రెండింగ్"
+      en: 'Trending',
+      ml: 'ട്രെൻഡിംഗ്',
+      te: 'ట్రెండింగ్',
     },
-    imageUrl: "",
+    imageUrl: '',
     isActive: true,
-    isFollowed: false
+    isFollowed: false,
   },
   {
     id: 3,
     morefollowId: 3,
-    morefollowName: "క్రికెట్",
+    morefollowName: 'క్రికెట్',
     morefollowNameTranslations: {
-      en: "Cricket",
-      ml: "ക്രിക്കറ്റ്",
-      te: "క్రికెట్"
+      en: 'Cricket',
+      ml: 'ക്രിക്കറ്റ്',
+      te: 'క్రికెట్',
     },
-    imageUrl: "",
+    imageUrl: '',
     isActive: true,
-    isFollowed: false
+    isFollowed: false,
   },
   {
     id: 2,
     morefollowId: 2,
-    morefollowName: "నేపాల్ వరదలు",
+    morefollowName: 'నేపాల్ వరదలు',
     morefollowNameTranslations: {
-      en: "Nepal Floods",
-      te: "నేపాల్ వరదలు"
+      en: 'Nepal Floods',
+      te: 'నేపాల్ వరదలు',
     },
-    imageUrl: "https://chotanews-wordpress-files-mig.s3.ap-south-1.amazonaws.com/uploads/2026/09/nepal_floods.jpg",
+    imageUrl:
+      'https://chotanews-wordpress-files-mig.s3.ap-south-1.amazonaws.com/uploads/2026/09/nepal_floods.jpg',
     isActive: true,
-    isFollowed: false
+    isFollowed: false,
   },
   {
     id: 1,
     morefollowId: 1,
-    morefollowName: "డిఎస్సి",
+    morefollowName: 'డిఎస్సి',
     morefollowNameTranslations: {
-      en: "DSC",
-      te: "డిఎస్సి"
+      en: 'DSC',
+      te: 'డిఎస్సి',
     },
-    imageUrl: "https://chotanews-wordpress-files-mig.s3.ap-south-1.amazonaws.com/uploads/2026/09/dsc_tag.jpg",
+    imageUrl:
+      'https://chotanews-wordpress-files-mig.s3.ap-south-1.amazonaws.com/uploads/2026/09/dsc_tag.jpg',
     isActive: true,
-    isFollowed: false
-  }
+    isFollowed: false,
+  },
 ];
 
 export class MoreFollowRepository {
@@ -156,8 +163,10 @@ export class MoreFollowRepository {
 
     // Local Fallback
     const current = this.getStoredList();
-    const newId = current.length > 0 ? Math.max(...current.map((i) => i.id || i.morefollowId || 0)) + 1 : 1;
-    const fallbackName = dto.translations.te || dto.translations.en || dto.translations.ml || 'New Menu';
+    const newId =
+      current.length > 0 ? Math.max(...current.map((i) => i.id || i.morefollowId || 0)) + 1 : 1;
+    const fallbackName =
+      dto.translations.te || dto.translations.en || dto.translations.ml || 'New Menu';
     const newItem: MoreFollowItem = {
       id: newId,
       morefollowId: newId,
@@ -202,7 +211,10 @@ export class MoreFollowRepository {
         return updated;
       }
     } catch (error) {
-      console.warn(`PUT https://api.chotanews.com/morefollow/${id} failed, trying apiClient...`, error);
+      console.warn(
+        `PUT https://api.chotanews.com/morefollow/${id} failed, trying apiClient...`,
+        error
+      );
     }
 
     // 2. Try via apiClient
@@ -229,7 +241,8 @@ export class MoreFollowRepository {
           ...item.morefollowNameTranslations,
           ...(dto.translations || {}),
         };
-        const primaryName = newTranslations.te || newTranslations.en || newTranslations.ml || item.morefollowName;
+        const primaryName =
+          newTranslations.te || newTranslations.en || newTranslations.ml || item.morefollowName;
         return {
           ...item,
           morefollowName: primaryName,

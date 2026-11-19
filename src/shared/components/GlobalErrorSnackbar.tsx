@@ -37,10 +37,10 @@ export const GlobalErrorSnackbar: React.FC = () => {
             (detail.severity === 'success'
               ? 'Success'
               : detail.severity === 'error'
-              ? 'Error'
-              : detail.severity === 'warning'
-              ? 'Warning'
-              : 'Notice')
+                ? 'Error'
+                : detail.severity === 'warning'
+                  ? 'Warning'
+                  : 'Notice')
         );
         setOpen(true);
       }

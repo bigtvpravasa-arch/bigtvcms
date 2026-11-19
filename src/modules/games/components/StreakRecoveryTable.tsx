@@ -89,13 +89,28 @@ export const StreakRecoveryTable: React.FC<StreakRecoveryTableProps> = ({
       <Table>
         <TableHead sx={{ backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)' }}>
           <TableRow>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>Player ID</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>Game</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>Gap Days</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>Player Reason</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>Status</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>Requested At</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }} align="center">
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              Player ID
+            </TableCell>
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              Game
+            </TableCell>
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              Gap Days
+            </TableCell>
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              Player Reason
+            </TableCell>
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              Status
+            </TableCell>
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              Requested At
+            </TableCell>
+            <TableCell
+              sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              align="center"
+            >
               {t.colActions}
             </TableCell>
           </TableRow>
@@ -103,7 +118,11 @@ export const StreakRecoveryTable: React.FC<StreakRecoveryTableProps> = ({
         <TableBody>
           {data.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={7} align="center" sx={{ py: 6, color: isDark ? '#d0caeb' : '#5c548a' }}>
+              <TableCell
+                colSpan={7}
+                align="center"
+                sx={{ py: 6, color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
                 <Typography>{t.noStreakRequests}</Typography>
               </TableCell>
             </TableRow>
@@ -118,10 +137,18 @@ export const StreakRecoveryTable: React.FC<StreakRecoveryTableProps> = ({
                   },
                 }}
               >
-                <TableCell sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600, fontFamily: 'monospace' }}>
+                <TableCell
+                  sx={{
+                    color: isDark ? '#a6e2f5' : '#1c1445',
+                    fontWeight: 600,
+                    fontFamily: 'monospace',
+                  }}
+                >
                   {row.playerId}
                 </TableCell>
-                <TableCell sx={{ color: isDark ? '#ffffff' : '#1c1445', textTransform: 'capitalize' }}>
+                <TableCell
+                  sx={{ color: isDark ? '#ffffff' : '#1c1445', textTransform: 'capitalize' }}
+                >
                   {row.gameId}
                 </TableCell>
                 <TableCell sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}>

@@ -10,12 +10,7 @@ import {
   IconButton,
   Alert,
 } from '@mui/material';
-import {
-  CloudUpload,
-  DeleteOutline,
-  Image as ImageIcon,
-  CheckCircle,
-} from '@mui/icons-material';
+import { CloudUpload, DeleteOutline, Image as ImageIcon, CheckCircle } from '@mui/icons-material';
 import { RatingsRepository } from '../repositories/ratings.repository';
 import { useLanguageStore } from '@/core/storage/language-store';
 import { ratingsTranslations } from '../translations';
@@ -137,13 +132,21 @@ export const RatingsImageUploader: React.FC<RatingsImageUploaderProps> = ({
       )}
 
       {errorMsg && (
-        <Alert severity="error" onClose={() => setErrorMsg(null)} sx={{ py: 0.5, fontSize: '0.825rem' }}>
+        <Alert
+          severity="error"
+          onClose={() => setErrorMsg(null)}
+          sx={{ py: 0.5, fontSize: '0.825rem' }}
+        >
           {errorMsg}
         </Alert>
       )}
 
       {successMsg && (
-        <Alert severity="success" onClose={() => setSuccessMsg(null)} sx={{ py: 0.5, fontSize: '0.825rem' }}>
+        <Alert
+          severity="success"
+          onClose={() => setSuccessMsg(null)}
+          sx={{ py: 0.5, fontSize: '0.825rem' }}
+        >
           {successMsg}
         </Alert>
       )}
@@ -173,8 +176,8 @@ export const RatingsImageUploader: React.FC<RatingsImageUploaderProps> = ({
           borderColor: isDragOver
             ? '#2563eb'
             : isDark
-            ? 'rgba(255, 255, 255, 0.18)'
-            : 'rgba(0, 0, 0, 0.18)',
+              ? 'rgba(255, 255, 255, 0.18)'
+              : 'rgba(0, 0, 0, 0.18)',
           borderRadius: '12px',
           p: { xs: 2, sm: 2.5 },
           textAlign: 'center',
@@ -184,8 +187,8 @@ export const RatingsImageUploader: React.FC<RatingsImageUploaderProps> = ({
               ? 'rgba(37, 99, 235, 0.15)'
               : 'rgba(37, 99, 235, 0.08)'
             : isDark
-            ? 'rgba(255, 255, 255, 0.02)'
-            : 'rgba(0, 0, 0, 0.02)',
+              ? 'rgba(255, 255, 255, 0.02)'
+              : 'rgba(0, 0, 0, 0.02)',
           transition: 'all 0.2s ease-in-out',
           '&:hover': {
             borderColor: disabled || isUploading ? undefined : '#3b82f6',
@@ -193,8 +196,8 @@ export const RatingsImageUploader: React.FC<RatingsImageUploaderProps> = ({
               disabled || isUploading
                 ? undefined
                 : isDark
-                ? 'rgba(255, 255, 255, 0.04)'
-                : 'rgba(0, 0, 0, 0.04)',
+                  ? 'rgba(255, 255, 255, 0.04)'
+                  : 'rgba(0, 0, 0, 0.04)',
           },
           display: 'flex',
           flexDirection: 'column',
@@ -204,9 +207,14 @@ export const RatingsImageUploader: React.FC<RatingsImageUploaderProps> = ({
         }}
       >
         {isUploading ? (
-          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, py: 1 }}>
+          <Box
+            sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, py: 1 }}
+          >
             <CircularProgress size={32} sx={{ color: '#3b82f6' }} />
-            <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#64748b', fontWeight: 500 }}>
+            <Typography
+              variant="body2"
+              sx={{ color: isDark ? '#d0caeb' : '#64748b', fontWeight: 500 }}
+            >
               {t.uploadingImage || 'Uploading image...'}
             </Typography>
           </Box>
@@ -253,7 +261,9 @@ export const RatingsImageUploader: React.FC<RatingsImageUploaderProps> = ({
       <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
         <TextField
           size="small"
-          placeholder={placeholder || t.placeholderPosterUrl || t.orEnterUrl || 'Or enter image URL directly'}
+          placeholder={
+            placeholder || t.placeholderPosterUrl || t.orEnterUrl || 'Or enter image URL directly'
+          }
           value={value}
           onChange={(e) => onChange(e.target.value)}
           fullWidth
@@ -322,7 +332,10 @@ export const RatingsImageUploader: React.FC<RatingsImageUploaderProps> = ({
           <Box sx={{ flex: 1, minWidth: 0 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <CheckCircle sx={{ fontSize: '1rem', color: '#10b981' }} />
-              <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#fff' : '#0f172a' }}>
+              <Typography
+                variant="body2"
+                sx={{ fontWeight: 600, color: isDark ? '#fff' : '#0f172a' }}
+              >
                 {t.imageAttached || 'Image Attached'}
               </Typography>
             </Box>

@@ -107,8 +107,13 @@ export const PollsTab: React.FC<PollsTabProps> = ({
           }}
         >
           <CardContent sx={{ p: 2.5 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 {t.pollStatTotal}
               </Typography>
               <Box
@@ -142,8 +147,13 @@ export const PollsTab: React.FC<PollsTabProps> = ({
           }}
         >
           <CardContent sx={{ p: 2.5 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 {t.pollStatActive}
               </Typography>
               <Box
@@ -177,8 +187,13 @@ export const PollsTab: React.FC<PollsTabProps> = ({
           }}
         >
           <CardContent sx={{ p: 2.5 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 {t.pollStatVotes}
               </Typography>
               <Box
@@ -212,8 +227,13 @@ export const PollsTab: React.FC<PollsTabProps> = ({
           }}
         >
           <CardContent sx={{ p: 2.5 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 {t.pollStatLeading}
               </Typography>
               <Box
@@ -350,7 +370,9 @@ export const PollsTab: React.FC<PollsTabProps> = ({
                 sx={{
                   borderRadius: '16px',
                   backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#ffffff',
-                  border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                  border: isDark
+                    ? '1px solid rgba(255,255,255,0.08)'
+                    : '1px solid rgba(0,0,0,0.08)',
                   boxShadow: isDark ? '0 8px 24px rgba(0,0,0,0.2)' : '0 4px 16px rgba(0,0,0,0.04)',
                   display: 'flex',
                   flexDirection: 'column',
@@ -361,8 +383,17 @@ export const PollsTab: React.FC<PollsTabProps> = ({
                   },
                 }}
               >
-                <CardContent sx={{ p: 2.5, display: 'flex', flexDirection: 'column', height: '100%' }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
+                <CardContent
+                  sx={{ p: 2.5, display: 'flex', flexDirection: 'column', height: '100%' }}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      mb: 1,
+                    }}
+                  >
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                       <Chip
                         label={poll.language_code.toUpperCase()}
@@ -423,16 +454,29 @@ export const PollsTab: React.FC<PollsTabProps> = ({
                         opt.percentage !== undefined
                           ? opt.percentage
                           : totalVotes > 0
-                          ? Number((((opt.votes || 0) / totalVotes) * 100).toFixed(1))
-                          : 0;
+                            ? Number((((opt.votes || 0) / totalVotes) * 100).toFixed(1))
+                            : 0;
 
                       return (
                         <Box key={opt.option}>
-                          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 0.5 }}>
-                            <Typography variant="body2" sx={{ fontWeight: 500, fontSize: '0.85rem' }}>
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              mb: 0.5,
+                            }}
+                          >
+                            <Typography
+                              variant="body2"
+                              sx={{ fontWeight: 500, fontSize: '0.85rem' }}
+                            >
                               {opt.option_name}
                             </Typography>
-                            <Typography variant="caption" sx={{ fontWeight: 700, color: '#3b82f6' }}>
+                            <Typography
+                              variant="caption"
+                              sx={{ fontWeight: 700, color: '#3b82f6' }}
+                            >
                               {percentage}%
                             </Typography>
                           </Box>
@@ -462,7 +506,9 @@ export const PollsTab: React.FC<PollsTabProps> = ({
                       justifyContent: 'space-between',
                       mt: 'auto',
                       pt: 1.5,
-                      borderTop: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.06)',
+                      borderTop: isDark
+                        ? '1px solid rgba(255,255,255,0.06)'
+                        : '1px solid rgba(0,0,0,0.06)',
                     }}
                   >
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -487,7 +533,11 @@ export const PollsTab: React.FC<PollsTabProps> = ({
 
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                       <Tooltip title={t.btnEdit}>
-                        <IconButton size="small" onClick={() => onEditPoll(poll)} sx={{ color: '#2563eb' }}>
+                        <IconButton
+                          size="small"
+                          onClick={() => onEditPoll(poll)}
+                          sx={{ color: '#2563eb' }}
+                        >
                           <Edit fontSize="small" />
                         </IconButton>
                       </Tooltip>

@@ -29,7 +29,11 @@ jest.mock('@/core/api/api-client', () => ({
 // Mock UploadService
 jest.mock('@/modules/media/services/upload.service', () => ({
   UploadService: {
-    uploadImage: jest.fn().mockImplementation(() => Promise.resolve('https://bigtv-cms.s3.ap-south-1.amazonaws.com/mock_image.png')),
+    uploadImage: jest
+      .fn()
+      .mockImplementation(() =>
+        Promise.resolve('https://bigtv-cms.s3.ap-south-1.amazonaws.com/mock_image.png')
+      ),
   },
 }));
 
@@ -39,7 +43,7 @@ class MockFileReader {
   readAsDataURL(file: File) {
     if (this.onload) {
       this.onload({
-        target: { result: 'data:image/png;base64,dummy' }
+        target: { result: 'data:image/png;base64,dummy' },
       });
     }
   }
@@ -57,12 +61,7 @@ describe('CreateNewsForm component', () => {
 
   it('should render correct language titles and form elements when mounted', () => {
     render(
-      <CreateNewsForm
-        onClose={mockOnClose}
-        onSubmit={mockOnSubmit}
-        isDark={false}
-        language="en"
-      />
+      <CreateNewsForm onClose={mockOnClose} onSubmit={mockOnSubmit} isDark={false} language="en" />
     );
     expect(screen.getAllByText('AI Mapped Tags *').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Categories *').length).toBeGreaterThan(0);
@@ -70,18 +69,13 @@ describe('CreateNewsForm component', () => {
 
   it('should toggle tags selection when clicked in multiselect dropdown', () => {
     render(
-      <CreateNewsForm
-        onClose={mockOnClose}
-        onSubmit={mockOnSubmit}
-        isDark={false}
-        language="en"
-      />
+      <CreateNewsForm onClose={mockOnClose} onSubmit={mockOnSubmit} isDark={false} language="en" />
     );
-    
+
     // Open AI Tags dropdown
     const tagsSelect = screen.getByLabelText('AI Mapped Tags *');
     fireEvent.mouseDown(tagsSelect);
-    
+
     // Select Trending tag
     const tagOption = screen.getByRole('option', { name: 'Trending' });
     fireEvent.click(tagOption);
@@ -92,12 +86,7 @@ describe('CreateNewsForm component', () => {
 
   it('should toggle categories selection when clicked', () => {
     render(
-      <CreateNewsForm
-        onClose={mockOnClose}
-        onSubmit={mockOnSubmit}
-        isDark={false}
-        language="en"
-      />
+      <CreateNewsForm onClose={mockOnClose} onSubmit={mockOnSubmit} isDark={false} language="en" />
     );
 
     const entertainmentCheckbox = screen.getByLabelText('Entertainment');
@@ -110,12 +99,7 @@ describe('CreateNewsForm component', () => {
 
   it('should select language from dropdown and allow text input', () => {
     render(
-      <CreateNewsForm
-        onClose={mockOnClose}
-        onSubmit={mockOnSubmit}
-        isDark={false}
-        language="en"
-      />
+      <CreateNewsForm onClose={mockOnClose} onSubmit={mockOnSubmit} isDark={false} language="en" />
     );
 
     // Select Language dropdown
@@ -131,12 +115,7 @@ describe('CreateNewsForm component', () => {
 
   it('should show validation errors when submitting invalid form', () => {
     render(
-      <CreateNewsForm
-        onClose={mockOnClose}
-        onSubmit={mockOnSubmit}
-        isDark={false}
-        language="en"
-      />
+      <CreateNewsForm onClose={mockOnClose} onSubmit={mockOnSubmit} isDark={false} language="en" />
     );
 
     const submitBtn = screen.getByRole('button', { name: 'Create News' });
@@ -153,23 +132,25 @@ describe('CreateNewsForm component', () => {
 
   it('should successfully submit form data when fields are valid and user confirms preview', async () => {
     const { container } = render(
-      <CreateNewsForm
-        onClose={mockOnClose}
-        onSubmit={mockOnSubmit}
-        isDark={false}
-        language="en"
-      />
+      <CreateNewsForm onClose={mockOnClose} onSubmit={mockOnSubmit} isDark={false} language="en" />
     );
 
     // Categories
     fireEvent.click(screen.getByLabelText('Entertainment'));
 
     // English title/body/notification/image title
-    fireEvent.change(screen.getByPlaceholderText(/Enter news headline/i), { target: { value: 'Breaking News' } });
+    fireEvent.change(screen.getByPlaceholderText(/Enter news headline/i), {
+      target: { value: 'Breaking News' },
+    });
     const notifEditor = document.querySelector('[data-placeholder*="Enter notification title"]');
-    if (notifEditor) fireEvent.input(notifEditor, { target: { textContent: 'Notification headline' } });
-    fireEvent.change(screen.getByPlaceholderText(/Enter image\/banner title/i), { target: { value: 'Banner title' } });
-    fireEvent.change(screen.getByPlaceholderText(/Write news body content/i), { target: { value: 'Something big happened.' } });
+    if (notifEditor)
+      fireEvent.input(notifEditor, { target: { textContent: 'Notification headline' } });
+    fireEvent.change(screen.getByPlaceholderText(/Enter image\/banner title/i), {
+      target: { value: 'Banner title' },
+    });
+    fireEvent.change(screen.getByPlaceholderText(/Write news body content/i), {
+      target: { value: 'Something big happened.' },
+    });
 
     // Location dropdown (multiselect)
     const locationSelect = screen.getByLabelText('Publish Location *');
@@ -222,22 +203,24 @@ describe('CreateNewsForm component', () => {
 
   it('should allow returning back to edit screen from preview screen', () => {
     const { container } = render(
-      <CreateNewsForm
-        onClose={mockOnClose}
-        onSubmit={mockOnSubmit}
-        isDark={false}
-        language="en"
-      />
+      <CreateNewsForm onClose={mockOnClose} onSubmit={mockOnSubmit} isDark={false} language="en" />
     );
 
     // Input fields
     fireEvent.click(screen.getByLabelText('Entertainment'));
-    fireEvent.change(screen.getByPlaceholderText(/Enter news headline/i), { target: { value: 'Headline text' } });
+    fireEvent.change(screen.getByPlaceholderText(/Enter news headline/i), {
+      target: { value: 'Headline text' },
+    });
     const notifEditor2 = document.querySelector('[data-placeholder*="Enter notification title"]');
-    if (notifEditor2) fireEvent.input(notifEditor2, { target: { textContent: 'Notification text' } });
-    fireEvent.change(screen.getByPlaceholderText(/Enter image\/banner title/i), { target: { value: 'Image title text' } });
-    fireEvent.change(screen.getByPlaceholderText(/Write news body content/i), { target: { value: 'Body content text' } });
-    
+    if (notifEditor2)
+      fireEvent.input(notifEditor2, { target: { textContent: 'Notification text' } });
+    fireEvent.change(screen.getByPlaceholderText(/Enter image\/banner title/i), {
+      target: { value: 'Image title text' },
+    });
+    fireEvent.change(screen.getByPlaceholderText(/Write news body content/i), {
+      target: { value: 'Body content text' },
+    });
+
     // Publish Location
     const locationSelect = screen.getByLabelText('Publish Location *');
     fireEvent.mouseDown(locationSelect);
@@ -266,12 +249,7 @@ describe('CreateNewsForm component', () => {
 
   it('should trigger close callback when Cancel or Close buttons are clicked', () => {
     render(
-      <CreateNewsForm
-        onClose={mockOnClose}
-        onSubmit={mockOnSubmit}
-        isDark={false}
-        language="en"
-      />
+      <CreateNewsForm onClose={mockOnClose} onSubmit={mockOnSubmit} isDark={false} language="en" />
     );
 
     const cancelBtn = screen.getByRole('button', { name: 'Cancel' });
@@ -281,25 +259,29 @@ describe('CreateNewsForm component', () => {
 
   it('should display an error alert when image upload fails during publish', async () => {
     const { UploadService } = require('@/modules/media/services/upload.service');
-    (UploadService.uploadImage as jest.Mock).mockRejectedValueOnce(new Error('S3 Connection Timeout'));
+    (UploadService.uploadImage as jest.Mock).mockRejectedValueOnce(
+      new Error('S3 Connection Timeout')
+    );
 
     const { container } = render(
-      <CreateNewsForm
-        onClose={mockOnClose}
-        onSubmit={mockOnSubmit}
-        isDark={false}
-        language="en"
-      />
+      <CreateNewsForm onClose={mockOnClose} onSubmit={mockOnSubmit} isDark={false} language="en" />
     );
 
     // Input fields
     fireEvent.click(screen.getByLabelText('Entertainment'));
-    fireEvent.change(screen.getByPlaceholderText(/Enter news headline/i), { target: { value: 'Failed Upload News' } });
+    fireEvent.change(screen.getByPlaceholderText(/Enter news headline/i), {
+      target: { value: 'Failed Upload News' },
+    });
     const notifEditor3 = document.querySelector('[data-placeholder*="Enter notification title"]');
-    if (notifEditor3) fireEvent.input(notifEditor3, { target: { textContent: 'Failed Upload Notification' } });
-    fireEvent.change(screen.getByPlaceholderText(/Enter image\/banner title/i), { target: { value: 'Failed Upload Image Title' } });
-    fireEvent.change(screen.getByPlaceholderText(/Write news body content/i), { target: { value: 'Test body' } });
-    
+    if (notifEditor3)
+      fireEvent.input(notifEditor3, { target: { textContent: 'Failed Upload Notification' } });
+    fireEvent.change(screen.getByPlaceholderText(/Enter image\/banner title/i), {
+      target: { value: 'Failed Upload Image Title' },
+    });
+    fireEvent.change(screen.getByPlaceholderText(/Write news body content/i), {
+      target: { value: 'Test body' },
+    });
+
     // Publish Location
     const locationSelect = screen.getByLabelText('Publish Location *');
     fireEvent.mouseDown(locationSelect);
@@ -351,12 +333,7 @@ describe('CreateNewsForm component', () => {
     });
 
     render(
-      <CreateNewsForm
-        onClose={mockOnClose}
-        onSubmit={mockOnSubmit}
-        isDark={false}
-        language="en"
-      />
+      <CreateNewsForm onClose={mockOnClose} onSubmit={mockOnSubmit} isDark={false} language="en" />
     );
 
     const langSelect = await screen.findByLabelText(/Language/i);
@@ -493,12 +470,7 @@ describe('CreateNewsForm component', () => {
 
   it('should not require notificationTitle when submitting form (notification title is optional)', async () => {
     render(
-      <CreateNewsForm
-        onClose={mockOnClose}
-        onSubmit={mockOnSubmit}
-        isDark={false}
-        language="en"
-      />
+      <CreateNewsForm onClose={mockOnClose} onSubmit={mockOnSubmit} isDark={false} language="en" />
     );
 
     // Click submit without notificationTitle
@@ -527,7 +499,7 @@ describe('CreateNewsForm component', () => {
     // Since we're using HtmlEditor now, we check the label and its wrapper's style
     const notifLabel = screen.getByText('Notification Title');
     const editorWrapper = notifLabel.closest('.MuiBox-root')?.parentElement;
-    
+
     // Default opacity is 1
     expect(editorWrapper).toHaveStyle('opacity: 1');
 
@@ -662,12 +634,7 @@ describe('CreateNewsForm component', () => {
 
   it('should render More Follow Tags multiselect dropdown and support item selection', async () => {
     render(
-      <CreateNewsForm
-        onClose={mockOnClose}
-        onSubmit={mockOnSubmit}
-        isDark={false}
-        language="en"
-      />
+      <CreateNewsForm onClose={mockOnClose} onSubmit={mockOnSubmit} isDark={false} language="en" />
     );
 
     const moreFollowSelect = screen.getByLabelText(/More Follow Tags/i);
@@ -794,5 +761,3 @@ describe('CreateNewsForm component', () => {
     });
   });
 });
-
-

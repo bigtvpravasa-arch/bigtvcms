@@ -271,7 +271,11 @@ export const NotificationsPage: React.FC = () => {
   const [selectedStatus, setSelectedStatus] = useState<string>('All');
   const [sendFormOpen, setSendFormOpen] = useState<boolean>(false);
   const [viewingItem, setViewingItem] = useState<NotificationItem | null>(null);
-  const [toast, setToast] = useState<{ open: boolean; message: string; severity: 'success' | 'error' | 'info' }>({
+  const [toast, setToast] = useState<{
+    open: boolean;
+    message: string;
+    severity: 'success' | 'error' | 'info';
+  }>({
     open: false,
     message: '',
     severity: 'success',
@@ -327,7 +331,15 @@ export const NotificationsPage: React.FC = () => {
       <Sidebar activeHref="/notifications" />
 
       {/* Main Content Area */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
         {/* Top Header */}
         <Header title={t.title} />
 
@@ -352,7 +364,9 @@ export const NotificationsPage: React.FC = () => {
                   gap: 1.5,
                   px: 3,
                   py: 2,
-                  borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                  borderBottom: isDark
+                    ? '1px solid rgba(255,255,255,0.08)'
+                    : '1px solid rgba(0,0,0,0.08)',
                   backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#f4f3f8',
                 }}
               >
@@ -362,14 +376,23 @@ export const NotificationsPage: React.FC = () => {
                   size="small"
                   sx={{
                     color: isDark ? '#d0caeb' : '#5c548a',
-                    border: isDark ? '1px solid rgba(255,255,255,0.12)' : '1px solid rgba(0,0,0,0.12)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.12)'
+                      : '1px solid rgba(0,0,0,0.12)',
                     borderRadius: '8px',
                     p: 0.8,
                   }}
                 >
                   <ArrowBack sx={{ fontSize: '1.1rem' }} />
                 </IconButton>
-                <Typography variant="h6" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 700, fontSize: '1.05rem' }}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: isDark ? '#ffffff' : '#1c1445',
+                    fontWeight: 700,
+                    fontSize: '1.05rem',
+                  }}
+                >
                   {t.detailsTitle}
                 </Typography>
               </Box>
@@ -384,64 +407,148 @@ export const NotificationsPage: React.FC = () => {
                         p: 3.5,
                         height: '100%',
                         borderRadius: '14px',
-                        border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                        border: isDark
+                          ? '1px solid rgba(255,255,255,0.08)'
+                          : '1px solid rgba(0,0,0,0.08)',
                         backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
                         display: 'flex',
                         flexDirection: 'column',
                         gap: 2.5,
                       }}
                     >
-                      <Typography variant="subtitle1" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700, fontSize: '1rem' }}>
+                      <Typography
+                        variant="subtitle1"
+                        sx={{
+                          color: isDark ? '#a6e2f5' : '#1c1445',
+                          fontWeight: 700,
+                          fontSize: '1rem',
+                        }}
+                      >
                         Notification Dispatch Summary
                       </Typography>
-                      <Divider sx={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+                      <Divider
+                        sx={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+                      />
 
                       <Box>
-                        <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, display: 'block', mb: 0.5 }}>
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: isDark ? '#d0caeb' : '#5c548a',
+                            fontWeight: 600,
+                            display: 'block',
+                            mb: 0.5,
+                          }}
+                        >
                           Notification Title
                         </Typography>
-                        <Typography variant="body1" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 700, lineHeight: 1.4 }}>
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            color: isDark ? '#ffffff' : '#1c1445',
+                            fontWeight: 700,
+                            lineHeight: 1.4,
+                          }}
+                        >
                           {viewingItem.title}
                         </Typography>
                       </Box>
 
                       <Box sx={{ flexGrow: 1, maxHeight: '200px', overflowY: 'auto', pr: 0.5 }}>
-                        <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, display: 'block', mb: 0.5 }}>
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: isDark ? '#d0caeb' : '#5c548a',
+                            fontWeight: 600,
+                            display: 'block',
+                            mb: 0.5,
+                          }}
+                        >
                           Content / Body
                         </Typography>
-                        <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.72)' : 'rgba(28,20,69,0.8)', lineHeight: 1.7 }}>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: isDark ? 'rgba(255,255,255,0.72)' : 'rgba(28,20,69,0.8)',
+                            lineHeight: 1.7,
+                          }}
+                        >
                           {viewingItem.content}
                         </Typography>
                       </Box>
 
                       <Grid container spacing={2}>
                         <Grid item xs={6}>
-                          <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, display: 'block', mb: 0.4 }}>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: isDark ? '#d0caeb' : '#5c548a',
+                              fontWeight: 600,
+                              display: 'block',
+                              mb: 0.4,
+                            }}
+                          >
                             Target Post ID
                           </Typography>
-                          <Typography variant="body2" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700 }}>
+                          <Typography
+                            variant="body2"
+                            sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700 }}
+                          >
                             Post #{viewingItem.postId}
                           </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                          <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, display: 'block', mb: 0.4 }}>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: isDark ? '#d0caeb' : '#5c548a',
+                              fontWeight: 600,
+                              display: 'block',
+                              mb: 0.4,
+                            }}
+                          >
                             Delivery Status
                           </Typography>
-                          <Typography variant="body2" sx={{ color: viewingItem.status === 'COMPLETED' ? '#10b981' : '#f59e0b', fontWeight: 700 }}>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: viewingItem.status === 'COMPLETED' ? '#10b981' : '#f59e0b',
+                              fontWeight: 700,
+                            }}
+                          >
                             {viewingItem.status}
                           </Typography>
                         </Grid>
                       </Grid>
 
                       <Box>
-                        <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, display: 'block', mb: 0.4 }}>
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: isDark ? '#d0caeb' : '#5c548a',
+                            fontWeight: 600,
+                            display: 'block',
+                            mb: 0.4,
+                          }}
+                        >
                           Deep Link
                         </Typography>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                          <Typography variant="body2" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontFamily: 'monospace', fontSize: '0.85rem' }}>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: isDark ? '#ffffff' : '#1c1445',
+                              fontFamily: 'monospace',
+                              fontSize: '0.85rem',
+                            }}
+                          >
                             {viewingItem.link}
                           </Typography>
-                          <IconButton size="small" onClick={() => handleCopyLink(viewingItem.link)} sx={{ color: '#2563eb' }}>
+                          <IconButton
+                            size="small"
+                            onClick={() => handleCopyLink(viewingItem.link)}
+                            sx={{ color: '#2563eb' }}
+                          >
                             <ContentCopy sx={{ fontSize: '0.9rem' }} />
                           </IconButton>
                         </Box>
@@ -449,15 +556,28 @@ export const NotificationsPage: React.FC = () => {
 
                       <Grid container spacing={2}>
                         <Grid item xs={4}>
-                          <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, display: 'block' }}>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: isDark ? '#d0caeb' : '#5c548a',
+                              fontWeight: 600,
+                              display: 'block',
+                            }}
+                          >
                             Targeted
                           </Typography>
-                          <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}>
+                          <Typography
+                            variant="h6"
+                            sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}
+                          >
                             {viewingItem.totalTargeted}
                           </Typography>
                         </Grid>
                         <Grid item xs={4}>
-                          <Typography variant="caption" sx={{ color: '#10b981', fontWeight: 600, display: 'block' }}>
+                          <Typography
+                            variant="caption"
+                            sx={{ color: '#10b981', fontWeight: 600, display: 'block' }}
+                          >
                             Delivered
                           </Typography>
                           <Typography variant="h6" sx={{ fontWeight: 700, color: '#10b981' }}>
@@ -465,7 +585,10 @@ export const NotificationsPage: React.FC = () => {
                           </Typography>
                         </Grid>
                         <Grid item xs={4}>
-                          <Typography variant="caption" sx={{ color: '#ef4444', fontWeight: 600, display: 'block' }}>
+                          <Typography
+                            variant="caption"
+                            sx={{ color: '#ef4444', fontWeight: 600, display: 'block' }}
+                          >
                             Failed
                           </Typography>
                           <Typography variant="h6" sx={{ fontWeight: 700, color: '#ef4444' }}>
@@ -477,7 +600,12 @@ export const NotificationsPage: React.FC = () => {
                   </Grid>
 
                   {/* Right: Phone Simulator */}
-                  <Grid item xs={12} md={5} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Grid
+                    item
+                    xs={12}
+                    md={5}
+                    sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                  >
                     <Box
                       sx={{
                         width: '300px',
@@ -492,31 +620,118 @@ export const NotificationsPage: React.FC = () => {
                         flexDirection: 'column',
                       }}
                     >
-                      <Box sx={{ width: '60px', height: '14px', backgroundColor: '#222222', borderBottomLeftRadius: '8px', borderBottomRightRadius: '8px', position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', zIndex: 10 }} />
-                      <Box sx={{ height: '24px', px: 3, display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#181818', pt: 1.5, zIndex: 9 }}>
-                        <Typography variant="caption" sx={{ fontSize: '0.6rem', fontWeight: 600, color: '#ffffff' }}>4:27</Typography>
+                      <Box
+                        sx={{
+                          width: '60px',
+                          height: '14px',
+                          backgroundColor: '#222222',
+                          borderBottomLeftRadius: '8px',
+                          borderBottomRightRadius: '8px',
+                          position: 'absolute',
+                          top: 0,
+                          left: '50%',
+                          transform: 'translateX(-50%)',
+                          zIndex: 10,
+                        }}
+                      />
+                      <Box
+                        sx={{
+                          height: '24px',
+                          px: 3,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          backgroundColor: '#181818',
+                          pt: 1.5,
+                          zIndex: 9,
+                        }}
+                      >
+                        <Typography
+                          variant="caption"
+                          sx={{ fontSize: '0.6rem', fontWeight: 600, color: '#ffffff' }}
+                        >
+                          4:27
+                        </Typography>
                         <Box sx={{ display: 'flex', gap: 0.4 }}>
-                          <Box component="span" sx={{ fontSize: '0.55rem', color: '#fff' }}>VoWiFi</Box>
-                          <Box component="span" sx={{ fontSize: '0.55rem', color: '#fff' }}>4G</Box>
-                          <Box component="span" sx={{ fontSize: '0.55rem', color: '#fff' }}>🔋 44</Box>
+                          <Box component="span" sx={{ fontSize: '0.55rem', color: '#fff' }}>
+                            VoWiFi
+                          </Box>
+                          <Box component="span" sx={{ fontSize: '0.55rem', color: '#fff' }}>
+                            4G
+                          </Box>
+                          <Box component="span" sx={{ fontSize: '0.55rem', color: '#fff' }}>
+                            🔋 44
+                          </Box>
                         </Box>
                       </Box>
 
                       {/* Push Notification Card inside simulator */}
-                      <Box sx={{ p: 2, flex: 1, backgroundColor: '#f3f4f6', display: 'flex', flexDirection: 'column', pt: 4 }}>
-                        <Box sx={{ backgroundColor: '#ffffff', borderRadius: '16px', p: 2, boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}>
+                      <Box
+                        sx={{
+                          p: 2,
+                          flex: 1,
+                          backgroundColor: '#f3f4f6',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          pt: 4,
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            backgroundColor: '#ffffff',
+                            borderRadius: '16px',
+                            p: 2,
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                          }}
+                        >
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                            <Box sx={{ width: 20, height: 20, borderRadius: '4px', bgcolor: '#e53935', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <Typography sx={{ color: '#fff', fontSize: '0.5rem', fontWeight: 900 }}>B</Typography>
+                            <Box
+                              sx={{
+                                width: 20,
+                                height: 20,
+                                borderRadius: '4px',
+                                bgcolor: '#e53935',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                              }}
+                            >
+                              <Typography
+                                sx={{ color: '#fff', fontSize: '0.5rem', fontWeight: 900 }}
+                              >
+                                B
+                              </Typography>
                             </Box>
-                            <Typography variant="caption" sx={{ fontWeight: 700, color: '#111827', fontSize: '0.7rem' }}>BIG TV</Typography>
-                            <Typography variant="caption" sx={{ color: '#9ca3af', fontSize: '0.65rem', ml: 'auto' }}>now</Typography>
+                            <Typography
+                              variant="caption"
+                              sx={{ fontWeight: 700, color: '#111827', fontSize: '0.7rem' }}
+                            >
+                              BIG TV
+                            </Typography>
+                            <Typography
+                              variant="caption"
+                              sx={{ color: '#9ca3af', fontSize: '0.65rem', ml: 'auto' }}
+                            >
+                              now
+                            </Typography>
                           </Box>
 
-                          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#111827', fontSize: '0.8rem', mb: 0.5 }}>
+                          <Typography
+                            variant="subtitle2"
+                            sx={{ fontWeight: 700, color: '#111827', fontSize: '0.8rem', mb: 0.5 }}
+                          >
                             {viewingItem.title}
                           </Typography>
-                          <Typography variant="caption" sx={{ color: '#4b5563', fontSize: '0.72rem', lineHeight: 1.4, display: 'block', mb: 1.5 }}>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: '#4b5563',
+                              fontSize: '0.72rem',
+                              lineHeight: 1.4,
+                              display: 'block',
+                              mb: 1.5,
+                            }}
+                          >
                             {viewingItem.content}
                           </Typography>
 
@@ -525,7 +740,12 @@ export const NotificationsPage: React.FC = () => {
                               component="img"
                               src={viewingItem.imageUrl}
                               alt="Notification Banner"
-                              sx={{ width: '100%', height: '110px', objectFit: 'cover', borderRadius: '10px' }}
+                              sx={{
+                                width: '100%',
+                                height: '110px',
+                                objectFit: 'cover',
+                                borderRadius: '10px',
+                              }}
                             />
                           )}
                         </Box>
@@ -557,8 +777,8 @@ export const NotificationsPage: React.FC = () => {
                     effectiveLang === 'en'
                       ? t.tabEnglish || 'English (en)'
                       : effectiveLang === 'ml'
-                      ? t.tabMalayalam || 'Malayalam (ml)'
-                      : t.tabTelugu || 'Telugu (te)';
+                        ? t.tabMalayalam || 'Malayalam (ml)'
+                        : t.tabTelugu || 'Telugu (te)';
 
                   return (
                     <Button
@@ -619,7 +839,9 @@ export const NotificationsPage: React.FC = () => {
                     '& .MuiInputBase-input': { py: 0.6, px: 1, fontSize: '0.75rem' },
                   }}
                   InputProps={{
-                    endAdornment: <Search sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontSize: '0.95rem' }} />,
+                    endAdornment: (
+                      <Search sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontSize: '0.95rem' }} />
+                    ),
                   }}
                 />
 
@@ -642,7 +864,9 @@ export const NotificationsPage: React.FC = () => {
                     '& .MuiSelect-select': { py: 0.6, px: 1, fontSize: '0.75rem' },
                   }}
                 >
-                  <MenuItem value="All" sx={{ fontSize: '0.75rem' }}>{t.allStatus}</MenuItem>
+                  <MenuItem value="All" sx={{ fontSize: '0.75rem' }}>
+                    {t.allStatus}
+                  </MenuItem>
                   <MenuItem value="COMPLETED" sx={{ fontSize: '0.75rem' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
                       <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: '#10b981' }} />
@@ -677,7 +901,9 @@ export const NotificationsPage: React.FC = () => {
                         borderRadius: '10px',
                         color: '#f44336',
                         backgroundColor: isDark ? 'rgba(244,67,54,0.12)' : 'rgba(244,67,54,0.08)',
-                        border: isDark ? '1px solid rgba(244,67,54,0.3)' : '1px solid rgba(244,67,54,0.3)',
+                        border: isDark
+                          ? '1px solid rgba(244,67,54,0.3)'
+                          : '1px solid rgba(244,67,54,0.3)',
                         '&:hover': { backgroundColor: 'rgba(244,67,54,0.2)' },
                         flexShrink: 0,
                       }}
@@ -705,7 +931,10 @@ export const NotificationsPage: React.FC = () => {
                     backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
                     color: isDark ? '#1c1445' : '#ffffff',
                     boxShadow: 'none',
-                    '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270', boxShadow: 'none' },
+                    '&:hover': {
+                      backgroundColor: isDark ? '#8cd5ed' : '#2d2270',
+                      boxShadow: 'none',
+                    },
                   }}
                 >
                   {t.btnSendNotification}
@@ -739,7 +968,14 @@ export const NotificationsPage: React.FC = () => {
                         gap: 2,
                       }}
                     >
-                      <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, fontSize: '0.82rem' }}>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: isDark ? '#d0caeb' : '#5c548a',
+                          fontWeight: 600,
+                          fontSize: '0.82rem',
+                        }}
+                      >
                         Showing {skip + 1}–{Math.min(skip + recordsPerPage, total)} of {total} items
                       </Typography>
 
@@ -789,7 +1025,10 @@ export const NotificationsPage: React.FC = () => {
         onClose={() => setToast((prev) => ({ ...prev, open: false }))}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
-        <Alert severity={toast.severity} onClose={() => setToast((prev) => ({ ...prev, open: false }))}>
+        <Alert
+          severity={toast.severity}
+          onClose={() => setToast((prev) => ({ ...prev, open: false }))}
+        >
           {toast.message}
         </Alert>
       </Snackbar>

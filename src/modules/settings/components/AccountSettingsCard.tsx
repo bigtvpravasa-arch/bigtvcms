@@ -47,7 +47,8 @@ const accountTranslations = {
   },
   te: {
     accountTitle: 'ఖాతా వివరాలు & ఆధారాలు (Account Credentials)',
-    accountDesc: 'CMS పోర్టల్ ప్రాప్యత కోసం మీ వినియోగదారు పేరు మరియు లాగిన్ పాస్‌వర్డ్‌ను అప్‌డేట్ చేయండి.',
+    accountDesc:
+      'CMS పోర్టల్ ప్రాప్యత కోసం మీ వినియోగదారు పేరు మరియు లాగిన్ పాస్‌వర్డ్‌ను అప్‌డేట్ చేయండి.',
     usernameLabel: 'వినియోగదారు పేరు (Username)',
     usernamePlaceholder: 'వినియోగదారు పేరును నమోదు చేయండి',
     currentPasswordLabel: 'ప్రస్తుత పాస్‌వర్డ్ (Current Password)',
@@ -83,7 +84,8 @@ const accountTranslations = {
   },
   ml: {
     accountTitle: 'അക്കൗണ്ട് വിവരങ്ങൾ (Account Credentials)',
-    accountDesc: 'CMS പോർട്ടൽ ആക്‌സസിനായി നിങ്ങളുടെ ഉപയോക്തൃനാമവും ലോഗിൻ പാസ്‌വേഡും അപ്‌ഡേറ്റ് ചെയ്യുക.',
+    accountDesc:
+      'CMS പോർട്ടൽ ആക്‌സസിനായി നിങ്ങളുടെ ഉപയോക്തൃനാമവും ലോഗിൻ പാസ്‌വേഡും അപ്‌ഡേറ്റ് ചെയ്യുക.',
     usernameLabel: 'ഉപയോക്തൃനാമം (Username)',
     usernamePlaceholder: 'ഉപയോക്തൃനാമം നൽകുക',
     currentPasswordLabel: 'നിലവിലെ പാസ്‌വേഡ് (Current Password)',
@@ -176,7 +178,11 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
         transition: 'all 0.3s ease',
       }}
     >
-      <CardContent component="form" onSubmit={handleUpdateAccount} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <CardContent
+        component="form"
+        onSubmit={handleUpdateAccount}
+        sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+      >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <PersonOutline sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }} />
           <Typography variant="h6" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}>
@@ -184,7 +190,9 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
           </Typography>
         </Box>
 
-        <Divider sx={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }} />
+        <Divider
+          sx={{ borderColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)' }}
+        />
 
         <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
           {t.accountDesc}
@@ -216,7 +224,9 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <PersonOutline sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }} />
+                    <PersonOutline
+                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }}
+                    />
                   </InputAdornment>
                 ),
               }}
@@ -250,7 +260,9 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <LockOutlined sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }} />
+                    <LockOutlined
+                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }}
+                    />
                   </InputAdornment>
                 ),
                 endAdornment: (
@@ -261,7 +273,11 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                       edge="end"
                       sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }}
                     >
-                      {showCurrentPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+                      {showCurrentPassword ? (
+                        <VisibilityOff fontSize="small" />
+                      ) : (
+                        <Visibility fontSize="small" />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -296,7 +312,9 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <LockOutlined sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }} />
+                    <LockOutlined
+                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }}
+                    />
                   </InputAdornment>
                 ),
                 endAdornment: (
@@ -307,7 +325,11 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                       edge="end"
                       sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }}
                     >
-                      {showNewPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+                      {showNewPassword ? (
+                        <VisibilityOff fontSize="small" />
+                      ) : (
+                        <Visibility fontSize="small" />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -342,7 +364,9 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <LockOutlined sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }} />
+                    <LockOutlined
+                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }}
+                    />
                   </InputAdornment>
                 ),
                 endAdornment: (
@@ -353,7 +377,11 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                       edge="end"
                       sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }}
                     >
-                      {showConfirmPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+                      {showConfirmPassword ? (
+                        <VisibilityOff fontSize="small" />
+                      ) : (
+                        <Visibility fontSize="small" />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 ),

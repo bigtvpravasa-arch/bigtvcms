@@ -71,7 +71,10 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
         code: event.code || '',
         description: event.description || '',
         type: event.type || 'Concert',
-        images: event.images && event.images.length > 0 ? event.images : ['https://i.ibb.co/bRbkYdyY/folknight4.png'],
+        images:
+          event.images && event.images.length > 0
+            ? event.images
+            : ['https://i.ibb.co/bRbkYdyY/folknight4.png'],
         date: event.date || new Date().toISOString(),
         endDate: event.endDate || event.date || new Date().toISOString(),
         time: event.time || '06:00 PM',
@@ -166,7 +169,10 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
         },
       }}
     >
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
+      >
         {/* Side Window Header */}
         <Box
           sx={{
@@ -174,16 +180,22 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+            borderBottom: isDark
+              ? '1px solid rgba(255,255,255,0.08)'
+              : '1px solid rgba(0,0,0,0.08)',
             backgroundColor: isDark ? 'rgba(38, 28, 86, 0.4)' : '#fafafa',
           }}
         >
           <Box>
             <Typography variant="h6" sx={{ fontWeight: 800 }}>
-              {event ? t.drawerEditTitle || 'Edit Event Details' : t.drawerAddTitle || 'Create New Event'}
+              {event
+                ? t.drawerEditTitle || 'Edit Event Details'
+                : t.drawerAddTitle || 'Create New Event'}
             </Typography>
             <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
-              {event ? `Event ID: ${event.id}` : 'Fill in event details to publish live on BigTV Events'}
+              {event
+                ? `Event ID: ${event.id}`
+                : 'Fill in event details to publish live on BigTV Events'}
             </Typography>
           </Box>
           <IconButton onClick={onClose} sx={{ color: isDark ? '#cbd5e1' : '#64748b' }}>
@@ -203,7 +215,15 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
           }}
         >
           {/* Basic Details */}
-          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#3b82f6', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          <Typography
+            variant="subtitle2"
+            sx={{
+              fontWeight: 700,
+              color: '#3b82f6',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+            }}
+          >
             1. Basic Info
           </Typography>
 
@@ -265,10 +285,20 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
             </Grid>
           </Grid>
 
-          <Divider sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+          <Divider
+            sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+          />
 
           {/* Schedule & Venue */}
-          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#3b82f6', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          <Typography
+            variant="subtitle2"
+            sx={{
+              fontWeight: 700,
+              color: '#3b82f6',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+            }}
+          >
             2. Schedule & Venue
           </Typography>
 
@@ -311,7 +341,9 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
                 required
                 InputLabelProps={{ shrink: true }}
                 value={parseInputDate(formData.date)}
-                onChange={(e) => handleChange('date', formatIsoDate(e.target.value, 'T18:00:00.000Z'))}
+                onChange={(e) =>
+                  handleChange('date', formatIsoDate(e.target.value, 'T18:00:00.000Z'))
+                }
                 size="small"
               />
             </Grid>
@@ -323,7 +355,9 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
                 required
                 InputLabelProps={{ shrink: true }}
                 value={parseInputDate(formData.endDate)}
-                onChange={(e) => handleChange('endDate', formatIsoDate(e.target.value, 'T23:00:00.000Z'))}
+                onChange={(e) =>
+                  handleChange('endDate', formatIsoDate(e.target.value, 'T23:00:00.000Z'))
+                }
                 size="small"
               />
             </Grid>
@@ -360,10 +394,20 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
             </Grid>
           </Grid>
 
-          <Divider sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+          <Divider
+            sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+          />
 
           {/* Seat Inventory & Status */}
-          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#3b82f6', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          <Typography
+            variant="subtitle2"
+            sx={{
+              fontWeight: 700,
+              color: '#3b82f6',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+            }}
+          >
             3. Seat Inventory & Status
           </Typography>
 
@@ -418,10 +462,20 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
             label={t.labelAvailability || 'Active for Booking & Public View'}
           />
 
-          <Divider sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+          <Divider
+            sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+          />
 
           {/* Banner Images */}
-          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#3b82f6', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          <Typography
+            variant="subtitle2"
+            sx={{
+              fontWeight: 700,
+              color: '#3b82f6',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+            }}
+          >
             4. Banner Images
           </Typography>
 
@@ -433,7 +487,12 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               value={newImageUrl}
               onChange={(e) => setNewImageUrl(e.target.value)}
             />
-            <Button variant="outlined" startIcon={<Add />} onClick={handleAddImage} sx={{ whiteSpace: 'nowrap' }}>
+            <Button
+              variant="outlined"
+              startIcon={<Add />}
+              onClick={handleAddImage}
+              sx={{ whiteSpace: 'nowrap' }}
+            >
               Add Image
             </Button>
           </Box>
@@ -451,10 +510,20 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
             ))}
           </Box>
 
-          <Divider sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+          <Divider
+            sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+          />
 
           {/* Text Areas */}
-          <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#3b82f6', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          <Typography
+            variant="subtitle2"
+            sx={{
+              fontWeight: 700,
+              color: '#3b82f6',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+            }}
+          >
             5. Descriptions & Terms
           </Typography>
 

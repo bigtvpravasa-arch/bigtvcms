@@ -37,7 +37,11 @@ describe('useNewsController', () => {
   });
 
   it('should fetch specific page using fetchPage', async () => {
-    const mockDtos = Array.from({ length: 100 }, (_, i) => ({ id: i + 1, title: `Post ${i + 1}`, content: 'Content' }));
+    const mockDtos = Array.from({ length: 100 }, (_, i) => ({
+      id: i + 1,
+      title: `Post ${i + 1}`,
+      content: 'Content',
+    }));
     (NewsRepository.getAll as jest.Mock).mockResolvedValue(mockDtos);
 
     const { result } = renderHook(() => useNewsController());
@@ -127,13 +131,20 @@ describe('useNewsController', () => {
       await result.current.fetchPosts();
     });
 
-    (NewsRepository.update as jest.Mock).mockResolvedValue({ id: 2, title: 'Updated Title', content: 'Content' });
+    (NewsRepository.update as jest.Mock).mockResolvedValue({
+      id: 2,
+      title: 'Updated Title',
+      content: 'Content',
+    });
 
     await act(async () => {
       await result.current.updatePost(2, { title: 'Updated Title' });
     });
 
-    expect(NewsRepository.update).toHaveBeenCalledWith(2, expect.objectContaining({ title: 'Updated Title' }));
+    expect(NewsRepository.update).toHaveBeenCalledWith(
+      2,
+      expect.objectContaining({ title: 'Updated Title' })
+    );
     expect(result.current.posts[0].title).toBe('Updated Title');
   });
 

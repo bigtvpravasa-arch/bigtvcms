@@ -86,9 +86,7 @@ export function useCategoryController() {
     if (!category) return;
     const originalFollow = category.isFollowed;
     setRows((prev) =>
-      prev.map((c) =>
-        c.categoryId === id ? { ...c, isFollowed: !c.isFollowed } : c
-      )
+      prev.map((c) => (c.categoryId === id ? { ...c, isFollowed: !c.isFollowed } : c))
     );
     try {
       const updateDto = CategoryMapper.toUpdateDto(
@@ -105,9 +103,7 @@ export function useCategoryController() {
       showToast(`Category ${!originalFollow ? 'followed' : 'unfollowed'} successfully!`, 'info');
     } catch (err) {
       setRows((prev) =>
-        prev.map((c) =>
-          c.categoryId === id ? { ...c, isFollowed: originalFollow } : c
-        )
+        prev.map((c) => (c.categoryId === id ? { ...c, isFollowed: originalFollow } : c))
       );
       showToast('Failed to update category follow status', 'error');
     }
@@ -117,11 +113,7 @@ export function useCategoryController() {
     const category = rows.find((c) => c.categoryId === id);
     if (!category) return;
     const originalActive = category.isActive;
-    setRows((prev) =>
-      prev.map((c) =>
-        c.categoryId === id ? { ...c, isActive: !c.isActive } : c
-      )
-    );
+    setRows((prev) => prev.map((c) => (c.categoryId === id ? { ...c, isActive: !c.isActive } : c)));
     try {
       const updateDto = CategoryMapper.toUpdateDto(
         {
@@ -137,9 +129,7 @@ export function useCategoryController() {
       showToast(`Category ${!originalActive ? 'activated' : 'deactivated'} successfully!`, 'info');
     } catch (err) {
       setRows((prev) =>
-        prev.map((c) =>
-          c.categoryId === id ? { ...c, isActive: originalActive } : c
-        )
+        prev.map((c) => (c.categoryId === id ? { ...c, isActive: originalActive } : c))
       );
       showToast('Failed to update category status', 'error');
     }
@@ -247,7 +237,11 @@ export function useCategoryController() {
       if (isEditMode && editingId !== null) {
         const originalCategory = rows.find((c) => c.categoryId === editingId);
         const isActive = originalCategory ? originalCategory.isActive : true;
-        const updateDto = CategoryMapper.toUpdateDto(submitForm, isActive, finalCategoryImageUrl || undefined);
+        const updateDto = CategoryMapper.toUpdateDto(
+          submitForm,
+          isActive,
+          finalCategoryImageUrl || undefined
+        );
         const response = await CategoryRepository.update(editingId, updateDto);
         const updatedDomain = response.data ? CategoryMapper.toDomain(response.data) : null;
         setRows((prev) =>
@@ -263,7 +257,10 @@ export function useCategoryController() {
         );
         showToast('Category updated successfully!', 'success');
       } else {
-        const createDto = CategoryMapper.toCreateDto(submitForm, finalCategoryImageUrl || undefined);
+        const createDto = CategoryMapper.toCreateDto(
+          submitForm,
+          finalCategoryImageUrl || undefined
+        );
         const response = await CategoryRepository.create(createDto);
         const newDomain = response.data ? CategoryMapper.toDomain(response.data) : null;
         const newCat: Category = {

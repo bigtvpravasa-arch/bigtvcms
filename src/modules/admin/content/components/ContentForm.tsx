@@ -43,8 +43,18 @@ import { useRouter } from 'next/navigation';
 import { useLanguageStore } from '@/core/storage/language-store';
 
 const GENRE_OPTIONS = [
-  'Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Horror',
-  'Mystery', 'Romance', 'Sci-Fi / Action', 'Thriller', 'Documentary', 'Animation'
+  'Action',
+  'Adventure',
+  'Comedy',
+  'Drama',
+  'Fantasy',
+  'Horror',
+  'Mystery',
+  'Romance',
+  'Sci-Fi / Action',
+  'Thriller',
+  'Documentary',
+  'Animation',
 ];
 
 const LANGUAGE_OPTIONS = ['Telugu', 'English', 'Hindi', 'Malayalam', 'Tamil', 'Kannada'];
@@ -168,7 +178,11 @@ interface ContentFormProps {
   onSuccess?: () => void;
 }
 
-export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initialContentType, onSuccess }) => {
+export const ContentForm: React.FC<ContentFormProps> = ({
+  isDark = true,
+  initialContentType,
+  onSuccess,
+}) => {
   const router = useRouter();
   const { language } = useLanguageStore();
   const t = translations[language] || translations.en;
@@ -185,7 +199,11 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [parentOptions, setParentOptions] = useState<ParentContentItem[]>([]);
-  const [toast, setToast] = useState<{ open: boolean; message: string; severity: 'success' | 'error' }>({
+  const [toast, setToast] = useState<{
+    open: boolean;
+    message: string;
+    severity: 'success' | 'error';
+  }>({
     open: false,
     message: '',
     severity: 'success',
@@ -278,7 +296,11 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
       movieForm.reset();
       if (onSuccess) onSuccess();
     } catch (err: any) {
-      setToast({ open: true, message: err?.message || 'Failed to create movie', severity: 'error' });
+      setToast({
+        open: true,
+        message: err?.message || 'Failed to create movie',
+        severity: 'error',
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -318,7 +340,11 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
         }, 1000);
       }
     } catch (err: any) {
-      setToast({ open: true, message: err?.message || 'Failed to create series', severity: 'error' });
+      setToast({
+        open: true,
+        message: err?.message || 'Failed to create series',
+        severity: 'error',
+      });
       setIsSubmitting(false);
     }
   };
@@ -341,7 +367,11 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
       episodeForm.reset();
       if (onSuccess) onSuccess();
     } catch (err: any) {
-      setToast({ open: true, message: err?.message || 'Failed to create episode', severity: 'error' });
+      setToast({
+        open: true,
+        message: err?.message || 'Failed to create episode',
+        severity: 'error',
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -355,7 +385,11 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
       trailerForm.reset();
       if (onSuccess) onSuccess();
     } catch (err: any) {
-      setToast({ open: true, message: err?.message || 'Failed to create trailer', severity: 'error' });
+      setToast({
+        open: true,
+        message: err?.message || 'Failed to create trailer',
+        severity: 'error',
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -372,7 +406,12 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
       }}
     >
       {/* Content Type Selector Tabs */}
-      <Box sx={{ mb: 3.5, borderBottom: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)' }}>
+      <Box
+        sx={{
+          mb: 3.5,
+          borderBottom: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+        }}
+      >
         <Tabs
           value={contentType}
           onChange={(_, val) => setContentType(val)}
@@ -410,7 +449,9 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
         <form onSubmit={movieForm.handleSubmit(handleMovieSubmit)}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             {/* Title & Release Date */}
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '2fr 1fr' }, gap: 2.5 }}>
+            <Box
+              sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '2fr 1fr' }, gap: 2.5 }}
+            >
               <Controller
                 name="title"
                 control={movieForm.control}
@@ -460,8 +501,21 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
             {/* Image Title Toggle & Field */}
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               <FormControlLabel
-                control={<Switch checked={showImageTitle} onChange={(e) => setShowImageTitle(e.target.checked)} color="primary" />}
-                label={<Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}>{t.enableImageTitle || 'Enable Image Title'}</Typography>}
+                control={
+                  <Switch
+                    checked={showImageTitle}
+                    onChange={(e) => setShowImageTitle(e.target.checked)}
+                    color="primary"
+                  />
+                }
+                label={
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}
+                  >
+                    {t.enableImageTitle || 'Enable Image Title'}
+                  </Typography>
+                }
               />
               {showImageTitle && (
                 <Controller
@@ -513,7 +567,9 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
             />
 
             {/* Images Upload Row */}
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 2.5 }}>
+            <Box
+              sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 2.5 }}
+            >
               <Controller
                 name="poster"
                 control={movieForm.control}
@@ -528,7 +584,11 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
                       onUploadStateChange={setIsUploading}
                     />
                     {movieForm.formState.errors.poster && (
-                      <Typography variant="caption" color="error" sx={{ mt: 0.5, display: 'block' }}>
+                      <Typography
+                        variant="caption"
+                        color="error"
+                        sx={{ mt: 0.5, display: 'block' }}
+                      >
                         {movieForm.formState.errors.poster.message}
                       </Typography>
                     )}
@@ -550,7 +610,11 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
                       onUploadStateChange={setIsUploading}
                     />
                     {movieForm.formState.errors.banner && (
-                      <Typography variant="caption" color="error" sx={{ mt: 0.5, display: 'block' }}>
+                      <Typography
+                        variant="caption"
+                        color="error"
+                        sx={{ mt: 0.5, display: 'block' }}
+                      >
                         {movieForm.formState.errors.banner.message}
                       </Typography>
                     )}
@@ -566,7 +630,9 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
                 control={movieForm.control}
                 render={({ field }) => (
                   <FormControl size="small" fullWidth>
-                    <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>{t.genres}</InputLabel>
+                    <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+                      {t.genres}
+                    </InputLabel>
                     <Select
                       multiple
                       value={field.value || []}
@@ -586,18 +652,24 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
                       }}
                     >
                       {GENRE_OPTIONS.map((g) => (
-                        <MenuItem key={g} value={g}>{g}</MenuItem>
+                        <MenuItem key={g} value={g}>
+                          {g}
+                        </MenuItem>
                       ))}
                     </Select>
                   </FormControl>
                 )}
               />
-
-
             </Box>
 
             {/* Rating, Age Restriction & Status Row */}
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr 1fr' }, gap: 2.5 }}>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', md: '1fr 1fr 1fr' },
+                gap: 2.5,
+              }}
+            >
               <Controller
                 name="rating"
                 control={movieForm.control}
@@ -672,8 +744,21 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
               control={movieForm.control}
               render={({ field }) => (
                 <FormControlLabel
-                  control={<Switch checked={field.value} onChange={(e) => field.onChange(e.target.checked)} color="primary" />}
-                  label={<Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}>{t.featured}</Typography>}
+                  control={
+                    <Switch
+                      checked={field.value}
+                      onChange={(e) => field.onChange(e.target.checked)}
+                      color="primary"
+                    />
+                  }
+                  label={
+                    <Typography
+                      variant="body2"
+                      sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}
+                    >
+                      {t.featured}
+                    </Typography>
+                  }
                 />
               )}
             />
@@ -713,7 +798,9 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
         <form onSubmit={seriesForm.handleSubmit(handleSeriesSubmit)}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             {/* Title & Release Date */}
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '2fr 1fr' }, gap: 2.5 }}>
+            <Box
+              sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '2fr 1fr' }, gap: 2.5 }}
+            >
               <Controller
                 name="title"
                 control={seriesForm.control}
@@ -763,8 +850,21 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
             {/* Image Title Toggle & Field */}
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               <FormControlLabel
-                control={<Switch checked={showImageTitle} onChange={(e) => setShowImageTitle(e.target.checked)} color="primary" />}
-                label={<Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}>{t.enableImageTitle || 'Enable Image Title'}</Typography>}
+                control={
+                  <Switch
+                    checked={showImageTitle}
+                    onChange={(e) => setShowImageTitle(e.target.checked)}
+                    color="primary"
+                  />
+                }
+                label={
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}
+                  >
+                    {t.enableImageTitle || 'Enable Image Title'}
+                  </Typography>
+                }
               />
               {showImageTitle && (
                 <Controller
@@ -816,7 +916,9 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
             />
 
             {/* Images Upload Row */}
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 2.5 }}>
+            <Box
+              sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 2.5 }}
+            >
               <Controller
                 name="poster"
                 control={seriesForm.control}
@@ -831,7 +933,11 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
                       onUploadStateChange={setIsUploading}
                     />
                     {seriesForm.formState.errors.poster && (
-                      <Typography variant="caption" color="error" sx={{ mt: 0.5, display: 'block' }}>
+                      <Typography
+                        variant="caption"
+                        color="error"
+                        sx={{ mt: 0.5, display: 'block' }}
+                      >
                         {seriesForm.formState.errors.poster.message}
                       </Typography>
                     )}
@@ -853,7 +959,11 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
                       onUploadStateChange={setIsUploading}
                     />
                     {seriesForm.formState.errors.banner && (
-                      <Typography variant="caption" color="error" sx={{ mt: 0.5, display: 'block' }}>
+                      <Typography
+                        variant="caption"
+                        color="error"
+                        sx={{ mt: 0.5, display: 'block' }}
+                      >
                         {seriesForm.formState.errors.banner.message}
                       </Typography>
                     )}
@@ -869,7 +979,9 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
                 control={seriesForm.control}
                 render={({ field }) => (
                   <FormControl size="small" fullWidth>
-                    <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>{t.genres}</InputLabel>
+                    <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+                      {t.genres}
+                    </InputLabel>
                     <Select
                       multiple
                       value={field.value || []}
@@ -889,18 +1001,24 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
                       }}
                     >
                       {GENRE_OPTIONS.map((g) => (
-                        <MenuItem key={g} value={g}>{g}</MenuItem>
+                        <MenuItem key={g} value={g}>
+                          {g}
+                        </MenuItem>
                       ))}
                     </Select>
                   </FormControl>
                 )}
               />
-
-
             </Box>
 
             {/* Rating, Age Restriction & Status Row */}
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr 1fr' }, gap: 2.5 }}>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', md: '1fr 1fr 1fr' },
+                gap: 2.5,
+              }}
+            >
               <Controller
                 name="rating"
                 control={seriesForm.control}
@@ -975,8 +1093,21 @@ export const ContentForm: React.FC<ContentFormProps> = ({ isDark = true, initial
               control={seriesForm.control}
               render={({ field }) => (
                 <FormControlLabel
-                  control={<Switch checked={field.value} onChange={(e) => field.onChange(e.target.checked)} color="primary" />}
-                  label={<Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}>{t.featured}</Typography>}
+                  control={
+                    <Switch
+                      checked={field.value}
+                      onChange={(e) => field.onChange(e.target.checked)}
+                      color="primary"
+                    />
+                  }
+                  label={
+                    <Typography
+                      variant="body2"
+                      sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}
+                    >
+                      {t.featured}
+                    </Typography>
+                  }
                 />
               )}
             />

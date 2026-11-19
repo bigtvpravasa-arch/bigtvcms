@@ -188,7 +188,9 @@ export const FALLBACK_CRICKET_MATCHES: CricketMatch[] = [
 ];
 
 export class CricketRepository {
-  private static localFallback: CricketMatch[] = JSON.parse(JSON.stringify(FALLBACK_CRICKET_MATCHES));
+  private static localFallback: CricketMatch[] = JSON.parse(
+    JSON.stringify(FALLBACK_CRICKET_MATCHES)
+  );
 
   /**
    * Helper to format innings score object
@@ -230,9 +232,16 @@ export class CricketRepository {
   /**
    * Normalize state string into standard union: 'live' | 'recent' | 'upcoming'
    */
-  private static normalizeState(rawState?: string, rawStatus?: string): 'live' | 'recent' | 'upcoming' {
-    const s = String(rawState || '').trim().toLowerCase();
-    const st = String(rawStatus || '').trim().toLowerCase();
+  private static normalizeState(
+    rawState?: string,
+    rawStatus?: string
+  ): 'live' | 'recent' | 'upcoming' {
+    const s = String(rawState || '')
+      .trim()
+      .toLowerCase();
+    const st = String(rawStatus || '')
+      .trim()
+      .toLowerCase();
 
     if (
       s === 'complete' ||
@@ -314,8 +323,11 @@ export class CricketRepository {
     const matchId = String(rawMatchId);
 
     const pravasaStatus: PravasaMatchStatus =
-      info.pravasaStatus || item.pravasaStatus || (info.isPublished || item.isPublished ? 'published' : 'unpublished');
-    const isPublished = pravasaStatus === 'published' || Boolean(info.isPublished || item.isPublished);
+      info.pravasaStatus ||
+      item.pravasaStatus ||
+      (info.isPublished || item.isPublished ? 'published' : 'unpublished');
+    const isPublished =
+      pravasaStatus === 'published' || Boolean(info.isPublished || item.isPublished);
 
     const state = this.normalizeState(info.state || item.state, info.status || item.status);
 
@@ -362,7 +374,9 @@ export class CricketRepository {
       endTime: info.endDate ? String(info.endDate) : null,
       pravasaStatus,
       isPublished,
-      publishedAt: isPublished ? (info.publishedAt || item.publishedAt || new Date().toISOString()) : null,
+      publishedAt: isPublished
+        ? info.publishedAt || item.publishedAt || new Date().toISOString()
+        : null,
       liveUrl: item.liveUrl || info.liveUrl || null,
       liveCrickBuzzUrl: item.liveCrickBuzzUrl || info.liveCrickBuzzUrl || null,
       accessKey: item.accessKey || info.accessKey || null,
@@ -380,9 +394,12 @@ export class CricketRepository {
     try {
       // 1. First, check if legacy /cricket/admin/matches was explicitly mocked or supported
       try {
-        const adminRes = await cricketApiClient.get<CricketAdminMatchesResponse>('/cricket/admin/matches', {
-          params,
-        });
+        const adminRes = await cricketApiClient.get<CricketAdminMatchesResponse>(
+          '/cricket/admin/matches',
+          {
+            params,
+          }
+        );
         if (adminRes && adminRes.success && adminRes.data && Array.isArray(adminRes.data.items)) {
           return adminRes.data;
         }
@@ -393,13 +410,17 @@ export class CricketRepository {
       // 2. Fetch live feed according to Section 4.1 in .md: GET /cricket/live
       const liveFeedPromise = cricketApiClient.get<any>('/cricket/live').catch(() => null);
       // 3. Fetch published matches according to Section 4.4 in .md: GET /cricket/published
-      const publishedPromise = cricketApiClient.get<CricketPublishedMatchesResponse>('/cricket/published').catch(() => null);
+      const publishedPromise = cricketApiClient
+        .get<CricketPublishedMatchesResponse>('/cricket/published')
+        .catch(() => null);
 
       const [liveData, publishedData] = await Promise.all([liveFeedPromise, publishedPromise]);
 
       if (liveData || publishedData) {
         const parsedLive = liveData ? this.parseRawMatches(liveData) : [];
-        const publishedItems = publishedData?.matches ? this.parseRawMatches(publishedData.matches) : [];
+        const publishedItems = publishedData?.matches
+          ? this.parseRawMatches(publishedData.matches)
+          : [];
 
         // Build combined map keyed by matchId
         const matchMap = new Map<string, CricketMatch>();
@@ -415,7 +436,8 @@ export class CricketRepository {
           if (existing) {
             existing.pravasaStatus = 'published';
             existing.isPublished = true;
-            existing.publishedAt = existing.publishedAt || pub.publishedAt || new Date().toISOString();
+            existing.publishedAt =
+              existing.publishedAt || pub.publishedAt || new Date().toISOString();
             if (pub.liveUrl) existing.liveUrl = pub.liveUrl;
             if (pub.liveCrickBuzzUrl) existing.liveCrickBuzzUrl = pub.liveCrickBuzzUrl;
             if (pub.accessKey) existing.accessKey = pub.accessKey;
@@ -491,7 +513,10 @@ export class CricketRepository {
   /**
    * Update match pravasaStatus ('published' | 'unpublished') via POST /cricket/status (Section 4.2 in .md)
    */
-  static async updateStatus(matchId: string, pravasaStatus: PravasaMatchStatus): Promise<CricketStatusResponse> {
+  static async updateStatus(
+    matchId: string,
+    pravasaStatus: PravasaMatchStatus
+  ): Promise<CricketStatusResponse> {
     const isPublished = pravasaStatus === 'published';
     try {
       const response = await cricketApiClient.post<CricketStatusResponse>('/cricket/status', {
@@ -521,9 +546,15 @@ export class CricketRepository {
    */
   static async publishMatch(matchId: string): Promise<CricketPublishResponse> {
     try {
-      const response = await cricketApiClient.post<CricketPublishResponse>(`/cricket/matches/${matchId}/publish`);
+      const response = await cricketApiClient.post<CricketPublishResponse>(
+        `/cricket/matches/${matchId}/publish`
+      );
       if (response && response.success) {
-        this.updateLocalMatch(matchId, true, response.data?.publishedAt || new Date().toISOString());
+        this.updateLocalMatch(
+          matchId,
+          true,
+          response.data?.publishedAt || new Date().toISOString()
+        );
         return response;
       }
     } catch {
@@ -562,7 +593,9 @@ export class CricketRepository {
    */
   static async unpublishMatch(matchId: string): Promise<CricketPublishResponse> {
     try {
-      const response = await cricketApiClient.post<CricketPublishResponse>(`/cricket/matches/${matchId}/unpublish`);
+      const response = await cricketApiClient.post<CricketPublishResponse>(
+        `/cricket/matches/${matchId}/unpublish`
+      );
       if (response && response.success) {
         this.updateLocalMatch(matchId, false, null);
         return response;
@@ -600,14 +633,22 @@ export class CricketRepository {
   /**
    * Bulk publish or unpublish matches
    */
-  static async bulkPublish(matchIds: string[], isPublished: boolean): Promise<CricketBulkPublishResponse> {
+  static async bulkPublish(
+    matchIds: string[],
+    isPublished: boolean
+  ): Promise<CricketBulkPublishResponse> {
     try {
-      const response = await cricketApiClient.post<CricketBulkPublishResponse>('/cricket/matches/bulk-publish', {
-        matchIds,
-        isPublished,
-      });
+      const response = await cricketApiClient.post<CricketBulkPublishResponse>(
+        '/cricket/matches/bulk-publish',
+        {
+          matchIds,
+          isPublished,
+        }
+      );
       if (response && response.success) {
-        matchIds.forEach((id) => this.updateLocalMatch(id, isPublished, isPublished ? new Date().toISOString() : null));
+        matchIds.forEach((id) =>
+          this.updateLocalMatch(id, isPublished, isPublished ? new Date().toISOString() : null)
+        );
         return response;
       }
     } catch {
@@ -615,7 +656,9 @@ export class CricketRepository {
       try {
         const targetStatus: PravasaMatchStatus = isPublished ? 'published' : 'unpublished';
         await Promise.allSettled(matchIds.map((id) => this.updateStatus(id, targetStatus)));
-        matchIds.forEach((id) => this.updateLocalMatch(id, isPublished, isPublished ? new Date().toISOString() : null));
+        matchIds.forEach((id) =>
+          this.updateLocalMatch(id, isPublished, isPublished ? new Date().toISOString() : null)
+        );
         return {
           success: true,
           message: 'Bulk status update completed',
@@ -630,7 +673,9 @@ export class CricketRepository {
       }
     }
 
-    matchIds.forEach((id) => this.updateLocalMatch(id, isPublished, isPublished ? new Date().toISOString() : null));
+    matchIds.forEach((id) =>
+      this.updateLocalMatch(id, isPublished, isPublished ? new Date().toISOString() : null)
+    );
     return {
       success: true,
       message: 'Bulk publish executed successfully',
@@ -653,12 +698,16 @@ export class CricketRepository {
     }
 
     try {
-      const response = await cricketApiClient.get<any>(`/cricket/matches/${matchId}/livescore`, { headers });
+      const response = await cricketApiClient.get<any>(`/cricket/matches/${matchId}/livescore`, {
+        headers,
+      });
       if (response) return response;
     } catch {
       // Try alias /:matchId/livescore
       try {
-        const response = await cricketApiClient.get<any>(`/cricket/${matchId}/livescore`, { headers });
+        const response = await cricketApiClient.get<any>(`/cricket/${matchId}/livescore`, {
+          headers,
+        });
         if (response) return response;
       } catch {
         // Fallback to local item liveScorePayload if present
@@ -742,7 +791,11 @@ export class CricketRepository {
     };
   }
 
-  private static updateLocalMatch(matchId: string, isPublished: boolean, publishedAt: string | null) {
+  private static updateLocalMatch(
+    matchId: string,
+    isPublished: boolean,
+    publishedAt: string | null
+  ) {
     const item = this.localFallback.find((m) => m.matchId === matchId || m.id === matchId);
     if (item) {
       item.isPublished = isPublished;

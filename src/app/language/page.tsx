@@ -71,23 +71,33 @@ export default function LanguageSelectionPage() {
       Hindi: 'hi',
     };
 
-    apiClient.get<any[]>('/languages', { skip: 0, limit: 100 })
+    apiClient
+      .get<any[]>('/languages', { skip: 0, limit: 100 })
       .then((data) => {
         if (!active) return;
         const systemLangsMapped = data.map((item: any) => {
           const nameEn = item.name?.en || '';
           const rawCode = (item.code || '').toLowerCase().trim();
-          const code = (['en', 'te', 'hi', 'ml'].includes(rawCode)
-            ? rawCode
-            : codeMap[nameEn] || (nameEn.toLowerCase().startsWith('mal') ? 'ml' : nameEn.toLowerCase().slice(0, 2))) as SupportedLanguage;
+          const code = (
+            ['en', 'te', 'hi', 'ml'].includes(rawCode)
+              ? rawCode
+              : codeMap[nameEn] ||
+                (nameEn.toLowerCase().startsWith('mal') ? 'ml' : nameEn.toLowerCase().slice(0, 2))
+          ) as SupportedLanguage;
           return {
             languageId: item.id,
             languageName: nameEn,
             code,
-            slogan: code === 'en' ? 'World Standard Edition' :
-                    code === 'te' ? 'ఆంధ్రప్రదేశ్ & తెలంగాణ వార్తలు' :
-                    code === 'hi' ? 'राष्ट्रीय मुख्य समाचार हिंदी में' :
-                    code === 'ml' ? 'കേരള പ്രാദേശിക വാർത്തകൾ' : '',
+            slogan:
+              code === 'en'
+                ? 'World Standard Edition'
+                : code === 'te'
+                  ? 'ఆంధ్రప్రదేశ్ & తెలంగాణ వార్తలు'
+                  : code === 'hi'
+                    ? 'राष्ट्रीय मुख्य समाचार हिंदी में'
+                    : code === 'ml'
+                      ? 'കേരള പ്രാദേശിക വാർത്തകൾ'
+                      : '',
             isSystemActive: item.status === true,
             nameEn: item.name?.en || '',
             nameTe: item.name?.te || '',
@@ -115,10 +125,16 @@ export default function LanguageSelectionPage() {
           .filter((l) => l.isSystemActive && ['en', 'te', 'hi', 'ml'].includes(l.code))
           .map((l) => {
             const key = l.code as SupportedLanguage;
-            const nativeName = l.code === 'en' ? l.nameEn :
-                               l.code === 'te' ? l.nameTe :
-                               l.code === 'hi' ? l.nameHi :
-                               l.code === 'ml' ? l.nameMl : l.nameEn;
+            const nativeName =
+              l.code === 'en'
+                ? l.nameEn
+                : l.code === 'te'
+                  ? l.nameTe
+                  : l.code === 'hi'
+                    ? l.nameHi
+                    : l.code === 'ml'
+                      ? l.nameMl
+                      : l.nameEn;
             return {
               key,
               name: l.nameEn,
@@ -134,7 +150,12 @@ export default function LanguageSelectionPage() {
       .catch((err) => {
         console.error('Failed to fetch languages, using fallback', err);
         if (!active) return;
-        const currentActive = useLanguageStore.getState().activeLanguages || ['en', 'te', 'hi', 'ml'];
+        const currentActive = useLanguageStore.getState().activeLanguages || [
+          'en',
+          'te',
+          'hi',
+          'ml',
+        ];
         const filteredFallback = fallbackOptions.filter((opt) => currentActive.includes(opt.key));
         setActiveOptions(filteredFallback);
         setLoading(false);
@@ -173,7 +194,8 @@ export default function LanguageSelectionPage() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'radial-gradient(circle at 10% 20%, rgba(234, 179, 8, 0.12) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.15) 0%, transparent 45%), linear-gradient(135deg, #161202 0%, #261e05 45%, #181300 100%)',
+        background:
+          'radial-gradient(circle at 10% 20%, rgba(234, 179, 8, 0.12) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.15) 0%, transparent 45%), linear-gradient(135deg, #161202 0%, #261e05 45%, #181300 100%)',
         overflow: 'hidden',
         position: 'relative',
         p: 2,
@@ -259,18 +281,27 @@ export default function LanguageSelectionPage() {
                   filter: 'drop-shadow(0px 4px 10px rgba(0,0,0,0.3))',
                 }}
               />
-              <Typography variant="caption" sx={{ color: '#fde68a', pl: 1, fontWeight: 500, letterSpacing: 0.5 }}>
+              <Typography
+                variant="caption"
+                sx={{ color: '#fde68a', pl: 1, fontWeight: 500, letterSpacing: 0.5 }}
+              >
                 Breaking News Portal
               </Typography>
             </Box>
 
             <Typography variant="h3" sx={{ fontWeight: 600, mb: 4, lineHeight: 1.2 }}>
               Enterprise Digital News & Content Hub: <br />
-              <span style={{ color: '#facc15', textShadow: '0 0 25px rgba(250, 204, 21, 0.4)' }}>BigTV CMS™</span>
+              <span style={{ color: '#facc15', textShadow: '0 0 25px rgba(250, 204, 21, 0.4)' }}>
+                BigTV CMS™
+              </span>
             </Typography>
 
-            <Typography variant="body1" sx={{ color: '#fef3c7', mb: 4, lineHeight: 1.6, opacity: 0.9 }}>
-              Select your language on the right panel to configure the Accept-Language API header mappings dynamically across the CMS operator workspace.
+            <Typography
+              variant="body1"
+              sx={{ color: '#fef3c7', mb: 4, lineHeight: 1.6, opacity: 0.9 }}
+            >
+              Select your language on the right panel to configure the Accept-Language API header
+              mappings dynamically across the CMS operator workspace.
             </Typography>
           </Box>
 
@@ -286,12 +317,23 @@ export default function LanguageSelectionPage() {
               boxShadow: '0 24px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(234, 179, 8, 0.12)',
             }}
           >
-            <Typography variant="h5" sx={{ color: '#ffffff', fontWeight: 700, mb: 3, letterSpacing: 0.3 }}>
+            <Typography
+              variant="h5"
+              sx={{ color: '#ffffff', fontWeight: 700, mb: 3, letterSpacing: 0.3 }}
+            >
               Select Language
             </Typography>
 
             {loading ? (
-              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '150px', mb: 4 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  minHeight: '150px',
+                  mb: 4,
+                }}
+              >
                 <CircularProgress sx={{ color: '#facc15' }} />
               </Box>
             ) : (
@@ -302,7 +344,9 @@ export default function LanguageSelectionPage() {
                     <Grid item xs={12} sm={6} key={opt.key}>
                       <Card
                         sx={{
-                          backgroundColor: isSelected ? 'rgba(234, 179, 8, 0.25)' : 'rgba(255, 255, 255, 0.04)',
+                          backgroundColor: isSelected
+                            ? 'rgba(234, 179, 8, 0.25)'
+                            : 'rgba(255, 255, 255, 0.04)',
                           border: '2px solid',
                           borderColor: isSelected ? '#facc15' : 'rgba(250, 204, 21, 0.2)',
                           borderRadius: '16px',
@@ -312,7 +356,9 @@ export default function LanguageSelectionPage() {
                           '&:hover': {
                             borderColor: '#facc15',
                             transform: 'translateY(-2px)',
-                            backgroundColor: isSelected ? 'rgba(234, 179, 8, 0.3)' : 'rgba(234, 179, 8, 0.1)',
+                            backgroundColor: isSelected
+                              ? 'rgba(234, 179, 8, 0.3)'
+                              : 'rgba(234, 179, 8, 0.1)',
                           },
                           height: '110px',
                           position: 'relative',
@@ -331,7 +377,14 @@ export default function LanguageSelectionPage() {
                           }}
                         >
                           <Box>
-                            <Typography variant="h6" sx={{ fontWeight: 700, lineHeight: 1.2, color: isSelected ? '#fde047' : '#ffffff' }}>
+                            <Typography
+                              variant="h6"
+                              sx={{
+                                fontWeight: 700,
+                                lineHeight: 1.2,
+                                color: isSelected ? '#fde047' : '#ffffff',
+                              }}
+                            >
                               {opt.nativeName}
                             </Typography>
                             <Typography
@@ -354,7 +407,9 @@ export default function LanguageSelectionPage() {
                               right: '12px',
                               fontSize: '3.2rem',
                               fontWeight: 800,
-                              color: isSelected ? 'rgba(250, 204, 21, 0.25)' : 'rgba(255, 255, 255, 0.06)',
+                              color: isSelected
+                                ? 'rgba(250, 204, 21, 0.25)'
+                                : 'rgba(255, 255, 255, 0.06)',
                               fontFamily: 'Arial, sans-serif',
                               lineHeight: 1,
                               userSelect: 'none',

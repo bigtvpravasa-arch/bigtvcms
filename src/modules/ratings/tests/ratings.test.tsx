@@ -243,7 +243,9 @@ describe('Ratings Module - Repository & Controller Tests', () => {
 
     it('uploads media file via uploadMediaFile', async () => {
       const mockFile = new File(['content'], 'trailer.mp4', { type: 'video/mp4' });
-      jest.spyOn(RatingsRepository, 'uploadImage').mockResolvedValueOnce('https://example.com/trailer.mp4');
+      jest
+        .spyOn(RatingsRepository, 'uploadImage')
+        .mockResolvedValueOnce('https://example.com/trailer.mp4');
 
       const url = await RatingsRepository.uploadMediaFile(mockFile);
       expect(url).toBe('https://example.com/trailer.mp4');
@@ -706,7 +708,9 @@ describe('Ratings Module - Repository & Controller Tests', () => {
       expect(result.current.movieModalOpen).toBe(false);
 
       // Save movie error handling
-      jest.spyOn(RatingsRepository, 'updateMovieReview').mockRejectedValueOnce(new Error('Update failed'));
+      jest
+        .spyOn(RatingsRepository, 'updateMovieReview')
+        .mockRejectedValueOnce(new Error('Update failed'));
       await act(async () => {
         await result.current.saveMovieReview({
           id: testMovie.id,
@@ -739,7 +743,9 @@ describe('Ratings Module - Repository & Controller Tests', () => {
         await result.current.saveMatchScore({} as any);
       });
 
-      jest.spyOn(RatingsRepository, 'updateCricketMatch').mockRejectedValueOnce(new Error('Cricket update error'));
+      jest
+        .spyOn(RatingsRepository, 'updateCricketMatch')
+        .mockRejectedValueOnce(new Error('Cricket update error'));
       await act(async () => {
         await result.current.saveMatchScore({ id: 1, statusText: 'Failing' });
       });

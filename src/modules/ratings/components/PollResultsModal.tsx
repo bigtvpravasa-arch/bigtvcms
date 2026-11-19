@@ -105,7 +105,10 @@ export const PollResultsModal: React.FC<PollResultsModalProps> = ({ open, data, 
           }}
         >
           <Box>
-            <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Typography
+              variant="caption"
+              sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+            >
               {t.totalVotesCount}
             </Typography>
             <Typography variant="h4" sx={{ fontWeight: 800, color: '#3b82f6' }}>
@@ -129,8 +132,8 @@ export const PollResultsModal: React.FC<PollResultsModalProps> = ({ open, data, 
               opt.percentage !== undefined
                 ? opt.percentage
                 : totalVotes > 0
-                ? Number((((opt.votes || 0) / totalVotes) * 100).toFixed(1))
-                : 0;
+                  ? Number((((opt.votes || 0) / totalVotes) * 100).toFixed(1))
+                  : 0;
 
             return (
               <Box
@@ -143,22 +146,34 @@ export const PollResultsModal: React.FC<PollResultsModalProps> = ({ open, data, 
                       ? 'rgba(37,99,235,0.15)'
                       : 'rgba(37,99,235,0.08)'
                     : isDark
-                    ? 'rgba(255,255,255,0.02)'
-                    : '#ffffff',
+                      ? 'rgba(255,255,255,0.02)'
+                      : '#ffffff',
                   border: isUserChoice
                     ? '1.5px solid #2563eb'
                     : isDark
-                    ? '1px solid rgba(255,255,255,0.06)'
-                    : '1px solid rgba(0,0,0,0.06)',
+                      ? '1px solid rgba(255,255,255,0.06)'
+                      : '1px solid rgba(0,0,0,0.06)',
                 }}
               >
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    mb: 1,
+                  }}
+                >
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <Typography variant="body1" sx={{ fontWeight: 600 }}>
                       {opt.option_name}
                     </Typography>
                     {isUserChoice && (
-                      <Chip label="Your Vote" size="small" color="primary" sx={{ height: 18, fontSize: '0.65rem' }} />
+                      <Chip
+                        label="Your Vote"
+                        size="small"
+                        color="primary"
+                        sx={{ height: 18, fontSize: '0.65rem' }}
+                      />
                     )}
                   </Box>
                   <Typography variant="subtitle2" sx={{ fontWeight: 800, color: '#2563eb' }}>
@@ -180,7 +195,10 @@ export const PollResultsModal: React.FC<PollResultsModalProps> = ({ open, data, 
                   }}
                 />
 
-                <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#64748b', mt: 0.75, display: 'block' }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: isDark ? '#d0caeb' : '#64748b', mt: 0.75, display: 'block' }}
+                >
                   {opt.votes || 0} votes
                 </Typography>
               </Box>

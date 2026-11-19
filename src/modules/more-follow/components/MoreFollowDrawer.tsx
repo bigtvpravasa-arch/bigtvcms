@@ -157,11 +157,18 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+            borderBottom: isDark
+              ? '1px solid rgba(255,255,255,0.08)'
+              : '1px solid rgba(0,0,0,0.08)',
           }}
         >
-          <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445', fontSize: '1.1rem' }}>
-            {editingItem ? t.editMoreFollow || 'Edit MoreFollow Menu' : t.addMoreFollow || 'Add MoreFollow Menu'}
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445', fontSize: '1.1rem' }}
+          >
+            {editingItem
+              ? t.editMoreFollow || 'Edit MoreFollow Menu'
+              : t.addMoreFollow || 'Add MoreFollow Menu'}
           </Typography>
           <IconButton onClick={onClose} sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
             <Close />
@@ -169,14 +176,34 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
         </Box>
 
         {/* Form Fields Body */}
-        <Box sx={{ p: 3, flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+        <Box
+          sx={{
+            p: 3,
+            flex: 1,
+            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 2.5,
+          }}
+        >
           {error && (
-            <Typography variant="body2" sx={{ color: '#ef5350', backgroundColor: 'rgba(239,83,80,0.1)', p: 1.2, borderRadius: '8px' }}>
+            <Typography
+              variant="body2"
+              sx={{
+                color: '#ef5350',
+                backgroundColor: 'rgba(239,83,80,0.1)',
+                p: 1.2,
+                borderRadius: '8px',
+              }}
+            >
               {error}
             </Typography>
           )}
 
-          <Typography variant="subtitle2" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700 }}>
+          <Typography
+            variant="subtitle2"
+            sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700 }}
+          >
             {t.menuNamesLabel || 'Menu Names (Multilingual)'}
           </Typography>
 
@@ -207,11 +234,23 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
             sx={inputStyle}
           />
 
-          <Divider sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+          <Divider
+            sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+          />
 
           {/* Image Upload Area */}
           <Box>
-            <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, mb: 1, display: 'flex', alignItems: 'center', gap: 0.8 }}>
+            <Typography
+              variant="body2"
+              sx={{
+                color: isDark ? '#d0caeb' : '#5c548a',
+                fontWeight: 600,
+                mb: 1,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.8,
+              }}
+            >
               <CloudUpload sx={{ fontSize: '1rem' }} /> {t.uploadImageLabel || 'Upload Image'}
             </Typography>
 
@@ -233,7 +272,9 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
                   position: 'relative',
                   borderRadius: '12px',
                   overflow: 'hidden',
-                  border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.12)',
+                  border: isDark
+                    ? '1px solid rgba(255,255,255,0.15)'
+                    : '1px solid rgba(0,0,0,0.12)',
                   backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#f9f9fc',
                 }}
               >
@@ -332,8 +373,8 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
                         ? '#a6e2f5'
                         : '#1c1445'
                       : isDark
-                      ? 'rgba(255,255,255,0.2)'
-                      : 'rgba(0,0,0,0.18)'
+                        ? 'rgba(255,255,255,0.2)'
+                        : 'rgba(0,0,0,0.18)'
                   }`,
                   borderRadius: '12px',
                   p: 3,
@@ -344,8 +385,8 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
                       ? 'rgba(166,226,245,0.08)'
                       : 'rgba(28,20,69,0.04)'
                     : isDark
-                    ? 'rgba(255,255,255,0.02)'
-                    : '#fafafa',
+                      ? 'rgba(255,255,255,0.02)'
+                      : '#fafafa',
                   transition: 'all 0.2s ease',
                   '&:hover': {
                     borderColor: isDark ? '#a6e2f5' : '#1c1445',
@@ -354,14 +395,18 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
                 }}
               >
                 {isUploading ? (
-                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+                  <Box
+                    sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}
+                  >
                     <CircularProgress size={28} sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }} />
                     <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
                       Uploading image...
                     </Typography>
                   </Box>
                 ) : (
-                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+                  <Box
+                    sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}
+                  >
                     <Box
                       sx={{
                         width: 44,
@@ -376,7 +421,10 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
                     >
                       <CloudUpload />
                     </Box>
-                    <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}>
+                    <Typography
+                      variant="body2"
+                      sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}
+                    >
                       Click to upload or drag & drop
                     </Typography>
                     <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#757575' }}>
@@ -404,7 +452,10 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
               />
             }
             label={
-              <Typography variant="body2" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}>
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}
+              >
                 {t.activeLabel || 'Active Status'}
               </Typography>
             }

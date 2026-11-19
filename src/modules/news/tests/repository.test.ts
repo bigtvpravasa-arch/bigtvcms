@@ -82,14 +82,23 @@ describe('NewsRepository', () => {
       post_type: 'Standard',
       sendNotification: true,
     };
-    const createdResponse = { ...createDto, id: 10, createdAt: '2026-07-22T05:01:00.000Z', updatedAt: '2026-07-22T05:01:00.000Z' };
+    const createdResponse = {
+      ...createDto,
+      id: 10,
+      createdAt: '2026-07-22T05:01:00.000Z',
+      updatedAt: '2026-07-22T05:01:00.000Z',
+    };
     (apiClient.post as jest.Mock).mockResolvedValue(createdResponse);
 
     const result = await NewsRepository.create(createDto);
 
     expect(apiClient.post).toHaveBeenCalledWith(
       '/news-posts',
-      expect.not.objectContaining({ post_name: expect.anything(), post_type: expect.anything(), sendNotification: expect.anything() })
+      expect.not.objectContaining({
+        post_name: expect.anything(),
+        post_type: expect.anything(),
+        sendNotification: expect.anything(),
+      })
     );
     expect(NotificationRepository.sendNotification).toHaveBeenCalledWith({
       title: 'New Notification Title',
@@ -139,7 +148,12 @@ describe('NewsRepository', () => {
       location_ids: [1],
       sendNotification: false,
     };
-    const createdResponse = { ...createDto, id: 11, createdAt: '2026-07-22T05:01:00.000Z', updatedAt: '2026-07-22T05:01:00.000Z' };
+    const createdResponse = {
+      ...createDto,
+      id: 11,
+      createdAt: '2026-07-22T05:01:00.000Z',
+      updatedAt: '2026-07-22T05:01:00.000Z',
+    };
     (apiClient.post as jest.Mock).mockResolvedValue(createdResponse);
 
     const result = await NewsRepository.create(createDto);
@@ -154,7 +168,12 @@ describe('NewsRepository', () => {
 
   it('should update a news post by ID', async () => {
     const updateDto = { trash: true, schedule: '2026-07-22T05:07:02.102Z' };
-    const updatedResponse = { id: 2, title: 'Updated', trash: true, schedule: '2026-07-22T05:07:02.102Z' };
+    const updatedResponse = {
+      id: 2,
+      title: 'Updated',
+      trash: true,
+      schedule: '2026-07-22T05:07:02.102Z',
+    };
     (apiClient.put as jest.Mock).mockResolvedValue(updatedResponse);
 
     const result = await NewsRepository.update(2, updateDto);

@@ -183,8 +183,18 @@ export const EventsTab: React.FC = () => {
             }}
           >
             <Tab label={t.tabEvents} icon={<EventIcon />} iconPosition="start" value="events" />
-            <Tab label={t.tabBookings || 'Folk Night Bookings'} icon={<BookOnline />} iconPosition="start" value="bookings" />
-            <Tab label={t.tabTickets} icon={<ConfirmationNumber />} iconPosition="start" value="tickets" />
+            <Tab
+              label={t.tabBookings || 'Folk Night Bookings'}
+              icon={<BookOnline />}
+              iconPosition="start"
+              value="bookings"
+            />
+            <Tab
+              label={t.tabTickets}
+              icon={<ConfirmationNumber />}
+              iconPosition="start"
+              value="tickets"
+            />
             <Tab label={t.tabCoupons} icon={<LocalOffer />} iconPosition="start" value="coupons" />
             <Tab label={t.tabConfig} icon={<Settings />} iconPosition="start" value="config" />
           </Tabs>
@@ -313,15 +323,27 @@ export const EventsTab: React.FC = () => {
                       backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
                       backdropFilter: isDark ? 'blur(16px)' : 'none',
                       borderRadius: 3,
-                      border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.08)'
+                        : '1px solid rgba(0,0,0,0.08)',
                     }}
                   >
                     <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                      <Box sx={{ p: 1.5, borderRadius: 2.5, backgroundColor: 'rgba(59, 130, 246, 0.15)', color: '#3b82f6' }}>
+                      <Box
+                        sx={{
+                          p: 1.5,
+                          borderRadius: 2.5,
+                          backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                          color: '#3b82f6',
+                        }}
+                      >
                         <EventIcon />
                       </Box>
                       <Box>
-                        <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
+                        <Typography
+                          variant="caption"
+                          sx={{ color: isDark ? '#94a3b8' : '#64748b' }}
+                        >
                           {t.statTotal}
                         </Typography>
                         <Typography variant="h6" sx={{ fontWeight: 800 }}>
@@ -338,15 +360,27 @@ export const EventsTab: React.FC = () => {
                       backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
                       backdropFilter: isDark ? 'blur(16px)' : 'none',
                       borderRadius: 3,
-                      border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.08)'
+                        : '1px solid rgba(0,0,0,0.08)',
                     }}
                   >
                     <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                      <Box sx={{ p: 1.5, borderRadius: 2.5, backgroundColor: 'rgba(99, 102, 241, 0.15)', color: '#6366f1' }}>
+                      <Box
+                        sx={{
+                          p: 1.5,
+                          borderRadius: 2.5,
+                          backgroundColor: 'rgba(99, 102, 241, 0.15)',
+                          color: '#6366f1',
+                        }}
+                      >
                         <EventAvailable />
                       </Box>
                       <Box>
-                        <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
+                        <Typography
+                          variant="caption"
+                          sx={{ color: isDark ? '#94a3b8' : '#64748b' }}
+                        >
                           {t.statUpcoming}
                         </Typography>
                         <Typography variant="h6" sx={{ fontWeight: 800 }}>
@@ -363,15 +397,27 @@ export const EventsTab: React.FC = () => {
                       backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
                       backdropFilter: isDark ? 'blur(16px)' : 'none',
                       borderRadius: 3,
-                      border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.08)'
+                        : '1px solid rgba(0,0,0,0.08)',
                     }}
                   >
                     <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                      <Box sx={{ p: 1.5, borderRadius: 2.5, backgroundColor: 'rgba(34, 197, 94, 0.15)', color: '#22c55e' }}>
+                      <Box
+                        sx={{
+                          p: 1.5,
+                          borderRadius: 2.5,
+                          backgroundColor: 'rgba(34, 197, 94, 0.15)',
+                          color: '#22c55e',
+                        }}
+                      >
                         <EventAvailable />
                       </Box>
                       <Box>
-                        <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
+                        <Typography
+                          variant="caption"
+                          sx={{ color: isDark ? '#94a3b8' : '#64748b' }}
+                        >
                           {t.statLive}
                         </Typography>
                         <Typography variant="h6" sx={{ fontWeight: 800 }}>
@@ -388,15 +434,27 @@ export const EventsTab: React.FC = () => {
                       backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
                       backdropFilter: isDark ? 'blur(16px)' : 'none',
                       borderRadius: 3,
-                      border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.08)'
+                        : '1px solid rgba(0,0,0,0.08)',
                     }}
                   >
                     <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                      <Box sx={{ p: 1.5, borderRadius: 2.5, backgroundColor: 'rgba(245, 158, 11, 0.15)', color: '#f59e0b' }}>
+                      <Box
+                        sx={{
+                          p: 1.5,
+                          borderRadius: 2.5,
+                          backgroundColor: 'rgba(245, 158, 11, 0.15)',
+                          color: '#f59e0b',
+                        }}
+                      >
                         <MeetingRoom />
                       </Box>
                       <Box>
-                        <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
+                        <Typography
+                          variant="caption"
+                          sx={{ color: isDark ? '#94a3b8' : '#64748b' }}
+                        >
                           {t.statSeats}
                         </Typography>
                         <Typography variant="h6" sx={{ fontWeight: 800 }}>
@@ -467,7 +525,12 @@ export const EventsTab: React.FC = () => {
 
               {totalPages > 1 && (
                 <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-                  <Pagination count={totalPages} page={page} onChange={(_, val) => setPage(val)} color="primary" />
+                  <Pagination
+                    count={totalPages}
+                    page={page}
+                    onChange={(_, val) => setPage(val)}
+                    color="primary"
+                  />
                 </Box>
               )}
             </>

@@ -223,7 +223,9 @@ describe('Movie Reviews Gallery & Video URL Features', () => {
         </ThemeProvider>
       );
 
-      const dropZone = screen.getByText(/Drag & drop multiple videos or images here/i).closest('div');
+      const dropZone = screen
+        .getByText(/Drag & drop multiple videos or images here/i)
+        .closest('div');
       expect(dropZone).toBeInTheDocument();
 
       const img1 = new File(['1'], 'drag1.jpg', { type: 'image/jpeg' });
@@ -257,7 +259,9 @@ describe('Movie Reviews Gallery & Video URL Features', () => {
       const fileInput = container.querySelector('input[type="file"]') as HTMLInputElement;
       const clickSpy = jest.spyOn(fileInput, 'click').mockImplementation(() => {});
 
-      const dropZone = screen.getByText(/Drag & drop multiple videos or images here/i).closest('div');
+      const dropZone = screen
+        .getByText(/Drag & drop multiple videos or images here/i)
+        .closest('div');
       fireEvent.click(dropZone!);
 
       expect(clickSpy).toHaveBeenCalled();
@@ -311,7 +315,9 @@ describe('Movie Reviews Gallery & Video URL Features', () => {
         </ThemeProvider>
       );
 
-      expect(screen.getByDisplayValue('https://www.youtube.com/watch?v=trailer999')).toBeInTheDocument();
+      expect(
+        screen.getByDisplayValue('https://www.youtube.com/watch?v=trailer999')
+      ).toBeInTheDocument();
       expect(screen.getByText('https://example.com/still1.jpg')).toBeInTheDocument();
       expect(screen.getByText('https://example.com/still2.jpg')).toBeInTheDocument();
       expect(screen.getByText('2/6')).toBeInTheDocument();

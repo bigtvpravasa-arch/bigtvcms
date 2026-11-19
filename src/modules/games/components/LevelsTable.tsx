@@ -54,7 +54,10 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
       case 'expert':
         return { bg: isDark ? 'rgba(244, 67, 54, 0.15)' : '#ffebee', text: '#f44336' };
       default:
-        return { bg: isDark ? 'rgba(255, 255, 255, 0.1)' : '#f0f0f0', text: isDark ? '#d0caeb' : '#5c548a' };
+        return {
+          bg: isDark ? 'rgba(255, 255, 255, 0.1)' : '#f0f0f0',
+          text: isDark ? '#d0caeb' : '#5c548a',
+        };
     }
   };
 
@@ -67,7 +70,10 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
       case 'archived':
         return { bg: isDark ? 'rgba(158, 158, 158, 0.2)' : '#eeeeee', text: '#757575' };
       default:
-        return { bg: isDark ? 'rgba(255, 255, 255, 0.1)' : '#f0f0f0', text: isDark ? '#d0caeb' : '#5c548a' };
+        return {
+          bg: isDark ? 'rgba(255, 255, 255, 0.1)' : '#f0f0f0',
+          text: isDark ? '#d0caeb' : '#5c548a',
+        };
     }
   };
 
@@ -86,22 +92,46 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
       <Table>
         <TableHead sx={{ backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)' }}>
           <TableRow>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>{t.colLevelNumber}</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>{t.colLevelTitle}</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>{t.colDifficulty}</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>{t.colStatus}</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }} align="center">
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              {t.colLevelNumber}
+            </TableCell>
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              {t.colLevelTitle}
+            </TableCell>
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              {t.colDifficulty}
+            </TableCell>
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              {t.colStatus}
+            </TableCell>
+            <TableCell
+              sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              align="center"
+            >
               {t.colPlayed || 'Played'}
             </TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }} align="center">
+            <TableCell
+              sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              align="center"
+            >
               {t.colDropped || 'Middle Drop'}
             </TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }} align="center">
+            <TableCell
+              sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              align="center"
+            >
               {t.colFailed || 'Failed'}
             </TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>{t.colPublishedAt}</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>{t.colCreatedAt}</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }} align="center">
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              {t.colPublishedAt}
+            </TableCell>
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              {t.colCreatedAt}
+            </TableCell>
+            <TableCell
+              sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              align="center"
+            >
               {t.colActions}
             </TableCell>
           </TableRow>
@@ -109,7 +139,11 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
         <TableBody>
           {data.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={10} align="center" sx={{ py: 6, color: isDark ? '#d0caeb' : '#5c548a' }}>
+              <TableCell
+                colSpan={10}
+                align="center"
+                sx={{ py: 6, color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
                 <Typography>{t.noLevels}</Typography>
               </TableCell>
             </TableRow>
@@ -157,13 +191,18 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
                           width: 32,
                           height: 32,
                           borderRadius: '6px',
-                          border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.1)',
+                          border: isDark
+                            ? '1px solid rgba(255,255,255,0.15)'
+                            : '1px solid rgba(0,0,0,0.1)',
                           bgcolor: isDark ? 'rgba(255,255,255,0.05)' : '#f8fafc',
                           objectFit: 'contain',
                           flexShrink: 0,
                         }}
                       />
-                      <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}>
+                      <Typography
+                        variant="body2"
+                        sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}
+                      >
                         {row.title || `Level ${row.levelNumber}`}
                       </Typography>
                     </Box>
@@ -233,16 +272,16 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
                                 ? 'rgba(245, 158, 11, 0.2)'
                                 : '#fef3c7'
                               : isDark
-                              ? 'rgba(255, 255, 255, 0.05)'
-                              : '#f3f4f6',
+                                ? 'rgba(255, 255, 255, 0.05)'
+                                : '#f3f4f6',
                           color:
                             (row.stats?.notCompleted ?? 0) > 0
                               ? isDark
                                 ? '#fbbf24'
                                 : '#b45309'
                               : isDark
-                              ? '#94a3b8'
-                              : '#9ca3af',
+                                ? '#94a3b8'
+                                : '#9ca3af',
                           borderRadius: '6px',
                         }}
                       />
@@ -267,16 +306,16 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
                                 ? 'rgba(239, 68, 68, 0.2)'
                                 : '#fee2e2'
                               : isDark
-                              ? 'rgba(255, 255, 255, 0.05)'
-                              : '#f3f4f6',
+                                ? 'rgba(255, 255, 255, 0.05)'
+                                : '#f3f4f6',
                           color:
                             (row.stats?.failed ?? 0) > 0
                               ? isDark
                                 ? '#f87171'
                                 : '#dc2626'
                               : isDark
-                              ? '#94a3b8'
-                              : '#9ca3af',
+                                ? '#94a3b8'
+                                : '#9ca3af',
                           borderRadius: '6px',
                         }}
                       />
@@ -287,7 +326,9 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
                         <Tooltip
                           title={`Scheduled Daily Challenge: ${row.puzzleDate || row.assignedDate}${
-                            row.publishedAt ? ` (DB Created: ${new Date(row.publishedAt).toLocaleString()})` : ''
+                            row.publishedAt
+                              ? ` (DB Created: ${new Date(row.publishedAt).toLocaleString()})`
+                              : ''
                           }`}
                           arrow
                         >
@@ -341,7 +382,14 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
                     )}
                   </TableCell>
                   <TableCell align="center">
-                    <Box sx={{ display: 'flex', gap: 0.5, justifyContent: 'center', alignItems: 'center' }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        gap: 0.5,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
                       <Tooltip title="Play Preview" arrow>
                         <IconButton
                           size="small"
@@ -400,7 +448,11 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
                         size="small"
                         variant="text"
                         onClick={() => onEdit(row)}
-                        sx={{ textTransform: 'none', color: isDark ? '#a6e2f5' : '#2563eb', fontWeight: 600 }}
+                        sx={{
+                          textTransform: 'none',
+                          color: isDark ? '#a6e2f5' : '#2563eb',
+                          fontWeight: 600,
+                        }}
                       >
                         {t.btnEdit}
                       </Button>

@@ -1,5 +1,11 @@
 import { apiClient } from '@/core/api/api-client';
-import { AiTagDto, CreateAiTagDto, CreateAiTagResponse, UpdateAiTagDto, UpdateAiTagResponse } from '../dto/tags.dto';
+import {
+  AiTagDto,
+  CreateAiTagDto,
+  CreateAiTagResponse,
+  UpdateAiTagDto,
+  UpdateAiTagResponse,
+} from '../dto/tags.dto';
 
 export class TagsRepository {
   static async getAll(lang?: string): Promise<AiTagDto[]> {
@@ -22,4 +28,3 @@ export class TagsRepository {
     return apiClient.delete<{ message: string }>(`/aitags/${id}`);
   }
 }
-

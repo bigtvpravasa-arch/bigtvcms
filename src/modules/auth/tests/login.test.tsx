@@ -1,5 +1,12 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor, renderHook, act as hookAct } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  renderHook,
+  act as hookAct,
+} from '@testing-library/react';
 import LoginPage from '@/app/login/page';
 import { useLanguageStore } from '@/core/storage/language-store';
 import { useUserStore } from '@/core/storage/user-store';
@@ -116,9 +123,12 @@ describe('LoginPage and useLoginController integration', () => {
     });
 
     // Timeout delay in controller is 3000ms
-    await waitFor(() => {
-      expect(mockPush).toHaveBeenCalledWith('/language');
-    }, { timeout: 3500 });
+    await waitFor(
+      () => {
+        expect(mockPush).toHaveBeenCalledWith('/language');
+      },
+      { timeout: 3500 }
+    );
   });
 
   it('should display error toast on API login failure', async () => {
@@ -231,25 +241,33 @@ describe('LoginPage and useLoginController integration', () => {
     const fastapiErr = {
       detail: [
         { loc: ['body', 'UserName'], msg: 'field required' },
-        { loc: ['body', 'password'], msg: 'too short' }
-      ]
+        { loc: ['body', 'password'], msg: 'too short' },
+      ],
     };
-    expect(formatApiErrorMessage(fastapiErr, 'default')).toBe('UserName: field required, password: too short');
+    expect(formatApiErrorMessage(fastapiErr, 'default')).toBe(
+      'UserName: field required, password: too short'
+    );
 
     // String detail
-    expect(formatApiErrorMessage({ detail: 'Error detail string' }, 'default')).toBe('Error detail string');
+    expect(formatApiErrorMessage({ detail: 'Error detail string' }, 'default')).toBe(
+      'Error detail string'
+    );
 
     // Details record
     const detailsRecord = {
       details: {
         UserName: ['must be an email'],
-        password: ['too short']
-      }
+        password: ['too short'],
+      },
     };
-    expect(formatApiErrorMessage(detailsRecord, 'default')).toBe('UserName: must be an email, password: too short');
+    expect(formatApiErrorMessage(detailsRecord, 'default')).toBe(
+      'UserName: must be an email, password: too short'
+    );
 
     // Message fallback
-    expect(formatApiErrorMessage({ message: 'Error message string' }, 'default')).toBe('Error message string');
+    expect(formatApiErrorMessage({ message: 'Error message string' }, 'default')).toBe(
+      'Error message string'
+    );
   });
 
   it('should auto-redirect to /dashboard if user already has an access token in localStorage', async () => {
@@ -264,7 +282,10 @@ describe('LoginPage and useLoginController integration', () => {
   it('should cover auth repository direct call', async () => {
     (apiClient.post as jest.Mock).mockResolvedValue({ accessToken: 'direct-token' });
     const res = await AuthRepository.login({ UserName: 'direct', password: 'pwd' });
-    expect(apiClient.post).toHaveBeenCalledWith('/creators/login', { UserName: 'direct', password: 'pwd' });
+    expect(apiClient.post).toHaveBeenCalledWith('/creators/login', {
+      UserName: 'direct',
+      password: 'pwd',
+    });
     expect(res).toEqual({ accessToken: 'direct-token' });
   });
 });
@@ -286,7 +307,7 @@ describe('useLoginController hook tests', () => {
 
   it('should handle field changes and validation', () => {
     const { result } = renderHook(() => useLoginController());
-    
+
     hookAct(() => {
       result.current.handleFieldChange('username', 'myuser');
     });

@@ -83,4 +83,3 @@ export interface MovieItem {
   titleHi?: string;
   titleMl?: string;
 }
-

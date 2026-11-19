@@ -58,7 +58,9 @@ export const CouponsTable: React.FC<CouponsTableProps> = ({
               '& th': {
                 fontWeight: 700,
                 color: isDark ? '#a5b4fc' : '#475569',
-                borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                borderBottom: isDark
+                  ? '1px solid rgba(255,255,255,0.08)'
+                  : '1px solid rgba(0,0,0,0.08)',
               },
             }}
           >
@@ -91,7 +93,9 @@ export const CouponsTable: React.FC<CouponsTableProps> = ({
                   sx={{
                     '&:last-child td, &:last-child th': { border: 0 },
                     '& td': {
-                      borderBottom: isDark ? '1px solid rgba(255,255,255,0.05)' : '1px solid rgba(0,0,0,0.05)',
+                      borderBottom: isDark
+                        ? '1px solid rgba(255,255,255,0.05)'
+                        : '1px solid rgba(0,0,0,0.05)',
                       color: isDark ? '#e2e8f0' : '#1e293b',
                     },
                   }}
@@ -99,7 +103,10 @@ export const CouponsTable: React.FC<CouponsTableProps> = ({
                   <TableCell>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                       <LocalOffer sx={{ color: '#10b981' }} />
-                      <Typography variant="body2" sx={{ fontFamily: 'monospace', fontWeight: 700, color: '#10b981' }}>
+                      <Typography
+                        variant="body2"
+                        sx={{ fontFamily: 'monospace', fontWeight: 700, color: '#10b981' }}
+                      >
                         {cpn.code}
                       </Typography>
                     </Box>
@@ -107,13 +114,21 @@ export const CouponsTable: React.FC<CouponsTableProps> = ({
 
                   <TableCell>
                     <Chip
-                      label={cpn.discountType === 'PERCENTAGE' ? `${cpn.discountValue}% OFF` : `₹${cpn.discountValue} OFF`}
+                      label={
+                        cpn.discountType === 'PERCENTAGE'
+                          ? `${cpn.discountValue}% OFF`
+                          : `₹${cpn.discountValue} OFF`
+                      }
                       size="small"
                       color="success"
                       sx={{ fontWeight: 700, borderRadius: 1.5 }}
                     />
                     {cpn.minOrderAmount ? (
-                      <Typography variant="caption" display="block" sx={{ color: isDark ? '#94a3b8' : '#64748b', mt: 0.5 }}>
+                      <Typography
+                        variant="caption"
+                        display="block"
+                        sx={{ color: isDark ? '#94a3b8' : '#64748b', mt: 0.5 }}
+                      >
                         Min order: ₹{cpn.minOrderAmount}
                       </Typography>
                     ) : null}
@@ -153,13 +168,21 @@ export const CouponsTable: React.FC<CouponsTableProps> = ({
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 0.5 }}>
                       {onEdit && (
                         <Tooltip title={t.btnEdit || 'Edit Coupon'}>
-                          <IconButton size="small" onClick={() => onEdit(cpn)} sx={{ color: isDark ? '#a5b4fc' : '#6366f1' }}>
+                          <IconButton
+                            size="small"
+                            onClick={() => onEdit(cpn)}
+                            sx={{ color: isDark ? '#a5b4fc' : '#6366f1' }}
+                          >
                             <Edit fontSize="small" />
                           </IconButton>
                         </Tooltip>
                       )}
                       <Tooltip title={t.btnDelete || 'Delete Coupon'}>
-                        <IconButton size="small" onClick={() => onDelete(cpn.id)} sx={{ color: '#ef4444' }}>
+                        <IconButton
+                          size="small"
+                          onClick={() => onDelete(cpn.id)}
+                          sx={{ color: '#ef4444' }}
+                        >
                           <Delete fontSize="small" />
                         </IconButton>
                       </Tooltip>

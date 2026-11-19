@@ -89,7 +89,9 @@ describe('Header Component', () => {
 
     expect(screen.getByTestId('logout-confirmation-dialog')).toBeInTheDocument();
     expect(screen.getByText('Confirm Logout')).toBeInTheDocument();
-    expect(screen.getByText('Are you sure you want to log out of your account?')).toBeInTheDocument();
+    expect(
+      screen.getByText('Are you sure you want to log out of your account?')
+    ).toBeInTheDocument();
 
     const cancelBtn = screen.getByRole('button', { name: 'Cancel' });
     fireEvent.click(cancelBtn);
@@ -111,9 +113,13 @@ describe('Header Component', () => {
     expect(dialog).toBeInTheDocument();
 
     // The confirm button inside the dialog
-    const confirmBtn = screen.getAllByRole('button', { name: /log out/i }).find(
-      (btn) => btn.getAttribute('data-testid') !== 'popover-logout-button' && btn.getAttribute('data-testid') !== 'header-logout-button'
-    );
+    const confirmBtn = screen
+      .getAllByRole('button', { name: /log out/i })
+      .find(
+        (btn) =>
+          btn.getAttribute('data-testid') !== 'popover-logout-button' &&
+          btn.getAttribute('data-testid') !== 'header-logout-button'
+      );
     expect(confirmBtn).toBeDefined();
     fireEvent.click(confirmBtn!);
 
@@ -163,7 +169,9 @@ describe('Header Component', () => {
     fireEvent.click(popoverLogoutBtn);
 
     expect(screen.getByText('లాగ్ అవుట్ నిర్ధారణ')).toBeInTheDocument();
-    expect(screen.getByText('మీరు ఖచ్చితంగా మీ ఖాతా నుండి లాగ్ అవుట్ కావాలనుకుంటున్నారా?')).toBeInTheDocument();
+    expect(
+      screen.getByText('మీరు ఖచ్చితంగా మీ ఖాతా నుండి లాగ్ అవుట్ కావాలనుకుంటున్నారా?')
+    ).toBeInTheDocument();
   });
 
   it('renders translated text in Hindi when language is hi', () => {
@@ -179,7 +187,9 @@ describe('Header Component', () => {
     fireEvent.click(popoverLogoutBtn);
 
     expect(screen.getByText('लॉग आउट की पुष्टि करें')).toBeInTheDocument();
-    expect(screen.getByText('क्या आप वाकई अपने खाते से लॉग आउट करना चाहते हैं?')).toBeInTheDocument();
+    expect(
+      screen.getByText('क्या आप वाकई अपने खाते से लॉग आउट करना चाहते हैं?')
+    ).toBeInTheDocument();
   });
 
   it('renders translated text in Malayalam when language is ml', () => {
@@ -195,7 +205,11 @@ describe('Header Component', () => {
     fireEvent.click(popoverLogoutBtn);
 
     expect(screen.getByText('ലോഗ് ഔട്ട് സ്ഥിരീകരിക്കുക')).toBeInTheDocument();
-    expect(screen.getByText('നിങ്ങളുടെ അക്കൗണ്ടിൽ നിന്ന് തീർച്ചയായും ലോഗ് ഔട്ട് ചെയ്യാൻ ആഗ്രഹിക്കുന്നുണ്ടോ?')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'നിങ്ങളുടെ അക്കൗണ്ടിൽ നിന്ന് തീർച്ചയായും ലോഗ് ഔട്ട് ചെയ്യാൻ ആഗ്രഹിക്കുന്നുണ്ടോ?'
+      )
+    ).toBeInTheDocument();
   });
 
   it('opens and closes the device details dialog and triggers copy', async () => {
@@ -220,7 +234,9 @@ describe('Header Component', () => {
     fireEvent.click(regenBtn);
     expect(mockReload).toHaveBeenCalled();
 
-    const closeBtn = screen.getAllByRole('button').find((btn) => btn.querySelector('svg[data-testid="CloseIcon"]'));
+    const closeBtn = screen
+      .getAllByRole('button')
+      .find((btn) => btn.querySelector('svg[data-testid="CloseIcon"]'));
     if (closeBtn) {
       fireEvent.click(closeBtn);
     }

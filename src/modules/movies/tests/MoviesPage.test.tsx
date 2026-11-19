@@ -50,7 +50,7 @@ describe('MoviesPage Component', () => {
 
   it('opens drawer when Add Series button is clicked', async () => {
     render(<MoviesPage />);
-    
+
     await waitFor(() => {
       expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
     });

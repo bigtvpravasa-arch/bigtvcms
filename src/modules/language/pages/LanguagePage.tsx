@@ -163,32 +163,45 @@ export const LanguagePage: React.FC = () => {
   } = useLanguageController();
 
   const menuItems = [
-    { text: t.menuCreate,     icon: <AddCircleOutline />, action: () => router.push('/dashboard') },
-    { text: t.menuReels,      icon: <Movie />,            action: () => router.push('/reels') },
-    { text: t.menuCategories, icon: <CategoryIcon />,     action: () => router.push('/categories') },
-    { text: t.menuLocations,  icon: <LocationOn />,       action: () => router.push('/locations') },
-    { text: t.menuCreators,   icon: <People />,           action: () => router.push('/creators') },
-    { text: t.menuPostTypes,  icon: <Article />,          action: () => router.push('/post-types') },
-    { text: t.menuLanguages,  icon: <LanguageIcon />,     active: true },
-    { text: t.menuAiTags,     icon: <AutoAwesome />,      action: () => router.push('/aitags') },
-    { text: t.menuSettings,   icon: <Settings />,         action: () => router.push('/settings') },
+    { text: t.menuCreate, icon: <AddCircleOutline />, action: () => router.push('/dashboard') },
+    { text: t.menuReels, icon: <Movie />, action: () => router.push('/reels') },
+    { text: t.menuCategories, icon: <CategoryIcon />, action: () => router.push('/categories') },
+    { text: t.menuLocations, icon: <LocationOn />, action: () => router.push('/locations') },
+    { text: t.menuCreators, icon: <People />, action: () => router.push('/creators') },
+    { text: t.menuPostTypes, icon: <Article />, action: () => router.push('/post-types') },
+    { text: t.menuLanguages, icon: <LanguageIcon />, active: true },
+    { text: t.menuAiTags, icon: <AutoAwesome />, action: () => router.push('/aitags') },
+    { text: t.menuSettings, icon: <Settings />, action: () => router.push('/settings') },
   ];
 
   return (
-    <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden', backgroundColor: isDark ? '#110d29' : '#ffffff', transition: 'all 0.3s ease' }}>
-
+    <Box
+      sx={{
+        display: 'flex',
+        height: '100vh',
+        overflow: 'hidden',
+        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        transition: 'all 0.3s ease',
+      }}
+    >
       {/* Sidebar */}
       <Sidebar activeHref="/languages" />
 
       {/* Main Panel */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
-
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
         {/* Header */}
         <Header title={t.pageTitle} />
 
         {/* Content */}
         <Box sx={{ pt: 2, px: 2, pb: 4, flex: 1, overflowY: 'auto' }}>
-
           {/* Toolbar: filter + add */}
           <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'center', flexWrap: 'wrap' }}>
             <TextField
@@ -213,7 +226,11 @@ export const LanguagePage: React.FC = () => {
                 ),
                 endAdornment: filterName ? (
                   <InputAdornment position="end">
-                    <IconButton size="small" onClick={() => setFilterName('')} sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}>
+                    <IconButton
+                      size="small"
+                      onClick={() => setFilterName('')}
+                      sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}
+                    >
                       <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
                     </IconButton>
                   </InputAdornment>
@@ -238,12 +255,24 @@ export const LanguagePage: React.FC = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Typography sx={{ fontSize: '0.75rem', color: isDark ? '#d0caeb' : '#9e9e9e', fontWeight: 700 }}>#</Typography>
+                    <Typography
+                      sx={{
+                        fontSize: '0.75rem',
+                        color: isDark ? '#d0caeb' : '#9e9e9e',
+                        fontWeight: 700,
+                      }}
+                    >
+                      #
+                    </Typography>
                   </InputAdornment>
                 ),
                 endAdornment: filterId ? (
                   <InputAdornment position="end">
-                    <IconButton size="small" onClick={() => setFilterId('')} sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}>
+                    <IconButton
+                      size="small"
+                      onClick={() => setFilterId('')}
+                      sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}
+                    >
                       <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
                     </IconButton>
                   </InputAdornment>
@@ -258,7 +287,9 @@ export const LanguagePage: React.FC = () => {
               startIcon={<Add />}
               onClick={() => setDrawerOpen(true)}
               sx={{
-                borderRadius: '12px', textTransform: 'none', fontWeight: 600,
+                borderRadius: '12px',
+                textTransform: 'none',
+                fontWeight: 600,
                 backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
                 color: isDark ? '#1c1445' : '#ffffff',
                 '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
@@ -296,12 +327,16 @@ export const LanguagePage: React.FC = () => {
                 '& .MuiPaginationItem-root': {
                   color: isDark ? '#d0caeb' : '#5c548a',
                   borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
-                  '&:hover': { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' },
+                  '&:hover': {
+                    backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+                  },
                   '&.Mui-selected': {
                     backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
                     color: isDark ? '#a6e2f5' : '#1c1445',
                     borderColor: isDark ? '#a6e2f5' : '#1c1445',
-                    '&:hover': { backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.15)' },
+                    '&:hover': {
+                      backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.15)',
+                    },
                   },
                 },
               }}

@@ -105,12 +105,24 @@ const headerTranslations = {
     logoutConfirmMessage: 'మీరు ఖచ్చితంగా మీ ఖాతా నుండి లాగ్ అవుట్ కావాలనుకుంటున్నారా?',
     cancel: 'రద్దు చేయి',
     confirmLogout: 'లాగ్ అవుట్',
-    lblDeviceId: 'డివైస్ ID', lblBrowser: 'బ్రౌజర్', lblOS: 'ఆపరేటింగ్ సిస్టమ్',
-    lblDeviceType: 'డివైస్ రకం', lblScreen: 'స్క్రీన్ రిజల్యూషన్', lblColorDepth: 'కలర్ డెప్త్',
-    lblPixelRatio: 'పిక్సెల్ రేషియో', lblLanguage: 'భాష', lblTimezone: 'టైమ్‌జోన్',
-    lblTzOffset: 'UTC ఆఫ్‌సెట్', lblIP: 'పబ్లిక్ IP', lblConnection: 'కనెక్షన్',
-    lblOnline: 'ఆన్‌లైన్ స్థితి', lblCPU: 'CPU కోర్లు', lblMemory: 'డివైస్ మెమరీ',
-    lblCookies: 'కుకీలు', lblStorage: 'లోకల్ స్టోరేజ్', lblFetchedAt: 'క్యాప్చర్ చేసిన సమయం',
+    lblDeviceId: 'డివైస్ ID',
+    lblBrowser: 'బ్రౌజర్',
+    lblOS: 'ఆపరేటింగ్ సిస్టమ్',
+    lblDeviceType: 'డివైస్ రకం',
+    lblScreen: 'స్క్రీన్ రిజల్యూషన్',
+    lblColorDepth: 'కలర్ డెప్త్',
+    lblPixelRatio: 'పిక్సెల్ రేషియో',
+    lblLanguage: 'భాష',
+    lblTimezone: 'టైమ్‌జోన్',
+    lblTzOffset: 'UTC ఆఫ్‌సెట్',
+    lblIP: 'పబ్లిక్ IP',
+    lblConnection: 'కనెక్షన్',
+    lblOnline: 'ఆన్‌లైన్ స్థితి',
+    lblCPU: 'CPU కోర్లు',
+    lblMemory: 'డివైస్ మెమరీ',
+    lblCookies: 'కుకీలు',
+    lblStorage: 'లోకల్ స్టోరేజ్',
+    lblFetchedAt: 'క్యాప్చర్ చేసిన సమయం',
   },
   hi: {
     loggedInAs: 'लॉग इन उपयोगकर्ता',
@@ -130,12 +142,24 @@ const headerTranslations = {
     logoutConfirmMessage: 'क्या आप वाकई अपने खाते से लॉग आउट करना चाहते हैं?',
     cancel: 'रद्द करें',
     confirmLogout: 'लॉग आउट',
-    lblDeviceId: 'डिवाइस ID', lblBrowser: 'ब्राउज़र', lblOS: 'ऑपरेटिंग सिस्टम',
-    lblDeviceType: 'डिवाइस प्रकार', lblScreen: 'स्क्रीन रिज़ॉल्यूशन', lblColorDepth: 'रंग गहराई',
-    lblPixelRatio: 'पिक्सेल अनुपात', lblLanguage: 'भाषा', lblTimezone: 'टाइमज़ोन',
-    lblTzOffset: 'UTC ऑफ़सेट', lblIP: 'सार्वजनिक IP', lblConnection: 'कनेक्शन',
-    lblOnline: 'ऑनलाइन स्थिति', lblCPU: 'CPU कोर', lblMemory: 'डिवाइस मेमोरी',
-    lblCookies: 'कुकीज़', lblStorage: 'लोकल स्टोरेज', lblFetchedAt: 'कैप्चर समय',
+    lblDeviceId: 'डिवाइस ID',
+    lblBrowser: 'ब्राउज़र',
+    lblOS: 'ऑपरेटिंग सिस्टम',
+    lblDeviceType: 'डिवाइस प्रकार',
+    lblScreen: 'स्क्रीन रिज़ॉल्यूशन',
+    lblColorDepth: 'रंग गहराई',
+    lblPixelRatio: 'पिक्सेल अनुपात',
+    lblLanguage: 'भाषा',
+    lblTimezone: 'टाइमज़ोन',
+    lblTzOffset: 'UTC ऑफ़सेट',
+    lblIP: 'सार्वजनिक IP',
+    lblConnection: 'कनेक्शन',
+    lblOnline: 'ऑनलाइन स्थिति',
+    lblCPU: 'CPU कोर',
+    lblMemory: 'डिवाइस मेमोरी',
+    lblCookies: 'कुकीज़',
+    lblStorage: 'लोकल स्टोरेज',
+    lblFetchedAt: 'कैप्चर समय',
   },
   ml: {
     loggedInAs: 'ലോഗിൻ ചെയ്ത ഉപയോക്താവ്',
@@ -152,15 +176,28 @@ const headerTranslations = {
     regenerate: 'ID പുനർനിർമ്മിക്കുക',
     close: 'അടയ്ക്കുക',
     logoutConfirmTitle: 'ലോഗ് ഔട്ട് സ്ഥിരീകരിക്കുക',
-    logoutConfirmMessage: 'നിങ്ങളുടെ അക്കൗണ്ടിൽ നിന്ന് തീർച്ചയായും ലോഗ് ഔട്ട് ചെയ്യാൻ ആഗ്രഹിക്കുന്നുണ്ടോ?',
+    logoutConfirmMessage:
+      'നിങ്ങളുടെ അക്കൗണ്ടിൽ നിന്ന് തീർച്ചയായും ലോഗ് ഔട്ട് ചെയ്യാൻ ആഗ്രഹിക്കുന്നുണ്ടോ?',
     cancel: 'റദ്ദാക്കുക',
     confirmLogout: 'ലോഗ് ഔട്ട്',
-    lblDeviceId: 'ഡിവൈസ് ID', lblBrowser: 'ബ്രൗസർ', lblOS: 'ഓപ്പറേറ്റിംഗ് സിസ്റ്റം',
-    lblDeviceType: 'ഡിവൈസ് തരം', lblScreen: 'സ്ക്രീൻ റെസല്യൂഷൻ', lblColorDepth: 'കളർ ഡെപ്ത്',
-    lblPixelRatio: 'പിക്സൽ റേഷ്യോ', lblLanguage: 'ഭാഷ', lblTimezone: 'ടൈംസോൺ',
-    lblTzOffset: 'UTC ഓഫ്‌സെറ്റ്', lblIP: 'പബ്ലിക് IP', lblConnection: 'കണക്ഷൻ',
-    lblOnline: 'ഓൺലൈൻ നില', lblCPU: 'CPU കോറുകൾ', lblMemory: 'ഡിവൈസ് മെമ്മറി',
-    lblCookies: 'കുക്കീസ്', lblStorage: 'ലോക്കൽ സ്റ്റോറേജ്', lblFetchedAt: 'ക്യാപ്ചർ ചെയ്ത സമയം',
+    lblDeviceId: 'ഡിവൈസ് ID',
+    lblBrowser: 'ബ്രൗസർ',
+    lblOS: 'ഓപ്പറേറ്റിംഗ് സിസ്റ്റം',
+    lblDeviceType: 'ഡിവൈസ് തരം',
+    lblScreen: 'സ്ക്രീൻ റെസല്യൂഷൻ',
+    lblColorDepth: 'കളർ ഡെപ്ത്',
+    lblPixelRatio: 'പിക്സൽ റേഷ്യോ',
+    lblLanguage: 'ഭാഷ',
+    lblTimezone: 'ടൈംസോൺ',
+    lblTzOffset: 'UTC ഓഫ്‌സെറ്റ്',
+    lblIP: 'പബ്ലിക് IP',
+    lblConnection: 'കണക്ഷൻ',
+    lblOnline: 'ഓൺലൈൻ നില',
+    lblCPU: 'CPU കോറുകൾ',
+    lblMemory: 'ഡിവൈസ് മെമ്മറി',
+    lblCookies: 'കുക്കീസ്',
+    lblStorage: 'ലോക്കൽ സ്റ്റോറേജ്',
+    lblFetchedAt: 'ക്യാപ്ചർ ചെയ്ത സമയം',
   },
 };
 
@@ -172,7 +209,8 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
   const isDark = mode === 'dark';
   const deviceInfo = useDeviceInfo();
 
-  const t = headerTranslations[language as keyof typeof headerTranslations] || headerTranslations.en;
+  const t =
+    headerTranslations[language as keyof typeof headerTranslations] || headerTranslations.en;
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [deviceDialogOpen, setDeviceDialogOpen] = useState(false);
@@ -194,11 +232,12 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
   };
 
   // Device type icon helper
-  const DeviceTypeIcon = deviceInfo?.deviceType === 'Mobile'
-    ? PhoneIcon
-    : deviceInfo?.deviceType === 'Tablet'
-    ? TabletIcon
-    : ComputerIcon;
+  const DeviceTypeIcon =
+    deviceInfo?.deviceType === 'Mobile'
+      ? PhoneIcon
+      : deviceInfo?.deviceType === 'Tablet'
+        ? TabletIcon
+        : ComputerIcon;
 
   const handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -321,10 +360,16 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
           </Avatar>
 
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography variant="body2" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600, lineHeight: 1.2 }}>
+            <Typography
+              variant="body2"
+              sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600, lineHeight: 1.2 }}
+            >
               {displayName}
             </Typography>
-            <Typography variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#5c548a', fontSize: '0.7rem', fontWeight: 500 }}>
+            <Typography
+              variant="caption"
+              sx={{ color: isDark ? '#a6e2f5' : '#5c548a', fontSize: '0.7rem', fontWeight: 500 }}
+            >
               {displayRole}
             </Typography>
           </Box>
@@ -356,29 +401,60 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
             p: 2,
             backgroundColor: isDark ? '#1c1445' : '#ffffff',
             color: isDark ? '#ffffff' : '#1c1445',
-            boxShadow: isDark
-              ? '0 10px 30px rgba(0,0,0,0.5)'
-              : '0 10px 30px rgba(0,0,0,0.1)',
+            boxShadow: isDark ? '0 10px 30px rgba(0,0,0,0.5)' : '0 10px 30px rgba(0,0,0,0.1)',
             border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.08)',
           },
         }}
       >
-        <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+        <Typography
+          variant="caption"
+          sx={{
+            color: isDark ? '#d0caeb' : '#5c548a',
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: 0.5,
+          }}
+        >
           {t.profileDetails}
         </Typography>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mt: 1.5, mb: 1.5 }}>
           <Avatar
             src={user.avatarUrl}
-            sx={{ width: 44, height: 44, bgcolor: isDark ? '#a6e2f5' : '#1c1445', color: isDark ? '#1c1445' : '#ffffff', fontSize: '1rem', fontWeight: 700 }}
+            sx={{
+              width: 44,
+              height: 44,
+              bgcolor: isDark ? '#a6e2f5' : '#1c1445',
+              color: isDark ? '#1c1445' : '#ffffff',
+              fontSize: '1rem',
+              fontWeight: 700,
+            }}
           >
             {user.avatarUrl ? null : user.name ? getInitials(user.name) : <PersonOutline />}
           </Avatar>
           <Box sx={{ overflow: 'hidden' }}>
-            <Typography variant="body1" sx={{ fontWeight: 700, lineHeight: 1.2, textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: 700,
+                lineHeight: 1.2,
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+              }}
+            >
               {displayName}
             </Typography>
-            <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', display: 'block', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+            <Typography
+              variant="caption"
+              sx={{
+                color: isDark ? '#d0caeb' : '#5c548a',
+                display: 'block',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+              }}
+            >
               @{user.username || 'user'}
             </Typography>
           </Box>
@@ -389,12 +465,25 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
             size="small"
             icon={<VerifiedUser sx={{ fontSize: '14px !important' }} />}
             label={displayRole}
-            sx={{ backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.08)', color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600, fontSize: '0.75rem' }}
+            sx={{
+              backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.08)',
+              color: isDark ? '#a6e2f5' : '#1c1445',
+              fontWeight: 600,
+              fontSize: '0.75rem',
+            }}
           />
-          <Chip size="small" label={t.activeStatus} color="success" variant="outlined" sx={{ fontSize: '0.7rem', height: 24 }} />
+          <Chip
+            size="small"
+            label={t.activeStatus}
+            color="success"
+            variant="outlined"
+            sx={{ fontSize: '0.7rem', height: 24 }}
+          />
         </Box>
 
-        <Divider sx={{ my: 1.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)' }} />
+        <Divider
+          sx={{ my: 1.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)' }}
+        />
 
         <Button
           fullWidth
@@ -426,76 +515,263 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
         }}
       >
         {/* Dialog Header */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, px: 3, pt: 3, pb: 2, borderBottom: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.06)', backgroundColor: isDark ? 'rgba(166,226,245,0.04)' : '#ffffff' }}>
-          <Box sx={{ width: 44, height: 44, borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isDark ? 'linear-gradient(135deg,rgba(166,226,245,0.25),rgba(166,226,245,0.08))' : 'linear-gradient(135deg,rgba(28,20,69,0.12),rgba(28,20,69,0.05))', border: isDark ? '1px solid rgba(166,226,245,0.2)' : '1px solid rgba(28,20,69,0.12)', flexShrink: 0 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1.5,
+            px: 3,
+            pt: 3,
+            pb: 2,
+            borderBottom: isDark
+              ? '1px solid rgba(255,255,255,0.06)'
+              : '1px solid rgba(0,0,0,0.06)',
+            backgroundColor: isDark ? 'rgba(166,226,245,0.04)' : '#ffffff',
+          }}
+        >
+          <Box
+            sx={{
+              width: 44,
+              height: 44,
+              borderRadius: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: isDark
+                ? 'linear-gradient(135deg,rgba(166,226,245,0.25),rgba(166,226,245,0.08))'
+                : 'linear-gradient(135deg,rgba(28,20,69,0.12),rgba(28,20,69,0.05))',
+              border: isDark ? '1px solid rgba(166,226,245,0.2)' : '1px solid rgba(28,20,69,0.12)',
+              flexShrink: 0,
+            }}
+          >
             <Fingerprint sx={{ fontSize: '1.5rem', color: isDark ? '#a6e2f5' : '#1c1445' }} />
           </Box>
           <Box sx={{ flex: 1, minWidth: 0 }}>
-            <Typography variant="h6" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 700, fontSize: '1.05rem' }}>{t.deviceId}</Typography>
-            <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', display: 'block', lineHeight: 1.4, mt: 0.2 }}>{t.deviceIdDesc}</Typography>
+            <Typography
+              variant="h6"
+              sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 700, fontSize: '1.05rem' }}
+            >
+              {t.deviceId}
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                color: isDark ? '#d0caeb' : '#5c548a',
+                display: 'block',
+                lineHeight: 1.4,
+                mt: 0.2,
+              }}
+            >
+              {t.deviceIdDesc}
+            </Typography>
           </Box>
-          <IconButton size="small" onClick={() => setDeviceDialogOpen(false)} sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+          <IconButton
+            size="small"
+            onClick={() => setDeviceDialogOpen(false)}
+            sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+          >
             <Close sx={{ fontSize: '1.1rem' }} />
           </IconButton>
         </Box>
 
         <DialogContent sx={{ px: 3, py: 2.5 }}>
           {!deviceInfo ? (
-            <Typography sx={{ color: isDark ? '#d0caeb' : '#5c548a', textAlign: 'center', py: 4 }}>Loading device info…</Typography>
+            <Typography sx={{ color: isDark ? '#d0caeb' : '#5c548a', textAlign: 'center', py: 4 }}>
+              Loading device info…
+            </Typography>
           ) : (
             <>
               {/* ── Device ID Card ── */}
-              <Box sx={{ borderRadius: '14px', border: isDark ? '1px solid rgba(166,226,245,0.25)' : '1px solid rgba(28,20,69,0.15)', backgroundColor: isDark ? 'rgba(166,226,245,0.06)' : 'rgba(28,20,69,0.03)', p: 2, mb: 2, position: 'relative', overflow: 'hidden' }}>
-                <Box sx={{ position: 'absolute', top: -16, right: -16, width: 70, height: 70, borderRadius: '50%', background: isDark ? 'radial-gradient(circle,rgba(166,226,245,0.15),transparent 70%)' : 'radial-gradient(circle,rgba(28,20,69,0.08),transparent 70%)', pointerEvents: 'none' }} />
-                <Typography variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#5c548a', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, display: 'block', mb: 0.5, fontSize: '0.68rem' }}>{(t as any).lblDeviceId ?? 'Device ID'}</Typography>
+              <Box
+                sx={{
+                  borderRadius: '14px',
+                  border: isDark
+                    ? '1px solid rgba(166,226,245,0.25)'
+                    : '1px solid rgba(28,20,69,0.15)',
+                  backgroundColor: isDark ? 'rgba(166,226,245,0.06)' : 'rgba(28,20,69,0.03)',
+                  p: 2,
+                  mb: 2,
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
+              >
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: -16,
+                    right: -16,
+                    width: 70,
+                    height: 70,
+                    borderRadius: '50%',
+                    background: isDark
+                      ? 'radial-gradient(circle,rgba(166,226,245,0.15),transparent 70%)'
+                      : 'radial-gradient(circle,rgba(28,20,69,0.08),transparent 70%)',
+                    pointerEvents: 'none',
+                  }}
+                />
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: isDark ? '#a6e2f5' : '#5c548a',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: 1,
+                    display: 'block',
+                    mb: 0.5,
+                    fontSize: '0.68rem',
+                  }}
+                >
+                  {(t as any).lblDeviceId ?? 'Device ID'}
+                </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
-                  <Typography sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 800, fontFamily: 'monospace', fontSize: '0.92rem', letterSpacing: '0.04em', wordBreak: 'break-all', flex: 1 }}>{deviceInfo.deviceId}</Typography>
+                  <Typography
+                    sx={{
+                      color: isDark ? '#ffffff' : '#1c1445',
+                      fontWeight: 800,
+                      fontFamily: 'monospace',
+                      fontSize: '0.92rem',
+                      letterSpacing: '0.04em',
+                      wordBreak: 'break-all',
+                      flex: 1,
+                    }}
+                  >
+                    {deviceInfo.deviceId}
+                  </Typography>
                   <Box sx={{ display: 'flex', gap: 1, flexShrink: 0 }}>
                     <Tooltip title={t.copyId}>
-                      <IconButton aria-label={t.copyId} size="small" onClick={handleCopy} sx={{ color: isDark ? '#a6e2f5' : '#1c1445', backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(28,20,69,0.07)', borderRadius: '8px', '&:hover': { backgroundColor: isDark ? 'rgba(166,226,245,0.2)' : 'rgba(28,20,69,0.12)' } }}><ContentCopy sx={{ fontSize: '0.9rem' }} /></IconButton>
+                      <IconButton
+                        aria-label={t.copyId}
+                        size="small"
+                        onClick={handleCopy}
+                        sx={{
+                          color: isDark ? '#a6e2f5' : '#1c1445',
+                          backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(28,20,69,0.07)',
+                          borderRadius: '8px',
+                          '&:hover': {
+                            backgroundColor: isDark
+                              ? 'rgba(166,226,245,0.2)'
+                              : 'rgba(28,20,69,0.12)',
+                          },
+                        }}
+                      >
+                        <ContentCopy sx={{ fontSize: '0.9rem' }} />
+                      </IconButton>
                     </Tooltip>
                     <Tooltip title={t.regenerate}>
-                      <IconButton aria-label={t.regenerate} size="small" onClick={handleRegenerate} sx={{ color: isDark ? '#d0caeb' : '#5c548a', backgroundColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)', borderRadius: '8px', '&:hover': { backgroundColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.1)' } }}><Refresh sx={{ fontSize: '0.9rem' }} /></IconButton>
+                      <IconButton
+                        aria-label={t.regenerate}
+                        size="small"
+                        onClick={handleRegenerate}
+                        sx={{
+                          color: isDark ? '#d0caeb' : '#5c548a',
+                          backgroundColor: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)',
+                          borderRadius: '8px',
+                          '&:hover': {
+                            backgroundColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.1)',
+                          },
+                        }}
+                      >
+                        <Refresh sx={{ fontSize: '0.9rem' }} />
+                      </IconButton>
                     </Tooltip>
                   </Box>
                 </Box>
               </Box>
 
               {/* ── Info Grid ── */}
-              {([
-                // Row 1 — System
+              {(
                 [
-                  { icon: <ComputerIcon sx={{ fontSize: '1rem' }} />, label: (t as any).lblOS ?? 'OS', value: deviceInfo.os, color: '#7c4dff' },
-                  { icon: <GlobeIcon sx={{ fontSize: '1rem' }} />, label: (t as any).lblBrowser ?? 'Browser', value: `${deviceInfo.browser} ${deviceInfo.browserVersion}`, color: '#2196f3' },
-                ],
-                // Row 2 — Device
-                [
-                  { icon: <DeviceTypeIcon sx={{ fontSize: '1rem' }} />, label: (t as any).lblDeviceType ?? 'Device Type', value: deviceInfo.deviceType, color: '#ff9800' },
-                  { icon: <MonitorIcon sx={{ fontSize: '1rem' }} />, label: (t as any).lblScreen ?? 'Screen', value: `${deviceInfo.screenResolution} · ${deviceInfo.pixelRatio}`, color: '#00bcd4' },
-                ],
-                // Row 3 — Locale
-                [
-                  { icon: <ScheduleIcon sx={{ fontSize: '1rem' }} />, label: (t as any).lblTimezone ?? 'Timezone', value: `${deviceInfo.timezone} (${deviceInfo.timezoneOffset})`, color: '#4caf50' },
-                  { icon: <GlobeIcon sx={{ fontSize: '1rem' }} />, label: (t as any).lblLanguage ?? 'Language', value: deviceInfo.language, color: '#e91e63' },
-                ],
-                // Row 4 — Network
-                [
-                  { icon: <WifiIcon sx={{ fontSize: '1rem' }} />, label: (t as any).lblIP ?? 'Public IP', value: deviceInfo.ip, color: '#ff5722' },
-                  { icon: <WifiIcon sx={{ fontSize: '1rem' }} />, label: (t as any).lblConnection ?? 'Connection', value: `${deviceInfo.connectionType} · ${deviceInfo.onlineStatus}`, color: '#009688' },
-                ],
-                // Row 5 — Hardware
-                [
-                  { icon: <MemoryIcon sx={{ fontSize: '1rem' }} />, label: (t as any).lblCPU ?? 'CPU Cores', value: deviceInfo.cpuCores, color: '#673ab7' },
-                  { icon: <MemoryIcon sx={{ fontSize: '1rem' }} />, label: (t as any).lblMemory ?? 'Memory', value: deviceInfo.memoryGB, color: '#3f51b5' },
-                ],
-              ] as Array<Array<{ icon: React.ReactNode; label: string; value: string; color: string }>>).map((row, ri) => (
-                <Box key={ri} sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1.5, mb: 1.5 }}>
+                  // Row 1 — System
+                  [
+                    {
+                      icon: <ComputerIcon sx={{ fontSize: '1rem' }} />,
+                      label: (t as any).lblOS ?? 'OS',
+                      value: deviceInfo.os,
+                      color: '#7c4dff',
+                    },
+                    {
+                      icon: <GlobeIcon sx={{ fontSize: '1rem' }} />,
+                      label: (t as any).lblBrowser ?? 'Browser',
+                      value: `${deviceInfo.browser} ${deviceInfo.browserVersion}`,
+                      color: '#2196f3',
+                    },
+                  ],
+                  // Row 2 — Device
+                  [
+                    {
+                      icon: <DeviceTypeIcon sx={{ fontSize: '1rem' }} />,
+                      label: (t as any).lblDeviceType ?? 'Device Type',
+                      value: deviceInfo.deviceType,
+                      color: '#ff9800',
+                    },
+                    {
+                      icon: <MonitorIcon sx={{ fontSize: '1rem' }} />,
+                      label: (t as any).lblScreen ?? 'Screen',
+                      value: `${deviceInfo.screenResolution} · ${deviceInfo.pixelRatio}`,
+                      color: '#00bcd4',
+                    },
+                  ],
+                  // Row 3 — Locale
+                  [
+                    {
+                      icon: <ScheduleIcon sx={{ fontSize: '1rem' }} />,
+                      label: (t as any).lblTimezone ?? 'Timezone',
+                      value: `${deviceInfo.timezone} (${deviceInfo.timezoneOffset})`,
+                      color: '#4caf50',
+                    },
+                    {
+                      icon: <GlobeIcon sx={{ fontSize: '1rem' }} />,
+                      label: (t as any).lblLanguage ?? 'Language',
+                      value: deviceInfo.language,
+                      color: '#e91e63',
+                    },
+                  ],
+                  // Row 4 — Network
+                  [
+                    {
+                      icon: <WifiIcon sx={{ fontSize: '1rem' }} />,
+                      label: (t as any).lblIP ?? 'Public IP',
+                      value: deviceInfo.ip,
+                      color: '#ff5722',
+                    },
+                    {
+                      icon: <WifiIcon sx={{ fontSize: '1rem' }} />,
+                      label: (t as any).lblConnection ?? 'Connection',
+                      value: `${deviceInfo.connectionType} · ${deviceInfo.onlineStatus}`,
+                      color: '#009688',
+                    },
+                  ],
+                  // Row 5 — Hardware
+                  [
+                    {
+                      icon: <MemoryIcon sx={{ fontSize: '1rem' }} />,
+                      label: (t as any).lblCPU ?? 'CPU Cores',
+                      value: deviceInfo.cpuCores,
+                      color: '#673ab7',
+                    },
+                    {
+                      icon: <MemoryIcon sx={{ fontSize: '1rem' }} />,
+                      label: (t as any).lblMemory ?? 'Memory',
+                      value: deviceInfo.memoryGB,
+                      color: '#3f51b5',
+                    },
+                  ],
+                ] as Array<
+                  Array<{ icon: React.ReactNode; label: string; value: string; color: string }>
+                >
+              ).map((row, ri) => (
+                <Box
+                  key={ri}
+                  sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1.5, mb: 1.5 }}
+                >
                   {row.map((cell, ci) => (
                     <Box
                       key={ci}
                       sx={{
                         borderRadius: '12px',
-                        border: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.07)',
+                        border: isDark
+                          ? '1px solid rgba(255,255,255,0.06)'
+                          : '1px solid rgba(0,0,0,0.07)',
                         backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#ffffff',
                         p: 1.5,
                         display: 'flex',
@@ -507,11 +783,29 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
                     >
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.7, mb: 0.2 }}>
                         <Box sx={{ color: cell.color, display: 'flex' }}>{cell.icon}</Box>
-                        <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, fontSize: '0.68rem', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: isDark ? '#d0caeb' : '#5c548a',
+                            fontWeight: 600,
+                            fontSize: '0.68rem',
+                            textTransform: 'uppercase',
+                            letterSpacing: 0.5,
+                          }}
+                        >
                           {cell.label}
                         </Typography>
                       </Box>
-                      <Typography variant="body2" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600, fontSize: '0.82rem', wordBreak: 'break-word', lineHeight: 1.4 }}>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: isDark ? '#ffffff' : '#1c1445',
+                          fontWeight: 600,
+                          fontSize: '0.82rem',
+                          wordBreak: 'break-word',
+                          lineHeight: 1.4,
+                        }}
+                      >
                         {cell.value || '—'}
                       </Typography>
                     </Box>
@@ -520,10 +814,27 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
               ))}
 
               {/* Captured At */}
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 0.5, p: 1.5, borderRadius: '10px', backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.025)', border: isDark ? '1px solid rgba(255,255,255,0.05)' : '1px solid rgba(0,0,0,0.05)' }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1,
+                  mt: 0.5,
+                  p: 1.5,
+                  borderRadius: '10px',
+                  backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.025)',
+                  border: isDark
+                    ? '1px solid rgba(255,255,255,0.05)'
+                    : '1px solid rgba(0,0,0,0.05)',
+                }}
+              >
                 <CheckCircleOutline sx={{ fontSize: '0.9rem', color: '#4caf50', flexShrink: 0 }} />
-                <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontSize: '0.72rem' }}>
-                  {(t as any).lblFetchedAt ?? 'Captured At'}: <strong>{deviceInfo.fetchedAt}</strong>
+                <Typography
+                  variant="caption"
+                  sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontSize: '0.72rem' }}
+                >
+                  {(t as any).lblFetchedAt ?? 'Captured At'}:{' '}
+                  <strong>{deviceInfo.fetchedAt}</strong>
                 </Typography>
               </Box>
             </>
@@ -578,7 +889,9 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: isDark ? 'rgba(239, 68, 68, 0.15)' : 'rgba(239, 68, 68, 0.1)',
-              border: isDark ? '1px solid rgba(239, 68, 68, 0.3)' : '1px solid rgba(239, 68, 68, 0.2)',
+              border: isDark
+                ? '1px solid rgba(239, 68, 68, 0.3)'
+                : '1px solid rgba(239, 68, 68, 0.2)',
             }}
           >
             <Logout sx={{ fontSize: '1.75rem', color: '#ef4444' }} />

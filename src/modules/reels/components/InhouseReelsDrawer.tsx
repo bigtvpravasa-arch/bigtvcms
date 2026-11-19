@@ -17,11 +17,7 @@ import {
   FormControl,
   InputLabel,
 } from '@mui/material';
-import {
-  Movie,
-  Close,
-  CloudUpload,
-} from '@mui/icons-material';
+import { Movie, Close, CloudUpload } from '@mui/icons-material';
 import { UploadedReel } from '../domain/reels.model';
 import { eventsApiClient } from '@/core/api/api-client';
 import { UploadService } from '@/modules/media/services/upload.service';
@@ -112,11 +108,11 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
     try {
       const formData = new FormData();
       formData.append('file', file);
-      
+
       const response = await eventsApiClient.post<any>('/reels/upload-video', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      
+
       if (response && response.data && response.data.url) {
         setFormData((prev) => ({ ...prev, videoUrl: response.data.url }));
       }
@@ -197,7 +193,9 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
         backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
         borderRadius: '10px',
         '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)' },
-        '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)' },
+        '&:hover fieldset': {
+          borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
+        },
         '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
       },
       '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
@@ -214,26 +212,46 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
           width: { xs: '100vw', sm: '480px' },
           backgroundColor: isDark ? '#1a1140' : '#ffffff',
           borderLeft: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
-          display: 'flex', flexDirection: 'column',
+          display: 'flex',
+          flexDirection: 'column',
         },
       }}
     >
-      <Box sx={{
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        px: 3, py: 2.5,
-        borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
-        backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#f4f3f8',
-      }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          px: 3,
+          py: 2.5,
+          borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+          backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#f4f3f8',
+        }}
+      >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <Box sx={{
-            width: 36, height: 36, borderRadius: '10px',
-            backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.08)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
+          <Box
+            sx={{
+              width: 36,
+              height: 36,
+              borderRadius: '10px',
+              backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.08)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
             <Movie sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.1rem' }} />
           </Box>
           <Box>
-            <Typography variant="h6" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 700, fontSize: '1rem', lineHeight: 1.2 }}>
+            <Typography
+              variant="h6"
+              sx={{
+                color: isDark ? '#ffffff' : '#1c1445',
+                fontWeight: 700,
+                fontSize: '1rem',
+                lineHeight: 1.2,
+              }}
+            >
               {isEditMode ? 'Edit In-house Reel' : 'Add In-house Reel'}
             </Typography>
             <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#9e9e9e' }}>
@@ -247,13 +265,35 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
       </Box>
 
       <Box sx={{ flex: 1, overflowY: 'auto', p: 3, display: 'flex', flexDirection: 'column' }}>
-        
         <Box sx={{ mb: 3 }}>
-          <Typography variant="subtitle2" sx={{ mb: 1, color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>Video File *</Typography>
+          <Typography
+            variant="subtitle2"
+            sx={{ mb: 1, color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+          >
+            Video File *
+          </Typography>
           {formData.videoUrl ? (
-            <Box sx={{ p: 2, borderRadius: '12px', border: isDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid rgba(0,0,0,0.2)', backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#f5f5f5' }}>
-              <video src={formData.videoUrl} controls style={{ width: '100%', borderRadius: '8px' }} />
-              <Button size="small" color="error" onClick={() => setFormData(p => ({ ...p, videoUrl: '' }))} sx={{ mt: 1 }}>Remove Video</Button>
+            <Box
+              sx={{
+                p: 2,
+                borderRadius: '12px',
+                border: isDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid rgba(0,0,0,0.2)',
+                backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#f5f5f5',
+              }}
+            >
+              <video
+                src={formData.videoUrl}
+                controls
+                style={{ width: '100%', borderRadius: '8px' }}
+              />
+              <Button
+                size="small"
+                color="error"
+                onClick={() => setFormData((p) => ({ ...p, videoUrl: '' }))}
+                sx={{ mt: 1 }}
+              >
+                Remove Video
+              </Button>
             </Box>
           ) : (
             <Button
@@ -271,11 +311,34 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
         </Box>
 
         <Box sx={{ mb: 3 }}>
-          <Typography variant="subtitle2" sx={{ mb: 1, color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>Thumbnail Image</Typography>
+          <Typography
+            variant="subtitle2"
+            sx={{ mb: 1, color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+          >
+            Thumbnail Image
+          </Typography>
           {formData.thumbnailUrl ? (
-            <Box sx={{ p: 2, borderRadius: '12px', border: isDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid rgba(0,0,0,0.2)', backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#f5f5f5' }}>
-              <img src={formData.thumbnailUrl} alt="Thumbnail" style={{ width: '100%', borderRadius: '8px' }} />
-              <Button size="small" color="error" onClick={() => setFormData(p => ({ ...p, thumbnailUrl: '' }))} sx={{ mt: 1 }}>Remove Image</Button>
+            <Box
+              sx={{
+                p: 2,
+                borderRadius: '12px',
+                border: isDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid rgba(0,0,0,0.2)',
+                backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#f5f5f5',
+              }}
+            >
+              <img
+                src={formData.thumbnailUrl}
+                alt="Thumbnail"
+                style={{ width: '100%', borderRadius: '8px' }}
+              />
+              <Button
+                size="small"
+                color="error"
+                onClick={() => setFormData((p) => ({ ...p, thumbnailUrl: '' }))}
+                sx={{ mt: 1 }}
+              >
+                Remove Image
+              </Button>
             </Box>
           ) : (
             <Button
@@ -293,12 +356,14 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
         </Box>
 
         <FormControl fullWidth size="small" sx={{ mb: 2 }}>
-          <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>Language (Selection Code) *</InputLabel>
+          <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+            Language (Selection Code) *
+          </InputLabel>
           <Select
             label="Language (Selection Code) *"
             name="language"
             value={formData.language}
-            onChange={(e) => setFormData(p => ({ ...p, language: e.target.value as string }))}
+            onChange={(e) => setFormData((p) => ({ ...p, language: e.target.value as string }))}
             sx={{
               color: isDark ? '#ffffff' : '#1c1445',
               backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
@@ -333,49 +398,138 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
           </Select>
         </FormControl>
 
-        <TextField label="Title *" name="title" value={formData.title} onChange={handleChange} {...textFieldProps} />
-        <TextField label="Description" name="description" value={formData.description} onChange={handleChange} multiline rows={3} {...textFieldProps} />
-        <TextField label="Duration (Seconds)" name="durationSeconds" value={formData.durationSeconds} onChange={(e) => setFormData(p => ({ ...p, durationSeconds: e.target.value.replace(/\D/g, '') }))} {...textFieldProps} />
+        <TextField
+          label="Title *"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          {...textFieldProps}
+        />
+        <TextField
+          label="Description"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          multiline
+          rows={3}
+          {...textFieldProps}
+        />
+        <TextField
+          label="Duration (Seconds)"
+          name="durationSeconds"
+          value={formData.durationSeconds}
+          onChange={(e) =>
+            setFormData((p) => ({ ...p, durationSeconds: e.target.value.replace(/\D/g, '') }))
+          }
+          {...textFieldProps}
+        />
 
         <Autocomplete
           multiple
           freeSolo
           options={['news', 'breaking', 'sports', 'entertainment']}
           value={formData.hashtags}
-          onChange={(_, newValue) => setFormData(p => ({ ...p, hashtags: newValue }))}
+          onChange={(_, newValue) => setFormData((p) => ({ ...p, hashtags: newValue }))}
           renderTags={(value, getTagProps) =>
             value.map((option, index) => {
               const { key, ...tagProps } = getTagProps({ index });
-              return <Chip key={key} variant="outlined" label={option} {...tagProps} size="small" sx={{ color: isDark ? '#ffffff' : '#1c1445' }} />;
+              return (
+                <Chip
+                  key={key}
+                  variant="outlined"
+                  label={option}
+                  {...tagProps}
+                  size="small"
+                  sx={{ color: isDark ? '#ffffff' : '#1c1445' }}
+                />
+              );
             })
           }
           renderInput={(params) => (
-            <TextField {...params} label="Hashtags" placeholder="Select or type..." {...textFieldProps} />
+            <TextField
+              {...params}
+              label="Hashtags"
+              placeholder="Select or type..."
+              {...textFieldProps}
+            />
           )}
         />
 
         <Box sx={{ mt: 1 }}>
           <FormControlLabel
-            control={<Switch checked={formData.isActive} onChange={handleChange} name="isActive" color="primary" />}
-            label="Active (Published)" sx={{ color: isDark ? '#d0caeb' : '#5c548a', ml: 0 }}
+            control={
+              <Switch
+                checked={formData.isActive}
+                onChange={handleChange}
+                name="isActive"
+                color="primary"
+              />
+            }
+            label="Active (Published)"
+            sx={{ color: isDark ? '#d0caeb' : '#5c548a', ml: 0 }}
           />
           <FormControlLabel
-            control={<Switch checked={formData.allowComments} onChange={handleChange} name="allowComments" color="primary" />}
-            label="Allow Comments" sx={{ color: isDark ? '#d0caeb' : '#5c548a', ml: 0 }}
+            control={
+              <Switch
+                checked={formData.allowComments}
+                onChange={handleChange}
+                name="allowComments"
+                color="primary"
+              />
+            }
+            label="Allow Comments"
+            sx={{ color: isDark ? '#d0caeb' : '#5c548a', ml: 0 }}
           />
           <FormControlLabel
-            control={<Switch checked={formData.allowSharing} onChange={handleChange} name="allowSharing" color="primary" />}
-            label="Allow Sharing" sx={{ color: isDark ? '#d0caeb' : '#5c548a', ml: 0 }}
+            control={
+              <Switch
+                checked={formData.allowSharing}
+                onChange={handleChange}
+                name="allowSharing"
+                color="primary"
+              />
+            }
+            label="Allow Sharing"
+            sx={{ color: isDark ? '#d0caeb' : '#5c548a', ml: 0 }}
           />
         </Box>
-
       </Box>
 
-      <Box sx={{ p: 3, backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#f9f9fc', borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)', display: 'flex', gap: 2 }}>
-        <Button variant="outlined" fullWidth onClick={onClose} sx={{ borderRadius: '10px', textTransform: 'none', fontWeight: 600, color: isDark ? '#d0caeb' : '#5c548a', borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)' }}>
+      <Box
+        sx={{
+          p: 3,
+          backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#f9f9fc',
+          borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+          display: 'flex',
+          gap: 2,
+        }}
+      >
+        <Button
+          variant="outlined"
+          fullWidth
+          onClick={onClose}
+          sx={{
+            borderRadius: '10px',
+            textTransform: 'none',
+            fontWeight: 600,
+            color: isDark ? '#d0caeb' : '#5c548a',
+            borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)',
+          }}
+        >
           Cancel
         </Button>
-        <Button variant="contained" fullWidth onClick={handleSubmit} sx={{ borderRadius: '10px', textTransform: 'none', fontWeight: 600, backgroundColor: isDark ? '#a6e2f5' : '#1c1445', color: isDark ? '#1c1445' : '#ffffff' }}>
+        <Button
+          variant="contained"
+          fullWidth
+          onClick={handleSubmit}
+          sx={{
+            borderRadius: '10px',
+            textTransform: 'none',
+            fontWeight: 600,
+            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+            color: isDark ? '#1c1445' : '#ffffff',
+          }}
+        >
           {isEditMode ? 'Save Changes' : 'Create Reel'}
         </Button>
       </Box>

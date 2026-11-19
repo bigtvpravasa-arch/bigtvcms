@@ -1,7 +1,8 @@
 export const ratingsTranslations: Record<string, Record<string, string>> = {
   en: {
     pageTitle: 'BigTV Special',
-    pageSubtitle: 'Manage Movie Reviews, Audience Polls, Cricket Live Scores, Event Bookings, and Games',
+    pageSubtitle:
+      'Manage Movie Reviews, Audience Polls, Cricket Live Scores, Event Bookings, and Games',
     tabMovie: 'Movie Reviews',
     tabPolls: 'Polls & Voting',
     tabCricket: 'Cricket Live Scores',
@@ -191,7 +192,8 @@ export const ratingsTranslations: Record<string, Record<string, string>> = {
 
   te: {
     pageTitle: 'బిగ్ టీవీ స్పెషల్ (BigTV Special)',
-    pageSubtitle: 'సినిమా రివ్యూలు, ప్రజాభిప్రాయ పోల్స్, క్రికెట్ లైవ్ స్కోర్లు, ఈవెంట్ బుకింగ్‌లు మరియు గేమ్‌లను నిర్వహించండి',
+    pageSubtitle:
+      'సినిమా రివ్యూలు, ప్రజాభిప్రాయ పోల్స్, క్రికెట్ లైవ్ స్కోర్లు, ఈవెంట్ బుకింగ్‌లు మరియు గేమ్‌లను నిర్వహించండి',
     tabMovie: 'సినిమా రివ్యూలు (Movie Reviews)',
     tabPolls: 'పోల్స్ & ఓటింగ్ (Polls)',
     tabCricket: 'క్రికెట్ లైవ్ స్కోర్లు (Cricket)',
@@ -257,7 +259,8 @@ export const ratingsTranslations: Record<string, Record<string, string>> = {
     placeholderTrailerVideoUrl: 'ఉదా. https://www.youtube.com/watch?v=...',
     helperTrailerVideoUrl: 'అధికారిక యూట్యూబ్ ట్రైలర్ లేదా టీజర్ వీడియో లింక్',
     labelGalleryVideos: 'మూవీ గ్యాలరీ & వీడియోలు (Movie Gallery)',
-    helperGalleryVideos: 'మల్టిపుల్ వీడియో క్లిప్‌లు లేదా చిత్రాలను అప్‌లోడ్ చేయండి లేదా లింక్ జోడించండి',
+    helperGalleryVideos:
+      'మల్టిపుల్ వీడియో క్లిప్‌లు లేదా చిత్రాలను అప్‌లోడ్ చేయండి లేదా లింక్ జోడించండి',
     btnAddGalleryUrl: 'మీడియా URL జోడించండి',
     placeholderGalleryUrl: 'వీడియో లేదా ఇమేజ్ URL నమోదు చేయండి',
     btnUploadGalleryFiles: 'వీడియోలు / చిత్రాలను అప్‌లోడ్ చేయండి',
@@ -381,7 +384,8 @@ export const ratingsTranslations: Record<string, Record<string, string>> = {
 
   hi: {
     pageTitle: 'बिग टीवी स्पेशल (BigTV Special)',
-    pageSubtitle: 'मूवी समीक्षाएं, जनमत पोल, क्रिकेट लाइव स्कोर, इवेंट बुकिंग और गेम्स प्रबंधित करें',
+    pageSubtitle:
+      'मूवी समीक्षाएं, जनमत पोल, क्रिकेट लाइव स्कोर, इवेंट बुकिंग और गेम्स प्रबंधित करें',
     tabMovie: 'मूवी समीक्षाएं (Movie Reviews)',
     tabPolls: 'पोल और वोटिंग (Polls)',
     tabCricket: 'क्रिकेट लाइव स्कोर (Cricket)',
@@ -571,7 +575,8 @@ export const ratingsTranslations: Record<string, Record<string, string>> = {
 
   ml: {
     pageTitle: 'ബിഗ് ടിവി സ്പെഷ്യൽ (BigTV Special)',
-    pageSubtitle: 'സിനിമ അവലോകനങ്ങൾ, അഭിപ്രായ വോട്ടെടുപ്പുകൾ, ക്രിക്കറ്റ് ലൈവ് സ്കോറുകൾ, ഇവന്റ് ബുക്കിംഗുകൾ, ഗെയിമുകൾ എന്നിവ കൈകാര്യം ചെയ്യുക',
+    pageSubtitle:
+      'സിനിമ അവലോകനങ്ങൾ, അഭിപ്രായ വോട്ടെടുപ്പുകൾ, ക്രിക്കറ്റ് ലൈവ് സ്കോറുകൾ, ഇവന്റ് ബുക്കിംഗുകൾ, ഗെയിമുകൾ എന്നിവ കൈകാര്യം ചെയ്യുക',
     tabMovie: 'സിനിമ അവലോകനങ്ങൾ (Movie Reviews)',
     tabPolls: 'പോളുകളും വോട്ടിംഗും (Polls)',
     tabCricket: 'ക്രിക്കറ്റ് ലൈവ് സ്കോറുകൾ (Cricket)',

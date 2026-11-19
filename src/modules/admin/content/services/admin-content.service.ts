@@ -54,7 +54,10 @@ export class AdminContentService {
       } catch (e: any) {
         console.warn(`POST to ${targetUrl} failed, falling back to local proxy/repo:`, e);
         try {
-          const fallbackRes = await axios.post('http://127.0.0.1:8000/api/admin/content/movie', dto);
+          const fallbackRes = await axios.post(
+            'http://127.0.0.1:8000/api/admin/content/movie',
+            dto
+          );
           const resData = fallbackRes.data?.data || fallbackRes.data;
           if (resData) return { success: true, data: resData };
         } catch (proxyErr) {}
@@ -84,8 +87,14 @@ export class AdminContentService {
         description: payload.title || 'Official Trailer',
         parentId: payload.parentId || '',
         parentType: parentType,
-        poster: parentPoster || payload.poster || 'https://pub-7cbe5afbae3e44f98af634774fac779c.r2.dev/trailers/posters/trailer.png',
-        thumbnail: parentPoster || payload.poster || 'https://pub-7cbe5afbae3e44f98af634774fac779c.r2.dev/trailers/posters/trailer.png',
+        poster:
+          parentPoster ||
+          payload.poster ||
+          'https://pub-7cbe5afbae3e44f98af634774fac779c.r2.dev/trailers/posters/trailer.png',
+        thumbnail:
+          parentPoster ||
+          payload.poster ||
+          'https://pub-7cbe5afbae3e44f98af634774fac779c.r2.dev/trailers/posters/trailer.png',
         videoUrl: payload.video || '',
         duration: Number(payload.duration) || 2,
         releaseDate: new Date().toISOString().slice(0, 10),
@@ -147,7 +156,10 @@ export class AdminContentService {
   }
 
   private static getSeriesTargetUrl(id?: string): string {
-    const envBase = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.NEXT_PUBLIC_API_URL || 'https://api.chotanews.com/api';
+    const envBase =
+      process.env.NEXT_PUBLIC_API_BASE_URL ||
+      process.env.NEXT_PUBLIC_API_URL ||
+      'https://api.chotanews.com/api';
     const cleanBase = envBase.replace(/\/$/, '');
     let baseUrl = cleanBase.endsWith('/api')
       ? `${cleanBase}/admin/content/series`
@@ -155,7 +167,9 @@ export class AdminContentService {
     return id ? `${baseUrl}/${id}` : baseUrl;
   }
 
-  static async createSeries(payload: SeriesPayload): Promise<{ id: string; success: boolean; data?: any }> {
+  static async createSeries(
+    payload: SeriesPayload
+  ): Promise<{ id: string; success: boolean; data?: any }> {
     const dto = {
       title: payload.title,
       description: payload.description || '',
@@ -198,11 +212,12 @@ export class AdminContentService {
   }
 
   private static getPublicSeriesTargetUrl(id?: string): string {
-    const envBase = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.NEXT_PUBLIC_API_URL || 'https://api.chotanews.com/api';
+    const envBase =
+      process.env.NEXT_PUBLIC_API_BASE_URL ||
+      process.env.NEXT_PUBLIC_API_URL ||
+      'https://api.chotanews.com/api';
     const cleanBase = envBase.replace(/\/$/, '');
-    let baseUrl = cleanBase.endsWith('/api')
-      ? `${cleanBase}/content`
-      : `${cleanBase}/api/content`;
+    let baseUrl = cleanBase.endsWith('/api') ? `${cleanBase}/content` : `${cleanBase}/api/content`;
     return id ? `${baseUrl}?type=series&id=${id}` : `${baseUrl}?type=series`;
   }
 
@@ -231,7 +246,12 @@ export class AdminContentService {
     const publicUrl = this.getPublicSeriesTargetUrl(id);
     const headers = this.getAuthHeaders();
 
-    for (const url of [targetUrl, publicUrl, `/api/admin/content/series/${id}`, `/api/content?type=series&id=${id}`]) {
+    for (const url of [
+      targetUrl,
+      publicUrl,
+      `/api/admin/content/series/${id}`,
+      `/api/content?type=series&id=${id}`,
+    ]) {
       try {
         const response = await axios.get(url, { headers });
         const resData = response.data?.data || response.data;
@@ -291,7 +311,11 @@ export class AdminContentService {
     ];
   }
 
-  static async createSeason(payload: { seriesId: string; seasonNumber: number; title: string }): Promise<SeasonItem> {
+  static async createSeason(payload: {
+    seriesId: string;
+    seasonNumber: number;
+    title: string;
+  }): Promise<SeasonItem> {
     try {
       const res = await axios.post('/api/admin/seasons', payload);
       if (res.data && res.data.id) return res.data;
@@ -332,7 +356,11 @@ export class AdminContentService {
           targetId.includes(String(s.id)) ||
           String(s.id).includes(targetId)
       );
-      if (matchedSeries && Array.isArray((matchedSeries as any).episodes) && (matchedSeries as any).episodes.length > 0) {
+      if (
+        matchedSeries &&
+        Array.isArray((matchedSeries as any).episodes) &&
+        (matchedSeries as any).episodes.length > 0
+      ) {
         return (matchedSeries as any).episodes.map((item: any, idx: number) => ({
           id: String(item.id || item.episodeId || `ep-${idx + 1}`),
           seasonId: targetId,
@@ -426,7 +454,8 @@ export class AdminContentService {
     } catch (e: any) {
       console.warn(`POST to ${primaryUrl} failed:`, e);
       if (e?.response?.status === 404 || e?.response?.data?.detail) {
-        const errorMsg = e.response?.data?.detail || `Series with id '${targetSeriesId}' not found.`;
+        const errorMsg =
+          e.response?.data?.detail || `Series with id '${targetSeriesId}' not found.`;
         throw new Error(errorMsg);
       }
     }
@@ -461,7 +490,9 @@ export class AdminContentService {
             type: (item.contentType === 'series' ? 'series' : 'movie') as 'movie' | 'series',
             posterUrl: item.poster || item.posterUrl || item.imageUrl || '',
             poster: item.poster || item.posterUrl || item.imageUrl || '',
-            releaseYear: item.releaseYear || (item.releaseDate ? parseInt(item.releaseDate.split('-')[0]) : 2024),
+            releaseYear:
+              item.releaseYear ||
+              (item.releaseDate ? parseInt(item.releaseDate.split('-')[0]) : 2024),
           }));
       }
     } catch (e) {

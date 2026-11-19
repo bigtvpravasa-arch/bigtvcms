@@ -135,7 +135,14 @@ describe('UserRepository', () => {
   });
 
   it('should call apiClient.post on create with role payload', async () => {
-    const mockDto = { UserName: 'Test Creator', location: 'hyd', profile_pic: '', active: true, password: 'pwd', role: 'admin' };
+    const mockDto = {
+      UserName: 'Test Creator',
+      location: 'hyd',
+      profile_pic: '',
+      active: true,
+      password: 'pwd',
+      role: 'admin',
+    };
     (apiClient.post as jest.Mock).mockResolvedValue({ id: 5, role: 'admin' });
     const res = await UserRepository.create(mockDto);
     expect(apiClient.post).toHaveBeenCalledWith('/creators', mockDto);
@@ -303,7 +310,11 @@ describe('useUserController hook', () => {
         language_code: 'te',
       })
     );
-    expect(result.current.rows.some((u: any) => u.name === 'Test User Long Name' && u.role === 'superadmin')).toBe(true);
+    expect(
+      result.current.rows.some(
+        (u: any) => u.name === 'Test User Long Name' && u.role === 'superadmin'
+      )
+    ).toBe(true);
   });
 
   it('should toggle active status and revert on API failure', async () => {
@@ -388,4 +399,3 @@ describe('useUserController hook', () => {
     expect(result.current.rows.length).toBe(countBefore);
   });
 });
-

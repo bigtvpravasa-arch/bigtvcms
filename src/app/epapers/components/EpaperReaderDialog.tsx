@@ -235,7 +235,9 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
       {/* Main Content Area */}
       <DialogContent sx={{ p: 0, flex: 1, display: 'flex', overflow: 'hidden' }}>
         {images.length === 0 ? (
-          <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', p: 4 }}>
+          <Box
+            sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', p: 4 }}
+          >
             <Typography variant="body1" color="text.secondary">
               {t.noImages}
             </Typography>
@@ -328,13 +330,23 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
 
                 <Typography
                   variant="caption"
-                  sx={{ fontWeight: 700, px: 1, minWidth: '42px', textAlign: 'center', color: isDark ? '#ffffff' : '#1c1445' }}
+                  sx={{
+                    fontWeight: 700,
+                    px: 1,
+                    minWidth: '42px',
+                    textAlign: 'center',
+                    color: isDark ? '#ffffff' : '#1c1445',
+                  }}
                 >
                   {Math.round(zoom * 100)}%
                 </Typography>
 
                 <Tooltip title={t.resetZoom}>
-                  <IconButton size="small" onClick={handleResetZoom} sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }}>
+                  <IconButton
+                    size="small"
+                    onClick={handleResetZoom}
+                    sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }}
+                  >
                     <RestartAlt fontSize="small" />
                   </IconButton>
                 </Tooltip>
@@ -352,7 +364,11 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
                   </span>
                 </Tooltip>
 
-                <Divider orientation="vertical" flexItem sx={{ mx: 1, borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.15)' }} />
+                <Divider
+                  orientation="vertical"
+                  flexItem
+                  sx={{ mx: 1, borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.15)' }}
+                />
 
                 <Tooltip title="Previous Page">
                   <span>
@@ -367,7 +383,10 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
                   </span>
                 </Tooltip>
 
-                <Typography variant="caption" sx={{ fontWeight: 700, px: 1, color: isDark ? '#d0caeb' : '#5c548a' }}>
+                <Typography
+                  variant="caption"
+                  sx={{ fontWeight: 700, px: 1, color: isDark ? '#d0caeb' : '#5c548a' }}
+                >
                   {activeIndex + 1} / {images.length}
                 </Typography>
 
@@ -391,19 +410,40 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
               sx={{
                 width: '260px',
                 backgroundColor: isDark ? '#150f33' : '#ffffff',
-                borderLeft: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                borderLeft: isDark
+                  ? '1px solid rgba(255,255,255,0.08)'
+                  : '1px solid rgba(0,0,0,0.08)',
                 display: 'flex',
                 flexDirection: 'column',
                 height: '100%',
               }}
             >
-              <Box sx={{ p: 2, borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)' }}>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}>
+              <Box
+                sx={{
+                  p: 2,
+                  borderBottom: isDark
+                    ? '1px solid rgba(255,255,255,0.08)'
+                    : '1px solid rgba(0,0,0,0.08)',
+                }}
+              >
+                <Typography
+                  variant="subtitle2"
+                  sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}
+                >
                   {t.pages} ({images.length})
                 </Typography>
               </Box>
 
-              <Box sx={{ flex: 1, overflowY: 'auto', p: 1.5, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+              <Box
+                sx={{
+                  flex: 1,
+                  overflowY: 'auto',
+                  p: 1.5,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 1.5,
+                }}
+              >
                 {images.map((imgUrl, idx) => {
                   const isSelected = idx === activeIndex;
                   return (
@@ -424,8 +464,8 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
                             ? '2px solid #a6e2f5'
                             : '2px solid #1c1445'
                           : isDark
-                          ? '1px solid rgba(255,255,255,0.08)'
-                          : '1px solid rgba(0,0,0,0.08)',
+                            ? '1px solid rgba(255,255,255,0.08)'
+                            : '1px solid rgba(0,0,0,0.08)',
                         backgroundColor: isSelected
                           ? isDark
                             ? 'rgba(166,226,245,0.1)'
@@ -449,7 +489,14 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
                           mb: 0.8,
                         }}
                       />
-                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 0.5 }}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          px: 0.5,
+                        }}
+                      >
                         <Typography
                           variant="caption"
                           sx={{
@@ -459,8 +506,8 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
                                 ? '#a6e2f5'
                                 : '#1c1445'
                               : isDark
-                              ? '#d0caeb'
-                              : '#666666',
+                                ? '#d0caeb'
+                                : '#666666',
                           }}
                         >
                           {t.page} {idx + 1}

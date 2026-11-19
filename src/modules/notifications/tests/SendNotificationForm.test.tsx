@@ -172,9 +172,13 @@ describe('SendNotificationForm', () => {
 
     fireEvent.change(screen.getByLabelText(/Notification Title/i), { target: { value: 'Title' } });
     fireEvent.change(screen.getByLabelText(/Post ID/i), { target: { value: '99' } });
-    fireEvent.change(screen.getByLabelText(/Notification Content/i), { target: { value: 'Content' } });
+    fireEvent.change(screen.getByLabelText(/Notification Content/i), {
+      target: { value: 'Content' },
+    });
     fireEvent.change(screen.getByLabelText(/Link \*/i), { target: { value: 'https://link.com' } });
-    fireEvent.change(screen.getByLabelText(/Image URL \*/i), { target: { value: 'https://img.com' } });
+    fireEvent.change(screen.getByLabelText(/Image URL \*/i), {
+      target: { value: 'https://img.com' },
+    });
 
     const sendButtons = screen.getAllByRole('button', { name: /Send Notification/i });
     fireEvent.click(sendButtons[sendButtons.length - 1]);

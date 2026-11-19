@@ -57,7 +57,13 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
         <Box>
           <Typography
             variant="caption"
-            sx={{ fontWeight: 700, color: badgeColor, display: 'block', mb: 0.5, fontSize: '0.75rem' }}
+            sx={{
+              fontWeight: 700,
+              color: badgeColor,
+              display: 'block',
+              mb: 0.5,
+              fontSize: '0.75rem',
+            }}
           >
             Horizontal Banners ({hBanners.length})
           </Typography>
@@ -74,7 +80,9 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
                       borderRadius: '8px',
                       overflow: 'hidden',
                       cursor: 'pointer',
-                      border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.12)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.15)'
+                        : '1px solid rgba(0,0,0,0.12)',
                       boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
                       transition: 'transform 0.2s ease, boxShadow 0.2s ease',
                       '&:hover': {
@@ -97,7 +105,14 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
               ))}
             </Box>
           ) : (
-            <Typography variant="caption" sx={{ color: isDark ? '#8d87b3' : '#9e9e9e', fontStyle: 'italic', fontSize: '0.72rem' }}>
+            <Typography
+              variant="caption"
+              sx={{
+                color: isDark ? '#8d87b3' : '#9e9e9e',
+                fontStyle: 'italic',
+                fontSize: '0.72rem',
+              }}
+            >
               No horizontal banners configured
             </Typography>
           )}
@@ -107,7 +122,13 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
         <Box>
           <Typography
             variant="caption"
-            sx={{ fontWeight: 700, color: isDark ? '#d0caeb' : '#5c548a', display: 'block', mb: 0.5, fontSize: '0.75rem' }}
+            sx={{
+              fontWeight: 700,
+              color: isDark ? '#d0caeb' : '#5c548a',
+              display: 'block',
+              mb: 0.5,
+              fontSize: '0.75rem',
+            }}
           >
             Vertical Banners ({vBanners.length})
           </Typography>
@@ -124,7 +145,9 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
                       borderRadius: '8px',
                       overflow: 'hidden',
                       cursor: 'pointer',
-                      border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.12)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.15)'
+                        : '1px solid rgba(0,0,0,0.12)',
                       boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
                       transition: 'transform 0.2s ease, boxShadow 0.2s ease',
                       '&:hover': {
@@ -147,7 +170,14 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
               ))}
             </Box>
           ) : (
-            <Typography variant="caption" sx={{ color: isDark ? '#8d87b3' : '#9e9e9e', fontStyle: 'italic', fontSize: '0.72rem' }}>
+            <Typography
+              variant="caption"
+              sx={{
+                color: isDark ? '#8d87b3' : '#9e9e9e',
+                fontStyle: 'italic',
+                fontSize: '0.72rem',
+              }}
+            >
               No vertical banners configured
             </Typography>
           )}
@@ -201,17 +231,25 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
                   fontWeight: 700,
                   fontSize: '0.85rem',
                   py: 2,
-                  borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                  borderBottom: isDark
+                    ? '1px solid rgba(255,255,255,0.08)'
+                    : '1px solid rgba(0,0,0,0.08)',
                 },
               }}
             >
               <TableCell style={{ width: '60px' }}>S.No</TableCell>
               <TableCell style={{ width: '130px' }}>{t.colId || 'Banner ID'}</TableCell>
               <TableCell style={{ width: '150px' }}>{t.colProduct || 'Product Name'}</TableCell>
-              <TableCell style={{ width: '260px' }}>📺 {t.colBigTvBanner || 'BigTV Banners'}</TableCell>
-              <TableCell style={{ width: '260px' }}>⚡ {t.colDynapixBanner || 'Dynapix Banners'}</TableCell>
+              <TableCell style={{ width: '260px' }}>
+                📺 {t.colBigTvBanner || 'BigTV Banners'}
+              </TableCell>
+              <TableCell style={{ width: '260px' }}>
+                ⚡ {t.colDynapixBanner || 'Dynapix Banners'}
+              </TableCell>
               <TableCell style={{ width: '120px' }}>{t.colCreatedAt || 'Created Date'}</TableCell>
-              <TableCell style={{ width: '80px' }} align="center">{t.colActions || 'Actions'}</TableCell>
+              <TableCell style={{ width: '80px' }} align="center">
+                {t.colActions || 'Actions'}
+              </TableCell>
             </TableRow>
           </TableHead>
 
@@ -236,7 +274,9 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
                     },
                     '& td': {
                       color: isDark ? '#ffffff' : '#1c1445',
-                      borderBottom: isDark ? '1px solid rgba(255,255,255,0.05)' : '1px solid rgba(0,0,0,0.05)',
+                      borderBottom: isDark
+                        ? '1px solid rgba(255,255,255,0.05)'
+                        : '1px solid rgba(0,0,0,0.05)',
                       py: 2,
                       verticalAlign: 'top',
                     },

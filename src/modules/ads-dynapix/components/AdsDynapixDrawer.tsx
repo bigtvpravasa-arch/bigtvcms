@@ -186,13 +186,18 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
             display: 'flex',
             alignItems: 'center',
             justify: 'space-between',
-            borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+            borderBottom: isDark
+              ? '1px solid rgba(255,255,255,0.08)'
+              : '1px solid rgba(0,0,0,0.08)',
             backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f8fafc',
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             {icon}
-            <Typography variant="subtitle2" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}>
+            <Typography
+              variant="subtitle2"
+              sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}
+            >
               {label}
             </Typography>
           </Box>
@@ -206,8 +211,8 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
               backgroundColor: isFull
                 ? 'rgba(237, 108, 2, 0.2)'
                 : isDark
-                ? 'rgba(166,226,245,0.18)'
-                : 'rgba(37,99,235,0.12)',
+                  ? 'rgba(166,226,245,0.18)'
+                  : 'rgba(37,99,235,0.12)',
               color: isFull ? '#ff9800' : isDark ? '#a6e2f5' : '#2563eb',
             }}
           />
@@ -218,7 +223,9 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
           <Button
             component="label"
             variant="outlined"
-            startIcon={isUploading ? <CircularProgress size={18} color="inherit" /> : <CloudUpload />}
+            startIcon={
+              isUploading ? <CircularProgress size={18} color="inherit" /> : <CloudUpload />
+            }
             disabled={isUploading || isFull || submitting}
             fullWidth
             sx={{
@@ -230,10 +237,12 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
               borderStyle: 'dashed',
               borderWidth: '2px',
               borderColor: isFull
-                ? (isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)')
+                ? isDark
+                  ? 'rgba(255,255,255,0.1)'
+                  : 'rgba(0,0,0,0.1)'
                 : isDark
-                ? 'rgba(166,226,245,0.3)'
-                : '#2563eb',
+                  ? 'rgba(166,226,245,0.3)'
+                  : '#2563eb',
               color: isDark ? '#a6e2f5' : '#2563eb',
               backgroundColor: isDark ? 'rgba(166,226,245,0.04)' : 'rgba(37,99,235,0.04)',
               '&:hover': {
@@ -245,8 +254,8 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
             {isUploading
               ? 'Uploading Images...'
               : isFull
-              ? 'Maximum 3 Images Limit Reached'
-              : t.uploadBtn}
+                ? 'Maximum 3 Images Limit Reached'
+                : t.uploadBtn}
             <input
               type="file"
               hidden
@@ -292,7 +301,9 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
                           borderRadius: '12px',
                           overflow: 'hidden',
                           backgroundColor: isDark ? '#090618' : '#f1f5f9',
-                          border: isDark ? '1px solid rgba(255,255,255,0.18)' : '1px solid rgba(0,0,0,0.15)',
+                          border: isDark
+                            ? '1px solid rgba(255,255,255,0.18)'
+                            : '1px solid rgba(0,0,0,0.15)',
                           boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
                           display: 'flex',
                           flexDirection: 'column',
@@ -414,7 +425,9 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
                               height: 18,
                               fontSize: '0.65rem',
                               fontWeight: 800,
-                              backgroundColor: isDark ? 'rgba(166,226,245,0.2)' : 'rgba(37,99,235,0.15)',
+                              backgroundColor: isDark
+                                ? 'rgba(166,226,245,0.2)'
+                                : 'rgba(37,99,235,0.15)',
                               color: isDark ? '#a6e2f5' : '#2563eb',
                             }}
                           />
@@ -435,8 +448,13 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
                 backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#f8fafc',
               }}
             >
-              <ImageIcon sx={{ fontSize: '2rem', color: isDark ? '#5c548a' : '#a0aec0', mb: 0.5 }} />
-              <Typography variant="body2" sx={{ color: isDark ? '#8d87b3' : '#64748b', fontStyle: 'italic' }}>
+              <ImageIcon
+                sx={{ fontSize: '2rem', color: isDark ? '#5c548a' : '#a0aec0', mb: 0.5 }}
+              />
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#8d87b3' : '#64748b', fontStyle: 'italic' }}
+              >
                 {t.noImagesYet}
               </Typography>
             </Box>
@@ -468,7 +486,15 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
         }}
       >
         {/* Drawer Header */}
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2, flexShrink: 0 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            mb: 2,
+            flexShrink: 0,
+          }}
+        >
           <Typography variant="h6" sx={{ fontWeight: 800, fontSize: '1.25rem' }}>
             {isEditMode ? t.editDrawerTitle : t.drawerTitle}
           </Typography>
@@ -477,7 +503,13 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
           </IconButton>
         </Box>
 
-        <Divider sx={{ mb: 2.5, flexShrink: 0, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
+        <Divider
+          sx={{
+            mb: 2.5,
+            flexShrink: 0,
+            borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+          }}
+        />
 
         {/* Scrollable Form Body */}
         <Box
@@ -519,13 +551,22 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
           />
 
           {/* Section Tabs: BigTV Banner vs Dynapix Banner */}
-          <Box sx={{ borderBottom: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
+          <Box
+            sx={{
+              borderBottom: 1,
+              borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+            }}
+          >
             <Tabs
               value={activeTab}
               onChange={(_, newValue) => setActiveTab(newValue)}
               textColor="inherit"
               TabIndicatorProps={{
-                style: { backgroundColor: activeTab === 0 ? '#2563eb' : '#4caf50', height: 3, borderRadius: 3 },
+                style: {
+                  backgroundColor: activeTab === 0 ? '#2563eb' : '#4caf50',
+                  height: 3,
+                  borderRadius: 3,
+                },
               }}
             >
               <Tab
@@ -658,7 +699,13 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
               },
             }}
           >
-            {submitting ? (isEditMode ? 'Updating...' : 'Creating...') : isEditMode ? t.editSave : t.save}
+            {submitting
+              ? isEditMode
+                ? 'Updating...'
+                : 'Creating...'
+              : isEditMode
+                ? t.editSave
+                : t.save}
           </Button>
         </Box>
       </Drawer>

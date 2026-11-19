@@ -18,12 +18,7 @@ import {
   Chip,
   Paper,
 } from '@mui/material';
-import {
-  Close,
-  VolumeUp,
-  GraphicEq,
-  AutoAwesome,
-} from '@mui/icons-material';
+import { Close, VolumeUp, GraphicEq, AutoAwesome } from '@mui/icons-material';
 import { useLanguageStore } from '@/core/storage/language-store';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
 import { useTeluguTTS } from '../hooks/useTeluguTTS';

@@ -43,8 +43,21 @@ export const ImagePreviewModal: React.FC<ImagePreviewModalProps> = ({
         },
       }}
     >
-      <DialogTitle component="div" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 1.5, px: 2.5 }}>
-        <Typography component="span" variant="subtitle1" sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#2563eb' }}>
+      <DialogTitle
+        component="div"
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          py: 1.5,
+          px: 2.5,
+        }}
+      >
+        <Typography
+          component="span"
+          variant="subtitle1"
+          sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#2563eb' }}
+        >
           {title}
         </Typography>
         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>

@@ -203,39 +203,52 @@ export const ReelsPage: React.FC = () => {
   } = useReelsController();
 
   return (
-    <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden', backgroundColor: isDark ? '#110d29' : '#ffffff', transition: 'all 0.3s ease' }}>
-
+    <Box
+      sx={{
+        display: 'flex',
+        height: '100vh',
+        overflow: 'hidden',
+        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        transition: 'all 0.3s ease',
+      }}
+    >
       {/* Sidebar */}
       <Sidebar activeHref="/reels" />
 
       {/* Main Panel */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
-
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
         {/* Header */}
         <Header title={t.pageTitle} />
 
         {/* Content */}
         <Box sx={{ pt: 2, px: 2, pb: 4, flex: 1, overflowY: 'auto' }}>
-          
-          <Tabs 
-            value={activeTab} 
-            onChange={(_, v) => setActiveTab(v)} 
-            sx={{ 
-              mb: 3, 
-              borderBottom: 1, 
+          <Tabs
+            value={activeTab}
+            onChange={(_, v) => setActiveTab(v)}
+            sx={{
+              mb: 3,
+              borderBottom: 1,
               borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'divider',
               '& .MuiTab-root': {
                 color: isDark ? '#d0caeb' : '#5c548a',
                 textTransform: 'none',
                 fontWeight: 600,
-                fontSize: '0.95rem'
+                fontSize: '0.95rem',
               },
               '& .Mui-selected': {
                 color: isDark ? '#a6e2f5 !important' : '#1c1445 !important',
               },
               '& .MuiTabs-indicator': {
                 backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-              }
+              },
             }}
           >
             <Tab label="YouTube Reels" />
@@ -245,183 +258,209 @@ export const ReelsPage: React.FC = () => {
           {activeTab === 0 && (
             <Box>
               {/* Toolbar: filter + add + sync */}
-          <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'center', flexWrap: 'wrap' }}>
-            <TextField
-              placeholder={t.searchTitle}
-              variant="outlined"
-              size="small"
-              value={filterTitle}
-              onChange={(e) => setFilterTitle(e.target.value)}
-              sx={{
-                minWidth: '220px',
-                '& .MuiOutlinedInput-root': {
-                  color: isDark ? '#ffffff' : '#1c1445',
-                  backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#ffffff',
-                  borderRadius: '12px',
-                },
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Search sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontSize: '1.1rem' }} />
-                  </InputAdornment>
-                ),
-                endAdornment: filterTitle ? (
-                  <InputAdornment position="end">
-                    <IconButton size="small" onClick={() => setFilterTitle('')} sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}>
-                      <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
-                    </IconButton>
-                  </InputAdornment>
-                ) : null,
-              }}
-            />
+              <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'center', flexWrap: 'wrap' }}>
+                <TextField
+                  placeholder={t.searchTitle}
+                  variant="outlined"
+                  size="small"
+                  value={filterTitle}
+                  onChange={(e) => setFilterTitle(e.target.value)}
+                  sx={{
+                    minWidth: '220px',
+                    '& .MuiOutlinedInput-root': {
+                      color: isDark ? '#ffffff' : '#1c1445',
+                      backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#ffffff',
+                      borderRadius: '12px',
+                    },
+                  }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Search
+                          sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontSize: '1.1rem' }}
+                        />
+                      </InputAdornment>
+                    ),
+                    endAdornment: filterTitle ? (
+                      <InputAdornment position="end">
+                        <IconButton
+                          size="small"
+                          onClick={() => setFilterTitle('')}
+                          sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}
+                        >
+                          <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
+                        </IconButton>
+                      </InputAdornment>
+                    ) : null,
+                  }}
+                />
 
-            <TextField
-              placeholder={t.searchId}
-              variant="outlined"
-              size="small"
-              value={filterId}
-              onChange={(e) => setFilterId(e.target.value)}
-              sx={{
-                width: '160px',
-                '& .MuiOutlinedInput-root': {
-                  color: isDark ? '#ffffff' : '#1c1445',
-                  backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#ffffff',
-                  borderRadius: '12px',
-                },
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Typography sx={{ fontSize: '0.75rem', color: isDark ? '#d0caeb' : '#9e9e9e', fontWeight: 700 }}>#</Typography>
-                  </InputAdornment>
-                ),
-                endAdornment: filterId ? (
-                  <InputAdornment position="end">
-                    <IconButton size="small" onClick={() => setFilterId('')} sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}>
-                      <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
-                    </IconButton>
-                  </InputAdornment>
-                ) : null,
-              }}
-            />
+                <TextField
+                  placeholder={t.searchId}
+                  variant="outlined"
+                  size="small"
+                  value={filterId}
+                  onChange={(e) => setFilterId(e.target.value)}
+                  sx={{
+                    width: '160px',
+                    '& .MuiOutlinedInput-root': {
+                      color: isDark ? '#ffffff' : '#1c1445',
+                      backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#ffffff',
+                      borderRadius: '12px',
+                    },
+                  }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Typography
+                          sx={{
+                            fontSize: '0.75rem',
+                            color: isDark ? '#d0caeb' : '#9e9e9e',
+                            fontWeight: 700,
+                          }}
+                        >
+                          #
+                        </Typography>
+                      </InputAdornment>
+                    ),
+                    endAdornment: filterId ? (
+                      <InputAdornment position="end">
+                        <IconButton
+                          size="small"
+                          onClick={() => setFilterId('')}
+                          sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}
+                        >
+                          <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
+                        </IconButton>
+                      </InputAdornment>
+                    ) : null,
+                  }}
+                />
 
-            <Select
-              size="small"
-              value={filterLang}
-              onChange={(e) => setFilterLang(e.target.value as string)}
-              sx={{
-                minWidth: '170px',
-                color: isDark ? '#ffffff' : '#1c1445',
-                backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#ffffff',
-                borderRadius: '12px',
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)',
-                },
-                '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: isDark ? '#a6e2f5' : '#1c1445',
-                },
-                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  borderColor: isDark ? '#a6e2f5' : '#1c1445',
-                },
-                '& .MuiSelect-icon': {
-                  color: isDark ? '#d0caeb' : '#5c548a',
-                },
-              }}
-              MenuProps={{
-                PaperProps: {
-                  sx: {
-                    backgroundColor: isDark ? '#1a1140' : '#ffffff',
+                <Select
+                  size="small"
+                  value={filterLang}
+                  onChange={(e) => setFilterLang(e.target.value as string)}
+                  sx={{
+                    minWidth: '170px',
                     color: isDark ? '#ffffff' : '#1c1445',
+                    backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#ffffff',
                     borderRadius: '12px',
-                  },
-                },
-              }}
-            >
-              <MenuItem value="te">🇮🇳 Telugu (తెలుగు)</MenuItem>
-              <MenuItem value="en">🇬🇧 English</MenuItem>
-              <MenuItem value="hi">🇮🇳 Hindi (हिंदी)</MenuItem>
-              <MenuItem value="ml">🇮🇳 Malayalam (മലയാളം)</MenuItem>
-            </Select>
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                    },
+                    '& .MuiSelect-icon': {
+                      color: isDark ? '#d0caeb' : '#5c548a',
+                    },
+                  }}
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        backgroundColor: isDark ? '#1a1140' : '#ffffff',
+                        color: isDark ? '#ffffff' : '#1c1445',
+                        borderRadius: '12px',
+                      },
+                    },
+                  }}
+                >
+                  <MenuItem value="te">🇮🇳 Telugu (తెలుగు)</MenuItem>
+                  <MenuItem value="en">🇬🇧 English</MenuItem>
+                  <MenuItem value="hi">🇮🇳 Hindi (हिंदी)</MenuItem>
+                  <MenuItem value="ml">🇮🇳 Malayalam (മലയാളം)</MenuItem>
+                </Select>
 
-            <Box sx={{ flex: 1 }} />
+                <Box sx={{ flex: 1 }} />
 
-            <Button
-              variant="contained"
-              startIcon={<YouTube />}
-              onClick={() => setSyncModalOpen(true)}
-              sx={{
-                borderRadius: '12px', textTransform: 'none', fontWeight: 600,
-                backgroundColor: '#ff0000',
-                color: '#ffffff',
-                '&:hover': { backgroundColor: '#cc0000' },
-              }}
-            >
-              {t.syncYouTube}
-            </Button>
+                <Button
+                  variant="contained"
+                  startIcon={<YouTube />}
+                  onClick={() => setSyncModalOpen(true)}
+                  sx={{
+                    borderRadius: '12px',
+                    textTransform: 'none',
+                    fontWeight: 600,
+                    backgroundColor: '#ff0000',
+                    color: '#ffffff',
+                    '&:hover': { backgroundColor: '#cc0000' },
+                  }}
+                >
+                  {t.syncYouTube}
+                </Button>
 
-            <Button
-              variant="contained"
-              startIcon={<Add />}
-              onClick={() => setDrawerOpen(true)}
-              sx={{
-                borderRadius: '12px', textTransform: 'none', fontWeight: 600,
-                backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                color: isDark ? '#1c1445' : '#ffffff',
-                '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
-              }}
-            >
-              {t.addReel}
-            </Button>
-          </Box>
+                <Button
+                  variant="contained"
+                  startIcon={<Add />}
+                  onClick={() => setDrawerOpen(true)}
+                  sx={{
+                    borderRadius: '12px',
+                    textTransform: 'none',
+                    fontWeight: 600,
+                    backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                    color: isDark ? '#1c1445' : '#ffffff',
+                    '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                  }}
+                >
+                  {t.addReel}
+                </Button>
+              </Box>
 
-          {/* Table */}
-          {loading ? (
-            <Loader message="Loading reels..." minHeight="360px" />
-          ) : (
-            <ReelsTable
-              paginatedData={paginatedData}
-              page={page}
-              recordsPerPage={10}
-              togglePublish={togglePublish}
-              handleEditClick={handleEditClick}
-              handleDeleteClick={deleteReel}
-              t={t}
-              isDark={isDark}
-              language={language}
-            />
+              {/* Table */}
+              {loading ? (
+                <Loader message="Loading reels..." minHeight="360px" />
+              ) : (
+                <ReelsTable
+                  paginatedData={paginatedData}
+                  page={page}
+                  recordsPerPage={10}
+                  togglePublish={togglePublish}
+                  handleEditClick={handleEditClick}
+                  handleDeleteClick={deleteReel}
+                  t={t}
+                  isDark={isDark}
+                  language={language}
+                />
+              )}
+
+              {/* Pagination */}
+              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+                <Pagination
+                  count={totalPages}
+                  page={page}
+                  onChange={(_, value) => setPage(value)}
+                  variant="outlined"
+                  shape="rounded"
+                  sx={{
+                    '& .MuiPaginationItem-root': {
+                      color: isDark ? '#d0caeb' : '#5c548a',
+                      borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
+                      '&:hover': {
+                        backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+                      },
+                      '&.Mui-selected': {
+                        backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
+                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                        '&:hover': {
+                          backgroundColor: isDark
+                            ? 'rgba(166,226,245,0.25)'
+                            : 'rgba(28,20,69,0.15)',
+                        },
+                      },
+                    },
+                  }}
+                />
+              </Box>
+            </Box>
           )}
 
-          {/* Pagination */}
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-            <Pagination
-              count={totalPages}
-              page={page}
-              onChange={(_, value) => setPage(value)}
-              variant="outlined"
-              shape="rounded"
-              sx={{
-                '& .MuiPaginationItem-root': {
-                  color: isDark ? '#d0caeb' : '#5c548a',
-                  borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
-                  '&:hover': { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' },
-                  '&.Mui-selected': {
-                    backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
-                    color: isDark ? '#a6e2f5' : '#1c1445',
-                    borderColor: isDark ? '#a6e2f5' : '#1c1445',
-                    '&:hover': { backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.15)' },
-                  },
-                },
-              }}
-            />
-          </Box>
+          {activeTab === 1 && <InhouseReelsTab isDark={isDark} t={t} />}
         </Box>
-      )}
-      
-      {activeTab === 1 && (
-        <InhouseReelsTab isDark={isDark} t={t} />
-      )}
-    </Box>
       </Box>
 
       {/* Sync Channel Modal */}

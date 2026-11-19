@@ -73,10 +73,17 @@ export const BookingAnalyticsCards: React.FC<BookingAnalyticsCardsProps> = ({
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <Festival sx={{ color: '#ea580c', fontSize: 28 }} />
           <Box>
-            <Typography variant="subtitle1" fontWeight={700} sx={{ color: isDark ? '#FFFFFF' : '#1e293b' }}>
+            <Typography
+              variant="subtitle1"
+              fontWeight={700}
+              sx={{ color: isDark ? '#FFFFFF' : '#1e293b' }}
+            >
               BIGTV Folk Night 2026 (Bigtv-2026)
             </Typography>
-            <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}>
+            <Typography
+              variant="caption"
+              sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}
+            >
               Boulder Hills Golf Club, Gachibowli, Hyderabad • 10,000 Capacity
             </Typography>
           </Box>
@@ -108,7 +115,7 @@ export const BookingAnalyticsCards: React.FC<BookingAnalyticsCardsProps> = ({
               },
             }}
           >
-            {isSyncing ? 'Syncing...' : (t.btnSyncInventory || 'Sync Inventory')}
+            {isSyncing ? 'Syncing...' : t.btnSyncInventory || 'Sync Inventory'}
           </Button>
         </Box>
       </Box>
@@ -119,16 +126,36 @@ export const BookingAnalyticsCards: React.FC<BookingAnalyticsCardsProps> = ({
         <Grid item xs={12} sm={6} md={3}>
           <Card sx={{ bgcolor: cardBg, border: `1px solid ${borderColor}`, borderRadius: 2 }}>
             <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'text.secondary', fontWeight: 500 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  mb: 1,
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: isDark ? 'rgba(255,255,255,0.7)' : 'text.secondary',
+                    fontWeight: 500,
+                  }}
+                >
                   {t.statBookingsTotal || 'Total Bookings'}
                 </Typography>
                 <ConfirmationNumber sx={{ color: '#3b82f6', fontSize: 22 }} />
               </Box>
-              <Typography variant="h5" fontWeight={700} sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}>
+              <Typography
+                variant="h5"
+                fontWeight={700}
+                sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}
+              >
                 {totalBookings}
               </Typography>
-              <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}>
+              <Typography
+                variant="caption"
+                sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}
+              >
                 {stats?.totalTicketsBooked ?? 0} tickets booked total
               </Typography>
             </CardContent>
@@ -139,8 +166,21 @@ export const BookingAnalyticsCards: React.FC<BookingAnalyticsCardsProps> = ({
         <Grid item xs={12} sm={6} md={3}>
           <Card sx={{ bgcolor: cardBg, border: `1px solid ${borderColor}`, borderRadius: 2 }}>
             <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'text.secondary', fontWeight: 500 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  mb: 1,
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: isDark ? 'rgba(255,255,255,0.7)' : 'text.secondary',
+                    fontWeight: 500,
+                  }}
+                >
                   {t.statBookingsConfirmed || 'Confirmed Bookings'}
                 </Typography>
                 <CheckCircle sx={{ color: '#10b981', fontSize: 22 }} />
@@ -148,7 +188,10 @@ export const BookingAnalyticsCards: React.FC<BookingAnalyticsCardsProps> = ({
               <Typography variant="h5" fontWeight={700} sx={{ color: '#10b981' }}>
                 {confirmed}
               </Typography>
-              <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}>
+              <Typography
+                variant="caption"
+                sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}
+              >
                 {pending} pending payment verification
               </Typography>
             </CardContent>
@@ -159,16 +202,36 @@ export const BookingAnalyticsCards: React.FC<BookingAnalyticsCardsProps> = ({
         <Grid item xs={12} sm={6} md={3}>
           <Card sx={{ bgcolor: cardBg, border: `1px solid ${borderColor}`, borderRadius: 2 }}>
             <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'text.secondary', fontWeight: 500 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  mb: 1,
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: isDark ? 'rgba(255,255,255,0.7)' : 'text.secondary',
+                    fontWeight: 500,
+                  }}
+                >
                   {t.statTotalRevenue || 'Total Revenue'}
                 </Typography>
                 <MonetizationOn sx={{ color: '#f59e0b', fontSize: 22 }} />
               </Box>
-              <Typography variant="h5" fontWeight={700} sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}>
+              <Typography
+                variant="h5"
+                fontWeight={700}
+                sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}
+              >
                 ₹{totalRevenue.toLocaleString('en-IN')}
               </Typography>
-              <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}>
+              <Typography
+                variant="caption"
+                sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}
+              >
                 ₹{stats?.payments?.totalDiscount ?? 0} discounts applied
               </Typography>
             </CardContent>
@@ -179,16 +242,36 @@ export const BookingAnalyticsCards: React.FC<BookingAnalyticsCardsProps> = ({
         <Grid item xs={12} sm={6} md={3}>
           <Card sx={{ bgcolor: cardBg, border: `1px solid ${borderColor}`, borderRadius: 2 }}>
             <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'text.secondary', fontWeight: 500 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  mb: 1,
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: isDark ? 'rgba(255,255,255,0.7)' : 'text.secondary',
+                    fontWeight: 500,
+                  }}
+                >
                   {t.statBookingsFailed || 'Failed / Cancelled'}
                 </Typography>
                 <ErrorOutline sx={{ color: '#ef4444', fontSize: 22 }} />
               </Box>
-              <Typography variant="h5" fontWeight={700} sx={{ color: failed > 0 ? '#ef4444' : isDark ? '#FFFFFF' : '#0f172a' }}>
+              <Typography
+                variant="h5"
+                fontWeight={700}
+                sx={{ color: failed > 0 ? '#ef4444' : isDark ? '#FFFFFF' : '#0f172a' }}
+              >
                 {failed}
               </Typography>
-              <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}>
+              <Typography
+                variant="caption"
+                sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}
+              >
                 ₹{failedRevenue.toLocaleString('en-IN')} recoverable
               </Typography>
             </CardContent>
@@ -198,8 +281,19 @@ export const BookingAnalyticsCards: React.FC<BookingAnalyticsCardsProps> = ({
 
       {/* Ticket Tier Inventory Breakdown */}
       {stats?.byTicketType && stats.byTicketType.length > 0 && (
-        <Box sx={{ mt: 2, p: 2, bgcolor: cardBg, border: `1px solid ${borderColor}`, borderRadius: 2 }}>
-          <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary', mb: 1.5, display: 'block' }}>
+        <Box
+          sx={{ mt: 2, p: 2, bgcolor: cardBg, border: `1px solid ${borderColor}`, borderRadius: 2 }}
+        >
+          <Typography
+            variant="caption"
+            fontWeight={700}
+            sx={{
+              textTransform: 'uppercase',
+              color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary',
+              mb: 1.5,
+              display: 'block',
+            }}
+          >
             Ticket Tier Capacity & Real-Time Availability
           </Typography>
           <Grid container spacing={2}>
@@ -209,9 +303,26 @@ export const BookingAnalyticsCards: React.FC<BookingAnalyticsCardsProps> = ({
               const percent = Math.min(100, Math.round((booked / total) * 100));
               return (
                 <Grid item xs={12} sm={4} key={tier.ticketTypeId}>
-                  <Box sx={{ p: 1.5, borderRadius: 1.5, bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)' }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0.5 }}>
-                      <Typography variant="body2" fontWeight={600} sx={{ color: isDark ? '#FFFFFF' : '#1e293b' }}>
+                  <Box
+                    sx={{
+                      p: 1.5,
+                      borderRadius: 1.5,
+                      bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        mb: 0.5,
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        fontWeight={600}
+                        sx={{ color: isDark ? '#FFFFFF' : '#1e293b' }}
+                      >
                         {tier.name}
                       </Typography>
                       <Typography variant="caption" fontWeight={700} sx={{ color: '#ea580c' }}>
@@ -219,10 +330,17 @@ export const BookingAnalyticsCards: React.FC<BookingAnalyticsCardsProps> = ({
                       </Typography>
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
-                      <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}>
+                      <Typography
+                        variant="caption"
+                        sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}
+                      >
                         {booked} booked / {tier.availableQuantity} left
                       </Typography>
-                      <Typography variant="caption" fontWeight={600} sx={{ color: isDark ? 'rgba(255,255,255,0.8)' : 'text.primary' }}>
+                      <Typography
+                        variant="caption"
+                        fontWeight={600}
+                        sx={{ color: isDark ? 'rgba(255,255,255,0.8)' : 'text.primary' }}
+                      >
                         {percent}%
                       </Typography>
                     </Box>

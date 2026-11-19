@@ -113,8 +113,15 @@ export const CouponModal: React.FC<CouponModalProps> = ({
       }}
     >
       <form onSubmit={handleSubmit}>
-        <DialogTitle sx={{ fontWeight: 700, borderBottom: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)' }}>
-          {initialData ? t.modalEditCouponTitle || 'Edit Discount Promo Coupon' : t.modalAddCouponTitle || 'Create Discount Promo Coupon'}
+        <DialogTitle
+          sx={{
+            fontWeight: 700,
+            borderBottom: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+          }}
+        >
+          {initialData
+            ? t.modalEditCouponTitle || 'Edit Discount Promo Coupon'
+            : t.modalAddCouponTitle || 'Create Discount Promo Coupon'}
         </DialogTitle>
         <DialogContent sx={{ pt: 3 }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, mt: 1 }}>
@@ -133,7 +140,9 @@ export const CouponModal: React.FC<CouponModalProps> = ({
                 <Select
                   value={formData.discountType}
                   label={t.labelDiscountType || 'Discount Type'}
-                  onChange={(e) => setFormData({ ...formData, discountType: e.target.value as DiscountType })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, discountType: e.target.value as DiscountType })
+                  }
                 >
                   <MenuItem value="PERCENTAGE">Percentage (%)</MenuItem>
                   <MenuItem value="FLAT">Flat Amount (₹)</MenuItem>
@@ -146,7 +155,9 @@ export const CouponModal: React.FC<CouponModalProps> = ({
                 fullWidth
                 required
                 value={formData.discountValue}
-                onChange={(e) => setFormData({ ...formData, discountValue: Number(e.target.value) })}
+                onChange={(e) =>
+                  setFormData({ ...formData, discountValue: Number(e.target.value) })
+                }
                 size="small"
               />
             </Box>
@@ -157,7 +168,9 @@ export const CouponModal: React.FC<CouponModalProps> = ({
                 type="number"
                 fullWidth
                 value={formData.minOrderAmount || ''}
-                onChange={(e) => setFormData({ ...formData, minOrderAmount: Number(e.target.value) })}
+                onChange={(e) =>
+                  setFormData({ ...formData, minOrderAmount: Number(e.target.value) })
+                }
                 size="small"
               />
 
@@ -201,7 +214,9 @@ export const CouponModal: React.FC<CouponModalProps> = ({
                 fullWidth
                 required
                 value={formData.totalUsageLimit}
-                onChange={(e) => setFormData({ ...formData, totalUsageLimit: Number(e.target.value) })}
+                onChange={(e) =>
+                  setFormData({ ...formData, totalUsageLimit: Number(e.target.value) })
+                }
                 size="small"
               />
             </Box>
@@ -213,7 +228,9 @@ export const CouponModal: React.FC<CouponModalProps> = ({
                 fullWidth
                 InputLabelProps={{ shrink: true }}
                 value={formatDateForInput(formData.validFrom)}
-                onChange={(e) => setFormData({ ...formData, validFrom: `${e.target.value}T00:00:00.000Z` })}
+                onChange={(e) =>
+                  setFormData({ ...formData, validFrom: `${e.target.value}T00:00:00.000Z` })
+                }
                 size="small"
               />
 
@@ -224,18 +241,27 @@ export const CouponModal: React.FC<CouponModalProps> = ({
                 required
                 InputLabelProps={{ shrink: true }}
                 value={formatDateForInput(formData.validUntil)}
-                onChange={(e) => setFormData({ ...formData, validUntil: `${e.target.value}T23:59:59.000Z` })}
+                onChange={(e) =>
+                  setFormData({ ...formData, validUntil: `${e.target.value}T23:59:59.000Z` })
+                }
                 size="small"
               />
             </Box>
           </Box>
         </DialogContent>
-        <DialogActions sx={{ p: 2.5, borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)' }}>
+        <DialogActions
+          sx={{
+            p: 2.5,
+            borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+          }}
+        >
           <Button onClick={onClose} variant="outlined" color="inherit">
             {t.btnCancel || 'Cancel'}
           </Button>
           <Button type="submit" variant="contained" color="primary">
-            {initialData ? t.btnUpdate || 'Update Promo Coupon' : t.btnSave || 'Create Promo Coupon'}
+            {initialData
+              ? t.btnUpdate || 'Update Promo Coupon'
+              : t.btnSave || 'Create Promo Coupon'}
           </Button>
         </DialogActions>
       </form>

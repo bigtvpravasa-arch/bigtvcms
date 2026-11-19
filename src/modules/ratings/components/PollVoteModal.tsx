@@ -69,7 +69,9 @@ export const PollVoteModal: React.FC<PollVoteModalProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+            borderBottom: isDark
+              ? '1px solid rgba(255,255,255,0.08)'
+              : '1px solid rgba(0,0,0,0.08)',
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -118,14 +120,14 @@ export const PollVoteModal: React.FC<PollVoteModalProps> = ({
                         ? 'rgba(37,99,235,0.2)'
                         : 'rgba(37,99,235,0.08)'
                       : isDark
-                      ? 'rgba(255,255,255,0.03)'
-                      : '#f8fafc',
+                        ? 'rgba(255,255,255,0.03)'
+                        : '#f8fafc',
                   border:
                     selectedOption === opt.option
                       ? '1.5px solid #2563eb'
                       : isDark
-                      ? '1px solid rgba(255,255,255,0.06)'
-                      : '1px solid rgba(0,0,0,0.06)',
+                        ? '1px solid rgba(255,255,255,0.06)'
+                        : '1px solid rgba(0,0,0,0.06)',
                 }}
               >
                 <FormControlLabel

@@ -23,7 +23,14 @@ export class UserMapper {
   }
 
   static toCreateDto(
-    form: { name: string; username: string; password?: string; location: string; role?: string; languageCode?: string | null },
+    form: {
+      name: string;
+      username: string;
+      password?: string;
+      location: string;
+      role?: string;
+      languageCode?: string | null;
+    },
     profilePicUrl: string,
     active: boolean = true
   ): CreateCreatorRequestDto {

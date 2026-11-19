@@ -180,12 +180,28 @@ export const MoviesPage: React.FC = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden', backgroundColor: isDark ? '#110d29' : '#ffffff', transition: 'all 0.3s ease' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        height: '100vh',
+        overflow: 'hidden',
+        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        transition: 'all 0.3s ease',
+      }}
+    >
       {/* Sidebar */}
       <Sidebar activeHref="/movies" />
 
       {/* Main Panel */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
         {/* Header */}
         <Header title={t.pageTitle} />
 
@@ -195,7 +211,9 @@ export const MoviesPage: React.FC = () => {
           <Box
             sx={{
               mb: 3,
-              borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+              borderBottom: isDark
+                ? '1px solid rgba(255,255,255,0.08)'
+                : '1px solid rgba(0,0,0,0.08)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -223,7 +241,6 @@ export const MoviesPage: React.FC = () => {
                 },
               }}
             >
-
               <Tab
                 value="series"
                 label={
@@ -236,8 +253,20 @@ export const MoviesPage: React.FC = () => {
                         height: 20,
                         fontSize: '0.72rem',
                         fontWeight: 800,
-                        backgroundColor: activeTab === 'series' ? (isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.12)') : 'rgba(128,128,128,0.15)',
-                        color: activeTab === 'series' ? (isDark ? '#a6e2f5' : '#1c1445') : (isDark ? '#d0caeb' : '#5c548a'),
+                        backgroundColor:
+                          activeTab === 'series'
+                            ? isDark
+                              ? 'rgba(166,226,245,0.25)'
+                              : 'rgba(28,20,69,0.12)'
+                            : 'rgba(128,128,128,0.15)',
+                        color:
+                          activeTab === 'series'
+                            ? isDark
+                              ? '#a6e2f5'
+                              : '#1c1445'
+                            : isDark
+                              ? '#d0caeb'
+                              : '#5c548a',
                       }}
                     />
                   </Box>
@@ -245,7 +274,6 @@ export const MoviesPage: React.FC = () => {
                 icon={<Tv />}
                 iconPosition="start"
               />
-
             </Tabs>
           </Box>
 
@@ -273,7 +301,11 @@ export const MoviesPage: React.FC = () => {
                 ),
                 endAdornment: filterTitle ? (
                   <InputAdornment position="end">
-                    <IconButton size="small" onClick={() => setFilterTitle('')} sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}>
+                    <IconButton
+                      size="small"
+                      onClick={() => setFilterTitle('')}
+                      sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}
+                    >
                       <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
                     </IconButton>
                   </InputAdornment>
@@ -298,12 +330,24 @@ export const MoviesPage: React.FC = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Typography sx={{ fontSize: '0.75rem', color: isDark ? '#d0caeb' : '#9e9e9e', fontWeight: 700 }}>#</Typography>
+                    <Typography
+                      sx={{
+                        fontSize: '0.75rem',
+                        color: isDark ? '#d0caeb' : '#9e9e9e',
+                        fontWeight: 700,
+                      }}
+                    >
+                      #
+                    </Typography>
                   </InputAdornment>
                 ),
                 endAdornment: filterId ? (
                   <InputAdornment position="end">
-                    <IconButton size="small" onClick={() => setFilterId('')} sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}>
+                    <IconButton
+                      size="small"
+                      onClick={() => setFilterId('')}
+                      sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}
+                    >
                       <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
                     </IconButton>
                   </InputAdornment>
@@ -347,7 +391,9 @@ export const MoviesPage: React.FC = () => {
               startIcon={<Add />}
               onClick={handleAddClick}
               sx={{
-                borderRadius: '12px', textTransform: 'none', fontWeight: 600,
+                borderRadius: '12px',
+                textTransform: 'none',
+                fontWeight: 600,
                 backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
                 color: isDark ? '#1c1445' : '#ffffff',
                 '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
@@ -387,12 +433,16 @@ export const MoviesPage: React.FC = () => {
                 '& .MuiPaginationItem-root': {
                   color: isDark ? '#d0caeb' : '#5c548a',
                   borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
-                  '&:hover': { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' },
+                  '&:hover': {
+                    backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+                  },
                   '&.Mui-selected': {
                     backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
                     color: isDark ? '#a6e2f5' : '#1c1445',
                     borderColor: isDark ? '#a6e2f5' : '#1c1445',
-                    '&:hover': { backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.15)' },
+                    '&:hover': {
+                      backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.15)',
+                    },
                   },
                 },
               }}
@@ -419,4 +469,3 @@ export const MoviesPage: React.FC = () => {
     </Box>
   );
 };
-

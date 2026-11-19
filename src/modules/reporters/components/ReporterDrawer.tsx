@@ -352,7 +352,14 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
       <Box
         component="form"
         onSubmit={handleSubmit}
-        sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, flex: 1, overflowY: 'auto', pr: 1 }}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2.5,
+          flex: 1,
+          overflowY: 'auto',
+          pr: 1,
+        }}
       >
         {/* Profile Image Uploader */}
         <Box>
@@ -448,8 +455,8 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
                       ? '#a6e2f5'
                       : '#1c1445'
                     : isDark
-                    ? 'rgba(255,255,255,0.2)'
-                    : 'rgba(0,0,0,0.18)'
+                      ? 'rgba(255,255,255,0.2)'
+                      : 'rgba(0,0,0,0.18)'
                 }`,
                 borderRadius: '12px',
                 p: 3,
@@ -482,7 +489,10 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
 
         {/* Primary Language Dropdown Selector */}
         <FormControl fullWidth size="small">
-          <InputLabel id="reporter-language-select-label" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+          <InputLabel
+            id="reporter-language-select-label"
+            sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+          >
             {t?.language || 'Language *'}
           </InputLabel>
           <Select
@@ -641,8 +651,13 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
           )}
         />
 
-        <Divider sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
-        <Typography variant="subtitle2" sx={{ color: isDark ? '#a6e2f5' : '#2563eb', fontWeight: 700 }}>
+        <Divider
+          sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
+        />
+        <Typography
+          variant="subtitle2"
+          sx={{ color: isDark ? '#a6e2f5' : '#2563eb', fontWeight: 700 }}
+        >
           Employment Information
         </Typography>
 
@@ -697,8 +712,13 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
           {...textFieldProps}
         />
 
-        <Divider sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
-        <Typography variant="subtitle2" sx={{ color: isDark ? '#a6e2f5' : '#2563eb', fontWeight: 700 }}>
+        <Divider
+          sx={{ my: 1, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
+        />
+        <Typography
+          variant="subtitle2"
+          sx={{ color: isDark ? '#a6e2f5' : '#2563eb', fontWeight: 700 }}
+        >
           Media Channel Details
         </Typography>
 

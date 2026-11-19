@@ -54,22 +54,44 @@ export const PostTypeTable: React.FC<PostTypeTableProps> = ({
               px: 3,
               py: 2,
               backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#fafafa',
-              borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+              borderBottom: isDark
+                ? '1px solid rgba(255,255,255,0.08)'
+                : '1px solid rgba(0,0,0,0.08)',
             }}
           >
-            <Typography variant="subtitle2" sx={{ ...colStyle(0.6), color: isDark ? '#a098ae' : '#666', fontWeight: 700 }}>
+            <Typography
+              variant="subtitle2"
+              sx={{ ...colStyle(0.6), color: isDark ? '#a098ae' : '#666', fontWeight: 700 }}
+            >
               #
             </Typography>
-            <Typography variant="subtitle2" sx={{ ...colStyle(1.2), color: isDark ? '#a098ae' : '#666', fontWeight: 700 }}>
+            <Typography
+              variant="subtitle2"
+              sx={{ ...colStyle(1.2), color: isDark ? '#a098ae' : '#666', fontWeight: 700 }}
+            >
               {t.colId ?? 'Type ID'}
             </Typography>
-            <Typography variant="subtitle2" sx={{ ...colStyle(3), color: isDark ? '#a098ae' : '#666', fontWeight: 700 }}>
+            <Typography
+              variant="subtitle2"
+              sx={{ ...colStyle(3), color: isDark ? '#a098ae' : '#666', fontWeight: 700 }}
+            >
               {t.colTypename ?? 'Type Name'}
             </Typography>
-            <Typography variant="subtitle2" sx={{ ...colStyle(2), color: isDark ? '#a098ae' : '#666', fontWeight: 700 }}>
+            <Typography
+              variant="subtitle2"
+              sx={{ ...colStyle(2), color: isDark ? '#a098ae' : '#666', fontWeight: 700 }}
+            >
               {t.colStatus ?? 'Status'}
             </Typography>
-            <Typography variant="subtitle2" sx={{ ...colStyle(1.5), color: isDark ? '#a098ae' : '#666', fontWeight: 700, justifyContent: 'flex-end' }}>
+            <Typography
+              variant="subtitle2"
+              sx={{
+                ...colStyle(1.5),
+                color: isDark ? '#a098ae' : '#666',
+                fontWeight: 700,
+                justifyContent: 'flex-end',
+              }}
+            >
               {t.colActions ?? 'Actions'}
             </Typography>
           </Box>
@@ -101,19 +123,32 @@ export const PostTypeTable: React.FC<PostTypeTableProps> = ({
                       }}
                     >
                       {/* S.No */}
-                      <Typography variant="body2" sx={{ ...colStyle(0.6), color: isDark ? '#a098ae' : '#666' }}>
+                      <Typography
+                        variant="body2"
+                        sx={{ ...colStyle(0.6), color: isDark ? '#a098ae' : '#666' }}
+                      >
                         {serialNumber}
                       </Typography>
 
                       {/* ID */}
-                      <Typography variant="body2" sx={{ ...colStyle(1.2), color: isDark ? '#ffffff' : '#333333', fontWeight: 600 }}>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          ...colStyle(1.2),
+                          color: isDark ? '#ffffff' : '#333333',
+                          fontWeight: 600,
+                        }}
+                      >
                         #{row.typeId}
                       </Typography>
 
                       {/* Typename */}
                       <Box sx={{ ...colStyle(3), gap: 1.5 }}>
                         <Article sx={{ color: isDark ? '#a098ae' : '#888' }} />
-                        <Typography variant="subtitle2" sx={{ color: isDark ? '#ffffff' : '#111111', fontWeight: 600 }}>
+                        <Typography
+                          variant="subtitle2"
+                          sx={{ color: isDark ? '#ffffff' : '#111111', fontWeight: 600 }}
+                        >
                           {row.typename}
                         </Typography>
                       </Box>
@@ -134,11 +169,21 @@ export const PostTypeTable: React.FC<PostTypeTableProps> = ({
                           }}
                         />
                         <Chip
-                          icon={row.typeStatus ? <CheckCircle sx={{ fontSize: '14px !important' }} /> : <RadioButtonUnchecked sx={{ fontSize: '14px !important' }} />}
-                          label={row.typeStatus ? t.active ?? 'Active' : t.inactive ?? 'Inactive'}
+                          icon={
+                            row.typeStatus ? (
+                              <CheckCircle sx={{ fontSize: '14px !important' }} />
+                            ) : (
+                              <RadioButtonUnchecked sx={{ fontSize: '14px !important' }} />
+                            )
+                          }
+                          label={
+                            row.typeStatus ? (t.active ?? 'Active') : (t.inactive ?? 'Inactive')
+                          }
                           size="small"
                           sx={{
-                            backgroundColor: row.typeStatus ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                            backgroundColor: row.typeStatus
+                              ? 'rgba(16, 185, 129, 0.15)'
+                              : 'rgba(239, 68, 68, 0.15)',
                             color: row.typeStatus ? '#10b981' : '#ef4444',
                             fontWeight: 600,
                             border: 'none',
@@ -154,9 +199,13 @@ export const PostTypeTable: React.FC<PostTypeTableProps> = ({
                           size="small"
                           sx={{
                             color: isDark ? '#93c5fd' : '#2563eb',
-                            backgroundColor: isDark ? 'rgba(59,130,246,0.1)' : 'rgba(37,99,235,0.08)',
+                            backgroundColor: isDark
+                              ? 'rgba(59,130,246,0.1)'
+                              : 'rgba(37,99,235,0.08)',
                             '&:hover': {
-                              backgroundColor: isDark ? 'rgba(59,130,246,0.2)' : 'rgba(37,99,235,0.15)',
+                              backgroundColor: isDark
+                                ? 'rgba(59,130,246,0.2)'
+                                : 'rgba(37,99,235,0.15)',
                             },
                           }}
                         >
@@ -169,9 +218,13 @@ export const PostTypeTable: React.FC<PostTypeTableProps> = ({
                             size="small"
                             sx={{
                               color: isDark ? '#fca5a5' : '#dc2626',
-                              backgroundColor: isDark ? 'rgba(239,68,68,0.1)' : 'rgba(220,38,38,0.08)',
+                              backgroundColor: isDark
+                                ? 'rgba(239,68,68,0.1)'
+                                : 'rgba(220,38,38,0.08)',
                               '&:hover': {
-                                backgroundColor: isDark ? 'rgba(239,68,68,0.2)' : 'rgba(220,38,38,0.15)',
+                                backgroundColor: isDark
+                                  ? 'rgba(239,68,68,0.2)'
+                                  : 'rgba(220,38,38,0.15)',
                               },
                             }}
                           >
@@ -181,7 +234,9 @@ export const PostTypeTable: React.FC<PostTypeTableProps> = ({
                       </Box>
                     </Box>
                     {index < paginatedData.length - 1 && (
-                      <Divider sx={{ borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }} />
+                      <Divider
+                        sx={{ borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}
+                      />
                     )}
                   </React.Fragment>
                 );

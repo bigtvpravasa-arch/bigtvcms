@@ -1,10 +1,10 @@
 import { VoiceProfile, TTSResponse, AudioFileItem } from '../domain/tts.model';
 
 export const getTtsApiBaseUrl = (): string => {
-  return (
-    process.env.NEXT_PUBLIC_TTS_API_BASE_URL ||
-    'https://api.pravasamedia.com'
-  ).replace(/\/$/, '');
+  return (process.env.NEXT_PUBLIC_TTS_API_BASE_URL || 'https://api.pravasamedia.com').replace(
+    /\/$/,
+    ''
+  );
 };
 
 export class TTSService {

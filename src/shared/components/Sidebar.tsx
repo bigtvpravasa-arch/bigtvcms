@@ -3,12 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import {
-  Box,
-  Typography,
-  Divider,
-  Collapse,
-} from '@mui/material';
+import { Box, Typography, Divider, Collapse } from '@mui/material';
 import {
   AddCircleOutline,
   Notifications as NotificationsIcon,
@@ -200,12 +195,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
     userRole === 'adsdynapix_creator' ||
     userRole === 'ads_dynapix_creator';
 
-  const creatorHrefs = ['/dashboard', '/reels', '/tts', '/events', '/livetvvideos', '/web-articles', '/ratings', '/settings'];
+  const creatorHrefs = [
+    '/dashboard',
+    '/reels',
+    '/tts',
+    '/events',
+    '/livetvvideos',
+    '/web-articles',
+    '/ratings',
+    '/settings',
+  ];
   const epaperCreatorHrefs = ['/epapers', '/settings'];
   const movieCreatorHrefs = ['/movies', '/settings'];
   const notificationCreatorHrefs = ['/dashboard', '/web-articles', '/notifications', '/settings'];
   const adsDynapixCreatorHrefs = ['/ads-dynapix'];
-  
+
   const adminHrefs = [
     '/analytics',
     '/dashboard',
@@ -316,7 +320,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
           }}
         />
       </Box>
-      <Divider sx={{ mb: 1.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+      <Divider
+        sx={{ mb: 1.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+      />
 
       {/* Main Menu List */}
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
@@ -324,7 +330,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
           const isActive =
             normalizedPath === item.href ||
             (item.href !== '/dashboard' && normalizedPath.startsWith(item.href)) ||
-            (item.href === '/dashboard' && (normalizedPath === '/' || normalizedPath === '/dashboard')) ||
+            (item.href === '/dashboard' &&
+              (normalizedPath === '/' || normalizedPath === '/dashboard')) ||
             (item.href === '/ratings' && normalizedPath.startsWith('/games'));
 
           return (
@@ -342,22 +349,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                   p: 1.5,
                   borderRadius: '12px',
                   cursor: 'pointer',
-                  color: isActive
-                    ? '#ffffff'
-                    : (isDark ? '#d0caeb' : '#5c548a'),
-                  backgroundColor: isActive
-                    ? '#2563eb'
-                    : 'transparent',
+                  color: isActive ? '#ffffff' : isDark ? '#d0caeb' : '#5c548a',
+                  backgroundColor: isActive ? '#2563eb' : 'transparent',
                   fontWeight: isActive ? 700 : 500,
                   boxShadow: isActive ? '0 4px 12px rgba(37, 99, 235, 0.35)' : 'none',
                   transition: 'all 0.2s ease',
                   '&:hover': {
                     backgroundColor: isActive
                       ? '#1d4ed8'
-                      : (isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)'),
-                    color: isActive
-                      ? '#ffffff'
-                      : (isDark ? '#ffffff' : '#1c1445'),
+                      : isDark
+                        ? 'rgba(255,255,255,0.08)'
+                        : 'rgba(0,0,0,0.06)',
+                    color: isActive ? '#ffffff' : isDark ? '#ffffff' : '#1c1445',
                   },
                 }}
               >
@@ -387,13 +390,24 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                 cursor: 'pointer',
                 userSelect: 'none',
                 color: isAnySubItemActive
-                  ? (isDark ? '#a6e2f5' : '#2563eb')
-                  : (isDark ? '#d0caeb' : '#5c548a'),
-                backgroundColor: isAnySubItemActive && !appConfigOpen
-                  ? (isDark ? 'rgba(37, 99, 235, 0.15)' : 'rgba(37, 99, 235, 0.08)')
-                  : (isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)'),
+                  ? isDark
+                    ? '#a6e2f5'
+                    : '#2563eb'
+                  : isDark
+                    ? '#d0caeb'
+                    : '#5c548a',
+                backgroundColor:
+                  isAnySubItemActive && !appConfigOpen
+                    ? isDark
+                      ? 'rgba(37, 99, 235, 0.15)'
+                      : 'rgba(37, 99, 235, 0.08)'
+                    : isDark
+                      ? 'rgba(255,255,255,0.03)'
+                      : 'rgba(0,0,0,0.02)',
                 border: isAnySubItemActive
-                  ? (isDark ? '1px solid rgba(166,226,245,0.3)' : '1px solid rgba(37,99,235,0.3)')
+                  ? isDark
+                    ? '1px solid rgba(166,226,245,0.3)'
+                    : '1px solid rgba(37,99,235,0.3)'
                   : '1px solid transparent',
                 fontWeight: isAnySubItemActive ? 700 : 600,
                 transition: 'all 0.2s ease',
@@ -442,7 +456,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                   mt: 0.5,
                   ml: 1.5,
                   pl: 1.5,
-                  borderLeft: isDark ? '2px solid rgba(255,255,255,0.12)' : '2px solid rgba(37,99,235,0.18)',
+                  borderLeft: isDark
+                    ? '2px solid rgba(255,255,255,0.12)'
+                    : '2px solid rgba(37,99,235,0.18)',
                 }}
               >
                 {visibleSubItems.map((sub) => {
@@ -467,12 +483,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                           px: 1.5,
                           borderRadius: '10px',
                           cursor: 'pointer',
-                          color: isSubActive
-                            ? '#ffffff'
-                            : (isDark ? '#d0caeb' : '#5c548a'),
-                          backgroundColor: isSubActive
-                            ? '#2563eb'
-                            : 'transparent',
+                          color: isSubActive ? '#ffffff' : isDark ? '#d0caeb' : '#5c548a',
+                          backgroundColor: isSubActive ? '#2563eb' : 'transparent',
                           fontWeight: isSubActive ? 700 : 500,
                           fontSize: '0.85rem',
                           boxShadow: isSubActive ? '0 3px 10px rgba(37, 99, 235, 0.35)' : 'none',
@@ -480,15 +492,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                           '&:hover': {
                             backgroundColor: isSubActive
                               ? '#1d4ed8'
-                              : (isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)'),
-                            color: isSubActive
-                              ? '#ffffff'
-                              : (isDark ? '#ffffff' : '#1c1445'),
+                              : isDark
+                                ? 'rgba(255,255,255,0.08)'
+                                : 'rgba(0,0,0,0.05)',
+                            color: isSubActive ? '#ffffff' : isDark ? '#ffffff' : '#1c1445',
                           },
                         }}
                       >
                         {sub.icon}
-                        <Typography variant="caption" sx={{ fontWeight: 'inherit', fontSize: '0.84rem' }}>
+                        <Typography
+                          variant="caption"
+                          sx={{ fontWeight: 'inherit', fontSize: '0.84rem' }}
+                        >
                           {sub.text}
                         </Typography>
                       </Box>
@@ -515,24 +530,34 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                 p: 1.5,
                 borderRadius: '12px',
                 cursor: 'pointer',
-                color: normalizedPath === '/settings' || normalizedPath.startsWith('/settings')
-                  ? '#ffffff'
-                  : (isDark ? '#d0caeb' : '#5c548a'),
-                backgroundColor: normalizedPath === '/settings' || normalizedPath.startsWith('/settings')
-                  ? '#2563eb'
-                  : 'transparent',
-                fontWeight: normalizedPath === '/settings' || normalizedPath.startsWith('/settings') ? 700 : 500,
-                boxShadow: normalizedPath === '/settings' || normalizedPath.startsWith('/settings')
-                  ? '0 4px 12px rgba(37, 99, 235, 0.35)'
-                  : 'none',
+                color:
+                  normalizedPath === '/settings' || normalizedPath.startsWith('/settings')
+                    ? '#ffffff'
+                    : isDark
+                      ? '#d0caeb'
+                      : '#5c548a',
+                backgroundColor:
+                  normalizedPath === '/settings' || normalizedPath.startsWith('/settings')
+                    ? '#2563eb'
+                    : 'transparent',
+                fontWeight:
+                  normalizedPath === '/settings' || normalizedPath.startsWith('/settings')
+                    ? 700
+                    : 500,
+                boxShadow:
+                  normalizedPath === '/settings' || normalizedPath.startsWith('/settings')
+                    ? '0 4px 12px rgba(37, 99, 235, 0.35)'
+                    : 'none',
                 transition: 'all 0.2s ease',
                 '&:hover': {
-                  backgroundColor: normalizedPath === '/settings'
-                    ? '#1d4ed8'
-                    : (isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)'),
-                  color: normalizedPath === '/settings'
-                    ? '#ffffff'
-                    : (isDark ? '#ffffff' : '#1c1445'),
+                  backgroundColor:
+                    normalizedPath === '/settings'
+                      ? '#1d4ed8'
+                      : isDark
+                        ? 'rgba(255,255,255,0.08)'
+                        : 'rgba(0,0,0,0.06)',
+                  color:
+                    normalizedPath === '/settings' ? '#ffffff' : isDark ? '#ffffff' : '#1c1445',
                 },
               }}
             >

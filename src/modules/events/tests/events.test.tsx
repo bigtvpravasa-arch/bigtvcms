@@ -14,7 +14,11 @@ import { BookingStatusModal } from '../components/BookingStatusModal';
 import { CreateBookingModal } from '../components/CreateBookingModal';
 import { TicketQrModal } from '../components/TicketQrModal';
 import { QrCheckInModal } from '../components/QrCheckInModal';
-import { eventsRepository, FOLK_NIGHT_EVENT_ID, FOLK_NIGHT_EVENT_CODE } from '../repositories/events.repository';
+import {
+  eventsRepository,
+  FOLK_NIGHT_EVENT_ID,
+  FOLK_NIGHT_EVENT_CODE,
+} from '../repositories/events.repository';
 import {
   EventItem,
   TicketTypeItem,
@@ -34,9 +38,9 @@ jest.mock('@/core/api/api-client', () => {
     get: jest.fn().mockImplementation((url: string) => {
       if (url === '/app-config') {
         if (url.startsWith('/bookings/') && !url.includes('/admin/stats')) {
-        return Promise.reject(new Error('Network error'));
-      }
-      return Promise.resolve({
+          return Promise.reject(new Error('Network error'));
+        }
+        return Promise.resolve({
           data: {
             id: 'cfg_default_001',
             key: 'default',
@@ -53,9 +57,9 @@ jest.mock('@/core/api/api-client', () => {
       }
       if (url === '/events/stats') {
         if (url.startsWith('/bookings/') && !url.includes('/admin/stats')) {
-        return Promise.reject(new Error('Network error'));
-      }
-      return Promise.resolve({
+          return Promise.reject(new Error('Network error'));
+        }
+        return Promise.resolve({
           data: {
             totalEvents: 4,
             upcomingEvents: 2,
@@ -68,9 +72,9 @@ jest.mock('@/core/api/api-client', () => {
       }
       if (url.includes('/bookings/admin/stats')) {
         if (url.startsWith('/bookings/') && !url.includes('/admin/stats')) {
-        return Promise.reject(new Error('Network error'));
-      }
-      return Promise.resolve({
+          return Promise.reject(new Error('Network error'));
+        }
+        return Promise.resolve({
           data: {
             success: true,
             data: {
@@ -230,7 +234,9 @@ describe('Events Feature Module & Folk Night Show Booking', () => {
       });
       expect(newCoupon.code).toBe('TEST50');
 
-      const updatedCoupon = await eventsRepository.updateCoupon(newCoupon.id, { discountValue: 60 });
+      const updatedCoupon = await eventsRepository.updateCoupon(newCoupon.id, {
+        discountValue: 60,
+      });
       expect(updatedCoupon.discountValue).toBe(60);
 
       const toggledCoupon = await eventsRepository.toggleCouponStatus(newCoupon.id, true);
@@ -261,7 +267,9 @@ describe('Events Feature Module & Folk Night Show Booking', () => {
       expect(createdBooking.userName).toBe('Ramesh Kumar');
       expect(createdBooking.discountAmount).toBeGreaterThan(0);
 
-      const fetchedBooking = await eventsRepository.getBookingByIdOrCode(createdBooking.bookingCode);
+      const fetchedBooking = await eventsRepository.getBookingByIdOrCode(
+        createdBooking.bookingCode
+      );
       expect(fetchedBooking).not.toBeNull();
       expect(fetchedBooking?.id).toBe(createdBooking.id);
 

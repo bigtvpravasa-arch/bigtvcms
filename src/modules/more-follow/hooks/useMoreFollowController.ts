@@ -35,10 +35,14 @@ export function useMoreFollowController() {
     return data.filter(
       (item) =>
         (item.morefollowName && item.morefollowName.toLowerCase().includes(q)) ||
-        (item.morefollowNameTranslations?.en && item.morefollowNameTranslations.en.toLowerCase().includes(q)) ||
-        (item.morefollowNameTranslations?.te && item.morefollowNameTranslations.te.toLowerCase().includes(q)) ||
-        (item.morefollowNameTranslations?.hi && item.morefollowNameTranslations.hi.toLowerCase().includes(q)) ||
-        (item.morefollowNameTranslations?.ml && item.morefollowNameTranslations.ml.toLowerCase().includes(q)) ||
+        (item.morefollowNameTranslations?.en &&
+          item.morefollowNameTranslations.en.toLowerCase().includes(q)) ||
+        (item.morefollowNameTranslations?.te &&
+          item.morefollowNameTranslations.te.toLowerCase().includes(q)) ||
+        (item.morefollowNameTranslations?.hi &&
+          item.morefollowNameTranslations.hi.toLowerCase().includes(q)) ||
+        (item.morefollowNameTranslations?.ml &&
+          item.morefollowNameTranslations.ml.toLowerCase().includes(q)) ||
         String(item.id).includes(q) ||
         String(item.morefollowId).includes(q)
     );
@@ -56,7 +60,9 @@ export function useMoreFollowController() {
     const item = data.find((i) => i.id === id || i.morefollowId === id);
     if (!item) return;
     const nextActive = !item.isActive;
-    setData((prev) => prev.map((i) => (i.id === id || i.morefollowId === id ? { ...i, isActive: nextActive } : i)));
+    setData((prev) =>
+      prev.map((i) => (i.id === id || i.morefollowId === id ? { ...i, isActive: nextActive } : i))
+    );
     await MoreFollowRepository.update(id, { isActive: nextActive });
   };
 

@@ -44,29 +44,113 @@ import { formatLinksAndContent, restoreLinksInContent } from '@/shared/utils/lin
 
 // Multilingual lists to support strict translation guidelines
 const categoriesList = [
-  { key: 'Entertainment', labelEn: 'Entertainment', labelTe: 'వినోదం', labelHi: 'मनोरंजन', labelMl: 'വിനോദം' },
+  {
+    key: 'Entertainment',
+    labelEn: 'Entertainment',
+    labelTe: 'వినోదం',
+    labelHi: 'मनोरंजन',
+    labelMl: 'വിനോദം',
+  },
   { key: 'General', labelEn: 'General', labelTe: 'సాధారణ', labelHi: 'सामान्य', labelMl: 'പൊതുവായ' },
   { key: 'Cinema', labelEn: 'Cinema', labelTe: 'సినిమా', labelHi: 'सिनेमा', labelMl: 'സിനിമ' },
   { key: 'Sports', labelEn: 'Sports', labelTe: 'క్రీడలు', labelHi: 'खेल', labelMl: 'കായികം' },
-  { key: 'National', labelEn: 'National', labelTe: 'జాతీయ', labelHi: 'राष्ट्रीय', labelMl: 'ദേശീയ' },
-  { key: 'Andhra Pradesh', labelEn: 'Andhra Pradesh', labelTe: 'ఆంధ్రప్రదేశ్', labelHi: 'ఆంధ్ర ప్రదేశ్', labelMl: 'ఆంధ్రప్రదేശ്' },
-  { key: 'Telangana', labelEn: 'Telangana', labelTe: 'తెలంగాణ', labelHi: 'तेलंगाना', labelMl: 'തെലങ്കാന' },
-  { key: 'Business', labelEn: 'Business', labelTe: 'వ్యాపారం', labelHi: 'व्यापार', labelMl: 'బిసిനസ്സ്' },
+  {
+    key: 'National',
+    labelEn: 'National',
+    labelTe: 'జాతీయ',
+    labelHi: 'राष्ट्रीय',
+    labelMl: 'ദേശീയ',
+  },
+  {
+    key: 'Andhra Pradesh',
+    labelEn: 'Andhra Pradesh',
+    labelTe: 'ఆంధ్రప్రదేశ్',
+    labelHi: 'ఆంధ్ర ప్రదేశ్',
+    labelMl: 'ఆంధ్రప్రదేശ്',
+  },
+  {
+    key: 'Telangana',
+    labelEn: 'Telangana',
+    labelTe: 'తెలంగాణ',
+    labelHi: 'तेलंगाना',
+    labelMl: 'തെലങ്കാന',
+  },
+  {
+    key: 'Business',
+    labelEn: 'Business',
+    labelTe: 'వ్యాపారం',
+    labelHi: 'व्यापार',
+    labelMl: 'బిసిനസ്സ്',
+  },
 ];
 
 const tagsList = [
-  { key: 'Trending', labelEn: 'Trending', labelTe: '鈰颴鈰啤鈰陛鈰賴鈰鉮', labelHi: '鄐颴鄐啤鄐丑鄐賴鄐', labelMl: '鉥颴鉥啤鉞韶插鉥賴鉥鉮' },
-  { key: 'Hyderabad', labelEn: 'Hyderabad', labelTe: '鈰嫩鈰舟偽鈰擒鬲鈰擒隻鈺', labelHi: '鄐嫩鄐舟什鄐擒互鄐擒丹', labelMl: '鉥嫩鉥舟敦鉥擒摒鉥擒揭鉞' },
-  { key: 'Viral', labelEn: 'Viral', labelTe: '鈰菽鈰啤假鈺', labelHi: '鄐菽冗鄐能什鄐', labelMl: '鉥菽鉥晤善' },
-  { key: 'Cinema', labelEn: 'Cinema', labelTe: '鈰詮倏鈰兒倏鈰桌偏', labelHi: '鈰詮倏鈰兒倏鈰桌偏', labelMl: '鉥詮曾鉥兒曾鉥' },
-  { key: 'Cricket', labelEn: 'Cricket', labelTe: '鈰𨫼鈰啤倏鈰𨫼鈰颴', labelHi: '鈰𨫼鈰啤倏鈰𨫼鈰颴', labelMl: '鉥𨫼鉥啤曾鉥𨫼鉥𨫼敢鉞温敢鉞' },
-  { key: 'Health', labelEn: 'Health', labelTe: '鈰偽鈺肀鈺温偺鈰', labelHi: '鄐詮鄐菽冗鄐詮鄐丞鄐', labelMl: '鈰敦鉞肀鉞温敞鉥' },
-  { key: 'Devotional', labelEn: 'Devotional', labelTe: '鈰冢鈺温陘鈰', labelHi: '鄐冢鄍温中鄐', labelMl: '鉥冢鉞温握鉥' },
+  {
+    key: 'Trending',
+    labelEn: 'Trending',
+    labelTe: '鈰颴鈰啤鈰陛鈰賴鈰鉮',
+    labelHi: '鄐颴鄐啤鄐丑鄐賴鄐',
+    labelMl: '鉥颴鉥啤鉞韶插鉥賴鉥鉮',
+  },
+  {
+    key: 'Hyderabad',
+    labelEn: 'Hyderabad',
+    labelTe: '鈰嫩鈰舟偽鈰擒鬲鈰擒隻鈺',
+    labelHi: '鄐嫩鄐舟什鄐擒互鄐擒丹',
+    labelMl: '鉥嫩鉥舟敦鉥擒摒鉥擒揭鉞',
+  },
+  {
+    key: 'Viral',
+    labelEn: 'Viral',
+    labelTe: '鈰菽鈰啤假鈺',
+    labelHi: '鄐菽冗鄐能什鄐',
+    labelMl: '鉥菽鉥晤善',
+  },
+  {
+    key: 'Cinema',
+    labelEn: 'Cinema',
+    labelTe: '鈰詮倏鈰兒倏鈰桌偏',
+    labelHi: '鈰詮倏鈰兒倏鈰桌偏',
+    labelMl: '鉥詮曾鉥兒曾鉥',
+  },
+  {
+    key: 'Cricket',
+    labelEn: 'Cricket',
+    labelTe: '鈰𨫼鈰啤倏鈰𨫼鈰颴',
+    labelHi: '鈰𨫼鈰啤倏鈰𨫼鈰颴',
+    labelMl: '鉥𨫼鉥啤曾鉥𨫼鉥𨫼敢鉞温敢鉞',
+  },
+  {
+    key: 'Health',
+    labelEn: 'Health',
+    labelTe: '鈰偽鈺肀鈺温偺鈰',
+    labelHi: '鄐詮鄐菽冗鄐詮鄐丞鄐',
+    labelMl: '鈰敦鉞肀鉞温敞鉥',
+  },
+  {
+    key: 'Devotional',
+    labelEn: 'Devotional',
+    labelTe: '鈰冢鈺温陘鈰',
+    labelHi: '鄐冢鄍温中鄐',
+    labelMl: '鉥冢鉞温握鉥',
+  },
 ];
 
 const locationsList = [
-  { key: 'Telangana', labelEn: 'Telangana', labelTe: 'Telangana', labelHi: 'Telangana', labelMl: 'Telangana' },
-  { key: 'Andhra Pradesh', labelEn: 'Andhra Pradesh', labelTe: 'Andhra Pradesh', labelHi: 'Andhra Pradesh', labelMl: 'Andhra Pradesh' },
+  {
+    key: 'Telangana',
+    labelEn: 'Telangana',
+    labelTe: 'Telangana',
+    labelHi: 'Telangana',
+    labelMl: 'Telangana',
+  },
+  {
+    key: 'Andhra Pradesh',
+    labelEn: 'Andhra Pradesh',
+    labelTe: 'Andhra Pradesh',
+    labelHi: 'Andhra Pradesh',
+    labelMl: 'Andhra Pradesh',
+  },
 ];
 
 const translations = {
@@ -186,7 +270,8 @@ const translations = {
     phColorCode: 'ఉదా. #FF5722',
     lblWebUrl: 'వెబ్ URL',
     phWebUrl: 'https://example.com/article...',
-    errWebUrlInvalid: 'దయచేసి చెల్లుబాటు అయ్యే URL ఎంటర్ చేయండి (http:// లేదా https:// తో ప్రారంభం)',
+    errWebUrlInvalid:
+      'దయచేసి చెల్లుబాటు అయ్యే URL ఎంటర్ చేయండి (http:// లేదా https:// తో ప్రారంభం)',
     lblPostUrl: 'పోస్ట్ URL',
     phPostUrl: 'https://example.com/post-slug...',
     lblVideoSource: 'వీడియో మూలం',
@@ -201,7 +286,8 @@ const translations = {
     lblImageAdUrl: 'ఇమేజ్ ప్రకటన URL',
     phImageAdUrl: 'https://example.com/ad-landing-page...',
     errImageAdUrlRequired: 'ఇమేజ్ ప్రకటన URL అవసరం',
-    errImageAdUrlInvalid: 'దయచేసి చెల్లుబాటు అయ్యే URL ఎంటర్ చేయండి (http:// లేదా https:// తో ప్రారంభం)',
+    errImageAdUrlInvalid:
+      'దయచేసి చెల్లుబాటు అయ్యే URL ఎంటర్ చేయండి (http:// లేదా https:// తో ప్రారంభం)',
     lblBulletins: 'బులెటిన్లు (Bulletins)',
     phAddBullet: 'బులెటిన్ పాయింట్ ఎంటర్ చేయండి...',
     btnAddBullet: 'జోడించు',
@@ -339,7 +425,8 @@ const translations = {
     lblImageAdUrl: 'ഇമേജ് പരസ്യ URL',
     phImageAdUrl: 'https://example.com/ad-landing-page...',
     errImageAdUrlRequired: 'ഇമേജ് പരസ്യ URL ആവശ്യമാണ്',
-    errImageAdUrlInvalid: 'ദയവായി ഒരു സാധുവായ URL നൽകുക (http:// അല്ലെങ്കിൽ https:// യിൽ തുടങ്ങുന്നത്)',
+    errImageAdUrlInvalid:
+      'ദയവായി ഒരു സാധുവായ URL നൽകുക (http:// അല്ലെങ്കിൽ https:// യിൽ തുടങ്ങുന്നത്)',
     lblBulletins: 'ബുള്ളറ്റിനുകൾ (Bulletins)',
     phAddBullet: 'ബുള്ളറ്റിൻ പോയിന്റ് നൽകുക...',
     btnAddBullet: 'ചേർക്കുക',
@@ -425,17 +512,12 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
 }) => {
   const t = translations[language] || translations.en;
   const isEditMode = !!initialData;
-  const { 
-    activeLanguages, 
-    categories, 
-    setCategories, 
-    tags, 
-    setTags, 
-    locations, 
-    setLocations 
-  } = useLanguageStore();
+  const { activeLanguages, categories, setCategories, tags, setTags, locations, setLocations } =
+    useLanguageStore();
 
-  const [postLanguage, setPostLanguage] = useState<'en' | 'te' | 'hi' | 'ml'>(initialData?.postLanguage || language || 'en');
+  const [postLanguage, setPostLanguage] = useState<'en' | 'te' | 'hi' | 'ml'>(
+    initialData?.postLanguage || language || 'en'
+  );
   const [apiPostTypes, setApiPostTypes] = useState<Array<{ id: number; name: string }>>([]);
   const [apiLanguages, setApiLanguages] = useState<Array<{ code: string; name: string }>>([]);
   const [apiMoreFollowItems, setApiMoreFollowItems] = useState<MoreFollowItem[]>([]);
@@ -461,9 +543,14 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
             .map((item: any) => {
               const code = (item.code || '').toLowerCase();
               const nameObj = item.name || {};
-              const name = typeof nameObj === 'object'
-                ? (nameObj[language] || nameObj.en || item.languageName || item.nameEn || code.toUpperCase())
-                : (item.languageName || item.name || code.toUpperCase());
+              const name =
+                typeof nameObj === 'object'
+                  ? nameObj[language] ||
+                    nameObj.en ||
+                    item.languageName ||
+                    item.nameEn ||
+                    code.toUpperCase()
+                  : item.languageName || item.name || code.toUpperCase();
               return { code, name };
             })
             .filter((lang) => lang.code);
@@ -521,24 +608,49 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
     LocationRepository.getAll(language)
       .then((data) => {
         if (Array.isArray(data)) {
-          const mapped = data.map((item: any) => {
-            const rawName = item.stateName || item.state_name || item.locationName || item.location_name || item.name || item.state || '';
-            const trans = item.stateNameTranslations || item.statenameTranslations || item.locationNameTranslations || item.translations || item.nameTranslations || {};
-            const stateEn = trans.en || item.state_name_en || item.stateEn || (typeof rawName === 'string' ? rawName : '');
-            const stateTe = trans.te || item.state_name_te || item.stateTe || stateEn;
-            const stateHi = trans.hi || item.state_name_hi || item.stateHi || stateEn;
-            const stateMl = trans.ml || item.state_name_ml || item.stateMl || stateEn;
+          const mapped = data
+            .map((item: any) => {
+              const rawName =
+                item.stateName ||
+                item.state_name ||
+                item.locationName ||
+                item.location_name ||
+                item.name ||
+                item.state ||
+                '';
+              const trans =
+                item.stateNameTranslations ||
+                item.statenameTranslations ||
+                item.locationNameTranslations ||
+                item.translations ||
+                item.nameTranslations ||
+                {};
+              const stateEn =
+                trans.en ||
+                item.state_name_en ||
+                item.stateEn ||
+                (typeof rawName === 'string' ? rawName : '');
+              const stateTe = trans.te || item.state_name_te || item.stateTe || stateEn;
+              const stateHi = trans.hi || item.state_name_hi || item.stateHi || stateEn;
+              const stateMl = trans.ml || item.state_name_ml || item.stateMl || stateEn;
 
-            return {
-              stateId: item.stateId || item.state_id || item.locationId || item.location_id || item.id || Math.floor(Math.random() * 10000),
-              stateName: rawName || stateEn,
-              stateEn,
-              stateTe,
-              stateHi,
-              stateMl,
-              isFollowed: item.isFollowed || item.is_followed || false,
-            };
-          }).filter((l) => l.stateEn || l.stateName);
+              return {
+                stateId:
+                  item.stateId ||
+                  item.state_id ||
+                  item.locationId ||
+                  item.location_id ||
+                  item.id ||
+                  Math.floor(Math.random() * 10000),
+                stateName: rawName || stateEn,
+                stateEn,
+                stateTe,
+                stateHi,
+                stateMl,
+                isFollowed: item.isFollowed || item.is_followed || false,
+              };
+            })
+            .filter((l) => l.stateEn || l.stateName);
           if (mapped.length > 0) {
             setLocations(mapped);
           }
@@ -561,14 +673,25 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
           setApiPostTypes(mapped);
 
           if (initialData && mapped.length > 0) {
-            const rawType = initialData.type || (initialData as any).post_type || (initialData as any).typename || (initialData as any).type_id || (initialData as any).typeId;
-            const hasVideo = Boolean((initialData as any).videoUrl || (initialData as any).video_url || (initialData as any).video_link || (initialData as any).videoLink);
+            const rawType =
+              initialData.type ||
+              (initialData as any).post_type ||
+              (initialData as any).typename ||
+              (initialData as any).type_id ||
+              (initialData as any).typeId;
+            const hasVideo = Boolean(
+              (initialData as any).videoUrl ||
+              (initialData as any).video_url ||
+              (initialData as any).video_link ||
+              (initialData as any).videoLink
+            );
             const matched = mapped.find(
               (pt) =>
                 String(pt.id) === String(rawType) ||
                 pt.name.toLowerCase() === String(rawType).toLowerCase() ||
                 (hasVideo && pt.name.toLowerCase().includes('video')) ||
-                (String(rawType).toLowerCase().includes('video') && pt.name.toLowerCase().includes('video'))
+                (String(rawType).toLowerCase().includes('video') &&
+                  pt.name.toLowerCase().includes('video'))
             );
             if (matched) {
               setType(matched.name);
@@ -582,75 +705,83 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
       .catch((err) => console.error('Failed to fetch post types in form', err));
   }, [initialData]);
 
-  const dynamicCategories = categories && categories.length > 0
-    ? categories.map((c) => ({
-        id: c.categoryId,
-        key: c.nameEn || c.nameTe || `cat-${c.categoryId}`,
-        labelEn: c.nameEn,
-        labelTe: c.nameTe || c.nameEn,
-        labelHi: c.nameHi || c.nameEn,
-        labelMl: c.nameMl || c.nameEn,
-      }))
-    : categoriesList.map((c) => ({ ...c, id: c.key }));
+  const dynamicCategories =
+    categories && categories.length > 0
+      ? categories.map((c) => ({
+          id: c.categoryId,
+          key: c.nameEn || c.nameTe || `cat-${c.categoryId}`,
+          labelEn: c.nameEn,
+          labelTe: c.nameTe || c.nameEn,
+          labelHi: c.nameHi || c.nameEn,
+          labelMl: c.nameMl || c.nameEn,
+        }))
+      : categoriesList.map((c) => ({ ...c, id: c.key }));
 
-  const dynamicTags = tags && tags.length > 0
-    ? tags.map((t) => ({
-        id: t.aitagid,
-        key: t.tagEn || t.tagTe || `tag-${t.aitagid}`,
-        labelEn: t.tagEn,
-        labelTe: t.tagTe || t.tagEn,
-        labelHi: t.tagHi || t.tagEn,
-        labelMl: t.tagMl || t.tagEn,
-      }))
-    : tagsList.map((t) => ({ ...t, id: t.key }));
+  const dynamicTags =
+    tags && tags.length > 0
+      ? tags.map((t) => ({
+          id: t.aitagid,
+          key: t.tagEn || t.tagTe || `tag-${t.aitagid}`,
+          labelEn: t.tagEn,
+          labelTe: t.tagTe || t.tagEn,
+          labelHi: t.tagHi || t.tagEn,
+          labelMl: t.tagMl || t.tagEn,
+        }))
+      : tagsList.map((t) => ({ ...t, id: t.key }));
 
-  const dynamicLocations = locations && locations.length > 0
-    ? locations.map((l, index) => {
-        const fallbackName = l.stateName || l.stateEn || l.stateTe || `Location ${l.stateId || index + 1}`;
-        const labelEn = l.stateEn || fallbackName;
-        const labelTe = l.stateTe || labelEn;
-        const labelHi = l.stateHi || labelEn;
-        const labelMl = l.stateMl || labelEn;
-        const key = labelEn || `loc-${l.stateId || index}`;
-        return {
-          id: l.stateId || index,
-          key,
-          labelEn,
-          labelTe,
-          labelHi,
-          labelMl,
-        };
-      })
-    : locationsList.map((l) => ({ ...l, id: l.key }));
+  const dynamicLocations =
+    locations && locations.length > 0
+      ? locations.map((l, index) => {
+          const fallbackName =
+            l.stateName || l.stateEn || l.stateTe || `Location ${l.stateId || index + 1}`;
+          const labelEn = l.stateEn || fallbackName;
+          const labelTe = l.stateTe || labelEn;
+          const labelHi = l.stateHi || labelEn;
+          const labelMl = l.stateMl || labelEn;
+          const key = labelEn || `loc-${l.stateId || index}`;
+          return {
+            id: l.stateId || index,
+            key,
+            labelEn,
+            labelTe,
+            labelHi,
+            labelMl,
+          };
+        })
+      : locationsList.map((l) => ({ ...l, id: l.key }));
 
-  const dynamicMoreFollow = apiMoreFollowItems.length > 0
-    ? apiMoreFollowItems.map((item) => {
-        const trans = item.morefollowNameTranslations || {};
-        const id = item.morefollowId || item.id;
-        const labelTe = trans.te || item.morefollowName || '';
-        const labelEn = trans.en || item.morefollowName || labelTe;
-        const labelHi = trans.hi || labelEn;
-        const labelMl = trans.ml || labelEn;
-        return {
-          id,
-          key: String(id),
-          labelEn,
-          labelTe,
-          labelHi,
-          labelMl,
-        };
-      })
-    : [];
+  const dynamicMoreFollow =
+    apiMoreFollowItems.length > 0
+      ? apiMoreFollowItems.map((item) => {
+          const trans = item.morefollowNameTranslations || {};
+          const id = item.morefollowId || item.id;
+          const labelTe = trans.te || item.morefollowName || '';
+          const labelEn = trans.en || item.morefollowName || labelTe;
+          const labelHi = trans.hi || labelEn;
+          const labelMl = trans.ml || labelEn;
+          return {
+            id,
+            key: String(id),
+            labelEn,
+            labelTe,
+            labelHi,
+            labelMl,
+          };
+        })
+      : [];
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragOver, setDragOver] = useState(false);
 
   // Form states  seeded from initialData when editing
   const [title, setTitle] = useState<string>(
     (initialData
-      ? (initialData.postLanguage === 'te' ? initialData.titleTe
-        : initialData.postLanguage === 'hi' ? initialData.titleHi
-        : initialData.postLanguage === 'ml' ? initialData.titleMl
-        : initialData.titleEn)
+      ? initialData.postLanguage === 'te'
+        ? initialData.titleTe
+        : initialData.postLanguage === 'hi'
+          ? initialData.titleHi
+          : initialData.postLanguage === 'ml'
+            ? initialData.titleMl
+            : initialData.titleEn
       : '') || ''
   );
   const combineContentAndBullets = (rawBody?: string, bullets?: string[]): string => {
@@ -661,7 +792,13 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
     }
 
     const cleanBullets = Array.isArray(bullets)
-      ? bullets.map((b) => String(b).replace(/[\[\]]/g, '').trim()).filter(Boolean)
+      ? bullets
+          .map((b) =>
+            String(b)
+              .replace(/[\[\]]/g, '')
+              .trim()
+          )
+          .filter(Boolean)
       : [];
 
     const parsed = formatBulletPostContentAndBullets(content, cleanBullets);
@@ -675,19 +812,29 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
 
     const cleanHeaderText = headerText.replace(/<[^>]+>/g, '').trim();
     const headerHtml = cleanHeaderText ? `<p>${cleanHeaderText}</p>` : '';
-    const bulletsHtml = `<ul>${finalBullets.map((b: string) => `<li>${b.replace(/^[•\>\*\.\_\s]+/, '').replace(/<[^>]+>/g, '').trim()}</li>`).join('')}</ul>`;
+    const bulletsHtml = `<ul>${finalBullets
+      .map(
+        (b: string) =>
+          `<li>${b
+            .replace(/^[•\>\*\.\_\s]+/, '')
+            .replace(/<[^>]+>/g, '')
+            .trim()}</li>`
+      )
+      .join('')}</ul>`;
 
     return `${headerHtml}${bulletsHtml}`;
   };
 
   const [body, setBody] = useState<string>(() => {
     if (!initialData) return '';
-    const rawBody = (
-      initialData.postLanguage === 'te' ? initialData.bodyTe
-      : initialData.postLanguage === 'hi' ? initialData.bodyHi
-      : initialData.postLanguage === 'ml' ? initialData.bodyMl
-      : initialData.bodyEn
-    ) || '';
+    const rawBody =
+      (initialData.postLanguage === 'te'
+        ? initialData.bodyTe
+        : initialData.postLanguage === 'hi'
+          ? initialData.bodyHi
+          : initialData.postLanguage === 'ml'
+            ? initialData.bodyMl
+            : initialData.bodyEn) || '';
     const restoredBody = restoreLinksInContent(rawBody, (initialData as any)?.links);
     const bullets = (initialData as any).bulletPoints || (initialData as any).bullet_points || [];
     return combineContentAndBullets(restoredBody, bullets);
@@ -697,7 +844,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
   const teluguToEnglishCategoryMap: Record<string, string> = {
     '鈰脚�鈰颴偽 鈰颴�鈰� 鈰桌�鈰�� ': 'Entertainment',
     '鈰詮偏鈰抉偏鈰啤除鈰�': 'General',
-    '鈰詮倏鈰兒倏鈰桌偏': 'Cinema',
+    鈰詮倏鈰兒倏鈰桌偏: 'Cinema',
     '鈰� 鈰芹�鈰� 鈰� 鈰� ': 'Sports',
     '鈰兒�鈰獅馬鈰� ': 'National',
     '鈰��鈰� 鈰啤高 鈰啤隻鈺�偉 ': 'Andhra Pradesh',
@@ -744,7 +891,11 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
   const [type, setType] = useState(() => {
     const validTypes = ['Standard', 'Video', 'Reel', 'Podcast', 'BulletPost'];
     const rawSubType = (initialData as any)?.subType || (initialData as any)?.sub_type;
-    const initType = rawSubType || initialData?.type || (initialData as any)?.post_type || (initialData as any)?.typename;
+    const initType =
+      rawSubType ||
+      initialData?.type ||
+      (initialData as any)?.post_type ||
+      (initialData as any)?.typename;
     if (initType) {
       const found = validTypes.find((t) => t.toLowerCase() === String(initType).toLowerCase());
       if (found) return found;
@@ -757,18 +908,44 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
   });
   const [imageUrl, setImageUrl] = useState<string | null>(initialData?.imageUrl || null);
   const [galleryItems, setGalleryItems] = useState<Array<{ url: string; file?: File }>>(() => {
-    const imgs: string[] = (initialData as any)?.galleryImages || (initialData as any)?.gallery || [];
+    const imgs: string[] =
+      (initialData as any)?.galleryImages || (initialData as any)?.gallery || [];
     return imgs.map((url) => ({ url }));
   });
-  const [isSticky, setIsSticky] = useState<boolean>((initialData as any)?.isStickyPost ?? initialData?.isSticky ?? false);
-  const [isHomePost, setIsHomePost] = useState<boolean>(Boolean((initialData as any)?.isHomePost || (initialData as any)?.is_home_post || false));
-  const [colorCode, setColorCode] = useState<string>((initialData as any)?.colorCode || (initialData as any)?.color_code || '#FF5722');
-  const [isWebPost, setIsWebPost] = useState<boolean>(Boolean((initialData as any)?.isWebPost || (initialData as any)?.is_web_post || (initialData as any)?.isWebpost || false));
-  const [webUrl, setWebUrl] = useState<string>((initialData as any)?.webUrl || (initialData as any)?.web_post_url || (initialData as any)?.webPostUrl || (initialData as any)?.postUrl || '');
-  const [postUrl, setPostUrl] = useState<string>((initialData as any)?.postUrl || (initialData as any)?.webUrl || '');
+  const [isSticky, setIsSticky] = useState<boolean>(
+    (initialData as any)?.isStickyPost ?? initialData?.isSticky ?? false
+  );
+  const [isHomePost, setIsHomePost] = useState<boolean>(
+    Boolean((initialData as any)?.isHomePost || (initialData as any)?.is_home_post || false)
+  );
+  const [colorCode, setColorCode] = useState<string>(
+    (initialData as any)?.colorCode || (initialData as any)?.color_code || '#FF5722'
+  );
+  const [isWebPost, setIsWebPost] = useState<boolean>(
+    Boolean(
+      (initialData as any)?.isWebPost ||
+      (initialData as any)?.is_web_post ||
+      (initialData as any)?.isWebpost ||
+      false
+    )
+  );
+  const [webUrl, setWebUrl] = useState<string>(
+    (initialData as any)?.webUrl ||
+      (initialData as any)?.web_post_url ||
+      (initialData as any)?.webPostUrl ||
+      (initialData as any)?.postUrl ||
+      ''
+  );
+  const [postUrl, setPostUrl] = useState<string>(
+    (initialData as any)?.postUrl || (initialData as any)?.webUrl || ''
+  );
 
-  const [videoSource, setVideoSource] = useState<string>((initialData as any)?.videoSource || (initialData as any)?.video_platform || '');
-  const [videoUrl, setVideoUrl] = useState<string>((initialData as any)?.videoUrl || (initialData as any)?.video_url || '');
+  const [videoSource, setVideoSource] = useState<string>(
+    (initialData as any)?.videoSource || (initialData as any)?.video_platform || ''
+  );
+  const [videoUrl, setVideoUrl] = useState<string>(
+    (initialData as any)?.videoUrl || (initialData as any)?.video_url || ''
+  );
   const [sendNotification, setSendNotification] = useState<boolean>(() => {
     if (initialData && (initialData as any).sendNotification !== undefined) {
       return Boolean((initialData as any).sendNotification);
@@ -781,13 +958,23 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
     }
     return false;
   });
-  const [notificationTitle, setNotificationTitle] = useState<string>((initialData as any)?.notificationTitle || (initialData as any)?.notificationtitle || '');
-  const [imageTitle, setImageTitle] = useState<string>((initialData as any)?.imageTitle || (initialData as any)?.imagetitel || '');
+  const [notificationTitle, setNotificationTitle] = useState<string>(
+    (initialData as any)?.notificationTitle || (initialData as any)?.notificationtitle || ''
+  );
+  const [imageTitle, setImageTitle] = useState<string>(
+    (initialData as any)?.imageTitle || (initialData as any)?.imagetitel || ''
+  );
   const [showImageTitle, setShowImageTitle] = useState<boolean>(
     Boolean((initialData as any)?.imageTitle || (initialData as any)?.imagetitel)
   );
   const [imageAdUrl, setImageAdUrl] = useState<string>(
-    () => (initialData as any)?.imageAdUrl || (initialData as any)?.image_ad_url || initialData?.postUrl || (initialData as any)?.web_post_url || initialData?.webUrl || ''
+    () =>
+      (initialData as any)?.imageAdUrl ||
+      (initialData as any)?.image_ad_url ||
+      initialData?.postUrl ||
+      (initialData as any)?.web_post_url ||
+      initialData?.webUrl ||
+      ''
   );
 
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -804,17 +991,34 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
     if (!initialData) return [];
     const bullets = (initialData as any).bulletPoints || (initialData as any).bullet_points || [];
     return Array.isArray(bullets)
-      ? bullets.map((b: any) => String(b).replace(/[\[\]]/g, '').trim()).filter(Boolean)
+      ? bullets
+          .map((b: any) =>
+            String(b)
+              .replace(/[\[\]]/g, '')
+              .trim()
+          )
+          .filter(Boolean)
       : [];
   });
   const [bulletInputText, setBulletInputText] = useState<string>('');
 
-  const [showTag, setShowTag] = useState<string>((initialData as any)?.showTag || (initialData as any)?.show_tag || 'MORNING SHOW');
-  const [showDay, setShowDay] = useState<string>((initialData as any)?.showDay || (initialData as any)?.show_day || 'Mon-Sat');
-  const [showTime, setShowTime] = useState<string>((initialData as any)?.showTime || (initialData as any)?.show_time || '7:00 AM IST');
-  const [reminderOptions, setReminderOptions] = useState<string[]>((initialData as any)?.reminderOptions || (initialData as any)?.reminder_options || ['15 min before', 'When it starts']);
+  const [showTag, setShowTag] = useState<string>(
+    (initialData as any)?.showTag || (initialData as any)?.show_tag || 'MORNING SHOW'
+  );
+  const [showDay, setShowDay] = useState<string>(
+    (initialData as any)?.showDay || (initialData as any)?.show_day || 'Mon-Sat'
+  );
+  const [showTime, setShowTime] = useState<string>(
+    (initialData as any)?.showTime || (initialData as any)?.show_time || '7:00 AM IST'
+  );
+  const [reminderOptions, setReminderOptions] = useState<string[]>(
+    (initialData as any)?.reminderOptions ||
+      (initialData as any)?.reminder_options || ['15 min before', 'When it starts']
+  );
 
-  const engTranslation = isEditMode ? (initialData as any)?.translations?.english || (initialData as any)?.translations?.en : null;
+  const engTranslation = isEditMode
+    ? (initialData as any)?.translations?.english || (initialData as any)?.translations?.en
+    : null;
 
   const isImageOrGalleryType =
     ['image', 'image ad', 'gallery', 'video'].includes(type.toLowerCase().trim()) ||
@@ -829,7 +1033,9 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
 
   const isBigTvSpecial =
     type.toLowerCase().replace(/[\s_]+/g, '') === 'bigtvspecial' ||
-    String((initialData as any)?.subType || (initialData as any)?.sub_type || '').toLowerCase().replace(/[\s_]+/g, '') === 'bigtvspecial';
+    String((initialData as any)?.subType || (initialData as any)?.sub_type || '')
+      .toLowerCase()
+      .replace(/[\s_]+/g, '') === 'bigtvspecial';
 
   const isBulletPost =
     type.toLowerCase() === 'bulletpost' ||
@@ -864,7 +1070,11 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
     setBulletPoints((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const labels: Record<string, string> = { now: '🚀 Publish Now', draft: '💾 Save as Draft', schedule: '🕒 Schedule' };
+  const labels: Record<string, string> = {
+    now: '🚀 Publish Now',
+    draft: '💾 Save as Draft',
+    schedule: '🕒 Schedule',
+  };
 
   const handleClose = () => {
     onClose();
@@ -899,10 +1109,22 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
     } else {
       setSelectedTags(val);
     }
-    if (errors.tags) setErrors((prev) => { const n = { ...prev }; delete n.tags; return n; });
+    if (errors.tags)
+      setErrors((prev) => {
+        const n = { ...prev };
+        delete n.tags;
+        return n;
+      });
   };
 
-  const isLocationChecked = (loc: { id: number | string; key: string; labelEn: string; labelTe: string; labelHi: string; labelMl: string }) => {
+  const isLocationChecked = (loc: {
+    id: number | string;
+    key: string;
+    labelEn: string;
+    labelTe: string;
+    labelHi: string;
+    labelMl: string;
+  }) => {
     return (
       location.includes(loc.key) ||
       location.includes(String(loc.id)) ||
@@ -921,12 +1143,20 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
     } else {
       setLocation(val);
     }
-    if (errors.location) setErrors((prev) => { const n = { ...prev }; delete n.location; return n; });
+    if (errors.location)
+      setErrors((prev) => {
+        const n = { ...prev };
+        delete n.location;
+        return n;
+      });
   };
 
   const handleMoreFollowChange = (val: string[]) => {
     if (val.includes('all')) {
-      if (dynamicMoreFollow.length > 0 && selectedMoreFollowTags.length === dynamicMoreFollow.length) {
+      if (
+        dynamicMoreFollow.length > 0 &&
+        selectedMoreFollowTags.length === dynamicMoreFollow.length
+      ) {
         setSelectedMoreFollowTags([]);
       } else {
         setSelectedMoreFollowTags(dynamicMoreFollow.map((m) => m.key));
@@ -936,7 +1166,14 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
     }
   };
 
-  const isCategoryChecked = (cat: { id: number | string; key: string; labelEn: string; labelTe: string; labelHi: string; labelMl: string }) => {
+  const isCategoryChecked = (cat: {
+    id: number | string;
+    key: string;
+    labelEn: string;
+    labelTe: string;
+    labelHi: string;
+    labelMl: string;
+  }) => {
     return (
       selectedCategories.includes(cat.key) ||
       selectedCategories.includes(String(cat.id)) ||
@@ -945,22 +1182,30 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
     );
   };
 
-  const handleCategoryToggleObj = (cat: { id: number | string; key: string; labelEn: string; labelTe: string; labelHi: string; labelMl: string }) => {
+  const handleCategoryToggleObj = (cat: {
+    id: number | string;
+    key: string;
+    labelEn: string;
+    labelTe: string;
+    labelHi: string;
+    labelMl: string;
+  }) => {
     setSelectedCategories((prev) => {
       const isChecked = isCategoryChecked(cat);
       if (isChecked) {
         return prev.filter(
-          (k) =>
-            k !== cat.key &&
-            k !== String(cat.id) &&
-            k !== cat.labelEn &&
-            k !== cat.labelTe
+          (k) => k !== cat.key && k !== String(cat.id) && k !== cat.labelEn && k !== cat.labelTe
         );
       } else {
         return [...prev, cat.key];
       }
     });
-    if (errors.categories) setErrors((prev) => { const n = { ...prev }; delete n.categories; return n; });
+    if (errors.categories)
+      setErrors((prev) => {
+        const n = { ...prev };
+        delete n.categories;
+        return n;
+      });
   };
 
   const langIdMap: Record<string, number> = { en: 1, te: 2, hi: 3, ml: 4 };
@@ -990,7 +1235,12 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
   // Reset isWebPost to false when post type is BulletPost, StandardLink, or BigBlackStanded
   useEffect(() => {
     const tLower = type.toLowerCase();
-    if (tLower.includes('bullet') || tLower.includes('link') || tLower.includes('standardlink') || tLower.includes('bigblack')) {
+    if (
+      tLower.includes('bullet') ||
+      tLower.includes('link') ||
+      tLower.includes('standardlink') ||
+      tLower.includes('bigblack')
+    ) {
       setIsWebPost(false);
       setWebUrl('');
     }
@@ -1050,7 +1300,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
           if (raw === undefined || raw === null || raw === '') return;
           const match = dynamicCategories.find((dc) => {
             if (dc.key === raw || String(dc.key) === String(raw)) return true;
-            if (dc.id === raw || String(dc.id) === String(raw) || Number(dc.id) === Number(raw)) return true;
+            if (dc.id === raw || String(dc.id) === String(raw) || Number(dc.id) === Number(raw))
+              return true;
             if (dc.labelEn && dc.labelEn.toLowerCase() === String(raw).toLowerCase()) return true;
             if (dc.labelTe && dc.labelTe === String(raw)) return true;
             if (dc.labelHi && dc.labelHi === String(raw)) return true;
@@ -1092,7 +1343,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
           if (raw === undefined || raw === null || raw === '') return;
           const match = dynamicLocations.find((dl) => {
             if (dl.key === raw || String(dl.key) === String(raw)) return true;
-            if (dl.id === raw || String(dl.id) === String(raw) || Number(dl.id) === Number(raw)) return true;
+            if (dl.id === raw || String(dl.id) === String(raw) || Number(dl.id) === Number(raw))
+              return true;
             if (dl.labelEn && dl.labelEn.toLowerCase() === String(raw).toLowerCase()) return true;
             if (dl.labelTe && dl.labelTe === String(raw)) return true;
             if (dl.labelHi && dl.labelHi === String(raw)) return true;
@@ -1189,7 +1441,13 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
       }
 
       const rawSubType = (initialData as any).subType || (initialData as any).sub_type;
-      const rawType = rawSubType || initialData.type || (initialData as any).post_type || (initialData as any).typename || (initialData as any).type_id || (initialData as any).typeId;
+      const rawType =
+        rawSubType ||
+        initialData.type ||
+        (initialData as any).post_type ||
+        (initialData as any).typename ||
+        (initialData as any).type_id ||
+        (initialData as any).typeId;
       if (rawType || vUrl) {
         const validTypes = ['Standard', 'Video', 'Reel', 'Podcast', 'BulletPost'];
         let matchedName = '';
@@ -1199,7 +1457,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
               String(pt.id) === String(rawType) ||
               pt.name.toLowerCase() === String(rawType).toLowerCase() ||
               (Boolean(vUrl) && pt.name.toLowerCase().includes('video')) ||
-              (String(rawType).toLowerCase().includes('video') && pt.name.toLowerCase().includes('video'))
+              (String(rawType).toLowerCase().includes('video') &&
+                pt.name.toLowerCase().includes('video'))
           );
           if (matched) matchedName = matched.name;
         }
@@ -1233,18 +1492,30 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
         setPostLanguage(initialData.postLanguage);
       }
 
-      const newTitle = (initialData.postLanguage === 'te' ? initialData.titleTe
-        : initialData.postLanguage === 'hi' ? initialData.titleHi
-        : initialData.postLanguage === 'ml' ? initialData.titleMl
-        : initialData.titleEn) || '';
+      const newTitle =
+        (initialData.postLanguage === 'te'
+          ? initialData.titleTe
+          : initialData.postLanguage === 'hi'
+            ? initialData.titleHi
+            : initialData.postLanguage === 'ml'
+              ? initialData.titleMl
+              : initialData.titleEn) || '';
       if (newTitle) setTitle(newTitle);
 
-      const rawBody = (initialData.postLanguage === 'te' ? initialData.bodyTe
-        : initialData.postLanguage === 'hi' ? initialData.bodyHi
-        : initialData.postLanguage === 'ml' ? initialData.bodyMl
-        : initialData.bodyEn) || '';
+      const rawBody =
+        (initialData.postLanguage === 'te'
+          ? initialData.bodyTe
+          : initialData.postLanguage === 'hi'
+            ? initialData.bodyHi
+            : initialData.postLanguage === 'ml'
+              ? initialData.bodyMl
+              : initialData.bodyEn) || '';
       const restoredBody = restoreLinksInContent(rawBody, (initialData as any)?.links);
-      const bullets = (initialData as any).bulletPoints || (initialData as any).bullet_points || (initialData as any).bullets || [];
+      const bullets =
+        (initialData as any).bulletPoints ||
+        (initialData as any).bullet_points ||
+        (initialData as any).bullets ||
+        [];
       const combinedBody = combineContentAndBullets(restoredBody, bullets);
       if (combinedBody) setBody(combinedBody);
 
@@ -1252,11 +1523,14 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
         ...(initialData.categories || []),
         ...((initialData as any).categoryIds || []),
         ...((initialData as any).category_ids || []),
-      ].map(String).filter(Boolean);
+      ]
+        .map(String)
+        .filter(Boolean);
       if (rawCats.length > 0) {
         setSelectedCategories((prev) => {
           const combined = Array.from(new Set([...prev, ...rawCats]));
-          if (combined.length === prev.length && combined.every((v, i) => v === prev[i])) return prev;
+          if (combined.length === prev.length && combined.every((v, i) => v === prev[i]))
+            return prev;
           return combined;
         });
       }
@@ -1265,11 +1539,14 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
         ...(initialData.location || []),
         ...((initialData as any).locationIds || []),
         ...((initialData as any).location_ids || []),
-      ].map(String).filter(Boolean);
+      ]
+        .map(String)
+        .filter(Boolean);
       if (rawLocs.length > 0) {
         setLocation((prev) => {
           const combined = Array.from(new Set([...prev, ...rawLocs]));
-          if (combined.length === prev.length && combined.every((v, i) => v === prev[i])) return prev;
+          if (combined.length === prev.length && combined.every((v, i) => v === prev[i]))
+            return prev;
           return combined;
         });
       }
@@ -1376,7 +1653,11 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
     }
 
     // Notification Title (Optional)
-    if (sendNotification && notificationTitle.trim() && countWords(notificationTitle) > TITLE_WORD_LIMIT) {
+    if (
+      sendNotification &&
+      notificationTitle.trim() &&
+      countWords(notificationTitle) > TITLE_WORD_LIMIT
+    ) {
       errMap.notificationTitle = t.errNotificationTitleWordLimit;
     }
 
@@ -1488,7 +1769,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                 dc.labelHi === catKey ||
                 dc.labelMl === catKey
             );
-            const rawId = found?.id ?? (typeof catKey === 'number' ? catKey : parseInt(String(catKey), 10));
+            const rawId =
+              found?.id ?? (typeof catKey === 'number' ? catKey : parseInt(String(catKey), 10));
             return typeof rawId === 'number' && !isNaN(rawId) && rawId > 0 ? rawId : null;
           })
           .filter((id): id is number => id !== null && id > 0)
@@ -1509,7 +1791,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                 dl.labelHi === locKey ||
                 dl.labelMl === locKey
             );
-            const rawId = found?.id ?? (typeof locKey === 'number' ? locKey : parseInt(String(locKey), 10));
+            const rawId =
+              found?.id ?? (typeof locKey === 'number' ? locKey : parseInt(String(locKey), 10));
             return typeof rawId === 'number' && !isNaN(rawId) && rawId > 0 ? rawId : null;
           })
           .filter((id): id is number => id !== null && id > 0)
@@ -1530,7 +1813,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                 dt.labelHi === tagKey ||
                 dt.labelMl === tagKey
             );
-            const rawId = found?.id ?? (typeof tagKey === 'number' ? tagKey : parseInt(String(tagKey), 10));
+            const rawId =
+              found?.id ?? (typeof tagKey === 'number' ? tagKey : parseInt(String(tagKey), 10));
             return typeof rawId === 'number' && !isNaN(rawId) && rawId > 0 ? rawId : null;
           })
           .filter((id): id is number => id !== null && id > 0)
@@ -1552,7 +1836,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                 dm.labelHi === tagKey ||
                 dm.labelMl === tagKey
             );
-            const rawId = found?.id ?? (typeof tagKey === 'number' ? tagKey : parseInt(String(tagKey), 10));
+            const rawId =
+              found?.id ?? (typeof tagKey === 'number' ? tagKey : parseInt(String(tagKey), 10));
             return typeof rawId === 'number' && !isNaN(rawId) ? rawId : null;
           })
           .filter((id): id is number => id !== null)
@@ -1562,9 +1847,10 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
     const morefollowTagIds = parsedMorefollowTagIds.length > 0 ? parsedMorefollowTagIds : [0];
 
     const cleanTitle = stripHtml(title);
-    const cleanBody = isBulletPost && bulletPoints.length > 0
-      ? `<ul>${bulletPoints.map((b) => `<li>${b}</li>`).join('')}</ul>`
-      : body;
+    const cleanBody =
+      isBulletPost && bulletPoints.length > 0
+        ? `<ul>${bulletPoints.map((b) => `<li>${b}</li>`).join('')}</ul>`
+        : body;
     const cleanNotifTitle = sendNotification ? stripHtml(notificationTitle) : '';
     const cleanImgTitle = isImageAd || !showImageTitle ? '' : stripHtml(imageTitle);
     const finalPostUrl = isImageAd ? imageAdUrl.trim() : webUrl;
@@ -1585,7 +1871,10 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
       }
     }
 
-    const currentLinks = formatLinksAndContent((initialData as any)?.links || [], cleanBody || body).links;
+    const currentLinks = formatLinksAndContent(
+      (initialData as any)?.links || [],
+      cleanBody || body
+    ).links;
 
     onSubmit({
       titleEn: postLanguage === 'en' ? cleanTitle : '',
@@ -1614,17 +1903,21 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
       morefollowTagIds,
       morefollow_tag_ids: morefollowTagIds,
       subType:
-        type.toLowerCase() === 'bulletpost' || type.toLowerCase() === 'bullet post' || type.toLowerCase() === 'bulite post'
+        type.toLowerCase() === 'bulletpost' ||
+        type.toLowerCase() === 'bullet post' ||
+        type.toLowerCase() === 'bulite post'
           ? 'BulletPost'
           : type.toLowerCase() === 'bulletin'
-          ? 'Bulletin'
-          : initialData?.subType || '',
+            ? 'Bulletin'
+            : initialData?.subType || '',
       sub_type:
-        type.toLowerCase() === 'bulletpost' || type.toLowerCase() === 'bullet post' || type.toLowerCase() === 'bulite post'
+        type.toLowerCase() === 'bulletpost' ||
+        type.toLowerCase() === 'bullet post' ||
+        type.toLowerCase() === 'bulite post'
           ? 'BulletPost'
           : type.toLowerCase() === 'bulletin'
-          ? 'Bulletin'
-          : (initialData as any)?.sub_type || '',
+            ? 'Bulletin'
+            : (initialData as any)?.sub_type || '',
       postType: type,
       isSticky,
       isStickyPost: isSticky,
@@ -1670,7 +1963,9 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
         <Box
           sx={{
             backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#ffffff',
-            border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
+            border: isDark
+              ? '1px solid rgba(255, 255, 255, 0.08)'
+              : '1px solid rgba(0, 0, 0, 0.08)',
             borderRadius: '20px',
             display: 'flex',
             alignItems: 'center',
@@ -1699,13 +1994,22 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
         {/* Header */}
         <Box
           sx={{
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            px: 3, py: 1.5, flexShrink: 0,
-            borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            px: 3,
+            py: 1.5,
+            flexShrink: 0,
+            borderBottom: isDark
+              ? '1px solid rgba(255,255,255,0.08)'
+              : '1px solid rgba(0,0,0,0.08)',
             backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#f4f3f8',
           }}
         >
-          <Typography variant="h6" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 700, fontSize: '1rem' }}>
+          <Typography
+            variant="h6"
+            sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 700, fontSize: '1rem' }}
+          >
             {isEditMode ? 'Edit News Preview' : t.previewTitle}
           </Typography>
           <IconButton onClick={handleClose} sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
@@ -1716,87 +2020,338 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
         {/* Scrollable Content */}
         <Box sx={{ overflowY: 'auto', flex: 1, p: 2.5 }}>
           <Grid container spacing={3} alignItems="stretch">
-
             {/* Left: Summary + Publish Mode */}
             <Grid item xs={12} md={7}>
-              <Box sx={{ p: 2.5, height: '100%', borderRadius: '12px', border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)', backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#fbfbfb', display: 'flex', flexDirection: 'column', gap: 2 }}>
-
-                <Typography variant="subtitle2" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700 }}>{t.lblSummary}</Typography>
-                <Divider sx={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+              <Box
+                sx={{
+                  p: 2.5,
+                  height: '100%',
+                  borderRadius: '12px',
+                  border: isDark
+                    ? '1px solid rgba(255,255,255,0.08)'
+                    : '1px solid rgba(0,0,0,0.08)',
+                  backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#fbfbfb',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 2,
+                }}
+              >
+                <Typography
+                  variant="subtitle2"
+                  sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700 }}
+                >
+                  {t.lblSummary}
+                </Typography>
+                <Divider
+                  sx={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+                />
 
                 {/* Headline */}
                 <Box>
-                  <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, display: 'block', mb: 0.4 }}>Headline / Title</Typography>
-                  <Typography variant="body2" sx={{ color: isDark ? '#fff' : '#1c1445', fontWeight: 600, lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: title }} />
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: isDark ? '#d0caeb' : '#5c548a',
+                      fontWeight: 600,
+                      display: 'block',
+                      mb: 0.4,
+                    }}
+                  >
+                    Headline / Title
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: isDark ? '#fff' : '#1c1445', fontWeight: 600, lineHeight: 1.4 }}
+                    dangerouslySetInnerHTML={{ __html: title }}
+                  />
                 </Box>
 
                 {/* Body */}
                 <Box sx={{ maxHeight: '90px', overflowY: 'auto', pr: 0.5 }}>
-                  <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, display: 'block', mb: 0.4 }}>News Body Content</Typography>
-                  <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(28,20,69,0.8)', lineHeight: 1.6, display: 'block' }} dangerouslySetInnerHTML={{ __html: body }} />
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: isDark ? '#d0caeb' : '#5c548a',
+                      fontWeight: 600,
+                      display: 'block',
+                      mb: 0.4,
+                    }}
+                  >
+                    News Body Content
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(28,20,69,0.8)',
+                      lineHeight: 1.6,
+                      display: 'block',
+                    }}
+                    dangerouslySetInnerHTML={{ __html: body }}
+                  />
                 </Box>
 
                 {/* Lang & Type */}
                 <Grid container spacing={1.5}>
                   <Grid item xs={6}>
-                    <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, display: 'block', mb: 0.3 }}>Language</Typography>
-                    <Typography variant="body2" sx={{ color: isDark ? '#fff' : '#1c1445', fontWeight: 600, fontSize: '0.82rem' }}>
-                      {postLanguage === 'te' ? 'Telugu' : postLanguage === 'hi' ? 'Hindi' : postLanguage === 'ml' ? 'Malayalam' : 'English'}
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: isDark ? '#d0caeb' : '#5c548a',
+                        fontWeight: 600,
+                        display: 'block',
+                        mb: 0.3,
+                      }}
+                    >
+                      Language
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: isDark ? '#fff' : '#1c1445',
+                        fontWeight: 600,
+                        fontSize: '0.82rem',
+                      }}
+                    >
+                      {postLanguage === 'te'
+                        ? 'Telugu'
+                        : postLanguage === 'hi'
+                          ? 'Hindi'
+                          : postLanguage === 'ml'
+                            ? 'Malayalam'
+                            : 'English'}
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, display: 'block', mb: 0.3 }}>Post Type</Typography>
-                    <Typography variant="body2" sx={{ color: isDark ? '#fff' : '#1c1445', fontWeight: 600, fontSize: '0.82rem' }}>{type}</Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: isDark ? '#d0caeb' : '#5c548a',
+                        fontWeight: 600,
+                        display: 'block',
+                        mb: 0.3,
+                      }}
+                    >
+                      Post Type
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: isDark ? '#fff' : '#1c1445',
+                        fontWeight: 600,
+                        fontSize: '0.82rem',
+                      }}
+                    >
+                      {type}
+                    </Typography>
                   </Grid>
                 </Grid>
 
                 {/* Locations */}
                 <Box>
-                  <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, display: 'block', mb: 0.4 }}>Publish Locations</Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: isDark ? '#d0caeb' : '#5c548a',
+                      fontWeight: 600,
+                      display: 'block',
+                      mb: 0.4,
+                    }}
+                  >
+                    Publish Locations
+                  </Typography>
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                    {location.map((l, idx) => <Chip key={`${l}-${idx}`} label={l} size="small" sx={{ borderRadius: '6px', height: '22px', fontSize: '0.72rem', backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.06)', color: isDark ? '#a6e2f5' : '#1c1445' }} />)}
+                    {location.map((l, idx) => (
+                      <Chip
+                        key={`${l}-${idx}`}
+                        label={l}
+                        size="small"
+                        sx={{
+                          borderRadius: '6px',
+                          height: '22px',
+                          fontSize: '0.72rem',
+                          backgroundColor: isDark
+                            ? 'rgba(166,226,245,0.15)'
+                            : 'rgba(28,20,69,0.06)',
+                          color: isDark ? '#a6e2f5' : '#1c1445',
+                        }}
+                      />
+                    ))}
                   </Box>
                 </Box>
 
                 {/* Categories */}
                 <Box>
-                  <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, display: 'block', mb: 0.4 }}>Categories</Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: isDark ? '#d0caeb' : '#5c548a',
+                      fontWeight: 600,
+                      display: 'block',
+                      mb: 0.4,
+                    }}
+                  >
+                    Categories
+                  </Typography>
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                    {selectedCategories.map((c, idx) => <Chip key={`${c}-${idx}`} label={c} size="small" sx={{ borderRadius: '6px', height: '22px', fontSize: '0.72rem', backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)', color: isDark ? '#fff' : '#1c1445' }} />)}
+                    {selectedCategories.map((c, idx) => (
+                      <Chip
+                        key={`${c}-${idx}`}
+                        label={c}
+                        size="small"
+                        sx={{
+                          borderRadius: '6px',
+                          height: '22px',
+                          fontSize: '0.72rem',
+                          backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)',
+                          color: isDark ? '#fff' : '#1c1445',
+                        }}
+                      />
+                    ))}
                   </Box>
                 </Box>
               </Box>
             </Grid>
 
             {/* Right: Mobile Phone Simulator */}
-            <Grid item xs={12} md={5} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
-              <Box sx={{ width: '255px', height: '420px', borderRadius: '30px', border: '8px solid #222222', boxShadow: '0 16px 36px rgba(0,0,0,0.28)', overflow: 'hidden', position: 'relative', backgroundColor: '#ffffff', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
+            <Grid
+              item
+              xs={12}
+              md={5}
+              sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}
+            >
+              <Box
+                sx={{
+                  width: '255px',
+                  height: '420px',
+                  borderRadius: '30px',
+                  border: '8px solid #222222',
+                  boxShadow: '0 16px 36px rgba(0,0,0,0.28)',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  backgroundColor: '#ffffff',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  flexShrink: 0,
+                }}
+              >
                 {/* Notch */}
-                <Box sx={{ width: '50px', height: '12px', backgroundColor: '#222222', borderBottomLeftRadius: '6px', borderBottomRightRadius: '6px', position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', zIndex: 10 }} />
+                <Box
+                  sx={{
+                    width: '50px',
+                    height: '12px',
+                    backgroundColor: '#222222',
+                    borderBottomLeftRadius: '6px',
+                    borderBottomRightRadius: '6px',
+                    position: 'absolute',
+                    top: 0,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 10,
+                  }}
+                />
                 {/* Status Bar */}
-                <Box sx={{ height: '22px', px: 2.5, display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#181818', pt: 1.5, zIndex: 9 }}>
-                  <Typography variant="caption" sx={{ fontSize: '0.58rem', fontWeight: 600, color: '#ffffff' }}>4:27</Typography>
+                <Box
+                  sx={{
+                    height: '22px',
+                    px: 2.5,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    backgroundColor: '#181818',
+                    pt: 1.5,
+                    zIndex: 9,
+                  }}
+                >
+                  <Typography
+                    variant="caption"
+                    sx={{ fontSize: '0.58rem', fontWeight: 600, color: '#ffffff' }}
+                  >
+                    4:27
+                  </Typography>
                   <Box sx={{ display: 'flex', gap: 0.4 }}>
-                    <Box component="span" sx={{ fontSize: '0.52rem', color: '#fff' }}>VoWiFi</Box>
-                    <Box component="span" sx={{ fontSize: '0.52rem', color: '#fff' }}>4G</Box>
-                    <Box component="span" sx={{ fontSize: '0.52rem', color: '#fff' }}>= 44</Box>
+                    <Box component="span" sx={{ fontSize: '0.52rem', color: '#fff' }}>
+                      VoWiFi
+                    </Box>
+                    <Box component="span" sx={{ fontSize: '0.52rem', color: '#fff' }}>
+                      4G
+                    </Box>
+                    <Box component="span" sx={{ fontSize: '0.52rem', color: '#fff' }}>
+                      = 44
+                    </Box>
                   </Box>
                 </Box>
                 {/* BIG TV App Header */}
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.2, px: 1.2, py: 0.8, backgroundColor: '#181818', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1.2,
+                    px: 1.2,
+                    py: 0.8,
+                    backgroundColor: '#181818',
+                    borderBottom: '1px solid rgba(255,255,255,0.06)',
+                  }}
+                >
                   <Box sx={{ backgroundColor: '#e53935', px: 0.7, py: 0.25, borderRadius: '2px' }}>
-                    <Typography sx={{ color: '#ffffff', fontWeight: 900, fontSize: '0.65rem', letterSpacing: '0.3px', lineHeight: 1 }}>BIG TV</Typography>
+                    <Typography
+                      sx={{
+                        color: '#ffffff',
+                        fontWeight: 900,
+                        fontSize: '0.65rem',
+                        letterSpacing: '0.3px',
+                        lineHeight: 1,
+                      }}
+                    >
+                      BIG TV
+                    </Typography>
                   </Box>
-                  <Box sx={{ display: 'flex', gap: 1.5, overflowX: 'auto', flexGrow: 1, scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      gap: 1.5,
+                      overflowX: 'auto',
+                      flexGrow: 1,
+                      scrollbarWidth: 'none',
+                      '&::-webkit-scrollbar': { display: 'none' },
+                    }}
+                  >
                     {selectedTags.map((tag, idx) => {
                       const tagObj = dynamicTags.find((t) => t.key === tag);
-                      const label = postLanguage === 'te' ? tagObj?.labelTe : postLanguage === 'hi' ? tagObj?.labelHi : postLanguage === 'ml' ? tagObj?.labelMl : tagObj?.labelEn;
-                      return <Typography key={`${tag}-${idx}`} variant="caption" sx={{ color: '#ffffff', fontWeight: 700, fontSize: '0.62rem', whiteSpace: 'nowrap' }}>{label}</Typography>;
+                      const label =
+                        postLanguage === 'te'
+                          ? tagObj?.labelTe
+                          : postLanguage === 'hi'
+                            ? tagObj?.labelHi
+                            : postLanguage === 'ml'
+                              ? tagObj?.labelMl
+                              : tagObj?.labelEn;
+                      return (
+                        <Typography
+                          key={`${tag}-${idx}`}
+                          variant="caption"
+                          sx={{
+                            color: '#ffffff',
+                            fontWeight: 700,
+                            fontSize: '0.62rem',
+                            whiteSpace: 'nowrap',
+                          }}
+                        >
+                          {label}
+                        </Typography>
+                      );
                     })}
                   </Box>
                 </Box>
                 {/* Phone Body */}
-                <Box sx={{ flexGrow: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', backgroundColor: '#ffffff' }}>
+                <Box
+                  sx={{
+                    flexGrow: 1,
+                    overflowY: 'auto',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    backgroundColor: '#ffffff',
+                  }}
+                >
                   {(() => {
                     const tLower = type.toLowerCase().trim();
                     const isFullScreen = ['image', 'image ad', 'video', 'reel'].includes(tLower);
@@ -1804,14 +2359,57 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
 
                     if (isGallery) {
                       return (
-                        <Box sx={{ width: '100%', height: '100%', overflowY: 'auto', backgroundColor: '#000', display: 'flex', flexDirection: 'column', scrollSnapType: 'y mandatory', flexGrow: 1 }}>
-                          {galleryItems.length > 0 ? galleryItems.map((item, idx) => (
-                            <Box key={idx} sx={{ width: '100%', height: '100%', flexShrink: 0, scrollSnapAlign: 'start' }}>
-                              <Box component="img" src={item.url} alt={`Gallery ${idx}`} sx={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
-                            </Box>
-                          )) : (
-                            <Box sx={{ width: '100%', height: '100%', backgroundColor: '#222', display: 'flex', alignItems: 'center', justifyContent: 'center', flexGrow: 1 }}>
-                              <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.5)' }}>No Gallery Images</Typography>
+                        <Box
+                          sx={{
+                            width: '100%',
+                            height: '100%',
+                            overflowY: 'auto',
+                            backgroundColor: '#000',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            scrollSnapType: 'y mandatory',
+                            flexGrow: 1,
+                          }}
+                        >
+                          {galleryItems.length > 0 ? (
+                            galleryItems.map((item, idx) => (
+                              <Box
+                                key={idx}
+                                sx={{
+                                  width: '100%',
+                                  height: '100%',
+                                  flexShrink: 0,
+                                  scrollSnapAlign: 'start',
+                                }}
+                              >
+                                <Box
+                                  component="img"
+                                  src={item.url}
+                                  alt={`Gallery ${idx}`}
+                                  sx={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'contain',
+                                    display: 'block',
+                                  }}
+                                />
+                              </Box>
+                            ))
+                          ) : (
+                            <Box
+                              sx={{
+                                width: '100%',
+                                height: '100%',
+                                backgroundColor: '#222',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexGrow: 1,
+                              }}
+                            >
+                              <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.5)' }}>
+                                No Gallery Images
+                              </Typography>
                             </Box>
                           )}
                         </Box>
@@ -1820,11 +2418,33 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
 
                     if (isFullScreen) {
                       return (
-                        <Box sx={{ width: '100%', height: '100%', backgroundColor: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', flexGrow: 1 }}>
+                        <Box
+                          sx={{
+                            width: '100%',
+                            height: '100%',
+                            backgroundColor: '#000',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexGrow: 1,
+                          }}
+                        >
                           {imageUrl ? (
-                            <Box component="img" src={imageUrl} alt="Full Screen Banner" sx={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
+                            <Box
+                              component="img"
+                              src={imageUrl}
+                              alt="Full Screen Banner"
+                              sx={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'contain',
+                                display: 'block',
+                              }}
+                            />
                           ) : (
-                            <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.5)' }}>No Media Content</Typography>
+                            <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.5)' }}>
+                              No Media Content
+                            </Typography>
                           )}
                         </Box>
                       );
@@ -1833,32 +2453,143 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     // Default: Standard, BulletPost, StandardLink
                     return (
                       <>
-                        <Box sx={{ position: 'relative', width: '100%', height: '40%', flexShrink: 0, overflow: 'hidden' }}>
+                        <Box
+                          sx={{
+                            position: 'relative',
+                            width: '100%',
+                            height: '40%',
+                            flexShrink: 0,
+                            overflow: 'hidden',
+                          }}
+                        >
                           {imageUrl ? (
-                            <Box component="img" src={imageUrl} alt="Banner" sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                            <Box
+                              component="img"
+                              src={imageUrl}
+                              alt="Banner"
+                              sx={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                display: 'block',
+                              }}
+                            />
                           ) : (
-                            <Box sx={{ width: '100%', height: '100%', backgroundColor: '#e0e0e0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <Typography variant="caption" sx={{ color: 'rgba(0,0,0,0.3)', fontSize: '0.62rem' }}>No Image</Typography>
+                            <Box
+                              sx={{
+                                width: '100%',
+                                height: '100%',
+                                backgroundColor: '#e0e0e0',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                              }}
+                            >
+                              <Typography
+                                variant="caption"
+                                sx={{ color: 'rgba(0,0,0,0.3)', fontSize: '0.62rem' }}
+                              >
+                                No Image
+                              </Typography>
                             </Box>
                           )}
-                          <Box sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: 'rgba(229,57,53,0.95)', py: 0.5, px: 1.2 }}>
-                            <Typography sx={{ color: '#ffffff', fontWeight: 700, fontSize: '0.65rem', lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical' }} dangerouslySetInnerHTML={{ __html: title || 'News Title' }} />
+                          <Box
+                            sx={{
+                              position: 'absolute',
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              backgroundColor: 'rgba(229,57,53,0.95)',
+                              py: 0.5,
+                              px: 1.2,
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                color: '#ffffff',
+                                fontWeight: 700,
+                                fontSize: '0.65rem',
+                                lineHeight: 1.2,
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                display: '-webkit-box',
+                                WebkitLineClamp: 1,
+                                WebkitBoxOrient: 'vertical',
+                              }}
+                              dangerouslySetInnerHTML={{ __html: title || 'News Title' }}
+                            />
                           </Box>
                         </Box>
                         <Box sx={{ height: '2.5px', backgroundColor: '#e53935', flexShrink: 0 }} />
-                        <Box sx={{ p: 1.2, display: 'flex', flexDirection: 'column', gap: 1, flexGrow: 1, overflowY: 'auto' }}>
-                          <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 0.8 }}>
-                            <Typography sx={{ color: '#e53935', fontWeight: 800, fontSize: '0.78rem', lineHeight: 1.3, flexGrow: 1 }} dangerouslySetInnerHTML={{ __html: title || 'Headline Title' }} />
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.4, border: '1px solid #e53935', borderRadius: '16px', px: 0.7, py: 0.15, flexShrink: 0, backgroundColor: '#ffffff' }}>
+                        <Box
+                          sx={{
+                            p: 1.2,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 1,
+                            flexGrow: 1,
+                            overflowY: 'auto',
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'flex-start',
+                              justifyContent: 'space-between',
+                              gap: 0.8,
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                color: '#e53935',
+                                fontWeight: 800,
+                                fontSize: '0.78rem',
+                                lineHeight: 1.3,
+                                flexGrow: 1,
+                              }}
+                              dangerouslySetInnerHTML={{ __html: title || 'Headline Title' }}
+                            />
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 0.4,
+                                border: '1px solid #e53935',
+                                borderRadius: '16px',
+                                px: 0.7,
+                                py: 0.15,
+                                flexShrink: 0,
+                                backgroundColor: '#ffffff',
+                              }}
+                            >
                               <ThumbUpOutlined sx={{ fontSize: '0.62rem', color: '#e53935' }} />
                               <ChatBubbleOutline sx={{ fontSize: '0.62rem', color: '#e53935' }} />
                               <ShareOutlined sx={{ fontSize: '0.62rem', color: '#e53935' }} />
                               <SyncOutlined sx={{ fontSize: '0.62rem', color: '#e53935' }} />
                             </Box>
                           </Box>
-                          <Typography variant="caption" sx={{ color: '#333333', fontSize: '0.68rem', lineHeight: 1.6, display: 'block' }} dangerouslySetInnerHTML={{ __html: body || 'News Body Content' }} />
-                          <Typography variant="caption" sx={{ color: '#777777', fontSize: '0.58rem', display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.3 }}>
-              : publishMode === 'schedule'
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: '#333333',
+                              fontSize: '0.68rem',
+                              lineHeight: 1.6,
+                              display: 'block',
+                            }}
+                            dangerouslySetInnerHTML={{ __html: body || 'News Body Content' }}
+                          />
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: '#777777',
+                              fontSize: '0.58rem',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 0.5,
+                              mt: 0.3,
+                            }}
+                          >
+                            : publishMode === 'schedule'
                           </Typography>
                         </Box>
                       </>
@@ -1866,7 +2597,18 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                   })()}
                 </Box>
                 {/* Home Indicator */}
-                <Box sx={{ width: '80px', height: '3px', backgroundColor: '#999999', borderRadius: '2px', position: 'absolute', bottom: 5, left: '50%', transform: 'translateX(-50%)' }} />
+                <Box
+                  sx={{
+                    width: '80px',
+                    height: '3px',
+                    backgroundColor: '#999999',
+                    borderRadius: '2px',
+                    position: 'absolute',
+                    bottom: 5,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                  }}
+                />
               </Box>
             </Grid>
           </Grid>
@@ -1891,28 +2633,61 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
             </Alert>
           )}
           <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button fullWidth variant="outlined" onClick={() => setShowPreviewScreen(false)}
-            sx={{ borderRadius: '12px', textTransform: 'none', fontWeight: 600, borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)', color: isDark ? '#d0caeb' : '#5c548a', '&:hover': { borderColor: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.35)' } }}
-          >
-            {t.btnBack}
-          </Button>
-          <Button fullWidth variant="contained"
-            disabled={publishMode === 'schedule' && !scheduleTime}
-            onClick={handleFinalPublish}
-            sx={{
-              borderRadius: '12px', textTransform: 'none', fontWeight: 700, boxShadow: 'none',
-              backgroundColor: publishMode === 'draft' ? (isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)') : (isDark ? '#a6e2f5' : '#1c1445'),
-              color: publishMode === 'draft' ? (isDark ? '#d0caeb' : '#5c548a') : (isDark ? '#1c1445' : '#ffffff'),
-              '&:hover': { boxShadow: 'none', opacity: 0.9 },
-              '&.Mui-disabled': { opacity: 0.4 },
-            }}
-          >
-            {publishMode === 'draft'
-              ? 'Save as Draft'
-              : publishMode === 'schedule'
-                ? (scheduleTime ? `Schedule for ${scheduleTime}` : 'Select a time first')
-                : (isEditMode ? 'Save Changes' : t.btnPublish)}
-          </Button>
+            <Button
+              fullWidth
+              variant="outlined"
+              onClick={() => setShowPreviewScreen(false)}
+              sx={{
+                borderRadius: '12px',
+                textTransform: 'none',
+                fontWeight: 600,
+                borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)',
+                color: isDark ? '#d0caeb' : '#5c548a',
+                '&:hover': { borderColor: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.35)' },
+              }}
+            >
+              {t.btnBack}
+            </Button>
+            <Button
+              fullWidth
+              variant="contained"
+              disabled={publishMode === 'schedule' && !scheduleTime}
+              onClick={handleFinalPublish}
+              sx={{
+                borderRadius: '12px',
+                textTransform: 'none',
+                fontWeight: 700,
+                boxShadow: 'none',
+                backgroundColor:
+                  publishMode === 'draft'
+                    ? isDark
+                      ? 'rgba(255,255,255,0.1)'
+                      : 'rgba(0,0,0,0.07)'
+                    : isDark
+                      ? '#a6e2f5'
+                      : '#1c1445',
+                color:
+                  publishMode === 'draft'
+                    ? isDark
+                      ? '#d0caeb'
+                      : '#5c548a'
+                    : isDark
+                      ? '#1c1445'
+                      : '#ffffff',
+                '&:hover': { boxShadow: 'none', opacity: 0.9 },
+                '&.Mui-disabled': { opacity: 0.4 },
+              }}
+            >
+              {publishMode === 'draft'
+                ? 'Save as Draft'
+                : publishMode === 'schedule'
+                  ? scheduleTime
+                    ? `Schedule for ${scheduleTime}`
+                    : 'Select a time first'
+                  : isEditMode
+                    ? 'Save Changes'
+                    : t.btnPublish}
+            </Button>
           </Box>
         </Box>
       </Box>
@@ -1946,7 +2721,12 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                 value={postLanguage}
                 onChange={(e) => {
                   setPostLanguage(e.target.value as any);
-                  if (errors.language) setErrors((prev) => { const n = { ...prev }; delete n.language; return n; });
+                  if (errors.language)
+                    setErrors((prev) => {
+                      const n = { ...prev };
+                      delete n.language;
+                      return n;
+                    });
                 }}
                 error={!!errors.language}
                 helperText={errors.language || ''}
@@ -1955,32 +2735,43 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     color: isDark ? '#ffffff' : '#1c1445',
                     backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
                     borderRadius: '10px',
-                    '& fieldset': { borderColor: errors.language ? '#f44336' : (isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)') },
-                    '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)' },
-                    '&.Mui-focused fieldset': { borderColor: errors.language ? '#f44336' : (isDark ? '#a6e2f5' : '#1c1445') },
+                    '& fieldset': {
+                      borderColor: errors.language
+                        ? '#f44336'
+                        : isDark
+                          ? 'rgba(255,255,255,0.12)'
+                          : 'rgba(0,0,0,0.15)',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: errors.language ? '#f44336' : isDark ? '#a6e2f5' : '#1c1445',
+                    },
                   },
-                  '& .MuiInputLabel-root': { color: errors.language ? '#f44336' : (isDark ? '#d0caeb' : '#5c548a') },
+                  '& .MuiInputLabel-root': {
+                    color: errors.language ? '#f44336' : isDark ? '#d0caeb' : '#5c548a',
+                  },
                   '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
                 }}
               >
-                {apiLanguages.length > 0 ? (
-                  apiLanguages.map((lang, idx) => (
-                    <MenuItem key={`${lang.code}-${idx}`} value={lang.code}>
-                      {lang.name}
-                    </MenuItem>
-                  ))
-                ) : (
-                  (['en', 'te', 'hi', 'ml'] as const).map((langCode) => {
-                    const labelKey = `tab${langCode.charAt(0).toUpperCase()}${langCode.slice(1)}` as keyof typeof t;
-                    const label = t[labelKey];
-                    const labelStr = typeof label === 'string' ? label : langCode.toUpperCase();
-                    return (
-                      <MenuItem key={langCode} value={langCode}>
-                        {labelStr}
+                {apiLanguages.length > 0
+                  ? apiLanguages.map((lang, idx) => (
+                      <MenuItem key={`${lang.code}-${idx}`} value={lang.code}>
+                        {lang.name}
                       </MenuItem>
-                    );
-                  })
-                )}
+                    ))
+                  : (['en', 'te', 'hi', 'ml'] as const).map((langCode) => {
+                      const labelKey =
+                        `tab${langCode.charAt(0).toUpperCase()}${langCode.slice(1)}` as keyof typeof t;
+                      const label = t[labelKey];
+                      const labelStr = typeof label === 'string' ? label : langCode.toUpperCase();
+                      return (
+                        <MenuItem key={langCode} value={langCode}>
+                          {labelStr}
+                        </MenuItem>
+                      );
+                    })}
               </TextField>
             </Box>
           </Grid>
@@ -1991,7 +2782,13 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
               select
               fullWidth
               size="small"
-              label={isOptionalForPostType(type) ? (typeof t.lblTags === 'string' ? t.lblTags.replace(/\s*\*$/, '') : t.lblTags) : t.lblTags}
+              label={
+                isOptionalForPostType(type)
+                  ? typeof t.lblTags === 'string'
+                    ? t.lblTags.replace(/\s*\*$/, '')
+                    : t.lblTags
+                  : t.lblTags
+              }
               SelectProps={{
                 multiple: true,
                 value: selectedTags,
@@ -2013,9 +2810,22 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         t.labelHi === val ||
                         t.labelMl === val
                     );
-                    const label = (language === 'te' ? tag?.labelTe : language === 'hi' ? tag?.labelHi : language === 'ml' ? tag?.labelMl : tag?.labelEn) || tag?.labelEn || tag?.key || (typeof val === 'string' && isNaN(Number(val)) ? val : '');
+                    const label =
+                      (language === 'te'
+                        ? tag?.labelTe
+                        : language === 'hi'
+                          ? tag?.labelHi
+                          : language === 'ml'
+                            ? tag?.labelMl
+                            : tag?.labelEn) ||
+                      tag?.labelEn ||
+                      tag?.key ||
+                      (typeof val === 'string' && isNaN(Number(val)) ? val : '');
                     const key = tag?.key || String(val);
-                    if (label && !resolvedItems.some((item) => item.key === key || item.label === label)) {
+                    if (
+                      label &&
+                      !resolvedItems.some((item) => item.key === key || item.label === label)
+                    ) {
                       resolvedItems.push({ key, label });
                     }
                   });
@@ -2030,7 +2840,9 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                             borderRadius: '6px',
                             height: '20px',
                             fontSize: '0.72rem',
-                            backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.1)',
+                            backgroundColor: isDark
+                              ? 'rgba(166,226,245,0.25)'
+                              : 'rgba(28,20,69,0.1)',
                             color: isDark ? '#a6e2f5' : '#1c1445',
                           }}
                         />
@@ -2046,8 +2858,16 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                   color: isDark ? '#ffffff' : '#1c1445',
                   backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
                   borderRadius: '10px',
-                  '& fieldset': { borderColor: errors.tags ? '#f44336' : (isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)') },
-                  '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)' },
+                  '& fieldset': {
+                    borderColor: errors.tags
+                      ? '#f44336'
+                      : isDark
+                        ? 'rgba(255,255,255,0.12)'
+                        : 'rgba(0,0,0,0.15)',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
+                  },
                   '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
                 },
                 '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
@@ -2056,10 +2876,19 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
             >
               <MenuItem value="all">
                 <Checkbox checked={selectedTags.length === dynamicTags.length} size="small" />
-                <Typography variant="body2" sx={{ fontWeight: 600 }}>Select All</Typography>
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                  Select All
+                </Typography>
               </MenuItem>
               {dynamicTags.map((tag, idx) => {
-                const label = language === 'te' ? tag.labelTe : language === 'hi' ? tag.labelHi : language === 'ml' ? tag.labelMl : tag.labelEn;
+                const label =
+                  language === 'te'
+                    ? tag.labelTe
+                    : language === 'hi'
+                      ? tag.labelHi
+                      : language === 'ml'
+                        ? tag.labelMl
+                        : tag.labelEn;
                 return (
                   <MenuItem key={`tag-${tag.id ?? tag.key}-${idx}`} value={tag.key}>
                     <Checkbox checked={selectedTags.includes(tag.key)} size="small" />
@@ -2076,14 +2905,23 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
               select
               fullWidth
               size="small"
-              label={isOptionalForPostType(type) ? (typeof t.lblLocation === 'string' ? t.lblLocation.replace(/\s*\*$/, '') : t.lblLocation) : t.lblLocation}
+              label={
+                isOptionalForPostType(type)
+                  ? typeof t.lblLocation === 'string'
+                    ? t.lblLocation.replace(/\s*\*$/, '')
+                    : t.lblLocation
+                  : t.lblLocation
+              }
               SelectProps={{
                 multiple: true,
                 value: location,
                 onChange: (e) => handleLocationChange(e.target.value as string[]),
                 renderValue: (selected) => {
                   const selectedArr = (selected as string[]) || [];
-                  if (selectedArr.length === dynamicLocations.length && dynamicLocations.length > 0) {
+                  if (
+                    selectedArr.length === dynamicLocations.length &&
+                    dynamicLocations.length > 0
+                  ) {
                     return <Chip label="All Locations" size="small" sx={{ borderRadius: '6px' }} />;
                   }
                   const resolvedItems: Array<{ key: string; label: string }> = [];
@@ -2098,9 +2936,22 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         l.labelHi === val ||
                         l.labelMl === val
                     );
-                    const label = (language === 'te' ? loc?.labelTe : language === 'hi' ? loc?.labelHi : language === 'ml' ? loc?.labelMl : loc?.labelEn) || loc?.labelEn || loc?.key || (typeof val === 'string' && isNaN(Number(val)) ? val : '');
+                    const label =
+                      (language === 'te'
+                        ? loc?.labelTe
+                        : language === 'hi'
+                          ? loc?.labelHi
+                          : language === 'ml'
+                            ? loc?.labelMl
+                            : loc?.labelEn) ||
+                      loc?.labelEn ||
+                      loc?.key ||
+                      (typeof val === 'string' && isNaN(Number(val)) ? val : '');
                     const key = loc?.key || String(val);
-                    if (label && !resolvedItems.some((item) => item.key === key || item.label === label)) {
+                    if (
+                      label &&
+                      !resolvedItems.some((item) => item.key === key || item.label === label)
+                    ) {
                       resolvedItems.push({ key, label });
                     }
                   });
@@ -2115,7 +2966,9 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                             borderRadius: '6px',
                             height: '20px',
                             fontSize: '0.72rem',
-                            backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.1)',
+                            backgroundColor: isDark
+                              ? 'rgba(166,226,245,0.25)'
+                              : 'rgba(28,20,69,0.1)',
                             color: isDark ? '#a6e2f5' : '#1c1445',
                           }}
                         />
@@ -2131,8 +2984,16 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                   color: isDark ? '#ffffff' : '#1c1445',
                   backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
                   borderRadius: '10px',
-                  '& fieldset': { borderColor: errors.location ? '#f44336' : (isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)') },
-                  '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)' },
+                  '& fieldset': {
+                    borderColor: errors.location
+                      ? '#f44336'
+                      : isDark
+                        ? 'rgba(255,255,255,0.12)'
+                        : 'rgba(0,0,0,0.15)',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
+                  },
                   '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
                 },
                 '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
@@ -2140,11 +3001,29 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
               }}
             >
               <MenuItem value="all">
-                <Checkbox checked={dynamicLocations.length > 0 && dynamicLocations.every((loc) => isLocationChecked(loc))} size="small" />
-                <Typography variant="body2" sx={{ fontWeight: 600 }}>Select All</Typography>
+                <Checkbox
+                  checked={
+                    dynamicLocations.length > 0 &&
+                    dynamicLocations.every((loc) => isLocationChecked(loc))
+                  }
+                  size="small"
+                />
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                  Select All
+                </Typography>
               </MenuItem>
               {dynamicLocations.map((loc, idx) => {
-                const label = (language === 'te' ? loc.labelTe : language === 'hi' ? loc.labelHi : language === 'ml' ? loc.labelMl : loc.labelEn) || loc.labelEn || loc.key || `Location ${idx + 1}`;
+                const label =
+                  (language === 'te'
+                    ? loc.labelTe
+                    : language === 'hi'
+                      ? loc.labelHi
+                      : language === 'ml'
+                        ? loc.labelMl
+                        : loc.labelEn) ||
+                  loc.labelEn ||
+                  loc.key ||
+                  `Location ${idx + 1}`;
                 return (
                   <MenuItem key={`loc-${loc.id ?? loc.key}-${idx}`} value={loc.key}>
                     <Checkbox checked={isLocationChecked(loc)} size="small" />
@@ -2168,8 +3047,13 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                 onChange: (e) => handleMoreFollowChange(e.target.value as string[]),
                 renderValue: (selected) => {
                   const selectedArr = (selected as string[]) || [];
-                  if (selectedArr.length === dynamicMoreFollow.length && dynamicMoreFollow.length > 0) {
-                    return <Chip label="All More Follow" size="small" sx={{ borderRadius: '6px' }} />;
+                  if (
+                    selectedArr.length === dynamicMoreFollow.length &&
+                    dynamicMoreFollow.length > 0
+                  ) {
+                    return (
+                      <Chip label="All More Follow" size="small" sx={{ borderRadius: '6px' }} />
+                    );
                   }
                   const resolvedItems: Array<{ key: string; label: string }> = [];
                   selectedArr.forEach((val) => {
@@ -2183,9 +3067,22 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         m.labelHi === val ||
                         m.labelMl === val
                     );
-                    const label = (language === 'te' ? item?.labelTe : language === 'hi' ? item?.labelHi : language === 'ml' ? item?.labelMl : item?.labelEn) || item?.labelEn || item?.key || (typeof val === 'string' && isNaN(Number(val)) ? val : '');
+                    const label =
+                      (language === 'te'
+                        ? item?.labelTe
+                        : language === 'hi'
+                          ? item?.labelHi
+                          : language === 'ml'
+                            ? item?.labelMl
+                            : item?.labelEn) ||
+                      item?.labelEn ||
+                      item?.key ||
+                      (typeof val === 'string' && isNaN(Number(val)) ? val : '');
                     const key = item?.key || String(val);
-                    if (label && !resolvedItems.some((it) => it.key === key || it.label === label)) {
+                    if (
+                      label &&
+                      !resolvedItems.some((it) => it.key === key || it.label === label)
+                    ) {
                       resolvedItems.push({ key, label });
                     }
                   });
@@ -2200,7 +3097,9 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                             borderRadius: '6px',
                             height: '20px',
                             fontSize: '0.72rem',
-                            backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.1)',
+                            backgroundColor: isDark
+                              ? 'rgba(166,226,245,0.25)'
+                              : 'rgba(28,20,69,0.1)',
                             color: isDark ? '#a6e2f5' : '#1c1445',
                           }}
                         />
@@ -2214,19 +3113,38 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                   color: isDark ? '#ffffff' : '#1c1445',
                   backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
                   borderRadius: '10px',
-                  '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)' },
-                  '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)' },
+                  '& fieldset': {
+                    borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
+                  },
                   '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
                 },
                 '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
               }}
             >
               <MenuItem value="all">
-                <Checkbox checked={dynamicMoreFollow.length > 0 && selectedMoreFollowTags.length === dynamicMoreFollow.length} size="small" />
-                <Typography variant="body2" sx={{ fontWeight: 600 }}>Select All</Typography>
+                <Checkbox
+                  checked={
+                    dynamicMoreFollow.length > 0 &&
+                    selectedMoreFollowTags.length === dynamicMoreFollow.length
+                  }
+                  size="small"
+                />
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                  Select All
+                </Typography>
               </MenuItem>
               {dynamicMoreFollow.map((item, idx) => {
-                const label = language === 'te' ? item.labelTe : language === 'hi' ? item.labelHi : language === 'ml' ? item.labelMl : item.labelEn;
+                const label =
+                  language === 'te'
+                    ? item.labelTe
+                    : language === 'hi'
+                      ? item.labelHi
+                      : language === 'ml'
+                        ? item.labelMl
+                        : item.labelEn;
                 return (
                   <MenuItem key={`morefollow-${item.id ?? item.key}-${idx}`} value={item.key}>
                     <Checkbox checked={selectedMoreFollowTags.includes(item.key)} size="small" />
@@ -2252,38 +3170,51 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     color: isDark ? '#ffffff' : '#1c1445',
                     backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
                     borderRadius: '10px',
-                    '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)' },
-                    '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)' },
+                    '& fieldset': {
+                      borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
+                    },
                     '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
                   },
                   '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
                 }}
               >
-                {apiPostTypes.length > 0 ? (
-                  apiPostTypes.map((pt, idx) => (
-                    <MenuItem key={`pt-${pt.id ?? pt.name}-${idx}`} value={pt.name}>
-                      {pt.name}
-                    </MenuItem>
-                  ))
-                ) : (
-                  ['Standard', 'Image', 'Image Ad', 'Gallery', 'Video', 'Reel', 'Podcast', 'BigTvSpecial'].map((ptName) => (
-                    <MenuItem key={`ptName-${ptName}`} value={ptName}>
-                      {ptName}
-                    </MenuItem>
-                  ))
-                )}
+                {apiPostTypes.length > 0
+                  ? apiPostTypes.map((pt, idx) => (
+                      <MenuItem key={`pt-${pt.id ?? pt.name}-${idx}`} value={pt.name}>
+                        {pt.name}
+                      </MenuItem>
+                    ))
+                  : [
+                      'Standard',
+                      'Image',
+                      'Image Ad',
+                      'Gallery',
+                      'Video',
+                      'Reel',
+                      'Podcast',
+                      'BigTvSpecial',
+                    ].map((ptName) => (
+                      <MenuItem key={`ptName-${ptName}`} value={ptName}>
+                        {ptName}
+                      </MenuItem>
+                    ))}
               </TextField>
               <IconButton
                 onClick={handleClose}
                 sx={{
                   color: isDark ? '#d0caeb' : '#5c548a',
-                  border: isDark ? '1px solid rgba(255,255,255,0.12)' : '1px solid rgba(0,0,0,0.15)',
+                  border: isDark
+                    ? '1px solid rgba(255,255,255,0.12)'
+                    : '1px solid rgba(0,0,0,0.15)',
                   borderRadius: '10px',
                   p: '8px',
                   backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
                   '&:hover': {
                     backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)',
-                  }
+                  },
                 }}
               >
                 <Close />
@@ -2292,7 +3223,9 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
           </Grid>
         </Grid>
 
-        <Divider sx={{ mb: 3, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+        <Divider
+          sx={{ mb: 3, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+        />
 
         {/* Main 2-column Grid Split */}
         <Grid container spacing={3}>
@@ -2302,18 +3235,43 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
               sx={{
                 p: 2,
                 borderRadius: '12px',
-                border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
+                border: isDark
+                  ? '1px solid rgba(255, 255, 255, 0.08)'
+                  : '1px solid rgba(0, 0, 0, 0.08)',
                 backgroundColor: isDark ? 'rgba(255, 255, 255, 0.02)' : '#fbfbfb',
                 height: 'auto',
               }}
             >
-              <Typography variant="body2" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700, mb: 1.5, display: 'flex', alignItems: 'center', gap: 1 }}>
-                <CategoryIcon sx={{ fontSize: '1.1rem' }} /> {isOptionalForPostType(type) ? (typeof t.lblCategories === 'string' ? t.lblCategories.replace(/\s*\*$/, '') : t.lblCategories) : t.lblCategories}
+              <Typography
+                variant="body2"
+                sx={{
+                  color: isDark ? '#a6e2f5' : '#1c1445',
+                  fontWeight: 700,
+                  mb: 1.5,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1,
+                }}
+              >
+                <CategoryIcon sx={{ fontSize: '1.1rem' }} />{' '}
+                {isOptionalForPostType(type)
+                  ? typeof t.lblCategories === 'string'
+                    ? t.lblCategories.replace(/\s*\*$/, '')
+                    : t.lblCategories
+                  : t.lblCategories}
               </Typography>
-              <Divider sx={{ mb: 1.5, borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }} />
-              
+              <Divider
+                sx={{
+                  mb: 1.5,
+                  borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
+                }}
+              />
+
               {errors.categories && (
-                <Typography variant="caption" sx={{ color: '#f44336', fontWeight: 600, display: 'block', mb: 1 }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: '#f44336', fontWeight: 600, display: 'block', mb: 1 }}
+                >
                   {errors.categories}
                 </Typography>
               )}
@@ -2323,8 +3281,14 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={dynamicCategories.length > 0 && dynamicCategories.every((cat) => isCategoryChecked(cat))}
-                        indeterminate={dynamicCategories.some((cat) => isCategoryChecked(cat)) && !dynamicCategories.every((cat) => isCategoryChecked(cat))}
+                        checked={
+                          dynamicCategories.length > 0 &&
+                          dynamicCategories.every((cat) => isCategoryChecked(cat))
+                        }
+                        indeterminate={
+                          dynamicCategories.some((cat) => isCategoryChecked(cat)) &&
+                          !dynamicCategories.every((cat) => isCategoryChecked(cat))
+                        }
                         onChange={() => {
                           if (dynamicCategories.every((cat) => isCategoryChecked(cat))) {
                             setSelectedCategories([]);
@@ -2341,15 +3305,34 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                       />
                     }
                     label={
-                      <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#1c1445', fontWeight: 700, fontSize: '0.82rem' }}>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: isDark ? '#d0caeb' : '#1c1445',
+                          fontWeight: 700,
+                          fontSize: '0.82rem',
+                        }}
+                      >
                         Select All
                       </Typography>
                     }
                     sx={{ mb: 0.5 }}
                   />
-                  <Divider sx={{ my: 1, borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)' }} />
+                  <Divider
+                    sx={{
+                      my: 1,
+                      borderColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
+                    }}
+                  />
                   {dynamicCategories.map((cat, idx) => {
-                    const label = language === 'te' ? cat.labelTe : language === 'hi' ? cat.labelHi : language === 'ml' ? cat.labelMl : cat.labelEn;
+                    const label =
+                      language === 'te'
+                        ? cat.labelTe
+                        : language === 'hi'
+                          ? cat.labelHi
+                          : language === 'ml'
+                            ? cat.labelMl
+                            : cat.labelEn;
                     return (
                       <FormControlLabel
                         key={`cat-${cat.id ?? cat.key}-${idx}`}
@@ -2366,7 +3349,14 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           />
                         }
                         label={
-                          <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#1c1445', fontWeight: 500, fontSize: '0.82rem' }}>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: isDark ? '#d0caeb' : '#1c1445',
+                              fontWeight: 500,
+                              fontSize: '0.82rem',
+                            }}
+                          >
                             {label}
                           </Typography>
                         }
@@ -2380,8 +3370,23 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
               {/* Theme Color Picker - Shown ONLY for BigTvSpecial post type */}
               {isBigTvSpecial && (
                 <Box sx={{ mt: 2 }}>
-                  <Divider sx={{ mb: 1.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
-                  <Typography variant="body2" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700, mb: 1, display: 'flex', alignItems: 'center', gap: 0.8 }}>
+                  <Divider
+                    sx={{
+                      mb: 1.5,
+                      borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
+                    }}
+                  />
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: isDark ? '#a6e2f5' : '#1c1445',
+                      fontWeight: 700,
+                      mb: 1,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 0.8,
+                    }}
+                  >
                     🎨 {t.lblColorCode}
                   </Typography>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
@@ -2389,12 +3394,16 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                       component="input"
                       type="color"
                       value={colorCode || '#FF5722'}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setColorCode(e.target.value.toUpperCase())}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setColorCode(e.target.value.toUpperCase())
+                      }
                       sx={{
                         width: '38px',
                         height: '38px',
                         padding: 0,
-                        border: isDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid rgba(0,0,0,0.2)',
+                        border: isDark
+                          ? '1px solid rgba(255,255,255,0.2)'
+                          : '1px solid rgba(0,0,0,0.2)',
                         borderRadius: '8px',
                         cursor: 'pointer',
                         backgroundColor: 'transparent',
@@ -2415,15 +3424,28 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           borderRadius: '8px',
                           fontSize: '0.85rem',
                           fontFamily: 'monospace',
-                          '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)' },
-                          '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)' },
+                          '& fieldset': {
+                            borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)',
+                          },
+                          '&:hover fieldset': {
+                            borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
+                          },
                           '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
                         },
                       }}
                     />
                   </Box>
                   <Box sx={{ display: 'flex', gap: 0.8, flexWrap: 'wrap' }}>
-                    {['#FF5722', '#E91E63', '#9C27B0', '#2196F3', '#009688', '#4CAF50', '#FFC107', '#1C1445'].map((preset) => (
+                    {[
+                      '#FF5722',
+                      '#E91E63',
+                      '#9C27B0',
+                      '#2196F3',
+                      '#009688',
+                      '#4CAF50',
+                      '#FFC107',
+                      '#1C1445',
+                    ].map((preset) => (
                       <Box
                         key={preset}
                         onClick={() => setColorCode(preset)}
@@ -2433,8 +3455,12 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           borderRadius: '50%',
                           backgroundColor: preset,
                           cursor: 'pointer',
-                          border: colorCode?.toUpperCase() === preset ? '2px solid #ffffff' : '1px solid rgba(0,0,0,0.2)',
-                          boxShadow: colorCode?.toUpperCase() === preset ? '0 0 0 2px #a6e2f5' : 'none',
+                          border:
+                            colorCode?.toUpperCase() === preset
+                              ? '2px solid #ffffff'
+                              : '1px solid rgba(0,0,0,0.2)',
+                          boxShadow:
+                            colorCode?.toUpperCase() === preset ? '0 0 0 2px #a6e2f5' : 'none',
                           transition: 'transform 0.15s ease',
                           '&:hover': { transform: 'scale(1.15)' },
                         }}
@@ -2446,8 +3472,23 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
 
               {/*    Publish Mode Selector    */}
               <Box sx={{ mt: 2 }}>
-                <Divider sx={{ mb: 1.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
-                <Typography variant="body2" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700, mb: 1, display: 'flex', alignItems: 'center', gap: 0.8 }}>
+                <Divider
+                  sx={{
+                    mb: 1.5,
+                    borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
+                  }}
+                />
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: isDark ? '#a6e2f5' : '#1c1445',
+                    fontWeight: 700,
+                    mb: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 0.8,
+                  }}
+                >
                   Publish Mode
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.8 }}>
@@ -2458,26 +3499,61 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         key={mode}
                         onClick={() => setPublishMode(mode)}
                         sx={{
-                          px: 1.2, py: 0.7, borderRadius: '10px', cursor: 'pointer',
+                          px: 1.2,
+                          py: 0.7,
+                          borderRadius: '10px',
+                          cursor: 'pointer',
                           border: isSelected
                             ? `2px solid ${isDark ? '#a6e2f5' : '#1c1445'}`
-                            : isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+                            : isDark
+                              ? '1px solid rgba(255,255,255,0.1)'
+                              : '1px solid rgba(0,0,0,0.1)',
                           backgroundColor: isSelected
-                            ? (isDark ? 'rgba(166,226,245,0.1)' : 'rgba(28,20,69,0.06)')
-                            : (isDark ? 'rgba(255,255,255,0.02)' : '#ffffff'),
-                          color: isSelected ? (isDark ? '#a6e2f5' : '#1c1445') : (isDark ? '#d0caeb' : '#5c548a'),
-                          fontSize: '0.8rem', fontWeight: isSelected ? 700 : 500,
-                          transition: 'all 0.18s ease', userSelect: 'none',
-                          display: 'flex', alignItems: 'center', gap: 0.8,
+                            ? isDark
+                              ? 'rgba(166,226,245,0.1)'
+                              : 'rgba(28,20,69,0.06)'
+                            : isDark
+                              ? 'rgba(255,255,255,0.02)'
+                              : '#ffffff',
+                          color: isSelected
+                            ? isDark
+                              ? '#a6e2f5'
+                              : '#1c1445'
+                            : isDark
+                              ? '#d0caeb'
+                              : '#5c548a',
+                          fontSize: '0.8rem',
+                          fontWeight: isSelected ? 700 : 500,
+                          transition: 'all 0.18s ease',
+                          userSelect: 'none',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 0.8,
                           '&:hover': {
                             borderColor: isDark ? 'rgba(166,226,245,0.4)' : 'rgba(28,20,69,0.35)',
-                            backgroundColor: isDark ? 'rgba(166,226,245,0.06)' : 'rgba(28,20,69,0.03)',
+                            backgroundColor: isDark
+                              ? 'rgba(166,226,245,0.06)'
+                              : 'rgba(28,20,69,0.03)',
                           },
                         }}
                       >
                         {labels[mode]}
                         {mode === 'now' && (
-                          <Box component="span" sx={{ ml: 'auto', fontSize: '0.65rem', backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.08)', color: isDark ? '#a6e2f5' : '#1c1445', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 700 }}>
+                          <Box
+                            component="span"
+                            sx={{
+                              ml: 'auto',
+                              fontSize: '0.65rem',
+                              backgroundColor: isDark
+                                ? 'rgba(166,226,245,0.15)'
+                                : 'rgba(28,20,69,0.08)',
+                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              px: 0.8,
+                              py: 0.2,
+                              borderRadius: '4px',
+                              fontWeight: 700,
+                            }}
+                          >
                             DEFAULT
                           </Box>
                         )}
@@ -2488,8 +3564,27 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
 
                 {/* Schedule time picker */}
                 {publishMode === 'schedule' && (
-                  <Box sx={{ mt: 1.5, p: 1.5, borderRadius: '10px', backgroundColor: isDark ? 'rgba(166,226,245,0.05)' : 'rgba(28,20,69,0.03)', border: isDark ? '1px solid rgba(166,226,245,0.15)' : '1px solid rgba(28,20,69,0.1)' }}>
-                    <Typography variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600, display: 'block', mb: 0.8, fontSize: '0.74rem' }}>
+                  <Box
+                    sx={{
+                      mt: 1.5,
+                      p: 1.5,
+                      borderRadius: '10px',
+                      backgroundColor: isDark ? 'rgba(166,226,245,0.05)' : 'rgba(28,20,69,0.03)',
+                      border: isDark
+                        ? '1px solid rgba(166,226,245,0.15)'
+                        : '1px solid rgba(28,20,69,0.1)',
+                    }}
+                  >
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        fontWeight: 600,
+                        display: 'block',
+                        mb: 0.8,
+                        fontSize: '0.74rem',
+                      }}
+                    >
                       Today only 📅 {todayDate}
                     </Typography>
                     <Box
@@ -2503,17 +3598,43 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         if (val >= minScheduleTime && val <= '23:59') setScheduleTime(val);
                       }}
                       sx={{
-                        width: '100%', padding: '7px 10px', borderRadius: '8px',
-                        border: isDark ? '1px solid rgba(255,255,255,0.18)' : '1px solid rgba(0,0,0,0.18)',
+                        width: '100%',
+                        padding: '7px 10px',
+                        borderRadius: '8px',
+                        border: isDark
+                          ? '1px solid rgba(255,255,255,0.18)'
+                          : '1px solid rgba(0,0,0,0.18)',
                         backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#ffffff',
-                        color: isDark ? '#ffffff' : '#1c1445', fontSize: '0.85rem', outline: 'none', cursor: 'pointer',
+                        color: isDark ? '#ffffff' : '#1c1445',
+                        fontSize: '0.85rem',
+                        outline: 'none',
+                        cursor: 'pointer',
                         colorScheme: isDark ? 'dark' : 'light',
                         fontFamily: 'system-ui, -apple-system, sans-serif',
-                        '&::-webkit-calendar-picker-indicator': { filter: isDark ? 'invert(1)' : 'none', cursor: 'pointer' },
+                        '&::-webkit-calendar-picker-indicator': {
+                          filter: isDark ? 'invert(1)' : 'none',
+                          cursor: 'pointer',
+                        },
                       }}
                     />
-                    <Typography variant="caption" sx={{ display: 'block', mt: 0.6, fontSize: '0.7rem', color: scheduleTime ? (isDark ? '#a6e2f5' : '#1c1445') : (isDark ? '#d0caeb' : '#5c548a') }}>
-                      {scheduleTime ? ` Will publish at ${scheduleTime}` : `嚙� Pick a time: ${minScheduleTime} 嚙� 23:59`}
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        display: 'block',
+                        mt: 0.6,
+                        fontSize: '0.7rem',
+                        color: scheduleTime
+                          ? isDark
+                            ? '#a6e2f5'
+                            : '#1c1445'
+                          : isDark
+                            ? '#d0caeb'
+                            : '#5c548a',
+                      }}
+                    >
+                      {scheduleTime
+                        ? ` Will publish at ${scheduleTime}`
+                        : `嚙� Pick a time: ${minScheduleTime} 嚙� 23:59`}
                     </Typography>
                   </Box>
                 )}
@@ -2521,7 +3642,12 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
 
               {/* Is Sticky Post Toggle */}
               <Box sx={{ mt: 2 }}>
-                <Divider sx={{ mb: 1.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+                <Divider
+                  sx={{
+                    mb: 1.5,
+                    borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
+                  }}
+                />
                 <Box
                   sx={{
                     display: 'flex',
@@ -2530,16 +3656,31 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     p: 1.2,
                     borderRadius: '10px',
                     backgroundColor: isSticky
-                      ? (isDark ? 'rgba(166,226,245,0.08)' : 'rgba(28,20,69,0.06)')
-                      : (isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)'),
+                      ? isDark
+                        ? 'rgba(166,226,245,0.08)'
+                        : 'rgba(28,20,69,0.06)'
+                      : isDark
+                        ? 'rgba(255,255,255,0.03)'
+                        : 'rgba(0,0,0,0.02)',
                     border: isSticky
-                      ? (isDark ? '1px solid rgba(166,226,245,0.25)' : '1px solid rgba(28,20,69,0.2)')
-                      : (isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.07)'),
+                      ? isDark
+                        ? '1px solid rgba(166,226,245,0.25)'
+                        : '1px solid rgba(28,20,69,0.2)'
+                      : isDark
+                        ? '1px solid rgba(255,255,255,0.06)'
+                        : '1px solid rgba(0,0,0,0.07)',
                     transition: 'all 0.2s ease',
                   }}
                 >
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Typography variant="body2" sx={{ fontSize: '0.82rem', fontWeight: 600, color: isDark ? '#d0caeb' : '#1c1445' }}>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontSize: '0.82rem',
+                        fontWeight: 600,
+                        color: isDark ? '#d0caeb' : '#1c1445',
+                      }}
+                    >
                       �� {t.lblIsSticky}
                     </Typography>
                   </Box>
@@ -2561,7 +3702,12 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
 
               {/* Is Home Post Toggle */}
               <Box sx={{ mt: 2 }}>
-                <Divider sx={{ mb: 1.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+                <Divider
+                  sx={{
+                    mb: 1.5,
+                    borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
+                  }}
+                />
                 <Box
                   sx={{
                     display: 'flex',
@@ -2570,16 +3716,31 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     p: 1.2,
                     borderRadius: '10px',
                     backgroundColor: isHomePost
-                      ? (isDark ? 'rgba(166,226,245,0.08)' : 'rgba(28,20,69,0.06)')
-                      : (isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)'),
+                      ? isDark
+                        ? 'rgba(166,226,245,0.08)'
+                        : 'rgba(28,20,69,0.06)'
+                      : isDark
+                        ? 'rgba(255,255,255,0.03)'
+                        : 'rgba(0,0,0,0.02)',
                     border: isHomePost
-                      ? (isDark ? '1px solid rgba(166,226,245,0.25)' : '1px solid rgba(28,20,69,0.2)')
-                      : (isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.07)'),
+                      ? isDark
+                        ? '1px solid rgba(166,226,245,0.25)'
+                        : '1px solid rgba(28,20,69,0.2)'
+                      : isDark
+                        ? '1px solid rgba(255,255,255,0.06)'
+                        : '1px solid rgba(0,0,0,0.07)',
                     transition: 'all 0.2s ease',
                   }}
                 >
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Typography variant="body2" sx={{ fontSize: '0.82rem', fontWeight: 600, color: isDark ? '#d0caeb' : '#1c1445' }}>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontSize: '0.82rem',
+                        fontWeight: 600,
+                        color: isDark ? '#d0caeb' : '#1c1445',
+                      }}
+                    >
                       🏠 {t.lblIsHomePost}
                     </Typography>
                   </Box>
@@ -2600,90 +3761,157 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
               </Box>
 
               {/* Is Web Post Toggle - Hidden for BulletPost, StandardLink, and BigBlackStanded */}
-              {!type.toLowerCase().includes('bullet') && !type.toLowerCase().includes('link') && !type.toLowerCase().includes('bigblack') && (
-                <>
-                  <Box sx={{ mt: 2 }}>
-                <Divider sx={{ mb: 1.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    p: 1.2,
-                    borderRadius: '10px',
-                    backgroundColor: isWebPost
-                      ? (isDark ? 'rgba(166,226,245,0.08)' : 'rgba(28,20,69,0.06)')
-                      : (isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)'),
-                    border: isWebPost
-                      ? (isDark ? '1px solid rgba(166,226,245,0.25)' : '1px solid rgba(28,20,69,0.2)')
-                      : (isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.07)'),
-                    transition: 'all 0.2s ease',
-                  }}
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Typography variant="body2" sx={{ fontSize: '0.82rem', fontWeight: 600, color: isDark ? '#d0caeb' : '#1c1445' }}>
-                      �� {t.lblIsWebPost}
-                    </Typography>
-                  </Box>
-                  <Switch
-                    checked={isWebPost}
-                    onChange={(e) => setIsWebPost(e.target.checked)}
-                    size="small"
-                    sx={{
-                      '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
-                      },
-                      '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                      },
-                    }}
-                  />
-                </Box>
-              </Box>
+              {!type.toLowerCase().includes('bullet') &&
+                !type.toLowerCase().includes('link') &&
+                !type.toLowerCase().includes('bigblack') && (
+                  <>
+                    <Box sx={{ mt: 2 }}>
+                      <Divider
+                        sx={{
+                          mb: 1.5,
+                          borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
+                        }}
+                      />
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          p: 1.2,
+                          borderRadius: '10px',
+                          backgroundColor: isWebPost
+                            ? isDark
+                              ? 'rgba(166,226,245,0.08)'
+                              : 'rgba(28,20,69,0.06)'
+                            : isDark
+                              ? 'rgba(255,255,255,0.03)'
+                              : 'rgba(0,0,0,0.02)',
+                          border: isWebPost
+                            ? isDark
+                              ? '1px solid rgba(166,226,245,0.25)'
+                              : '1px solid rgba(28,20,69,0.2)'
+                            : isDark
+                              ? '1px solid rgba(255,255,255,0.06)'
+                              : '1px solid rgba(0,0,0,0.07)',
+                          transition: 'all 0.2s ease',
+                        }}
+                      >
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              fontSize: '0.82rem',
+                              fontWeight: 600,
+                              color: isDark ? '#d0caeb' : '#1c1445',
+                            }}
+                          >
+                            �� {t.lblIsWebPost}
+                          </Typography>
+                        </Box>
+                        <Switch
+                          checked={isWebPost}
+                          onChange={(e) => setIsWebPost(e.target.checked)}
+                          size="small"
+                          sx={{
+                            '& .MuiSwitch-switchBase.Mui-checked': {
+                              color: isDark ? '#a6e2f5' : '#1c1445',
+                            },
+                            '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                            },
+                          }}
+                        />
+                      </Box>
+                    </Box>
 
-              {/* Web URL �� shown only when Web Post is ON */}
-              {isWebPost && (
-                <Box sx={{ mt: 1.5 }}>
-                  <TextField
-                    fullWidth
-                    size="small"
-                    label={t.lblWebUrl}
-                    placeholder={t.phWebUrl}
-                    value={webUrl}
-                    onChange={(e) => {
-                      setWebUrl(e.target.value);
-                      if (errors.webUrl) setErrors((prev) => { const n = { ...prev }; delete n.webUrl; return n; });
-                    }}
-                    error={!!errors.webUrl}
-                    helperText={errors.webUrl || ''}
-                    InputProps={{
-                      startAdornment: (
-                        <Box component="span" sx={{ color: isDark ? '#a6e2f5' : '#5c548a', mr: 0.5, fontSize: '0.9rem' }}>��</Box>
-                      ),
-                    }}
-                    sx={{
-                      '& .MuiOutlinedInput-root': {
-                        color: isDark ? '#ffffff' : '#1c1445',
-                        backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
-                        borderRadius: '10px',
-                        '& fieldset': { borderColor: errors.webUrl ? '#f44336' : (isDark ? 'rgba(166,226,245,0.3)' : 'rgba(28,20,69,0.25)') },
-                        '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(28,20,69,0.5)' },
-                        '&.Mui-focused fieldset': { borderColor: errors.webUrl ? '#f44336' : (isDark ? '#a6e2f5' : '#1c1445') },
-                      },
-                      '& .MuiInputLabel-root': { color: errors.webUrl ? '#f44336' : (isDark ? '#a6e2f5' : '#5c548a') },
-                      '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
-                    }}
-                  />
-                </Box>
-              )}
-                </>
-              )}
+                    {/* Web URL �� shown only when Web Post is ON */}
+                    {isWebPost && (
+                      <Box sx={{ mt: 1.5 }}>
+                        <TextField
+                          fullWidth
+                          size="small"
+                          label={t.lblWebUrl}
+                          placeholder={t.phWebUrl}
+                          value={webUrl}
+                          onChange={(e) => {
+                            setWebUrl(e.target.value);
+                            if (errors.webUrl)
+                              setErrors((prev) => {
+                                const n = { ...prev };
+                                delete n.webUrl;
+                                return n;
+                              });
+                          }}
+                          error={!!errors.webUrl}
+                          helperText={errors.webUrl || ''}
+                          InputProps={{
+                            startAdornment: (
+                              <Box
+                                component="span"
+                                sx={{
+                                  color: isDark ? '#a6e2f5' : '#5c548a',
+                                  mr: 0.5,
+                                  fontSize: '0.9rem',
+                                }}
+                              >
+                                ��
+                              </Box>
+                            ),
+                          }}
+                          sx={{
+                            '& .MuiOutlinedInput-root': {
+                              color: isDark ? '#ffffff' : '#1c1445',
+                              backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
+                              borderRadius: '10px',
+                              '& fieldset': {
+                                borderColor: errors.webUrl
+                                  ? '#f44336'
+                                  : isDark
+                                    ? 'rgba(166,226,245,0.3)'
+                                    : 'rgba(28,20,69,0.25)',
+                              },
+                              '&:hover fieldset': {
+                                borderColor: isDark
+                                  ? 'rgba(255,255,255,0.35)'
+                                  : 'rgba(28,20,69,0.5)',
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: errors.webUrl
+                                  ? '#f44336'
+                                  : isDark
+                                    ? '#a6e2f5'
+                                    : '#1c1445',
+                              },
+                            },
+                            '& .MuiInputLabel-root': {
+                              color: errors.webUrl ? '#f44336' : isDark ? '#a6e2f5' : '#5c548a',
+                            },
+                            '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
+                          }}
+                        />
+                      </Box>
+                    )}
+                  </>
+                )}
 
               {/* Video Source + Video URL �� shown only for video post types */}
               {type.toLowerCase().includes('video') && (
                 <Box sx={{ mt: 2 }}>
-                  <Divider sx={{ mb: 1.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
-                  <Typography variant="body2" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700, mb: 1.2, fontSize: '0.82rem' }}>
+                  <Divider
+                    sx={{
+                      mb: 1.5,
+                      borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
+                    }}
+                  />
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: isDark ? '#a6e2f5' : '#1c1445',
+                      fontWeight: 700,
+                      mb: 1.2,
+                      fontSize: '0.82rem',
+                    }}
+                  >
                     �𤁗 {t.lblVideoSource}
                   </Typography>
 
@@ -2694,9 +3922,37 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         id: 'youtube',
                         label: 'YouTube',
                         logo: (
-                          <Box sx={{ width: 22, height: 16, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Box sx={{ width: 22, height: 16, borderRadius: '4px', backgroundColor: '#FF0000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <Box sx={{ width: 0, height: 0, borderTop: '5px solid transparent', borderBottom: '5px solid transparent', borderLeft: '8px solid #ffffff', ml: 0.3 }} />
+                          <Box
+                            sx={{
+                              width: 22,
+                              height: 16,
+                              position: 'relative',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}
+                          >
+                            <Box
+                              sx={{
+                                width: 22,
+                                height: 16,
+                                borderRadius: '4px',
+                                backgroundColor: '#FF0000',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                              }}
+                            >
+                              <Box
+                                sx={{
+                                  width: 0,
+                                  height: 0,
+                                  borderTop: '5px solid transparent',
+                                  borderBottom: '5px solid transparent',
+                                  borderLeft: '8px solid #ffffff',
+                                  ml: 0.3,
+                                }}
+                              />
                             </Box>
                           </Box>
                         ),
@@ -2708,8 +3964,28 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         id: 'x',
                         label: 'X',
                         logo: (
-                          <Box sx={{ width: 20, height: 20, borderRadius: '50%', backgroundColor: isDark ? '#ffffff' : '#000000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Typography sx={{ color: isDark ? '#000000' : '#ffffff', fontSize: '0.65rem', fontWeight: 900, lineHeight: 1, fontFamily: 'Arial Black, sans-serif' }}>��</Typography>
+                          <Box
+                            sx={{
+                              width: 20,
+                              height: 20,
+                              borderRadius: '50%',
+                              backgroundColor: isDark ? '#ffffff' : '#000000',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                color: isDark ? '#000000' : '#ffffff',
+                                fontSize: '0.65rem',
+                                fontWeight: 900,
+                                lineHeight: 1,
+                                fontFamily: 'Arial Black, sans-serif',
+                              }}
+                            >
+                              ��
+                            </Typography>
                           </Box>
                         ),
                         selectedBg: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)',
@@ -2720,8 +3996,27 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         id: 'bigtv',
                         label: 'BigTV',
                         logo: (
-                          <Box sx={{ width: 22, height: 22, borderRadius: '6px', background: 'linear-gradient(135deg, #7c3aed, #a855f7)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Typography sx={{ color: '#ffffff', fontSize: '0.55rem', fontWeight: 900, lineHeight: 1 }}>BIG</Typography>
+                          <Box
+                            sx={{
+                              width: 22,
+                              height: 22,
+                              borderRadius: '6px',
+                              background: 'linear-gradient(135deg, #7c3aed, #a855f7)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                color: '#ffffff',
+                                fontSize: '0.55rem',
+                                fontWeight: 900,
+                                lineHeight: 1,
+                              }}
+                            >
+                              BIG
+                            </Typography>
                           </Box>
                         ),
                         selectedBg: 'rgba(124,58,237,0.12)',
@@ -2731,29 +4026,67 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     ].map((src) => {
                       const isSelected = Boolean(
                         videoSource &&
-                          (videoSource.toLowerCase() === src.id.toLowerCase() ||
-                            (src.id === 'x' && (videoSource.toLowerCase().includes('twitter') || videoSource.toLowerCase().includes('x'))) ||
-                            (src.id === 'youtube' && (videoSource.toLowerCase().includes('youtube') || videoSource.toLowerCase() === 'yt')) ||
-                            (src.id === 'bigtv' && videoSource.toLowerCase().includes('bigtv')))
+                        (videoSource.toLowerCase() === src.id.toLowerCase() ||
+                          (src.id === 'x' &&
+                            (videoSource.toLowerCase().includes('twitter') ||
+                              videoSource.toLowerCase().includes('x'))) ||
+                          (src.id === 'youtube' &&
+                            (videoSource.toLowerCase().includes('youtube') ||
+                              videoSource.toLowerCase() === 'yt')) ||
+                          (src.id === 'bigtv' && videoSource.toLowerCase().includes('bigtv')))
                       );
                       return (
                         <Box
                           key={src.id}
                           onClick={() => {
-                            setVideoSource(isSelected ? '' : (src.id === 'x' ? 'Twitter' : src.id));
-                            if (errors.videoSource) setErrors((prev) => { const n = { ...prev }; delete n.videoSource; return n; });
+                            setVideoSource(isSelected ? '' : src.id === 'x' ? 'Twitter' : src.id);
+                            if (errors.videoSource)
+                              setErrors((prev) => {
+                                const n = { ...prev };
+                                delete n.videoSource;
+                                return n;
+                              });
                           }}
                           sx={{
-                            flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.6,
-                            py: 1.2, px: 0.5, borderRadius: '10px', cursor: 'pointer',
-                            border: isSelected ? `2px solid ${src.selectedBorder}` : (isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)'),
-                            backgroundColor: isSelected ? src.selectedBg : (isDark ? 'rgba(255,255,255,0.02)' : '#ffffff'),
+                            flex: 1,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: 0.6,
+                            py: 1.2,
+                            px: 0.5,
+                            borderRadius: '10px',
+                            cursor: 'pointer',
+                            border: isSelected
+                              ? `2px solid ${src.selectedBorder}`
+                              : isDark
+                                ? '1px solid rgba(255,255,255,0.1)'
+                                : '1px solid rgba(0,0,0,0.1)',
+                            backgroundColor: isSelected
+                              ? src.selectedBg
+                              : isDark
+                                ? 'rgba(255,255,255,0.02)'
+                                : '#ffffff',
                             transition: 'all 0.18s ease',
-                            '&:hover': { borderColor: src.selectedBorder, backgroundColor: src.selectedBg },
+                            '&:hover': {
+                              borderColor: src.selectedBorder,
+                              backgroundColor: src.selectedBg,
+                            },
                           }}
                         >
                           {src.logo}
-                          <Typography variant="caption" sx={{ fontSize: '0.68rem', fontWeight: isSelected ? 700 : 500, color: isSelected ? src.selectedColor : (isDark ? '#d0caeb' : '#5c548a') }}>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              fontSize: '0.68rem',
+                              fontWeight: isSelected ? 700 : 500,
+                              color: isSelected
+                                ? src.selectedColor
+                                : isDark
+                                  ? '#d0caeb'
+                                  : '#5c548a',
+                            }}
+                          >
                             {src.label}
                           </Typography>
                         </Box>
@@ -2761,7 +4094,16 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     })}
                   </Box>
                   {errors.videoSource && (
-                    <Typography variant="caption" sx={{ color: '#f44336', fontSize: '0.72rem', display: 'block', mt: -1, mb: 1 }}>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: '#f44336',
+                        fontSize: '0.72rem',
+                        display: 'block',
+                        mt: -1,
+                        mb: 1,
+                      }}
+                    >
                       {errors.videoSource}
                     </Typography>
                   )}
@@ -2775,13 +4117,27 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     value={videoUrl}
                     onChange={(e) => {
                       setVideoUrl(e.target.value);
-                      if (errors.videoUrl) setErrors((prev) => { const n = { ...prev }; delete n.videoUrl; return n; });
+                      if (errors.videoUrl)
+                        setErrors((prev) => {
+                          const n = { ...prev };
+                          delete n.videoUrl;
+                          return n;
+                        });
                     }}
                     error={!!errors.videoUrl}
                     helperText={errors.videoUrl || ''}
                     InputProps={{
                       startAdornment: (
-                        <Box component="span" sx={{ color: isDark ? '#a6e2f5' : '#5c548a', mr: 0.5, fontSize: '0.9rem' }}>�𤁗</Box>
+                        <Box
+                          component="span"
+                          sx={{
+                            color: isDark ? '#a6e2f5' : '#5c548a',
+                            mr: 0.5,
+                            fontSize: '0.9rem',
+                          }}
+                        >
+                          �𤁗
+                        </Box>
                       ),
                     }}
                     sx={{
@@ -2789,11 +4145,23 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         color: isDark ? '#ffffff' : '#1c1445',
                         backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
                         borderRadius: '10px',
-                        '& fieldset': { borderColor: errors.videoUrl ? '#f44336' : (isDark ? 'rgba(166,226,245,0.3)' : 'rgba(28,20,69,0.25)') },
-                        '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(28,20,69,0.5)' },
-                        '&.Mui-focused fieldset': { borderColor: errors.videoUrl ? '#f44336' : (isDark ? '#a6e2f5' : '#1c1445') },
+                        '& fieldset': {
+                          borderColor: errors.videoUrl
+                            ? '#f44336'
+                            : isDark
+                              ? 'rgba(166,226,245,0.3)'
+                              : 'rgba(28,20,69,0.25)',
+                        },
+                        '&:hover fieldset': {
+                          borderColor: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(28,20,69,0.5)',
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: errors.videoUrl ? '#f44336' : isDark ? '#a6e2f5' : '#1c1445',
+                        },
                       },
-                      '& .MuiInputLabel-root': { color: errors.videoUrl ? '#f44336' : (isDark ? '#a6e2f5' : '#5c548a') },
+                      '& .MuiInputLabel-root': {
+                        color: errors.videoUrl ? '#f44336' : isDark ? '#a6e2f5' : '#5c548a',
+                      },
                       '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
                     }}
                   />
@@ -2801,24 +4169,103 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
               )}
 
               {isShowAlert && (
-                <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 2, p: 2, borderRadius: '12px', border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)', backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#f9f9f9' }}>
-                  <Typography variant="subtitle2" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600 }}>Show Alert Details</Typography>
+                <Box
+                  sx={{
+                    mt: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 2,
+                    p: 2,
+                    borderRadius: '12px',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(0,0,0,0.08)',
+                    backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#f9f9f9',
+                  }}
+                >
+                  <Typography
+                    variant="subtitle2"
+                    sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600 }}
+                  >
+                    Show Alert Details
+                  </Typography>
                   <TextField
-                    fullWidth size="small" label="Show Tag *" placeholder="e.g. MORNING SHOW" value={showTag} onChange={(e) => setShowTag(e.target.value)}
-                    sx={{ '& .MuiOutlinedInput-root': { color: isDark ? '#fff' : '#000', backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#fff' }, '& .MuiInputLabel-root': { color: isDark ? '#a6e2f5' : '#5c548a' } }}
+                    fullWidth
+                    size="small"
+                    label="Show Tag *"
+                    placeholder="e.g. MORNING SHOW"
+                    value={showTag}
+                    onChange={(e) => setShowTag(e.target.value)}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        color: isDark ? '#fff' : '#000',
+                        backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#fff',
+                      },
+                      '& .MuiInputLabel-root': { color: isDark ? '#a6e2f5' : '#5c548a' },
+                    }}
                   />
                   <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
-                    <TextField fullWidth size="small" label="Show Day *" placeholder="e.g. Mon-Sat" value={showDay} onChange={(e) => setShowDay(e.target.value)} sx={{ '& .MuiOutlinedInput-root': { color: isDark ? '#fff' : '#000', backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#fff' }, '& .MuiInputLabel-root': { color: isDark ? '#a6e2f5' : '#5c548a' } }} />
-                    <TextField fullWidth size="small" label="Show Time *" placeholder="e.g. 7:00 AM IST" value={showTime} onChange={(e) => setShowTime(e.target.value)} sx={{ '& .MuiOutlinedInput-root': { color: isDark ? '#fff' : '#000', backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#fff' }, '& .MuiInputLabel-root': { color: isDark ? '#a6e2f5' : '#5c548a' } }} />
+                    <TextField
+                      fullWidth
+                      size="small"
+                      label="Show Day *"
+                      placeholder="e.g. Mon-Sat"
+                      value={showDay}
+                      onChange={(e) => setShowDay(e.target.value)}
+                      sx={{
+                        '& .MuiOutlinedInput-root': {
+                          color: isDark ? '#fff' : '#000',
+                          backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#fff',
+                        },
+                        '& .MuiInputLabel-root': { color: isDark ? '#a6e2f5' : '#5c548a' },
+                      }}
+                    />
+                    <TextField
+                      fullWidth
+                      size="small"
+                      label="Show Time *"
+                      placeholder="e.g. 7:00 AM IST"
+                      value={showTime}
+                      onChange={(e) => setShowTime(e.target.value)}
+                      sx={{
+                        '& .MuiOutlinedInput-root': {
+                          color: isDark ? '#fff' : '#000',
+                          backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#fff',
+                        },
+                        '& .MuiInputLabel-root': { color: isDark ? '#a6e2f5' : '#5c548a' },
+                      }}
+                    />
                   </Box>
                   <Box>
-                    <Typography variant="body2" sx={{ color: isDark ? '#a6e2f5' : '#5c548a', mb: 1, fontWeight: 500 }}>Reminder Options</Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: isDark ? '#a6e2f5' : '#5c548a', mb: 1, fontWeight: 500 }}
+                    >
+                      Reminder Options
+                    </Typography>
                     <FormGroup row>
-                      {['15 min before', 'When it starts'].map(opt => (
-                        <FormControlLabel key={opt} control={<Checkbox checked={reminderOptions.includes(opt)} onChange={(e) => {
-                          if (e.target.checked) setReminderOptions(prev => [...prev, opt]);
-                          else setReminderOptions(prev => prev.filter(o => o !== opt));
-                        }} sx={{ color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)', '&.Mui-checked': { color: '#FF5722' } }} />} label={<Typography variant="body2" sx={{ color: isDark ? '#fff' : '#000' }}>{opt}</Typography>} />
+                      {['15 min before', 'When it starts'].map((opt) => (
+                        <FormControlLabel
+                          key={opt}
+                          control={
+                            <Checkbox
+                              checked={reminderOptions.includes(opt)}
+                              onChange={(e) => {
+                                if (e.target.checked) setReminderOptions((prev) => [...prev, opt]);
+                                else setReminderOptions((prev) => prev.filter((o) => o !== opt));
+                              }}
+                              sx={{
+                                color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                                '&.Mui-checked': { color: '#FF5722' },
+                              }}
+                            />
+                          }
+                          label={
+                            <Typography variant="body2" sx={{ color: isDark ? '#fff' : '#000' }}>
+                              {opt}
+                            </Typography>
+                          }
+                        />
                       ))}
                     </FormGroup>
                   </Box>
@@ -2827,14 +4274,15 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
             </Box>
           </Grid>
 
-
           {/* Right Column: Content Editor and Banner */}
           <Grid item xs={12} md={9}>
             <Box
               sx={{
                 p: 2.5,
                 borderRadius: '12px',
-                border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
+                border: isDark
+                  ? '1px solid rgba(255, 255, 255, 0.08)'
+                  : '1px solid rgba(0, 0, 0, 0.08)',
                 backgroundColor: isDark ? 'rgba(255, 255, 255, 0.02)' : '#ffffff',
                 display: 'flex',
                 flexDirection: 'column',
@@ -2852,7 +4300,12 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     value={title}
                     onChange={(e) => {
                       setTitle(e.target.value);
-                      if (errors.title) setErrors((prev) => { const n = { ...prev }; delete n.title; return n; });
+                      if (errors.title)
+                        setErrors((prev) => {
+                          const n = { ...prev };
+                          delete n.title;
+                          return n;
+                        });
                     }}
                     error={!!errors.title}
                     helperText={errors.title || ''}
@@ -2861,26 +4314,65 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         color: isDark ? '#ffffff' : '#1c1445',
                         backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
                         borderRadius: '10px',
-                        '& fieldset': { borderColor: errors.title ? '#f44336' : (isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)') },
-                        '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)' },
-                        '&.Mui-focused fieldset': { borderColor: errors.title ? '#f44336' : (isDark ? '#a6e2f5' : '#1c1445') },
+                        '& fieldset': {
+                          borderColor: errors.title
+                            ? '#f44336'
+                            : isDark
+                              ? 'rgba(255,255,255,0.12)'
+                              : 'rgba(0,0,0,0.15)',
+                        },
+                        '&:hover fieldset': {
+                          borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: errors.title ? '#f44336' : isDark ? '#a6e2f5' : '#1c1445',
+                        },
                       },
-                      '& .MuiInputLabel-root': { color: errors.title ? '#f44336' : (isDark ? '#d0caeb' : '#5c548a') },
+                      '& .MuiInputLabel-root': {
+                        color: errors.title ? '#f44336' : isDark ? '#d0caeb' : '#5c548a',
+                      },
                       '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
                     }}
                   />
                   <Typography
                     variant="caption"
                     sx={{
-                      color: countWords(title) > 10 ? '#f44336' : (isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)'),
-                      display: 'block', mt: 0.3, textAlign: 'right', fontSize: '0.7rem', fontWeight: countWords(title) > 10 ? 700 : 400,
+                      color:
+                        countWords(title) > 10
+                          ? '#f44336'
+                          : isDark
+                            ? 'rgba(255,255,255,0.35)'
+                            : 'rgba(0,0,0,0.35)',
+                      display: 'block',
+                      mt: 0.3,
+                      textAlign: 'right',
+                      fontSize: '0.7rem',
+                      fontWeight: countWords(title) > 10 ? 700 : 400,
                     }}
                   >
                     {t.wordCount(countWords(title), 10)}
                   </Typography>
                   {engTranslation?.title && (
-                    <Box sx={{ mt: 1, p: 1.5, borderRadius: '8px', backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f9f9f9', border: isDark ? '1px dashed rgba(255,255,255,0.1)' : '1px dashed rgba(0,0,0,0.1)' }}>
-                      <Typography variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600, display: 'block', mb: 0.5 }}>
+                    <Box
+                      sx={{
+                        mt: 1,
+                        p: 1.5,
+                        borderRadius: '8px',
+                        backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f9f9f9',
+                        border: isDark
+                          ? '1px dashed rgba(255,255,255,0.1)'
+                          : '1px dashed rgba(0,0,0,0.1)',
+                      }}
+                    >
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color: isDark ? '#a6e2f5' : '#1c1445',
+                          fontWeight: 600,
+                          display: 'block',
+                          mb: 0.5,
+                        }}
+                      >
                         English Translation (Read-Only)
                       </Typography>
                       <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
@@ -2891,19 +4383,33 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                 </Box>
 
                 {/* Notification Title with Send Notification Switch beside it */}
-                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: { xs: 'stretch', sm: 'flex-start' }, gap: 2 }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: { xs: 'column', sm: 'row' },
+                    alignItems: { xs: 'stretch', sm: 'flex-start' },
+                    gap: 2,
+                  }}
+                >
                   <Box sx={{ flex: 1 }}>
-                    <Box sx={{ 
-                      opacity: sendNotification ? 1 : 0.5,
-                      pointerEvents: sendNotification ? 'auto' : 'none',
-                      transition: 'opacity 0.2s'
-                    }}>
+                    <Box
+                      sx={{
+                        opacity: sendNotification ? 1 : 0.5,
+                        pointerEvents: sendNotification ? 'auto' : 'none',
+                        transition: 'opacity 0.2s',
+                      }}
+                    >
                       <HtmlEditor
                         label={t.lblNotificationTitle}
                         value={notificationTitle}
                         onChange={(val) => {
                           setNotificationTitle(val);
-                          if (errors.notificationTitle) setErrors((prev) => { const n = { ...prev }; delete n.notificationTitle; return n; });
+                          if (errors.notificationTitle)
+                            setErrors((prev) => {
+                              const n = { ...prev };
+                              delete n.notificationTitle;
+                              return n;
+                            });
                         }}
                         error={errors.notificationTitle}
                         placeholder={t.phNotificationTitle}
@@ -2914,15 +4420,42 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     <Typography
                       variant="caption"
                       sx={{
-                        color: countWords(notificationTitle) > 10 ? '#f44336' : (isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)'),
-                        display: 'block', mt: 0.3, textAlign: 'right', fontSize: '0.7rem', fontWeight: countWords(notificationTitle) > 10 ? 700 : 400,
+                        color:
+                          countWords(notificationTitle) > 10
+                            ? '#f44336'
+                            : isDark
+                              ? 'rgba(255,255,255,0.35)'
+                              : 'rgba(0,0,0,0.35)',
+                        display: 'block',
+                        mt: 0.3,
+                        textAlign: 'right',
+                        fontSize: '0.7rem',
+                        fontWeight: countWords(notificationTitle) > 10 ? 700 : 400,
                       }}
                     >
                       {t.wordCount(countWords(notificationTitle), 10)}
                     </Typography>
                     {engTranslation?.notificationtitle && (
-                      <Box sx={{ mt: 1, p: 1.5, borderRadius: '8px', backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f9f9f9', border: isDark ? '1px dashed rgba(255,255,255,0.1)' : '1px dashed rgba(0,0,0,0.1)' }}>
-                        <Typography variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600, display: 'block', mb: 0.5 }}>
+                      <Box
+                        sx={{
+                          mt: 1,
+                          p: 1.5,
+                          borderRadius: '8px',
+                          backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f9f9f9',
+                          border: isDark
+                            ? '1px dashed rgba(255,255,255,0.1)'
+                            : '1px dashed rgba(0,0,0,0.1)',
+                        }}
+                      >
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: isDark ? '#a6e2f5' : '#1c1445',
+                            fontWeight: 600,
+                            display: 'block',
+                            mb: 0.5,
+                          }}
+                        >
                           English Translation (Read-Only)
                         </Typography>
                         <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
@@ -2943,11 +4476,19 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                       height: '40px',
                       borderRadius: '10px',
                       border: sendNotification
-                        ? (isDark ? '1px solid rgba(166,226,245,0.25)' : '1px solid rgba(28,20,69,0.2)')
-                        : (isDark ? '1px solid rgba(255,255,255,0.12)' : '1px solid rgba(0,0,0,0.15)'),
+                        ? isDark
+                          ? '1px solid rgba(166,226,245,0.25)'
+                          : '1px solid rgba(28,20,69,0.2)'
+                        : isDark
+                          ? '1px solid rgba(255,255,255,0.12)'
+                          : '1px solid rgba(0,0,0,0.15)',
                       backgroundColor: sendNotification
-                        ? (isDark ? 'rgba(166,226,245,0.08)' : 'rgba(28,20,69,0.04)')
-                        : (isDark ? 'rgba(255,255,255,0.04)' : '#ffffff'),
+                        ? isDark
+                          ? 'rgba(166,226,245,0.08)'
+                          : 'rgba(28,20,69,0.04)'
+                        : isDark
+                          ? 'rgba(255,255,255,0.04)'
+                          : '#ffffff',
                       whiteSpace: 'nowrap',
                       flexShrink: 0,
                     }}
@@ -2957,7 +4498,13 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                       sx={{
                         fontSize: '0.82rem',
                         fontWeight: 600,
-                        color: sendNotification ? (isDark ? '#a6e2f5' : '#1c1445') : (isDark ? '#d0caeb' : '#5c548a'),
+                        color: sendNotification
+                          ? isDark
+                            ? '#a6e2f5'
+                            : '#1c1445'
+                          : isDark
+                            ? '#d0caeb'
+                            : '#5c548a',
                       }}
                     >
                       🔔 {t.lblSendNotification}
@@ -2990,13 +4537,27 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                       value={imageAdUrl}
                       onChange={(e) => {
                         setImageAdUrl(e.target.value);
-                        if (errors.imageAdUrl) setErrors((prev) => { const n = { ...prev }; delete n.imageAdUrl; return n; });
+                        if (errors.imageAdUrl)
+                          setErrors((prev) => {
+                            const n = { ...prev };
+                            delete n.imageAdUrl;
+                            return n;
+                          });
                       }}
                       error={!!errors.imageAdUrl}
                       helperText={errors.imageAdUrl || ''}
                       InputProps={{
                         startAdornment: (
-                          <Box component="span" sx={{ color: isDark ? '#a6e2f5' : '#5c548a', mr: 0.5, fontSize: '0.9rem' }}>🔗</Box>
+                          <Box
+                            component="span"
+                            sx={{
+                              color: isDark ? '#a6e2f5' : '#5c548a',
+                              mr: 0.5,
+                              fontSize: '0.9rem',
+                            }}
+                          >
+                            🔗
+                          </Box>
                         ),
                       }}
                       sx={{
@@ -3004,28 +4565,60 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           color: isDark ? '#ffffff' : '#1c1445',
                           backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
                           borderRadius: '10px',
-                          '& fieldset': { borderColor: errors.imageAdUrl ? '#f44336' : (isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)') },
-                          '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)' },
-                          '&.Mui-focused fieldset': { borderColor: errors.imageAdUrl ? '#f44336' : (isDark ? '#a6e2f5' : '#1c1445') },
+                          '& fieldset': {
+                            borderColor: errors.imageAdUrl
+                              ? '#f44336'
+                              : isDark
+                                ? 'rgba(255,255,255,0.12)'
+                                : 'rgba(0,0,0,0.15)',
+                          },
+                          '&:hover fieldset': {
+                            borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
+                          },
+                          '&.Mui-focused fieldset': {
+                            borderColor: errors.imageAdUrl
+                              ? '#f44336'
+                              : isDark
+                                ? '#a6e2f5'
+                                : '#1c1445',
+                          },
                         },
-                        '& .MuiInputLabel-root': { color: errors.imageAdUrl ? '#f44336' : (isDark ? '#d0caeb' : '#5c548a') },
+                        '& .MuiInputLabel-root': {
+                          color: errors.imageAdUrl ? '#f44336' : isDark ? '#d0caeb' : '#5c548a',
+                        },
                         '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
                       }}
                     />
                   </Box>
                 ) : (
-                  <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: { xs: 'stretch', sm: 'flex-start' }, gap: 2 }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: { xs: 'column', sm: 'row' },
+                      alignItems: { xs: 'stretch', sm: 'flex-start' },
+                      gap: 2,
+                    }}
+                  >
                     <Box sx={{ flex: 1 }}>
                       <TextField
                         fullWidth
                         size="small"
                         disabled={!showImageTitle}
-                        label={isImageOrGalleryType ? t.lblImageTitle.replace('*', '').trim() : t.lblImageTitle}
+                        label={
+                          isImageOrGalleryType
+                            ? t.lblImageTitle.replace('*', '').trim()
+                            : t.lblImageTitle
+                        }
                         placeholder={t.phImageTitle}
                         value={imageTitle}
                         onChange={(e) => {
                           setImageTitle(e.target.value);
-                          if (errors.imageTitle) setErrors((prev) => { const n = { ...prev }; delete n.imageTitle; return n; });
+                          if (errors.imageTitle)
+                            setErrors((prev) => {
+                              const n = { ...prev };
+                              delete n.imageTitle;
+                              return n;
+                            });
                         }}
                         error={!!errors.imageTitle}
                         helperText={errors.imageTitle || ''}
@@ -3034,29 +4627,75 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                             color: isDark ? '#ffffff' : '#1c1445',
                             backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
                             borderRadius: '10px',
-                            '& fieldset': { borderColor: errors.imageTitle ? '#f44336' : (isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)') },
-                            '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)' },
-                            '&.Mui-focused fieldset': { borderColor: errors.imageTitle ? '#f44336' : (isDark ? '#a6e2f5' : '#1c1445') },
+                            '& fieldset': {
+                              borderColor: errors.imageTitle
+                                ? '#f44336'
+                                : isDark
+                                  ? 'rgba(255,255,255,0.12)'
+                                  : 'rgba(0,0,0,0.15)',
+                            },
+                            '&:hover fieldset': {
+                              borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
+                            },
+                            '&.Mui-focused fieldset': {
+                              borderColor: errors.imageTitle
+                                ? '#f44336'
+                                : isDark
+                                  ? '#a6e2f5'
+                                  : '#1c1445',
+                            },
                           },
-                          '& .MuiInputLabel-root': { color: errors.imageTitle ? '#f44336' : (isDark ? '#d0caeb' : '#5c548a') },
+                          '& .MuiInputLabel-root': {
+                            color: errors.imageTitle ? '#f44336' : isDark ? '#d0caeb' : '#5c548a',
+                          },
                           '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
                         }}
                       />
                       <Typography
                         variant="caption"
                         sx={{
-                          color: countWords(imageTitle) > 10 ? '#f44336' : (isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)'),
-                          display: 'block', mt: 0.3, textAlign: 'right', fontSize: '0.7rem', fontWeight: countWords(imageTitle) > 10 ? 700 : 400,
+                          color:
+                            countWords(imageTitle) > 10
+                              ? '#f44336'
+                              : isDark
+                                ? 'rgba(255,255,255,0.35)'
+                                : 'rgba(0,0,0,0.35)',
+                          display: 'block',
+                          mt: 0.3,
+                          textAlign: 'right',
+                          fontSize: '0.7rem',
+                          fontWeight: countWords(imageTitle) > 10 ? 700 : 400,
                         }}
                       >
                         {t.wordCount(countWords(imageTitle), 10)}
                       </Typography>
                       {engTranslation?.imagetitel && (
-                        <Box sx={{ mt: 1, p: 1.5, borderRadius: '8px', backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f9f9f9', border: isDark ? '1px dashed rgba(255,255,255,0.1)' : '1px dashed rgba(0,0,0,0.1)' }}>
-                          <Typography variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600, display: 'block', mb: 0.5 }}>
+                        <Box
+                          sx={{
+                            mt: 1,
+                            p: 1.5,
+                            borderRadius: '8px',
+                            backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f9f9f9',
+                            border: isDark
+                              ? '1px dashed rgba(255,255,255,0.1)'
+                              : '1px dashed rgba(0,0,0,0.1)',
+                          }}
+                        >
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              fontWeight: 600,
+                              display: 'block',
+                              mb: 0.5,
+                            }}
+                          >
                             English Translation (Read-Only)
                           </Typography>
-                          <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+                          <Typography
+                            variant="body2"
+                            sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+                          >
                             {engTranslation.imagetitel}
                           </Typography>
                         </Box>
@@ -3074,11 +4713,19 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         height: '40px',
                         borderRadius: '10px',
                         border: showImageTitle
-                          ? (isDark ? '1px solid rgba(166,226,245,0.25)' : '1px solid rgba(28,20,69,0.2)')
-                          : (isDark ? '1px solid rgba(255,255,255,0.12)' : '1px solid rgba(0,0,0,0.15)'),
+                          ? isDark
+                            ? '1px solid rgba(166,226,245,0.25)'
+                            : '1px solid rgba(28,20,69,0.2)'
+                          : isDark
+                            ? '1px solid rgba(255,255,255,0.12)'
+                            : '1px solid rgba(0,0,0,0.15)',
                         backgroundColor: showImageTitle
-                          ? (isDark ? 'rgba(166,226,245,0.08)' : 'rgba(28,20,69,0.04)')
-                          : (isDark ? 'rgba(255,255,255,0.04)' : '#ffffff'),
+                          ? isDark
+                            ? 'rgba(166,226,245,0.08)'
+                            : 'rgba(28,20,69,0.04)'
+                          : isDark
+                            ? 'rgba(255,255,255,0.04)'
+                            : '#ffffff',
                         whiteSpace: 'nowrap',
                         flexShrink: 0,
                       }}
@@ -3088,7 +4735,13 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         sx={{
                           fontSize: '0.82rem',
                           fontWeight: 600,
-                          color: showImageTitle ? (isDark ? '#a6e2f5' : '#1c1445') : (isDark ? '#d0caeb' : '#5c548a'),
+                          color: showImageTitle
+                            ? isDark
+                              ? '#a6e2f5'
+                              : '#1c1445'
+                            : isDark
+                              ? '#d0caeb'
+                              : '#5c548a',
                         }}
                       >
                         {t.lblImageTitle.replace('*', '').trim()}
@@ -3121,13 +4774,25 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     value={body}
                     onChange={(val) => {
                       setBody(val);
-                      if (errors.body) setErrors((prev) => { const n = { ...prev }; delete n.body; return n; });
+                      if (errors.body)
+                        setErrors((prev) => {
+                          const n = { ...prev };
+                          delete n.body;
+                          return n;
+                        });
                     }}
                     error={errors.body}
                     isDark={isDark}
-                    minHeight={isBulletPost ? "80px" : "220px"}
+                    minHeight={isBulletPost ? '80px' : '220px'}
                   />
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 1 }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      mt: 1,
+                    }}
+                  >
                     <Button
                       size="small"
                       variant="outlined"
@@ -3138,13 +4803,15 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           const res = await fetch('https://api.chotanews.com/summarize', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ content: stripHtml(body) })
+                            body: JSON.stringify({ content: stripHtml(body) }),
                           });
                           if (res.ok) {
                             const data = await res.json();
                             if (data && (data.summary || data.content)) {
                               const newContent = data.summary || data.content;
-                              const htmlContent = newContent.startsWith('<') ? newContent : `<p>${newContent}</p>`;
+                              const htmlContent = newContent.startsWith('<')
+                                ? newContent
+                                : `<p>${newContent}</p>`;
                               setBody(htmlContent);
                             }
                           }
@@ -3161,8 +4828,14 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         py: 0.3,
                         borderColor: '#a6e2f5',
                         color: '#a6e2f5',
-                        '&:hover': { borderColor: '#8cd5ed', backgroundColor: 'rgba(166,226,245,0.1)' },
-                        '&.Mui-disabled': { borderColor: 'rgba(166,226,245,0.3)', color: 'rgba(166,226,245,0.3)' }
+                        '&:hover': {
+                          borderColor: '#8cd5ed',
+                          backgroundColor: 'rgba(166,226,245,0.1)',
+                        },
+                        '&.Mui-disabled': {
+                          borderColor: 'rgba(166,226,245,0.3)',
+                          color: 'rgba(166,226,245,0.3)',
+                        },
                       }}
                     >
                       {isSummarizing ? 'Generating...' : 'Regenerate (AI)'}
@@ -3170,26 +4843,61 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     <Typography
                       variant="caption"
                       sx={{
-                        color: countWords(body) > 50 ? '#f44336' : (isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)'),
-                        fontSize: '0.7rem', fontWeight: countWords(body) > 50 ? 700 : 400,
+                        color:
+                          countWords(body) > 50
+                            ? '#f44336'
+                            : isDark
+                              ? 'rgba(255,255,255,0.35)'
+                              : 'rgba(0,0,0,0.35)',
+                        fontSize: '0.7rem',
+                        fontWeight: countWords(body) > 50 ? 700 : 400,
                       }}
                     >
                       {t.wordCount(countWords(body), 50)}
                     </Typography>
                   </Box>
                   {engTranslation?.content && (
-                    <Box sx={{ mt: 2, p: 1.5, borderRadius: '8px', backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f9f9f9', border: isDark ? '1px dashed rgba(255,255,255,0.1)' : '1px dashed rgba(0,0,0,0.1)' }}>
-                      <Typography variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600, display: 'block', mb: 0.5 }}>
+                    <Box
+                      sx={{
+                        mt: 2,
+                        p: 1.5,
+                        borderRadius: '8px',
+                        backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f9f9f9',
+                        border: isDark
+                          ? '1px dashed rgba(255,255,255,0.1)'
+                          : '1px dashed rgba(0,0,0,0.1)',
+                      }}
+                    >
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color: isDark ? '#a6e2f5' : '#1c1445',
+                          fontWeight: 600,
+                          display: 'block',
+                          mb: 0.5,
+                        }}
+                      >
                         English Translation (Read-Only)
                       </Typography>
-                      <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }} dangerouslySetInnerHTML={{ __html: engTranslation.content }} />
+                      <Typography
+                        variant="body2"
+                        sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+                        dangerouslySetInnerHTML={{ __html: engTranslation.content }}
+                      />
                     </Box>
                   )}
                 </Box>
 
                 {isBulletPost && (
                   <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                    <Typography variant="body2" sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '0.85rem' }}>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontWeight: 700,
+                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        fontSize: '0.85rem',
+                      }}
+                    >
                       📋 {t.lblBulletins}
                     </Typography>
 
@@ -3201,7 +4909,12 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         value={bulletInputText}
                         onChange={(e) => {
                           setBulletInputText(e.target.value);
-                          if (errors.bulletPoints) setErrors((prev) => { const n = { ...prev }; delete n.bulletPoints; return n; });
+                          if (errors.bulletPoints)
+                            setErrors((prev) => {
+                              const n = { ...prev };
+                              delete n.bulletPoints;
+                              return n;
+                            });
                         }}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter') {
@@ -3217,11 +4930,27 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                             color: isDark ? '#ffffff' : '#1c1445',
                             backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
                             borderRadius: '10px',
-                            '& fieldset': { borderColor: errors.bulletPoints ? '#f44336' : (isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)') },
-                            '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)' },
-                            '&.Mui-focused fieldset': { borderColor: errors.bulletPoints ? '#f44336' : (isDark ? '#a6e2f5' : '#1c1445') },
+                            '& fieldset': {
+                              borderColor: errors.bulletPoints
+                                ? '#f44336'
+                                : isDark
+                                  ? 'rgba(255,255,255,0.12)'
+                                  : 'rgba(0,0,0,0.15)',
+                            },
+                            '&:hover fieldset': {
+                              borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
+                            },
+                            '&.Mui-focused fieldset': {
+                              borderColor: errors.bulletPoints
+                                ? '#f44336'
+                                : isDark
+                                  ? '#a6e2f5'
+                                  : '#1c1445',
+                            },
                           },
-                          '& .MuiInputLabel-root': { color: errors.bulletPoints ? '#f44336' : (isDark ? '#d0caeb' : '#5c548a') },
+                          '& .MuiInputLabel-root': {
+                            color: errors.bulletPoints ? '#f44336' : isDark ? '#d0caeb' : '#5c548a',
+                          },
                           '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
                         }}
                       />
@@ -3237,7 +4966,10 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
                           color: isDark ? '#1c1445' : '#ffffff',
                           boxShadow: 'none',
-                          '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270', boxShadow: 'none' },
+                          '&:hover': {
+                            backgroundColor: isDark ? '#8cd5ed' : '#2d2270',
+                            boxShadow: 'none',
+                          },
                         }}
                       >
                         {t.btnAddBullet}
@@ -3257,8 +4989,12 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                               p: 1.2,
                               px: 1.8,
                               borderRadius: '10px',
-                              backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(28,20,69,0.03)',
-                              border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                              backgroundColor: isDark
+                                ? 'rgba(255,255,255,0.04)'
+                                : 'rgba(28,20,69,0.03)',
+                              border: isDark
+                                ? '1px solid rgba(255,255,255,0.08)'
+                                : '1px solid rgba(0,0,0,0.08)',
                             }}
                           >
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flex: 1 }}>
@@ -3279,14 +5015,24 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                               >
                                 {idx + 1}
                               </Box>
-                              <Typography variant="body2" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 500, fontSize: '0.85rem' }}>
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: isDark ? '#ffffff' : '#1c1445',
+                                  fontWeight: 500,
+                                  fontSize: '0.85rem',
+                                }}
+                              >
                                 {bp}
                               </Typography>
                             </Box>
                             <IconButton
                               size="small"
                               onClick={() => handleRemoveBulletPoint(idx)}
-                              sx={{ color: isDark ? '#ff7875' : '#f44336', '&:hover': { backgroundColor: 'rgba(244,67,54,0.1)' } }}
+                              sx={{
+                                color: isDark ? '#ff7875' : '#f44336',
+                                '&:hover': { backgroundColor: 'rgba(244,67,54,0.1)' },
+                              }}
                             >
                               <DeleteOutline fontSize="small" />
                             </IconButton>
@@ -3294,165 +5040,352 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         ))}
                       </Box>
                     )}
-                    {engTranslation?.bulletPoints && Array.isArray(engTranslation.bulletPoints) && engTranslation.bulletPoints.length > 0 && (
-                      <Box sx={{ mt: 1, p: 1.5, borderRadius: '8px', backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f9f9f9', border: isDark ? '1px dashed rgba(255,255,255,0.1)' : '1px dashed rgba(0,0,0,0.1)' }}>
-                        <Typography variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600, display: 'block', mb: 0.5 }}>
-                          English Translation (Read-Only)
-                        </Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                          {engTranslation.bulletPoints.map((bp: string, idx: number) => (
-                            <Typography key={`eng-bullet-${idx}`} variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
-                              • {bp}
-                            </Typography>
-                          ))}
+                    {engTranslation?.bulletPoints &&
+                      Array.isArray(engTranslation.bulletPoints) &&
+                      engTranslation.bulletPoints.length > 0 && (
+                        <Box
+                          sx={{
+                            mt: 1,
+                            p: 1.5,
+                            borderRadius: '8px',
+                            backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f9f9f9',
+                            border: isDark
+                              ? '1px dashed rgba(255,255,255,0.1)'
+                              : '1px dashed rgba(0,0,0,0.1)',
+                          }}
+                        >
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              fontWeight: 600,
+                              display: 'block',
+                              mb: 0.5,
+                            }}
+                          >
+                            English Translation (Read-Only)
+                          </Typography>
+                          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                            {engTranslation.bulletPoints.map((bp: string, idx: number) => (
+                              <Typography
+                                key={`eng-bullet-${idx}`}
+                                variant="body2"
+                                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+                              >
+                                • {bp}
+                              </Typography>
+                            ))}
+                          </Box>
                         </Box>
-                      </Box>
-                    )}
+                      )}
                   </Box>
                 )}
               </Box>
 
               {/* Image Uploader */}
               <Box sx={{ mt: 3 }}>
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    style={{ display: 'none' }}
-                    onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFileSelect(f); e.target.value = ''; }}
-                  />
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  style={{ display: 'none' }}
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) handleFileSelect(f);
+                    e.target.value = '';
+                  }}
+                />
 
-                  {type.toLowerCase().includes('gallery') ? (
-                    /* ===== GALLERY MULTI-IMAGE UPLOADER ===== */
-                    <Box>
-                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-                        <Typography variant="body2" sx={{ fontWeight: 700, color: errors.galleryImages ? '#f44336' : (isDark ? '#a6e2f5' : '#1c1445'), fontSize: '0.82rem' }}>
-                          📷 {t.lblGalleryImages}
-                        </Typography>
-                        <Typography variant="caption" sx={{ color: galleryItems.length < 3 ? '#f44336' : galleryItems.length >= 10 ? '#ff9800' : (isDark ? '#a6e2f5' : '#1c1445'), fontWeight: 600, fontSize: '0.72rem' }}>
-                          {galleryItems.length}/10 &bull; {t.hintGallery}
-                        </Typography>
-                      </Box>
-
-                      {/* Gallery Grid */}
-                      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))', gap: 1 }}>
-                        {galleryItems.map((item, idx) => (
-                          <Box key={`gallery-item-${idx}`} sx={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)', aspectRatio: '1' }}>
-                            <Box component="img" src={item.url} alt={`gallery-${idx}`} sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                            <IconButton
-                              size="small"
-                              onClick={() => setGalleryItems((prev) => prev.filter((_, i) => i !== idx))}
-                              sx={{ position: 'absolute', top: 2, right: 2, backgroundColor: 'rgba(244,67,54,0.85)', color: '#fff', p: 0.3, '&:hover': { backgroundColor: '#f44336' } }}
-                            >
-                              <DeleteOutline sx={{ fontSize: '0.8rem' }} />
-                            </IconButton>
-                            {idx < 3 && (
-                              <Box sx={{ position: 'absolute', bottom: 2, left: 2, backgroundColor: 'rgba(28,20,69,0.75)', borderRadius: '4px', px: 0.5, py: 0.1 }}>
-                                <Typography sx={{ color: '#fff', fontSize: '0.55rem', fontWeight: 700 }}>{idx + 1}</Typography>
-                              </Box>
-                            )}
-                          </Box>
-                        ))}
-
-                        {/* Add button  shown until max 10 */}
-                        {galleryItems.length < 10 && (
-                          <Box
-                            onClick={() => {
-                              const input = document.createElement('input');
-                              input.type = 'file';
-                              input.accept = 'image/*';
-                              input.multiple = true;
-                              input.onchange = (e: any) => {
-                                const files: File[] = Array.from(e.target.files || []);
-                                const remaining = 10 - galleryItems.length;
-                                const toProcess = files.slice(0, remaining);
-                                toProcess.forEach((file) => {
-                                  const reader = new FileReader();
-                                  reader.onload = (ev) => {
-                                    const dataUrl = ev.target?.result as string;
-                                    setGalleryItems((prev) => {
-                                      if (prev.length >= 10) return prev;
-                                      return [...prev, { url: dataUrl, file }];
-                                    });
-                                  };
-                                  reader.readAsDataURL(file);
-                                });
-                              };
-                              input.click();
-                            }}
-                            sx={{
-                              borderRadius: '8px', border: `2px dashed ${errors.galleryImages ? '#f44336' : (isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.15)')}`,
-                              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                              cursor: 'pointer', aspectRatio: '1', minHeight: '90px',
-                              backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(28,20,69,0.02)',
-                              '&:hover': { borderColor: isDark ? '#a6e2f5' : '#1c1445', backgroundColor: isDark ? 'rgba(166,226,245,0.05)' : 'rgba(28,20,69,0.04)' },
-                            }}
-                          >
-                            <AddPhotoAlternate sx={{ fontSize: '1.6rem', color: isDark ? '#d0caeb' : '#9e9e9e', mb: 0.3 }} />
-                            <Typography variant="caption" sx={{ fontSize: '0.6rem', color: isDark ? '#d0caeb' : '#9e9e9e', textAlign: 'center' }}>Add Photo</Typography>
-                          </Box>
-                        )}
-                      </Box>
-
-                      {errors.galleryImages && (
-                        <Typography variant="caption" sx={{ color: '#f44336', fontWeight: 600, display: 'block', mt: 1 }}>
-                          {errors.galleryImages}
-                        </Typography>
-                      )}
-                    </Box>
-                  ) : imageUrl ? (
-                    <Box sx={{ position: 'relative', borderRadius: '10px', overflow: 'hidden', border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)' }}>
-                      <Box
-                        component="img"
-                        src={imageUrl}
-                        alt="Banner Preview"
-                        sx={{ width: '100%', maxHeight: '260px', objectFit: 'cover', display: 'block' }}
-                      />
-                      <Box sx={{
-                        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-                        background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 2,
-                      }}>
-                        <Typography variant="caption" sx={{ color: '#fff', fontWeight: 600 }}>
-                          🖼 Banner Uploaded
-                        </Typography>
-                        <IconButton
-                          size="small"
-                          onClick={() => {
-                            setImageUrl(null);
-                            setImageFile(null);
-                          }}
-                          sx={{ color: '#fff', backgroundColor: 'rgba(244,67,54,0.8)', '&:hover': { backgroundColor: '#f44336' }, p: 0.4 }}
-                        >
-                          <DeleteOutline sx={{ fontSize: '0.9rem' }} />
-                        </IconButton>
-                      </Box>
-                    </Box>
-                  ) : (
+                {type.toLowerCase().includes('gallery') ? (
+                  /* ===== GALLERY MULTI-IMAGE UPLOADER ===== */
+                  <Box>
                     <Box
-                      onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
-                      onDragLeave={() => setDragOver(false)}
-                      onDrop={handleDrop}
-                      onClick={() => fileInputRef.current?.click()}
                       sx={{
-                        border: `2px dashed ${errors.image ? '#f44336' : (dragOver ? (isDark ? '#a6e2f5' : '#1c1445') : (isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)'))}`,
-                        borderRadius: '10px', p: 5, textAlign: 'center', cursor: 'pointer',
-                        backgroundColor: dragOver ? 'rgba(166,226,245,0.06)' : 'rgba(28,20,69,0.02)',
-                        '&:hover': { borderColor: errors.image ? '#f44336' : (isDark ? '#a6e2f5' : '#1c1445') },
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        mb: 1,
                       }}
                     >
-                      <CloudUpload sx={{ fontSize: '3rem', color: isDark ? '#d0caeb' : '#9e9e9e', mb: 1 }} />
-                      <Typography variant="caption" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600, display: 'block', fontSize: '0.85rem' }}>
-                        Drag and drop banner photo or click to upload
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          fontWeight: 700,
+                          color: errors.galleryImages ? '#f44336' : isDark ? '#a6e2f5' : '#1c1445',
+                          fontSize: '0.82rem',
+                        }}
+                      >
+                        📷 {t.lblGalleryImages}
+                      </Typography>
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color:
+                            galleryItems.length < 3
+                              ? '#f44336'
+                              : galleryItems.length >= 10
+                                ? '#ff9800'
+                                : isDark
+                                  ? '#a6e2f5'
+                                  : '#1c1445',
+                          fontWeight: 600,
+                          fontSize: '0.72rem',
+                        }}
+                      >
+                        {galleryItems.length}/10 &bull; {t.hintGallery}
                       </Typography>
                     </Box>
-                  )}
-                  {errors.image && (
-                    <Typography variant="caption" sx={{ color: '#f44336', fontWeight: 600, display: 'block', mt: 1 }}>
-                      {errors.image}
+
+                    {/* Gallery Grid */}
+                    <Box
+                      sx={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))',
+                        gap: 1,
+                      }}
+                    >
+                      {galleryItems.map((item, idx) => (
+                        <Box
+                          key={`gallery-item-${idx}`}
+                          sx={{
+                            position: 'relative',
+                            borderRadius: '8px',
+                            overflow: 'hidden',
+                            border: isDark
+                              ? '1px solid rgba(255,255,255,0.1)'
+                              : '1px solid rgba(0,0,0,0.1)',
+                            aspectRatio: '1',
+                          }}
+                        >
+                          <Box
+                            component="img"
+                            src={item.url}
+                            alt={`gallery-${idx}`}
+                            sx={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover',
+                              display: 'block',
+                            }}
+                          />
+                          <IconButton
+                            size="small"
+                            onClick={() =>
+                              setGalleryItems((prev) => prev.filter((_, i) => i !== idx))
+                            }
+                            sx={{
+                              position: 'absolute',
+                              top: 2,
+                              right: 2,
+                              backgroundColor: 'rgba(244,67,54,0.85)',
+                              color: '#fff',
+                              p: 0.3,
+                              '&:hover': { backgroundColor: '#f44336' },
+                            }}
+                          >
+                            <DeleteOutline sx={{ fontSize: '0.8rem' }} />
+                          </IconButton>
+                          {idx < 3 && (
+                            <Box
+                              sx={{
+                                position: 'absolute',
+                                bottom: 2,
+                                left: 2,
+                                backgroundColor: 'rgba(28,20,69,0.75)',
+                                borderRadius: '4px',
+                                px: 0.5,
+                                py: 0.1,
+                              }}
+                            >
+                              <Typography
+                                sx={{ color: '#fff', fontSize: '0.55rem', fontWeight: 700 }}
+                              >
+                                {idx + 1}
+                              </Typography>
+                            </Box>
+                          )}
+                        </Box>
+                      ))}
+
+                      {/* Add button  shown until max 10 */}
+                      {galleryItems.length < 10 && (
+                        <Box
+                          onClick={() => {
+                            const input = document.createElement('input');
+                            input.type = 'file';
+                            input.accept = 'image/*';
+                            input.multiple = true;
+                            input.onchange = (e: any) => {
+                              const files: File[] = Array.from(e.target.files || []);
+                              const remaining = 10 - galleryItems.length;
+                              const toProcess = files.slice(0, remaining);
+                              toProcess.forEach((file) => {
+                                const reader = new FileReader();
+                                reader.onload = (ev) => {
+                                  const dataUrl = ev.target?.result as string;
+                                  setGalleryItems((prev) => {
+                                    if (prev.length >= 10) return prev;
+                                    return [...prev, { url: dataUrl, file }];
+                                  });
+                                };
+                                reader.readAsDataURL(file);
+                              });
+                            };
+                            input.click();
+                          }}
+                          sx={{
+                            borderRadius: '8px',
+                            border: `2px dashed ${errors.galleryImages ? '#f44336' : isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.15)'}`,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            cursor: 'pointer',
+                            aspectRatio: '1',
+                            minHeight: '90px',
+                            backgroundColor: isDark
+                              ? 'rgba(255,255,255,0.02)'
+                              : 'rgba(28,20,69,0.02)',
+                            '&:hover': {
+                              borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                              backgroundColor: isDark
+                                ? 'rgba(166,226,245,0.05)'
+                                : 'rgba(28,20,69,0.04)',
+                            },
+                          }}
+                        >
+                          <AddPhotoAlternate
+                            sx={{
+                              fontSize: '1.6rem',
+                              color: isDark ? '#d0caeb' : '#9e9e9e',
+                              mb: 0.3,
+                            }}
+                          />
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              fontSize: '0.6rem',
+                              color: isDark ? '#d0caeb' : '#9e9e9e',
+                              textAlign: 'center',
+                            }}
+                          >
+                            Add Photo
+                          </Typography>
+                        </Box>
+                      )}
+                    </Box>
+
+                    {errors.galleryImages && (
+                      <Typography
+                        variant="caption"
+                        sx={{ color: '#f44336', fontWeight: 600, display: 'block', mt: 1 }}
+                      >
+                        {errors.galleryImages}
+                      </Typography>
+                    )}
+                  </Box>
+                ) : imageUrl ? (
+                  <Box
+                    sx={{
+                      position: 'relative',
+                      borderRadius: '10px',
+                      overflow: 'hidden',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.1)'
+                        : '1px solid rgba(0,0,0,0.1)',
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={imageUrl}
+                      alt="Banner Preview"
+                      sx={{
+                        width: '100%',
+                        maxHeight: '260px',
+                        objectFit: 'cover',
+                        display: 'block',
+                      }}
+                    />
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        px: 2,
+                      }}
+                    >
+                      <Typography variant="caption" sx={{ color: '#fff', fontWeight: 600 }}>
+                        🖼 Banner Uploaded
+                      </Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => {
+                          setImageUrl(null);
+                          setImageFile(null);
+                        }}
+                        sx={{
+                          color: '#fff',
+                          backgroundColor: 'rgba(244,67,54,0.8)',
+                          '&:hover': { backgroundColor: '#f44336' },
+                          p: 0.4,
+                        }}
+                      >
+                        <DeleteOutline sx={{ fontSize: '0.9rem' }} />
+                      </IconButton>
+                    </Box>
+                  </Box>
+                ) : (
+                  <Box
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      setDragOver(true);
+                    }}
+                    onDragLeave={() => setDragOver(false)}
+                    onDrop={handleDrop}
+                    onClick={() => fileInputRef.current?.click()}
+                    sx={{
+                      border: `2px dashed ${errors.image ? '#f44336' : dragOver ? (isDark ? '#a6e2f5' : '#1c1445') : isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)'}`,
+                      borderRadius: '10px',
+                      p: 5,
+                      textAlign: 'center',
+                      cursor: 'pointer',
+                      backgroundColor: dragOver ? 'rgba(166,226,245,0.06)' : 'rgba(28,20,69,0.02)',
+                      '&:hover': {
+                        borderColor: errors.image ? '#f44336' : isDark ? '#a6e2f5' : '#1c1445',
+                      },
+                    }}
+                  >
+                    <CloudUpload
+                      sx={{ fontSize: '3rem', color: isDark ? '#d0caeb' : '#9e9e9e', mb: 1 }}
+                    />
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: isDark ? '#ffffff' : '#1c1445',
+                        fontWeight: 600,
+                        display: 'block',
+                        fontSize: '0.85rem',
+                      }}
+                    >
+                      Drag and drop banner photo or click to upload
                     </Typography>
-                  )}
-                </Box>
+                  </Box>
+                )}
+                {errors.image && (
+                  <Typography
+                    variant="caption"
+                    sx={{ color: '#f44336', fontWeight: 600, display: 'block', mt: 1 }}
+                  >
+                    {errors.image}
+                  </Typography>
+                )}
+              </Box>
             </Box>
           </Grid>
         </Grid>

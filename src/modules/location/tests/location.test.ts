@@ -112,7 +112,11 @@ describe('Location Repository', () => {
     expect(apiClient.get).toHaveBeenCalledWith('/admin/states', { skip: 0, limit: 100 });
 
     await LocationRepository.getAll('te');
-    expect(apiClient.get).toHaveBeenCalledWith('/admin/states', { lang: 'te', skip: 0, limit: 100 });
+    expect(apiClient.get).toHaveBeenCalledWith('/admin/states', {
+      lang: 'te',
+      skip: 0,
+      limit: 100,
+    });
   });
 
   it('should return res.data, res.states, res.items, fallback, or catch fallback on getAll', async () => {
@@ -215,9 +219,12 @@ describe('useLocationController hook', () => {
       await result.current.toggleFollow(19);
     });
 
-    expect(apiClient.put).toHaveBeenCalledWith('/admin/states/19', expect.objectContaining({
-      is_active: false,
-    }));
+    expect(apiClient.put).toHaveBeenCalledWith(
+      '/admin/states/19',
+      expect.objectContaining({
+        is_active: false,
+      })
+    );
   });
 
   it('should create new location on submit', async () => {
@@ -243,14 +250,17 @@ describe('useLocationController hook', () => {
       await result.current.handleSubmit();
     });
 
-    expect(apiClient.post).toHaveBeenCalledWith('/admin/states/create', expect.objectContaining({
-      translations: {
-        en: 'Kerala',
-        te: 'కేరళ',
-        ml: 'കേരളം',
-      },
-      is_active: true,
-    }));
+    expect(apiClient.post).toHaveBeenCalledWith(
+      '/admin/states/create',
+      expect.objectContaining({
+        translations: {
+          en: 'Kerala',
+          te: 'కేరళ',
+          ml: 'കേരളം',
+        },
+        is_active: true,
+      })
+    );
   });
 
   it('should upload image file and pass image_url payload on state creation', async () => {
@@ -279,9 +289,12 @@ describe('useLocationController hook', () => {
     });
 
     expect(UploadService.uploadImage).toHaveBeenCalledWith(file);
-    expect(apiClient.post).toHaveBeenCalledWith('/admin/states/create', expect.objectContaining({
-      image_url: 'https://example.com/uploaded_state.jpg',
-    }));
+    expect(apiClient.post).toHaveBeenCalledWith(
+      '/admin/states/create',
+      expect.objectContaining({
+        image_url: 'https://example.com/uploaded_state.jpg',
+      })
+    );
   });
 
   it('should delete a location on deleteLocation', async () => {

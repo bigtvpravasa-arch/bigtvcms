@@ -54,7 +54,7 @@ class MockFileReader {
   readAsDataURL(file: File) {
     if (this.onload) {
       this.onload({
-        target: { result: 'data:image/png;base64,dummy' }
+        target: { result: 'data:image/png;base64,dummy' },
       });
     }
   }
@@ -77,10 +77,10 @@ describe('DashboardPage page component', () => {
     useLanguageStore.setState({ language: 'te' });
     render(<DashboardPage />);
     const searchInput = screen.getByPlaceholderText('వార్తల శీర్షికను శోధించండి...');
-    
+
     // Type in a search value
     fireEvent.change(searchInput, { target: { value: 'ఆస్కార్లు' } });
-    
+
     // The list should filter down to posts containing the query
     expect((await screen.findAllByText(/ఆస్కార్లు/)).length).toBeGreaterThan(0);
   });
@@ -88,7 +88,7 @@ describe('DashboardPage page component', () => {
   it('should open CreateNewsForm inline when clicking Create News button', () => {
     render(<DashboardPage />);
     const createNewsBtn = screen.getByRole('button', { name: 'Create News' });
-    
+
     // Before click, form is not open
     expect(screen.queryByLabelText('Publish Location *')).toBeNull();
 
@@ -101,17 +101,25 @@ describe('DashboardPage page component', () => {
   it('should add a new post to the list when CreateNewsForm submits successfully and is confirmed', async () => {
     useLanguageStore.setState({ language: 'en' });
     const { container } = render(<DashboardPage />);
-    
+
     // Open the form
     fireEvent.click(screen.getByRole('button', { name: 'Create News' }));
 
     // Input fields inside the form
     fireEvent.click(screen.getByRole('checkbox', { name: 'Entertainment' }));
-    fireEvent.change(screen.getByPlaceholderText(/Enter news headline/i), { target: { value: 'Unique Testing Title' } });
-    fireEvent.change(screen.getByPlaceholderText(/Enter notification title/i), { target: { value: 'Unique Notification Title' } });
-    fireEvent.change(screen.getByPlaceholderText(/Enter image\/banner title/i), { target: { value: 'Unique Image Title' } });
-    fireEvent.change(screen.getByPlaceholderText(/Write news body content/i), { target: { value: 'Unique body text.' } });
-    
+    fireEvent.change(screen.getByPlaceholderText(/Enter news headline/i), {
+      target: { value: 'Unique Testing Title' },
+    });
+    fireEvent.change(screen.getByPlaceholderText(/Enter notification title/i), {
+      target: { value: 'Unique Notification Title' },
+    });
+    fireEvent.change(screen.getByPlaceholderText(/Enter image\/banner title/i), {
+      target: { value: 'Unique Image Title' },
+    });
+    fireEvent.change(screen.getByPlaceholderText(/Write news body content/i), {
+      target: { value: 'Unique body text.' },
+    });
+
     // Select Location
     const locationSelect = screen.getByLabelText('Publish Location *');
     fireEvent.mouseDown(locationSelect);

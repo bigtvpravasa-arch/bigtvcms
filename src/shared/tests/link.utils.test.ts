@@ -25,7 +25,8 @@ describe('formatLinksAndContent', () => {
   });
 
   it('should transform <a href="...">క్లిక్</a> into <link1>క్లిక్</link1> in content and strip outer HTML tags', () => {
-    const content = '<p>🔴 [ప్రధాన వార్త <a href="https://www.bharatpetroleum.in/index">క్లిక్</a>]</p>';
+    const content =
+      '<p>🔴 [ప్రధాన వార్త <a href="https://www.bharatpetroleum.in/index">క్లిక్</a>]</p>';
     const result = formatLinksAndContent([], content);
     expect(result.content).toBe('🔴 [ప్రధాన వార్త <link1>క్లిక్</link1>]');
     expect(result.links).toEqual([
@@ -37,7 +38,8 @@ describe('formatLinksAndContent', () => {
   });
 
   it('should strip rich editor HTML tags (<pre>, <code>, <span>) leaving only clean text with <link1> tags', () => {
-    const richContent = '<pre class="microlight"><code class="language-json"><span style="color: red;">తగినన్ని <a href="https://google.com">అవకాశాలు </a>కల్పిస్తే బాగుంటుంది.</span></code></pre>';
+    const richContent =
+      '<pre class="microlight"><code class="language-json"><span style="color: red;">తగినన్ని <a href="https://google.com">అవకాశాలు </a>కల్పిస్తే బాగుంటుంది.</span></code></pre>';
     const result = formatLinksAndContent([], richContent);
     expect(result.content).toBe('తగినన్ని <link1>అవకాశాలు </link1>కల్పిస్తే బాగుంటుంది.');
     expect(result.links).toEqual([
@@ -49,7 +51,8 @@ describe('formatLinksAndContent', () => {
   });
 
   it('should strip <span> tags with styles from content in all post formats', () => {
-    const spanContent = '<span style="color: rgb(31, 41, 55); font-family: Ramabhadra;">విజయనగరం జిల్లా భోగాపురంలో...</span>';
+    const spanContent =
+      '<span style="color: rgb(31, 41, 55); font-family: Ramabhadra;">విజయనగరం జిల్లా భోగాపురంలో...</span>';
     const cleaned = stripAllTagsExceptLinkTags(spanContent);
     expect(cleaned).toBe('విజయనగరం జిల్లా భోగాపురంలో...');
   });
@@ -88,7 +91,10 @@ describe('formatLinksAndContent', () => {
     expect(res1.links).toEqual([{ id: 'link1', value: 'https://bing.com' }]);
 
     const dupeContent = 'Check <link1><link1>diog</link1></link1> today';
-    const res2 = formatLinksAndContent([{ id: 'link1', value: 'https://example.com' }], dupeContent);
+    const res2 = formatLinksAndContent(
+      [{ id: 'link1', value: 'https://example.com' }],
+      dupeContent
+    );
     expect(res2.content).toBe('Check <link1>diog</link1> today');
     expect(res2.links).toEqual([{ id: 'link1', value: 'https://example.com' }]);
   });
@@ -118,7 +124,9 @@ describe('restoreLinksInContent', () => {
       { id: 'link2', value: 'https://second.com' },
     ];
     const restored = restoreLinksInContent(content, links);
-    expect(restored).toBe('<a href="https://first.com">First</a> and <a href="https://second.com">Second</a>');
+    expect(restored).toBe(
+      '<a href="https://first.com">First</a> and <a href="https://second.com">Second</a>'
+    );
   });
 
   it('should return original content if links is empty or undefined', () => {
@@ -127,4 +135,3 @@ describe('restoreLinksInContent', () => {
     expect(restoreLinksInContent('', [{ id: 'link1', value: 'www.google.com' }])).toBe('');
   });
 });
-

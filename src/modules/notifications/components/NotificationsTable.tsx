@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  Typography,
-  Chip,
-  IconButton,
-  Tooltip,
-  Button,
-} from '@mui/material';
+import { Box, Typography, Chip, IconButton, Tooltip, Button } from '@mui/material';
 import {
   Notifications as NotificationsIcon,
   CheckCircle,
@@ -53,7 +46,10 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
           }}
         >
           <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: '#10b981' }} />
-          <Typography variant="caption" sx={{ color: '#10b981', fontWeight: 700, fontSize: '0.75rem' }}>
+          <Typography
+            variant="caption"
+            sx={{ color: '#10b981', fontWeight: 700, fontSize: '0.75rem' }}
+          >
             {t.completed || 'Completed'}
           </Typography>
         </Box>
@@ -74,7 +70,10 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
           }}
         >
           <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: '#f59e0b' }} />
-          <Typography variant="caption" sx={{ color: '#f59e0b', fontWeight: 700, fontSize: '0.75rem' }}>
+          <Typography
+            variant="caption"
+            sx={{ color: '#f59e0b', fontWeight: 700, fontSize: '0.75rem' }}
+          >
             {t.pending || 'Pending'}
           </Typography>
         </Box>
@@ -94,7 +93,10 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
         }}
       >
         <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: '#ef4444' }} />
-        <Typography variant="caption" sx={{ color: '#ef4444', fontWeight: 700, fontSize: '0.75rem' }}>
+        <Typography
+          variant="caption"
+          sx={{ color: '#ef4444', fontWeight: 700, fontSize: '0.75rem' }}
+        >
           {t.failed || 'Failed'}
         </Typography>
       </Box>
@@ -203,8 +205,13 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
       {/* Data Rows — Create News Flex Row Style */}
       {items.length === 0 ? (
         <Box sx={{ textAlign: 'center', py: 8 }}>
-          <NotificationsIcon sx={{ fontSize: 48, color: isDark ? '#d0caeb' : '#9e9e9e', mb: 1, opacity: 0.5 }} />
-          <Typography variant="body1" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+          <NotificationsIcon
+            sx={{ fontSize: 48, color: isDark ? '#d0caeb' : '#9e9e9e', mb: 1, opacity: 0.5 }}
+          />
+          <Typography
+            variant="body1"
+            sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+          >
             {t.noRecords}
           </Typography>
         </Box>
@@ -222,7 +229,9 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
                 px: 2,
                 py: 1.6,
                 transition: 'all 0.2s ease',
-                borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.04)' : '1px solid rgba(0, 0, 0, 0.04)',
+                borderBottom: isDark
+                  ? '1px solid rgba(255, 255, 255, 0.04)'
+                  : '1px solid rgba(0, 0, 0, 0.04)',
                 '&:last-child': { borderBottom: 0 },
                 '&:hover': {
                   backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(28,20,69,0.02)',
@@ -241,7 +250,15 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
                     display: 'inline-block',
                   }}
                 >
-                  <Typography variant="caption" sx={{ color: rowColor, fontWeight: 700, fontFamily: 'monospace', fontSize: '0.72rem' }}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: rowColor,
+                      fontWeight: 700,
+                      fontFamily: 'monospace',
+                      fontSize: '0.72rem',
+                    }}
+                  >
                     {idx + 1 + skip}
                   </Typography>
                 </Box>
@@ -256,11 +273,15 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
               <Box sx={{ flex: '0 0 60px', px: 0.5 }}>
                 <Box
                   component="img"
-                  src={row.imageUrl || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=400'}
+                  src={
+                    row.imageUrl ||
+                    'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=400'
+                  }
                   alt={row.title}
                   onError={(e: any) => {
                     e.target.onerror = null;
-                    e.target.src = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=400';
+                    e.target.src =
+                      'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=400';
                   }}
                   sx={{
                     width: 44,
@@ -278,7 +299,10 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
                 <Tooltip
                   title={
                     <Box sx={{ p: 1, maxWidth: '300px' }}>
-                      <Typography variant="subtitle2" sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#1c1445', mb: 0.8 }}>
+                      <Typography
+                        variant="subtitle2"
+                        sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#1c1445', mb: 0.8 }}
+                      >
                         {row.title}
                       </Typography>
                       <Typography variant="body2" sx={{ fontSize: '0.8rem', lineHeight: 1.5 }}>
@@ -330,11 +354,20 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
                     py: 0.3,
                     borderRadius: '8px',
                     backgroundColor: isDark ? 'rgba(166,226,245,0.12)' : 'rgba(28,20,69,0.07)',
-                    border: isDark ? '1px solid rgba(166,226,245,0.2)' : '1px solid rgba(28,20,69,0.12)',
+                    border: isDark
+                      ? '1px solid rgba(166,226,245,0.2)'
+                      : '1px solid rgba(28,20,69,0.12)',
                     mb: 0.4,
                   }}
                 >
-                  <Typography variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700, fontSize: '0.72rem' }}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: isDark ? '#a6e2f5' : '#1c1445',
+                      fontWeight: 700,
+                      fontSize: '0.72rem',
+                    }}
+                  >
                     Post #{row.postId}
                   </Typography>
                 </Box>
@@ -368,20 +401,31 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
               </Box>
 
               {/* Status */}
-              <Box sx={{ flex: '1.3 1 0', px: 1 }}>
-                {getStatusChip(row.status)}
-              </Box>
+              <Box sx={{ flex: '1.3 1 0', px: 1 }}>{getStatusChip(row.status)}</Box>
 
               {/* Delivery Stats */}
               <Box sx={{ flex: '1.6 1 0', px: 1 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.3 }}>
-                  <Typography variant="caption" sx={{ fontSize: '0.72rem', color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      fontSize: '0.72rem',
+                      color: isDark ? '#d0caeb' : '#5c548a',
+                      fontWeight: 600,
+                    }}
+                  >
                     🎯 {t.targeted || 'Targeted'}: <b>{row.totalTargeted}</b>
                   </Typography>
-                  <Typography variant="caption" sx={{ fontSize: '0.72rem', color: '#10b981', fontWeight: 600 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ fontSize: '0.72rem', color: '#10b981', fontWeight: 600 }}
+                  >
                     ✅ {t.delivered || 'Delivered'}: <b>{row.successCount}</b>
                   </Typography>
-                  <Typography variant="caption" sx={{ fontSize: '0.72rem', color: '#ef4444', fontWeight: 600 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ fontSize: '0.72rem', color: '#ef4444', fontWeight: 600 }}
+                  >
                     ❌ {t.failedCount || 'Failed'}: <b>{row.failureCount}</b>
                   </Typography>
                 </Box>
@@ -389,10 +433,20 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
 
               {/* Date & Time */}
               <Box sx={{ flex: '1.5 1 0', px: 1 }}>
-                <Typography variant="body2" sx={{ fontWeight: 600, fontSize: '0.82rem', color: isDark ? '#ffffff' : '#1c1445' }}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontWeight: 600,
+                    fontSize: '0.82rem',
+                    color: isDark ? '#ffffff' : '#1c1445',
+                  }}
+                >
                   {sentDateTime.date}
                 </Typography>
-                <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', fontSize: '0.72rem' }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', fontSize: '0.72rem' }}
+                >
                   {sentDateTime.time}
                 </Typography>
               </Box>
@@ -409,7 +463,11 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
                         backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(25,118,210,0.08)',
                         borderRadius: '8px',
                         p: 0.6,
-                        '&:hover': { backgroundColor: isDark ? 'rgba(166,226,245,0.2)' : 'rgba(25,118,210,0.15)' },
+                        '&:hover': {
+                          backgroundColor: isDark
+                            ? 'rgba(166,226,245,0.2)'
+                            : 'rgba(25,118,210,0.15)',
+                        },
                       }}
                     >
                       <Visibility sx={{ fontSize: '1.05rem' }} />

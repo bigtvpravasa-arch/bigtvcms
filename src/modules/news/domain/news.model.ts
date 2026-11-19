@@ -47,4 +47,3 @@ export interface NewsPost {
   sendNotification?: boolean;
   translations?: any;
 }
-

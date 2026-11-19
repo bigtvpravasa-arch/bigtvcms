@@ -15,12 +15,7 @@ import {
   Chip,
   Divider,
 } from '@mui/material';
-import {
-  QrCodeScanner,
-  CheckCircle,
-  Cancel,
-  VerifiedUser,
-} from '@mui/icons-material';
+import { QrCodeScanner, CheckCircle, Cancel, VerifiedUser } from '@mui/icons-material';
 import { VerifyQrResult } from '../domain/event.types';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
 
@@ -80,7 +75,11 @@ export const QrCheckInModal: React.FC<QrCheckInModalProps> = ({
     setCheckingIn(true);
     try {
       const res = await onCheckIn(target);
-      setCheckedInMessage(res?.message || (t.msgCheckedInSuccess || 'Ticket scanned successfully. Customer checked in for event.'));
+      setCheckedInMessage(
+        res?.message ||
+          t.msgCheckedInSuccess ||
+          'Ticket scanned successfully. Customer checked in for event.'
+      );
       setResult(null);
     } finally {
       setCheckingIn(false);
@@ -101,12 +100,23 @@ export const QrCheckInModal: React.FC<QrCheckInModalProps> = ({
         },
       }}
     >
-      <DialogTitle sx={{ fontWeight: 700, color: isDark ? '#FFFFFF' : '#0f172a', display: 'flex', alignItems: 'center', gap: 1 }}>
+      <DialogTitle
+        sx={{
+          fontWeight: 700,
+          color: isDark ? '#FFFFFF' : '#0f172a',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 1,
+        }}
+      >
         <QrCodeScanner sx={{ color: '#ea580c' }} />
         {t.modalGateCheckInTitle || 'Gate Check-in & QR Verification'}
       </DialogTitle>
 
-      <DialogContent dividers sx={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}>
+      <DialogContent
+        dividers
+        sx={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+      >
         <Box sx={{ display: 'flex', gap: 1.5, mb: 2.5, mt: 1 }}>
           <TextField
             label={t.lblBookingCode || 'Booking Code / Ticket ID'}
@@ -115,7 +125,9 @@ export const QrCheckInModal: React.FC<QrCheckInModalProps> = ({
             value={code}
             onChange={(e) => setCode(e.target.value.toUpperCase())}
             placeholder="e.g. BTV-FN26-K92A"
-            inputProps={{ style: { textTransform: 'uppercase', fontFamily: 'monospace', fontWeight: 600 } }}
+            inputProps={{
+              style: { textTransform: 'uppercase', fontFamily: 'monospace', fontWeight: 600 },
+            }}
           />
           <Button
             variant="contained"
@@ -128,7 +140,11 @@ export const QrCheckInModal: React.FC<QrCheckInModalProps> = ({
               whiteSpace: 'nowrap',
             }}
           >
-            {verifying ? <CircularProgress size={18} sx={{ color: '#FFF' }} /> : (t.btnScanVerify || 'Verify Ticket')}
+            {verifying ? (
+              <CircularProgress size={18} sx={{ color: '#FFF' }} />
+            ) : (
+              t.btnScanVerify || 'Verify Ticket'
+            )}
           </Button>
         </Box>
 
@@ -151,8 +167,8 @@ export const QrCheckInModal: React.FC<QrCheckInModalProps> = ({
                   ? 'rgba(16, 185, 129, 0.08)'
                   : 'rgba(16, 185, 129, 0.05)'
                 : isDark
-                ? 'rgba(239, 68, 68, 0.08)'
-                : 'rgba(239, 68, 68, 0.05)',
+                  ? 'rgba(239, 68, 68, 0.08)'
+                  : 'rgba(239, 68, 68, 0.05)',
             }}
           >
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
@@ -161,39 +177,78 @@ export const QrCheckInModal: React.FC<QrCheckInModalProps> = ({
               ) : (
                 <Cancel sx={{ color: '#ef4444', fontSize: 26 }} />
               )}
-              <Typography variant="subtitle1" fontWeight={700} sx={{ color: result.isValid ? '#10b981' : '#ef4444' }}>
+              <Typography
+                variant="subtitle1"
+                fontWeight={700}
+                sx={{ color: result.isValid ? '#10b981' : '#ef4444' }}
+              >
                 {result.isValid ? 'GATE ENTRY ALLOWED' : 'ENTRY DENIED'}
               </Typography>
             </Box>
 
-            <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.8)' : 'text.primary', mb: 2 }}>
+            <Typography
+              variant="body2"
+              sx={{ color: isDark ? 'rgba(255,255,255,0.8)' : 'text.primary', mb: 2 }}
+            >
               {result.reason}
             </Typography>
 
             {result.booking && (
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, pt: 1.5, borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}` }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 1,
+                  pt: 1.5,
+                  borderTop: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}`,
+                }}
+              >
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}
+                  >
                     Attendee:
                   </Typography>
-                  <Typography variant="body2" fontWeight={600} sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}>
+                  <Typography
+                    variant="body2"
+                    fontWeight={600}
+                    sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}
+                  >
                     {result.booking.userName}
                   </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}
+                  >
                     Tickets & Tier:
                   </Typography>
-                  <Typography variant="body2" fontWeight={600} sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}>
-                    {result.booking.quantity} × {result.booking.ticketType?.name || result.booking.ticketTypeName || 'Ticket'}
+                  <Typography
+                    variant="body2"
+                    fontWeight={600}
+                    sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}
+                  >
+                    {result.booking.quantity} ×{' '}
+                    {result.booking.ticketType?.name || result.booking.ticketTypeName || 'Ticket'}
                   </Typography>
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Typography variant="caption" sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}>
+                <Box
+                  sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                >
+                  <Typography
+                    variant="caption"
+                    sx={{ color: isDark ? 'rgba(255,255,255,0.5)' : 'text.secondary' }}
+                  >
                     Payment & Status:
                   </Typography>
                   <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Chip label={result.booking.paymentStatus} size="small" color={result.booking.paymentStatus === 'PAID' ? 'success' : 'error'} />
+                    <Chip
+                      label={result.booking.paymentStatus}
+                      size="small"
+                      color={result.booking.paymentStatus === 'PAID' ? 'success' : 'error'}
+                    />
                     <Chip label={result.booking.bookingStatus} size="small" />
                   </Box>
                 </Box>
@@ -206,14 +261,20 @@ export const QrCheckInModal: React.FC<QrCheckInModalProps> = ({
                   variant="contained"
                   onClick={handleConfirmCheckIn}
                   disabled={checkingIn}
-                  startIcon={checkingIn ? <CircularProgress size={16} sx={{ color: '#FFF' }} /> : <VerifiedUser />}
+                  startIcon={
+                    checkingIn ? (
+                      <CircularProgress size={16} sx={{ color: '#FFF' }} />
+                    ) : (
+                      <VerifiedUser />
+                    )
+                  }
                   sx={{
                     textTransform: 'none',
                     bgcolor: '#10b981',
                     '&:hover': { bgcolor: '#059669' },
                   }}
                 >
-                  {checkingIn ? 'Checking In...' : (t.btnConfirmCheckIn || 'Confirm Gate Check-in')}
+                  {checkingIn ? 'Checking In...' : t.btnConfirmCheckIn || 'Confirm Gate Check-in'}
                 </Button>
               </Box>
             )}
@@ -221,7 +282,9 @@ export const QrCheckInModal: React.FC<QrCheckInModalProps> = ({
         )}
       </DialogContent>
 
-      <DialogActions sx={{ p: 2, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}>
+      <DialogActions
+        sx={{ p: 2, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+      >
         <Button onClick={onClose} sx={{ textTransform: 'none' }}>
           {t.btnCancel || 'Close'}
         </Button>

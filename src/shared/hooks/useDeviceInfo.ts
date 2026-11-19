@@ -97,11 +97,12 @@ function collectSignals(): string {
 
 /** SHA-256 via Web Crypto API → hex string */
 async function sha256(input: string): Promise<string> {
-  if (typeof crypto !== 'undefined' && crypto.subtle && typeof crypto.subtle.digest === 'function') {
-    const buf = await crypto.subtle.digest(
-      'SHA-256',
-      new TextEncoder().encode(input)
-    );
+  if (
+    typeof crypto !== 'undefined' &&
+    crypto.subtle &&
+    typeof crypto.subtle.digest === 'function'
+  ) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input));
     return Array.from(new Uint8Array(buf))
       .map((b) => b.toString(16).padStart(2, '0'))
       .join('');
@@ -201,7 +202,7 @@ function getConnectionType(): string {
   if (!conn) return 'Unknown';
   return conn.effectiveType
     ? `${conn.effectiveType.toUpperCase()} (${conn.type ?? 'unknown'})`
-    : conn.type ?? 'Unknown';
+    : (conn.type ?? 'Unknown');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

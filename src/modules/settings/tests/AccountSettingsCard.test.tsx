@@ -84,9 +84,12 @@ describe('AccountSettingsCard Component', () => {
     const submitBtn = screen.getByRole('button', { name: /update credentials/i });
     fireEvent.click(submitBtn);
 
-    await waitFor(() => {
-      expect(screen.getByText('Account credentials updated successfully!')).toBeInTheDocument();
-    }, { timeout: 2000 });
+    await waitFor(
+      () => {
+        expect(screen.getByText('Account credentials updated successfully!')).toBeInTheDocument();
+      },
+      { timeout: 2000 }
+    );
 
     expect(useUserStore.getState().user.username).toBe('new_username_123');
   });

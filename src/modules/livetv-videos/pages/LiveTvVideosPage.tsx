@@ -66,6 +66,7 @@ const translations = {
     dailySyncBtn: 'Daily Sync',
     syncingBtn: 'Syncing...',
     syncSuccessMsg: 'Videos synced successfully for',
+    alreadySyncedMsg: 'Videos for this tag are already synced',
     searchPlaceholder: 'Search videos by file name...',
     totalVideos: 'Total Videos',
     editTag: 'Edit Tag',
@@ -87,7 +88,8 @@ const translations = {
     teluguOption: 'Telugu (te)',
     malayalamOption: 'Malayalam (ml)',
     englishOption: 'English (en)',
-    slugChangeWarning: 'Changing language will automatically relocate the show folder on the server.',
+    slugChangeWarning:
+      'Changing language will automatically relocate the show folder on the server.',
     descriptionLabel: 'Description',
     descriptionPlaceholder: 'Enter brief show summary...',
     tagNameLabel: 'Tag Name',
@@ -110,10 +112,22 @@ const translations = {
     teluguShowsHeading: 'Telugu Shows (Default)',
     malayalamShowsHeading: 'Malayalam Shows',
     englishShowsHeading: 'English Shows',
+    colViewCount: 'View Count',
+    thumbnailLabel: 'Thumbnail Image',
+    uploadThumbnail: 'Upload Thumbnail',
+    uploading: 'Uploading...',
+    removeThumbnail: 'Remove Thumbnail',
+    thumbnailUrlLabel: 'Thumbnail URL',
+    thumbnailUrlPlaceholder: 'https://... or upload an image',
+    uploadFailed: 'Failed to upload image',
+    errorFileNameRequired: 'File name is required',
+    errorInvalidViewCount: 'View count cannot be negative',
+    errorVideoIdMissing: 'Video ID is missing. Cannot update.',
   },
   te: {
     pageTitle: 'వీడియో ట్యాగ్‌లు & స్ట్రీమ్ నిర్వహణ',
-    pageSubtitle: 'డైనమిక్ వీడియో ఫోల్డర్‌లను నిర్వహించండి మరియు వివిధ భాషలలో స్ట్రీమింగ్ కంటెంట్‌ను వీక్షించండి',
+    pageSubtitle:
+      'డైనమిక్ వీడియో ఫోల్డర్‌లను నిర్వహించండి మరియు వివిధ భాషలలో స్ట్రీమింగ్ కంటెంట్‌ను వీక్షించండి',
     createTagBtn: '+ కొత్త వీడియో ట్యాగ్',
     allLanguagesTab: 'అన్ని భాషలు',
     teluguTab: 'తెలుగు (te) ★డిఫాల్ట్',
@@ -125,6 +139,7 @@ const translations = {
     dailySyncBtn: 'రోజువారీ సమకాలీకరణ',
     syncingBtn: 'సమకాలీకరిస్తోంది...',
     syncSuccessMsg: 'వీడియోలు విజయవంతంగా సమకాలీకరించబడ్డాయి:',
+    alreadySyncedMsg: 'ఈ ట్యాగ్ కోసం వీడియోలు ఇప్పటికే సమకాలీకరించబడ్డాయి',
     searchPlaceholder: 'ఫైల్ పేరు ద్వారా వీడియోలను శోధించండి...',
     totalVideos: 'మొత్తం వీడియోలు',
     editTag: 'ట్యాగ్‌ని సవరించు',
@@ -138,7 +153,8 @@ const translations = {
     delete: 'తొలగించు',
     editVideo: 'వీడియోను సవరించండి',
     noTagsFound: 'ఈ భాష కోసం వీడియో ట్యాగ్‌లు కనుగొనబడలేదు.',
-    selectTagPrompt: 'వీడియోలు మరియు స్ట్రీమింగ్ ఫైళ్ళను వీక్షించడానికి వీడియో ట్యాగ్‌ని ఎంచుకోండి.',
+    selectTagPrompt:
+      'వీడియోలు మరియు స్ట్రీమింగ్ ఫైళ్ళను వీక్షించడానికి వీడియో ట్యాగ్‌ని ఎంచుకోండి.',
     viewVideosBtn: 'వీడియోలను చూడండి',
     folder: 'ఫోల్డర్',
     views: 'వీక్షణలు',
@@ -169,10 +185,22 @@ const translations = {
     teluguShowsHeading: 'తెలుగు షోలు (డిఫాల్ట్)',
     malayalamShowsHeading: 'మలయాళం షోలు',
     englishShowsHeading: 'ఇంగ్లీష్ షోలు',
+    colViewCount: 'వీక్షణల సంఖ్య',
+    thumbnailLabel: 'థంబ్‌నెయిల్ చిత్రం',
+    uploadThumbnail: 'థంబ్‌నెయిల్‌ను అప్‌లోడ్ చేయండి',
+    uploading: 'అప్‌లోడ్ అవుతోంది...',
+    removeThumbnail: 'థంబ్‌నెయిల్‌ను తీసివేయండి',
+    thumbnailUrlLabel: 'థంబ్‌నెయిల్ URL',
+    thumbnailUrlPlaceholder: 'https://... లేదా చిత్రాన్ని అప్‌లోడ్ చేయండి',
+    uploadFailed: 'చిత్రాన్ని అప్‌లోడ్ చేయడం విఫలమైంది',
+    errorFileNameRequired: 'ఫైల్ పేరు అవసరం',
+    errorInvalidViewCount: 'వీక్షణల సంఖ్య రుణాత్మకంగా ఉండకూడదు',
+    errorVideoIdMissing: 'వీడియో ID లేదు. నవీకరించడం సాధ్యం కాదు.',
   },
   hi: {
     pageTitle: 'वीडियो टैग और स्ट्रीम प्रबंधन',
-    pageSubtitle: 'डायनामिक वीडियो फ़ोल्डर्स प्रबंधित करें और विभिन्न भाषाओं में स्ट्रीमिंग सामग्री देखें',
+    pageSubtitle:
+      'डायनामिक वीडियो फ़ोल्डर्स प्रबंधित करें और विभिन्न भाषाओं में स्ट्रीमिंग सामग्री देखें',
     createTagBtn: '+ नया वीडियो टैग',
     allLanguagesTab: 'सभी भाषाएं',
     teluguTab: 'तेलुगु (te) ★डिफ़ॉल्ट',
@@ -184,6 +212,7 @@ const translations = {
     dailySyncBtn: 'दैनिक सिंक',
     syncingBtn: 'सिंक हो रहा है...',
     syncSuccessMsg: 'के लिए वीडियो सफलतापूर्वक सिंक किए गए:',
+    alreadySyncedMsg: 'इस टैग के वीडियो पहले से ही सिंक हैं',
     searchPlaceholder: 'फ़ाइल नाम से वीडियो खोजें...',
     totalVideos: 'कुल वीडियो',
     editTag: 'टैग संपादित करें',
@@ -228,10 +257,22 @@ const translations = {
     teluguShowsHeading: 'तेलुगु शो (डिफ़ॉल्ट)',
     malayalamShowsHeading: 'मलयालम शो',
     englishShowsHeading: 'अंग्रेज़ी शो',
+    colViewCount: 'व्यू काउंट',
+    thumbnailLabel: 'थंबनेल छवि',
+    uploadThumbnail: 'थंबनेल अपलोड करें',
+    uploading: 'अपलोड हो रहा है...',
+    removeThumbnail: 'थंबनेल हटाएं',
+    thumbnailUrlLabel: 'थंबनेल URL',
+    thumbnailUrlPlaceholder: 'https://... या छवि अपलोड करें',
+    uploadFailed: 'छवि अपलोड विफल रही',
+    errorFileNameRequired: 'फ़ाइल नाम आवश्यक है',
+    errorInvalidViewCount: 'व्यू काउंट नकारात्मक नहीं हो सकता',
+    errorVideoIdMissing: 'वीडियो आईडी अनुपलब्ध है। अद्यतन नहीं किया जा सकता।',
   },
   ml: {
     pageTitle: 'വീഡിയോ ടാഗുകളും സ്ട്രീം മാനേജ്മെൻ്റും',
-    pageSubtitle: 'ഡൈനാമിക് വീഡിയോ ഫോൾഡറുകൾ നിയന്ത്രിക്കുകയും ഭാഷകളിലുടനീളം സ്ട്രീമിംഗ് ഉള്ളടക്കം കാണുകയും ചെയ്യുക',
+    pageSubtitle:
+      'ഡൈനാമിക് വീഡിയോ ഫോൾഡറുകൾ നിയന്ത്രിക്കുകയും ഭാഷകളിലുടനീളം സ്ട്രീമിംഗ് ഉള്ളടക്കം കാണുകയും ചെയ്യുക',
     createTagBtn: '+ പുതിയ വീഡിയോ ടാഗ്',
     allLanguagesTab: 'എല്ലാ ഭാഷകളും',
     teluguTab: 'തെലുങ്ക് (te) ★സ്ഥിരസ്ഥിതി',
@@ -243,6 +284,7 @@ const translations = {
     dailySyncBtn: 'പ്രതിദിന സമന്വയം',
     syncingBtn: 'സമന്വയിപ്പിക്കുന്നു...',
     syncSuccessMsg: 'വീഡിയോകൾ വിജയകരമായി സമന്വയിപ്പിച്ചു:',
+    alreadySyncedMsg: 'ഈ ടാഗിനായുള്ള വീഡിയോകൾ ഇതിനകം സമന്വയിപ്പിച്ചു',
     searchPlaceholder: 'ഫയലിന്റെ പേര് ഉപയോഗിച്ച് വീഡിയോകൾ തിരയുക...',
     totalVideos: 'ആകെ വീഡിയോകൾ',
     editTag: 'ടാഗ് എഡിറ്റുചെയ്യുക',
@@ -287,6 +329,17 @@ const translations = {
     teluguShowsHeading: 'തെലുങ്ക് ഷോകൾ (സ്ഥിരസ്ഥിതി)',
     malayalamShowsHeading: 'മലയാളം ഷോകൾ',
     englishShowsHeading: 'ഇംഗ്ലീഷ് ഷോകൾ',
+    colViewCount: 'കാഴ്ചകളുടെ എണ്ണം',
+    thumbnailLabel: 'ലഘുചിത്രം',
+    uploadThumbnail: 'ലഘുചിത്രം അപ്‌ലോഡ് ചെയ്യുക',
+    uploading: 'അപ്‌ലോഡ് ചെയ്യുന്നു...',
+    removeThumbnail: 'ലഘുചിത്രം നീക്കം ചെയ്യുക',
+    thumbnailUrlLabel: 'ലഘുചിത്ര URL',
+    thumbnailUrlPlaceholder: 'https://... അല്ലെങ്കിൽ ചിത്രം അപ്‌ലോഡ് ചെയ്യുക',
+    uploadFailed: 'ചിത്രം അപ്‌ലോഡ് ചെയ്യുന്നത് പരാജയപ്പെട്ടു',
+    errorFileNameRequired: 'ഫയൽ നാമം ആവശ്യമാണ്',
+    errorInvalidViewCount: 'കാഴ്ചകളുടെ എണ്ണം നെഗറ്റീവ് ആകാൻ പാടില്ല',
+    errorVideoIdMissing: 'വീഡിയോ ഐഡി ലഭ്യമല്ല. അപ്ഡേറ്റ് ചെയ്യാൻ കഴിയില്ല.',
   },
 };
 
@@ -309,8 +362,10 @@ export const LiveTvVideosPage: React.FC = () => {
     isSyncing,
     actionError,
     actionSuccess,
+    actionInfo,
     setActionError,
     setActionSuccess,
+    setActionInfo,
     searchQuery,
     setSearchQuery,
     page,
@@ -363,7 +418,9 @@ export const LiveTvVideosPage: React.FC = () => {
           params.get('lan') ||
           params.get('from') ||
           ''
-        ).toLowerCase().trim();
+        )
+          .toLowerCase()
+          .trim();
         if (urlLang === 'ml' || urlLang === 'malayala' || urlLang === 'malayalam') return ['ml'];
         if (urlLang === 'te' || urlLang === 'telugu') return ['te'];
         if (urlLang === 'en' || urlLang === 'english') return ['en'];
@@ -541,8 +598,15 @@ export const LiveTvVideosPage: React.FC = () => {
                   {actionSuccess}
                 </Alert>
               )}
-
-
+              {actionInfo && (
+                <Alert
+                  severity="info"
+                  onClose={() => setActionInfo(null)}
+                  sx={{ borderRadius: '14px' }}
+                >
+                  {actionInfo}
+                </Alert>
+              )}
 
               {/* Categorized Accordions if "All Languages" is selected */}
               {selectedLanguage === 'all' && (
@@ -554,11 +618,15 @@ export const LiveTvVideosPage: React.FC = () => {
                       backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#ffffff',
                       color: isDark ? '#ffffff' : '#1c1445',
                       borderRadius: '16px !important',
-                      border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.08)'
+                        : '1px solid rgba(0,0,0,0.08)',
                       '&:before': { display: 'none' },
                     }}
                   >
-                    <AccordionSummary expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}
+                    >
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                         <Typography sx={{ fontWeight: 700 }}>{t.teluguShowsHeading}</Typography>
                         <Chip
@@ -600,11 +668,15 @@ export const LiveTvVideosPage: React.FC = () => {
                       backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#ffffff',
                       color: isDark ? '#ffffff' : '#1c1445',
                       borderRadius: '16px !important',
-                      border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.08)'
+                        : '1px solid rgba(0,0,0,0.08)',
                       '&:before': { display: 'none' },
                     }}
                   >
-                    <AccordionSummary expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}
+                    >
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                         <Typography sx={{ fontWeight: 700 }}>{t.malayalamShowsHeading}</Typography>
                         <Chip
@@ -646,11 +718,15 @@ export const LiveTvVideosPage: React.FC = () => {
                       backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#ffffff',
                       color: isDark ? '#ffffff' : '#1c1445',
                       borderRadius: '16px !important',
-                      border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.08)'
+                        : '1px solid rgba(0,0,0,0.08)',
                       '&:before': { display: 'none' },
                     }}
                   >
-                    <AccordionSummary expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}
+                    >
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                         <Typography sx={{ fontWeight: 700 }}>{t.englishShowsHeading}</Typography>
                         <Chip
@@ -760,7 +836,9 @@ export const LiveTvVideosPage: React.FC = () => {
                           width: 38,
                           height: 38,
                           borderRadius: '10px',
-                          backgroundColor: isDark ? 'rgba(147,197,253,0.15)' : 'rgba(37,99,235,0.1)',
+                          backgroundColor: isDark
+                            ? 'rgba(147,197,253,0.15)'
+                            : 'rgba(37,99,235,0.1)',
                           color: isDark ? '#93c5fd' : '#2563eb',
                         }}
                       >
@@ -826,7 +904,9 @@ export const LiveTvVideosPage: React.FC = () => {
                     <Button
                       variant="outlined"
                       size="small"
-                      startIcon={isSyncing ? <CircularProgress size={14} /> : <Sync sx={{ fontSize: 18 }} />}
+                      startIcon={
+                        isSyncing ? <CircularProgress size={14} /> : <Sync sx={{ fontSize: 18 }} />
+                      }
                       disabled={isSyncing}
                       onClick={() => handleDailySync(selectedTag.slug)}
                       sx={{
@@ -839,9 +919,7 @@ export const LiveTvVideosPage: React.FC = () => {
                         color: isDark ? '#93c5fd' : '#2563eb',
                         '&:hover': {
                           borderColor: '#2563eb',
-                          backgroundColor: isDark
-                            ? 'rgba(37,99,235,0.1)'
-                            : 'rgba(37,99,235,0.06)',
+                          backgroundColor: isDark ? 'rgba(37,99,235,0.1)' : 'rgba(37,99,235,0.06)',
                         },
                       }}
                     >
@@ -863,9 +941,7 @@ export const LiveTvVideosPage: React.FC = () => {
                         color: isDark ? '#ffffff' : '#1c1445',
                         '&:hover': {
                           borderColor: isDark ? '#ffffff' : '#1c1445',
-                          backgroundColor: isDark
-                            ? 'rgba(255,255,255,0.05)'
-                            : 'rgba(0,0,0,0.04)',
+                          backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)',
                         },
                       }}
                     >
@@ -945,7 +1021,7 @@ export const LiveTvVideosPage: React.FC = () => {
                 t={t}
                 initialLanguage={
                   (selectedLanguage === 'all'
-                    ? (allowedLanguages[0] || 'te')
+                    ? allowedLanguages[0] || 'te'
                     : selectedLanguage) as TagLanguage
                 }
                 allowedLanguages={allowedLanguages}

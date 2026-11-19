@@ -139,7 +139,9 @@ describe('News Validator - Create Post Validation', () => {
     it('should throw error when subType is invalid (neither empty nor BulletPost)', () => {
       expect(() =>
         validateCreateNewsPost({ ...validStandardPostBody, subType: 'invalidType' })
-      ).toThrow(/subType must be empty, 'BulletPost', 'StandardLink', or 'BigBlackStandard' for Standard post/);
+      ).toThrow(
+        /subType must be empty, 'BulletPost', 'StandardLink', or 'BigBlackStandard' for Standard post/
+      );
     });
 
     it('should successfully validate BulletPost with explicit bulletPoints', () => {
@@ -147,10 +149,7 @@ describe('News Validator - Create Post Validation', () => {
         ...validStandardPostBody,
         type: 'Standed',
         subType: 'BulletPost',
-        bulletPoints: [
-          'అవకాడో ఉదయం తినడం మంచిది.',
-          'జామపండు మధ్యాహ్నం తీసుకోవాలి.',
-        ],
+        bulletPoints: ['అవకాడో ఉదయం తినడం మంచిది.', 'జామపండు మధ్యాహ్నం తీసుకోవాలి.'],
       };
       const validated = validateCreateNewsPost(bulletPayload);
       expect(validated.type).toBe('Standed');
@@ -317,9 +316,9 @@ describe('News Validator - Create Post Validation', () => {
     });
 
     it('should throw error when isWebPost is true for Standard Post', () => {
-      expect(() =>
-        validateCreateNewsPost({ ...validStandardPostBody, isWebPost: true })
-      ).toThrow(/isWebPost must be false for Standard post/);
+      expect(() => validateCreateNewsPost({ ...validStandardPostBody, isWebPost: true })).toThrow(
+        /isWebPost must be false for Standard post/
+      );
     });
 
     it('should throw error when postUrl is not empty for Standard Post', () => {

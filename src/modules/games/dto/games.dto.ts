@@ -88,8 +88,12 @@ export const getLevelImageUrl = (level?: Partial<LevelItem> | null): string => {
     level.logoUrl ||
     level.completionImageUrl ||
     level.iconUrl ||
-    (typeof level.content?.backgroundImage === 'string' ? (level.content.backgroundImage as string) : '') ||
-    (typeof level.content?.backgroundImageUrl === 'string' ? (level.content.backgroundImageUrl as string) : '') ||
+    (typeof level.content?.backgroundImage === 'string'
+      ? (level.content.backgroundImage as string)
+      : '') ||
+    (typeof level.content?.backgroundImageUrl === 'string'
+      ? (level.content.backgroundImageUrl as string)
+      : '') ||
     DEFAULT_LEVEL_ICON_URL
   );
 };

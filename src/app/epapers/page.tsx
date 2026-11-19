@@ -210,8 +210,15 @@ const translations = {
 };
 
 const epaperColors = [
-  '#7c6df5', '#f5a623', '#4fc3f7', '#66bb6a',
-  '#ef5350', '#ab47bc', '#26a69a', '#ff7043', '#29b6f6',
+  '#7c6df5',
+  '#f5a623',
+  '#4fc3f7',
+  '#66bb6a',
+  '#ef5350',
+  '#ab47bc',
+  '#26a69a',
+  '#ff7043',
+  '#29b6f6',
 ];
 
 export default function EpapersPage() {
@@ -379,8 +386,7 @@ export default function EpapersPage() {
       const matchesDate = !filterDate || item.publishDate === filterDate;
       const matchesEdition =
         filterEdition === 'all' || !filterEdition || item.editionName === filterEdition;
-      const matchesStatus =
-        filterStatus === 'all' || !filterStatus || item.status === filterStatus;
+      const matchesStatus = filterStatus === 'all' || !filterStatus || item.status === filterStatus;
 
       return matchesSearch && matchesDate && matchesEdition && matchesStatus;
     });
@@ -406,9 +412,7 @@ export default function EpapersPage() {
     } catch {
       // optimistic state update
     }
-    setEpapers((prev) =>
-      prev.map((e) => (e.id === item.id ? { ...e, status: newStatus } : e))
-    );
+    setEpapers((prev) => prev.map((e) => (e.id === item.id ? { ...e, status: newStatus } : e)));
   };
 
   const handleDelete = async (id: string) => {
@@ -549,7 +553,15 @@ export default function EpapersPage() {
       <Sidebar activeHref="/epapers" />
 
       {/* Main Container */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
         <Header title={t.pageTitle} />
 
         {/* Content Area */}
@@ -579,7 +591,11 @@ export default function EpapersPage() {
                 ),
                 endAdornment: filterText ? (
                   <InputAdornment position="end">
-                    <IconButton size="small" onClick={() => setFilterText('')} sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}>
+                    <IconButton
+                      size="small"
+                      onClick={() => setFilterText('')}
+                      sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}
+                    >
                       <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
                     </IconButton>
                   </InputAdornment>
@@ -616,7 +632,9 @@ export default function EpapersPage() {
               >
                 <MenuItem value="all">All Editions</MenuItem>
                 {availableEditions.map((ed) => (
-                  <MenuItem key={ed} value={ed}>{ed}</MenuItem>
+                  <MenuItem key={ed} value={ed}>
+                    {ed}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -698,7 +716,9 @@ export default function EpapersPage() {
                   color: isDark ? '#d0caeb' : '#5c548a',
                   fontWeight: 700,
                   fontSize: '0.8rem',
-                  borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                  borderBottom: isDark
+                    ? '1px solid rgba(255,255,255,0.08)'
+                    : '1px solid rgba(0,0,0,0.08)',
                   backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f8f7ff',
                   textTransform: 'uppercase',
                   letterSpacing: '0.06em',
@@ -730,13 +750,22 @@ export default function EpapersPage() {
                           py: 1.8,
                           transition: 'all 0.2s ease',
                           '&:hover': {
-                            backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(28,20,69,0.02)',
+                            backgroundColor: isDark
+                              ? 'rgba(255,255,255,0.03)'
+                              : 'rgba(28,20,69,0.02)',
                           },
                         }}
                       >
                         {/* Index */}
                         <Box sx={colStyle(0.6)}>
-                          <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', fontWeight: 600, fontSize: '0.8rem' }}>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: isDark ? '#d0caeb' : '#9e9e9e',
+                              fontWeight: 600,
+                              fontSize: '0.8rem',
+                            }}
+                          >
                             {idx + 1 + (page - 1) * recordsPerPage}
                           </Typography>
                         </Box>
@@ -752,7 +781,9 @@ export default function EpapersPage() {
                               borderRadius: '8px',
                               fontSize: '0.75rem',
                               fontWeight: 700,
-                              backgroundColor: isDark ? 'rgba(166,226,245,0.12)' : 'rgba(28,20,69,0.06)',
+                              backgroundColor: isDark
+                                ? 'rgba(166,226,245,0.12)'
+                                : 'rgba(28,20,69,0.06)',
                               color: isDark ? '#a6e2f5' : '#1c1445',
                             }}
                           >
@@ -768,7 +799,12 @@ export default function EpapersPage() {
                                 component="img"
                                 src={item.logo}
                                 alt={item.name}
-                                sx={{ width: 38, height: 38, borderRadius: '8px', objectFit: 'cover' }}
+                                sx={{
+                                  width: 38,
+                                  height: 38,
+                                  borderRadius: '8px',
+                                  objectFit: 'cover',
+                                }}
                               />
                             ) : (
                               <Box
@@ -787,10 +823,16 @@ export default function EpapersPage() {
                               </Box>
                             )}
                             <Box>
-                              <Typography variant="body2" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}>
+                              <Typography
+                                variant="body2"
+                                sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}
+                              >
                                 {item.name}
                               </Typography>
-                              <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#666666' }}>
+                              <Typography
+                                variant="caption"
+                                sx={{ color: isDark ? '#d0caeb' : '#666666' }}
+                              >
                                 {item.editionName}
                               </Typography>
                             </Box>
@@ -805,7 +847,9 @@ export default function EpapersPage() {
                             sx={{
                               fontWeight: 700,
                               fontSize: '0.72rem',
-                              backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.08)',
+                              backgroundColor: isDark
+                                ? 'rgba(166,226,245,0.15)'
+                                : 'rgba(28,20,69,0.08)',
                               color: isDark ? '#a6e2f5' : '#1c1445',
                             }}
                           />
@@ -813,7 +857,10 @@ export default function EpapersPage() {
 
                         {/* Publish Date */}
                         <Box sx={colStyle(1.4)}>
-                          <Typography variant="body2" sx={{ fontSize: '0.8rem', color: isDark ? '#ffffff' : '#1c1445' }}>
+                          <Typography
+                            variant="body2"
+                            sx={{ fontSize: '0.8rem', color: isDark ? '#ffffff' : '#1c1445' }}
+                          >
                             {item.publishDate}
                           </Typography>
                         </Box>
@@ -838,7 +885,13 @@ export default function EpapersPage() {
                         {/* Status Chip */}
                         <Box sx={colStyle(1.4)}>
                           <Chip
-                            icon={isPublished ? <CheckCircle style={{ fontSize: 14 }} /> : <RadioButtonUnchecked style={{ fontSize: 14 }} />}
+                            icon={
+                              isPublished ? (
+                                <CheckCircle style={{ fontSize: 14 }} />
+                              ) : (
+                                <RadioButtonUnchecked style={{ fontSize: 14 }} />
+                              )
+                            }
                             label={isPublished ? t.published : t.draft}
                             size="small"
                             onClick={() => toggleStatus(item)}
@@ -847,31 +900,53 @@ export default function EpapersPage() {
                               fontWeight: 600,
                               fontSize: '0.75rem',
                               backgroundColor: isPublished
-                                ? isDark ? 'rgba(102, 187, 106, 0.15)' : '#e8f5e9'
-                                : isDark ? 'rgba(239, 83, 80, 0.15)' : '#ffebee',
+                                ? isDark
+                                  ? 'rgba(102, 187, 106, 0.15)'
+                                  : '#e8f5e9'
+                                : isDark
+                                  ? 'rgba(239, 83, 80, 0.15)'
+                                  : '#ffebee',
                               color: isPublished
-                                ? isDark ? '#81c784' : '#2e7d32'
-                                : isDark ? '#ef5350' : '#c62828',
+                                ? isDark
+                                  ? '#81c784'
+                                  : '#2e7d32'
+                                : isDark
+                                  ? '#ef5350'
+                                  : '#c62828',
                             }}
                           />
                         </Box>
 
                         {/* Actions */}
                         <Box sx={colStyle(1.4)}>
-                          <IconButton size="small" onClick={() => openGallery(item)} sx={{ color: isDark ? '#a6e2f5' : '#1c1445', mr: 0.5 }}>
+                          <IconButton
+                            size="small"
+                            onClick={() => openGallery(item)}
+                            sx={{ color: isDark ? '#a6e2f5' : '#1c1445', mr: 0.5 }}
+                          >
                             <Visibility fontSize="small" />
                           </IconButton>
-                          <IconButton size="small" onClick={() => handleEditClick(item)} sx={{ color: isDark ? '#a6e2f5' : '#1c1445', mr: 0.5 }}>
+                          <IconButton
+                            size="small"
+                            onClick={() => handleEditClick(item)}
+                            sx={{ color: isDark ? '#a6e2f5' : '#1c1445', mr: 0.5 }}
+                          >
                             <Edit fontSize="small" />
                           </IconButton>
                           {!isAdmin && (
-                            <IconButton size="small" onClick={() => handleDelete(item.id)} sx={{ color: '#ef5350' }}>
+                            <IconButton
+                              size="small"
+                              onClick={() => handleDelete(item.id)}
+                              sx={{ color: '#ef5350' }}
+                            >
                               <Delete fontSize="small" />
                             </IconButton>
                           )}
                         </Box>
                       </Box>
-                      <Divider sx={{ borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }} />
+                      <Divider
+                        sx={{ borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}
+                      />
                     </Box>
                   );
                 })
@@ -895,12 +970,16 @@ export default function EpapersPage() {
                 '& .MuiPaginationItem-root': {
                   color: isDark ? '#d0caeb' : '#5c548a',
                   borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
-                  '&:hover': { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' },
+                  '&:hover': {
+                    backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+                  },
                   '&.Mui-selected': {
                     backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
                     color: isDark ? '#a6e2f5' : '#1c1445',
                     borderColor: isDark ? '#a6e2f5' : '#1c1445',
-                    '&:hover': { backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.15)' },
+                    '&:hover': {
+                      backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.15)',
+                    },
                   },
                 },
               }}
@@ -932,7 +1011,11 @@ export default function EpapersPage() {
               {isEditMode ? t.drawerEditSubtitle : t.drawerAddSubtitle}
             </Typography>
           </Box>
-          <IconButton onClick={handleCloseDrawer} size="small" sx={{ color: isDark ? '#ffffff' : '#1c1445' }}>
+          <IconButton
+            onClick={handleCloseDrawer}
+            size="small"
+            sx={{ color: isDark ? '#ffffff' : '#1c1445' }}
+          >
             <Close />
           </IconButton>
         </Box>
@@ -981,7 +1064,12 @@ export default function EpapersPage() {
           />
           {uploadedLogo ? (
             <Box sx={{ position: 'relative', display: 'inline-block' }}>
-              <Box component="img" src={uploadedLogo} alt="Cover" sx={{ width: 100, height: 70, objectFit: 'cover', borderRadius: '8px' }} />
+              <Box
+                component="img"
+                src={uploadedLogo}
+                alt="Cover"
+                sx={{ width: 100, height: 70, objectFit: 'cover', borderRadius: '8px' }}
+              />
               <Typography variant="caption" sx={{ display: 'block', color: '#4caf50', mt: 1 }}>
                 {t.imageUploaded}
               </Typography>
@@ -1055,14 +1143,18 @@ export default function EpapersPage() {
 
         {/* Paper Page Images Uploader (2 to 12 images) */}
         <Box sx={{ mb: 3 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+          <Box
+            sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}
+          >
             <Typography variant="body2" sx={{ fontWeight: 600 }}>
               Paper Page Images (2 to 12 pages)
             </Typography>
             <Chip
               label={`${paperImagesList.length} / 12`}
               size="small"
-              color={paperImagesList.length >= 2 && paperImagesList.length <= 12 ? 'success' : 'warning'}
+              color={
+                paperImagesList.length >= 2 && paperImagesList.length <= 12 ? 'success' : 'warning'
+              }
               sx={{ fontWeight: 700, fontSize: '0.72rem' }}
             />
           </Box>
@@ -1110,7 +1202,9 @@ export default function EpapersPage() {
                     position: 'relative',
                     borderRadius: '8px',
                     overflow: 'hidden',
-                    border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.1)'
+                      : '1px solid rgba(0,0,0,0.1)',
                   }}
                 >
                   <Box
@@ -1161,7 +1255,12 @@ export default function EpapersPage() {
 
         {/* Action Buttons */}
         <Box sx={{ display: 'flex', gap: 2, mt: 'auto' }}>
-          <Button variant="outlined" fullWidth onClick={handleCloseDrawer} sx={{ borderRadius: '10px' }}>
+          <Button
+            variant="outlined"
+            fullWidth
+            onClick={handleCloseDrawer}
+            sx={{ borderRadius: '10px' }}
+          >
             {t.cancelBtn}
           </Button>
           <Button

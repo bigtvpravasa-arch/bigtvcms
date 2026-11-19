@@ -217,7 +217,16 @@ export const GameDrawer: React.FC<GameDrawerProps> = ({
       </Box>
       <Divider sx={{ mb: 3, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, flex: 1, overflowY: 'auto', pr: 1 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2.5,
+          flex: 1,
+          overflowY: 'auto',
+          pr: 1,
+        }}
+      >
         <TextField
           label={`${t.colGame} Name *`}
           name="name"
@@ -267,7 +276,9 @@ export const GameDrawer: React.FC<GameDrawerProps> = ({
             backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.01)',
           }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
+          <Box
+            sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}
+          >
             <Typography
               variant="subtitle2"
               sx={{
@@ -338,7 +349,7 @@ export const GameDrawer: React.FC<GameDrawerProps> = ({
                   color: isDark ? '#a6e2f5' : '#2563eb',
                 }}
               >
-                {uploadingIcon ? (t.uploadingIcon || 'Uploading...') : (t.uploadIcon || 'Upload Icon')}
+                {uploadingIcon ? t.uploadingIcon || 'Uploading...' : t.uploadIcon || 'Upload Icon'}
               </Button>
             </Box>
           </Box>
@@ -350,7 +361,11 @@ export const GameDrawer: React.FC<GameDrawerProps> = ({
             value={formData.iconUrl}
             onChange={handleChange}
             placeholder={DEFAULT_LEVEL_ICON_URL}
-            helperText={formData.iconUrl === DEFAULT_LEVEL_ICON_URL ? 'Default BigTV puzzle icon is attached' : undefined}
+            helperText={
+              formData.iconUrl === DEFAULT_LEVEL_ICON_URL
+                ? 'Default BigTV puzzle icon is attached'
+                : undefined
+            }
             sx={{
               ...textFieldProps.sx,
               '& .MuiFormHelperText-root': {

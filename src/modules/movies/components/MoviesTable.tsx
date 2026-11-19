@@ -36,9 +36,7 @@ import { AdminContentService } from '@/modules/admin/content/services/admin-cont
 import { useUserStore } from '@/core/storage/user-store';
 import { EpisodeItem } from '@/modules/admin/content/domain/content.model';
 
-const movieColors = [
-  '#ef5350', '#7e57c2', '#26a69a', '#ffa726', '#ab47bc', '#42a5f5', '#26c6da',
-];
+const movieColors = ['#ef5350', '#7e57c2', '#26a69a', '#ffa726', '#ab47bc', '#42a5f5', '#26c6da'];
 
 const viewModalTranslations: Record<string, any> = {
   en: {
@@ -246,22 +244,28 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
     activeTab === 'series'
       ? t.colSeriesId || 'Series ID'
       : activeTab === 'trailer'
-      ? t.colTrailerId || 'Trailer ID'
-      : t.colMovieId || t.colId || 'Movie ID';
+        ? t.colTrailerId || 'Trailer ID'
+        : t.colMovieId || t.colId || 'Movie ID';
 
   const durationColLabel =
     activeTab === 'series'
       ? t.colSeasons || 'Seasons / Episodes'
       : activeTab === 'trailer'
-      ? t.colTrailerDuration || 'Duration'
-      : t.colDuration || 'Duration';
+        ? t.colTrailerDuration || 'Duration'
+        : t.colDuration || 'Duration';
 
   // Details for dialog
   const viewTargetId = selectedMovie ? selectedMovie.id || selectedMovie.movieId || '0' : '0';
   const viewPoster = selectedMovie
-    ? selectedMovie.poster || selectedMovie.posterUrl || selectedMovie.imageUrl || selectedMovie.thumbnail || ''
+    ? selectedMovie.poster ||
+      selectedMovie.posterUrl ||
+      selectedMovie.imageUrl ||
+      selectedMovie.thumbnail ||
+      ''
     : '';
-  const viewBanner = selectedMovie ? selectedMovie.banner || selectedMovie.bannerUrl || viewPoster : '';
+  const viewBanner = selectedMovie
+    ? selectedMovie.banner || selectedMovie.bannerUrl || viewPoster
+    : '';
   const viewTitle = selectedMovie
     ? (language === 'te' && selectedMovie.titleTe) ||
       (language === 'hi' && selectedMovie.titleHi) ||
@@ -273,18 +277,25 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
     : '';
 
   const viewType = selectedMovie?.contentType || activeTab;
-  const viewGenres = selectedMovie?.genres || (selectedMovie?.genre ? [selectedMovie.genre] : ['Sci-Fi', 'Action']);
-  const viewLanguages = selectedMovie?.languages || (selectedMovie?.language ? [selectedMovie.language] : ['Telugu', 'English']);
-  const viewVideoUrl = activeEpisodeVideo || selectedMovie?.videoUrl || (selectedMovie as any)?.video;
+  const viewGenres =
+    selectedMovie?.genres || (selectedMovie?.genre ? [selectedMovie.genre] : ['Sci-Fi', 'Action']);
+  const viewLanguages =
+    selectedMovie?.languages ||
+    (selectedMovie?.language ? [selectedMovie.language] : ['Telugu', 'English']);
+  const viewVideoUrl =
+    activeEpisodeVideo || selectedMovie?.videoUrl || (selectedMovie as any)?.video;
 
   let viewDurationDisplay = '';
   if (selectedMovie) {
     if (viewType === 'series') {
       viewDurationDisplay = `${selectedMovie.seasonsCount || 1} Season${(selectedMovie.seasonsCount || 1) > 1 ? 's' : ''} (${selectedMovie.episodesCount || 8} Episodes)`;
     } else {
-      viewDurationDisplay = typeof selectedMovie.duration === 'number'
-        ? (selectedMovie.duration < 10 ? `${selectedMovie.duration} Hours` : `${selectedMovie.duration} ${tView.minutes}`)
-        : (selectedMovie.duration || '2 Hours');
+      viewDurationDisplay =
+        typeof selectedMovie.duration === 'number'
+          ? selectedMovie.duration < 10
+            ? `${selectedMovie.duration} Hours`
+            : `${selectedMovie.duration} ${tView.minutes}`
+          : selectedMovie.duration || '2 Hours';
     }
   }
 
@@ -307,7 +318,9 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
             color: isDark ? '#d0caeb' : '#5c548a',
             fontWeight: 700,
             fontSize: '0.8rem',
-            borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+            borderBottom: isDark
+              ? '1px solid rgba(255,255,255,0.08)'
+              : '1px solid rgba(0,0,0,0.08)',
             backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f8f7ff',
             textTransform: 'uppercase',
             letterSpacing: '0.06em',
@@ -328,21 +341,29 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
           paginatedData.map((movie, idx) => {
             const color = movieColors[idx % movieColors.length];
             const targetId = movie.id || movie.movieId || 0;
-            const displayPoster = movie.poster || movie.posterUrl || movie.imageUrl || movie.thumbnail || '';
-            
-            let genreText = movie.genre || (movie.genres ? movie.genres.join(', ') : 'Sci-Fi / Action');
+            const displayPoster =
+              movie.poster || movie.posterUrl || movie.imageUrl || movie.thumbnail || '';
+
+            let genreText =
+              movie.genre || (movie.genres ? movie.genres.join(', ') : 'Sci-Fi / Action');
             if (activeTab === 'trailer' && movie.parentTitle) {
               genreText = `Parent: ${movie.parentTitle}`;
             }
 
-            let durationDisplay = typeof movie.duration === 'number' 
-              ? (movie.duration < 10 ? `${movie.duration}h` : `${movie.duration}m`) 
-              : (movie.duration || '2h');
+            let durationDisplay =
+              typeof movie.duration === 'number'
+                ? movie.duration < 10
+                  ? `${movie.duration}h`
+                  : `${movie.duration}m`
+                : movie.duration || '2h';
 
             if (activeTab === 'series' || movie.contentType === 'series') {
               durationDisplay = `${movie.seasonsCount || 1} Season${(movie.seasonsCount || 1) > 1 ? 's' : ''} (${movie.episodesCount || 8} Eps)`;
             } else if (activeTab === 'trailer' || movie.contentType === 'trailer') {
-              durationDisplay = typeof movie.duration === 'number' && movie.duration < 10 ? `${movie.duration}m` : `${movie.duration || 3}m`;
+              durationDisplay =
+                typeof movie.duration === 'number' && movie.duration < 10
+                  ? `${movie.duration}m`
+                  : `${movie.duration || 3}m`;
             }
 
             return (
@@ -363,7 +384,11 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                   <Box sx={colStyle(0.6)}>
                     <Typography
                       variant="body2"
-                      sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', fontWeight: 600, fontSize: '0.8rem' }}
+                      sx={{
+                        color: isDark ? '#d0caeb' : '#9e9e9e',
+                        fontWeight: 600,
+                        fontSize: '0.8rem',
+                      }}
                     >
                       {idx + 1 + (page - 1) * recordsPerPage}
                     </Typography>
@@ -384,7 +409,10 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                         whiteSpace: 'nowrap',
                       }}
                     >
-                      <Typography variant="caption" sx={{ color, fontWeight: 700, fontFamily: 'monospace' }}>
+                      <Typography
+                        variant="caption"
+                        sx={{ color, fontWeight: 700, fontFamily: 'monospace' }}
+                      >
                         #{String(targetId).slice(0, 8)}
                       </Typography>
                     </Box>
@@ -466,11 +494,22 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                   <Box sx={colStyle(1.3)}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                       {activeTab === 'series' ? (
-                        <Layers sx={{ fontSize: '0.9rem', color: isDark ? '#a6e2f5' : '#1c1445' }} />
+                        <Layers
+                          sx={{ fontSize: '0.9rem', color: isDark ? '#a6e2f5' : '#1c1445' }}
+                        />
                       ) : (
-                        <PlayArrow sx={{ fontSize: '0.85rem', color: isDark ? '#d0caeb' : '#9e9e9e' }} />
+                        <PlayArrow
+                          sx={{ fontSize: '0.85rem', color: isDark ? '#d0caeb' : '#9e9e9e' }}
+                        />
                       )}
-                      <Typography variant="body2" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600, fontSize: '0.82rem' }}>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: isDark ? '#ffffff' : '#1c1445',
+                          fontWeight: 600,
+                          fontSize: '0.82rem',
+                        }}
+                      >
                         {durationDisplay}
                       </Typography>
                     </Box>
@@ -484,7 +523,9 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                         onChange={() => togglePublish(targetId)}
                         color="success"
                         size="small"
-                        inputProps={{ 'aria-label': `Toggle publish status for content ${targetId}` }}
+                        inputProps={{
+                          'aria-label': `Toggle publish status for content ${targetId}`,
+                        }}
                       />
                     </Tooltip>
                   </Box>
@@ -498,11 +539,15 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                         onClick={() => handleViewClick(movie)}
                         sx={{
                           color: isDark ? '#a6e2f5' : '#1976d2',
-                          backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(25,118,210,0.08)',
+                          backgroundColor: isDark
+                            ? 'rgba(166,226,245,0.1)'
+                            : 'rgba(25,118,210,0.08)',
                           borderRadius: '8px',
                           p: 0.6,
                           '&:hover': {
-                            backgroundColor: isDark ? 'rgba(166,226,245,0.2)' : 'rgba(25,118,210,0.15)',
+                            backgroundColor: isDark
+                              ? 'rgba(166,226,245,0.2)'
+                              : 'rgba(25,118,210,0.15)',
                           },
                         }}
                       >
@@ -554,7 +599,9 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                   </Box>
                 </Box>
                 {idx < paginatedData.length - 1 && (
-                  <Divider sx={{ borderColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)' }} />
+                  <Divider
+                    sx={{ borderColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)' }}
+                  />
                 )}
               </Box>
             );
@@ -569,7 +616,11 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
               <LocalMovies sx={{ fontSize: '3rem', color: isDark ? '#d0caeb' : '#bbb', mb: 1 }} />
             )}
             <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#9e9e9e' }}>
-              {activeTab === 'series' ? 'No Series found' : activeTab === 'trailer' ? 'No Trailers found' : 'No Movies found'}
+              {activeTab === 'series'
+                ? 'No Series found'
+                : activeTab === 'trailer'
+                  ? 'No Trailers found'
+                  : 'No Movies found'}
             </Typography>
           </Box>
         )}
@@ -600,7 +651,9 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                borderBottom: isDark
+                  ? '1px solid rgba(255,255,255,0.08)'
+                  : '1px solid rgba(0,0,0,0.08)',
                 backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f8f7ff',
               }}
             >
@@ -620,7 +673,13 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                   }}
                 />
                 <Chip
-                  label={viewType === 'series' ? tView.series : viewType === 'trailer' ? tView.trailer : tView.movie}
+                  label={
+                    viewType === 'series'
+                      ? tView.series
+                      : viewType === 'trailer'
+                        ? tView.trailer
+                        : tView.movie
+                  }
                   size="small"
                   sx={{
                     fontWeight: 700,
@@ -636,7 +695,10 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                   sx={{ fontWeight: 700, fontSize: '0.72rem' }}
                 />
               </Box>
-              <IconButton onClick={handleCloseViewDialog} sx={{ color: isDark ? '#d0caeb' : '#666' }}>
+              <IconButton
+                onClick={handleCloseViewDialog}
+                sx={{ color: isDark ? '#d0caeb' : '#666' }}
+              >
                 <Close />
               </IconButton>
             </DialogTitle>
@@ -653,7 +715,9 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                     overflow: 'hidden',
                     mb: 3,
                     backgroundColor: '#000000',
-                    border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.1)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.15)'
+                      : '1px solid rgba(0,0,0,0.1)',
                     boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
                   }}
                 >
@@ -684,7 +748,9 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                     overflow: 'hidden',
                     mb: 3,
                     backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#f0edff',
-                    border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.05)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(0,0,0,0.05)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -736,12 +802,17 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
               )}
 
               {/* Title & Metadata */}
-              <Typography variant="h5" sx={{ fontWeight: 800, mb: 1, color: isDark ? '#ffffff' : '#1c1445' }}>
+              <Typography
+                variant="h5"
+                sx={{ fontWeight: 800, mb: 1, color: isDark ? '#ffffff' : '#1c1445' }}
+              >
                 {viewTitle}
               </Typography>
 
               {/* Quick Info Bar */}
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, alignItems: 'center', mb: 2.5 }}>
+              <Box
+                sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, alignItems: 'center', mb: 2.5 }}
+              >
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                   <Star sx={{ color: '#ffb300', fontSize: '1.1rem' }} />
                   <Typography variant="body2" sx={{ fontWeight: 700 }}>
@@ -750,14 +821,22 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                   <AccessTime sx={{ color: isDark ? '#a6e2f5' : '#1976d2', fontSize: '1rem' }} />
-                  <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#d0caeb' : '#555' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: 600, color: isDark ? '#d0caeb' : '#555' }}
+                  >
                     {viewDurationDisplay}
                   </Typography>
                 </Box>
                 {selectedMovie.releaseDate && (
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                    <CalendarToday sx={{ color: isDark ? '#a6e2f5' : '#1976d2', fontSize: '1rem' }} />
-                    <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#d0caeb' : '#555' }}>
+                    <CalendarToday
+                      sx={{ color: isDark ? '#a6e2f5' : '#1976d2', fontSize: '1rem' }}
+                    />
+                    <Typography
+                      variant="body2"
+                      sx={{ fontWeight: 600, color: isDark ? '#d0caeb' : '#555' }}
+                    >
                       {selectedMovie.releaseDate}
                     </Typography>
                   </Box>
@@ -774,21 +853,38 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
 
               {/* Description */}
               <Box sx={{ mb: 3 }}>
-                <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5, color: isDark ? '#a6e2f5' : '#1976d2' }}>
+                <Typography
+                  variant="subtitle2"
+                  sx={{ fontWeight: 700, mb: 0.5, color: isDark ? '#a6e2f5' : '#1976d2' }}
+                >
                   {tView.description}
                 </Typography>
-                <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#444', lineHeight: 1.6 }}>
+                <Typography
+                  variant="body2"
+                  sx={{ color: isDark ? '#d0caeb' : '#444', lineHeight: 1.6 }}
+                >
                   {selectedMovie.description || tView.noDescription}
                 </Typography>
               </Box>
 
-              <Divider sx={{ my: 2, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+              <Divider
+                sx={{ my: 2, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+              />
 
               {/* Genres & Languages */}
-              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+                  gap: 2,
+                  mb: 2,
+                }}
+              >
                 <Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 0.8 }}>
-                    <CategoryIcon sx={{ fontSize: '0.95rem', color: isDark ? '#a6e2f5' : '#1976d2' }} />
+                    <CategoryIcon
+                      sx={{ fontSize: '0.95rem', color: isDark ? '#a6e2f5' : '#1976d2' }}
+                    />
                     <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: '0.85rem' }}>
                       {tView.genres}
                     </Typography>
@@ -802,7 +898,9 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                         sx={{
                           fontWeight: 600,
                           fontSize: '0.75rem',
-                          backgroundColor: isDark ? 'rgba(166,226,245,0.12)' : 'rgba(25,118,210,0.08)',
+                          backgroundColor: isDark
+                            ? 'rgba(166,226,245,0.12)'
+                            : 'rgba(25,118,210,0.08)',
                           color: isDark ? '#a6e2f5' : '#1976d2',
                         }}
                       />
@@ -812,7 +910,9 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
 
                 <Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 0.8 }}>
-                    <LanguageIcon sx={{ fontSize: '0.95rem', color: isDark ? '#a6e2f5' : '#1976d2' }} />
+                    <LanguageIcon
+                      sx={{ fontSize: '0.95rem', color: isDark ? '#a6e2f5' : '#1976d2' }}
+                    />
                     <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: '0.85rem' }}>
                       {tView.languages}
                     </Typography>
@@ -834,12 +934,31 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
               {/* Episodes Horizontal View (for Web Series) */}
               {(viewType === 'series' || activeTab === 'series') && (
                 <>
-                  <Divider sx={{ my: 2.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }} />
+                  <Divider
+                    sx={{
+                      my: 2.5,
+                      borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
+                    }}
+                  />
                   <Box sx={{ mb: 1 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        mb: 1.5,
+                      }}
+                    >
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <Tv sx={{ fontSize: '1.1rem', color: isDark ? '#a6e2f5' : '#1976d2' }} />
-                        <Typography variant="subtitle2" sx={{ fontWeight: 800, fontSize: '0.95rem', color: isDark ? '#ffffff' : '#1c1445' }}>
+                        <Typography
+                          variant="subtitle2"
+                          sx={{
+                            fontWeight: 800,
+                            fontSize: '0.95rem',
+                            color: isDark ? '#ffffff' : '#1c1445',
+                          }}
+                        >
                           Episodes ({viewEpisodes.length})
                         </Typography>
                       </Box>
@@ -855,8 +974,16 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                         pt: 0.5,
                         px: 0.5,
                         '&::-webkit-scrollbar': { height: '6px' },
-                        '&::-webkit-scrollbar-track': { backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)', borderRadius: '4px' },
-                        '&::-webkit-scrollbar-thumb': { backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(25,118,210,0.2)', borderRadius: '4px' },
+                        '&::-webkit-scrollbar-track': {
+                          backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)',
+                          borderRadius: '4px',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                          backgroundColor: isDark
+                            ? 'rgba(166,226,245,0.25)'
+                            : 'rgba(25,118,210,0.2)',
+                          borderRadius: '4px',
+                        },
                       }}
                     >
                       {viewEpisodes.length > 0 ? (
@@ -878,11 +1005,17 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                                 flexShrink: 0,
                                 borderRadius: '14px',
                                 backgroundColor: isSelected
-                                  ? isDark ? 'rgba(166,226,245,0.15)' : 'rgba(25,118,210,0.1)'
-                                  : isDark ? 'rgba(255,255,255,0.04)' : '#f8f7ff',
+                                  ? isDark
+                                    ? 'rgba(166,226,245,0.15)'
+                                    : 'rgba(25,118,210,0.1)'
+                                  : isDark
+                                    ? 'rgba(255,255,255,0.04)'
+                                    : '#f8f7ff',
                                 border: isSelected
                                   ? `2px solid ${isDark ? '#a6e2f5' : '#1976d2'}`
-                                  : isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                                  : isDark
+                                    ? '1px solid rgba(255,255,255,0.08)'
+                                    : '1px solid rgba(0,0,0,0.08)',
                                 p: 1.5,
                                 transition: 'all 0.2s ease',
                                 cursor: epVideo ? 'pointer' : 'default',
@@ -907,7 +1040,12 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                               >
                                 <Box
                                   component="img"
-                                  src={ep.thumbnail || viewPoster || viewBanner || 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400'}
+                                  src={
+                                    ep.thumbnail ||
+                                    viewPoster ||
+                                    viewBanner ||
+                                    'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400'
+                                  }
                                   alt={ep.title}
                                   sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                 />
@@ -921,7 +1059,9 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                                     justifyContent: 'center',
                                   }}
                                 >
-                                  <PlayCircleOutline sx={{ color: '#ffffff', fontSize: '2.2rem' }} />
+                                  <PlayCircleOutline
+                                    sx={{ color: '#ffffff', fontSize: '2.2rem' }}
+                                  />
                                 </Box>
                                 <Chip
                                   label={`EP ${ep.episodeNumber}`}
@@ -957,8 +1097,13 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
 
                               {/* Episode Duration */}
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                <AccessTime sx={{ fontSize: '0.8rem', color: isDark ? '#a6e2f5' : '#1976d2' }} />
-                                <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#666', fontWeight: 600 }}>
+                                <AccessTime
+                                  sx={{ fontSize: '0.8rem', color: isDark ? '#a6e2f5' : '#1976d2' }}
+                                />
+                                <Typography
+                                  variant="caption"
+                                  sx={{ color: isDark ? '#d0caeb' : '#666', fontWeight: 600 }}
+                                >
                                   {ep.duration || 45} mins
                                 </Typography>
                               </Box>
@@ -966,7 +1111,10 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                           );
                         })
                       ) : (
-                        <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#666', fontStyle: 'italic', py: 1 }}>
+                        <Typography
+                          variant="body2"
+                          sx={{ color: isDark ? '#d0caeb' : '#666', fontStyle: 'italic', py: 1 }}
+                        >
                           No episodes added yet for this series.
                         </Typography>
                       )}
@@ -979,7 +1127,9 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
             <DialogActions
               sx={{
                 p: 2.5,
-                borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                borderTop: isDark
+                  ? '1px solid rgba(255,255,255,0.08)'
+                  : '1px solid rgba(0,0,0,0.08)',
                 backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#f8f7ff',
                 justifyContent: 'space-between',
                 flexWrap: 'wrap',
@@ -1026,7 +1176,12 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                 <Button
                   variant="text"
                   onClick={handleCloseViewDialog}
-                  sx={{ color: isDark ? '#d0caeb' : '#666', borderRadius: '10px', textTransform: 'none', fontWeight: 600 }}
+                  sx={{
+                    color: isDark ? '#d0caeb' : '#666',
+                    borderRadius: '10px',
+                    textTransform: 'none',
+                    fontWeight: 600,
+                  }}
                 >
                   {tView.close}
                 </Button>

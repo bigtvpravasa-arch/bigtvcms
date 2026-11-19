@@ -14,7 +14,8 @@ const initialUsers: User[] = [
     password: 'password123',
     location: 'Andhra Pradesh',
     isActive: true,
-    imageUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100&q=80',
+    imageUrl:
+      'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100&q=80',
   },
   {
     userId: 2,
@@ -23,7 +24,8 @@ const initialUsers: User[] = [
     password: 'secretPassword',
     location: 'Telangana',
     isActive: true,
-    imageUrl: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=100&h=100&q=80',
+    imageUrl:
+      'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=100&h=100&q=80',
   },
   {
     userId: 3,
@@ -32,7 +34,8 @@ const initialUsers: User[] = [
     password: 'arjunSecure!',
     location: 'Kerala',
     isActive: false,
-    imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80',
+    imageUrl:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80',
   },
   {
     userId: 4,
@@ -41,7 +44,8 @@ const initialUsers: User[] = [
     password: 'pranithaPswd',
     location: 'Telangana',
     isActive: true,
-    imageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80',
   },
   {
     userId: 5,
@@ -50,7 +54,8 @@ const initialUsers: User[] = [
     password: 'rahulPass99',
     location: 'Delhi',
     isActive: true,
-    imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80',
+    imageUrl:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80',
   },
   {
     userId: 6,
@@ -59,7 +64,8 @@ const initialUsers: User[] = [
     password: 'ananyaSecure',
     location: 'Andhra Pradesh',
     isActive: true,
-    imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&h=100&q=80',
+    imageUrl:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&h=100&q=80',
   },
   {
     userId: 7,
@@ -68,7 +74,8 @@ const initialUsers: User[] = [
     password: 'sureshPswd1',
     location: 'Tamil Nadu',
     isActive: false,
-    imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&h=100&q=80',
+    imageUrl:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&h=100&q=80',
   },
   {
     userId: 8,
@@ -77,7 +84,8 @@ const initialUsers: User[] = [
     password: 'meeraPassword',
     location: 'Kerala',
     isActive: true,
-    imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&h=100&q=80',
+    imageUrl:
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&h=100&q=80',
   },
   {
     userId: 9,
@@ -86,7 +94,8 @@ const initialUsers: User[] = [
     password: 'venkyPswd20',
     location: 'Karnataka',
     isActive: true,
-    imageUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=100&h=100&q=80',
+    imageUrl:
+      'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=100&h=100&q=80',
   },
   {
     userId: 10,
@@ -95,7 +104,8 @@ const initialUsers: User[] = [
     password: 'deepikaPassWord',
     location: 'West Bengal',
     isActive: true,
-    imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&h=100&q=80',
+    imageUrl:
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&h=100&q=80',
   },
   {
     userId: 11,
@@ -104,7 +114,8 @@ const initialUsers: User[] = [
     password: 'rowdyPassword',
     location: 'Telangana',
     isActive: false,
-    imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&h=100&q=80',
+    imageUrl:
+      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&h=100&q=80',
   },
   {
     userId: 12,
@@ -113,7 +124,8 @@ const initialUsers: User[] = [
     password: 'samPassword99',
     location: 'Andhra Pradesh',
     isActive: true,
-    imageUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&h=100&q=80',
+    imageUrl:
+      'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&h=100&q=80',
   },
 ];
 
@@ -138,7 +150,15 @@ export function useUserController() {
   }, []);
   const [filterName, setFilterName] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive'>('all');
-  const [filterRole, setFilterRole] = useState<'all' | 'superadmin' | 'admin' | 'creator' | 'epaper_creator' | 'movie_creator' | 'notification_creator'>('all');
+  const [filterRole, setFilterRole] = useState<
+    | 'all'
+    | 'superadmin'
+    | 'admin'
+    | 'creator'
+    | 'epaper_creator'
+    | 'movie_creator'
+    | 'notification_creator'
+  >('all');
   const [page, setPage] = useState(1);
   const recordsPerPage = 10;
 
@@ -201,14 +221,9 @@ export function useUserController() {
         r.username.toLowerCase().includes(filterName.toLowerCase());
 
       const matchStatus =
-        filterStatus === 'all'
-          ? true
-          : filterStatus === 'active'
-          ? r.isActive
-          : !r.isActive;
+        filterStatus === 'all' ? true : filterStatus === 'active' ? r.isActive : !r.isActive;
 
-      const matchRole =
-        filterRole === 'all' ? true : (r.role || 'creator') === filterRole;
+      const matchRole = filterRole === 'all' ? true : (r.role || 'creator') === filterRole;
 
       return matchName && matchStatus && matchRole;
     });
@@ -229,9 +244,7 @@ export function useUserController() {
     const newActiveState = !user.isActive;
 
     // Optimistically update status in UI
-    setRows((prev) =>
-      prev.map((u) => (u.userId === id ? { ...u, isActive: newActiveState } : u))
-    );
+    setRows((prev) => prev.map((u) => (u.userId === id ? { ...u, isActive: newActiveState } : u)));
 
     try {
       await UserRepository.update(id, { active: newActiveState });
@@ -377,9 +390,7 @@ export function useUserController() {
         const updateDto = UserMapper.toCreateDto(form, finalProfilePicUrl, active);
         const updatedCreator = await UserRepository.update(editingId, updateDto);
         const domainUser = UserMapper.toDomain(updatedCreator);
-        setRows((prev) =>
-          prev.map((u) => (u.userId === editingId ? domainUser : u))
-        );
+        setRows((prev) => prev.map((u) => (u.userId === editingId ? domainUser : u)));
       } else {
         const createDto = UserMapper.toCreateDto(form, finalProfilePicUrl, true);
         const newCreator = await UserRepository.create(createDto);

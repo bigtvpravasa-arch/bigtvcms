@@ -17,7 +17,11 @@ export function formatBulletPostContentAndBullets(
   let bullets: string[] = [];
   if (Array.isArray(explicitBullets) && explicitBullets.length > 0) {
     bullets = explicitBullets
-      .map((pt) => String(pt).replace(/[\[\]]/g, '').trim())
+      .map((pt) =>
+        String(pt)
+          .replace(/[\[\]]/g, '')
+          .trim()
+      )
       .filter(Boolean);
   }
 
@@ -55,7 +59,10 @@ export function formatBulletPostContentAndBullets(
     const bulletMatch = trimmed.match(
       /^(?:[\u2022\u2023\u25E6\u2043\u2219\>\*\_\.]|(?:\d+[\.\)]?))\s*(.+)$/
     );
-    const keywordBulletMatch = /^(?:\[?\s*(?:Key point|point|Official statement|ముఖ్యమైన విషయం|అధికారుల ప్రకటన|తాజా సమాచారం))/i.test(trimmed);
+    const keywordBulletMatch =
+      /^(?:\[?\s*(?:Key point|point|Official statement|ముఖ్యమైన విషయం|అధికారుల ప్రకటన|తాజా సమాచారం))/i.test(
+        trimmed
+      );
 
     let isBullet = false;
     let bulletText = '';
@@ -67,7 +74,11 @@ export function formatBulletPostContentAndBullets(
       isBullet = true;
       bulletText = trimmed.replace(/[\[\]]/g, '').trim();
     } else if (bullets.length > 0) {
-      const cleanLine = trimmed.replace(/^[•\>\*\.\_\s]+/, '').replace(/[\[\]]/g, '').trim().toLowerCase();
+      const cleanLine = trimmed
+        .replace(/^[•\>\*\.\_\s]+/, '')
+        .replace(/[\[\]]/g, '')
+        .trim()
+        .toLowerCase();
       const matchesExplicit = bullets.some((b) => b.toLowerCase() === cleanLine);
       if (matchesExplicit) {
         isBullet = true;
@@ -78,7 +89,10 @@ export function formatBulletPostContentAndBullets(
     // If preceding lines produced bullet points, any subsequent line in a bullet list is also a separate bullet point
     if (!isBullet && extractedBullets.length > 0) {
       isBullet = true;
-      bulletText = trimmed.replace(/^[•\>\*\.\_\s]+/, '').replace(/[\[\]]/g, '').trim();
+      bulletText = trimmed
+        .replace(/^[•\>\*\.\_\s]+/, '')
+        .replace(/[\[\]]/g, '')
+        .trim();
     }
 
     if (isBullet && bulletText) {
@@ -90,9 +104,10 @@ export function formatBulletPostContentAndBullets(
 
   // Fallback: If no explicit bullet delimiters were found but there are non-bullet lines
   if (extractedBullets.length === 0 && nonBulletLines.length > 0) {
-    const firstLineIsBullet = /^(?:[\u2022\u2023\u25E6\u2043\u2219\>\*\_\.]|(?:\d+[\.\)]?))\s*/.test(nonBulletLines[0]);
+    const firstLineIsBullet =
+      /^(?:[\u2022\u2023\u25E6\u2043\u2219\>\*\_\.]|(?:\d+[\.\)]?))\s*/.test(nonBulletLines[0]);
     if (firstLineIsBullet || nonBulletLines.length > 1) {
-      const startIndex = firstLineIsBullet ? 0 : (bullets.length > 0 ? 0 : 1);
+      const startIndex = firstLineIsBullet ? 0 : bullets.length > 0 ? 0 : 1;
       const header = startIndex > 0 ? nonBulletLines[0] : '';
       const bulletLines = nonBulletLines.slice(startIndex);
       const fallbackBullets: string[] = [];
@@ -101,7 +116,12 @@ export function formatBulletPostContentAndBullets(
         if (!/^\-/.test(b)) {
           const parts = b
             .split(/\s+\.\s+|\r?\n/)
-            .map((p) => p.replace(/^[•\>\*\.\_\s]+/, '').replace(/[\[\]]/g, '').trim())
+            .map((p) =>
+              p
+                .replace(/^[•\>\*\.\_\s]+/, '')
+                .replace(/[\[\]]/g, '')
+                .trim()
+            )
             .filter(Boolean);
           fallbackBullets.push(...parts);
         }
@@ -122,7 +142,12 @@ export function formatBulletPostContentAndBullets(
   for (const item of rawBullets) {
     const parts = item
       .split(/\s+\.\s+|\r?\n/)
-      .map((p) => p.replace(/^[•\>\*\.\_\s]+/, '').replace(/[\[\]]/g, '').trim())
+      .map((p) =>
+        p
+          .replace(/^[•\>\*\.\_\s]+/, '')
+          .replace(/[\[\]]/g, '')
+          .trim()
+      )
       .filter(Boolean);
     finalBulletsList.push(...parts);
   }
@@ -140,14 +165,23 @@ export function extractBulletPoints(content: string): string[] {
 export function formatDisplayContent(post: any): string {
   if (!post) return '';
   const rawContent = (typeof post === 'string' ? post : post.content || post.body || '').trim();
-  const bullets = typeof post === 'object' && post ? (post.bulletPoints || post.bullet_points || post.bullets || []) : [];
+  const bullets =
+    typeof post === 'object' && post
+      ? post.bulletPoints || post.bullet_points || post.bullets || []
+      : [];
 
   let formatted = rawContent
     .replace(/<\/?link\d+[^>]*>/gi, '')
     .replace(/\s+(\.|\>|\*|\_|•)\s+/g, '\n$1 ');
 
   if (Array.isArray(bullets) && bullets.length > 0) {
-    const cleanBullets = bullets.map((b: any) => String(b).replace(/[\[\]]/g, '').trim()).filter(Boolean);
+    const cleanBullets = bullets
+      .map((b: any) =>
+        String(b)
+          .replace(/[\[\]]/g, '')
+          .trim()
+      )
+      .filter(Boolean);
     if (cleanBullets.length > 0) {
       const contentLower = formatted.toLowerCase();
       const allPresentInContent = cleanBullets.every((b) => contentLower.includes(b.toLowerCase()));
@@ -160,12 +194,20 @@ export function formatDisplayContent(post: any): string {
         if (!formatted) {
           formatted = bulletLines.join('\n');
         } else {
-          const contentLines = formatted.split(/\r?\n/).map((l: string) => l.trim()).filter(Boolean);
+          const contentLines = formatted
+            .split(/\r?\n/)
+            .map((l: string) => l.trim())
+            .filter(Boolean);
           const headerLines = contentLines.filter(
-            (line: string) => !cleanBullets.some((b) => line.replace(/^[•\>\*\.\_\s]+/, '').toLowerCase() === b.toLowerCase())
+            (line: string) =>
+              !cleanBullets.some(
+                (b) => line.replace(/^[•\>\*\.\_\s]+/, '').toLowerCase() === b.toLowerCase()
+              )
           );
           const headerText = headerLines.join('\n');
-          formatted = headerText ? `${headerText}\n\n${bulletLines.join('\n')}` : bulletLines.join('\n');
+          formatted = headerText
+            ? `${headerText}\n\n${bulletLines.join('\n')}`
+            : bulletLines.join('\n');
         }
       }
     }

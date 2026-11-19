@@ -126,8 +126,11 @@ export const CricketTab: React.FC<CricketTabProps> = ({
 
   // Derived counts for stats cards
   const liveMatchesCount = allLiveItems.length > 0 ? allLiveItems.length : matches.length;
-  const publishedCount = recentMatches.length > 0 ? recentMatches.length : allMatches.filter((m) => m.isPinned).length;
-  const internationalCount = allLiveItems.filter((m) => m.matchType?.toLowerCase().includes('international')).length;
+  const publishedCount =
+    recentMatches.length > 0 ? recentMatches.length : allMatches.filter((m) => m.isPinned).length;
+  const internationalCount = allLiveItems.filter((m) =>
+    m.matchType?.toLowerCase().includes('international')
+  ).length;
   const domesticCount = allLiveItems.filter(
     (m) =>
       m.matchType?.toLowerCase().includes('domestic') ||
@@ -150,11 +153,17 @@ export const CricketTab: React.FC<CricketTabProps> = ({
       if (localSearch.trim()) {
         const q = localSearch.toLowerCase();
         const info = item.matchInfo;
-        const matchTitle = `${info?.team1?.teamName} ${info?.team2?.teamName} ${info?.team1?.teamSName} ${info?.team2?.teamSName}`.toLowerCase();
+        const matchTitle =
+          `${info?.team1?.teamName} ${info?.team2?.teamName} ${info?.team1?.teamSName} ${info?.team2?.teamSName}`.toLowerCase();
         const series = (info?.seriesName || '').toLowerCase();
         const venue = `${info?.venueInfo?.ground} ${info?.venueInfo?.city}`.toLowerCase();
         const matchDesc = (info?.matchDesc || '').toLowerCase();
-        if (!matchTitle.includes(q) && !series.includes(q) && !venue.includes(q) && !matchDesc.includes(q)) {
+        if (
+          !matchTitle.includes(q) &&
+          !series.includes(q) &&
+          !venue.includes(q) &&
+          !matchDesc.includes(q)
+        ) {
           return false;
         }
       }
@@ -167,10 +176,16 @@ export const CricketTab: React.FC<CricketTabProps> = ({
     if (!localSearch.trim()) return recentMatches;
     const q = localSearch.toLowerCase();
     return recentMatches.filter((m) => {
-      const matchTitle = `${m.team1Name} ${m.team2Name} ${m.team1ShortName} ${m.team2ShortName}`.toLowerCase();
+      const matchTitle =
+        `${m.team1Name} ${m.team2Name} ${m.team1ShortName} ${m.team2ShortName}`.toLowerCase();
       const series = (m.seriesName || '').toLowerCase();
       const venue = `${m.venue} ${m.city}`.toLowerCase();
-      return matchTitle.includes(q) || series.includes(q) || venue.includes(q) || String(m.matchId).includes(q);
+      return (
+        matchTitle.includes(q) ||
+        series.includes(q) ||
+        venue.includes(q) ||
+        String(m.matchId).includes(q)
+      );
     });
   }, [recentMatches, localSearch]);
 
@@ -186,22 +201,34 @@ export const CricketTab: React.FC<CricketTabProps> = ({
         matchId: String(matchInfo.matchId),
         title: `${matchInfo.matchDesc} - ${matchInfo.seriesName}`,
         series: matchInfo.seriesName,
-        matchType: (matchInfo.matchFormat?.toUpperCase() === 'ODI' ? 'ODI' : matchInfo.matchFormat?.toUpperCase() === 'TEST' ? 'TEST' : 'T20') as 'T20' | 'ODI' | 'TEST',
-        venue: matchInfo.venueInfo?.ground ? `${matchInfo.venueInfo.ground}, ${matchInfo.venueInfo.city || ''}` : 'Cricket Ground',
+        matchType: (matchInfo.matchFormat?.toUpperCase() === 'ODI'
+          ? 'ODI'
+          : matchInfo.matchFormat?.toUpperCase() === 'TEST'
+            ? 'TEST'
+            : 'T20') as 'T20' | 'ODI' | 'TEST',
+        venue: matchInfo.venueInfo?.ground
+          ? `${matchInfo.venueInfo.ground}, ${matchInfo.venueInfo.city || ''}`
+          : 'Cricket Ground',
         status: 'live',
         statusText: matchInfo.status || matchInfo.state || 'In Progress',
         isPinned: isAlreadyPublished(matchInfo.matchId),
         startDate: matchInfo.startDate || new Date().toISOString(),
         team1: {
           teamName: matchInfo.team1?.teamName || 'Team 1',
-          shortName: matchInfo.team1?.teamSName || matchInfo.team1?.teamName?.slice(0, 3).toUpperCase() || 'T1',
+          shortName:
+            matchInfo.team1?.teamSName ||
+            matchInfo.team1?.teamName?.slice(0, 3).toUpperCase() ||
+            'T1',
           runs: t1Inngs?.runs || 0,
           wickets: t1Inngs?.wickets || 0,
           overs: t1Inngs?.overs || 0,
         },
         team2: {
           teamName: matchInfo.team2?.teamName || 'Team 2',
-          shortName: matchInfo.team2?.teamSName || matchInfo.team2?.teamName?.slice(0, 3).toUpperCase() || 'T2',
+          shortName:
+            matchInfo.team2?.teamSName ||
+            matchInfo.team2?.teamName?.slice(0, 3).toUpperCase() ||
+            'T2',
           runs: t2Inngs?.runs || 0,
           wickets: t2Inngs?.wickets || 0,
           overs: t2Inngs?.overs || 0,
@@ -217,7 +244,11 @@ export const CricketTab: React.FC<CricketTabProps> = ({
         matchId: pub.matchId,
         title: `${pub.matchDesc || 'Match'} - ${pub.seriesName}`,
         series: pub.seriesName,
-        matchType: (pub.matchFormat?.toUpperCase() === 'ODI' ? 'ODI' : pub.matchFormat?.toUpperCase() === 'TEST' ? 'TEST' : 'T20') as 'T20' | 'ODI' | 'TEST',
+        matchType: (pub.matchFormat?.toUpperCase() === 'ODI'
+          ? 'ODI'
+          : pub.matchFormat?.toUpperCase() === 'TEST'
+            ? 'TEST'
+            : 'T20') as 'T20' | 'ODI' | 'TEST',
         venue: pub.venue ? `${pub.venue}${pub.city ? ', ' + pub.city : ''}` : 'Cricket Ground',
         status: pub.state === 'upcoming' ? 'upcoming' : 'live',
         statusText: pub.status || pub.state || 'Match in progress',
@@ -262,8 +293,13 @@ export const CricketTab: React.FC<CricketTabProps> = ({
           }}
         >
           <CardContent sx={{ p: 2.5 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 Live Feed Matches
               </Typography>
               <Box
@@ -297,8 +333,13 @@ export const CricketTab: React.FC<CricketTabProps> = ({
           }}
         >
           <CardContent sx={{ p: 2.5 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 Published to App
               </Typography>
               <Box
@@ -332,8 +373,13 @@ export const CricketTab: React.FC<CricketTabProps> = ({
           }}
         >
           <CardContent sx={{ p: 2.5 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 International Fixtures
               </Typography>
               <Box
@@ -367,8 +413,13 @@ export const CricketTab: React.FC<CricketTabProps> = ({
           }}
         >
           <CardContent sx={{ p: 2.5 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 Domestic & Leagues
               </Typography>
               <Box
@@ -411,7 +462,11 @@ export const CricketTab: React.FC<CricketTabProps> = ({
           <Button
             onClick={() => setActiveSubTab('live')}
             variant={activeSubTab === 'live' ? 'contained' : 'text'}
-            startIcon={<FiberManualRecord sx={{ fontSize: 14, color: activeSubTab === 'live' ? '#ffffff' : '#ef4444' }} />}
+            startIcon={
+              <FiberManualRecord
+                sx={{ fontSize: 14, color: activeSubTab === 'live' ? '#ffffff' : '#ef4444' }}
+              />
+            }
             sx={{
               textTransform: 'none',
               fontWeight: 700,
@@ -430,7 +485,11 @@ export const CricketTab: React.FC<CricketTabProps> = ({
           <Button
             onClick={() => setActiveSubTab('recent')}
             variant={activeSubTab === 'recent' ? 'contained' : 'text'}
-            startIcon={<CheckCircle sx={{ fontSize: 16, color: activeSubTab === 'recent' ? '#ffffff' : '#10b981' }} />}
+            startIcon={
+              <CheckCircle
+                sx={{ fontSize: 16, color: activeSubTab === 'recent' ? '#ffffff' : '#10b981' }}
+              />
+            }
             sx={{
               textTransform: 'none',
               fontWeight: 700,
@@ -523,16 +582,20 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                     backgroundColor: selected
                       ? '#2563eb'
                       : isDark
-                      ? 'rgba(255,255,255,0.05)'
-                      : '#f8fafc',
+                        ? 'rgba(255,255,255,0.05)'
+                        : '#f8fafc',
                     color: selected ? '#ffffff' : isDark ? '#d0caeb' : '#475569',
                     borderColor: selected
                       ? '#2563eb'
                       : isDark
-                      ? 'rgba(255,255,255,0.1)'
-                      : 'rgba(0,0,0,0.1)',
+                        ? 'rgba(255,255,255,0.1)'
+                        : 'rgba(0,0,0,0.1)',
                     '&:hover': {
-                      backgroundColor: selected ? '#1d4ed8' : isDark ? 'rgba(255,255,255,0.08)' : '#f1f5f9',
+                      backgroundColor: selected
+                        ? '#1d4ed8'
+                        : isDark
+                          ? 'rgba(255,255,255,0.08)'
+                          : '#f1f5f9',
                     },
                   }}
                 />
@@ -552,15 +615,22 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                 textAlign: 'center',
                 borderRadius: '16px',
                 backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#f8fafc',
-                border: isDark ? '1px dashed rgba(255,255,255,0.15)' : '1px dashed rgba(0,0,0,0.15)',
+                border: isDark
+                  ? '1px dashed rgba(255,255,255,0.15)'
+                  : '1px dashed rgba(0,0,0,0.15)',
               }}
             >
               <SportsCricket sx={{ fontSize: 48, color: '#94a3b8', mb: 1.5 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1e293b' }}>
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1e293b' }}
+              >
                 No live matches found
               </Typography>
               <Typography variant="body2" sx={{ color: isDark ? '#9e96c7' : '#64748b', mt: 0.5 }}>
-                {localSearch ? 'Try adjusting your search criteria.' : 'Check back when matches start or refresh the feed.'}
+                {localSearch
+                  ? 'Try adjusting your search criteria.'
+                  : 'Check back when matches start or refresh the feed.'}
               </Typography>
             </Card>
           ) : (
@@ -596,29 +666,43 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                       border: published
                         ? '2px solid #10b981'
                         : isDark
-                        ? '1px solid rgba(255,255,255,0.08)'
-                        : '1px solid rgba(0,0,0,0.08)',
+                          ? '1px solid rgba(255,255,255,0.08)'
+                          : '1px solid rgba(0,0,0,0.08)',
                       boxShadow: published
                         ? '0 8px 24px rgba(16,185,129,0.15)'
                         : isDark
-                        ? '0 8px 24px rgba(0,0,0,0.2)'
-                        : '0 4px 16px rgba(0,0,0,0.04)',
+                          ? '0 8px 24px rgba(0,0,0,0.2)'
+                          : '0 4px 16px rgba(0,0,0,0.04)',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'space-between',
                       transition: 'transform 0.2s, box-shadow 0.2s',
                       '&:hover': {
                         transform: 'translateY(-3px)',
-                        boxShadow: isDark ? '0 12px 28px rgba(0,0,0,0.35)' : '0 8px 24px rgba(0,0,0,0.08)',
+                        boxShadow: isDark
+                          ? '0 12px 28px rgba(0,0,0,0.35)'
+                          : '0 8px 24px rgba(0,0,0,0.08)',
                       },
                     }}
                   >
-                    <CardContent sx={{ p: 2.5, flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                    <CardContent
+                      sx={{ p: 2.5, flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}
+                    >
                       {/* Top Header: State & ID & Format */}
-                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                        }}
+                      >
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                           <Chip
-                            icon={<FiberManualRecord sx={{ fontSize: 10, color: '#ef4444 !important' }} />}
+                            icon={
+                              <FiberManualRecord
+                                sx={{ fontSize: 10, color: '#ef4444 !important' }}
+                              />
+                            }
                             label={info.state?.toUpperCase() || 'LIVE'}
                             size="small"
                             sx={{
@@ -692,16 +776,28 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                           p: 2,
                           borderRadius: '12px',
                           backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f8fafc',
-                          border: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.06)',
+                          border: isDark
+                            ? '1px solid rgba(255,255,255,0.06)'
+                            : '1px solid rgba(0,0,0,0.06)',
                           display: 'flex',
                           flexDirection: 'column',
                           gap: 1.25,
                         }}
                       >
                         {/* Team 1 */}
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <Typography variant="body2" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#0f172a' }}>
-                            {info.team1?.teamName}{info.team1?.teamSName ? ` (${info.team1.teamSName})` : ''}
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#0f172a' }}
+                          >
+                            {info.team1?.teamName}
+                            {info.team1?.teamSName ? ` (${info.team1.teamSName})` : ''}
                           </Typography>
                           <Typography
                             variant="body2"
@@ -716,9 +812,19 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                         </Box>
 
                         {/* Team 2 */}
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <Typography variant="body2" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#0f172a' }}>
-                            {info.team2?.teamName}{info.team2?.teamSName ? ` (${info.team2.teamSName})` : ''}
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#0f172a' }}
+                          >
+                            {info.team2?.teamName}
+                            {info.team2?.teamSName ? ` (${info.team2.teamSName})` : ''}
                           </Typography>
                           <Typography
                             variant="body2"
@@ -740,7 +846,9 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                             px: 1.5,
                             py: 0.75,
                             borderRadius: '8px',
-                            backgroundColor: isDark ? 'rgba(59,130,246,0.12)' : 'rgba(59,130,246,0.08)',
+                            backgroundColor: isDark
+                              ? 'rgba(59,130,246,0.12)'
+                              : 'rgba(59,130,246,0.08)',
                             border: '1px solid rgba(59,130,246,0.2)',
                           }}
                         >
@@ -753,9 +861,16 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                       {/* Venue Info */}
                       {info.venueInfo?.ground && (
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                          <LocationOn sx={{ fontSize: 14, color: isDark ? '#9e96c7' : '#94a3b8' }} />
-                          <Typography variant="caption" sx={{ color: isDark ? '#9e96c7' : '#64748b' }} noWrap>
-                            {info.venueInfo.ground}{info.venueInfo.city ? `, ${info.venueInfo.city}` : ''}
+                          <LocationOn
+                            sx={{ fontSize: 14, color: isDark ? '#9e96c7' : '#94a3b8' }}
+                          />
+                          <Typography
+                            variant="caption"
+                            sx={{ color: isDark ? '#9e96c7' : '#64748b' }}
+                            noWrap
+                          >
+                            {info.venueInfo.ground}
+                            {info.venueInfo.city ? `, ${info.venueInfo.city}` : ''}
                           </Typography>
                         </Box>
                       )}
@@ -769,7 +884,9 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                           gap: 1.5,
                           pt: 2,
                           mt: 'auto',
-                          borderTop: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.06)',
+                          borderTop: isDark
+                            ? '1px solid rgba(255,255,255,0.06)'
+                            : '1px solid rgba(0,0,0,0.06)',
                         }}
                       >
                         <Button
@@ -793,7 +910,13 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                                 variant="outlined"
                                 color="error"
                                 disabled={isPublishing}
-                                startIcon={isPublishing ? <CircularProgress size={14} color="inherit" /> : <VisibilityOff fontSize="small" />}
+                                startIcon={
+                                  isPublishing ? (
+                                    <CircularProgress size={14} color="inherit" />
+                                  ) : (
+                                    <VisibilityOff fontSize="small" />
+                                  )
+                                }
                                 onClick={() => {
                                   if (onUnpublishMatch) {
                                     onUnpublishMatch(
@@ -920,8 +1043,12 @@ export const CricketTab: React.FC<CricketTabProps> = ({
           >
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <CheckCircle sx={{ color: '#10b981', fontSize: 20 }} />
-              <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#d0caeb' : '#0f172a' }}>
-                Matches currently published and visible to end-user clients. Ordered by newest published first.
+              <Typography
+                variant="body2"
+                sx={{ fontWeight: 600, color: isDark ? '#d0caeb' : '#0f172a' }}
+              >
+                Matches currently published and visible to end-user clients. Ordered by newest
+                published first.
               </Typography>
             </Box>
             <Chip
@@ -939,15 +1066,24 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                 textAlign: 'center',
                 borderRadius: '16px',
                 backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#f8fafc',
-                border: isDark ? '1px dashed rgba(255,255,255,0.15)' : '1px dashed rgba(0,0,0,0.15)',
+                border: isDark
+                  ? '1px dashed rgba(255,255,255,0.15)'
+                  : '1px dashed rgba(0,0,0,0.15)',
               }}
             >
               <Publish sx={{ fontSize: 48, color: '#94a3b8', mb: 1.5 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1e293b' }}>
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1e293b' }}
+              >
                 No published matches yet
               </Typography>
-              <Typography variant="body2" sx={{ color: isDark ? '#9e96c7' : '#64748b', mt: 0.5, mb: 2 }}>
-                Go to the "Live Matches Feed" tab and click "Publish Match" on any match to publish it immediately.
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#9e96c7' : '#64748b', mt: 0.5, mb: 2 }}
+              >
+                Go to the "Live Matches Feed" tab and click "Publish Match" on any match to publish
+                it immediately.
               </Typography>
               <Button
                 variant="contained"
@@ -969,14 +1105,31 @@ export const CricketTab: React.FC<CricketTabProps> = ({
             >
               <Box sx={{ overflowX: 'auto' }}>
                 <Table size="medium">
-                  <TableHead sx={{ backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#f8fafc' }}>
+                  <TableHead
+                    sx={{ backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#f8fafc' }}
+                  >
                     <TableRow>
-                      <TableCell sx={{ fontWeight: 800, color: isDark ? '#d0caeb' : '#475569' }}>Match ID</TableCell>
-                      <TableCell sx={{ fontWeight: 800, color: isDark ? '#d0caeb' : '#475569' }}>Series / Fixture</TableCell>
-                      <TableCell sx={{ fontWeight: 800, color: isDark ? '#d0caeb' : '#475569' }}>Teams & Scores</TableCell>
-                      <TableCell sx={{ fontWeight: 800, color: isDark ? '#d0caeb' : '#475569' }}>State & Status</TableCell>
-                      <TableCell sx={{ fontWeight: 800, color: isDark ? '#d0caeb' : '#475569' }}>Published At</TableCell>
-                      <TableCell align="right" sx={{ fontWeight: 800, color: isDark ? '#d0caeb' : '#475569' }}>Actions</TableCell>
+                      <TableCell sx={{ fontWeight: 800, color: isDark ? '#d0caeb' : '#475569' }}>
+                        Match ID
+                      </TableCell>
+                      <TableCell sx={{ fontWeight: 800, color: isDark ? '#d0caeb' : '#475569' }}>
+                        Series / Fixture
+                      </TableCell>
+                      <TableCell sx={{ fontWeight: 800, color: isDark ? '#d0caeb' : '#475569' }}>
+                        Teams & Scores
+                      </TableCell>
+                      <TableCell sx={{ fontWeight: 800, color: isDark ? '#d0caeb' : '#475569' }}>
+                        State & Status
+                      </TableCell>
+                      <TableCell sx={{ fontWeight: 800, color: isDark ? '#d0caeb' : '#475569' }}>
+                        Published At
+                      </TableCell>
+                      <TableCell
+                        align="right"
+                        sx={{ fontWeight: 800, color: isDark ? '#d0caeb' : '#475569' }}
+                      >
+                        Actions
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -1007,11 +1160,17 @@ export const CricketTab: React.FC<CricketTabProps> = ({
 
                           {/* Series / Fixture */}
                           <TableCell sx={{ maxWidth: 280 }}>
-                            <Typography variant="body2" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#0f172a' }}>
+                            <Typography
+                              variant="body2"
+                              sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#0f172a' }}
+                            >
                               {match.seriesName}
                             </Typography>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 0.5 }}>
-                              <Typography variant="caption" sx={{ color: isDark ? '#9e96c7' : '#64748b' }}>
+                              <Typography
+                                variant="caption"
+                                sx={{ color: isDark ? '#9e96c7' : '#64748b' }}
+                              >
                                 {match.matchDesc || 'Match'}
                               </Typography>
                               {match.matchFormat && (
@@ -1028,18 +1187,38 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                           <TableCell sx={{ minWidth: 200 }}>
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Typography variant="caption" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1e293b' }}>
+                                <Typography
+                                  variant="caption"
+                                  sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1e293b' }}
+                                >
                                   {match.team1Name}:
                                 </Typography>
-                                <Typography variant="caption" sx={{ fontFamily: 'monospace', fontWeight: 800, color: '#2563eb' }}>
+                                <Typography
+                                  variant="caption"
+                                  sx={{
+                                    fontFamily: 'monospace',
+                                    fontWeight: 800,
+                                    color: '#2563eb',
+                                  }}
+                                >
                                   {match.team1Score || 'Yet to bat'}
                                 </Typography>
                               </Box>
                               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Typography variant="caption" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1e293b' }}>
+                                <Typography
+                                  variant="caption"
+                                  sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1e293b' }}
+                                >
                                   {match.team2Name}:
                                 </Typography>
-                                <Typography variant="caption" sx={{ fontFamily: 'monospace', fontWeight: 800, color: '#10b981' }}>
+                                <Typography
+                                  variant="caption"
+                                  sx={{
+                                    fontFamily: 'monospace',
+                                    fontWeight: 800,
+                                    color: '#10b981',
+                                  }}
+                                >
                                   {match.team2Score || 'Yet to bat'}
                                 </Typography>
                               </Box>
@@ -1055,13 +1234,20 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                                 height: 20,
                                 fontWeight: 800,
                                 fontSize: '0.65rem',
-                                backgroundColor: match.state === 'upcoming' ? 'rgba(59,130,246,0.15)' : 'rgba(239,68,68,0.15)',
+                                backgroundColor:
+                                  match.state === 'upcoming'
+                                    ? 'rgba(59,130,246,0.15)'
+                                    : 'rgba(239,68,68,0.15)',
                                 color: match.state === 'upcoming' ? '#3b82f6' : '#ef4444',
                                 mb: 0.5,
                               }}
                             />
                             {match.status && (
-                              <Typography variant="caption" sx={{ display: 'block', color: isDark ? '#9e96c7' : '#64748b' }} noWrap>
+                              <Typography
+                                variant="caption"
+                                sx={{ display: 'block', color: isDark ? '#9e96c7' : '#64748b' }}
+                                noWrap
+                              >
                                 {match.status}
                               </Typography>
                             )}
@@ -1070,16 +1256,30 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                           {/* Published At */}
                           <TableCell sx={{ whiteSpace: 'nowrap' }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                              <AccessTime sx={{ fontSize: 14, color: isDark ? '#9e96c7' : '#94a3b8' }} />
-                              <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#64748b' }}>
-                                {match.publishedAt ? new Date(match.publishedAt).toLocaleString() : '-'}
+                              <AccessTime
+                                sx={{ fontSize: 14, color: isDark ? '#9e96c7' : '#94a3b8' }}
+                              />
+                              <Typography
+                                variant="caption"
+                                sx={{ color: isDark ? '#d0caeb' : '#64748b' }}
+                              >
+                                {match.publishedAt
+                                  ? new Date(match.publishedAt).toLocaleString()
+                                  : '-'}
                               </Typography>
                             </Box>
                           </TableCell>
 
                           {/* Actions */}
                           <TableCell align="right">
-                            <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 1 }}>
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                justifyContent: 'flex-end',
+                                alignItems: 'center',
+                                gap: 1,
+                              }}
+                            >
                               <Button
                                 size="small"
                                 variant="text"

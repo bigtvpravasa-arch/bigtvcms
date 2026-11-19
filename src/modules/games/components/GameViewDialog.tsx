@@ -100,8 +100,8 @@ export const GameViewDialog: React.FC<GameViewDialogProps> = ({
                       ? 'rgba(76, 175, 80, 0.2)'
                       : '#e8f5e9'
                     : isDark
-                    ? 'rgba(244, 67, 54, 0.2)'
-                    : '#ffebee',
+                      ? 'rgba(244, 67, 54, 0.2)'
+                      : '#ffebee',
                   color: game.isActive ? '#4caf50' : '#f44336',
                   fontWeight: 600,
                   fontSize: '0.72rem',
@@ -113,12 +113,19 @@ export const GameViewDialog: React.FC<GameViewDialogProps> = ({
 
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Box sx={{ backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f9f9f9', p: 2, borderRadius: '8px' }}>
+            <Box
+              sx={{
+                backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f9f9f9',
+                p: 2,
+                borderRadius: '8px',
+              }}
+            >
               <Typography variant="body2" sx={{ color: colorText, mb: 1 }}>
                 <strong>UUID:</strong> {game.id}
               </Typography>
               <Typography variant="body2" sx={{ color: colorText, mb: 1 }}>
-                <strong>Daily Auto-Publish:</strong> {game.dailyPublishEnabled ? t.enabled : t.disabled}
+                <strong>Daily Auto-Publish:</strong>{' '}
+                {game.dailyPublishEnabled ? t.enabled : t.disabled}
               </Typography>
               {game.description && (
                 <Typography variant="body2" sx={{ color: colorText, mb: 1 }}>
@@ -158,7 +165,10 @@ export const GameViewDialog: React.FC<GameViewDialogProps> = ({
       </DialogContent>
 
       <DialogActions
-        sx={{ p: 2, borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)' }}
+        sx={{
+          p: 2,
+          borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+        }}
       >
         <Button
           onClick={onClose}

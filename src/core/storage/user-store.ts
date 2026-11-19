@@ -13,7 +13,10 @@ export interface UserProfile {
 interface UserState {
   user: UserProfile;
   setUser: (user: Partial<UserProfile>) => void;
-  loginUser: (username: string, extra?: { name?: string; role?: string; avatarUrl?: string }) => void;
+  loginUser: (
+    username: string,
+    extra?: { name?: string; role?: string; avatarUrl?: string }
+  ) => void;
   logoutUser: () => void;
 }
 
@@ -55,7 +58,9 @@ export const useUserStore = create<UserState>()(
     }),
     {
       name: 'bigtv-user-store',
-      storage: createJSONStorage(() => (typeof window !== 'undefined' ? localStorage : (undefined as any))),
+      storage: createJSONStorage(() =>
+        typeof window !== 'undefined' ? localStorage : (undefined as any)
+      ),
     }
   )
 );

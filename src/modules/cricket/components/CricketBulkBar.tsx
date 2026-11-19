@@ -40,7 +40,9 @@ export const CricketBulkBar: React.FC<CricketBulkBarProps> = ({
           background: isDark
             ? 'linear-gradient(90deg, #1e1b4b 0%, #312e81 100%)'
             : 'linear-gradient(90deg, #e0e7ff 0%, #ede9fe 100%)',
-          border: isDark ? '1px solid rgba(129, 140, 248, 0.3)' : '1px solid rgba(99, 102, 241, 0.25)',
+          border: isDark
+            ? '1px solid rgba(129, 140, 248, 0.3)'
+            : '1px solid rgba(99, 102, 241, 0.25)',
           boxShadow: isDark
             ? '0 10px 25px -5px rgba(0, 0, 0, 0.5)'
             : '0 10px 25px -5px rgba(99, 102, 241, 0.15)',

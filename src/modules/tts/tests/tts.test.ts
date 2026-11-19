@@ -48,7 +48,9 @@ describe('TTSService', () => {
       statusText: 'Internal Server Error',
     } as Response);
 
-    await expect(TTSService.getVoices()).rejects.toThrow('Failed to load voices: Internal Server Error');
+    await expect(TTSService.getVoices()).rejects.toThrow(
+      'Failed to load voices: Internal Server Error'
+    );
   });
 
   test('generateSpeech generates speech audio successfully', async () => {
@@ -79,7 +81,9 @@ describe('TTSService', () => {
       json: async () => ({ message: ['text is required', 'voice_id invalid'] }),
     } as Response);
 
-    await expect(TTSService.generateSpeech('', '')).rejects.toThrow('text is required, voice_id invalid');
+    await expect(TTSService.generateSpeech('', '')).rejects.toThrow(
+      'text is required, voice_id invalid'
+    );
   });
 
   test('generateSpeech handles fallback error message', async () => {
@@ -88,12 +92,19 @@ describe('TTSService', () => {
       json: async () => ({}),
     } as Response);
 
-    await expect(TTSService.generateSpeech('test', 'v1')).rejects.toThrow('Failed to generate audio');
+    await expect(TTSService.generateSpeech('test', 'v1')).rejects.toThrow(
+      'Failed to generate audio'
+    );
   });
 
   test('getAudioFiles returns file list successfully', async () => {
     const mockFiles = [
-      { filename: 'file1.mp3', audio_path: '/outputs/file1.mp3', size_bytes: 2048, created_at: '2026-10-08T10:00:00Z' },
+      {
+        filename: 'file1.mp3',
+        audio_path: '/outputs/file1.mp3',
+        size_bytes: 2048,
+        created_at: '2026-10-08T10:00:00Z',
+      },
     ];
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
@@ -110,7 +121,9 @@ describe('TTSService', () => {
       statusText: 'Not Found',
     } as Response);
 
-    await expect(TTSService.getAudioFiles()).rejects.toThrow('Failed to fetch audio files: Not Found');
+    await expect(TTSService.getAudioFiles()).rejects.toThrow(
+      'Failed to fetch audio files: Not Found'
+    );
   });
 
   test('deleteAudioFile deletes file successfully', async () => {
@@ -139,8 +152,12 @@ describe('TTSService', () => {
 
   test('getAudioUrl constructs valid URLs', () => {
     expect(TTSService.getAudioUrl('')).toBe('');
-    expect(TTSService.getAudioUrl('http://example.com/audio.mp3')).toBe('http://example.com/audio.mp3');
-    expect(TTSService.getAudioUrl('https://example.com/audio.mp3')).toBe('https://example.com/audio.mp3');
+    expect(TTSService.getAudioUrl('http://example.com/audio.mp3')).toBe(
+      'http://example.com/audio.mp3'
+    );
+    expect(TTSService.getAudioUrl('https://example.com/audio.mp3')).toBe(
+      'https://example.com/audio.mp3'
+    );
     expect(TTSService.getAudioUrl('/outputs/test.mp3')).toContain('/outputs/test.mp3');
     expect(TTSService.getAudioUrl('outputs/test.mp3')).toContain('/outputs/test.mp3');
   });
@@ -180,7 +197,14 @@ describe('useTeluguTTS', () => {
 
   test('loads voices and files on initial mount', async () => {
     const mockVoices = [{ name: 'Voice 1', voice_id: 'v1' }];
-    const mockFiles = [{ filename: 'test.mp3', audio_path: '/outputs/test.mp3', size_bytes: 1000, created_at: '2026-10-08T10:00:00Z' }];
+    const mockFiles = [
+      {
+        filename: 'test.mp3',
+        audio_path: '/outputs/test.mp3',
+        size_bytes: 1000,
+        created_at: '2026-10-08T10:00:00Z',
+      },
+    ];
 
     jest.spyOn(TTSService, 'getVoices').mockResolvedValue(mockVoices);
     jest.spyOn(TTSService, 'getAudioFiles').mockResolvedValue(mockFiles);
@@ -280,10 +304,19 @@ describe('useTeluguTTS', () => {
   });
 
   test('removeAudioFile removes item from state and stops current playback if active', async () => {
-    const mockFiles = [{ filename: 'file1.mp3', audio_path: '/outputs/file1.mp3', size_bytes: 100, created_at: '2026-10-08T10:00:00Z' }];
+    const mockFiles = [
+      {
+        filename: 'file1.mp3',
+        audio_path: '/outputs/file1.mp3',
+        size_bytes: 100,
+        created_at: '2026-10-08T10:00:00Z',
+      },
+    ];
     jest.spyOn(TTSService, 'getVoices').mockResolvedValue([{ name: 'v1', voice_id: 'v1' }]);
     jest.spyOn(TTSService, 'getAudioFiles').mockResolvedValue(mockFiles);
-    jest.spyOn(TTSService, 'deleteAudioFile').mockResolvedValue({ message: 'Deleted', filename: 'file1.mp3' });
+    jest
+      .spyOn(TTSService, 'deleteAudioFile')
+      .mockResolvedValue({ message: 'Deleted', filename: 'file1.mp3' });
     jest.spyOn(TTSService, 'generateSpeech').mockResolvedValue({
       message: 'OK',
       filename: 'file1.mp3',

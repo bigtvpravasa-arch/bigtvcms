@@ -97,7 +97,11 @@ export const ReporterViewDialog: React.FC<ReporterViewDialogProps> = ({
         <Box sx={{ display: 'flex', gap: 3, mb: 4, alignItems: 'center' }}>
           <Avatar
             src={reporter.profileImageUrl}
-            sx={{ width: 80, height: 80, bgcolor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }}
+            sx={{
+              width: 80,
+              height: 80,
+              bgcolor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)',
+            }}
           >
             <PersonOutline sx={{ fontSize: 40 }} />
           </Avatar>

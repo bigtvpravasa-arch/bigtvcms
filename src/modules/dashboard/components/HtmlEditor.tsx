@@ -114,7 +114,15 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, width: '100%', position: 'relative' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 0.5,
+        width: '100%',
+        position: 'relative',
+      }}
+    >
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -124,7 +132,7 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
       <Typography
         variant="caption"
         sx={{
-          color: error ? '#f44336' : (isDark ? '#d0caeb' : '#5c548a'),
+          color: error ? '#f44336' : isDark ? '#d0caeb' : '#5c548a',
           fontWeight: 700,
           display: 'block',
         }}
@@ -136,7 +144,9 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
         sx={{
           border: error
             ? '2px solid #f44336'
-            : (isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid rgba(0, 0, 0, 0.15)'),
+            : isDark
+              ? '1px solid rgba(255, 255, 255, 0.12)'
+              : '1px solid rgba(0, 0, 0, 0.15)',
           borderRadius: '10px',
           overflow: 'hidden',
           backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : '#ffffff',
@@ -152,122 +162,153 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             flexWrap: 'wrap',
             gap: 0.5,
             p: 0.75,
-            borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
+            borderBottom: isDark
+              ? '1px solid rgba(255, 255, 255, 0.08)'
+              : '1px solid rgba(0, 0, 0, 0.08)',
             backgroundColor: isDark ? 'rgba(38, 28, 86, 0.2)' : '#fbfbfb',
           }}
         >
           <Tooltip title="Bold">
             <span>
-            <IconButton
-              size="small"
-              onClick={() => executeCommand('bold')}
-              disabled={isCodeMode}
-              sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
-            >
-              <FormatBold fontSize="small" />
-            </IconButton>
-          </span>
+              <IconButton
+                size="small"
+                onClick={() => executeCommand('bold')}
+                disabled={isCodeMode}
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
+                <FormatBold fontSize="small" />
+              </IconButton>
+            </span>
           </Tooltip>
 
           <Tooltip title="Italic">
             <span>
-            <IconButton
-              size="small"
-              onClick={() => executeCommand('italic')}
-              disabled={isCodeMode}
-              sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
-            >
-              <FormatItalic fontSize="small" />
-            </IconButton>
-          </span>
+              <IconButton
+                size="small"
+                onClick={() => executeCommand('italic')}
+                disabled={isCodeMode}
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
+                <FormatItalic fontSize="small" />
+              </IconButton>
+            </span>
           </Tooltip>
 
           <Tooltip title="Underline">
             <span>
-            <IconButton
-              size="small"
-              onClick={() => executeCommand('underline')}
-              disabled={isCodeMode}
-              sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
-            >
-              <FormatUnderlined fontSize="small" />
-            </IconButton>
-          </span>
+              <IconButton
+                size="small"
+                onClick={() => executeCommand('underline')}
+                disabled={isCodeMode}
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
+                <FormatUnderlined fontSize="small" />
+              </IconButton>
+            </span>
           </Tooltip>
 
-          <Divider orientation="vertical" flexItem sx={{ mx: 0.5, my: 0.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{
+              mx: 0.5,
+              my: 0.5,
+              borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+            }}
+          />
 
           <Tooltip title="Text Align Left">
             <span>
-            <IconButton
-              size="small"
-              onClick={() => executeCommand('justifyLeft')}
-              disabled={isCodeMode}
-              sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
-            >
-              <FormatAlignLeft fontSize="small" />
-            </IconButton>
-          </span>
+              <IconButton
+                size="small"
+                onClick={() => executeCommand('justifyLeft')}
+                disabled={isCodeMode}
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
+                <FormatAlignLeft fontSize="small" />
+              </IconButton>
+            </span>
           </Tooltip>
 
           <Tooltip title="Text Align Center">
             <span>
-            <IconButton
-              size="small"
-              onClick={() => executeCommand('justifyCenter')}
-              disabled={isCodeMode}
-              sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
-            >
-              <FormatAlignCenter fontSize="small" />
-            </IconButton>
-          </span>
+              <IconButton
+                size="small"
+                onClick={() => executeCommand('justifyCenter')}
+                disabled={isCodeMode}
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
+                <FormatAlignCenter fontSize="small" />
+              </IconButton>
+            </span>
           </Tooltip>
 
           <Tooltip title="Text Align Right">
             <span>
-            <IconButton
-              size="small"
-              onClick={() => executeCommand('justifyRight')}
-              disabled={isCodeMode}
-              sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
-            >
-              <FormatAlignRight fontSize="small" />
-            </IconButton>
-          </span>
+              <IconButton
+                size="small"
+                onClick={() => executeCommand('justifyRight')}
+                disabled={isCodeMode}
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
+                <FormatAlignRight fontSize="small" />
+              </IconButton>
+            </span>
           </Tooltip>
 
-          <Divider orientation="vertical" flexItem sx={{ mx: 0.5, my: 0.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{
+              mx: 0.5,
+              my: 0.5,
+              borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+            }}
+          />
 
           <Tooltip title="Bullet List">
             <span>
-            <IconButton
-              size="small"
-              onClick={() => executeCommand('insertUnorderedList')}
-              disabled={isCodeMode}
-              sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
-            >
-              <FormatListBulleted fontSize="small" />
-            </IconButton>
-          </span>
+              <IconButton
+                size="small"
+                onClick={() => executeCommand('insertUnorderedList')}
+                disabled={isCodeMode}
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
+                <FormatListBulleted fontSize="small" />
+              </IconButton>
+            </span>
           </Tooltip>
 
           <Tooltip title="Ordered List">
             <span>
-            <IconButton
-              size="small"
-              onClick={() => executeCommand('insertOrderedList')}
-              disabled={isCodeMode}
-              sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
-            >
-              <FormatListNumbered fontSize="small" />
-            </IconButton>
-          </span>
+              <IconButton
+                size="small"
+                onClick={() => executeCommand('insertOrderedList')}
+                disabled={isCodeMode}
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
+                <FormatListNumbered fontSize="small" />
+              </IconButton>
+            </span>
           </Tooltip>
 
-          <Divider orientation="vertical" flexItem sx={{ mx: 0.5, my: 0.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{
+              mx: 0.5,
+              my: 0.5,
+              borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+            }}
+          />
 
           {/* Heading block selector */}
-          <FormControl size="small" variant="standard" sx={{ minWidth: 70, mx: 0.5 }} disabled={isCodeMode}>
+          <FormControl
+            size="small"
+            variant="standard"
+            sx={{ minWidth: 70, mx: 0.5 }}
+            disabled={isCodeMode}
+          >
             <Select
               value={formatBlock}
               onChange={(e) => handleFormatBlockChange(e.target.value as string)}
@@ -286,12 +327,24 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             </Select>
           </FormControl>
 
-          <Divider orientation="vertical" flexItem sx={{ mx: 0.5, my: 0.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{
+              mx: 0.5,
+              my: 0.5,
+              borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+            }}
+          />
 
           {/* Text Color input */}
           <Tooltip title="Text Color">
             <Box sx={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-              <IconButton size="small" disabled={isCodeMode} sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+              <IconButton
+                size="small"
+                disabled={isCodeMode}
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
                 <FormatColorText fontSize="small" />
               </IconButton>
               <input
@@ -315,7 +368,11 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
           {/* Background Highlight Color input */}
           <Tooltip title="Background Highlight Color">
             <Box sx={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-              <IconButton size="small" disabled={isCodeMode} sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+              <IconButton
+                size="small"
+                disabled={isCodeMode}
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
                 <BorderColor fontSize="small" />
               </IconButton>
               <input
@@ -336,37 +393,59 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             </Box>
           </Tooltip>
 
-          <Tooltip title="Link"><span><IconButton
-              size="small"
-              onClick={handleLink}
-              disabled={isCodeMode}
-              sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
-            >
-              <Link fontSize="small" />
-            </IconButton></span></Tooltip>
+          <Tooltip title="Link">
+            <span>
+              <IconButton
+                size="small"
+                onClick={handleLink}
+                disabled={isCodeMode}
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
+                <Link fontSize="small" />
+              </IconButton>
+            </span>
+          </Tooltip>
 
           <Tooltip title="Clear Formatting">
             <span>
-            <IconButton
-              size="small"
-              onClick={() => executeCommand('removeFormat')}
-              disabled={isCodeMode}
-              sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
-            >
-              <FormatClear fontSize="small" />
-            </IconButton>
-          </span>
+              <IconButton
+                size="small"
+                onClick={() => executeCommand('removeFormat')}
+                disabled={isCodeMode}
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
+                <FormatClear fontSize="small" />
+              </IconButton>
+            </span>
           </Tooltip>
 
-          <Divider orientation="vertical" flexItem sx={{ mx: 0.5, my: 0.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{
+              mx: 0.5,
+              my: 0.5,
+              borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+            }}
+          />
 
-          <Tooltip title={isCodeMode ? "WYSIWYG Mode" : "View HTML Code"}>
+          <Tooltip title={isCodeMode ? 'WYSIWYG Mode' : 'View HTML Code'}>
             <IconButton
               size="small"
               onClick={() => setIsCodeMode(!isCodeMode)}
               sx={{
-                color: isCodeMode ? (isDark ? '#a6e2f5' : '#1c1445') : (isDark ? '#d0caeb' : '#5c548a'),
-                backgroundColor: isCodeMode ? (isDark ? 'rgba(166,226,245,0.12)' : 'rgba(28,20,69,0.06)') : 'transparent',
+                color: isCodeMode
+                  ? isDark
+                    ? '#a6e2f5'
+                    : '#1c1445'
+                  : isDark
+                    ? '#d0caeb'
+                    : '#5c548a',
+                backgroundColor: isCodeMode
+                  ? isDark
+                    ? 'rgba(166,226,245,0.12)'
+                    : 'rgba(28,20,69,0.06)'
+                  : 'transparent',
               }}
             >
               <Code fontSize="small" />

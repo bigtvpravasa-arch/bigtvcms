@@ -301,5 +301,3 @@ describe('NewsMapper', () => {
     expect(createDto.isWebPost).toBe(false);
   });
 });
-
-

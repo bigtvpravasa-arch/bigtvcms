@@ -65,7 +65,11 @@ export const useMoviesController = () => {
           (m.titleTe || '').toLowerCase().includes(filterTitle.toLowerCase()) ||
           (m.title || '').toLowerCase().includes(filterTitle.toLowerCase())
         : true;
-      const matchId = filterId ? String(m.id || m.movieId || '').toLowerCase().includes(filterId.trim().toLowerCase().replace(/^#/, '')) : true;
+      const matchId = filterId
+        ? String(m.id || m.movieId || '')
+            .toLowerCase()
+            .includes(filterId.trim().toLowerCase().replace(/^#/, ''))
+        : true;
       return matchTitle && matchId;
     });
   }, [movies, activeTab, filterTitle, filterId]);
@@ -80,7 +84,11 @@ export const useMoviesController = () => {
   const togglePublish = async (id: string | number) => {
     await MoviesRepository.togglePublish(id);
     setMovies((prev) =>
-      prev.map((m) => (m.id === id || m.movieId === id ? { ...m, isPublished: !m.isPublished, status: !m.isPublished ? 'published' : 'draft' } : m))
+      prev.map((m) =>
+        m.id === id || m.movieId === id
+          ? { ...m, isPublished: !m.isPublished, status: !m.isPublished ? 'published' : 'draft' }
+          : m
+      )
     );
   };
 
@@ -150,8 +158,16 @@ export const useMoviesController = () => {
       bannerUrl: banner,
       thumbnail,
       videoUrl: form.videoUrl || '',
-      genres: Array.isArray(form.genres) ? form.genres : form.genre ? [form.genre] : ['Sci-Fi', 'Action'],
-      languages: Array.isArray(form.languages) ? form.languages : form.language ? [form.language] : ['English', 'Spanish'],
+      genres: Array.isArray(form.genres)
+        ? form.genres
+        : form.genre
+          ? [form.genre]
+          : ['Sci-Fi', 'Action'],
+      languages: Array.isArray(form.languages)
+        ? form.languages
+        : form.language
+          ? [form.language]
+          : ['English', 'Spanish'],
       duration: form.duration || (form.durationMinutes ? Math.round(form.durationMinutes / 60) : 2),
       releaseDate: form.releaseDate || '2010-07-16',
       rating: Number(form.rating) || 8.8,
@@ -209,4 +225,3 @@ export const useMoviesController = () => {
     deleteMovie,
   };
 };
-

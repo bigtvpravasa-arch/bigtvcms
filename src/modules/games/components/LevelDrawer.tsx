@@ -16,8 +16,19 @@ import {
   Avatar,
   Tooltip,
 } from '@mui/material';
-import { Close, CheckCircleOutline, CloudUpload, Refresh, Image as ImageIcon } from '@mui/icons-material';
-import { LevelItem, DEFAULT_LEVEL_ICON_URL, getLevelImageUrl, formatLevelDate } from '../dto/games.dto';
+import {
+  Close,
+  CheckCircleOutline,
+  CloudUpload,
+  Refresh,
+  Image as ImageIcon,
+} from '@mui/icons-material';
+import {
+  LevelItem,
+  DEFAULT_LEVEL_ICON_URL,
+  getLevelImageUrl,
+  formatLevelDate,
+} from '../dto/games.dto';
 import { GamesRepository } from '../repositories/games.repository';
 import { PatchLevelValidator } from '../validators/patch-level.validator';
 import { UploadService } from '@/modules/media/services/upload.service';
@@ -62,7 +73,8 @@ export const LevelDrawer: React.FC<LevelDrawerProps> = ({
     status: 'draft',
     publishDate: '',
     iconUrl: DEFAULT_LEVEL_ICON_URL,
-    contentStr: '{\n  "grid": { "rows": 6, "columns": 6 },\n  "initialGrid": [],\n  "solution": []\n}',
+    contentStr:
+      '{\n  "grid": { "rows": 6, "columns": 6 },\n  "initialGrid": [],\n  "solution": []\n}',
   });
 
   useEffect(() => {
@@ -94,7 +106,8 @@ export const LevelDrawer: React.FC<LevelDrawerProps> = ({
         if (targetId && gameId) {
           GamesRepository.listDailyLevels(gameId, 1, 100)
             .then((res: any) => {
-              const dailyItems: any[] = res?.items || res?.data?.items || (Array.isArray(res) ? res : []);
+              const dailyItems: any[] =
+                res?.items || res?.data?.items || (Array.isArray(res) ? res : []);
               const match = dailyItems.find((d: any) => d.levelId === targetId);
               if (match && match.puzzleDate) {
                 const freshDate = formatLevelDate(match.puzzleDate);
@@ -119,7 +132,8 @@ export const LevelDrawer: React.FC<LevelDrawerProps> = ({
           status: 'draft',
           publishDate: todayStr,
           iconUrl: DEFAULT_LEVEL_ICON_URL,
-          contentStr: '{\n  "grid": { "rows": 6, "columns": 6 },\n  "initialGrid": [],\n  "solution": []\n}',
+          contentStr:
+            '{\n  "grid": { "rows": 6, "columns": 6 },\n  "initialGrid": [],\n  "solution": []\n}',
         });
       }
     }
@@ -238,7 +252,9 @@ export const LevelDrawer: React.FC<LevelDrawerProps> = ({
 
       if (formData.publishDate?.trim()) {
         try {
-          await GamesRepository.assignDailyLevel(gameId, formData.publishDate.trim(), [formData.levelId.trim()]);
+          await GamesRepository.assignDailyLevel(gameId, formData.publishDate.trim(), [
+            formData.levelId.trim(),
+          ]);
         } catch (assignErr) {
           console.warn('Failed to assign daily level date:', assignErr);
         }
@@ -294,7 +310,16 @@ export const LevelDrawer: React.FC<LevelDrawerProps> = ({
       </Box>
       <Divider sx={{ mb: 3, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, flex: 1, overflowY: 'auto', pr: 1 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2.5,
+          flex: 1,
+          overflowY: 'auto',
+          pr: 1,
+        }}
+      >
         <Box sx={{ display: 'flex', gap: 2 }}>
           <TextField
             {...textFieldProps}
@@ -333,7 +358,9 @@ export const LevelDrawer: React.FC<LevelDrawerProps> = ({
             backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.01)',
           }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
+          <Box
+            sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}
+          >
             <Typography
               variant="subtitle2"
               sx={{
@@ -404,7 +431,7 @@ export const LevelDrawer: React.FC<LevelDrawerProps> = ({
                   color: isDark ? '#a6e2f5' : '#2563eb',
                 }}
               >
-                {uploadingIcon ? (t.uploadingIcon || 'Uploading...') : (t.uploadIcon || 'Upload Icon')}
+                {uploadingIcon ? t.uploadingIcon || 'Uploading...' : t.uploadIcon || 'Upload Icon'}
               </Button>
             </Box>
           </Box>
@@ -416,7 +443,11 @@ export const LevelDrawer: React.FC<LevelDrawerProps> = ({
             value={formData.iconUrl}
             onChange={handleChange}
             placeholder={DEFAULT_LEVEL_ICON_URL}
-            helperText={formData.iconUrl === DEFAULT_LEVEL_ICON_URL ? 'Default BigTV puzzle icon is attached' : undefined}
+            helperText={
+              formData.iconUrl === DEFAULT_LEVEL_ICON_URL
+                ? 'Default BigTV puzzle icon is attached'
+                : undefined
+            }
             sx={{
               ...textFieldProps.sx,
               '& .MuiFormHelperText-root': {
@@ -435,7 +466,9 @@ export const LevelDrawer: React.FC<LevelDrawerProps> = ({
 
         <Box sx={{ display: 'flex', gap: 2 }}>
           <FormControl fullWidth size="small">
-            <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>{t.colDifficulty} *</InputLabel>
+            <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
+              {t.colDifficulty} *
+            </InputLabel>
             <Select
               value={formData.difficulty}
               label={`${t.colDifficulty} *`}
@@ -500,8 +533,12 @@ export const LevelDrawer: React.FC<LevelDrawerProps> = ({
               flex: 1,
               '& .MuiFormHelperText-root': {
                 color: selectedLevel?.isToday
-                  ? isDark ? '#4ade80' : '#16a34a'
-                  : isDark ? '#a6e2f5' : '#2563eb',
+                  ? isDark
+                    ? '#4ade80'
+                    : '#16a34a'
+                  : isDark
+                    ? '#a6e2f5'
+                    : '#2563eb',
                 fontSize: '0.72rem',
               },
             }}
@@ -532,7 +569,10 @@ export const LevelDrawer: React.FC<LevelDrawerProps> = ({
         </Box>
 
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="subtitle2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+          <Typography
+            variant="subtitle2"
+            sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+          >
             Level Content (JSON) *
           </Typography>
           <Button

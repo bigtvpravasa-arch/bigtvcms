@@ -152,7 +152,8 @@ export const TeluguTTSStudio: React.FC = () => {
   const filteredFiles = audioFiles.filter((file, idx) => {
     const fileId = `#${1000 + (audioFiles.length - idx)}`;
     const matchesTitle = file.filename.toLowerCase().includes(filterTitle.toLowerCase().trim());
-    const matchesId = !filterId.trim() || fileId.toLowerCase().includes(filterId.toLowerCase().trim());
+    const matchesId =
+      !filterId.trim() || fileId.toLowerCase().includes(filterId.toLowerCase().trim());
     return matchesTitle && matchesId;
   });
 
@@ -169,7 +170,10 @@ export const TeluguTTSStudio: React.FC = () => {
   };
 
   return (
-    <Box data-testid="telugu-tts-studio" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <Box
+      data-testid="telugu-tts-studio"
+      sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
+    >
       {/* Toolbar: Filters & Create Speech Audio Button */}
       <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'center', flexWrap: 'wrap' }}>
         {/* Title Filter */}
@@ -204,7 +208,11 @@ export const TeluguTTSStudio: React.FC = () => {
             ),
             endAdornment: filterTitle ? (
               <InputAdornment position="end">
-                <IconButton size="small" onClick={() => setFilterTitle('')} sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}>
+                <IconButton
+                  size="small"
+                  onClick={() => setFilterTitle('')}
+                  sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}
+                >
                   <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
                 </IconButton>
               </InputAdornment>
@@ -238,7 +246,11 @@ export const TeluguTTSStudio: React.FC = () => {
           InputProps={{
             endAdornment: filterId ? (
               <InputAdornment position="end">
-                <IconButton size="small" onClick={() => setFilterId('')} sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}>
+                <IconButton
+                  size="small"
+                  onClick={() => setFilterId('')}
+                  sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}
+                >
                   <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
                 </IconButton>
               </InputAdornment>
@@ -284,7 +296,9 @@ export const TeluguTTSStudio: React.FC = () => {
             px: 2.5,
             backgroundColor: isDark ? '#a6e2f5' : '#2563eb',
             color: isDark ? '#110d29' : '#ffffff',
-            boxShadow: isDark ? '0 4px 14px rgba(166,226,245,0.3)' : '0 4px 14px rgba(37,99,235,0.35)',
+            boxShadow: isDark
+              ? '0 4px 14px rgba(166,226,245,0.3)'
+              : '0 4px 14px rgba(37,99,235,0.35)',
             '&:hover': {
               backgroundColor: isDark ? '#8bd8f0' : '#1d4ed8',
             },
@@ -350,7 +364,9 @@ export const TeluguTTSStudio: React.FC = () => {
             color: isDark ? '#d0caeb' : '#5c548a',
             fontWeight: 700,
             fontSize: '0.8rem',
-            borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+            borderBottom: isDark
+              ? '1px solid rgba(255,255,255,0.08)'
+              : '1px solid rgba(0,0,0,0.08)',
             backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f8f7ff',
             textTransform: 'uppercase',
             letterSpacing: '0.06em',
@@ -368,7 +384,13 @@ export const TeluguTTSStudio: React.FC = () => {
 
         {/* Data Rows */}
         {loadingFiles ? (
-          <Stack direction="row" alignItems="center" justifyContent="center" spacing={1.5} sx={{ py: 6 }}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            spacing={1.5}
+            sx={{ py: 6 }}
+          >
             <CircularProgress size={24} />
             <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
               {t.loadingFiles}
@@ -408,7 +430,11 @@ export const TeluguTTSStudio: React.FC = () => {
                   <Box sx={cellStyle}>
                     <Typography
                       variant="body2"
-                      sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', fontWeight: 600, fontSize: '0.8rem' }}
+                      sx={{
+                        color: isDark ? '#d0caeb' : '#9e9e9e',
+                        fontWeight: 600,
+                        fontSize: '0.8rem',
+                      }}
                     >
                       {globalIdx}
                     </Typography>
@@ -425,7 +451,10 @@ export const TeluguTTSStudio: React.FC = () => {
                         border: `1px solid ${color}44`,
                       }}
                     >
-                      <Typography variant="caption" sx={{ color, fontWeight: 700, fontFamily: 'monospace' }}>
+                      <Typography
+                        variant="caption"
+                        sx={{ color, fontWeight: 700, fontFamily: 'monospace' }}
+                      >
                         {fileId}
                       </Typography>
                     </Box>
@@ -472,14 +501,24 @@ export const TeluguTTSStudio: React.FC = () => {
 
                   {/* Size */}
                   <Box sx={cellStyle}>
-                    <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, fontSize: '0.85rem' }}>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: isDark ? '#d0caeb' : '#5c548a',
+                        fontWeight: 600,
+                        fontSize: '0.85rem',
+                      }}
+                    >
                       {(file.size_bytes / 1024).toFixed(1)} {t.kb}
                     </Typography>
                   </Box>
 
                   {/* Created At */}
                   <Box sx={cellStyle}>
-                    <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontSize: '0.82rem' }}>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontSize: '0.82rem' }}
+                    >
                       {new Date(file.created_at).toLocaleString()}
                     </Typography>
                   </Box>
@@ -493,18 +532,26 @@ export const TeluguTTSStudio: React.FC = () => {
                         onClick={() => togglePlayPause(fullUrl)}
                         sx={{
                           borderRadius: '8px',
-                          backgroundColor: isCurrent && isPlaying
-                            ? 'rgba(239,68,68,0.2)'
-                            : isDark
-                            ? 'rgba(37,99,235,0.2)'
-                            : 'rgba(37,99,235,0.1)',
+                          backgroundColor:
+                            isCurrent && isPlaying
+                              ? 'rgba(239,68,68,0.2)'
+                              : isDark
+                                ? 'rgba(37,99,235,0.2)'
+                                : 'rgba(37,99,235,0.1)',
                           color: isCurrent && isPlaying ? '#ef5350' : '#2563eb',
                           '&:hover': {
-                            backgroundColor: isCurrent && isPlaying ? 'rgba(239,68,68,0.3)' : 'rgba(37,99,235,0.3)',
+                            backgroundColor:
+                              isCurrent && isPlaying
+                                ? 'rgba(239,68,68,0.3)'
+                                : 'rgba(37,99,235,0.3)',
                           },
                         }}
                       >
-                        {isCurrent && isPlaying ? <Pause fontSize="small" /> : <PlayArrow fontSize="small" />}
+                        {isCurrent && isPlaying ? (
+                          <Pause fontSize="small" />
+                        ) : (
+                          <PlayArrow fontSize="small" />
+                        )}
                       </IconButton>
                     </Tooltip>
 

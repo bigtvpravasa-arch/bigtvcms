@@ -39,7 +39,9 @@ describe('CategoryRepository', () => {
   });
 
   it('should call apiClient.delete on delete', async () => {
-    (apiClient.delete as jest.Mock).mockResolvedValue({ message: 'Category id=297 deleted successfully' });
+    (apiClient.delete as jest.Mock).mockResolvedValue({
+      message: 'Category id=297 deleted successfully',
+    });
     const res = await CategoryRepository.delete(297);
     expect(apiClient.delete).toHaveBeenCalledWith('/admin/categories/297');
     expect(res).toEqual({ message: 'Category id=297 deleted successfully' });

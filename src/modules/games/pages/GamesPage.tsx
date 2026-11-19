@@ -29,7 +29,15 @@ export const GamesPage: React.FC = () => {
     >
       <Sidebar activeHref="/ratings" />
 
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
         <Header title={t.pageTitle} />
         <Box sx={{ flex: 1, overflowY: 'auto' }}>
           <GamesTab />

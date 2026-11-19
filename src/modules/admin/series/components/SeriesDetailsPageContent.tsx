@@ -131,7 +131,11 @@ export default function SeriesDetailsPageContent() {
     subtitle: '',
   });
 
-  const [toast, setToast] = useState<{ open: boolean; message: string; severity: 'success' | 'error' }>({
+  const [toast, setToast] = useState<{
+    open: boolean;
+    message: string;
+    severity: 'success' | 'error';
+  }>({
     open: false,
     message: '',
     severity: 'success',
@@ -197,7 +201,9 @@ export default function SeriesDetailsPageContent() {
 
   if (loading) {
     return (
-      <Box sx={{ display: 'flex', height: '100vh', backgroundColor: isDark ? '#110d29' : '#ffffff' }}>
+      <Box
+        sx={{ display: 'flex', height: '100vh', backgroundColor: isDark ? '#110d29' : '#ffffff' }}
+      >
         <Sidebar activeHref="/movies" />
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Header title={t.pageTitle} />
@@ -208,12 +214,28 @@ export default function SeriesDetailsPageContent() {
   }
 
   return (
-    <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden', backgroundColor: isDark ? '#110d29' : '#ffffff', transition: 'all 0.3s ease' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        height: '100vh',
+        overflow: 'hidden',
+        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        transition: 'all 0.3s ease',
+      }}
+    >
       {/* Sidebar */}
       <Sidebar activeHref="/movies" />
 
       {/* Main Panel */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
         {/* Header */}
         <Header title={t.pageTitle} />
 
@@ -223,7 +245,12 @@ export default function SeriesDetailsPageContent() {
           <Button
             startIcon={<ArrowBack />}
             onClick={() => router.push('/movies')}
-            sx={{ mb: 2.5, textTransform: 'none', color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600 }}
+            sx={{
+              mb: 2.5,
+              textTransform: 'none',
+              color: isDark ? '#a6e2f5' : '#1c1445',
+              fontWeight: 600,
+            }}
           >
             {t.backBtn}
           </Button>
@@ -245,7 +272,11 @@ export default function SeriesDetailsPageContent() {
           >
             <Box
               component="img"
-              src={series?.poster || series?.banner || 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400'}
+              src={
+                series?.poster ||
+                series?.banner ||
+                'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400'
+              }
               alt={series?.title}
               sx={{
                 width: { xs: '100%', md: 170 },
@@ -258,8 +289,13 @@ export default function SeriesDetailsPageContent() {
             />
 
             <Box sx={{ flex: 1 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.5, flexWrap: 'wrap' }}>
-                <Typography variant="h4" sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445' }}>
+              <Box
+                sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.5, flexWrap: 'wrap' }}
+              >
+                <Typography
+                  variant="h4"
+                  sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445' }}
+                >
                   {series?.title || 'Stranger Things'}
                 </Typography>
                 <Chip
@@ -275,8 +311,12 @@ export default function SeriesDetailsPageContent() {
                 />
               </Box>
 
-              <Typography variant="body1" sx={{ color: isDark ? '#d0caeb' : '#5c548a', mb: 2, lineHeight: 1.6 }}>
-                {series?.description || 'When a young boy vanishes, a small town uncovers a mystery involving secret experiments.'}
+              <Typography
+                variant="body1"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', mb: 2, lineHeight: 1.6 }}
+              >
+                {series?.description ||
+                  'When a young boy vanishes, a small town uncovers a mystery involving secret experiments.'}
               </Typography>
 
               {/* Stats badges */}
@@ -285,14 +325,22 @@ export default function SeriesDetailsPageContent() {
                   icon={<Tv sx={{ fontSize: '1rem', color: isDark ? '#a6e2f5' : '#1c1445' }} />}
                   label={`${episodes.length} ${t.episodes}`}
                   size="small"
-                  sx={{ borderRadius: '8px', fontWeight: 700, backgroundColor: isDark ? 'rgba(255,255,255,0.06)' : '#f1f5f9' }}
+                  sx={{
+                    borderRadius: '8px',
+                    fontWeight: 700,
+                    backgroundColor: isDark ? 'rgba(255,255,255,0.06)' : '#f1f5f9',
+                  }}
                 />
                 {series?.rating && (
                   <Chip
                     icon={<Star sx={{ fontSize: '1rem', color: '#ffb74d' }} />}
                     label={`★ ${series.rating}`}
                     size="small"
-                    sx={{ borderRadius: '8px', fontWeight: 700, backgroundColor: isDark ? 'rgba(255,255,255,0.06)' : '#f1f5f9' }}
+                    sx={{
+                      borderRadius: '8px',
+                      fontWeight: 700,
+                      backgroundColor: isDark ? 'rgba(255,255,255,0.06)' : '#f1f5f9',
+                    }}
                   />
                 )}
               </Box>
@@ -300,17 +348,35 @@ export default function SeriesDetailsPageContent() {
               {/* Genre Chips */}
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                 {(series?.genres || ['Sci-Fi', 'Horror', 'Drama']).map((g: string) => (
-                  <Chip key={g} label={g} size="small" variant="outlined" sx={{ borderRadius: '6px', color: isDark ? '#a6e2f5' : '#1c1445' }} />
+                  <Chip
+                    key={g}
+                    label={g}
+                    size="small"
+                    variant="outlined"
+                    sx={{ borderRadius: '6px', color: isDark ? '#a6e2f5' : '#1c1445' }}
+                  />
                 ))}
               </Box>
             </Box>
           </Box>
 
           {/* Section Header & Add Episode Button */}
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3, flexWrap: 'wrap', gap: 2 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              mb: 3,
+              flexWrap: 'wrap',
+              gap: 2,
+            }}
+          >
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
               <Tv sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.8rem' }} />
-              <Typography variant="h5" sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445' }}>
+              <Typography
+                variant="h5"
+                sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445' }}
+              >
                 {t.episodesHeader}
               </Typography>
               <Chip
@@ -366,8 +432,17 @@ export default function SeriesDetailsPageContent() {
                 textAlign: 'center',
               }}
             >
-              <Tv sx={{ fontSize: '3rem', color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)', mb: 1 }} />
-              <Typography variant="body1" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              <Tv
+                sx={{
+                  fontSize: '3rem',
+                  color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                  mb: 1,
+                }}
+              />
+              <Typography
+                variant="body1"
+                sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              >
                 {t.noEpisodes}
               </Typography>
             </Box>
@@ -384,7 +459,9 @@ export default function SeriesDetailsPageContent() {
                     p: 2,
                     borderRadius: '16px',
                     backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#ffffff',
-                    border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(0,0,0,0.08)',
                     boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
                     transition: 'all 0.2s ease',
                     '&:hover': {
@@ -403,13 +480,19 @@ export default function SeriesDetailsPageContent() {
                       borderRadius: '12px',
                       overflow: 'hidden',
                       flexShrink: 0,
-                      cursor: (ep.video || (ep as any).videoUrl) ? 'pointer' : 'default',
-                      border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+                      cursor: ep.video || (ep as any).videoUrl ? 'pointer' : 'default',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.1)'
+                        : '1px solid rgba(0,0,0,0.1)',
                     }}
                   >
                     <Box
                       component="img"
-                      src={ep.thumbnail || series?.poster || 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400'}
+                      src={
+                        ep.thumbnail ||
+                        series?.poster ||
+                        'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400'
+                      }
                       alt={ep.title}
                       sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
@@ -441,7 +524,10 @@ export default function SeriesDetailsPageContent() {
                           color: isDark ? '#a6e2f5' : '#1c1445',
                         }}
                       />
-                      <Typography variant="subtitle1" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}>
+                      <Typography
+                        variant="subtitle1"
+                        sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}
+                      >
                         {ep.title}
                       </Typography>
                     </Box>
@@ -465,8 +551,17 @@ export default function SeriesDetailsPageContent() {
                   {/* Episode Duration & Controls */}
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexShrink: 0 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                      <AccessTime sx={{ fontSize: '0.9rem', color: isDark ? '#d0caeb' : '#5c548a' }} />
-                      <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#d0caeb' : '#5c548a', fontSize: '0.82rem' }}>
+                      <AccessTime
+                        sx={{ fontSize: '0.9rem', color: isDark ? '#d0caeb' : '#5c548a' }}
+                      />
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          fontWeight: 600,
+                          color: isDark ? '#d0caeb' : '#5c548a',
+                          fontSize: '0.82rem',
+                        }}
+                      >
                         {ep.duration || 45} mins
                       </Typography>
                     </Box>
@@ -494,7 +589,10 @@ export default function SeriesDetailsPageContent() {
                     <IconButton
                       size="small"
                       onClick={() => handleDeleteEpisode(ep.id)}
-                      sx={{ color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)', '&:hover': { color: '#f44336' } }}
+                      sx={{
+                        color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)',
+                        '&:hover': { color: '#f44336' },
+                      }}
                     >
                       <Delete fontSize="small" />
                     </IconButton>
@@ -521,9 +619,18 @@ export default function SeriesDetailsPageContent() {
           },
         }}
       >
-        <DialogTitle sx={{ fontWeight: 700, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <DialogTitle
+          sx={{
+            fontWeight: 700,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
           Add Episode
-          <IconButton onClick={() => setEpisodeDialogOpen(false)}><Close /></IconButton>
+          <IconButton onClick={() => setEpisodeDialogOpen(false)}>
+            <Close />
+          </IconButton>
         </DialogTitle>
         <DialogContent>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, pt: 1 }}>
@@ -533,7 +640,12 @@ export default function SeriesDetailsPageContent() {
                 type="number"
                 size="small"
                 value={episodeForm.episodeNumber}
-                onChange={(e) => setEpisodeForm((prev) => ({ ...prev, episodeNumber: parseInt(e.target.value, 10) || 1 }))}
+                onChange={(e) =>
+                  setEpisodeForm((prev) => ({
+                    ...prev,
+                    episodeNumber: parseInt(e.target.value, 10) || 1,
+                  }))
+                }
               />
               <TextField
                 label={t.episodeTitle}
@@ -573,7 +685,12 @@ export default function SeriesDetailsPageContent() {
               type="number"
               size="small"
               value={episodeForm.duration}
-              onChange={(e) => setEpisodeForm((prev) => ({ ...prev, duration: parseInt(e.target.value, 10) || 45 }))}
+              onChange={(e) =>
+                setEpisodeForm((prev) => ({
+                  ...prev,
+                  duration: parseInt(e.target.value, 10) || 45,
+                }))
+              }
             />
 
             <TextField
@@ -585,8 +702,16 @@ export default function SeriesDetailsPageContent() {
           </Box>
         </DialogContent>
         <DialogActions sx={{ p: 2 }}>
-          <Button onClick={() => setEpisodeDialogOpen(false)} sx={{ textTransform: 'none' }}>{t.cancel}</Button>
-          <Button variant="contained" onClick={handleCreateEpisode} sx={{ borderRadius: '8px', textTransform: 'none' }}>{t.save}</Button>
+          <Button onClick={() => setEpisodeDialogOpen(false)} sx={{ textTransform: 'none' }}>
+            {t.cancel}
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleCreateEpisode}
+            sx={{ borderRadius: '8px', textTransform: 'none' }}
+          >
+            {t.save}
+          </Button>
         </DialogActions>
       </Dialog>
 
@@ -615,7 +740,9 @@ export default function SeriesDetailsPageContent() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                borderBottom: isDark
+                  ? '1px solid rgba(255,255,255,0.08)'
+                  : '1px solid rgba(0,0,0,0.08)',
                 backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f8f7ff',
               }}
             >
@@ -634,7 +761,10 @@ export default function SeriesDetailsPageContent() {
                   {playingEpisode.title}
                 </Typography>
               </Box>
-              <IconButton onClick={() => setPlayingEpisode(null)} sx={{ color: isDark ? '#d0caeb' : '#666' }}>
+              <IconButton
+                onClick={() => setPlayingEpisode(null)}
+                sx={{ color: isDark ? '#d0caeb' : '#666' }}
+              >
                 <Close />
               </IconButton>
             </DialogTitle>
@@ -671,16 +801,32 @@ export default function SeriesDetailsPageContent() {
                 </video>
               </Box>
 
-              <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#444', lineHeight: 1.6, mb: 1 }}>
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? '#d0caeb' : '#444', lineHeight: 1.6, mb: 1 }}
+              >
                 {playingEpisode.description || 'No description available for this episode.'}
               </Typography>
-              <Typography variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#1976d2', fontWeight: 700 }}>
+              <Typography
+                variant="caption"
+                sx={{ color: isDark ? '#a6e2f5' : '#1976d2', fontWeight: 700 }}
+              >
                 Duration: {playingEpisode.duration || 45} mins
               </Typography>
             </DialogContent>
 
-            <DialogActions sx={{ p: 2, borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)' }}>
-              <Button onClick={() => setPlayingEpisode(null)} sx={{ textTransform: 'none', fontWeight: 600, color: isDark ? '#d0caeb' : '#666' }}>
+            <DialogActions
+              sx={{
+                p: 2,
+                borderTop: isDark
+                  ? '1px solid rgba(255,255,255,0.08)'
+                  : '1px solid rgba(0,0,0,0.08)',
+              }}
+            >
+              <Button
+                onClick={() => setPlayingEpisode(null)}
+                sx={{ textTransform: 'none', fontWeight: 600, color: isDark ? '#d0caeb' : '#666' }}
+              >
                 {t.cancel}
               </Button>
             </DialogActions>

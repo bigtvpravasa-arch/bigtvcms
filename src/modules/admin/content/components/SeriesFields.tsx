@@ -32,7 +32,8 @@ export const SeriesFields: React.FC<SeriesFieldsProps> = ({
           Series Setup & Episodes Management
         </Typography>
         <Typography variant="body2" sx={{ fontSize: '0.85rem' }}>
-          Enter Series details (Title, Description, Poster & Banner). You can also add and manage episodes directly in the <strong>Episodes Section</strong> below.
+          Enter Series details (Title, Description, Poster & Banner). You can also add and manage
+          episodes directly in the <strong>Episodes Section</strong> below.
         </Typography>
       </Alert>
 

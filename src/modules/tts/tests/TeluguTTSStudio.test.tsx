@@ -69,7 +69,9 @@ describe('TeluguTTSStudio Component', () => {
       expect(screen.getByText('sample_audio_1.mp3')).toBeInTheDocument();
     });
 
-    const createBtn = screen.getByRole('button', { name: /Create Speech Audio|ఆడియోను సృష్టించండి|ऑडियो बनाएं|ഓഡിയോ സൃഷ്ടിക്കുക/i });
+    const createBtn = screen.getByRole('button', {
+      name: /Create Speech Audio|ఆడియోను సృష్టించండి|ऑडियो बनाएं|ഓഡിയോ സൃഷ്ടിക്കുക/i,
+    });
     expect(createBtn).toBeInTheDocument();
     fireEvent.click(createBtn);
 

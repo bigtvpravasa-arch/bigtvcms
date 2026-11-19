@@ -29,7 +29,9 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
           params.get('lan') ||
           params.get('from') ||
           ''
-        ).toLowerCase().trim();
+        )
+          .toLowerCase()
+          .trim();
         if (urlLang === 'ml' || urlLang === 'malayala' || urlLang === 'malayalam') return 'ml';
         if (urlLang === 'te' || urlLang === 'telugu') return 'te';
         if (urlLang === 'en' || urlLang === 'english') return 'en';
@@ -50,7 +52,10 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
 
   useEffect(() => {
     const currentLang = (appLanguage || '').toLowerCase().trim();
-    if ((currentLang === 'ml' || currentLang === 'malayala' || currentLang === 'malayalam') && selectedLanguage !== 'ml') {
+    if (
+      (currentLang === 'ml' || currentLang === 'malayala' || currentLang === 'malayalam') &&
+      selectedLanguage !== 'ml'
+    ) {
       setSelectedLanguage('ml');
     } else if ((currentLang === 'te' || currentLang === 'telugu') && selectedLanguage !== 'te') {
       setSelectedLanguage('te');
@@ -69,6 +74,7 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
   const [isSyncing, setIsSyncing] = useState<boolean>(false);
   const [actionError, setActionError] = useState<string | null>(null);
   const [actionSuccess, setActionSuccess] = useState<string | null>(null);
+  const [actionInfo, setActionInfo] = useState<string | null>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
@@ -98,7 +104,9 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
           setTags(allTags || []);
           setSegregatedTags(segregated || { te: [], ml: [], en: [] });
           if (allTags && allTags.length > 0) {
-            setSelectedTagSlug((prev) => (allTags.some((t) => t.slug === prev) ? prev : allTags[0].slug));
+            setSelectedTagSlug((prev) =>
+              allTags.some((t) => t.slug === prev) ? prev : allTags[0].slug
+            );
           } else {
             setSelectedTagSlug('');
             setVideos([]);
@@ -252,9 +260,7 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
       const updatedLang = updatedTag.language || 'te';
 
       if (selectedLanguage === 'all') {
-        setTags((prev) =>
-          prev.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t))
-        );
+        setTags((prev) => prev.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t)));
         setSegregatedTags((prev) => {
           const next: SegregatedVideoTags = {
             te: prev.te.filter((t) => t.slug !== slug),
@@ -276,9 +282,7 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
           }
         }
       } else {
-        setTags((prev) =>
-          prev.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t))
-        );
+        setTags((prev) => prev.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t)));
       }
 
       setActionSuccess('Video tag updated successfully');
@@ -317,12 +321,28 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
     if (!slug) return;
     setIsSyncing(true);
     setActionError(null);
+    setActionSuccess(null);
+    setActionInfo(null);
     try {
       const res = await liveTvVideosRepository.syncTagVideos(slug);
-      setActionSuccess(res?.message || `Videos synced successfully for ${slug}`);
+      if (res?.isInfo) {
+        setActionInfo(res.message);
+      } else {
+        setActionSuccess(res?.message || `Videos synced successfully for ${slug}`);
+      }
       await loadTagVideos(slug);
     } catch (err: any) {
-      setActionError(err.message || 'Failed to sync videos');
+      const msg = err?.message || '';
+      if (
+        msg.toLowerCase().includes('already synced') ||
+        msg.toLowerCase().includes('already up to date') ||
+        msg.toLowerCase().includes('already up-to-date')
+      ) {
+        setActionInfo(msg);
+        await loadTagVideos(slug);
+      } else {
+        setActionError(msg || 'Failed to sync videos');
+      }
     } finally {
       setIsSyncing(false);
     }
@@ -355,17 +375,21 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
     setEditVideoModalOpen(true);
   };
 
-  const handleUpdateVideo = async (videoId: string, fileName: string, viewCount: number) => {
+  const handleUpdateVideo = async (
+    videoId: string,
+    fileName: string,
+    viewCount: number,
+    thumbnailUrl?: string
+  ) => {
     if (!selectedTagSlug) return;
     setActionError(null);
     try {
       const updatedVideo = await liveTvVideosRepository.updateVideoFromTag(
         selectedTagSlug,
         videoId,
-        fileName,
-        viewCount
+        { fileName, viewCount, thumbnailUrl }
       );
-      setVideos((prev) => prev.map((v) => (v.id === videoId ? updatedVideo : v)));
+      setVideos((prev) => prev.map((v) => (v.id === videoId ? { ...v, ...updatedVideo } : v)));
       setActionSuccess('Video updated successfully');
       setEditVideoModalOpen(false);
     } catch (err: any) {
@@ -386,8 +410,10 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
     isSyncing,
     actionError,
     actionSuccess,
+    actionInfo,
     setActionError,
     setActionSuccess,
+    setActionInfo,
     searchQuery,
     setSearchQuery,
     page,

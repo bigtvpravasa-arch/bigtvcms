@@ -119,10 +119,10 @@ export const LevelViewDialog: React.FC<LevelViewDialogProps> = ({
               {level.puzzleDate || level.assignedDate
                 ? `${level.puzzleDate || level.assignedDate}${level.isToday ? ' (Today)' : ''}`
                 : level.publishedAt
-                ? new Date(level.publishedAt).toLocaleDateString()
-                : level.status === 'published' && level.createdAt
-                ? new Date(level.createdAt).toLocaleDateString()
-                : t?.notPublished || 'Not Published'}
+                  ? new Date(level.publishedAt).toLocaleDateString()
+                  : level.status === 'published' && level.createdAt
+                    ? new Date(level.createdAt).toLocaleDateString()
+                    : t?.notPublished || 'Not Published'}
             </Typography>
           </Grid>
           <Grid item xs={6} sm={2.4}>
@@ -153,7 +153,10 @@ export const LevelViewDialog: React.FC<LevelViewDialogProps> = ({
               <Typography variant="caption" sx={{ color: colorLabel }}>
                 {t?.colPlayed || 'Played'}
               </Typography>
-              <Typography variant="h6" sx={{ color: isDark ? '#93c5fd' : '#1d4ed8', fontWeight: 700, mt: 0.5 }}>
+              <Typography
+                variant="h6"
+                sx={{ color: isDark ? '#93c5fd' : '#1d4ed8', fontWeight: 700, mt: 0.5 }}
+              >
                 {level.stats?.membersPlayed ?? 0}
               </Typography>
             </Grid>
@@ -161,9 +164,16 @@ export const LevelViewDialog: React.FC<LevelViewDialogProps> = ({
               <Typography variant="caption" sx={{ color: colorLabel }}>
                 {t?.colCompleted || 'Completed'}
               </Typography>
-              <Typography variant="h6" sx={{ color: isDark ? '#4ade80' : '#16a34a', fontWeight: 700, mt: 0.5 }}>
+              <Typography
+                variant="h6"
+                sx={{ color: isDark ? '#4ade80' : '#16a34a', fontWeight: 700, mt: 0.5 }}
+              >
                 {level.stats?.completed ?? 0}
-                <Typography component="span" variant="caption" sx={{ ml: 0.5, color: isDark ? '#86efac' : '#15803d' }}>
+                <Typography
+                  component="span"
+                  variant="caption"
+                  sx={{ ml: 0.5, color: isDark ? '#86efac' : '#15803d' }}
+                >
                   ({level.stats?.completionRate ?? 0}%)
                 </Typography>
               </Typography>
@@ -172,7 +182,10 @@ export const LevelViewDialog: React.FC<LevelViewDialogProps> = ({
               <Typography variant="caption" sx={{ color: colorLabel }}>
                 {t?.colDropped || 'Middle Drop'}
               </Typography>
-              <Typography variant="h6" sx={{ color: isDark ? '#fbbf24' : '#b45309', fontWeight: 700, mt: 0.5 }}>
+              <Typography
+                variant="h6"
+                sx={{ color: isDark ? '#fbbf24' : '#b45309', fontWeight: 700, mt: 0.5 }}
+              >
                 {level.stats?.notCompleted ?? 0}
               </Typography>
             </Grid>
@@ -180,9 +193,16 @@ export const LevelViewDialog: React.FC<LevelViewDialogProps> = ({
               <Typography variant="caption" sx={{ color: colorLabel }}>
                 {t?.colFailed || 'Failed'}
               </Typography>
-              <Typography variant="h6" sx={{ color: isDark ? '#f87171' : '#dc2626', fontWeight: 700, mt: 0.5 }}>
+              <Typography
+                variant="h6"
+                sx={{ color: isDark ? '#f87171' : '#dc2626', fontWeight: 700, mt: 0.5 }}
+              >
                 {level.stats?.failed ?? 0}
-                <Typography component="span" variant="caption" sx={{ ml: 0.5, color: isDark ? '#fca5a5' : '#b91c1c' }}>
+                <Typography
+                  component="span"
+                  variant="caption"
+                  sx={{ ml: 0.5, color: isDark ? '#fca5a5' : '#b91c1c' }}
+                >
                   ({level.stats?.failureRate ?? 0}%)
                 </Typography>
               </Typography>
@@ -219,7 +239,10 @@ export const LevelViewDialog: React.FC<LevelViewDialogProps> = ({
       </DialogContent>
 
       <DialogActions
-        sx={{ p: 2, borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)' }}
+        sx={{
+          p: 2,
+          borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+        }}
       >
         <Button
           onClick={onClose}

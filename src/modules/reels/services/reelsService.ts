@@ -23,13 +23,20 @@ export class ReelsService {
     id: string | number,
     payload: Partial<CreateYouTubeVideoPayload>
   ): Promise<YouTubeShortItem> {
-    return apiClient.put<YouTubeShortItem, Partial<CreateYouTubeVideoPayload>>(`/youtube/videos/${id}`, payload);
+    return apiClient.put<YouTubeShortItem, Partial<CreateYouTubeVideoPayload>>(
+      `/youtube/videos/${id}`,
+      payload
+    );
   }
 
   /**
    * Fetch paginated YouTube Videos / Shorts list
    */
-  static async fetchYouTubeShorts(skip: number = 0, limit: number = 20, lang?: string): Promise<YouTubeShortsResponse> {
+  static async fetchYouTubeShorts(
+    skip: number = 0,
+    limit: number = 20,
+    lang?: string
+  ): Promise<YouTubeShortsResponse> {
     const params: Record<string, unknown> = { skip, limit };
     if (lang) {
       params.lang = lang;
@@ -40,7 +47,11 @@ export class ReelsService {
   /**
    * Fetch paginated YouTube Videos list
    */
-  static async fetchYouTubeVideos(skip: number = 0, limit: number = 50, lang?: string): Promise<YouTubeShortsResponse> {
+  static async fetchYouTubeVideos(
+    skip: number = 0,
+    limit: number = 50,
+    lang?: string
+  ): Promise<YouTubeShortsResponse> {
     const params: Record<string, unknown> = { skip, limit };
     if (lang) {
       params.lang = lang;
@@ -76,7 +87,12 @@ export class ReelsService {
   static async updatePublishStatus(
     id: string | number,
     isPublish: boolean
-  ): Promise<{ status: string; message: string; fetched_from_api?: boolean; data: Record<string, unknown> }> {
+  ): Promise<{
+    status: string;
+    message: string;
+    fetched_from_api?: boolean;
+    data: Record<string, unknown>;
+  }> {
     return apiClient.put(`/youtube/videos/${id}`, {
       isPublish,
     });
@@ -92,7 +108,11 @@ export class ReelsService {
   /**
    * Fetch paginated custom uploaded reels
    */
-  static async fetchUploadedReels(skip: number = 0, limit: number = 20, language?: string): Promise<{ data: UploadedReel[]; total: number }> {
+  static async fetchUploadedReels(
+    skip: number = 0,
+    limit: number = 20,
+    language?: string
+  ): Promise<{ data: UploadedReel[]; total: number }> {
     const params: Record<string, unknown> = { skip, limit };
     if (language) {
       params.language = language;
@@ -110,7 +130,10 @@ export class ReelsService {
   /**
    * Update an uploaded reel
    */
-  static async updateUploadedReel(id: string, payload: Partial<UploadedReel>): Promise<UploadedReel> {
+  static async updateUploadedReel(
+    id: string,
+    payload: Partial<UploadedReel>
+  ): Promise<UploadedReel> {
     return apiClient.put<UploadedReel, Partial<UploadedReel>>(`/reels/${id}`, payload);
   }
 

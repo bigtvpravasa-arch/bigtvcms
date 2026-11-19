@@ -21,7 +21,9 @@ import { UploadService } from '@/modules/media/services/upload.service';
 
 jest.mock('@/modules/media/services/upload.service', () => ({
   UploadService: {
-    uploadImage: jest.fn().mockResolvedValue('https://api.pravasamedia.com/api/v1/files/custom-icon-uploaded.webp'),
+    uploadImage: jest
+      .fn()
+      .mockResolvedValue('https://api.pravasamedia.com/api/v1/files/custom-icon-uploaded.webp'),
   },
 }));
 
@@ -139,7 +141,9 @@ describe('Games Module - Comprehensive Test Suite', () => {
     jest.clearAllMocks();
     (gamesApiClient.get as jest.Mock).mockImplementation((url: string) => {
       if (url.includes('/admin/games') && url.includes('/daily-levels')) {
-        return Promise.resolve({ items: [{ puzzleDate: '2026-10-22', levelId: 'sudoku_001', isToday: false }] });
+        return Promise.resolve({
+          items: [{ puzzleDate: '2026-10-22', levelId: 'sudoku_001', isToday: false }],
+        });
       }
       if (url.includes('/admin/games') && url.includes('/levels')) {
         return Promise.resolve({ items: mockLevelsData, total: 2 });
@@ -148,7 +152,10 @@ describe('Games Module - Comprehensive Test Suite', () => {
         return Promise.resolve({ data: mockGamesData[0] });
       }
       if (url.includes('/admin/games')) {
-        return Promise.resolve({ items: mockGamesData, meta: { total: 2, page: 1, limit: 50, totalPages: 1 } });
+        return Promise.resolve({
+          items: mockGamesData,
+          meta: { total: 2, page: 1, limit: 50, totalPages: 1 },
+        });
       }
       if (url.includes('/admin/streak-recovery-requests')) {
         return Promise.resolve({ items: mockStreakData });
@@ -174,10 +181,16 @@ describe('Games Module - Comprehensive Test Suite', () => {
       expect(gamesApiClient.get).toHaveBeenCalledWith('/admin/games/sudoku');
 
       await GamesRepository.createGame({ slug: 'zip', name: 'Zip', gameType: 'zip' });
-      expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/games', { slug: 'zip', name: 'Zip', gameType: 'zip' });
+      expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/games', {
+        slug: 'zip',
+        name: 'Zip',
+        gameType: 'zip',
+      });
 
       await GamesRepository.updateGame('sudoku', { name: 'Sudoku Pro' });
-      expect(gamesApiClient.patch).toHaveBeenCalledWith('/admin/games/sudoku', { name: 'Sudoku Pro' });
+      expect(gamesApiClient.patch).toHaveBeenCalledWith('/admin/games/sudoku', {
+        name: 'Sudoku Pro',
+      });
 
       await GamesRepository.toggleGameActive('sudoku', false);
       expect(gamesApiClient.patch).toHaveBeenCalledWith('/admin/games/sudoku', { isActive: false });
@@ -188,9 +201,17 @@ describe('Games Module - Comprehensive Test Suite', () => {
 
     it('calls level management endpoints in GamesRepository', async () => {
       await GamesRepository.listLevels('sudoku', 1, 10);
-      expect(gamesApiClient.get).toHaveBeenCalledWith('/admin/games/sudoku/levels', { page: 1, pageSize: 10 });
+      expect(gamesApiClient.get).toHaveBeenCalledWith('/admin/games/sudoku/levels', {
+        page: 1,
+        pageSize: 10,
+      });
 
-      await GamesRepository.generateLevels('sudoku', { rows: 6, columns: 6, count: 2, publish: true });
+      await GamesRepository.generateLevels('sudoku', {
+        rows: 6,
+        columns: 6,
+        count: 2,
+        publish: true,
+      });
       expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/games/sudoku/levels/generate', {
         rows: 6,
         columns: 6,
@@ -199,7 +220,9 @@ describe('Games Module - Comprehensive Test Suite', () => {
       });
 
       await GamesRepository.validateLevel('sudoku', { content: {} });
-      expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/games/sudoku/levels/validate', { content: {} });
+      expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/games/sudoku/levels/validate', {
+        content: {},
+      });
 
       await GamesRepository.createLevel('sudoku', {
         levelId: 'sudoku_003',
@@ -209,27 +232,44 @@ describe('Games Module - Comprehensive Test Suite', () => {
         status: 'draft',
         content: {},
       });
-      expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/games/sudoku/levels', expect.any(Object));
+      expect(gamesApiClient.post).toHaveBeenCalledWith(
+        '/admin/games/sudoku/levels',
+        expect.any(Object)
+      );
 
       await GamesRepository.updateLevel('sudoku', 'sudoku_003', { title: 'Updated' });
-      expect(gamesApiClient.patch).toHaveBeenCalledWith('/admin/games/sudoku/levels/sudoku_003', { title: 'Updated' });
+      expect(gamesApiClient.patch).toHaveBeenCalledWith('/admin/games/sudoku/levels/sudoku_003', {
+        title: 'Updated',
+      });
 
       await GamesRepository.deleteLevel('sudoku', 'sudoku_003');
       expect(gamesApiClient.delete).toHaveBeenCalledWith('/admin/games/sudoku/levels/sudoku_003');
 
       await GamesRepository.publishLevel('sudoku', 'sudoku_001');
-      expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/games/sudoku/levels/sudoku_001/publish', {});
+      expect(gamesApiClient.post).toHaveBeenCalledWith(
+        '/admin/games/sudoku/levels/sudoku_001/publish',
+        {}
+      );
 
       await GamesRepository.unpublishLevel('sudoku', 'sudoku_001');
-      expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/games/sudoku/levels/sudoku_001/unpublish', {});
+      expect(gamesApiClient.post).toHaveBeenCalledWith(
+        '/admin/games/sudoku/levels/sudoku_001/unpublish',
+        {}
+      );
 
       await GamesRepository.archiveLevel('sudoku', 'sudoku_001');
-      expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/games/sudoku/levels/sudoku_001/archive', {});
+      expect(gamesApiClient.post).toHaveBeenCalledWith(
+        '/admin/games/sudoku/levels/sudoku_001/archive',
+        {}
+      );
 
       await GamesRepository.assignDailyLevel('sudoku', '2026-10-23', ['sudoku_001']);
-      expect(gamesApiClient.put).toHaveBeenCalledWith('/admin/games/sudoku/daily-levels/2026-10-23', {
-        levelIds: ['sudoku_001'],
-      });
+      expect(gamesApiClient.put).toHaveBeenCalledWith(
+        '/admin/games/sudoku/daily-levels/2026-10-23',
+        {
+          levelIds: ['sudoku_001'],
+        }
+      );
 
       await GamesRepository.listDailyLevels('sudoku', 1, 50);
       expect(gamesApiClient.get).toHaveBeenCalledWith('/admin/games/sudoku/daily-levels', {
@@ -246,17 +286,26 @@ describe('Games Module - Comprehensive Test Suite', () => {
 
     it('calls streak recovery review endpoints in GamesRepository', async () => {
       await GamesRepository.listStreakRequests(1, 10);
-      expect(gamesApiClient.get).toHaveBeenCalledWith('/admin/streak-recovery-requests', { page: 1, pageSize: 10 });
+      expect(gamesApiClient.get).toHaveBeenCalledWith('/admin/streak-recovery-requests', {
+        page: 1,
+        pageSize: 10,
+      });
 
       await GamesRepository.approveStreakRequest('req_123', 'Verified');
-      expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/streak-recovery-requests/req_123/approve', {
-        adminNote: 'Verified',
-      });
+      expect(gamesApiClient.post).toHaveBeenCalledWith(
+        '/admin/streak-recovery-requests/req_123/approve',
+        {
+          adminNote: 'Verified',
+        }
+      );
 
       await GamesRepository.rejectStreakRequest('req_123', 'Limit exceeded');
-      expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/streak-recovery-requests/req_123/reject', {
-        adminNote: 'Limit exceeded',
-      });
+      expect(gamesApiClient.post).toHaveBeenCalledWith(
+        '/admin/streak-recovery-requests/req_123/reject',
+        {
+          adminNote: 'Limit exceeded',
+        }
+      );
     });
   });
 
@@ -269,36 +318,133 @@ describe('Games Module - Comprehensive Test Suite', () => {
       return (
         <div>
           <div data-testid="active-tab">{ctrl.activeTab}</div>
-          <button data-testid="switch-tab-1" onClick={() => ctrl.setActiveTab(1)}>Tab 1</button>
-          <button data-testid="switch-tab-2" onClick={() => ctrl.setActiveTab(2)}>Tab 2</button>
+          <button data-testid="switch-tab-1" onClick={() => ctrl.setActiveTab(1)}>
+            Tab 1
+          </button>
+          <button data-testid="switch-tab-2" onClick={() => ctrl.setActiveTab(2)}>
+            Tab 2
+          </button>
           <div data-testid="games-count">{ctrl.games.length}</div>
-          <button data-testid="filter-game" onClick={() => ctrl.setGamesFilter('sudoku')}>Filter</button>
-          <button data-testid="clear-game-filter" onClick={ctrl.handleClearGamesFilter}>Clear</button>
-          <button data-testid="add-game" onClick={ctrl.handleAddGameClick}>Add Game</button>
-          <button data-testid="edit-game" onClick={() => ctrl.handleEditGameClick(mockGamesData[0])}>Edit Game</button>
-          <button data-testid="view-game" onClick={() => ctrl.handleViewGameClick(mockGamesData[0])}>View Game</button>
-          <button data-testid="toggle-active" onClick={() => ctrl.handleToggleGameActive(mockGamesData[0])}>Toggle Active</button>
-          <button data-testid="view-levels-for-game" onClick={() => ctrl.handleViewLevelsForGame(mockGamesData[0])}>View Levels</button>
-          <button data-testid="add-level" onClick={ctrl.handleAddLevelClick}>Add Level</button>
-          <button data-testid="edit-level" onClick={() => ctrl.handleEditLevelClick(mockLevelsData[0])}>Edit Level</button>
-          <button data-testid="view-level" onClick={() => ctrl.handleViewLevelClick(mockLevelsData[0])}>View Level</button>
-          <button data-testid="publish-level" onClick={() => ctrl.handlePublishLevel(mockLevelsData[0])}>Publish</button>
-          <button data-testid="unpublish-level" onClick={() => ctrl.handleUnpublishLevel(mockLevelsData[0])}>Unpublish</button>
-          <button data-testid="archive-level" onClick={() => ctrl.handleArchiveLevel(mockLevelsData[0])}>Archive</button>
-          <button data-testid="open-generate" onClick={() => ctrl.setGenerateModalOpen(true)}>Generate</button>
-          <button data-testid="open-assign" onClick={() => ctrl.setDailyAssignModalOpen(true)}>Assign</button>
-          <button data-testid="approve-streak" onClick={() => ctrl.handleOpenApproveStreak(mockStreakData[0])}>Approve Streak</button>
-          <button data-testid="reject-streak" onClick={() => ctrl.handleOpenRejectStreak(mockStreakData[0])}>Reject Streak</button>
-          <button data-testid="submit-streak-action" onClick={() => ctrl.handleSubmitStreakAction('Verified note')}>Submit Streak</button>
-          <button data-testid="clear-levels-filter" onClick={ctrl.handleClearLevelsFilter}>Clear Levels Filter</button>
-          <button data-testid="clear-streaks-filter" onClick={ctrl.handleClearStreaksFilter}>Clear Streaks Filter</button>
-          <button data-testid="delete-game" onClick={() => ctrl.handleDeleteGame(mockGamesData[0])}>Delete Game</button>
-          <button data-testid="delete-level" onClick={() => ctrl.handleDeleteLevel(mockLevelsData[0])}>Delete Level</button>
-          <button data-testid="close-game-drawer" onClick={ctrl.handleCloseGameDrawer}>Close Game Drawer</button>
-          <button data-testid="close-game-view" onClick={ctrl.handleCloseGameViewDialog}>Close Game View</button>
-          <button data-testid="close-level-drawer" onClick={ctrl.handleCloseLevelDrawer}>Close Level Drawer</button>
-          <button data-testid="close-level-view" onClick={ctrl.handleCloseLevelViewDialog}>Close Level View</button>
-          <button data-testid="close-streak-dialog" onClick={ctrl.handleCloseStreakActionDialog}>Close Streak Dialog</button>
+          <button data-testid="filter-game" onClick={() => ctrl.setGamesFilter('sudoku')}>
+            Filter
+          </button>
+          <button data-testid="clear-game-filter" onClick={ctrl.handleClearGamesFilter}>
+            Clear
+          </button>
+          <button data-testid="add-game" onClick={ctrl.handleAddGameClick}>
+            Add Game
+          </button>
+          <button
+            data-testid="edit-game"
+            onClick={() => ctrl.handleEditGameClick(mockGamesData[0])}
+          >
+            Edit Game
+          </button>
+          <button
+            data-testid="view-game"
+            onClick={() => ctrl.handleViewGameClick(mockGamesData[0])}
+          >
+            View Game
+          </button>
+          <button
+            data-testid="toggle-active"
+            onClick={() => ctrl.handleToggleGameActive(mockGamesData[0])}
+          >
+            Toggle Active
+          </button>
+          <button
+            data-testid="view-levels-for-game"
+            onClick={() => ctrl.handleViewLevelsForGame(mockGamesData[0])}
+          >
+            View Levels
+          </button>
+          <button data-testid="add-level" onClick={ctrl.handleAddLevelClick}>
+            Add Level
+          </button>
+          <button
+            data-testid="edit-level"
+            onClick={() => ctrl.handleEditLevelClick(mockLevelsData[0])}
+          >
+            Edit Level
+          </button>
+          <button
+            data-testid="view-level"
+            onClick={() => ctrl.handleViewLevelClick(mockLevelsData[0])}
+          >
+            View Level
+          </button>
+          <button
+            data-testid="publish-level"
+            onClick={() => ctrl.handlePublishLevel(mockLevelsData[0])}
+          >
+            Publish
+          </button>
+          <button
+            data-testid="unpublish-level"
+            onClick={() => ctrl.handleUnpublishLevel(mockLevelsData[0])}
+          >
+            Unpublish
+          </button>
+          <button
+            data-testid="archive-level"
+            onClick={() => ctrl.handleArchiveLevel(mockLevelsData[0])}
+          >
+            Archive
+          </button>
+          <button data-testid="open-generate" onClick={() => ctrl.setGenerateModalOpen(true)}>
+            Generate
+          </button>
+          <button data-testid="open-assign" onClick={() => ctrl.setDailyAssignModalOpen(true)}>
+            Assign
+          </button>
+          <button
+            data-testid="approve-streak"
+            onClick={() => ctrl.handleOpenApproveStreak(mockStreakData[0])}
+          >
+            Approve Streak
+          </button>
+          <button
+            data-testid="reject-streak"
+            onClick={() => ctrl.handleOpenRejectStreak(mockStreakData[0])}
+          >
+            Reject Streak
+          </button>
+          <button
+            data-testid="submit-streak-action"
+            onClick={() => ctrl.handleSubmitStreakAction('Verified note')}
+          >
+            Submit Streak
+          </button>
+          <button data-testid="clear-levels-filter" onClick={ctrl.handleClearLevelsFilter}>
+            Clear Levels Filter
+          </button>
+          <button data-testid="clear-streaks-filter" onClick={ctrl.handleClearStreaksFilter}>
+            Clear Streaks Filter
+          </button>
+          <button data-testid="delete-game" onClick={() => ctrl.handleDeleteGame(mockGamesData[0])}>
+            Delete Game
+          </button>
+          <button
+            data-testid="delete-level"
+            onClick={() => ctrl.handleDeleteLevel(mockLevelsData[0])}
+          >
+            Delete Level
+          </button>
+          <button data-testid="close-game-drawer" onClick={ctrl.handleCloseGameDrawer}>
+            Close Game Drawer
+          </button>
+          <button data-testid="close-game-view" onClick={ctrl.handleCloseGameViewDialog}>
+            Close Game View
+          </button>
+          <button data-testid="close-level-drawer" onClick={ctrl.handleCloseLevelDrawer}>
+            Close Level Drawer
+          </button>
+          <button data-testid="close-level-view" onClick={ctrl.handleCloseLevelViewDialog}>
+            Close Level View
+          </button>
+          <button data-testid="close-streak-dialog" onClick={ctrl.handleCloseStreakActionDialog}>
+            Close Streak Dialog
+          </button>
         </div>
       );
     };
@@ -573,13 +719,7 @@ describe('Games Module - Comprehensive Test Suite', () => {
     it('renders game attributes', () => {
       const onClose = jest.fn();
       render(
-        <GameViewDialog
-          open={true}
-          onClose={onClose}
-          game={mockGamesData[0]}
-          isDark={true}
-          t={t}
-        />
+        <GameViewDialog open={true} onClose={onClose} game={mockGamesData[0]} isDark={true} t={t} />
       );
 
       expect(screen.getByText('Sudoku')).toBeInTheDocument();
@@ -612,7 +752,10 @@ describe('Games Module - Comprehensive Test Suite', () => {
       fireEvent.click(screen.getByText('Validate Payload'));
 
       await waitFor(() => {
-        expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/games/sudoku/levels/validate', expect.any(Object));
+        expect(gamesApiClient.post).toHaveBeenCalledWith(
+          '/admin/games/sudoku/levels/validate',
+          expect.any(Object)
+        );
       });
 
       // Submit
@@ -663,7 +806,9 @@ describe('Games Module - Comprehensive Test Suite', () => {
       });
 
       await waitFor(() => {
-        expect(iconInput.value).toBe('https://api.pravasamedia.com/api/v1/files/custom-icon-uploaded.webp');
+        expect(iconInput.value).toBe(
+          'https://api.pravasamedia.com/api/v1/files/custom-icon-uploaded.webp'
+        );
       });
 
       // Reset to default
@@ -690,7 +835,9 @@ describe('Games Module - Comprehensive Test Suite', () => {
       );
 
       // Verify date is auto-fetched from selectedLevel publishedAt or puzzleDate
-      const dateInput = screen.getByLabelText(new RegExp(t.scheduledDate || 'Publish / Scheduled Date', 'i')) as HTMLInputElement;
+      const dateInput = screen.getByLabelText(
+        new RegExp(t.scheduledDate || 'Publish / Scheduled Date', 'i')
+      ) as HTMLInputElement;
       expect(dateInput.value).toBe('2026-10-22');
 
       // Submit
@@ -707,7 +854,8 @@ describe('Games Module - Comprehensive Test Suite', () => {
     it('populates and sends backgroundImageUrl and content.backgroundImage when editing level with backgroundImageUrl', async () => {
       const onClose = jest.fn();
       const onSuccess = jest.fn();
-      const sampleBgUrl = 'https://bigtv-cms.s3.ap-south-1.amazonaws.com/cms_news_b798a3da-3586-4eed-b702-50ccf99e6f5e.jpeg';
+      const sampleBgUrl =
+        'https://bigtv-cms.s3.ap-south-1.amazonaws.com/cms_news_b798a3da-3586-4eed-b702-50ccf99e6f5e.jpeg';
       const levelWithBg = {
         ...mockLevelsData[0],
         levelId: 'zip_020',
@@ -756,16 +904,27 @@ describe('Games Module - Comprehensive Test Suite', () => {
 
   describe('getLevelImageUrl utility', () => {
     it('resolves image correctly across backgroundImageUrl, logoUrl, completionImageUrl, iconUrl, content and default', () => {
-      const sampleBgUrl = 'https://bigtv-cms.s3.ap-south-1.amazonaws.com/cms_news_b798a3da-3586-4eed-b702-50ccf99e6f5e.jpeg';
+      const sampleBgUrl =
+        'https://bigtv-cms.s3.ap-south-1.amazonaws.com/cms_news_b798a3da-3586-4eed-b702-50ccf99e6f5e.jpeg';
       expect(getLevelImageUrl(null)).toBe(DEFAULT_LEVEL_ICON_URL);
       expect(getLevelImageUrl(undefined)).toBe(DEFAULT_LEVEL_ICON_URL);
       expect(getLevelImageUrl({})).toBe(DEFAULT_LEVEL_ICON_URL);
       expect(getLevelImageUrl({ backgroundImageUrl: sampleBgUrl })).toBe(sampleBgUrl);
-      expect(getLevelImageUrl({ logoUrl: 'https://img.com/logo.png' })).toBe('https://img.com/logo.png');
-      expect(getLevelImageUrl({ completionImageUrl: 'https://img.com/comp.png' })).toBe('https://img.com/comp.png');
-      expect(getLevelImageUrl({ iconUrl: 'https://img.com/icon.png' })).toBe('https://img.com/icon.png');
-      expect(getLevelImageUrl({ content: { backgroundImage: 'https://img.com/bg.png' } })).toBe('https://img.com/bg.png');
-      expect(getLevelImageUrl({ content: { backgroundImageUrl: 'https://img.com/bg2.png' } })).toBe('https://img.com/bg2.png');
+      expect(getLevelImageUrl({ logoUrl: 'https://img.com/logo.png' })).toBe(
+        'https://img.com/logo.png'
+      );
+      expect(getLevelImageUrl({ completionImageUrl: 'https://img.com/comp.png' })).toBe(
+        'https://img.com/comp.png'
+      );
+      expect(getLevelImageUrl({ iconUrl: 'https://img.com/icon.png' })).toBe(
+        'https://img.com/icon.png'
+      );
+      expect(getLevelImageUrl({ content: { backgroundImage: 'https://img.com/bg.png' } })).toBe(
+        'https://img.com/bg.png'
+      );
+      expect(getLevelImageUrl({ content: { backgroundImageUrl: 'https://img.com/bg2.png' } })).toBe(
+        'https://img.com/bg2.png'
+      );
     });
   });
 
@@ -825,14 +984,17 @@ describe('Games Module - Comprehensive Test Suite', () => {
       fireEvent.click(screen.getByText('Generate Now'));
 
       await waitFor(() => {
-        expect(gamesApiClient.post).toHaveBeenCalledWith('/admin/games/sudoku/levels/generate', expect.objectContaining({
-          rows: 6,
-          columns: 6,
-          difficulty: 'medium',
-          count: 3,
-          publish: true,
-          iconUrl: DEFAULT_LEVEL_ICON_URL,
-        }));
+        expect(gamesApiClient.post).toHaveBeenCalledWith(
+          '/admin/games/sudoku/levels/generate',
+          expect.objectContaining({
+            rows: 6,
+            columns: 6,
+            difficulty: 'medium',
+            count: 3,
+            publish: true,
+            iconUrl: DEFAULT_LEVEL_ICON_URL,
+          })
+        );
         expect(onSuccess).toHaveBeenCalled();
       });
     });
@@ -854,7 +1016,9 @@ describe('Games Module - Comprehensive Test Suite', () => {
         />
       );
 
-      fireEvent.change(screen.getByLabelText(/Level IDs/i), { target: { value: 'sudoku_001, sudoku_002' } });
+      fireEvent.change(screen.getByLabelText(/Level IDs/i), {
+        target: { value: 'sudoku_001, sudoku_002' },
+      });
       fireEvent.click(screen.getByText('Assign Date'));
 
       await waitFor(() => {
@@ -931,7 +1095,11 @@ describe('Games Module - Comprehensive Test Suite', () => {
             { order: 3, row: 2, col: 2 },
           ],
           solution: [
-            [0, 0], [0, 1], [0, 2], [1, 2], [2, 2]
+            [0, 0],
+            [0, 1],
+            [0, 2],
+            [1, 2],
+            [2, 2],
           ],
         },
       };
@@ -1069,16 +1237,81 @@ describe('Games Module - Comprehensive Test Suite', () => {
           { row: 2, col: 4, value: 3, shape: 'tall' },
         ],
         pieces: [
-          { id: 'p_1', cells: [{ row: 0, col: 0 }, { row: 0, col: 1 }] },
-          { id: 'p_2', cells: [{ row: 0, col: 0 }, { row: 0, col: 1 }, { row: 0, col: 2 }] },
-          { id: 'p_3', cells: [{ row: 0, col: 0 }, { row: 0, col: 1 }] },
-          { id: 'p_4', cells: [{ row: 0, col: 0 }, { row: 0, col: 1 }, { row: 0, col: 2 }] },
-          { id: 'p_5', cells: [{ row: 0, col: 0 }, { row: 0, col: 1 }, { row: 0, col: 2 }] },
-          { id: 'p_6', cells: [{ row: 0, col: 0 }, { row: 1, col: 0 }] },
-          { id: 'p_7', cells: [{ row: 0, col: 0 }, { row: 1, col: 0 }] },
-          { id: 'p_8', cells: [{ row: 0, col: 0 }, { row: 1, col: 0 }] },
-          { id: 'p_9', cells: [{ row: 0, col: 0 }, { row: 1, col: 0 }, { row: 2, col: 0 }] },
-          { id: 'p_10', cells: [{ row: 0, col: 0 }, { row: 1, col: 0 }, { row: 2, col: 0 }] },
+          {
+            id: 'p_1',
+            cells: [
+              { row: 0, col: 0 },
+              { row: 0, col: 1 },
+            ],
+          },
+          {
+            id: 'p_2',
+            cells: [
+              { row: 0, col: 0 },
+              { row: 0, col: 1 },
+              { row: 0, col: 2 },
+            ],
+          },
+          {
+            id: 'p_3',
+            cells: [
+              { row: 0, col: 0 },
+              { row: 0, col: 1 },
+            ],
+          },
+          {
+            id: 'p_4',
+            cells: [
+              { row: 0, col: 0 },
+              { row: 0, col: 1 },
+              { row: 0, col: 2 },
+            ],
+          },
+          {
+            id: 'p_5',
+            cells: [
+              { row: 0, col: 0 },
+              { row: 0, col: 1 },
+              { row: 0, col: 2 },
+            ],
+          },
+          {
+            id: 'p_6',
+            cells: [
+              { row: 0, col: 0 },
+              { row: 1, col: 0 },
+            ],
+          },
+          {
+            id: 'p_7',
+            cells: [
+              { row: 0, col: 0 },
+              { row: 1, col: 0 },
+            ],
+          },
+          {
+            id: 'p_8',
+            cells: [
+              { row: 0, col: 0 },
+              { row: 1, col: 0 },
+            ],
+          },
+          {
+            id: 'p_9',
+            cells: [
+              { row: 0, col: 0 },
+              { row: 1, col: 0 },
+              { row: 2, col: 0 },
+            ],
+          },
+          {
+            id: 'p_10',
+            cells: [
+              { row: 0, col: 0 },
+              { row: 1, col: 0 },
+              { row: 2, col: 0 },
+            ],
+          },
         ],
       };
 
@@ -1114,8 +1347,14 @@ describe('Games Module - Comprehensive Test Suite', () => {
           {
             id: 'big_piece',
             cells: [
-              { row: 0, col: 0 }, { row: 0, col: 1 }, { row: 0, col: 2 }, { row: 0, col: 3 },
-              { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 1, col: 2 }, { row: 1, col: 3 },
+              { row: 0, col: 0 },
+              { row: 0, col: 1 },
+              { row: 0, col: 2 },
+              { row: 0, col: 3 },
+              { row: 1, col: 0 },
+              { row: 1, col: 1 },
+              { row: 1, col: 2 },
+              { row: 1, col: 3 },
             ],
           },
         ],
@@ -1129,9 +1368,7 @@ describe('Games Module - Comprehensive Test Suite', () => {
     it('rejects clues with shape "poly" or invalid shape', () => {
       const payload = {
         grid: { rows: 5, columns: 5 },
-        clues: [
-          { row: 0, col: 0, value: 5, shape: 'poly' },
-        ],
+        clues: [{ row: 0, col: 0, value: 5, shape: 'poly' }],
       };
 
       const result = PatchLevelValidator.validate(payload);

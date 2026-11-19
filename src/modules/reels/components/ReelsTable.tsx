@@ -3,9 +3,7 @@ import { Box, Typography, Chip, Button, Divider, IconButton, Tooltip, Switch } f
 import { Movie, PlayArrow, Delete, Edit, Visibility, YouTube } from '@mui/icons-material';
 import { Reel } from '../domain/reels.model';
 
-const reelColors = [
-  '#ef5350', '#7e57c2', '#26a69a', '#ffa726', '#ab47bc',
-];
+const reelColors = ['#ef5350', '#7e57c2', '#26a69a', '#ffa726', '#ab47bc'];
 
 interface ReelsTableProps {
   paginatedData: Reel[];
@@ -41,8 +39,7 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
 
   const handleViewClick = (reel: Reel) => {
     const targetUrl =
-      reel.url ||
-      (reel.videoId ? `https://www.youtube.com/shorts/${reel.videoId}` : reel.imageUrl);
+      reel.url || (reel.videoId ? `https://www.youtube.com/shorts/${reel.videoId}` : reel.imageUrl);
     if (targetUrl) {
       window.open(targetUrl, '_blank', 'noopener,noreferrer');
     }
@@ -115,7 +112,11 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
                 <Box sx={cellStyle}>
                   <Typography
                     variant="body2"
-                    sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', fontWeight: 600, fontSize: '0.8rem' }}
+                    sx={{
+                      color: isDark ? '#d0caeb' : '#9e9e9e',
+                      fontWeight: 600,
+                      fontSize: '0.8rem',
+                    }}
                   >
                     {idx + 1 + (page - 1) * recordsPerPage}
                   </Typography>
@@ -132,7 +133,10 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
                       border: `1px solid ${color}44`,
                     }}
                   >
-                    <Typography variant="caption" sx={{ color, fontWeight: 700, fontFamily: 'monospace' }}>
+                    <Typography
+                      variant="caption"
+                      sx={{ color, fontWeight: 700, fontFamily: 'monospace' }}
+                    >
                       #{reel.reelId}
                     </Typography>
                   </Box>
@@ -193,13 +197,25 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
                 </Box>
 
                 {/* Source & Language */}
-                <Box sx={{ ...cellStyle, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0.5 }}>
+                <Box
+                  sx={{
+                    ...cellStyle,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    gap: 0.5,
+                  }}
+                >
                   <Chip
                     icon={
                       isYouTube ? (
-                        <YouTube sx={{ fontSize: '0.95rem !important', color: '#ff0000 !important' }} />
+                        <YouTube
+                          sx={{ fontSize: '0.95rem !important', color: '#ff0000 !important' }}
+                        />
                       ) : (
-                        <Movie sx={{ fontSize: '0.95rem !important', color: color + ' !important' }} />
+                        <Movie
+                          sx={{ fontSize: '0.95rem !important', color: color + ' !important' }}
+                        />
                       )
                     }
                     label={sourceText}
@@ -210,8 +226,8 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
                       backgroundColor: isYouTube
                         ? 'rgba(255,0,0,0.1)'
                         : isDark
-                        ? 'rgba(166,226,245,0.12)'
-                        : 'rgba(28,20,69,0.08)',
+                          ? 'rgba(166,226,245,0.12)'
+                          : 'rgba(28,20,69,0.08)',
                       color: isYouTube ? '#ff3333' : isDark ? '#a6e2f5' : '#1c1445',
                       border: `1px solid ${isYouTube ? 'rgba(255,0,0,0.25)' : 'rgba(0,0,0,0.1)'}`,
                     }}
@@ -225,7 +241,9 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
                       fontWeight: 700,
                       backgroundColor: isDark ? 'rgba(166,226,245,0.12)' : 'rgba(28,20,69,0.06)',
                       color: isDark ? '#a6e2f5' : '#1c1445',
-                      border: isDark ? '1px solid rgba(166,226,245,0.3)' : '1px solid rgba(28,20,69,0.15)',
+                      border: isDark
+                        ? '1px solid rgba(166,226,245,0.3)'
+                        : '1px solid rgba(28,20,69,0.15)',
                     }}
                   />
                 </Box>
@@ -233,8 +251,13 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
                 {/* Duration */}
                 <Box sx={cellStyle}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                    <PlayArrow sx={{ fontSize: '0.85rem', color: isDark ? '#d0caeb' : '#9e9e9e' }} />
-                    <Typography variant="body2" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}>
+                    <PlayArrow
+                      sx={{ fontSize: '0.85rem', color: isDark ? '#d0caeb' : '#9e9e9e' }}
+                    />
+                    <Typography
+                      variant="body2"
+                      sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}
+                    >
                       {reel.duration}
                     </Typography>
                   </Box>
@@ -242,7 +265,9 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
 
                 {/* Published Switch */}
                 <Box sx={cellStyle}>
-                  <Tooltip title={reel.isPublished ? (t.published || 'Published') : (t.draft || 'Draft')}>
+                  <Tooltip
+                    title={reel.isPublished ? t.published || 'Published' : t.draft || 'Draft'}
+                  >
                     <Switch
                       checked={reel.isPublished}
                       onChange={() => togglePublish(reel.reelId)}
@@ -266,7 +291,9 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
                         borderRadius: '8px',
                         p: 0.6,
                         '&:hover': {
-                          backgroundColor: isDark ? 'rgba(166,226,245,0.2)' : 'rgba(25,118,210,0.15)',
+                          backgroundColor: isDark
+                            ? 'rgba(166,226,245,0.2)'
+                            : 'rgba(25,118,210,0.15)',
                         },
                       }}
                     >
@@ -316,7 +343,9 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
                 </Box>
               </Box>
               {idx < paginatedData.length - 1 && (
-                <Divider sx={{ borderColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)' }} />
+                <Divider
+                  sx={{ borderColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)' }}
+                />
               )}
             </Box>
           );

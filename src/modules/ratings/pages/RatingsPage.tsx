@@ -1,14 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-  Box,
-  Typography,
-  Tabs,
-  Tab,
-  Snackbar,
-  Alert,
-} from '@mui/material';
+import { Box, Typography, Tabs, Tab, Snackbar, Alert } from '@mui/material';
 import {
   StarRate,
   MovieFilter,
@@ -49,7 +42,13 @@ export const RatingsPage: React.FC = () => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       const tabParam = params.get('tab');
-      if (tabParam === 'events' || tabParam === 'cricket' || tabParam === 'polls' || tabParam === 'movie' || tabParam === 'games') {
+      if (
+        tabParam === 'events' ||
+        tabParam === 'cricket' ||
+        tabParam === 'polls' ||
+        tabParam === 'movie' ||
+        tabParam === 'games'
+      ) {
         setActiveTab(tabParam as any);
       }
     }
@@ -220,10 +219,16 @@ export const RatingsPage: React.FC = () => {
                 <StarRate sx={{ fontSize: 30 }} />
               </Box>
               <Box>
-                <Typography variant="h5" sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445' }}>
+                <Typography
+                  variant="h5"
+                  sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445' }}
+                >
                   {t.pageTitle}
                 </Typography>
-                <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#64748b', mt: 0.25 }}>
+                <Typography
+                  variant="body2"
+                  sx={{ color: isDark ? '#d0caeb' : '#64748b', mt: 0.25 }}
+                >
                   {t.pageSubtitle}
                 </Typography>
               </Box>
@@ -233,7 +238,9 @@ export const RatingsPage: React.FC = () => {
           {/* Three Navigation Tabs: Movie, Polls, Cricket */}
           <Box
             sx={{
-              borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+              borderBottom: isDark
+                ? '1px solid rgba(255,255,255,0.08)'
+                : '1px solid rgba(0,0,0,0.08)',
               display: 'flex',
               alignItems: 'center',
             }}
@@ -395,13 +402,9 @@ export const RatingsPage: React.FC = () => {
             />
           )}
 
-          {activeTab === 'events' && (
-            <EventsTab />
-          )}
+          {activeTab === 'events' && <EventsTab />}
 
-          {activeTab === 'games' && (
-            <GamesTab />
-          )}
+          {activeTab === 'games' && <GamesTab />}
         </Box>
       </Box>
 
@@ -462,7 +465,11 @@ export const RatingsPage: React.FC = () => {
         onClose={closeSnackbar}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        <Alert onClose={closeSnackbar} severity={snackbar.severity} sx={{ width: '100%', fontWeight: 600 }}>
+        <Alert
+          onClose={closeSnackbar}
+          severity={snackbar.severity}
+          sx={{ width: '100%', fontWeight: 600 }}
+        >
           {snackbar.message}
         </Alert>
       </Snackbar>

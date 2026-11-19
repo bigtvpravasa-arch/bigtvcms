@@ -1,5 +1,15 @@
 import React from 'react';
-import { Box, TextField, InputAdornment, IconButton, Typography, Pagination, Button, Select, MenuItem } from '@mui/material';
+import {
+  Box,
+  TextField,
+  InputAdornment,
+  IconButton,
+  Typography,
+  Pagination,
+  Button,
+  Select,
+  MenuItem,
+} from '@mui/material';
 import { Search, Add } from '@mui/icons-material';
 import { useInhouseReelsController } from '../hooks/useInhouseReelsController';
 import { InhouseReelsTable } from './InhouseReelsTable';
@@ -57,7 +67,11 @@ export const InhouseReelsTab: React.FC<InhouseReelsTabProps> = ({ isDark, t }) =
             ),
             endAdornment: filterTitle ? (
               <InputAdornment position="end">
-                <IconButton size="small" onClick={() => setFilterTitle('')} sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}>
+                <IconButton
+                  size="small"
+                  onClick={() => setFilterTitle('')}
+                  sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', p: 0.3 }}
+                >
                   <Typography sx={{ fontSize: '0.75rem', lineHeight: 1 }}>✕</Typography>
                 </IconButton>
               </InputAdornment>
@@ -147,12 +161,16 @@ export const InhouseReelsTab: React.FC<InhouseReelsTabProps> = ({ isDark, t }) =
                 '& .MuiPaginationItem-root': {
                   color: isDark ? '#d0caeb' : '#5c548a',
                   borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
-                  '&:hover': { backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' },
+                  '&:hover': {
+                    backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+                  },
                   '&.Mui-selected': {
                     backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
                     color: isDark ? '#a6e2f5' : '#1c1445',
                     borderColor: isDark ? '#a6e2f5' : '#1c1445',
-                    '&:hover': { backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.15)' },
+                    '&:hover': {
+                      backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.15)',
+                    },
                   },
                 },
               }}

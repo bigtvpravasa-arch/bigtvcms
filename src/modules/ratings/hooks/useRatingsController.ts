@@ -93,9 +93,12 @@ export function useRatingsController() {
     severity: 'success',
   });
 
-  const showSnackbar = useCallback((message: string, severity: 'success' | 'error' | 'info' = 'success') => {
-    setSnackbar({ open: true, message, severity });
-  }, []);
+  const showSnackbar = useCallback(
+    (message: string, severity: 'success' | 'error' | 'info' = 'success') => {
+      setSnackbar({ open: true, message, severity });
+    },
+    []
+  );
 
   const closeSnackbar = useCallback(() => {
     setSnackbar((prev) => ({ ...prev, open: false }));
@@ -204,7 +207,9 @@ export function useRatingsController() {
           const updated = await RatingsRepository.updateMovieReview(formData.id, formData);
           setMovies((prev) => prev.map((m) => (m.id === updated.id ? updated : m)));
         } else {
-          const created = await RatingsRepository.createMovieReview(formData as CreateMovieReviewDto);
+          const created = await RatingsRepository.createMovieReview(
+            formData as CreateMovieReviewDto
+          );
           setMovies((prev) => [created, ...prev]);
         }
         closeMovieModal();
@@ -503,7 +508,8 @@ export function useRatingsController() {
           m.team2.teamName.toLowerCase().includes(q) ||
           m.team1.shortName.toLowerCase().includes(q) ||
           m.team2.shortName.toLowerCase().includes(q);
-        const matchesTitle = m.title.toLowerCase().includes(q) || m.series.toLowerCase().includes(q);
+        const matchesTitle =
+          m.title.toLowerCase().includes(q) || m.series.toLowerCase().includes(q);
         if (!matchesTeam && !matchesTitle) return false;
       }
       return true;

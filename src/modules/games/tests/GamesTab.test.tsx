@@ -163,7 +163,9 @@ describe('GamesTab Component inside BigTV Special', () => {
     const streakTab = screen.getByRole('tab', { name: /Streak Recovery/i });
     fireEvent.click(streakTab);
 
-    expect(await screen.findByPlaceholderText(/Filter by player ID, game, reason/i)).toBeInTheDocument();
+    expect(
+      await screen.findByPlaceholderText(/Filter by player ID, game, reason/i)
+    ).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Refresh Queue/i })).toBeInTheDocument();
   });
 

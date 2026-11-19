@@ -53,11 +53,22 @@ export const GamesTable: React.FC<GamesTableProps> = ({
       <Table>
         <TableHead sx={{ backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)' }}>
           <TableRow>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>{t.colGame}</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>{t.colType}</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>{t.colDailyPublish}</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>{t.colStatus}</TableCell>
-            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }} align="center">
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              {t.colGame}
+            </TableCell>
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              {t.colType}
+            </TableCell>
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              {t.colDailyPublish}
+            </TableCell>
+            <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
+              {t.colStatus}
+            </TableCell>
+            <TableCell
+              sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+              align="center"
+            >
               {t.colActions}
             </TableCell>
           </TableRow>
@@ -65,7 +76,11 @@ export const GamesTable: React.FC<GamesTableProps> = ({
         <TableBody>
           {data.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={5} align="center" sx={{ py: 6, color: isDark ? '#d0caeb' : '#5c548a' }}>
+              <TableCell
+                colSpan={5}
+                align="center"
+                sx={{ py: 6, color: isDark ? '#d0caeb' : '#5c548a' }}
+              >
                 <Typography>{t.noGames}</Typography>
               </TableCell>
             </TableRow>
@@ -94,10 +109,16 @@ export const GamesTable: React.FC<GamesTableProps> = ({
                       <SportsEsports fontSize="small" />
                     </Avatar>
                     <Box>
-                      <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}>
+                      <Typography
+                        variant="body2"
+                        sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}
+                      >
                         {row.name}
                       </Typography>
-                      <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#5c548a', display: 'block' }}>
+                      <Typography
+                        variant="caption"
+                        sx={{ color: isDark ? '#d0caeb' : '#5c548a', display: 'block' }}
+                      >
                         /{row.slug}
                       </Typography>
                     </Box>
@@ -114,18 +135,18 @@ export const GamesTable: React.FC<GamesTableProps> = ({
                             ? 'rgba(33, 150, 243, 0.15)'
                             : '#e3f2fd'
                           : row.gameType === 'patch'
-                          ? isDark
-                            ? 'rgba(156, 39, 176, 0.15)'
-                            : '#f3e5f5'
-                          : isDark
-                          ? 'rgba(255, 152, 0, 0.15)'
-                          : '#fff3e0',
+                            ? isDark
+                              ? 'rgba(156, 39, 176, 0.15)'
+                              : '#f3e5f5'
+                            : isDark
+                              ? 'rgba(255, 152, 0, 0.15)'
+                              : '#fff3e0',
                       color:
                         row.gameType === 'sudoku'
                           ? '#2196f3'
                           : row.gameType === 'patch'
-                          ? '#9c27b0'
-                          : '#ff9800',
+                            ? '#9c27b0'
+                            : '#ff9800',
                       fontWeight: 600,
                       fontSize: '0.75rem',
                       borderRadius: '8px',
@@ -141,8 +162,8 @@ export const GamesTable: React.FC<GamesTableProps> = ({
                       borderColor: row.dailyPublishEnabled
                         ? '#4caf50'
                         : isDark
-                        ? 'rgba(255,255,255,0.2)'
-                        : 'rgba(0,0,0,0.2)',
+                          ? 'rgba(255,255,255,0.2)'
+                          : 'rgba(0,0,0,0.2)',
                       color: row.dailyPublishEnabled ? '#4caf50' : isDark ? '#d0caeb' : '#5c548a',
                       fontWeight: 600,
                       fontSize: '0.72rem',
@@ -160,8 +181,8 @@ export const GamesTable: React.FC<GamesTableProps> = ({
                           ? 'rgba(76, 175, 80, 0.15)'
                           : '#e8f5e9'
                         : isDark
-                        ? 'rgba(244, 67, 54, 0.15)'
-                        : '#ffebee',
+                          ? 'rgba(244, 67, 54, 0.15)'
+                          : '#ffebee',
                       color: row.isActive ? '#4caf50' : '#f44336',
                       fontWeight: 600,
                       fontSize: '0.75rem',
@@ -173,7 +194,9 @@ export const GamesTable: React.FC<GamesTableProps> = ({
                   />
                 </TableCell>
                 <TableCell align="center">
-                  <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center', alignItems: 'center' }}>
+                  <Box
+                    sx={{ display: 'flex', gap: 1, justifyContent: 'center', alignItems: 'center' }}
+                  >
                     <Button
                       size="small"
                       variant="outlined"
@@ -204,7 +227,11 @@ export const GamesTable: React.FC<GamesTableProps> = ({
                       size="small"
                       variant="text"
                       onClick={() => onEdit(row)}
-                      sx={{ textTransform: 'none', color: isDark ? '#a6e2f5' : '#2563eb', fontWeight: 600 }}
+                      sx={{
+                        textTransform: 'none',
+                        color: isDark ? '#a6e2f5' : '#2563eb',
+                        fontWeight: 600,
+                      }}
                     >
                       {t.btnEdit}
                     </Button>

@@ -100,9 +100,7 @@ export const PollModal: React.FC<PollModalProps> = ({ open, poll, isSaving, onCl
     }
     setErrorMsg('');
     setOptions((prev) =>
-      prev
-        .filter((_, idx) => idx !== index)
-        .map((opt, idx) => ({ ...opt, option: idx + 1 }))
+      prev.filter((_, idx) => idx !== index).map((opt, idx) => ({ ...opt, option: idx + 1 }))
     );
   };
 
@@ -183,7 +181,9 @@ export const PollModal: React.FC<PollModalProps> = ({ open, poll, isSaving, onCl
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+            borderBottom: isDark
+              ? '1px solid rgba(255,255,255,0.08)'
+              : '1px solid rgba(0,0,0,0.08)',
             pb: 2,
           }}
         >
@@ -268,7 +268,14 @@ export const PollModal: React.FC<PollModalProps> = ({ open, poll, isSaving, onCl
 
           {/* Dynamic Poll Options Section */}
           <Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                mb: 1.5,
+              }}
+            >
               <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                 {t.labelPollOptions}
               </Typography>
@@ -294,10 +301,15 @@ export const PollModal: React.FC<PollModalProps> = ({ open, poll, isSaving, onCl
                     p: 1.5,
                     borderRadius: '10px',
                     backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
-                    border: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.06)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.06)'
+                      : '1px solid rgba(0,0,0,0.06)',
                   }}
                 >
-                  <Typography variant="body2" sx={{ fontWeight: 700, width: 24, textAlign: 'center' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: 700, width: 24, textAlign: 'center' }}
+                  >
                     {idx + 1}.
                   </Typography>
                   <TextField
@@ -325,7 +337,11 @@ export const PollModal: React.FC<PollModalProps> = ({ open, poll, isSaving, onCl
           {/* Draft Toggle */}
           <FormControlLabel
             control={
-              <Switch checked={draft} onChange={(e) => setDraft(e.target.checked)} color="warning" />
+              <Switch
+                checked={draft}
+                onChange={(e) => setDraft(e.target.checked)}
+                color="warning"
+              />
             }
             label={t.labelDraft}
           />

@@ -37,7 +37,12 @@ export default function RootPage() {
     } else {
       setHasToken(false);
       const cleanPath = path.replace(/^\/(en|te|hi|ml)(\/|$)/, '/');
-      if (!cleanPath || cleanPath === '/' || cleanPath === '/index.html' || path.includes('/login')) {
+      if (
+        !cleanPath ||
+        cleanPath === '/' ||
+        cleanPath === '/index.html' ||
+        path.includes('/login')
+      ) {
         router.replace('/login');
       }
     }
@@ -68,6 +73,3 @@ export default function RootPage() {
 
   return <LoginPage />;
 }
-
-
-

@@ -22,12 +22,28 @@ export default function CreateContentPage() {
   const t = pageTranslations[language] || pageTranslations.en;
 
   return (
-    <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden', backgroundColor: isDark ? '#110d29' : '#ffffff', transition: 'all 0.3s ease' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        height: '100vh',
+        overflow: 'hidden',
+        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        transition: 'all 0.3s ease',
+      }}
+    >
       {/* Sidebar */}
       <Sidebar activeHref="/movies/content/create" />
 
       {/* Main Panel */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
         {/* Header */}
         <Header title={t.pageTitle} />
 

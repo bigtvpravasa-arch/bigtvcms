@@ -2,12 +2,7 @@
 
 import React from 'react';
 import { Box, Card, CardContent, Typography } from '@mui/material';
-import {
-  SportsCricket,
-  Visibility,
-  VisibilityOff,
-  FiberManualRecord,
-} from '@mui/icons-material';
+import { SportsCricket, Visibility, VisibilityOff, FiberManualRecord } from '@mui/icons-material';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
 import { CricketTranslations } from '../translations';
 import { CricketMetrics } from '../hooks/useCricketController';
@@ -94,9 +89,7 @@ export const CricketStatsCards: React.FC<CricketStatsCardsProps> = ({ metrics, t
             borderRadius: '16px',
             background: card.gradient,
             border: `1px solid ${card.borderColor}`,
-            boxShadow: isDark
-              ? '0 4px 20px rgba(0, 0, 0, 0.35)'
-              : '0 4px 16px rgba(0, 0, 0, 0.05)',
+            boxShadow: isDark ? '0 4px 20px rgba(0, 0, 0, 0.35)' : '0 4px 16px rgba(0, 0, 0, 0.05)',
             transition: 'transform 0.2s ease, box-shadow 0.2s ease',
             '&:hover': {
               transform: 'translateY(-2px)',
@@ -107,7 +100,14 @@ export const CricketStatsCards: React.FC<CricketStatsCardsProps> = ({ metrics, t
           }}
         >
           <CardContent sx={{ p: 2.5, '&:last-child': { pb: 2.5 } }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                mb: 1.5,
+              }}
+            >
               <Typography
                 variant="body2"
                 sx={{

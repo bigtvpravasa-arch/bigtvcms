@@ -16,7 +16,12 @@ import {
   Alert,
   Divider,
 } from '@mui/material';
-import { BookingItem, PaymentStatus, BookingStatus, UpdateBookingStatusInput } from '../domain/event.types';
+import {
+  BookingItem,
+  PaymentStatus,
+  BookingStatus,
+  UpdateBookingStatusInput,
+} from '../domain/event.types';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
 
 interface BookingStatusModalProps {
@@ -77,30 +82,61 @@ export const BookingStatusModal: React.FC<BookingStatusModalProps> = ({
         {t.modalUpdateStatusTitle || 'Update Booking & Payment Status'}
       </DialogTitle>
 
-      <DialogContent dividers sx={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}>
+      <DialogContent
+        dividers
+        sx={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+      >
         {booking && (
-          <Box sx={{ mb: 2.5, p: 2, borderRadius: 1.5, bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)' }}>
+          <Box
+            sx={{
+              mb: 2.5,
+              p: 2,
+              borderRadius: 1.5,
+              bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+            }}
+          >
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}>
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}
+              >
                 Booking Code:
               </Typography>
-              <Typography variant="body2" fontWeight={700} sx={{ color: '#ea580c', fontFamily: 'monospace' }}>
+              <Typography
+                variant="body2"
+                fontWeight={700}
+                sx={{ color: '#ea580c', fontFamily: 'monospace' }}
+              >
                 {booking.bookingCode}
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-              <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}>
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}
+              >
                 Customer:
               </Typography>
-              <Typography variant="body2" fontWeight={600} sx={{ color: isDark ? '#FFFFFF' : '#1e293b' }}>
+              <Typography
+                variant="body2"
+                fontWeight={600}
+                sx={{ color: isDark ? '#FFFFFF' : '#1e293b' }}
+              >
                 {booking.userName} ({booking.userPhone})
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="body2" sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}>
+              <Typography
+                variant="body2"
+                sx={{ color: isDark ? 'rgba(255,255,255,0.6)' : 'text.secondary' }}
+              >
                 Total Payable:
               </Typography>
-              <Typography variant="body2" fontWeight={700} sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}>
+              <Typography
+                variant="body2"
+                fontWeight={700}
+                sx={{ color: isDark ? '#FFFFFF' : '#0f172a' }}
+              >
                 ₹{booking.totalAmount?.toLocaleString('en-IN') ?? 0} ({booking.quantity} tickets)
               </Typography>
             </Box>
@@ -109,7 +145,9 @@ export const BookingStatusModal: React.FC<BookingStatusModalProps> = ({
 
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, mt: 1 }}>
           <FormControl fullWidth size="small">
-            <InputLabel id="payment-status-label">{t.lblPaymentStatus || 'Payment Status'}</InputLabel>
+            <InputLabel id="payment-status-label">
+              {t.lblPaymentStatus || 'Payment Status'}
+            </InputLabel>
             <Select
               labelId="payment-status-label"
               value={paymentStatus}
@@ -124,7 +162,9 @@ export const BookingStatusModal: React.FC<BookingStatusModalProps> = ({
           </FormControl>
 
           <FormControl fullWidth size="small">
-            <InputLabel id="booking-status-label">{t.lblBookingStatus || 'Booking Status'}</InputLabel>
+            <InputLabel id="booking-status-label">
+              {t.lblBookingStatus || 'Booking Status'}
+            </InputLabel>
             <Select
               labelId="booking-status-label"
               value={bookingStatus}
@@ -140,13 +180,16 @@ export const BookingStatusModal: React.FC<BookingStatusModalProps> = ({
 
           {isRestoringSeats && (
             <Alert severity="warning" sx={{ mt: 1 }}>
-              Marking payment as <strong>FAILED</strong> or booking as <strong>CANCELLED</strong> automatically releases reserved seats back to the Folk Night inventory.
+              Marking payment as <strong>FAILED</strong> or booking as <strong>CANCELLED</strong>{' '}
+              automatically releases reserved seats back to the Folk Night inventory.
             </Alert>
           )}
         </Box>
       </DialogContent>
 
-      <DialogActions sx={{ p: 2, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}>
+      <DialogActions
+        sx={{ p: 2, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+      >
         <Button onClick={onClose} disabled={loading} sx={{ textTransform: 'none' }}>
           {t.btnCancel || 'Cancel'}
         </Button>
@@ -160,7 +203,7 @@ export const BookingStatusModal: React.FC<BookingStatusModalProps> = ({
             '&:hover': { bgcolor: '#c2410c' },
           }}
         >
-          {loading ? 'Saving...' : (t.btnUpdate || 'Update')}
+          {loading ? 'Saving...' : t.btnUpdate || 'Update'}
         </Button>
       </DialogActions>
     </Dialog>

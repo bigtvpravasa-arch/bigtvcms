@@ -13,12 +13,10 @@ export interface WpPostDto {
 
 export class WpRepository {
   static readonly TELUGU_WP_URL =
-    process.env.NEXT_PUBLIC_WP_TELUGU_API_URL ||
-    'https://www.bigtvlive.com/wp-json/wp/v2/posts';
+    process.env.NEXT_PUBLIC_WP_TELUGU_API_URL || 'https://www.bigtvlive.com/wp-json/wp/v2/posts';
 
   static readonly MALAYALAM_WP_URL =
-    process.env.NEXT_PUBLIC_WP_MALAYALAM_API_URL ||
-    'https://bigtv24x7.com/wp-json/wp/v2/posts';
+    process.env.NEXT_PUBLIC_WP_MALAYALAM_API_URL || 'https://bigtv24x7.com/wp-json/wp/v2/posts';
 
   static getEndpoint(language: string = 'te'): string {
     const lang = (language || '').toLowerCase().trim();
@@ -49,15 +47,15 @@ export class WpRepository {
         content: post.content?.rendered || '',
         image:
           post.yoast_head_json?.og_image?.[0]?.url ||
-          post.yoast_head_json?.schema?.['@graph']?.find((g: any) => g['@type'] === 'ImageObject')?.url ||
+          post.yoast_head_json?.schema?.['@graph']?.find((g: any) => g['@type'] === 'ImageObject')
+            ?.url ||
           post.jetpack_featured_media_url ||
           '',
         postUrl: post.link || '',
         date: post.date || '',
         categoryName:
-          post.yoast_head_json?.schema?.['@graph']?.find(
-            (g: any) => g['@type'] === 'NewsArticle'
-          )?.articleSection?.[0] || 'Uncategorized',
+          post.yoast_head_json?.schema?.['@graph']?.find((g: any) => g['@type'] === 'NewsArticle')
+            ?.articleSection?.[0] || 'Uncategorized',
         language: isMalayalam ? 'ml' : 'te',
       }));
     } catch (error) {

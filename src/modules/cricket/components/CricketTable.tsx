@@ -162,12 +162,17 @@ export const CricketTable: React.FC<CricketTableProps> = ({
     >
       <TableContainer sx={{ minHeight: 350 }}>
         {isLoading ? (
-          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 350 }}>
+          <Box
+            sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 350 }}
+          >
             <Loader />
           </Box>
         ) : matches.length === 0 ? (
           <Box sx={{ p: 6, textAlign: 'center' }}>
-            <Typography variant="body1" sx={{ color: isDark ? '#94a3b8' : '#64748b', fontWeight: 500 }}>
+            <Typography
+              variant="body1"
+              sx={{ color: isDark ? '#94a3b8' : '#64748b', fontWeight: 500 }}
+            >
               {t.noMatchesFound}
             </Typography>
           </Box>
@@ -177,7 +182,9 @@ export const CricketTable: React.FC<CricketTableProps> = ({
               <TableRow
                 sx={{
                   backgroundColor: isDark ? 'rgba(255, 255, 255, 0.03)' : '#f8fafc',
-                  borderBottom: isDark ? '2px solid rgba(255, 255, 255, 0.06)' : '2px solid rgba(0, 0, 0, 0.06)',
+                  borderBottom: isDark
+                    ? '2px solid rgba(255, 255, 255, 0.06)'
+                    : '2px solid rgba(0, 0, 0, 0.06)',
                 }}
               >
                 <TableCell padding="checkbox">
@@ -188,33 +195,77 @@ export const CricketTable: React.FC<CricketTableProps> = ({
                     color="primary"
                   />
                 </TableCell>
-                <TableCell sx={{ fontWeight: 700, color: isDark ? '#94a3b8' : '#475569', fontSize: '0.85rem' }}>
+                <TableCell
+                  sx={{
+                    fontWeight: 700,
+                    color: isDark ? '#94a3b8' : '#475569',
+                    fontSize: '0.85rem',
+                  }}
+                >
                   {t.colMatch}
                 </TableCell>
-                <TableCell sx={{ fontWeight: 700, color: isDark ? '#94a3b8' : '#475569', fontSize: '0.85rem' }}>
+                <TableCell
+                  sx={{
+                    fontWeight: 700,
+                    color: isDark ? '#94a3b8' : '#475569',
+                    fontSize: '0.85rem',
+                  }}
+                >
                   {t.colTeams}
                 </TableCell>
-                <TableCell sx={{ fontWeight: 700, color: isDark ? '#94a3b8' : '#475569', fontSize: '0.85rem' }}>
+                <TableCell
+                  sx={{
+                    fontWeight: 700,
+                    color: isDark ? '#94a3b8' : '#475569',
+                    fontSize: '0.85rem',
+                  }}
+                >
                   {t.colFormat}
                 </TableCell>
-                <TableCell sx={{ fontWeight: 700, color: isDark ? '#94a3b8' : '#475569', fontSize: '0.85rem' }}>
+                <TableCell
+                  sx={{
+                    fontWeight: 700,
+                    color: isDark ? '#94a3b8' : '#475569',
+                    fontSize: '0.85rem',
+                  }}
+                >
                   {t.colState}
                 </TableCell>
-                <TableCell sx={{ fontWeight: 700, color: isDark ? '#94a3b8' : '#475569', fontSize: '0.85rem' }}>
+                <TableCell
+                  sx={{
+                    fontWeight: 700,
+                    color: isDark ? '#94a3b8' : '#475569',
+                    fontSize: '0.85rem',
+                  }}
+                >
                   {t.colStatus}
                 </TableCell>
                 <TableCell
                   align="center"
-                  sx={{ fontWeight: 700, color: isDark ? '#94a3b8' : '#475569', fontSize: '0.85rem' }}
+                  sx={{
+                    fontWeight: 700,
+                    color: isDark ? '#94a3b8' : '#475569',
+                    fontSize: '0.85rem',
+                  }}
                 >
                   {t.colPublished}
                 </TableCell>
-                <TableCell sx={{ fontWeight: 700, color: isDark ? '#94a3b8' : '#475569', fontSize: '0.85rem' }}>
+                <TableCell
+                  sx={{
+                    fontWeight: 700,
+                    color: isDark ? '#94a3b8' : '#475569',
+                    fontSize: '0.85rem',
+                  }}
+                >
                   {t.colPublishedAt}
                 </TableCell>
                 <TableCell
                   align="right"
-                  sx={{ fontWeight: 700, color: isDark ? '#94a3b8' : '#475569', fontSize: '0.85rem' }}
+                  sx={{
+                    fontWeight: 700,
+                    color: isDark ? '#94a3b8' : '#475569',
+                    fontSize: '0.85rem',
+                  }}
                 >
                   {t.colActions}
                 </TableCell>
@@ -233,9 +284,13 @@ export const CricketTable: React.FC<CricketTableProps> = ({
                     selected={isSelected}
                     sx={{
                       cursor: 'pointer',
-                      borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid rgba(0, 0, 0, 0.05)',
+                      borderBottom: isDark
+                        ? '1px solid rgba(255, 255, 255, 0.05)'
+                        : '1px solid rgba(0, 0, 0, 0.05)',
                       '&.Mui-selected': {
-                        backgroundColor: isDark ? 'rgba(99, 102, 241, 0.12)' : 'rgba(99, 102, 241, 0.06)',
+                        backgroundColor: isDark
+                          ? 'rgba(99, 102, 241, 0.12)'
+                          : 'rgba(99, 102, 241, 0.06)',
                       },
                     }}
                   >
@@ -264,15 +319,24 @@ export const CricketTable: React.FC<CricketTableProps> = ({
                         {match.seriesName && match.matchDesc && (
                           <Typography
                             variant="caption"
-                            sx={{ color: isDark ? '#94a3b8' : '#64748b', display: 'block', mt: 0.25 }}
+                            sx={{
+                              color: isDark ? '#94a3b8' : '#64748b',
+                              display: 'block',
+                              mt: 0.25,
+                            }}
                           >
                             {match.seriesName}
                           </Typography>
                         )}
                         {match.venue && (
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.5 }}>
-                            <LocationOn sx={{ fontSize: 13, color: isDark ? '#64748b' : '#94a3b8' }} />
-                            <Typography variant="caption" sx={{ color: isDark ? '#64748b' : '#94a3b8', fontSize: '0.75rem' }}>
+                            <LocationOn
+                              sx={{ fontSize: 13, color: isDark ? '#64748b' : '#94a3b8' }}
+                            />
+                            <Typography
+                              variant="caption"
+                              sx={{ color: isDark ? '#64748b' : '#94a3b8', fontSize: '0.75rem' }}
+                            >
                               {match.venue}
                             </Typography>
                           </Box>
@@ -283,7 +347,14 @@ export const CricketTable: React.FC<CricketTableProps> = ({
                     {/* Teams & Score */}
                     <TableCell onClick={() => onViewScorecard(match)}>
                       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1 }}>
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            gap: 1,
+                          }}
+                        >
                           <Typography
                             variant="body2"
                             sx={{ fontWeight: 600, color: isDark ? '#e2e8f0' : '#1e293b' }}
@@ -294,11 +365,19 @@ export const CricketTable: React.FC<CricketTableProps> = ({
                             variant="body2"
                             sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#0f172a' }}
                           >
-                            {match.team1Score || '—'} {match.team1Overs ? `(${match.team1Overs} ov)` : ''}
+                            {match.team1Score || '—'}{' '}
+                            {match.team1Overs ? `(${match.team1Overs} ov)` : ''}
                           </Typography>
                         </Box>
 
-                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1 }}>
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            gap: 1,
+                          }}
+                        >
                           <Typography
                             variant="body2"
                             sx={{ fontWeight: 600, color: isDark ? '#e2e8f0' : '#1e293b' }}
@@ -309,7 +388,8 @@ export const CricketTable: React.FC<CricketTableProps> = ({
                             variant="body2"
                             sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#0f172a' }}
                           >
-                            {match.team2Score || '—'} {match.team2Overs ? `(${match.team2Overs} ov)` : ''}
+                            {match.team2Score || '—'}{' '}
+                            {match.team2Overs ? `(${match.team2Overs} ov)` : ''}
                           </Typography>
                         </Box>
                       </Box>
@@ -330,7 +410,8 @@ export const CricketTable: React.FC<CricketTableProps> = ({
                       <Typography
                         variant="caption"
                         sx={{
-                          color: match.state === 'live' ? '#ef4444' : isDark ? '#cbd5e1' : '#475569',
+                          color:
+                            match.state === 'live' ? '#ef4444' : isDark ? '#cbd5e1' : '#475569',
                           fontWeight: match.state === 'live' ? 700 : 500,
                           display: '-webkit-box',
                           WebkitLineClamp: 2,
@@ -344,7 +425,14 @@ export const CricketTable: React.FC<CricketTableProps> = ({
 
                     {/* Publish Status Toggle */}
                     <TableCell align="center" onClick={(e) => e.stopPropagation()}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: 1,
+                        }}
+                      >
                         {isToggling ? (
                           <CircularProgress size={20} />
                         ) : (
@@ -372,13 +460,22 @@ export const CricketTable: React.FC<CricketTableProps> = ({
                     {/* Published Date */}
                     <TableCell onClick={() => onViewScorecard(match)}>
                       <Typography variant="caption" sx={{ color: isDark ? '#94a3b8' : '#64748b' }}>
-                        {match.publishedAt ? new Date(match.publishedAt).toLocaleString() : t.neverPublished}
+                        {match.publishedAt
+                          ? new Date(match.publishedAt).toLocaleString()
+                          : t.neverPublished}
                       </Typography>
                     </TableCell>
 
                     {/* Actions */}
                     <TableCell align="right" onClick={(e) => e.stopPropagation()}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 1 }}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'flex-end',
+                          gap: 1,
+                        }}
+                      >
                         <Button
                           variant="outlined"
                           size="small"
@@ -389,7 +486,9 @@ export const CricketTable: React.FC<CricketTableProps> = ({
                             textTransform: 'none',
                             fontWeight: 600,
                             fontSize: '0.75rem',
-                            borderColor: isDark ? 'rgba(99, 102, 241, 0.4)' : 'rgba(99, 102, 241, 0.3)',
+                            borderColor: isDark
+                              ? 'rgba(99, 102, 241, 0.4)'
+                              : 'rgba(99, 102, 241, 0.3)',
                             color: '#6366f1',
                             '&:hover': {
                               borderColor: '#6366f1',
@@ -448,7 +547,9 @@ export const CricketTable: React.FC<CricketTableProps> = ({
         onPageChange={(_, newPage) => onPageChange(newPage + 1)}
         onRowsPerPageChange={(e) => onLimitChange(parseInt(e.target.value, 10))}
         sx={{
-          borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(0, 0, 0, 0.06)',
+          borderTop: isDark
+            ? '1px solid rgba(255, 255, 255, 0.06)'
+            : '1px solid rgba(0, 0, 0, 0.06)',
           color: isDark ? '#cbd5e1' : '#475569',
         }}
       />

@@ -37,7 +37,10 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
         },
       }}
     >
-      <DialogTitle component="div" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <DialogTitle
+        component="div"
+        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+      >
         <Typography component="span" variant="h6" sx={{ fontWeight: 700 }}>
           {video.fileName}
         </Typography>
@@ -63,6 +66,7 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
           {video.url ? (
             <video
               src={video.url}
+              poster={video.thumbnailUrl || undefined}
               controls
               autoPlay
               playsInline
@@ -77,7 +81,15 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
 
         <Box sx={{ mt: 2 }}>
           {video.url && (
-            <Typography variant="caption" sx={{ display: 'block', opacity: 0.6, wordBreak: 'break-all', fontFamily: 'monospace' }}>
+            <Typography
+              variant="caption"
+              sx={{
+                display: 'block',
+                opacity: 0.6,
+                wordBreak: 'break-all',
+                fontFamily: 'monospace',
+              }}
+            >
               Stream URL: {video.url}
             </Typography>
           )}

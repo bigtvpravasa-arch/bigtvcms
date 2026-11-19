@@ -179,29 +179,62 @@ export const PostTypesPage: React.FC = () => {
   } = usePostTypeController();
 
   const menuItems = [
-    { text: t.menuCreate,     icon: <AddCircleOutline />, action: () => router.push('/dashboard') },
-    { text: t.menuReels,      icon: <Movie />,            action: () => router.push('/reels') },
-    { text: t.menuCategories, icon: <CategoryIcon />,     action: () => router.push('/categories') },
-    { text: t.menuLocations,  icon: <LocationOn />,       action: () => router.push('/locations') },
-    { text: t.menuCreators,   icon: <People />,           action: () => router.push('/creators') },
-    { text: t.menuPostTypes,  icon: <Article />,          active: true },
-    { text: t.menuLanguages,  icon: <LanguageIcon />,     action: () => router.push('/languages') },
-    { text: t.menuAiTags,     icon: <AutoAwesome />,      action: () => router.push('/aitags') },
-    { text: t.menuSettings,   icon: <Settings />,         action: () => router.push('/settings') },
+    { text: t.menuCreate, icon: <AddCircleOutline />, action: () => router.push('/dashboard') },
+    { text: t.menuReels, icon: <Movie />, action: () => router.push('/reels') },
+    { text: t.menuCategories, icon: <CategoryIcon />, action: () => router.push('/categories') },
+    { text: t.menuLocations, icon: <LocationOn />, action: () => router.push('/locations') },
+    { text: t.menuCreators, icon: <People />, action: () => router.push('/creators') },
+    { text: t.menuPostTypes, icon: <Article />, active: true },
+    { text: t.menuLanguages, icon: <LanguageIcon />, action: () => router.push('/languages') },
+    { text: t.menuAiTags, icon: <AutoAwesome />, action: () => router.push('/aitags') },
+    { text: t.menuSettings, icon: <Settings />, action: () => router.push('/settings') },
   ];
 
   return (
-    <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden', backgroundColor: isDark ? '#110d29' : '#ffffff', transition: 'all 0.3s ease' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        height: '100vh',
+        overflow: 'hidden',
+        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        transition: 'all 0.3s ease',
+      }}
+    >
       {/* Sidebar */}
       <Sidebar activeHref="/post-types" />
 
       {/* Main Content Area */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
         <Header title={t.pageTitle} />
 
-        <Box sx={{ flex: 1, overflowY: 'auto', p: 3, display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <Box
+          sx={{
+            flex: 1,
+            overflowY: 'auto',
+            p: 3,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 3,
+          }}
+        >
           {/* Controls Bar */}
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, alignItems: 'center', justifyContent: 'space-between' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 2,
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
             <Box sx={{ display: 'flex', gap: 2, flex: 1, minWidth: 280, maxWidth: 600 }}>
               <TextField
                 size="small"
@@ -221,7 +254,9 @@ export const PostTypesPage: React.FC = () => {
                     color: isDark ? '#ffffff' : '#111111',
                     backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
                     borderRadius: '12px',
-                    border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(0,0,0,0.08)',
                     '& fieldset': { border: 'none' },
                   },
                 }}
@@ -238,7 +273,9 @@ export const PostTypesPage: React.FC = () => {
                     color: isDark ? '#ffffff' : '#111111',
                     backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
                     borderRadius: '12px',
-                    border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(0,0,0,0.08)',
                     '& fieldset': { border: 'none' },
                   },
                 }}

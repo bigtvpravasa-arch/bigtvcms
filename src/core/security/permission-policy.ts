@@ -12,10 +12,10 @@ export class RolePermissionPolicy implements PermissionPolicy {
   }
 
   public hasAnyPermission(permissions: string[]): boolean {
-    return permissions.some(p => this.hasPermission(p));
+    return permissions.some((p) => this.hasPermission(p));
   }
 
   public hasAllPermissions(permissions: string[]): boolean {
-    return permissions.every(p => this.hasPermission(p));
+    return permissions.every((p) => this.hasPermission(p));
   }
 }

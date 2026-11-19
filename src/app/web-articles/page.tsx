@@ -303,7 +303,10 @@ export default function WebArticlesPage() {
   const [selectedSourceLang, setSelectedSourceLang] = useState<'te' | 'ml'>('te');
 
   // Load articles & metadata
-  const fetchData = async (pageNumber: number = 1, sourceLang: 'te' | 'ml' = selectedSourceLang) => {
+  const fetchData = async (
+    pageNumber: number = 1,
+    sourceLang: 'te' | 'ml' = selectedSourceLang
+  ) => {
     setLoading(true);
     try {
       const wpPosts = await WpRepository.getPosts(pageNumber, 100, sourceLang);
@@ -344,41 +347,75 @@ export default function WebArticlesPage() {
       const idStr = String(post.id || '');
       const catStr = (post.categoryName || '').toLowerCase();
 
-      const titleMatch = !q ||
+      const titleMatch =
+        !q ||
         cleanTitle.includes(q) ||
         cleanContent.includes(q) ||
         rawContent.includes(q) ||
         idStr.includes(q) ||
         catStr.includes(q);
-      
-      const catMatch = selectedCategory === 'All' ||
-        (Array.isArray(post.categories) && post.categories.some((c: any) => String(c).toLowerCase().includes(selectedCategory.toLowerCase()))) ||
-        (post.categoryName && String(post.categoryName).toLowerCase().trim() === selectedCategory.toLowerCase().trim()) ||
-        (post.categoryName && String(post.categoryName).toLowerCase().includes(selectedCategory.toLowerCase())) ||
-        (post.categoryName && selectedCategory.toLowerCase().includes(String(post.categoryName).toLowerCase()));
 
-      const typeMatch = selectedType === 'All' ||
+      const catMatch =
+        selectedCategory === 'All' ||
+        (Array.isArray(post.categories) &&
+          post.categories.some((c: any) =>
+            String(c).toLowerCase().includes(selectedCategory.toLowerCase())
+          )) ||
+        (post.categoryName &&
+          String(post.categoryName).toLowerCase().trim() ===
+            selectedCategory.toLowerCase().trim()) ||
+        (post.categoryName &&
+          String(post.categoryName).toLowerCase().includes(selectedCategory.toLowerCase())) ||
+        (post.categoryName &&
+          selectedCategory.toLowerCase().includes(String(post.categoryName).toLowerCase()));
+
+      const typeMatch =
+        selectedType === 'All' ||
         !post.type ||
         String(post.type).toLowerCase().includes(selectedType.toLowerCase()) ||
-        String(post.typename || '').toLowerCase().includes(selectedType.toLowerCase());
+        String(post.typename || '')
+          .toLowerCase()
+          .includes(selectedType.toLowerCase());
 
-      const locMatch = selectedLocation === 'All' ||
+      const locMatch =
+        selectedLocation === 'All' ||
         !post.location ||
-        (Array.isArray(post.location) && post.location.some((l: any) => String(l).toLowerCase().includes(selectedLocation.toLowerCase()))) ||
-        (post.state_name && String(post.state_name).toLowerCase().includes(selectedLocation.toLowerCase()));
+        (Array.isArray(post.location) &&
+          post.location.some((l: any) =>
+            String(l).toLowerCase().includes(selectedLocation.toLowerCase())
+          )) ||
+        (post.state_name &&
+          String(post.state_name).toLowerCase().includes(selectedLocation.toLowerCase()));
 
-      const tagMatch = selectedAiTag === 'All' ||
+      const tagMatch =
+        selectedAiTag === 'All' ||
         (!post.tags && !post.aiTags) ||
-        (Array.isArray(post.tags) && post.tags.some((t: any) => String(t).toLowerCase().includes(selectedAiTag.toLowerCase()))) ||
-        (Array.isArray(post.aiTags) && post.aiTags.some((t: any) => String(t).toLowerCase().includes(selectedAiTag.toLowerCase())));
+        (Array.isArray(post.tags) &&
+          post.tags.some((t: any) =>
+            String(t).toLowerCase().includes(selectedAiTag.toLowerCase())
+          )) ||
+        (Array.isArray(post.aiTags) &&
+          post.aiTags.some((t: any) =>
+            String(t).toLowerCase().includes(selectedAiTag.toLowerCase())
+          ));
 
-      const statusMatch = selectedStatus === 'All' ||
-        (selectedStatus === 'Published' && (!post.status || post.status === 'Published' || post.status === 'publish')) ||
+      const statusMatch =
+        selectedStatus === 'All' ||
+        (selectedStatus === 'Published' &&
+          (!post.status || post.status === 'Published' || post.status === 'publish')) ||
         (selectedStatus === 'Draft' && (post.status === 'Draft' || post.status === 'draft'));
 
       return titleMatch && catMatch && typeMatch && locMatch && tagMatch && statusMatch;
     });
-  }, [posts, searchTerm, selectedCategory, selectedType, selectedLocation, selectedAiTag, selectedStatus]);
+  }, [
+    posts,
+    searchTerm,
+    selectedCategory,
+    selectedType,
+    selectedLocation,
+    selectedAiTag,
+    selectedStatus,
+  ]);
 
   const totalPages = Math.max(1, serverTotalPages);
   const paginatedPosts = useMemo(() => {
@@ -409,8 +446,10 @@ export default function WebArticlesPage() {
   const handleCreatePost = async (data: any) => {};
   const handleEditPost = async (data: any) => {};
 
-  const isAllSelected = paginatedPosts.length > 0 && paginatedPosts.every((p) => selectedPostIds.includes(p.id));
-  const isSomeSelected = paginatedPosts.some((p) => selectedPostIds.includes(p.id)) && !isAllSelected;
+  const isAllSelected =
+    paginatedPosts.length > 0 && paginatedPosts.every((p) => selectedPostIds.includes(p.id));
+  const isSomeSelected =
+    paginatedPosts.some((p) => selectedPostIds.includes(p.id)) && !isAllSelected;
 
   return (
     <Box
@@ -426,10 +465,26 @@ export default function WebArticlesPage() {
       <Sidebar activeHref="/web-articles" />
 
       {/* Main Container */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
         <Header title={t.title} />
 
-        <Box sx={{ flex: 1, overflowY: 'auto', p: (editingPost || viewingPost) ? 0 : 3, pt: (editingPost || viewingPost) ? 0 : 2, pb: (editingPost || viewingPost) ? 0 : 4 }}>
+        <Box
+          sx={{
+            flex: 1,
+            overflowY: 'auto',
+            p: editingPost || viewingPost ? 0 : 3,
+            pt: editingPost || viewingPost ? 0 : 2,
+            pb: editingPost || viewingPost ? 0 : 4,
+          }}
+        >
           {editingPost ? (
             <CreateNewsForm
               onClose={() => setEditingPost(null)}
@@ -446,7 +501,8 @@ export default function WebArticlesPage() {
                 imageUrl: editingPost.image || editingPost.imageUrl,
                 isWebPost: true,
                 webUrl: editingPost.web_post_url || editingPost.webUrl || editingPost.postUrl || '',
-                postUrl: editingPost.web_post_url || editingPost.webUrl || editingPost.postUrl || '',
+                postUrl:
+                  editingPost.web_post_url || editingPost.webUrl || editingPost.postUrl || '',
               }}
             />
           ) : viewingPost ? (
@@ -465,7 +521,10 @@ export default function WebArticlesPage() {
               >
                 Back to Articles
               </Button>
-              <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, color: isDark ? '#ffffff' : '#1c1445' }}>
+              <Typography
+                variant="h5"
+                sx={{ fontWeight: 700, mb: 2, color: isDark ? '#ffffff' : '#1c1445' }}
+              >
                 {viewingPost.title}
               </Typography>
               {(viewingPost.web_post_url || viewingPost.webUrl) && (
@@ -474,7 +533,13 @@ export default function WebArticlesPage() {
                     href={viewingPost.web_post_url || viewingPost.webUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5, color: '#2563eb', textDecoration: 'none' }}
+                    sx={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 0.5,
+                      color: '#2563eb',
+                      textDecoration: 'none',
+                    }}
                   >
                     {t.visitLink} <OpenInNew fontSize="small" />
                   </MuiLink>
@@ -499,7 +564,10 @@ export default function WebArticlesPage() {
               >
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                   <WebIcon sx={{ fontSize: 28, color: '#2563eb' }} />
-                  <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}
+                  >
                     {t.title}
                   </Typography>
                   <Chip
@@ -539,20 +607,38 @@ export default function WebArticlesPage() {
                       borderRadius: '10px',
                       px: 2,
                       py: 0.6,
-                      backgroundColor: selectedSourceLang === 'te'
-                        ? (isDark ? '#a6e2f5' : '#1c1445')
-                        : (isDark ? 'rgba(255,255,255,0.04)' : '#ffffff'),
-                      color: selectedSourceLang === 'te'
-                        ? (isDark ? '#1c1445' : '#ffffff')
-                        : (isDark ? '#d0caeb' : '#5c548a'),
-                      borderColor: selectedSourceLang === 'te'
-                        ? 'transparent'
-                        : (isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)'),
+                      backgroundColor:
+                        selectedSourceLang === 'te'
+                          ? isDark
+                            ? '#a6e2f5'
+                            : '#1c1445'
+                          : isDark
+                            ? 'rgba(255,255,255,0.04)'
+                            : '#ffffff',
+                      color:
+                        selectedSourceLang === 'te'
+                          ? isDark
+                            ? '#1c1445'
+                            : '#ffffff'
+                          : isDark
+                            ? '#d0caeb'
+                            : '#5c548a',
+                      borderColor:
+                        selectedSourceLang === 'te'
+                          ? 'transparent'
+                          : isDark
+                            ? 'rgba(255,255,255,0.12)'
+                            : 'rgba(0,0,0,0.12)',
                       boxShadow: 'none',
                       '&:hover': {
-                        backgroundColor: selectedSourceLang === 'te'
-                          ? (isDark ? '#8cd5ed' : '#2d2270')
-                          : (isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.04)'),
+                        backgroundColor:
+                          selectedSourceLang === 'te'
+                            ? isDark
+                              ? '#8cd5ed'
+                              : '#2d2270'
+                            : isDark
+                              ? 'rgba(255,255,255,0.08)'
+                              : 'rgba(0,0,0,0.04)',
                         boxShadow: 'none',
                       },
                     }}
@@ -571,20 +657,38 @@ export default function WebArticlesPage() {
                       borderRadius: '10px',
                       px: 2,
                       py: 0.6,
-                      backgroundColor: selectedSourceLang === 'ml'
-                        ? (isDark ? '#a6e2f5' : '#1c1445')
-                        : (isDark ? 'rgba(255,255,255,0.04)' : '#ffffff'),
-                      color: selectedSourceLang === 'ml'
-                        ? (isDark ? '#1c1445' : '#ffffff')
-                        : (isDark ? '#d0caeb' : '#5c548a'),
-                      borderColor: selectedSourceLang === 'ml'
-                        ? 'transparent'
-                        : (isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)'),
+                      backgroundColor:
+                        selectedSourceLang === 'ml'
+                          ? isDark
+                            ? '#a6e2f5'
+                            : '#1c1445'
+                          : isDark
+                            ? 'rgba(255,255,255,0.04)'
+                            : '#ffffff',
+                      color:
+                        selectedSourceLang === 'ml'
+                          ? isDark
+                            ? '#1c1445'
+                            : '#ffffff'
+                          : isDark
+                            ? '#d0caeb'
+                            : '#5c548a',
+                      borderColor:
+                        selectedSourceLang === 'ml'
+                          ? 'transparent'
+                          : isDark
+                            ? 'rgba(255,255,255,0.12)'
+                            : 'rgba(0,0,0,0.12)',
                       boxShadow: 'none',
                       '&:hover': {
-                        backgroundColor: selectedSourceLang === 'ml'
-                          ? (isDark ? '#8cd5ed' : '#2d2270')
-                          : (isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.04)'),
+                        backgroundColor:
+                          selectedSourceLang === 'ml'
+                            ? isDark
+                              ? '#8cd5ed'
+                              : '#2d2270'
+                            : isDark
+                              ? 'rgba(255,255,255,0.08)'
+                              : 'rgba(0,0,0,0.04)',
                         boxShadow: 'none',
                       },
                     }}
@@ -605,7 +709,9 @@ export default function WebArticlesPage() {
                   p: 2,
                   borderRadius: '16px',
                   backgroundColor: isDark ? 'rgba(38, 28, 86, 0.25)' : '#f8fafc',
-                  border: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.06)',
+                  border: isDark
+                    ? '1px solid rgba(255,255,255,0.06)'
+                    : '1px solid rgba(0,0,0,0.06)',
                 }}
               >
                 {/* Search */}
@@ -644,7 +750,10 @@ export default function WebArticlesPage() {
                 </TextField>
 
                 {/* Clear Filters */}
-                {(searchTerm || selectedCategory !== 'All' || selectedType !== 'All' || selectedStatus !== 'All') && (
+                {(searchTerm ||
+                  selectedCategory !== 'All' ||
+                  selectedType !== 'All' ||
+                  selectedStatus !== 'All') && (
                   <Button
                     size="small"
                     startIcon={<FilterListOff />}
@@ -676,12 +785,15 @@ export default function WebArticlesPage() {
                     border: '1px solid rgba(37, 99, 235, 0.3)',
                   }}
                 >
-                  <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1e3a8a' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1e3a8a' }}
+                  >
                     {t.bulkSelected(selectedPostIds.length)}
                   </Typography>
 
                   <Box sx={{ display: 'flex', gap: 1 }}>
-{/* Bulk Delete Hidden */}
+                    {/* Bulk Delete Hidden */}
                     <Button
                       size="small"
                       onClick={() => setSelectedPostIds([])}
@@ -704,7 +816,9 @@ export default function WebArticlesPage() {
                     px: 2,
                     borderRadius: '16px',
                     backgroundColor: isDark ? 'rgba(38, 28, 86, 0.2)' : '#f8fafc',
-                    border: isDark ? '1px dashed rgba(255,255,255,0.1)' : '1px dashed rgba(0,0,0,0.1)',
+                    border: isDark
+                      ? '1px dashed rgba(255,255,255,0.1)'
+                      : '1px dashed rgba(0,0,0,0.1)',
                   }}
                 >
                   <WebIcon sx={{ fontSize: 48, color: 'text.secondary', opacity: 0.5, mb: 1 }} />
@@ -717,7 +831,9 @@ export default function WebArticlesPage() {
                   sx={{
                     borderRadius: '16px',
                     overflow: 'hidden',
-                    border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                    border: isDark
+                      ? '1px solid rgba(255,255,255,0.08)'
+                      : '1px solid rgba(0,0,0,0.08)',
                     backgroundColor: isDark ? 'rgba(38, 28, 86, 0.25)' : '#ffffff',
                   }}
                 >
@@ -730,7 +846,9 @@ export default function WebArticlesPage() {
                       fontWeight: 700,
                       fontSize: '0.85rem',
                       color: isDark ? '#a5b4fc' : '#475569',
-                      borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                      borderBottom: isDark
+                        ? '1px solid rgba(255,255,255,0.08)'
+                        : '1px solid rgba(0,0,0,0.08)',
                       backgroundColor: isDark ? 'rgba(38, 28, 86, 0.4)' : '#f1f5f9',
                       alignItems: 'center',
                     }}
@@ -776,7 +894,9 @@ export default function WebArticlesPage() {
                           p: 1.5,
                           px: 2,
                           alignItems: 'center',
-                          borderBottom: isDark ? '1px solid rgba(255,255,255,0.05)' : '1px solid rgba(0,0,0,0.05)',
+                          borderBottom: isDark
+                            ? '1px solid rgba(255,255,255,0.05)'
+                            : '1px solid rgba(0,0,0,0.05)',
                           backgroundColor: isSelected
                             ? isDark
                               ? 'rgba(37, 99, 235, 0.15)'
@@ -805,28 +925,48 @@ export default function WebArticlesPage() {
                               height: 40,
                               objectFit: 'cover',
                               borderRadius: '6px',
-                              border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+                              border: isDark
+                                ? '1px solid rgba(255,255,255,0.1)'
+                                : '1px solid rgba(0,0,0,0.1)',
                             }}
                           />
                         </Grid>
                         <Grid item xs={2}>
-                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8, flexWrap: 'wrap' }}>
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 0.8,
+                              flexWrap: 'wrap',
+                            }}
+                          >
                             <Box
                               sx={{
                                 display: 'inline-block',
                                 px: 0.8,
                                 py: 0.2,
                                 borderRadius: '4px',
-                                bgcolor: (post.language === 'ml' || selectedSourceLang === 'ml') ? 'rgba(16, 185, 129, 0.15)' : 'rgba(59, 130, 246, 0.15)',
-                                color: (post.language === 'ml' || selectedSourceLang === 'ml') ? '#10b981' : '#3b82f6',
+                                bgcolor:
+                                  post.language === 'ml' || selectedSourceLang === 'ml'
+                                    ? 'rgba(16, 185, 129, 0.15)'
+                                    : 'rgba(59, 130, 246, 0.15)',
+                                color:
+                                  post.language === 'ml' || selectedSourceLang === 'ml'
+                                    ? '#10b981'
+                                    : '#3b82f6',
                                 fontSize: '0.68rem',
                                 fontWeight: 700,
                               }}
                             >
                               {(post.language || selectedSourceLang).toUpperCase()}
                             </Box>
-                            <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1e293b' }}>
-                              {Array.isArray(post.categories) ? post.categories.join(', ') : post.categoryName || 'General'}
+                            <Typography
+                              variant="body2"
+                              sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1e293b' }}
+                            >
+                              {Array.isArray(post.categories)
+                                ? post.categories.join(', ')
+                                : post.categoryName || 'General'}
                             </Typography>
                           </Box>
                         </Grid>
@@ -885,7 +1025,7 @@ export default function WebArticlesPage() {
                               <Edit fontSize="small" />
                             </IconButton>
                           </Tooltip>
-{/* Delete Action Hidden */}
+                          {/* Delete Action Hidden */}
                         </Grid>
                       </Grid>
                     );

@@ -58,9 +58,12 @@ export function useCricketController() {
     severity: 'success',
   });
 
-  const showSnackbar = useCallback((message: string, severity: 'success' | 'error' | 'info' = 'success') => {
-    setSnackbar({ open: true, message, severity });
-  }, []);
+  const showSnackbar = useCallback(
+    (message: string, severity: 'success' | 'error' | 'info' = 'success') => {
+      setSnackbar({ open: true, message, severity });
+    },
+    []
+  );
 
   const closeSnackbar = useCallback(() => {
     setSnackbar((prev) => ({ ...prev, open: false }));
@@ -124,7 +127,10 @@ export function useCricketController() {
         )
       );
 
-      if (scorecardModalMatch && (scorecardModalMatch.matchId === matchId || scorecardModalMatch.id === matchId)) {
+      if (
+        scorecardModalMatch &&
+        (scorecardModalMatch.matchId === matchId || scorecardModalMatch.id === matchId)
+      ) {
         setScorecardModalMatch((prev) =>
           prev
             ? {
@@ -162,7 +168,14 @@ export function useCricketController() {
         setTogglingMatchId(null);
       }
     },
-    [fetchMatches, scorecardModalMatch, showSnackbar, t.toastPublishSuccess, t.toastStatusError, t.toastUnpublishSuccess]
+    [
+      fetchMatches,
+      scorecardModalMatch,
+      showSnackbar,
+      t.toastPublishSuccess,
+      t.toastStatusError,
+      t.toastUnpublishSuccess,
+    ]
   );
 
   // Handle Bulk Publish / Unpublish
@@ -172,7 +185,10 @@ export function useCricketController() {
       setIsLoading(true);
       try {
         const res = await CricketRepository.bulkPublish(selectedMatchIds, publish);
-        showSnackbar(`${t.toastBulkSuccess} (${res.data?.updatedCount || selectedMatchIds.length})`, 'success');
+        showSnackbar(
+          `${t.toastBulkSuccess} (${res.data?.updatedCount || selectedMatchIds.length})`,
+          'success'
+        );
         setSelectedMatchIds([]);
         await fetchMatches();
       } catch {

@@ -86,7 +86,8 @@ export const StreakActionDialog: React.FC<StreakActionDialogProps> = ({
 
       <DialogContent sx={{ mt: 2, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
         <Typography variant="body2" sx={{ color: colorLabel }}>
-          Player: <strong style={{ color: colorText }}>{request.playerId}</strong> ({request.gameId})
+          Player: <strong style={{ color: colorText }}>{request.playerId}</strong> ({request.gameId}
+          )
         </Typography>
         <Typography variant="body2" sx={{ color: colorLabel }}>
           Missed Days: <strong style={{ color: colorText }}>{request.gapDays}</strong>
@@ -110,7 +111,9 @@ export const StreakActionDialog: React.FC<StreakActionDialogProps> = ({
               borderRadius: '10px',
               backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#ffffff',
               '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)' },
-              '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)' },
+              '&:hover fieldset': {
+                borderColor: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+              },
               '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#2563eb' },
             },
           }}
@@ -118,7 +121,10 @@ export const StreakActionDialog: React.FC<StreakActionDialogProps> = ({
       </DialogContent>
 
       <DialogActions
-        sx={{ p: 2, borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)' }}
+        sx={{
+          p: 2,
+          borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+        }}
       >
         <Button
           onClick={onClose}
@@ -143,7 +149,13 @@ export const StreakActionDialog: React.FC<StreakActionDialogProps> = ({
             fontWeight: 600,
           }}
         >
-          {loading ? <CircularProgress size={22} /> : actionType === 'approve' ? 'Confirm Approval' : 'Confirm Rejection'}
+          {loading ? (
+            <CircularProgress size={22} />
+          ) : actionType === 'approve' ? (
+            'Confirm Approval'
+          ) : (
+            'Confirm Rejection'
+          )}
         </Button>
       </DialogActions>
     </Dialog>

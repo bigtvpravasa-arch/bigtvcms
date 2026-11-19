@@ -12,7 +12,9 @@ import { reportersRepository } from '../repositories/reporters.repository';
 export type { Reporter, ReporterLanguage, ReporterLanguageCode, SegregatedReporters };
 
 export const useReporterController = (initialLanguage?: ReporterLanguageCode) => {
-  const [selectedLanguage, setSelectedLanguage] = useState<ReporterLanguageCode>(initialLanguage || 'te');
+  const [selectedLanguage, setSelectedLanguage] = useState<ReporterLanguageCode>(
+    initialLanguage || 'te'
+  );
   const [data, setData] = useState<Reporter[]>([]);
   const [segregatedData, setSegregatedData] = useState<SegregatedReporters>({
     te: [],
@@ -31,24 +33,27 @@ export const useReporterController = (initialLanguage?: ReporterLanguageCode) =>
   const [isEditMode, setIsEditMode] = useState(false);
   const [selectedReporter, setSelectedReporter] = useState<Reporter | null>(null);
 
-  const fetchReporters = useCallback(async (lang: ReporterLanguageCode = selectedLanguage) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const [fetchedList, segregated] = await Promise.all([
-        reportersRepository.getReporters(lang),
-        reportersRepository.getSegregatedReporters().catch(() => ({ te: [], en: [], ml: [] })),
-      ]);
+  const fetchReporters = useCallback(
+    async (lang: ReporterLanguageCode = selectedLanguage) => {
+      setLoading(true);
+      setError(null);
+      try {
+        const [fetchedList, segregated] = await Promise.all([
+          reportersRepository.getReporters(lang),
+          reportersRepository.getSegregatedReporters().catch(() => ({ te: [], en: [], ml: [] })),
+        ]);
 
-      setData(fetchedList || []);
-      setSegregatedData(segregated || { te: [], en: [], ml: [] });
-    } catch (err: any) {
-      console.error(err);
-      setError(err.message || 'Failed to load reporters');
-    } finally {
-      setLoading(false);
-    }
-  }, [selectedLanguage]);
+        setData(fetchedList || []);
+        setSegregatedData(segregated || { te: [], en: [], ml: [] });
+      } catch (err: any) {
+        console.error(err);
+        setError(err.message || 'Failed to load reporters');
+      } finally {
+        setLoading(false);
+      }
+    },
+    [selectedLanguage]
+  );
 
   useEffect(() => {
     fetchReporters(selectedLanguage);

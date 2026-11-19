@@ -1,7 +1,9 @@
 import { z } from 'zod';
 
 export function createLocationSchema(activeLanguages: string[] = ['en', 'te', 'hi', 'ml']) {
-  const activeSet = new Set(activeLanguages && activeLanguages.length > 0 ? activeLanguages : ['en', 'te', 'hi', 'ml']);
+  const activeSet = new Set(
+    activeLanguages && activeLanguages.length > 0 ? activeLanguages : ['en', 'te', 'hi', 'ml']
+  );
 
   return z.object({
     stateEn: activeSet.has('en')

@@ -81,7 +81,10 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
           },
         });
       } catch (putErr: any) {
-        console.warn('Direct PUT upload returned warning/CORS notice, proceeding with file_url:', putErr);
+        console.warn(
+          'Direct PUT upload returned warning/CORS notice, proceeding with file_url:',
+          putErr
+        );
       }
 
       setUploadProgress(100);
@@ -107,7 +110,17 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
 
   return (
     <Box>
-      <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600, mb: 1, display: 'flex', alignItems: 'center', gap: 0.8 }}>
+      <Typography
+        variant="body2"
+        sx={{
+          color: isDark ? '#d0caeb' : '#5c548a',
+          fontWeight: 600,
+          mb: 1,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 0.8,
+        }}
+      >
         <ImageIcon sx={{ fontSize: '1.1rem' }} /> {label}
       </Typography>
 
@@ -159,7 +172,10 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
         </Box>
       ) : (
         <Box
-          onDragOver={(e) => { e.preventDefault(); setIsDragOver(true); }}
+          onDragOver={(e) => {
+            e.preventDefault();
+            setIsDragOver(true);
+          }}
           onDragLeave={() => setIsDragOver(false)}
           onDrop={handleDrop}
           onClick={() => {
@@ -171,13 +187,15 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
             border: isDragOver
               ? '2px dashed #3b82f6'
               : isDark
-              ? '2px dashed rgba(166,226,245,0.25)'
-              : '2px dashed rgba(28,20,69,0.2)',
+                ? '2px dashed rgba(166,226,245,0.25)'
+                : '2px dashed rgba(28,20,69,0.2)',
             backgroundColor: isDragOver
-              ? (isDark ? 'rgba(59,130,246,0.15)' : 'rgba(59,130,246,0.08)')
+              ? isDark
+                ? 'rgba(59,130,246,0.15)'
+                : 'rgba(59,130,246,0.08)'
               : isDark
-              ? 'rgba(255,255,255,0.03)'
-              : '#f8fafc',
+                ? 'rgba(255,255,255,0.03)'
+                : '#f8fafc',
             textAlign: 'center',
             cursor: disabled || isUploading ? 'default' : 'pointer',
             transition: 'all 0.2s ease',
@@ -189,18 +207,38 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
         >
           {isUploading ? (
             <Box sx={{ width: '100%' }}>
-              <Typography variant="caption" sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600, display: 'block', mb: 1 }}>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: isDark ? '#a6e2f5' : '#1c1445',
+                  fontWeight: 600,
+                  display: 'block',
+                  mb: 1,
+                }}
+              >
                 Uploading image to R2 Storage ({uploadProgress}%)...
               </Typography>
-              <LinearProgress variant="determinate" value={uploadProgress} sx={{ borderRadius: '4px', height: '6px' }} />
+              <LinearProgress
+                variant="determinate"
+                value={uploadProgress}
+                sx={{ borderRadius: '4px', height: '6px' }}
+              />
             </Box>
           ) : (
             <>
-              <CloudUpload sx={{ fontSize: '2.2rem', color: isDark ? '#a6e2f5' : '#1c1445', mb: 0.5 }} />
-              <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}>
+              <CloudUpload
+                sx={{ fontSize: '2.2rem', color: isDark ? '#a6e2f5' : '#1c1445', mb: 0.5 }}
+              />
+              <Typography
+                variant="body2"
+                sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#1c1445' }}
+              >
                 Drag & drop {label.toLowerCase()} or click to browse
               </Typography>
-              <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', display: 'block', mt: 0.5 }}>
+              <Typography
+                variant="caption"
+                sx={{ color: isDark ? '#d0caeb' : '#9e9e9e', display: 'block', mt: 0.5 }}
+              >
                 Supports JPG, PNG, WebP
               </Typography>
             </>

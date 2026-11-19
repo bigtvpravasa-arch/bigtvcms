@@ -9,11 +9,7 @@ interface GridProps extends DataGridProps {
 export const DataGrid: React.FC<GridProps> = ({ wrapperHeight = 500, ...props }) => {
   return (
     <Box sx={{ height: wrapperHeight, width: '100%' }} component={Paper} elevation={1}>
-      <MuiDataGrid
-        disableRowSelectionOnClick
-        density="comfortable"
-        {...props}
-      />
+      <MuiDataGrid disableRowSelectionOnClick density="comfortable" {...props} />
     </Box>
   );
 };

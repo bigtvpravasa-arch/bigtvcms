@@ -2,14 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import {
-  Box,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  CardActionArea,
-} from '@mui/material';
+import { Box, Typography, Grid, Card, CardContent, CardActionArea } from '@mui/material';
 import {
   Tune,
   AutoAwesome,
@@ -82,7 +75,9 @@ export default function AppConfigPage() {
   const isDark = mode === 'dark';
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', backgroundColor: isDark ? '#140e30' : '#f8fafc' }}>
+    <Box
+      sx={{ display: 'flex', minHeight: '100vh', backgroundColor: isDark ? '#140e30' : '#f8fafc' }}
+    >
       <Sidebar activeHref="/app-config" />
 
       <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
@@ -119,11 +114,18 @@ export default function AppConfigPage() {
                 <Tune sx={{ fontSize: 30 }} />
               </Box>
               <Box>
-                <Typography variant="h5" sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445' }}>
+                <Typography
+                  variant="h5"
+                  sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445' }}
+                >
                   App Config & Master Data
                 </Typography>
-                <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#64748b', mt: 0.25 }}>
-                  Centralized settings for AI tags, taxonomy categories, locations, languages, post types, creators, and Telugu TTS.
+                <Typography
+                  variant="body2"
+                  sx={{ color: isDark ? '#d0caeb' : '#64748b', mt: 0.25 }}
+                >
+                  Centralized settings for AI tags, taxonomy categories, locations, languages, post
+                  types, creators, and Telugu TTS.
                 </Typography>
               </Box>
             </Box>
@@ -139,16 +141,29 @@ export default function AppConfigPage() {
                       height: '100%',
                       borderRadius: '16px',
                       backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
-                      border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                      border: isDark
+                        ? '1px solid rgba(255,255,255,0.08)'
+                        : '1px solid rgba(0,0,0,0.08)',
                       transition: 'all 0.25s ease',
                       '&:hover': {
                         transform: 'translateY(-4px)',
-                        boxShadow: isDark ? '0 12px 28px rgba(0,0,0,0.4)' : '0 10px 24px rgba(0,0,0,0.08)',
+                        boxShadow: isDark
+                          ? '0 12px 28px rgba(0,0,0,0.4)'
+                          : '0 10px 24px rgba(0,0,0,0.08)',
                         borderColor: item.color,
                       },
                     }}
                   >
-                    <CardActionArea sx={{ p: 2.5, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+                    <CardActionArea
+                      sx={{
+                        p: 2.5,
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'flex-start',
+                        justifyContent: 'space-between',
+                      }}
+                    >
                       <Box sx={{ width: '100%' }}>
                         <Box
                           sx={{
@@ -165,15 +180,31 @@ export default function AppConfigPage() {
                         >
                           {item.icon}
                         </Box>
-                        <Typography variant="h6" sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445', mb: 1 }}>
+                        <Typography
+                          variant="h6"
+                          sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445', mb: 1 }}
+                        >
                           {item.title}
                         </Typography>
-                        <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#64748b', lineHeight: 1.6 }}>
+                        <Typography
+                          variant="body2"
+                          sx={{ color: isDark ? '#d0caeb' : '#64748b', lineHeight: 1.6 }}
+                        >
                           {item.description}
                         </Typography>
                       </Box>
 
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 2.5, color: item.color, fontWeight: 700, fontSize: '0.85rem' }}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 1,
+                          mt: 2.5,
+                          color: item.color,
+                          fontWeight: 700,
+                          fontSize: '0.85rem',
+                        }}
+                      >
                         Configure <ArrowForward fontSize="small" />
                       </Box>
                     </CardActionArea>

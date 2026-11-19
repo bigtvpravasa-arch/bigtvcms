@@ -67,15 +67,11 @@ describe('UploadService', () => {
 
     const result = await UploadService.uploadImage(mockFile);
 
-    expect(axios.put).toHaveBeenCalledWith(
-      '/s3-proxy/bigtv-cms/test.png?param=1',
-      mockFile,
-      {
-        headers: {
-          'Content-Type': 'image/png',
-        },
-      }
-    );
+    expect(axios.put).toHaveBeenCalledWith('/s3-proxy/bigtv-cms/test.png?param=1', mockFile, {
+      headers: {
+        'Content-Type': 'image/png',
+      },
+    });
     expect(result).toBe('https://s3.ap-south-1.amazonaws.com/bigtv-cms/test.png');
     delete (window as any).__MOCK_LOCAL_PROXY__;
   });
@@ -95,15 +91,11 @@ describe('UploadService', () => {
 
     await UploadService.uploadImage(mockFile);
 
-    expect(axios.put).toHaveBeenCalledWith(
-      'not-a-valid-url',
-      mockFile,
-      {
-        headers: {
-          'Content-Type': 'image/png',
-        },
-      }
-    );
+    expect(axios.put).toHaveBeenCalledWith('not-a-valid-url', mockFile, {
+      headers: {
+        'Content-Type': 'image/png',
+      },
+    });
     expect(consoleErrorSpy).toHaveBeenCalled();
     consoleErrorSpy.mockRestore();
     delete (window as any).__MOCK_LOCAL_PROXY__;

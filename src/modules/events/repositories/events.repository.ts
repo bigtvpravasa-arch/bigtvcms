@@ -28,13 +28,14 @@ const initialMockEvents: EventItem[] = [
     id: 'e4d962de-5393-4541-a792-4c23f1429f9c',
     name: 'BIGTV Folk Night 2026',
     code: 'Bigtv-2026',
-    description: 'ASIA`S BIGGEST FOLK NIGHT EVENT — Experience a grand celebration of Telugu folk music, Telangana culture, traditional songs, and live entertainment at BIG TV Folk Night 2026 at Boulder Hills Golf Club, Gachibowli, Hyderabad.',
+    description:
+      'ASIA`S BIGGEST FOLK NIGHT EVENT — Experience a grand celebration of Telugu folk music, Telangana culture, traditional songs, and live entertainment at BIG TV Folk Night 2026 at Boulder Hills Golf Club, Gachibowli, Hyderabad.',
     type: 'Concert',
     images: [
       'https://i.ibb.co/bRbkYdyY/folknight4.png',
       'https://i.ibb.co/7tSv7RBb/folknight3.png',
       'https://i.ibb.co/w1PX2vg/folknight2.png',
-      'https://i.ibb.co/F4nHC5Db/folknight1.png'
+      'https://i.ibb.co/F4nHC5Db/folknight1.png',
     ],
     date: '2026-12-12T18:00:00.000Z',
     endDate: '2026-12-12T23:00:00.000Z',
@@ -234,7 +235,13 @@ let localAppConfigStore: AppConfigItem = {
 
 export const eventsRepository = {
   // --- Events ---
-  async getEvents(search?: string, city?: string, status?: string, page: number = 1, limit: number = 10): Promise<EventItem[]> {
+  async getEvents(
+    search?: string,
+    city?: string,
+    status?: string,
+    page: number = 1,
+    limit: number = 10
+  ): Promise<EventItem[]> {
     try {
       const params: any = { page, limit };
       if (search) params.search = search;
@@ -336,7 +343,11 @@ export const eventsRepository = {
 
     const index = localEventsStore.findIndex((e) => e.id === id);
     if (index !== -1) {
-      localEventsStore[index] = { ...localEventsStore[index], ...input, updatedAt: new Date().toISOString() };
+      localEventsStore[index] = {
+        ...localEventsStore[index],
+        ...input,
+        updatedAt: new Date().toISOString(),
+      };
       return localEventsStore[index];
     }
     throw new Error('Event not found');
@@ -361,7 +372,10 @@ export const eventsRepository = {
 
   // --- Ticket Types ---
   async getTicketTypes(eventId?: string): Promise<TicketTypeItem[]> {
-    const targetId = eventId && eventId !== 'ALL' ? eventId : (localEventsStore[0]?.id || 'e4d962de-5393-4541-a792-4c23f1429f9c');
+    const targetId =
+      eventId && eventId !== 'ALL'
+        ? eventId
+        : localEventsStore[0]?.id || 'e4d962de-5393-4541-a792-4c23f1429f9c';
     try {
       const res: any = await client.get(`/events/${targetId}/ticket-types`);
       if (res && res.data && Array.isArray(res.data)) {
@@ -402,7 +416,10 @@ export const eventsRepository = {
     return newTicket;
   },
 
-  async updateTicketType(id: string, input: Partial<CreateTicketTypeInput>): Promise<TicketTypeItem> {
+  async updateTicketType(
+    id: string,
+    input: Partial<CreateTicketTypeInput>
+  ): Promise<TicketTypeItem> {
     const payload = { ...input };
     delete (payload as any).language;
     try {
@@ -434,7 +451,8 @@ export const eventsRepository = {
 
   async toggleTicketStatus(id: string, currentStatus?: boolean): Promise<TicketTypeItem> {
     const ticket = localTicketsStore.find((t) => t.id === id);
-    const newStatus = typeof currentStatus === 'boolean' ? !currentStatus : (ticket ? !ticket.isActive : true);
+    const newStatus =
+      typeof currentStatus === 'boolean' ? !currentStatus : ticket ? !ticket.isActive : true;
     try {
       const res: any = await client.patch(`/ticket-types/${id}/status`, { isActive: newStatus });
       if (res && res.data) return res.data;
@@ -534,7 +552,8 @@ export const eventsRepository = {
 
   async toggleCouponStatus(id: string, currentIsActive?: boolean): Promise<CouponItem> {
     const coupon = localCouponsStore.find((c) => c.id === id);
-    const newStatus = typeof currentIsActive === 'boolean' ? !currentIsActive : (coupon ? !coupon.isActive : false);
+    const newStatus =
+      typeof currentIsActive === 'boolean' ? !currentIsActive : coupon ? !coupon.isActive : false;
     try {
       let res: any;
       try {
@@ -629,18 +648,20 @@ export const eventsRepository = {
         limit: params?.limit || 20,
       };
       if (params?.eventId && params.eventId !== 'ALL') queryParams.eventId = params.eventId;
-      if (params?.bookingStatus && params.bookingStatus !== 'ALL') queryParams.bookingStatus = params.bookingStatus;
-      if (params?.paymentStatus && params.paymentStatus !== 'ALL') queryParams.paymentStatus = params.paymentStatus;
+      if (params?.bookingStatus && params.bookingStatus !== 'ALL')
+        queryParams.bookingStatus = params.bookingStatus;
+      if (params?.paymentStatus && params.paymentStatus !== 'ALL')
+        queryParams.paymentStatus = params.paymentStatus;
       if (params?.search) queryParams.search = params.search;
 
       const res: any = await client.get('/bookings', { params: queryParams });
       const rawList = Array.isArray(res?.data)
         ? res.data
         : Array.isArray(res?.data?.data)
-        ? res.data.data
-        : Array.isArray(res)
-        ? res
-        : [];
+          ? res.data.data
+          : Array.isArray(res)
+            ? res
+            : [];
       if (rawList.length > 0) {
         return { data: rawList, total: res?.data?.total || rawList.length };
       }
@@ -771,7 +792,9 @@ export const eventsRepository = {
       if (err.response?.data) return err.response.data;
     }
 
-    const booking = localBookingsStore.find((b) => b.bookingCode.toUpperCase() === bookingCode.toUpperCase());
+    const booking = localBookingsStore.find(
+      (b) => b.bookingCode.toUpperCase() === bookingCode.toUpperCase()
+    );
     if (!booking) {
       return {
         isValid: false,
@@ -841,9 +864,15 @@ export const eventsRepository = {
       if (res?.data) return res.data;
     } catch {}
 
-    const confirmed = localBookingsStore.filter((b) => b.bookingStatus === 'CONFIRMED' || b.bookingStatus === 'COMPLETED');
-    const failed = localBookingsStore.filter((b) => b.paymentStatus === 'FAILED' || b.bookingStatus === 'CANCELLED');
-    const pending = localBookingsStore.filter((b) => b.bookingStatus === 'PENDING' && b.paymentStatus !== 'FAILED');
+    const confirmed = localBookingsStore.filter(
+      (b) => b.bookingStatus === 'CONFIRMED' || b.bookingStatus === 'COMPLETED'
+    );
+    const failed = localBookingsStore.filter(
+      (b) => b.paymentStatus === 'FAILED' || b.bookingStatus === 'CANCELLED'
+    );
+    const pending = localBookingsStore.filter(
+      (b) => b.bookingStatus === 'PENDING' && b.paymentStatus !== 'FAILED'
+    );
     const totalRev = confirmed.reduce((acc, b) => acc + (b.totalAmount || 0), 0);
     const failedRev = failed.reduce((acc, b) => acc + (b.totalAmount || 0), 0);
     const bookedTickets = confirmed.reduce((acc, b) => acc + (b.quantity || 0), 0);
@@ -941,7 +970,9 @@ export const eventsRepository = {
     };
   },
 
-  async syncInventory(eventId: string = FOLK_NIGHT_EVENT_ID): Promise<{ success: boolean; message: string }> {
+  async syncInventory(
+    eventId: string = FOLK_NIGHT_EVENT_ID
+  ): Promise<{ success: boolean; message: string }> {
     try {
       const res: any = await client.post('/bookings/admin/sync-inventory');
       if (res?.data) return res.data.data || res.data;
@@ -952,7 +983,8 @@ export const eventsRepository = {
     } catch {}
     return {
       success: true,
-      message: 'Event seat and ticket tier inventory synchronized successfully with confirmed bookings.',
+      message:
+        'Event seat and ticket tier inventory synchronized successfully with confirmed bookings.',
     };
   },
 };

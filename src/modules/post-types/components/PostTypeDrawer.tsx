@@ -57,10 +57,14 @@ export const PostTypeDrawer: React.FC<PostTypeDrawerProps> = ({
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <Article sx={{ color: isDark ? '#93c5fd' : '#2563eb', fontSize: 28 }} />
           <Typography variant="h6" sx={{ fontWeight: 700 }}>
-            {isEditMode ? t.editPostType ?? 'Edit Post Type' : t.addPostType ?? 'Add Post Type'}
+            {isEditMode ? (t.editPostType ?? 'Edit Post Type') : (t.addPostType ?? 'Add Post Type')}
           </Typography>
         </Box>
-        <IconButton onClick={onClose} aria-label="close drawer" sx={{ color: isDark ? '#a098ae' : '#666666' }}>
+        <IconButton
+          onClick={onClose}
+          aria-label="close drawer"
+          sx={{ color: isDark ? '#a098ae' : '#666666' }}
+        >
           <Close />
         </IconButton>
       </Box>
@@ -68,7 +72,11 @@ export const PostTypeDrawer: React.FC<PostTypeDrawerProps> = ({
       <Divider sx={{ mb: 3, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }} />
 
       {/* Form */}
-      <Box component="form" onSubmit={onSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, flex: 1 }}>
+      <Box
+        component="form"
+        onSubmit={onSubmit}
+        sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, flex: 1 }}
+      >
         {/* Type Name */}
         <TextField
           label={t.colTypename ?? 'Type Name'}
@@ -115,8 +123,12 @@ export const PostTypeDrawer: React.FC<PostTypeDrawerProps> = ({
             border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.15)',
           }}
         >
-          <Typography variant="body2" sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#111111' }}>
-            {t.colStatus ?? 'Status'} ({form.typeStatus ? t.active ?? 'Active' : t.inactive ?? 'Inactive'})
+          <Typography
+            variant="body2"
+            sx={{ fontWeight: 600, color: isDark ? '#ffffff' : '#111111' }}
+          >
+            {t.colStatus ?? 'Status'} (
+            {form.typeStatus ? (t.active ?? 'Active') : (t.inactive ?? 'Inactive')})
           </Typography>
           <Switch
             checked={form.typeStatus}
@@ -165,7 +177,7 @@ export const PostTypeDrawer: React.FC<PostTypeDrawerProps> = ({
               },
             }}
           >
-            {isEditMode ? t.update ?? 'Update' : t.save ?? 'Save'}
+            {isEditMode ? (t.update ?? 'Update') : (t.save ?? 'Save')}
           </Button>
         </Box>
       </Box>

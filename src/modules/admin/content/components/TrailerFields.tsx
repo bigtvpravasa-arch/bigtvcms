@@ -18,7 +18,11 @@ export const TrailerFields: React.FC<TrailerFieldsProps> = ({
   onUploadStateChange,
   parentOptions = [],
 }) => {
-  const { control, formState: { errors }, setValue } = form;
+  const {
+    control,
+    formState: { errors },
+    setValue,
+  } = form;
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>

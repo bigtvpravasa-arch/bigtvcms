@@ -45,7 +45,10 @@ describe('useMoviesController', () => {
     (MoviesRepository.add as jest.Mock).mockResolvedValue({ ...mockMovies[0], id: 3, movieId: 3 });
     (MoviesRepository.update as jest.Mock).mockResolvedValue(mockMovies[0]);
     (MoviesRepository.delete as jest.Mock).mockResolvedValue(true);
-    (MoviesRepository.togglePublish as jest.Mock).mockResolvedValue({ ...mockMovies[0], isPublished: false });
+    (MoviesRepository.togglePublish as jest.Mock).mockResolvedValue({
+      ...mockMovies[0],
+      isPublished: false,
+    });
   });
 
   it('should fetch and set movies list on mount', async () => {
@@ -105,9 +108,7 @@ describe('useMoviesController', () => {
       await result.current.handleSubmit();
     });
 
-    expect(MoviesRepository.add).toHaveBeenCalledWith(
-      expect.objectContaining({ title: 'Devara' })
-    );
+    expect(MoviesRepository.add).toHaveBeenCalledWith(expect.objectContaining({ title: 'Devara' }));
   });
 
   it('should validate title requirement on submit', async () => {

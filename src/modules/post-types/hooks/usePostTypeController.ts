@@ -48,11 +48,7 @@ export function usePostTypeController() {
     return rows.filter((r) => {
       const matchName = r.typename.toLowerCase().includes(filterName.toLowerCase());
       const matchStatus =
-        filterStatus === 'all'
-          ? true
-          : filterStatus === 'active'
-          ? r.typeStatus
-          : !r.typeStatus;
+        filterStatus === 'all' ? true : filterStatus === 'active' ? r.typeStatus : !r.typeStatus;
       return matchName && matchStatus;
     });
   }, [rows, filterName, filterStatus]);
@@ -72,9 +68,7 @@ export function usePostTypeController() {
 
     const newStatus = !item.typeStatus;
     // Optimistically update status
-    setRows((prev) =>
-      prev.map((r) => (r.typeId === id ? { ...r, typeStatus: newStatus } : r))
-    );
+    setRows((prev) => prev.map((r) => (r.typeId === id ? { ...r, typeStatus: newStatus } : r)));
 
     try {
       await PostTypeRepository.update(id, {
@@ -84,9 +78,7 @@ export function usePostTypeController() {
     } catch (error) {
       console.error('Failed to toggle post type status:', error);
       // Revert on failure
-      setRows((prev) =>
-        prev.map((r) => (r.typeId === id ? { ...r, typeStatus: !newStatus } : r))
-      );
+      setRows((prev) => prev.map((r) => (r.typeId === id ? { ...r, typeStatus: !newStatus } : r)));
     }
   };
 
@@ -161,9 +153,7 @@ export function usePostTypeController() {
           typeStatus: form.typeStatus,
         });
         const updatedItem = PostTypeMapper.toDomain(responseDto);
-        setRows((prev) =>
-          prev.map((r) => (r.typeId === editingId ? updatedItem : r))
-        );
+        setRows((prev) => prev.map((r) => (r.typeId === editingId ? updatedItem : r)));
       } else {
         const responseDto = await PostTypeRepository.create({
           typename: form.typename,

@@ -9,7 +9,9 @@ export function extractYouTubeVideoId(url: string): string {
   if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) {
     return trimmed;
   }
-  const match = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/);
+  const match = trimmed.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/
+  );
   return match ? match[1] : '';
 }
 
@@ -126,24 +128,45 @@ export function useReelsController() {
             : item.duration || '0:30';
 
           const parsedId = typeof item.id === 'number' ? item.id : parseInt(String(item.id), 10);
-          const reelId = isNaN(parsedId) || parsedId === 0 ? Math.floor(Math.random() * 10000) : parsedId;
+          const reelId =
+            isNaN(parsedId) || parsedId === 0 ? Math.floor(Math.random() * 10000) : parsedId;
           const titleText = item.title || item.postName || 'Untitled Video';
 
-          const rawVidId = item.video_id || (item.videoUrl ? extractYouTubeVideoId(item.videoUrl) : item.video_url ? extractYouTubeVideoId(item.video_url) : '');
-          const rawVidUrl = item.videoUrl || item.video_url || item.url || item.postUrl || (rawVidId ? `https://www.youtube.com/watch?v=${rawVidId}` : '');
+          const rawVidId =
+            item.video_id ||
+            (item.videoUrl
+              ? extractYouTubeVideoId(item.videoUrl)
+              : item.video_url
+                ? extractYouTubeVideoId(item.video_url)
+                : '');
+          const rawVidUrl =
+            item.videoUrl ||
+            item.video_url ||
+            item.url ||
+            item.postUrl ||
+            (rawVidId ? `https://www.youtube.com/watch?v=${rawVidId}` : '');
           const itemLang = item.lang || item.language_code || filterLang || 'te';
 
           return {
             reelId,
             reelTitle: titleText,
             duration: formattedDuration,
-            views: item.likes !== undefined ? String(item.likes) : item.view_count !== undefined ? String(item.view_count) : String(item.totalViews || 0),
+            views:
+              item.likes !== undefined
+                ? String(item.likes)
+                : item.view_count !== undefined
+                  ? String(item.view_count)
+                  : String(item.totalViews || 0),
             isPublished: item.isPublish !== undefined ? Boolean(item.isPublish) : false,
             titleEn: titleText,
             titleTe: titleText,
             titleHi: titleText,
             titleMl: titleText,
-            imageUrl: item.thumbnailUrl || item.thumbnail_url || item.image_url || (rawVidId ? `https://i.ytimg.com/vi/${rawVidId}/maxresdefault.jpg` : undefined),
+            imageUrl:
+              item.thumbnailUrl ||
+              item.thumbnail_url ||
+              item.image_url ||
+              (rawVidId ? `https://i.ytimg.com/vi/${rawVidId}/maxresdefault.jpg` : undefined),
             videoId: rawVidId,
             videoUrl: rawVidUrl,
             channelTitle: item.publisher || item.channel_title,
@@ -177,7 +200,12 @@ export function useReelsController() {
     lang: string = 'te'
   ) => {
     try {
-      const res = await ReelsService.syncYouTubeChannel({ channelId, maxResults, lang, syncInBackground: true });
+      const res = await ReelsService.syncYouTubeChannel({
+        channelId,
+        maxResults,
+        lang,
+        syncInBackground: true,
+      });
       if (res && res.message) {
         setSyncMessage(res.message);
       } else {
@@ -213,18 +241,14 @@ export function useReelsController() {
     const newPublishState = !targetReel.isPublished;
 
     setRows((prev) =>
-      prev.map((r) =>
-        r.reelId === id ? { ...r, isPublished: newPublishState } : r
-      )
+      prev.map((r) => (r.reelId === id ? { ...r, isPublished: newPublishState } : r))
     );
 
     try {
       await ReelsService.updatePublishStatus(id, newPublishState);
     } catch {
       setRows((prev) =>
-        prev.map((r) =>
-          r.reelId === id ? { ...r, isPublished: !newPublishState } : r
-        )
+        prev.map((r) => (r.reelId === id ? { ...r, isPublished: !newPublishState } : r))
       );
     }
   };
@@ -320,8 +344,12 @@ export function useReelsController() {
     }
 
     const derivedVidId = submitForm.videoId || extractYouTubeVideoId(submitForm.videoUrl);
-    const derivedVidUrl = submitForm.videoUrl || (derivedVidId ? `https://www.youtube.com/watch?v=${derivedVidId}` : '');
-    const derivedThumbnail = uploadedImage || (derivedVidId ? `https://i.ytimg.com/vi/${derivedVidId}/maxresdefault.jpg` : '');
+    const derivedVidUrl =
+      submitForm.videoUrl ||
+      (derivedVidId ? `https://www.youtube.com/watch?v=${derivedVidId}` : '');
+    const derivedThumbnail =
+      uploadedImage ||
+      (derivedVidId ? `https://i.ytimg.com/vi/${derivedVidId}/maxresdefault.jpg` : '');
     const selectedLang = submitForm.lang || filterLang || 'te';
 
     const payload: CreateYouTubeVideoPayload = {

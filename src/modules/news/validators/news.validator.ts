@@ -1,19 +1,37 @@
 import { z } from 'zod';
-import { extractBulletPoints, formatBulletPostContentAndBullets } from '@/shared/utils/bullet.utils';
+import {
+  extractBulletPoints,
+  formatBulletPostContentAndBullets,
+} from '@/shared/utils/bullet.utils';
 import { formatLinks, formatLinksAndContent } from '@/shared/utils/link.utils';
 import { stripAllTagsExceptLinkTags, stripHtml } from '@/shared/utils/html.utils';
 
 export const commonNewsPostSchema = z.object({
   title: z.string({ required_error: 'Title is required' }).trim().min(1, 'Title is required'),
-  notificationtitle: z.string({ required_error: 'Notification title is required' }).trim().min(1, 'Notification title is required'),
-  imagetitel: z.string({ required_error: 'Image title is required' }).trim().min(1, 'Image title is required'),
+  notificationtitle: z
+    .string({ required_error: 'Notification title is required' })
+    .trim()
+    .min(1, 'Notification title is required'),
+  imagetitel: z
+    .string({ required_error: 'Image title is required' })
+    .trim()
+    .min(1, 'Image title is required'),
   content: z.string({ required_error: 'Content is required' }).trim().min(1, 'Content is required'),
-  image_url: z.string({ required_error: 'Image URL is required' }).trim().min(1, 'Image URL is required'),
+  image_url: z
+    .string({ required_error: 'Image URL is required' })
+    .trim()
+    .min(1, 'Image URL is required'),
   categoryName: z.array(z.string().trim()).optional().default([]),
   language_id: z
-    .number({ required_error: 'Language ID is required', invalid_type_error: 'Language ID must be a number' })
+    .number({
+      required_error: 'Language ID is required',
+      invalid_type_error: 'Language ID must be a number',
+    })
     .positive('Language ID must be a positive integer'),
-  language_code: z.string({ required_error: 'Language code is required' }).trim().min(1, 'Language code is required'),
+  language_code: z
+    .string({ required_error: 'Language code is required' })
+    .trim()
+    .min(1, 'Language code is required'),
   category_ids: z.array(z.number().positive()).optional().default([]),
   type: z.string({ required_error: 'Type is required' }).trim().min(1, 'Type is required'),
   subType: z.string().default(''),
@@ -49,291 +67,327 @@ export const commonNewsPostSchema = z.object({
   aitag_ids: z.array(z.number()).optional().default([]),
 });
 
-export const createNewsPostSchema = z.preprocess((val: any) => {
-  if (!val || typeof val !== 'object') return val;
-  const input = { ...val };
-  if (!input.post_type && input.type) input.post_type = input.type;
-  if (!input.type && input.post_type) input.type = input.post_type;
-  if (input.language_id === undefined && input.languageId !== undefined) input.language_id = input.languageId;
-  if (input.language_code === undefined && input.languageCode !== undefined) input.language_code = input.languageCode;
-  if (input.category_ids === undefined && input.categoryIds !== undefined) input.category_ids = input.categoryIds;
-  if (input.is_sticky !== undefined && input.isStickyPost === undefined) input.isStickyPost = input.is_sticky;
-  if (input.is_web_post !== undefined && input.isWebPost === undefined) input.isWebPost = input.is_web_post;
-  if (input.is_home_post !== undefined && input.isHomePost === undefined) input.isHomePost = input.is_home_post;
-  if (input.color_code !== undefined && input.colorCode === undefined) input.colorCode = input.color_code;
-  if (input.imageUrl !== undefined && input.image_url === undefined) input.image_url = input.imageUrl;
-  if (input.videoUrl !== undefined && input.video_url === undefined) input.video_url = input.videoUrl;
-  if (input.videoPlatform !== undefined && input.video_platform === undefined) input.video_platform = input.videoPlatform;
+export const createNewsPostSchema = z.preprocess(
+  (val: any) => {
+    if (!val || typeof val !== 'object') return val;
+    const input = { ...val };
+    if (!input.post_type && input.type) input.post_type = input.type;
+    if (!input.type && input.post_type) input.type = input.post_type;
+    if (input.language_id === undefined && input.languageId !== undefined)
+      input.language_id = input.languageId;
+    if (input.language_code === undefined && input.languageCode !== undefined)
+      input.language_code = input.languageCode;
+    if (input.category_ids === undefined && input.categoryIds !== undefined)
+      input.category_ids = input.categoryIds;
+    if (input.is_sticky !== undefined && input.isStickyPost === undefined)
+      input.isStickyPost = input.is_sticky;
+    if (input.is_web_post !== undefined && input.isWebPost === undefined)
+      input.isWebPost = input.is_web_post;
+    if (input.is_home_post !== undefined && input.isHomePost === undefined)
+      input.isHomePost = input.is_home_post;
+    if (input.color_code !== undefined && input.colorCode === undefined)
+      input.colorCode = input.color_code;
+    if (input.imageUrl !== undefined && input.image_url === undefined)
+      input.image_url = input.imageUrl;
+    if (input.videoUrl !== undefined && input.video_url === undefined)
+      input.video_url = input.videoUrl;
+    if (input.videoPlatform !== undefined && input.video_platform === undefined)
+      input.video_platform = input.videoPlatform;
 
-  if (input.video_platform && (String(input.video_platform).toLowerCase() === 'x' || String(input.video_platform).toLowerCase() === 'twitter')) {
-    input.video_platform = 'Twitter';
-  }
-  if (input.videoPlatform && (String(input.videoPlatform).toLowerCase() === 'x' || String(input.videoPlatform).toLowerCase() === 'twitter')) {
-    input.videoPlatform = 'Twitter';
-    input.video_platform = 'Twitter';
-  }
-
-  if (
-    input.type === 'BulletPost' ||
-    input.post_type === 'BulletPost' ||
-    input.type === 'Bullet Post' ||
-    input.type === 'bulletpost' ||
-    input.subType === 'BulletPost' ||
-    input.subType === 'bulletpost'
-  ) {
-    input.type = 'Standed';
-    input.post_type = 'Standed';
-    input.subType = 'BulletPost';
-  } else if (input.type === 'StandardLink' || input.post_type === 'StandardLink' || input.type === 'Standard Link') {
-    input.type = 'Standed';
-    input.post_type = 'Standed';
-    input.subType = 'StandardLink';
-  } else if (
-    input.type === 'BigBlackStandard' ||
-    input.post_type === 'BigBlackStandard' ||
-    input.type === 'BigBlackStanded' ||
-    input.post_type === 'BigBlackStanded' ||
-    input.type === 'BigBlack Standard' ||
-    input.type === 'Big Black Standard' ||
-    input.subType === 'BigBlackStandard' ||
-    input.subType === 'BigBlackStanded'
-  ) {
-    input.type = 'Standed';
-    input.post_type = 'Standed';
-    input.subType = 'BigBlackStandard';
-  } else if (input.type === 'Video' || input.post_type === 'Video') {
-    input.type = 'Video';
-    input.post_type = 'Video';
-    input.subType = '';
-  } else if (input.type === 'ImageAd' || input.post_type === 'ImageAd' || input.subType === 'ImageAd') {
-    input.type = 'Image';
-    input.post_type = 'Image';
-    input.subType = 'ImageAd';
-  } else if (input.type === 'Image' || input.post_type === 'Image') {
-    input.type = 'Image';
-    input.post_type = 'Image';
-    input.subType = input.subType || 'Image';
-  }
-
-  if ((input.type === 'Standed' || input.post_type === 'Standed') && input.subType === 'BulletPost') {
-    const formatted = formatBulletPostContentAndBullets(input.content || '', input.bulletPoints);
-    input.bulletPoints = formatted.bulletPoints;
-    input.content = formatted.content;
-  }
-
-  if ((input.type === 'Standed' || input.post_type === 'Standed') && input.subType === 'StandardLink') {
-    const formatted = formatLinksAndContent(input.links, input.content);
-    input.links = formatted.links;
-    input.content = formatted.content;
-  }
-
-  if (input.content) {
-    input.content = stripAllTagsExceptLinkTags(input.content);
-  }
-
-  return input;
-}, commonNewsPostSchema.superRefine((data, ctx) => {
-  const postType = data.type || (data as any).post_type;
-  if (postType === 'Standed') {
-    if (!data.categoryName || data.categoryName.length === 0) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['categoryName'],
-        message: 'At least one category name is required',
-      });
+    if (
+      input.video_platform &&
+      (String(input.video_platform).toLowerCase() === 'x' ||
+        String(input.video_platform).toLowerCase() === 'twitter')
+    ) {
+      input.video_platform = 'Twitter';
     }
-    if (!data.category_ids || data.category_ids.length === 0) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['category_ids'],
-        message: 'At least one category ID is required',
-      });
+    if (
+      input.videoPlatform &&
+      (String(input.videoPlatform).toLowerCase() === 'x' ||
+        String(input.videoPlatform).toLowerCase() === 'twitter')
+    ) {
+      input.videoPlatform = 'Twitter';
+      input.video_platform = 'Twitter';
     }
 
     if (
-      data.subType !== '' &&
-      data.subType !== 'BulletPost' &&
-      data.subType !== 'StandardLink' &&
-      data.subType !== 'BigBlackStandard' &&
-      data.subType !== 'BigBlackStanded'
+      input.type === 'BulletPost' ||
+      input.post_type === 'BulletPost' ||
+      input.type === 'Bullet Post' ||
+      input.type === 'bulletpost' ||
+      input.subType === 'BulletPost' ||
+      input.subType === 'bulletpost'
     ) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['subType'],
-        message: "subType must be empty, 'BulletPost', 'StandardLink', or 'BigBlackStandard' for Standard post",
-      });
+      input.type = 'Standed';
+      input.post_type = 'Standed';
+      input.subType = 'BulletPost';
+    } else if (
+      input.type === 'StandardLink' ||
+      input.post_type === 'StandardLink' ||
+      input.type === 'Standard Link'
+    ) {
+      input.type = 'Standed';
+      input.post_type = 'Standed';
+      input.subType = 'StandardLink';
+    } else if (
+      input.type === 'BigBlackStandard' ||
+      input.post_type === 'BigBlackStandard' ||
+      input.type === 'BigBlackStanded' ||
+      input.post_type === 'BigBlackStanded' ||
+      input.type === 'BigBlack Standard' ||
+      input.type === 'Big Black Standard' ||
+      input.subType === 'BigBlackStandard' ||
+      input.subType === 'BigBlackStanded'
+    ) {
+      input.type = 'Standed';
+      input.post_type = 'Standed';
+      input.subType = 'BigBlackStandard';
+    } else if (input.type === 'Video' || input.post_type === 'Video') {
+      input.type = 'Video';
+      input.post_type = 'Video';
+      input.subType = '';
+    } else if (
+      input.type === 'ImageAd' ||
+      input.post_type === 'ImageAd' ||
+      input.subType === 'ImageAd'
+    ) {
+      input.type = 'Image';
+      input.post_type = 'Image';
+      input.subType = 'ImageAd';
+    } else if (input.type === 'Image' || input.post_type === 'Image') {
+      input.type = 'Image';
+      input.post_type = 'Image';
+      input.subType = input.subType || 'Image';
     }
 
-    if (data.subType === 'BulletPost') {
-      if (!data.bulletPoints || data.bulletPoints.length === 0) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['bulletPoints'],
-          message: 'At least one bullet point is required for BulletPost',
-        });
-      }
-    } else if (data.subType === 'StandardLink') {
-      if (!Array.isArray(data.links) || data.links.length === 0) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['links'],
-          message: 'At least one valid link object is required for StandardLink',
-        });
-      }
-      if (Array.isArray(data.bulletPoints) && data.bulletPoints.length > 0) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['bulletPoints'],
-          message: 'bulletPoints must be empty for StandardLink post',
-        });
-      }
-    } else if (data.subType === 'BigBlackStanded') {
-      if (Array.isArray(data.bulletPoints) && data.bulletPoints.length > 0) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['bulletPoints'],
-          message: 'bulletPoints must be empty for BigBlackStanded post',
-        });
-      }
-    } else if (data.subType === '') {
-      if (Array.isArray(data.bulletPoints) && data.bulletPoints.length > 0) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['bulletPoints'],
-          message: 'bulletPoints must be empty for regular Standard post',
-        });
-      }
+    if (
+      (input.type === 'Standed' || input.post_type === 'Standed') &&
+      input.subType === 'BulletPost'
+    ) {
+      const formatted = formatBulletPostContentAndBullets(input.content || '', input.bulletPoints);
+      input.bulletPoints = formatted.bulletPoints;
+      input.content = formatted.content;
     }
 
-    if (data.isWebPost !== false) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['isWebPost'],
-        message: 'isWebPost must be false for Standard post',
-      });
+    if (
+      (input.type === 'Standed' || input.post_type === 'Standed') &&
+      input.subType === 'StandardLink'
+    ) {
+      const formatted = formatLinksAndContent(input.links, input.content);
+      input.links = formatted.links;
+      input.content = formatted.content;
     }
-    if (data.postUrl !== '') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['postUrl'],
-        message: 'postUrl must be empty for Standard post',
-      });
+
+    if (input.content) {
+      input.content = stripAllTagsExceptLinkTags(input.content);
     }
-    if (data.video_platform !== '') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['video_platform'],
-        message: 'video_platform must be empty for Standard post',
-      });
-    }
-    if (data.video_url !== '') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['video_url'],
-        message: 'video_url must be empty for Standard post',
-      });
-    }
-    if (data.subType !== 'StandardLink') {
+
+    return input;
+  },
+  commonNewsPostSchema.superRefine((data, ctx) => {
+    const postType = data.type || (data as any).post_type;
+    if (postType === 'Standed') {
+      if (!data.categoryName || data.categoryName.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['categoryName'],
+          message: 'At least one category name is required',
+        });
+      }
+      if (!data.category_ids || data.category_ids.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['category_ids'],
+          message: 'At least one category ID is required',
+        });
+      }
+
+      if (
+        data.subType !== '' &&
+        data.subType !== 'BulletPost' &&
+        data.subType !== 'StandardLink' &&
+        data.subType !== 'BigBlackStandard' &&
+        data.subType !== 'BigBlackStanded'
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['subType'],
+          message:
+            "subType must be empty, 'BulletPost', 'StandardLink', or 'BigBlackStandard' for Standard post",
+        });
+      }
+
+      if (data.subType === 'BulletPost') {
+        if (!data.bulletPoints || data.bulletPoints.length === 0) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ['bulletPoints'],
+            message: 'At least one bullet point is required for BulletPost',
+          });
+        }
+      } else if (data.subType === 'StandardLink') {
+        if (!Array.isArray(data.links) || data.links.length === 0) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ['links'],
+            message: 'At least one valid link object is required for StandardLink',
+          });
+        }
+        if (Array.isArray(data.bulletPoints) && data.bulletPoints.length > 0) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ['bulletPoints'],
+            message: 'bulletPoints must be empty for StandardLink post',
+          });
+        }
+      } else if (data.subType === 'BigBlackStanded') {
+        if (Array.isArray(data.bulletPoints) && data.bulletPoints.length > 0) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ['bulletPoints'],
+            message: 'bulletPoints must be empty for BigBlackStanded post',
+          });
+        }
+      } else if (data.subType === '') {
+        if (Array.isArray(data.bulletPoints) && data.bulletPoints.length > 0) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ['bulletPoints'],
+            message: 'bulletPoints must be empty for regular Standard post',
+          });
+        }
+      }
+
+      if (data.isWebPost !== false) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['isWebPost'],
+          message: 'isWebPost must be false for Standard post',
+        });
+      }
+      if (data.postUrl !== '') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['postUrl'],
+          message: 'postUrl must be empty for Standard post',
+        });
+      }
+      if (data.video_platform !== '') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['video_platform'],
+          message: 'video_platform must be empty for Standard post',
+        });
+      }
+      if (data.video_url !== '') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['video_url'],
+          message: 'video_url must be empty for Standard post',
+        });
+      }
+      if (data.subType !== 'StandardLink') {
+        const linksEmpty = Array.isArray(data.links) ? data.links.length === 0 : data.links === '';
+        if (!linksEmpty) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ['links'],
+            message: 'links must be empty for Standard post',
+          });
+        }
+      }
+    } else if (postType === 'Video') {
+      if (!data.video_platform || data.video_platform.trim() === '') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['video_platform'],
+          message: 'video_platform is required for Video post',
+        });
+      }
+      if (!data.video_url || data.video_url.trim() === '') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['video_url'],
+          message: 'video_url is required for Video post',
+        });
+      }
+      if (data.subType !== '') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['subType'],
+          message: 'subType must be empty for Video post',
+        });
+      }
+      if (data.isWebPost !== false) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['isWebPost'],
+          message: 'isWebPost must be false for Video post',
+        });
+      }
+      if (data.postUrl !== '') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['postUrl'],
+          message: 'postUrl must be empty for Video post',
+        });
+      }
+      if (Array.isArray(data.bulletPoints) && data.bulletPoints.length > 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['bulletPoints'],
+          message: 'bulletPoints must be empty for Video post',
+        });
+      }
       const linksEmpty = Array.isArray(data.links) ? data.links.length === 0 : data.links === '';
       if (!linksEmpty) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           path: ['links'],
-          message: 'links must be empty for Standard post',
+          message: 'links must be empty for Video post',
         });
       }
     }
-  } else if (postType === 'Video') {
-    if (!data.video_platform || data.video_platform.trim() === '') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['video_platform'],
-        message: 'video_platform is required for Video post',
-      });
+    if (postType === 'Image') {
+      if (data.subType !== 'Image' && data.subType !== 'ImageAd') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['subType'],
+          message: "subType must be 'Image' or 'ImageAd' for Image post",
+        });
+      }
+      if (data.isWebPost !== false) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['isWebPost'],
+          message: 'isWebPost must be false for Image post',
+        });
+      }
+      if (data.subType !== 'ImageAd' && data.postUrl !== '') {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['postUrl'],
+          message: 'postUrl must be empty for Image post',
+        });
+      }
+      if (Array.isArray(data.bulletPoints) && data.bulletPoints.length > 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['bulletPoints'],
+          message: 'bulletPoints must be empty for Image post',
+        });
+      }
+      const linksEmpty = Array.isArray(data.links) ? data.links.length === 0 : data.links === '';
+      if (!linksEmpty) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['links'],
+          message: 'links must be empty for Image post',
+        });
+      }
     }
-    if (!data.video_url || data.video_url.trim() === '') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['video_url'],
-        message: 'video_url is required for Video post',
-      });
-    }
-    if (data.subType !== '') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['subType'],
-        message: 'subType must be empty for Video post',
-      });
-    }
-    if (data.isWebPost !== false) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['isWebPost'],
-        message: 'isWebPost must be false for Video post',
-      });
-    }
-    if (data.postUrl !== '') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['postUrl'],
-        message: 'postUrl must be empty for Video post',
-      });
-    }
-    if (Array.isArray(data.bulletPoints) && data.bulletPoints.length > 0) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['bulletPoints'],
-        message: 'bulletPoints must be empty for Video post',
-      });
-    }
-    const linksEmpty = Array.isArray(data.links) ? data.links.length === 0 : data.links === '';
-    if (!linksEmpty) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['links'],
-        message: 'links must be empty for Video post',
-      });
-    }
-  }
-  if (postType === 'Image') {
-    if (data.subType !== 'Image' && data.subType !== 'ImageAd') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['subType'],
-        message: "subType must be 'Image' or 'ImageAd' for Image post",
-      });
-    }
-    if (data.isWebPost !== false) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['isWebPost'],
-        message: 'isWebPost must be false for Image post',
-      });
-    }
-    if (data.subType !== 'ImageAd' && data.postUrl !== '') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['postUrl'],
-        message: 'postUrl must be empty for Image post',
-      });
-    }
-    if (Array.isArray(data.bulletPoints) && data.bulletPoints.length > 0) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['bulletPoints'],
-        message: 'bulletPoints must be empty for Image post',
-      });
-    }
-    const linksEmpty = Array.isArray(data.links) ? data.links.length === 0 : data.links === '';
-    if (!linksEmpty) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        path: ['links'],
-        message: 'links must be empty for Image post',
-      });
-    }
-  }
-}));
+  })
+);
 
 export type CreateNewsPostFormData = z.infer<typeof createNewsPostSchema>;
 

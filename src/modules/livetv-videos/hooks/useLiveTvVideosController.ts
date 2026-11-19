@@ -69,6 +69,7 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
   const [isSyncing, setIsSyncing] = useState<boolean>(false);
   const [actionError, setActionError] = useState<string | null>(null);
   const [actionSuccess, setActionSuccess] = useState<string | null>(null);
+  const [actionInfo, setActionInfo] = useState<string | null>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
@@ -317,12 +318,28 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
     if (!slug) return;
     setIsSyncing(true);
     setActionError(null);
+    setActionSuccess(null);
+    setActionInfo(null);
     try {
       const res = await liveTvVideosRepository.syncTagVideos(slug);
-      setActionSuccess(res?.message || `Videos synced successfully for ${slug}`);
+      if (res?.isInfo) {
+        setActionInfo(res.message);
+      } else {
+        setActionSuccess(res?.message || `Videos synced successfully for ${slug}`);
+      }
       await loadTagVideos(slug);
     } catch (err: any) {
-      setActionError(err.message || 'Failed to sync videos');
+      const msg = err?.message || '';
+      if (
+        msg.toLowerCase().includes('already synced') ||
+        msg.toLowerCase().includes('already up to date') ||
+        msg.toLowerCase().includes('already up-to-date')
+      ) {
+        setActionInfo(msg);
+        await loadTagVideos(slug);
+      } else {
+        setActionError(msg || 'Failed to sync videos');
+      }
     } finally {
       setIsSyncing(false);
     }
@@ -390,8 +407,10 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
     isSyncing,
     actionError,
     actionSuccess,
+    actionInfo,
     setActionError,
     setActionSuccess,
+    setActionInfo,
     searchQuery,
     setSearchQuery,
     page,

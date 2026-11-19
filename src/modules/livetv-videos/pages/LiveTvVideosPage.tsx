@@ -66,6 +66,7 @@ const translations = {
     dailySyncBtn: 'Daily Sync',
     syncingBtn: 'Syncing...',
     syncSuccessMsg: 'Videos synced successfully for',
+    alreadySyncedMsg: 'Videos for this tag are already synced',
     searchPlaceholder: 'Search videos by file name...',
     totalVideos: 'Total Videos',
     editTag: 'Edit Tag',
@@ -136,6 +137,7 @@ const translations = {
     dailySyncBtn: 'రోజువారీ సమకాలీకరణ',
     syncingBtn: 'సమకాలీకరిస్తోంది...',
     syncSuccessMsg: 'వీడియోలు విజయవంతంగా సమకాలీకరించబడ్డాయి:',
+    alreadySyncedMsg: 'ఈ ట్యాగ్ కోసం వీడియోలు ఇప్పటికే సమకాలీకరించబడ్డాయి',
     searchPlaceholder: 'ఫైల్ పేరు ద్వారా వీడియోలను శోధించండి...',
     totalVideos: 'మొత్తం వీడియోలు',
     editTag: 'ట్యాగ్‌ని సవరించు',
@@ -206,6 +208,7 @@ const translations = {
     dailySyncBtn: 'दैनिक सिंक',
     syncingBtn: 'सिंक हो रहा है...',
     syncSuccessMsg: 'के लिए वीडियो सफलतापूर्वक सिंक किए गए:',
+    alreadySyncedMsg: 'इस टैग के वीडियो पहले से ही सिंक हैं',
     searchPlaceholder: 'फ़ाइल नाम से वीडियो खोजें...',
     totalVideos: 'कुल वीडियो',
     editTag: 'टैग संपादित करें',
@@ -276,6 +279,7 @@ const translations = {
     dailySyncBtn: 'പ്രതിദിന സമന്വയം',
     syncingBtn: 'സമന്വയിപ്പിക്കുന്നു...',
     syncSuccessMsg: 'വീഡിയോകൾ വിജയകരമായി സമന്വയിപ്പിച്ചു:',
+    alreadySyncedMsg: 'ഈ ടാഗിനായുള്ള വീഡിയോകൾ ഇതിനകം സമന്വയിപ്പിച്ചു',
     searchPlaceholder: 'ഫയലിന്റെ പേര് ഉപയോഗിച്ച് വീഡിയോകൾ തിരയുക...',
     totalVideos: 'ആകെ വീഡിയോകൾ',
     editTag: 'ടാഗ് എഡിറ്റുചെയ്യുക',
@@ -353,8 +357,10 @@ export const LiveTvVideosPage: React.FC = () => {
     isSyncing,
     actionError,
     actionSuccess,
+    actionInfo,
     setActionError,
     setActionSuccess,
+    setActionInfo,
     searchQuery,
     setSearchQuery,
     page,
@@ -583,6 +589,15 @@ export const LiveTvVideosPage: React.FC = () => {
                   sx={{ borderRadius: '14px' }}
                 >
                   {actionSuccess}
+                </Alert>
+              )}
+              {actionInfo && (
+                <Alert
+                  severity="info"
+                  onClose={() => setActionInfo(null)}
+                  sx={{ borderRadius: '14px' }}
+                >
+                  {actionInfo}
                 </Alert>
               )}
 

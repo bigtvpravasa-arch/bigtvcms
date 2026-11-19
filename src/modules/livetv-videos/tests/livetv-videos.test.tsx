@@ -312,6 +312,42 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
     });
   });
 
+  it('handles "Already synced" message as an info alert instead of an error', async () => {
+    (videoApiClient.post as jest.Mock).mockRejectedValueOnce({
+      response: {
+        status: 400,
+        data: {
+          success: false,
+          statusCode: 400,
+          message: 'Already synced',
+          error: 'Bad Request',
+        },
+      },
+    });
+
+    await act(async () => {
+      render(
+        <ThemeProvider>
+          <LiveTvVideosPage />
+        </ThemeProvider>
+      );
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId('livetv-videos-table')).toBeInTheDocument();
+    });
+
+    const syncBtn = screen.getByRole('button', { name: /Daily Sync/i });
+    await act(async () => {
+      fireEvent.click(syncBtn);
+    });
+
+    await waitFor(() => {
+      const alert = screen.getByText('Already synced').closest('.MuiAlert-root');
+      expect(alert).toHaveClass('MuiAlert-colorInfo');
+    });
+  });
+
   it('filters table rows when search input changes', async () => {
     await act(async () => {
       render(
@@ -1726,5 +1762,20 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
         break;
       }
     }
+  });
+
+  it('tests syncTagVideos when backend returns Already synced 400 response', async () => {
+    (videoApiClient.post as jest.Mock).mockRejectedValueOnce({
+      response: {
+        data: {
+          statusCode: 400,
+          message: 'Already synced',
+        },
+      },
+    });
+
+    const res = await liveTvVideosRepository.syncTagVideos('DNA');
+    expect(res.isInfo).toBe(true);
+    expect(res.message).toBe('Already synced');
   });
 });

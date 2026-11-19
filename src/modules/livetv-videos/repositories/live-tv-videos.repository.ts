@@ -199,7 +199,9 @@ export class LiveTvVideosRepository {
    * POST /video-tags/:slug/sync
    * Daily video cascade / rotation
    */
-  public async syncTagVideos(slug: string): Promise<{ success: boolean; message: string }> {
+  public async syncTagVideos(
+    slug: string
+  ): Promise<{ success: boolean; message: string; isInfo?: boolean }> {
     try {
       const res = await videoApiClient.post<{ success: boolean; message: string }>(
         `/video-tags/${slug}/sync`,
@@ -207,6 +209,15 @@ export class LiveTvVideosRepository {
       );
       return res || { success: true, message: `Videos synced successfully for ${slug}` };
     } catch (err: any) {
+      const serverMsg = err.response?.data?.message || err.message;
+      if (
+        serverMsg &&
+        (serverMsg.toLowerCase().includes('already synced') ||
+          serverMsg.toLowerCase().includes('already up to date') ||
+          serverMsg.toLowerCase().includes('already up-to-date'))
+      ) {
+        return { success: false, message: serverMsg, isInfo: true };
+      }
       if (err.response?.data?.message) {
         throw new Error(err.response.data.message);
       }

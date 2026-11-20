@@ -17,13 +17,91 @@ import {
 } from '@mui/material';
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material';
 import { useLoginController } from '@/modules/auth/hooks/useLoginController';
+import { useLanguageStore, SupportedLanguage } from '@/core/storage/language-store';
+
+const loginTranslations = {
+  en: {
+    portalBadge: 'Breaking News Portal',
+    hubTitle: 'Enterprise Digital News & Content Hub:',
+    portalName: 'BigTV CMS™',
+    whatToExpect: 'What to Expect?',
+    futureApps: 'Other Future Applications',
+    loginTitle: 'Log In to BigTV CMS™',
+    usernameLabel: 'Username',
+    usernamePlaceholder: 'Enter Username',
+    passwordLabel: 'Password',
+    passwordPlaceholder: 'Enter Password',
+    remember: 'Remember',
+    forgotten: 'Forgotten?',
+    loginButton: 'Log In',
+    loggingInButton: 'Logging In...',
+  },
+  te: {
+    portalBadge: 'బ్రేకింగ్ న్యూస్ పోర్టల్',
+    hubTitle: 'ఎంటర్‌ప్రైజ్ డిజిటల్ న్యూస్ & కంటెంట్ హబ్:',
+    portalName: 'BigTV CMS™',
+    whatToExpect: 'ఏమి ఆశించాలి?',
+    futureApps: 'ఇతర భవిష్యత్ అప్లికేషన్లు',
+    loginTitle: 'BigTV CMS™ లోనికి లాగిన్ అవ్వండి',
+    usernameLabel: 'యూజర్ నేమ్',
+    usernamePlaceholder: 'యూజర్ నేమ్ నమోదు చేయండి',
+    passwordLabel: 'పాస్‌వర్డ్',
+    passwordPlaceholder: 'పాస్‌వర్డ్‌ను నమోదు చేయండి',
+    remember: 'గుర్తుంచుకో',
+    forgotten: 'మర్చిపోయారా?',
+    loginButton: 'లాగిన్',
+    loggingInButton: 'లాగిన్ అవుతోంది...',
+  },
+  hi: {
+    portalBadge: 'ब्रेकिंग न्यूज़ पोर्टल',
+    hubTitle: 'एंटरप्राइज डिजिटल समाचार और सामग्री हब:',
+    portalName: 'BigTV CMS™',
+    whatToExpect: 'क्या उम्मीद करें?',
+    futureApps: 'अन्य भविष्य के अनुप्रयोग',
+    loginTitle: 'BigTV CMS™ में लॉग इन करें',
+    usernameLabel: 'उपयोगकर्ता नाम',
+    usernamePlaceholder: 'उपयोगकर्ता नाम दर्ज करें',
+    passwordLabel: 'पासवर्ड',
+    passwordPlaceholder: 'पासवर्ड दर्ज करें',
+    remember: 'याद रखें',
+    forgotten: 'भूल गए?',
+    loginButton: 'लॉग इन',
+    loggingInButton: 'लॉग इन हो रहा है...',
+  },
+  ml: {
+    portalBadge: 'ബ്രേക്കിംഗ് ന്യൂസ് പോർട്ടൽ',
+    hubTitle: 'എന്റർപ്രൈസ് ഡിജിറ്റൽ ന്യൂസ് & കണ്ടന്റ് ഹബ്:',
+    portalName: 'BigTV CMS™',
+    whatToExpect: 'എന്താണ് പ്രതീക്ഷിക്കേണ്ടത്?',
+    futureApps: 'മറ്റ് ഭാവി ആപ്ലിക്കേഷനുകൾ',
+    loginTitle: 'BigTV CMS™-ലേക്ക് ലോഗിൻ ചെയ്യുക',
+    usernameLabel: 'യൂസർനാമം',
+    usernamePlaceholder: 'യൂസർനാമം നൽകുക',
+    passwordLabel: 'പാസ്‌വേഡ്',
+    passwordPlaceholder: 'പാസ്‌വേഡ് നൽകുക',
+    remember: 'ഓർമ്മിക്കുക',
+    forgotten: 'മറന്നോ?',
+    loginButton: 'ലോഗിൻ',
+    loggingInButton: 'ലോഗിൻ ചെയ്യുന്നു...',
+  },
+};
+
+const languageOptions: { code: SupportedLanguage; label: string }[] = [
+  { code: 'en', label: 'English' },
+  { code: 'te', label: 'తెలుగు' },
+  { code: 'ml', label: 'മലയാളം' },
+  { code: 'hi', label: 'हिन्दी' },
+];
 
 export default function LoginPage() {
   const { form, errors, isPending, toast, handleFieldChange, handleToastClose, handleLoginSubmit } =
     useLoginController();
+  const { language, setLanguage } = useLanguageStore();
   const [showPassword, setShowPassword] = React.useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = React.useState(true);
   const [hasToken, setHasToken] = React.useState(false);
+
+  const t = loginTranslations[language] || loginTranslations.en;
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -139,14 +217,14 @@ export default function LoginPage() {
                 variant="caption"
                 sx={{ color: '#fde68a', pl: 1, fontWeight: 500, letterSpacing: 0.5 }}
               >
-                Breaking News Portal
+                {t.portalBadge}
               </Typography>
             </Box>
 
             <Typography variant="h3" sx={{ fontWeight: 600, mb: 4, lineHeight: 1.2 }}>
-              Enterprise Digital News & Content Hub: <br />
+              {t.hubTitle} <br />
               <span style={{ color: '#facc15', textShadow: '0 0 25px rgba(250, 204, 21, 0.4)' }}>
-                BigTV CMS™
+                {t.portalName}
               </span>
             </Typography>
 
@@ -167,7 +245,7 @@ export default function LoginPage() {
                   },
                 }}
               >
-                What to Expect?
+                {t.whatToExpect}
               </Button>
               <Button
                 variant="text"
@@ -177,7 +255,7 @@ export default function LoginPage() {
                   '&:hover': { color: '#ffffff' },
                 }}
               >
-                Other Future Applications
+                {t.futureApps}
               </Button>
             </Box>
           </Box>
@@ -197,23 +275,64 @@ export default function LoginPage() {
               boxShadow: '0 24px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(234, 179, 8, 0.12)',
             }}
           >
+            {/* Language Switcher Bar */}
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                gap: 1,
+                mb: 2.5,
+              }}
+            >
+              {languageOptions.map((opt) => {
+                const isSelected = language === opt.code;
+                return (
+                  <Button
+                    key={opt.code}
+                    size="small"
+                    onClick={() => setLanguage(opt.code)}
+                    data-testid={`login-lang-${opt.code}`}
+                    sx={{
+                      minWidth: 'auto',
+                      px: 1.5,
+                      py: 0.4,
+                      fontSize: '0.75rem',
+                      fontWeight: isSelected ? 700 : 500,
+                      borderRadius: '8px',
+                      color: isSelected ? '#1a1300' : '#fde68a',
+                      backgroundColor: isSelected ? '#facc15' : 'rgba(255, 255, 255, 0.06)',
+                      border: '1px solid',
+                      borderColor: isSelected ? '#facc15' : 'rgba(250, 204, 21, 0.2)',
+                      '&:hover': {
+                        backgroundColor: isSelected ? '#fde047' : 'rgba(234, 179, 8, 0.15)',
+                        borderColor: '#facc15',
+                      },
+                    }}
+                  >
+                    {opt.label}
+                  </Button>
+                );
+              })}
+            </Box>
+
             <Typography
               variant="h5"
               sx={{ color: '#ffffff', fontWeight: 700, mb: 4, letterSpacing: 0.3 }}
             >
-              Log In to BigTV CMS™
+              {t.loginTitle}
             </Typography>
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
               {/* Username Input */}
               <Box>
                 <Typography variant="body2" sx={{ color: '#fde68a', mb: 1, fontWeight: 500 }}>
-                  Username
+                  {t.usernameLabel}
                 </Typography>
                 <TextField
                   fullWidth
                   variant="outlined"
-                  placeholder="Enter Username"
+                  placeholder={t.usernamePlaceholder}
                   value={form.username}
                   onChange={(e) => handleFieldChange('username', e.target.value)}
                   error={!!errors.username}
@@ -245,13 +364,13 @@ export default function LoginPage() {
               {/* Password Input */}
               <Box>
                 <Typography variant="body2" sx={{ color: '#fde68a', mb: 1, fontWeight: 500 }}>
-                  Password
+                  {t.passwordLabel}
                 </Typography>
                 <TextField
                   fullWidth
                   type={showPassword ? 'text' : 'password'}
                   variant="outlined"
-                  placeholder="Enter Password"
+                  placeholder={t.passwordPlaceholder}
                   value={form.password}
                   onChange={(e) => handleFieldChange('password', e.target.value)}
                   error={!!errors.password}
@@ -294,7 +413,7 @@ export default function LoginPage() {
                   }
                   label={
                     <Typography variant="body2" sx={{ color: '#fef3c7' }}>
-                      Remember
+                      {t.remember}
                     </Typography>
                   }
                 />
@@ -308,7 +427,7 @@ export default function LoginPage() {
                     '&:hover': { color: '#fde047' },
                   }}
                 >
-                  Forgotten?
+                  {t.forgotten}
                 </Link>
               </Box>
 
@@ -338,7 +457,7 @@ export default function LoginPage() {
                   },
                 }}
               >
-                {isPending ? 'Logging In...' : 'Log In'}
+                {isPending ? t.loggingInButton : t.loginButton}
               </Button>
             </Box>
           </Box>

@@ -59,7 +59,7 @@ describe('LoginPage and useLoginController integration', () => {
   it('should show validation errors in Telugu when language is te', async () => {
     useLanguageStore.setState({ language: 'te' });
     render(<LoginPage />);
-    const submitBtn = screen.getByRole('button', { name: 'Log In' });
+    const submitBtn = screen.getByRole('button', { name: 'లాగిన్' });
     fireEvent.click(submitBtn);
 
     expect(screen.getByText('యూజర్ నేమ్ అవసరం')).toBeTruthy();
@@ -69,7 +69,7 @@ describe('LoginPage and useLoginController integration', () => {
   it('should show validation errors in Hindi when language is hi', async () => {
     useLanguageStore.setState({ language: 'hi' });
     render(<LoginPage />);
-    const submitBtn = screen.getByRole('button', { name: 'Log In' });
+    const submitBtn = screen.getByRole('button', { name: 'लॉग इन' });
     fireEvent.click(submitBtn);
 
     expect(screen.getByText('उपयोगकर्ता नाम आवश्यक है')).toBeTruthy();
@@ -79,11 +79,21 @@ describe('LoginPage and useLoginController integration', () => {
   it('should show validation errors in Malayalam when language is ml', async () => {
     useLanguageStore.setState({ language: 'ml' });
     render(<LoginPage />);
-    const submitBtn = screen.getByRole('button', { name: 'Log In' });
+    const submitBtn = screen.getByRole('button', { name: 'ലോഗിൻ' });
     fireEvent.click(submitBtn);
 
     expect(screen.getByText('യൂസർനാമം ആവശ്യമാണ്')).toBeTruthy();
     expect(screen.getByText('പാസ്‌വേഡ് ആവശ്യമാണ്')).toBeTruthy();
+  });
+
+  it('should switch language to Malayalam when Malayalam button is clicked on login page', () => {
+    render(<LoginPage />);
+    const mlBtn = screen.getByTestId('login-lang-ml');
+    fireEvent.click(mlBtn);
+
+    expect(useLanguageStore.getState().language).toBe('ml');
+    expect(screen.getByText('BigTV CMS™-ലേക്ക് ലോഗിൻ ചെയ്യുക')).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'ലോഗിൻ' })).toBeTruthy();
   });
 
   it('should validate field changes after a failed submission', async () => {

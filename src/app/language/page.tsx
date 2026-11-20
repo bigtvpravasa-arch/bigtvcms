@@ -24,12 +24,104 @@ interface LanguageOption {
   symbol: string;
 }
 
+const languagePageTranslations = {
+  en: {
+    portalBadge: 'Breaking News Portal',
+    portalTitlePre: 'Enterprise Digital News & Content Hub:',
+    portalTitleBrand: 'BigTV CMS™',
+    portalDesc:
+      'Select your language on the right panel to configure the Accept-Language API header mappings dynamically across the CMS operator workspace.',
+    selectLanguageHeading: 'Select Language',
+    continueButton: 'Continue',
+  },
+  te: {
+    portalBadge: 'బ్రేకింగ్ న్యూస్ పోర్టల్',
+    portalTitlePre: 'ఎంటర్‌ప్రైజ్ డిజిటల్ న్యూస్ & కంటెంట్ హబ్:',
+    portalTitleBrand: 'BigTV CMS™',
+    portalDesc:
+      'CMS ఆపరేటర్ వర్క్‌స్పేస్‌లో యాక్సెప్ట్-లాంగ్వేజ్ API హెడర్ మ్యాపింగ్‌లను డైనమిక్‌గా కాన్ఫిగర్ చేయడానికి కుడి ప్యానెల్‌లో మీ భాషను ఎంచుకోండి.',
+    selectLanguageHeading: 'భాషను ఎంచుకోండి',
+    continueButton: 'కొనసాగించండి',
+  },
+  hi: {
+    portalBadge: 'ब्रेकिंग न्यूज़ पोर्टल',
+    portalTitlePre: 'एंटरप्राइज डिजिटल समाचार और सामग्री हब:',
+    portalTitleBrand: 'BigTV CMS™',
+    portalDesc:
+      'सीएमएस ऑपरेटर कार्यक्षेत्र में स्वीकार्य-भाषा एपीआई हेडर मैपिंग को गतिशील रूप से कॉन्फ़िगर करने के लिए दाएं पैनल पर अपनी भाषा का चयन करें।',
+    selectLanguageHeading: 'भाषा चुनें',
+    continueButton: 'जारी रखें',
+  },
+  ml: {
+    portalBadge: 'ബ്രേക്കിംഗ് ന്യൂസ് പോർട്ടൽ',
+    portalTitlePre: 'എന്റർപ്രൈസ് ഡിജിറ്റൽ ന്യൂസ് & കണ്ടന്റ് ഹബ്:',
+    portalTitleBrand: 'BigTV CMS™',
+    portalDesc:
+      'സിഎംഎസ് ഓപ്പറേറ്റർ വർക്ക്‌സ്‌പേസിൽ ഉടനീളം ആക്‌സപ്റ്റ്-ലാംഗ്വേജ് എപിഐ ഹെഡർ മാപ്പിംഗുകൾ ക്രമീകരിക്കുന്നതിന് വലത് പാനലിൽ നിങ്ങളുടെ ഭാഷ തിരഞ്ഞെടുക്കുക.',
+    selectLanguageHeading: 'ഭാഷ തിരഞ്ഞെടുക്കുക',
+    continueButton: 'തുടരുക',
+  },
+};
+
+const staticSupportedLanguages = [
+  {
+    languageId: 8,
+    languageName: 'English',
+    code: 'en' as SupportedLanguage,
+    slogan: 'World Standard Edition',
+    isSystemActive: true,
+    nameEn: 'English',
+    nameTe: 'ఆంగ్లం',
+    nameHi: 'अंग्रेज़ी',
+    nameMl: 'ഇംഗ്ലീഷ്',
+    symbol: 'A',
+  },
+  {
+    languageId: 7,
+    languageName: 'Telugu',
+    code: 'te' as SupportedLanguage,
+    slogan: 'ఆంధ్రప్రదేశ్ & తెలంగాణ వార్తలు',
+    isSystemActive: true,
+    nameEn: 'Telugu',
+    nameTe: 'తెలుగు',
+    nameHi: 'तेलुगु',
+    nameMl: 'തെലുങ്ക്',
+    symbol: 'అ',
+  },
+  {
+    languageId: 9,
+    languageName: 'Malayalam',
+    code: 'ml' as SupportedLanguage,
+    slogan: 'കേരള പ്രാദേശിക വാർത്തകൾ',
+    isSystemActive: true,
+    nameEn: 'Malayalam',
+    nameTe: 'మలയാളం',
+    nameHi: 'मलयालम',
+    nameMl: 'മലയാളം',
+    symbol: 'മ',
+  },
+  {
+    languageId: 10,
+    languageName: 'Hindi',
+    code: 'hi' as SupportedLanguage,
+    slogan: 'राष्ट्रीय मुख्य समाचार हिंदी में',
+    isSystemActive: true,
+    nameEn: 'Hindi',
+    nameTe: 'హిందీ',
+    nameHi: 'हिन्दी',
+    nameMl: 'ഹിന്ദി',
+    symbol: 'अ',
+  },
+];
+
 export default function LanguageSelectionPage() {
   const router = useRouter();
   const { language, setLanguage, activeLanguages } = useLanguageStore();
 
   const [activeOptions, setActiveOptions] = useState<LanguageOption[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const t = languagePageTranslations[language] || languagePageTranslations.en;
 
   const fallbackOptions: LanguageOption[] = [
     {
@@ -58,7 +150,7 @@ export default function LanguageSelectionPage() {
       name: 'Malayalam',
       nativeName: 'മലയാളം',
       slogan: 'കേരള പ്രാദേശിക വാർത്തകൾ',
-      symbol: 'അ',
+      symbol: 'മ',
     },
   ];
 
@@ -75,7 +167,8 @@ export default function LanguageSelectionPage() {
       .get<any[]>('/languages', { skip: 0, limit: 100 })
       .then((data) => {
         if (!active) return;
-        const systemLangsMapped = data.map((item: any) => {
+        const apiLangs = Array.isArray(data) ? data : [];
+        const systemLangsMapped = apiLangs.map((item: any) => {
           const nameEn = item.name?.en || '';
           const rawCode = (item.code || '').toLowerCase().trim();
           const code = (
@@ -98,49 +191,76 @@ export default function LanguageSelectionPage() {
                     : code === 'ml'
                       ? 'കേരള പ്രാദേശിക വാർത്തകൾ'
                       : '',
-            isSystemActive: item.status === true,
+            isSystemActive: item.status !== false,
             nameEn: item.name?.en || '',
             nameTe: item.name?.te || '',
             nameHi: item.name?.hi || '',
             nameMl: item.name?.ml || '',
-            symbol: item.symbol || '',
+            symbol:
+              item.symbol ||
+              (code === 'ml' ? 'മ' : code === 'te' ? 'అ' : code === 'hi' ? 'अ' : 'A'),
           };
+        });
+
+        // Statically merge guaranteed official languages (especially Malayalam)
+        const mergedLanguages = [...systemLangsMapped];
+        staticSupportedLanguages.forEach((staticLang) => {
+          const existingIdx = mergedLanguages.findIndex((l) => l.code === staticLang.code);
+          if (existingIdx === -1) {
+            mergedLanguages.push(staticLang);
+          } else {
+            // Ensure symbol and slogan are populated if API returned empty
+            mergedLanguages[existingIdx] = {
+              ...staticLang,
+              ...mergedLanguages[existingIdx],
+              symbol: mergedLanguages[existingIdx].symbol || staticLang.symbol,
+              slogan: mergedLanguages[existingIdx].slogan || staticLang.slogan,
+              nameMl: mergedLanguages[existingIdx].nameMl || staticLang.nameMl,
+              isSystemActive: true,
+            };
+          }
         });
 
         // Save system languages to Zustand store
         if (typeof useLanguageStore.getState === 'function') {
           const { setSystemLanguages, setActiveLanguages } = useLanguageStore.getState();
           if (typeof setSystemLanguages === 'function') {
-            setSystemLanguages(systemLangsMapped);
+            setSystemLanguages(mergedLanguages);
           }
           if (typeof setActiveLanguages === 'function') {
-            const activeCodes = systemLangsMapped
-              .filter((l) => l.isSystemActive && ['en', 'te', 'hi', 'ml'].includes(l.code))
-              .map((l) => l.code as SupportedLanguage);
+            const activeCodes = Array.from(
+              new Set([
+                ...mergedLanguages
+                  .filter((l) => l.isSystemActive && ['en', 'te', 'hi', 'ml'].includes(l.code))
+                  .map((l) => l.code as SupportedLanguage),
+                'ml' as SupportedLanguage, // Statically enable Malayalam language
+              ])
+            );
             setActiveLanguages(activeCodes);
           }
         }
 
-        const mapped = systemLangsMapped
+        const mapped = mergedLanguages
           .filter((l) => l.isSystemActive && ['en', 'te', 'hi', 'ml'].includes(l.code))
           .map((l) => {
             const key = l.code as SupportedLanguage;
             const nativeName =
               l.code === 'en'
-                ? l.nameEn
+                ? l.nameEn || 'English'
                 : l.code === 'te'
-                  ? l.nameTe
+                  ? l.nameTe || 'తెలుగు'
                   : l.code === 'hi'
-                    ? l.nameHi
+                    ? l.nameHi || 'हिन्दी'
                     : l.code === 'ml'
-                      ? l.nameMl
+                      ? l.nameMl || 'മലയാളം'
                       : l.nameEn;
             return {
               key,
-              name: l.nameEn,
+              name: l.nameEn || key,
               nativeName,
               slogan: l.slogan,
-              symbol: l.symbol || '',
+              symbol:
+                l.symbol || (key === 'ml' ? 'മ' : key === 'te' ? 'అ' : key === 'hi' ? 'अ' : 'A'),
             };
           });
 
@@ -156,8 +276,12 @@ export default function LanguageSelectionPage() {
           'hi',
           'ml',
         ];
+        // Guarantee Malayalam is in activeLanguages
+        if (!currentActive.includes('ml')) {
+          currentActive.push('ml');
+        }
         const filteredFallback = fallbackOptions.filter((opt) => currentActive.includes(opt.key));
-        setActiveOptions(filteredFallback);
+        setActiveOptions(filteredFallback.length > 0 ? filteredFallback : fallbackOptions);
         setLoading(false);
       });
 
@@ -285,14 +409,14 @@ export default function LanguageSelectionPage() {
                 variant="caption"
                 sx={{ color: '#fde68a', pl: 1, fontWeight: 500, letterSpacing: 0.5 }}
               >
-                Breaking News Portal
+                {t.portalBadge}
               </Typography>
             </Box>
 
             <Typography variant="h3" sx={{ fontWeight: 600, mb: 4, lineHeight: 1.2 }}>
-              Enterprise Digital News & Content Hub: <br />
+              {t.portalTitlePre} <br />
               <span style={{ color: '#facc15', textShadow: '0 0 25px rgba(250, 204, 21, 0.4)' }}>
-                BigTV CMS™
+                {t.portalTitleBrand}
               </span>
             </Typography>
 
@@ -300,8 +424,7 @@ export default function LanguageSelectionPage() {
               variant="body1"
               sx={{ color: '#fef3c7', mb: 4, lineHeight: 1.6, opacity: 0.9 }}
             >
-              Select your language on the right panel to configure the Accept-Language API header
-              mappings dynamically across the CMS operator workspace.
+              {t.portalDesc}
             </Typography>
           </Box>
 
@@ -321,7 +444,7 @@ export default function LanguageSelectionPage() {
               variant="h5"
               sx={{ color: '#ffffff', fontWeight: 700, mb: 3, letterSpacing: 0.3 }}
             >
-              Select Language
+              {t.selectLanguageHeading}
             </Typography>
 
             {loading ? (
@@ -343,6 +466,8 @@ export default function LanguageSelectionPage() {
                   return (
                     <Grid item xs={12} sm={6} key={opt.key}>
                       <Card
+                        data-testid={`language-card-${opt.key}`}
+                        onClick={() => handleLanguageSelect(opt.key)}
                         sx={{
                           backgroundColor: isSelected
                             ? 'rgba(234, 179, 8, 0.25)'
@@ -446,7 +571,7 @@ export default function LanguageSelectionPage() {
                 },
               }}
             >
-              Continue
+              {t.continueButton}
             </Button>
           </Box>
         </Box>

@@ -144,6 +144,20 @@ export function useLoginController() {
           name: res.creator?.name || res.creator?.UserName || form.username,
         });
 
+        // Statically ensure Malayalam language is enabled in activeLanguages
+        const creatorLang =
+          (res.creator as any)?.language_code ||
+          (res as any)?.language_code ||
+          (res.creator as any)?.language;
+        if (creatorLang === 'ml' || creatorLang === 'malayalam' || language === 'ml') {
+          useLanguageStore.getState().setLanguage('ml');
+        }
+
+        const currentActive = useLanguageStore.getState().activeLanguages || [];
+        if (!currentActive.includes('ml')) {
+          useLanguageStore.getState().setActiveLanguages([...currentActive, 'ml']);
+        }
+
         const defaultSuccess = toastMessages[language]?.success || toastMessages.en.success;
         const successMsg =
           typeof res.message === 'string'

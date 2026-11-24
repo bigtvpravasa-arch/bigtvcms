@@ -320,7 +320,7 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
         color: isDark ? '#ffffff' : '#1c1445',
         '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)' },
         '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)' },
-        '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#2563eb' },
+        '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#b45309' },
       },
     },
   };
@@ -333,7 +333,7 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
       PaperProps={{
         sx: {
           width: { xs: '100%', sm: 500 },
-          backgroundColor: isDark ? '#140e36' : '#ffffff',
+          backgroundColor: isDark ? 'rgba(28, 22, 3, 0.96)' : '#ffffff',
           color: isDark ? '#ffffff' : '#1c1445',
           p: 3,
         },
@@ -452,7 +452,7 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
                 border: `2px dashed ${
                   dragOver
                     ? isDark
-                      ? '#a6e2f5'
+                      ? '#facc15'
                       : '#1c1445'
                     : isDark
                       ? 'rgba(255,255,255,0.2)'
@@ -463,7 +463,7 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
                 textAlign: 'center',
                 cursor: 'pointer',
                 backgroundColor: dragOver ? 'rgba(166,226,245,0.06)' : 'rgba(28,20,69,0.04)',
-                '&:hover': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                '&:hover': { borderColor: isDark ? '#facc15' : '#1a1300' },
               }}
             >
               <CloudUpload
@@ -513,7 +513,7 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
             MenuProps={{
               PaperProps: {
                 sx: {
-                  backgroundColor: isDark ? '#1a1340' : '#ffffff',
+                  backgroundColor: isDark ? 'rgba(28, 22, 3, 0.96)' : '#ffffff',
                   color: isDark ? '#ffffff' : '#1c1445',
                 },
               },
@@ -656,7 +656,7 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
         />
         <Typography
           variant="subtitle2"
-          sx={{ color: isDark ? '#a6e2f5' : '#2563eb', fontWeight: 700 }}
+          sx={{ color: isDark ? '#facc15' : '#b45309', fontWeight: 700 }}
         >
           Employment Information
         </Typography>
@@ -717,7 +717,7 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
         />
         <Typography
           variant="subtitle2"
-          sx={{ color: isDark ? '#a6e2f5' : '#2563eb', fontWeight: 700 }}
+          sx={{ color: isDark ? '#facc15' : '#b45309', fontWeight: 700 }}
         >
           Media Channel Details
         </Typography>
@@ -776,9 +776,9 @@ export const ReporterDrawer: React.FC<ReporterDrawerProps> = ({
               borderRadius: '12px',
               textTransform: 'none',
               fontWeight: 600,
-              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-              color: isDark ? '#1c1445' : '#ffffff',
-              '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+              backgroundColor: isDark ? '#facc15' : '#1a1300',
+              color: isDark ? '#1a1300' : '#ffffff',
+              '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
             }}
           >
             {loading ? <CircularProgress size={24} /> : isEditMode ? 'Update' : 'Create'}

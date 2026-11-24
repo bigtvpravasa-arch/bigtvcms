@@ -102,8 +102,8 @@ export const GamesTable: React.FC<GamesTableProps> = ({
                       sx={{
                         width: 40,
                         height: 40,
-                        bgcolor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(37,99,235,0.08)',
-                        color: isDark ? '#a6e2f5' : '#2563eb',
+                        bgcolor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(234,179,8,0.08)',
+                        color: isDark ? '#facc15' : '#b45309',
                       }}
                     >
                       <SportsEsports fontSize="small" />
@@ -207,8 +207,8 @@ export const GamesTable: React.FC<GamesTableProps> = ({
                         fontSize: '0.75rem',
                         fontWeight: 600,
                         borderRadius: '8px',
-                        borderColor: isDark ? 'rgba(166,226,245,0.4)' : '#2563eb',
-                        color: isDark ? '#a6e2f5' : '#2563eb',
+                        borderColor: isDark ? 'rgba(250,204,21,0.4)' : '#b45309',
+                        color: isDark ? '#facc15' : '#b45309',
                         py: 0.3,
                         px: 1,
                       }}
@@ -229,7 +229,7 @@ export const GamesTable: React.FC<GamesTableProps> = ({
                       onClick={() => onEdit(row)}
                       sx={{
                         textTransform: 'none',
-                        color: isDark ? '#a6e2f5' : '#2563eb',
+                        color: isDark ? '#facc15' : '#b45309',
                         fontWeight: 600,
                       }}
                     >

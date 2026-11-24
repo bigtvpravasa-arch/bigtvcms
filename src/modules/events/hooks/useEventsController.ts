@@ -17,10 +17,19 @@ import {
 } from '../domain/event.types';
 import { eventsRepository, FOLK_NIGHT_EVENT_ID } from '../repositories/events.repository';
 
-export type EventTabType = 'events' | 'bookings' | 'tickets' | 'coupons' | 'config';
+export type EventTabType =
+  | 'events'
+  | 'bookings'
+  | 'tickets'
+  | 'coupons'
+  | 'config'
+  | 'testTickets';
+
+export type FolkNightSubTabType = 'live' | 'testTickets' | 'analytics';
 
 export const useEventsController = () => {
   const [activeTab, setActiveTab] = useState<EventTabType>('events');
+  const [folkNightSubTab, setFolkNightSubTab] = useState<FolkNightSubTabType>('live');
 
   // Events State
   const [events, setEvents] = useState<EventItem[]>([]);
@@ -115,6 +124,10 @@ export const useEventsController = () => {
   const [isCheckInModalOpen, setIsCheckInModalOpen] = useState<boolean>(false);
   const [syncingInventory, setSyncingInventory] = useState<boolean>(false);
 
+  // Isolated QA Test Tickets State (userId: 79833)
+  const [testTickets, setTestTickets] = useState<BookingItem[]>([]);
+  const [isResettingTestTickets, setIsResettingTestTickets] = useState<boolean>(false);
+
   // Drawer State for Events
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
@@ -130,6 +143,7 @@ export const useEventsController = () => {
         fetchedConfig,
         fetchedBookings,
         fetchedBookingStats,
+        fetchedTestTickets,
       ] = await Promise.all([
         eventsRepository.getEvents(search, selectedCity, selectedStatus),
         eventsRepository.getStats(),
@@ -143,6 +157,7 @@ export const useEventsController = () => {
           search: bookingSearch,
         }),
         eventsRepository.getBookingAdminStats(FOLK_NIGHT_EVENT_ID),
+        eventsRepository.getTestTickets(),
       ]);
 
       setEvents(fetchedEvents);
@@ -152,6 +167,7 @@ export const useEventsController = () => {
       if (fetchedConfig) setAppConfig(fetchedConfig);
       setBookings(fetchedBookings.data || []);
       if (fetchedBookingStats) setBookingStats(fetchedBookingStats);
+      setTestTickets(fetchedTestTickets || []);
     } catch {
       // Handled in repository fallback
     } finally {
@@ -332,9 +348,22 @@ export const useEventsController = () => {
     }
   };
 
+  const handleResetTestTickets = async () => {
+    setIsResettingTestTickets(true);
+    try {
+      const resetList = await eventsRepository.resetTestTickets();
+      setTestTickets(resetList);
+      await fetchAllData();
+    } finally {
+      setIsResettingTestTickets(false);
+    }
+  };
+
   return {
     activeTab,
     setActiveTab,
+    folkNightSubTab,
+    setFolkNightSubTab,
     events: paginatedEvents,
     allEvents: events,
     stats,
@@ -393,6 +422,11 @@ export const useEventsController = () => {
     handleCheckIn,
     syncingInventory,
     handleSyncInventory,
+
+    // Test Tickets (userId: 79833)
+    testTickets,
+    isResettingTestTickets,
+    handleResetTestTickets,
 
     // Tickets
     tickets,

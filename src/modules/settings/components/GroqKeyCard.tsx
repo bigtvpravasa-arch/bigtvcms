@@ -57,7 +57,7 @@ export const GroqKeyCard: React.FC<GroqKeyCardProps> = ({ isDark, translations =
   return (
     <Card
       sx={{
-        backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#f4f3f8',
+        backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#f4f3f8',
         border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
         borderRadius: '16px',
         transition: 'all 0.3s ease',
@@ -74,7 +74,7 @@ export const GroqKeyCard: React.FC<GroqKeyCardProps> = ({ isDark, translations =
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-            <KeyIcon sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }} />
+            <KeyIcon sx={{ color: isDark ? '#facc15' : '#1a1300' }} />
             <Typography
               variant="h6"
               sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}
@@ -94,7 +94,7 @@ export const GroqKeyCard: React.FC<GroqKeyCardProps> = ({ isDark, translations =
                     backgroundColor: isDark
                       ? 'rgba(166, 226, 245, 0.12)'
                       : 'rgba(28, 20, 69, 0.08)',
-                    color: isDark ? '#a6e2f5' : '#1c1445',
+                    color: isDark ? '#facc15' : '#1a1300',
                     fontSize: '0.75rem',
                     fontWeight: 500,
                   }}
@@ -161,7 +161,7 @@ export const GroqKeyCard: React.FC<GroqKeyCardProps> = ({ isDark, translations =
                     aria-label="toggle key visibility"
                     onClick={toggleShowKey}
                     edge="end"
-                    sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }}
+                    sx={{ color: isDark ? '#facc15' : '#1a1300' }}
                   >
                     {showKey ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
@@ -177,7 +177,7 @@ export const GroqKeyCard: React.FC<GroqKeyCardProps> = ({ isDark, translations =
                   borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)',
                 },
                 '&:hover fieldset': {
-                  borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                  borderColor: isDark ? '#facc15' : '#1a1300',
                 },
               },
             }}
@@ -193,8 +193,8 @@ export const GroqKeyCard: React.FC<GroqKeyCardProps> = ({ isDark, translations =
               minWidth: '130px',
               height: '40px',
               borderRadius: '12px',
-              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-              color: isDark ? '#110d29' : '#ffffff',
+              backgroundColor: isDark ? '#facc15' : '#1a1300',
+              color: isDark ? '#161202' : '#ffffff',
               fontWeight: 600,
               textTransform: 'none',
               '&:hover': {

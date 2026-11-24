@@ -73,11 +73,11 @@ export const AudienceReviewsModal: React.FC<AudienceReviewsModalProps> = ({
               width: 36,
               height: 36,
               borderRadius: '10px',
-              backgroundColor: '#2563eb',
+              backgroundColor: '#facc15',
+              color: '#1a1300',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#fff',
             }}
           >
             <RateReview fontSize="small" />

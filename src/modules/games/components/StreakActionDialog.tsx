@@ -114,7 +114,7 @@ export const StreakActionDialog: React.FC<StreakActionDialogProps> = ({
               '&:hover fieldset': {
                 borderColor: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
               },
-              '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#2563eb' },
+              '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#b45309' },
             },
           }}
         />

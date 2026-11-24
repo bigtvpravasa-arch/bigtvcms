@@ -268,10 +268,11 @@ export const CreateTTSModal: React.FC<CreateTTSModalProps> = ({ open, onClose, t
             fontWeight: 700,
             fontSize: '1rem',
             textTransform: 'none',
-            backgroundColor: '#2563eb',
-            boxShadow: '0 4px 14px rgba(37,99,235,0.4)',
+            backgroundColor: '#facc15',
+            color: '#1a1300',
+            boxShadow: '0 4px 14px rgba(250, 204, 21, 0.35)',
             '&:hover': {
-              backgroundColor: '#1d4ed8',
+              backgroundColor: '#fde047',
             },
           }}
         >
@@ -294,13 +295,13 @@ export const CreateTTSModal: React.FC<CreateTTSModalProps> = ({ open, onClose, t
             mt: 3,
             p: 2,
             borderRadius: '12px',
-            backgroundColor: isDark ? 'rgba(37,99,235,0.15)' : '#eff6ff',
+            backgroundColor: isDark ? 'rgba(250,204,21,0.15)' : '#fef9c3',
             border: isDark ? '1px solid rgba(59,130,246,0.3)' : '1px solid #bfdbfe',
           }}
         >
           <Typography
             variant="subtitle2"
-            sx={{ fontWeight: 700, mb: 1, color: isDark ? '#93c5fd' : '#1d4ed8' }}
+            sx={{ fontWeight: 700, mb: 1, color: isDark ? '#fde047' : '#92400e' }}
           >
             {t.playingHeader}
           </Typography>

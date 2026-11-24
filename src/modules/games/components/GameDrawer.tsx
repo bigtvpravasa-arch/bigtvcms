@@ -188,7 +188,7 @@ export const GameDrawer: React.FC<GameDrawerProps> = ({
         backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#ffffff',
         '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)' },
         '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)' },
-        '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#2563eb' },
+        '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#b45309' },
       },
     },
   };
@@ -289,7 +289,7 @@ export const GameDrawer: React.FC<GameDrawerProps> = ({
                 gap: 1,
               }}
             >
-              <ImageIcon sx={{ fontSize: '1.2rem', color: isDark ? '#a6e2f5' : '#2563eb' }} />
+              <ImageIcon sx={{ fontSize: '1.2rem', color: isDark ? '#facc15' : '#b45309' }} />
               {t.levelIcon || 'Game / Level Icon'}
             </Typography>
             <Button
@@ -300,7 +300,7 @@ export const GameDrawer: React.FC<GameDrawerProps> = ({
               sx={{
                 textTransform: 'none',
                 fontSize: '0.75rem',
-                color: isDark ? '#a6e2f5' : '#2563eb',
+                color: isDark ? '#facc15' : '#b45309',
               }}
             >
               {t.useDefaultIcon || 'Use Default Icon'}
@@ -345,8 +345,8 @@ export const GameDrawer: React.FC<GameDrawerProps> = ({
                   textTransform: 'none',
                   borderRadius: '8px',
                   fontSize: '0.78rem',
-                  borderColor: isDark ? '#a6e2f5' : '#2563eb',
-                  color: isDark ? '#a6e2f5' : '#2563eb',
+                  borderColor: isDark ? '#facc15' : '#b45309',
+                  color: isDark ? '#facc15' : '#b45309',
                 }}
               >
                 {uploadingIcon ? t.uploadingIcon || 'Uploading...' : t.uploadIcon || 'Upload Icon'}
@@ -457,8 +457,8 @@ export const GameDrawer: React.FC<GameDrawerProps> = ({
           variant="contained"
           disabled={loading}
           sx={{
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
             textTransform: 'none',
             borderRadius: '10px',
             fontWeight: 600,

@@ -34,7 +34,7 @@ export const Loader: React.FC<LoaderProps> = ({
         size={size}
         thickness={4}
         sx={{
-          color: isDark ? '#a6e2f5' : '#1c1445',
+          color: isDark ? '#facc15' : '#1a1300',
           animationDuration: '750ms',
         }}
       />

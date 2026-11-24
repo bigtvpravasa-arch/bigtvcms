@@ -183,7 +183,7 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
             borderBottom: isDark
               ? '1px solid rgba(255,255,255,0.08)'
               : '1px solid rgba(0,0,0,0.08)',
-            backgroundColor: isDark ? 'rgba(38, 28, 86, 0.4)' : '#fafafa',
+            backgroundColor: isDark ? 'rgba(28, 22, 3, 0.4)' : '#fafafa',
           }}
         >
           <Box>
@@ -555,7 +555,7 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
             display: 'flex',
             gap: 2,
             borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
-            backgroundColor: isDark ? 'rgba(38, 28, 86, 0.4)' : '#fafafa',
+            backgroundColor: isDark ? 'rgba(28, 22, 3, 0.4)' : '#fafafa',
           }}
         >
           <Button
@@ -580,10 +580,10 @@ export const EventDrawer: React.FC<EventDrawerProps> = ({
               borderRadius: '12px',
               textTransform: 'none',
               fontWeight: 700,
-              backgroundColor: '#2563eb',
-              color: '#ffffff',
-              boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
-              '&:hover': { backgroundColor: '#1d4ed8' },
+              backgroundColor: '#facc15',
+              color: '#1a1300',
+              boxShadow: '0 4px 14px rgba(250, 204, 21, 0.35)',
+              '&:hover': { backgroundColor: '#fde047' },
             }}
           >
             {event ? t.btnUpdate || 'Update Event' : t.btnSave || 'Save Event'}

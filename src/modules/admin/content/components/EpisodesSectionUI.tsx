@@ -191,7 +191,7 @@ export const EpisodesSectionUI: React.FC<EpisodesSectionUIProps> = ({
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Movie sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.4rem' }} />
+          <Movie sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: '1.4rem' }} />
           <Box>
             <Typography
               variant="subtitle1"
@@ -215,9 +215,9 @@ export const EpisodesSectionUI: React.FC<EpisodesSectionUIProps> = ({
             textTransform: 'none',
             fontWeight: 700,
             fontSize: '0.85rem',
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
-            '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
+            '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
           }}
         >
           {t.addEpisode}
@@ -242,7 +242,7 @@ export const EpisodesSectionUI: React.FC<EpisodesSectionUIProps> = ({
         >
           <Typography
             variant="subtitle2"
-            sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#1c1445' }}
+            sx={{ fontWeight: 700, color: isDark ? '#facc15' : '#1a1300' }}
           >
             ➕ {t.addEpisode}
           </Typography>
@@ -355,8 +355,8 @@ export const EpisodesSectionUI: React.FC<EpisodesSectionUIProps> = ({
               sx={{
                 borderRadius: '8px',
                 textTransform: 'none',
-                backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                color: isDark ? '#1c1445' : '#ffffff',
+                backgroundColor: isDark ? '#facc15' : '#1a1300',
+                color: isDark ? '#1a1300' : '#ffffff',
               }}
             >
               {t.saveEpisode}

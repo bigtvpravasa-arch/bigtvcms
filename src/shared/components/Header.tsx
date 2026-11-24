@@ -287,9 +287,11 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
       data-testid="top-menu-bar"
       sx={{
         height: '55px',
-        backgroundColor: isDark ? 'rgba(38,28,86,0.25)' : '#ffffff',
+        backgroundColor: isDark ? 'rgba(28, 22, 3, 0.85)' : '#ffffff',
         backdropFilter: isDark ? 'blur(10px)' : 'none',
-        borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+        borderBottom: isDark
+          ? '1px solid rgba(250, 204, 21, 0.15)'
+          : '1px solid rgba(217, 119, 6, 0.15)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -297,12 +299,12 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
         flexShrink: 0,
       }}
     >
-      <Typography variant="h6" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 700 }}>
+      <Typography variant="h6" sx={{ color: isDark ? '#ffffff' : '#1a1300', fontWeight: 700 }}>
         {title}
       </Typography>
 
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <IconButton sx={{ color: isDark ? '#d0caeb' : '#5c548a' }} aria-label="notifications">
+        <IconButton sx={{ color: isDark ? '#fde68a' : '#78350f' }} aria-label="notifications">
           <Notifications />
         </IconButton>
 
@@ -313,14 +315,14 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
             aria-label="device-id"
             onClick={() => setDeviceDialogOpen(true)}
             sx={{
-              color: isDark ? '#a6e2f5' : '#5c548a',
-              backgroundColor: isDark ? 'rgba(166,226,245,0.08)' : 'rgba(28,20,69,0.05)',
+              color: isDark ? '#facc15' : '#b45309',
+              backgroundColor: isDark ? 'rgba(234, 179, 8, 0.12)' : 'rgba(234, 179, 8, 0.08)',
               borderRadius: '10px',
               p: 0.9,
               transition: 'all 0.2s ease',
               '&:hover': {
-                backgroundColor: isDark ? 'rgba(166,226,245,0.18)' : 'rgba(28,20,69,0.1)',
-                color: isDark ? '#ffffff' : '#1c1445',
+                backgroundColor: isDark ? 'rgba(234, 179, 8, 0.22)' : 'rgba(234, 179, 8, 0.14)',
+                color: isDark ? '#ffffff' : '#1a1300',
               },
             }}
           >
@@ -341,7 +343,7 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
             borderRadius: '12px',
             transition: 'background-color 0.2s ease',
             '&:hover': {
-              backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)',
+              backgroundColor: isDark ? 'rgba(234, 179, 8, 0.1)' : 'rgba(234, 179, 8, 0.06)',
             },
           }}
         >
@@ -350,8 +352,8 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
             sx={{
               width: 34,
               height: 34,
-              bgcolor: isDark ? '#a6e2f5' : '#1c1445',
-              color: isDark ? '#1c1445' : '#ffffff',
+              bgcolor: '#facc15',
+              color: '#1a1300',
               fontSize: '0.875rem',
               fontWeight: 700,
             }}
@@ -362,13 +364,13 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography
               variant="body2"
-              sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600, lineHeight: 1.2 }}
+              sx={{ color: isDark ? '#ffffff' : '#1a1300', fontWeight: 600, lineHeight: 1.2 }}
             >
               {displayName}
             </Typography>
             <Typography
               variant="caption"
-              sx={{ color: isDark ? '#a6e2f5' : '#5c548a', fontSize: '0.7rem', fontWeight: 500 }}
+              sx={{ color: isDark ? '#facc15' : '#b45309', fontSize: '0.7rem', fontWeight: 500 }}
             >
               {displayRole}
             </Typography>
@@ -377,7 +379,7 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
 
         {/* Logout / Login Icon Button */}
         <IconButton
-          sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}
+          sx={{ color: isDark ? '#fde68a' : '#78350f' }}
           onClick={handleLogoutClick}
           aria-label={user.isLoggedIn ? t.logout : t.login}
           data-testid="header-logout-button"
@@ -399,17 +401,21 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
             width: 260,
             borderRadius: '16px',
             p: 2,
-            backgroundColor: isDark ? '#1c1445' : '#ffffff',
-            color: isDark ? '#ffffff' : '#1c1445',
-            boxShadow: isDark ? '0 10px 30px rgba(0,0,0,0.5)' : '0 10px 30px rgba(0,0,0,0.1)',
-            border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.08)',
+            backgroundColor: isDark ? 'rgba(28, 22, 3, 0.96)' : '#ffffff',
+            color: isDark ? '#ffffff' : '#1a1300',
+            boxShadow: isDark
+              ? '0 10px 30px rgba(0,0,0,0.8), 0 0 25px rgba(234, 179, 8, 0.15)'
+              : '0 10px 30px rgba(0,0,0,0.1)',
+            border: isDark
+              ? '1px solid rgba(250, 204, 21, 0.25)'
+              : '1px solid rgba(217, 119, 6, 0.15)',
           },
         }}
       >
         <Typography
           variant="caption"
           sx={{
-            color: isDark ? '#d0caeb' : '#5c548a',
+            color: isDark ? '#fde68a' : '#78350f',
             fontWeight: 600,
             textTransform: 'uppercase',
             letterSpacing: 0.5,
@@ -424,8 +430,8 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
             sx={{
               width: 44,
               height: 44,
-              bgcolor: isDark ? '#a6e2f5' : '#1c1445',
-              color: isDark ? '#1c1445' : '#ffffff',
+              bgcolor: '#facc15',
+              color: '#1a1300',
               fontSize: '1rem',
               fontWeight: 700,
             }}
@@ -448,7 +454,7 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
             <Typography
               variant="caption"
               sx={{
-                color: isDark ? '#d0caeb' : '#5c548a',
+                color: isDark ? '#fde68a' : '#78350f',
                 display: 'block',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
@@ -466,8 +472,8 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
             icon={<VerifiedUser sx={{ fontSize: '14px !important' }} />}
             label={displayRole}
             sx={{
-              backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.08)',
-              color: isDark ? '#a6e2f5' : '#1c1445',
+              backgroundColor: isDark ? 'rgba(234, 179, 8, 0.15)' : 'rgba(234, 179, 8, 0.1)',
+              color: isDark ? '#facc15' : '#b45309',
               fontWeight: 600,
               fontSize: '0.75rem',
             }}
@@ -482,7 +488,10 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
         </Box>
 
         <Divider
-          sx={{ my: 1.5, borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)' }}
+          sx={{
+            my: 1.5,
+            borderColor: isDark ? 'rgba(250, 204, 21, 0.15)' : 'rgba(217, 119, 6, 0.12)',
+          }}
         />
 
         <Button
@@ -507,9 +516,11 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
         PaperProps={{
           sx: {
             borderRadius: '20px',
-            backgroundColor: isDark ? '#110d29' : '#f7f7fb',
-            border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.08)',
-            boxShadow: isDark ? '0 24px 60px rgba(0,0,0,0.7)' : '0 24px 60px rgba(0,0,0,0.15)',
+            backgroundColor: isDark ? 'rgba(28, 22, 3, 0.98)' : '#fdfcf9',
+            border: isDark
+              ? '1px solid rgba(250, 204, 21, 0.25)'
+              : '1px solid rgba(217, 119, 6, 0.15)',
+            boxShadow: isDark ? '0 24px 60px rgba(0,0,0,0.8)' : '0 24px 60px rgba(0,0,0,0.15)',
             overflow: 'hidden',
           },
         }}
@@ -524,9 +535,9 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
             pt: 3,
             pb: 2,
             borderBottom: isDark
-              ? '1px solid rgba(255,255,255,0.06)'
-              : '1px solid rgba(0,0,0,0.06)',
-            backgroundColor: isDark ? 'rgba(166,226,245,0.04)' : '#ffffff',
+              ? '1px solid rgba(250, 204, 21, 0.12)'
+              : '1px solid rgba(217, 119, 6, 0.12)',
+            backgroundColor: isDark ? 'rgba(234, 179, 8, 0.05)' : '#ffffff',
           }}
         >
           <Box
@@ -538,18 +549,20 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
               alignItems: 'center',
               justifyContent: 'center',
               background: isDark
-                ? 'linear-gradient(135deg,rgba(166,226,245,0.25),rgba(166,226,245,0.08))'
-                : 'linear-gradient(135deg,rgba(28,20,69,0.12),rgba(28,20,69,0.05))',
-              border: isDark ? '1px solid rgba(166,226,245,0.2)' : '1px solid rgba(28,20,69,0.12)',
+                ? 'linear-gradient(135deg, rgba(250, 204, 21, 0.25), rgba(234, 179, 8, 0.08))'
+                : 'linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(234, 179, 8, 0.05))',
+              border: isDark
+                ? '1px solid rgba(250, 204, 21, 0.3)'
+                : '1px solid rgba(217, 119, 6, 0.2)',
               flexShrink: 0,
             }}
           >
-            <Fingerprint sx={{ fontSize: '1.5rem', color: isDark ? '#a6e2f5' : '#1c1445' }} />
+            <Fingerprint sx={{ fontSize: '1.5rem', color: isDark ? '#facc15' : '#b45309' }} />
           </Box>
           <Box sx={{ flex: 1, minWidth: 0 }}>
             <Typography
               variant="h6"
-              sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 700, fontSize: '1.05rem' }}
+              sx={{ color: isDark ? '#ffffff' : '#1a1300', fontWeight: 700, fontSize: '1.05rem' }}
             >
               {t.deviceId}
             </Typography>
@@ -604,15 +617,15 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
                     height: 70,
                     borderRadius: '50%',
                     background: isDark
-                      ? 'radial-gradient(circle,rgba(166,226,245,0.15),transparent 70%)'
-                      : 'radial-gradient(circle,rgba(28,20,69,0.08),transparent 70%)',
+                      ? 'radial-gradient(circle,rgba(250,204,21,0.15),transparent 70%)'
+                      : 'radial-gradient(circle,rgba(217,119,6,0.08),transparent 70%)',
                     pointerEvents: 'none',
                   }}
                 />
                 <Typography
                   variant="caption"
                   sx={{
-                    color: isDark ? '#a6e2f5' : '#5c548a',
+                    color: isDark ? '#facc15' : '#78350f',
                     fontWeight: 700,
                     textTransform: 'uppercase',
                     letterSpacing: 1,
@@ -644,7 +657,7 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
                         size="small"
                         onClick={handleCopy}
                         sx={{
-                          color: isDark ? '#a6e2f5' : '#1c1445',
+                          color: isDark ? '#facc15' : '#1a1300',
                           backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(28,20,69,0.07)',
                           borderRadius: '8px',
                           '&:hover': {
@@ -868,9 +881,11 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
         PaperProps={{
           sx: {
             borderRadius: '20px',
-            backgroundColor: isDark ? '#110d29' : '#ffffff',
-            border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.08)',
-            boxShadow: isDark ? '0 24px 60px rgba(0,0,0,0.7)' : '0 24px 60px rgba(0,0,0,0.15)',
+            backgroundColor: isDark ? 'rgba(28, 22, 3, 0.98)' : '#ffffff',
+            border: isDark
+              ? '1px solid rgba(250, 204, 21, 0.25)'
+              : '1px solid rgba(217, 119, 6, 0.15)',
+            boxShadow: isDark ? '0 24px 60px rgba(0,0,0,0.8)' : '0 24px 60px rgba(0,0,0,0.15)',
             p: 1,
             overflow: 'hidden',
           },

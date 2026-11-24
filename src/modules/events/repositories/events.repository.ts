@@ -17,11 +17,14 @@ import {
   BookingAdminStats,
 } from '../domain/event.types';
 import { eventsApiClient, apiClient } from '@/core/api/api-client';
+import { createInitialTestTickets, TEST_USER_ID } from '../data/testTicketsData';
 
 const client = eventsApiClient || apiClient;
 
 export const FOLK_NIGHT_EVENT_ID = 'e4d962de-5393-4541-a792-4c23f1429f9c';
 export const FOLK_NIGHT_EVENT_CODE = 'Bigtv-2026';
+
+let localTestTicketsStore: BookingItem[] = createInitialTestTickets();
 
 const initialMockEvents: EventItem[] = [
   {
@@ -784,6 +787,62 @@ export const eventsRepository = {
     throw new Error('Booking not found');
   },
 
+  // --- Isolated Test Tickets (userId: 79833) ---
+  async getTestTickets(params?: {
+    search?: string;
+    tier?: string;
+    status?: string;
+  }): Promise<BookingItem[]> {
+    try {
+      const res: any = await client.get('/bookings', {
+        params: { userId: TEST_USER_ID, limit: 30 },
+      });
+      const rawList = Array.isArray(res?.data)
+        ? res.data
+        : Array.isArray(res?.data?.data)
+          ? res.data.data
+          : Array.isArray(res)
+            ? res
+            : [];
+      if (rawList.length > 0) {
+        localTestTicketsStore = rawList;
+      }
+    } catch {}
+
+    let filtered = [...localTestTicketsStore];
+    if (params?.search) {
+      const q = params.search.toLowerCase();
+      filtered = filtered.filter(
+        (t) =>
+          t.bookingCode.toLowerCase().includes(q) ||
+          (t.ticketTypeName && t.ticketTypeName.toLowerCase().includes(q)) ||
+          (t.ticketType?.name && t.ticketType.name.toLowerCase().includes(q)) ||
+          (t.testScenario && t.testScenario.toLowerCase().includes(q))
+      );
+    }
+    if (params?.tier && params.tier !== 'ALL') {
+      const tierFilter = params.tier.toLowerCase();
+      filtered = filtered.filter(
+        (t) =>
+          t.ticketTypeName?.toLowerCase() === tierFilter ||
+          t.ticketType?.name?.toLowerCase() === tierFilter ||
+          t.ticketTypeName?.toLowerCase().includes(tierFilter)
+      );
+    }
+    if (params?.status && params.status !== 'ALL') {
+      filtered = filtered.filter((t) => t.bookingStatus === params.status);
+    }
+    return filtered;
+  },
+
+  async resetTestTickets(): Promise<BookingItem[]> {
+    try {
+      await client.post('/bookings/admin/reset-test-tickets');
+    } catch {}
+    localTestTicketsStore = createInitialTestTickets();
+    return [...localTestTicketsStore];
+  },
+
   async verifyQrCode(bookingCode: string): Promise<VerifyQrResult> {
     try {
       const res: any = await client.get(`/bookings/verify-qr/${bookingCode}`);
@@ -792,9 +851,14 @@ export const eventsRepository = {
       if (err.response?.data) return err.response.data;
     }
 
-    const booking = localBookingsStore.find(
-      (b) => b.bookingCode.toUpperCase() === bookingCode.toUpperCase()
-    );
+    const booking =
+      localBookingsStore.find(
+        (b) => b.bookingCode.toUpperCase() === bookingCode.toUpperCase()
+      ) ||
+      localTestTicketsStore.find(
+        (b) => b.bookingCode.toUpperCase() === bookingCode.toUpperCase()
+      );
+
     if (!booking) {
       return {
         isValid: false,
@@ -804,7 +868,14 @@ export const eventsRepository = {
     if (booking.bookingStatus === 'COMPLETED') {
       return {
         isValid: false,
-        reason: 'Ticket has ALREADY been scanned and checked in.',
+        reason: 'Ticket has ALREADY been scanned and checked in. Entry denied.',
+        booking,
+      };
+    }
+    if (booking.bookingStatus === 'CANCELLED') {
+      return {
+        isValid: false,
+        reason: 'Booking is CANCELLED. Entry denied.',
         booking,
       };
     }
@@ -812,13 +883,6 @@ export const eventsRepository = {
       return {
         isValid: false,
         reason: `Payment status is '${booking.paymentStatus}'. Gate entry denied.`,
-        booking,
-      };
-    }
-    if (booking.bookingStatus === 'CANCELLED') {
-      return {
-        isValid: false,
-        reason: 'Booking has been CANCELLED.',
         booking,
       };
     }
@@ -833,20 +897,54 @@ export const eventsRepository = {
     try {
       const res: any = await client.post(`/bookings/check-in/${bookingCode}`);
       if (res?.data) {
-        const idx = localBookingsStore.findIndex((b) => b.bookingCode === bookingCode);
-        if (idx !== -1) localBookingsStore[idx].bookingStatus = 'COMPLETED';
+        const idxLive = localBookingsStore.findIndex((b) => b.bookingCode === bookingCode);
+        if (idxLive !== -1) localBookingsStore[idxLive].bookingStatus = 'COMPLETED';
+        const idxTest = localTestTicketsStore.findIndex((b) => b.bookingCode === bookingCode);
+        if (idxTest !== -1) localTestTicketsStore[idxTest].bookingStatus = 'COMPLETED';
         return res.data;
       }
     } catch {}
 
-    const idx = localBookingsStore.findIndex((b) => b.bookingCode === bookingCode);
-    if (idx !== -1) {
-      localBookingsStore[idx].bookingStatus = 'COMPLETED';
+    const idxLive = localBookingsStore.findIndex((b) => b.bookingCode === bookingCode);
+    if (idxLive !== -1) {
+      if (localBookingsStore[idxLive].bookingStatus === 'COMPLETED') {
+        throw new Error('Ticket has ALREADY been scanned and checked in. Entry denied.');
+      }
+      if (localBookingsStore[idxLive].bookingStatus === 'CANCELLED') {
+        throw new Error('Booking is CANCELLED. Entry denied.');
+      }
+      if (localBookingsStore[idxLive].paymentStatus !== 'PAID') {
+        throw new Error(
+          `Payment status is '${localBookingsStore[idxLive].paymentStatus}'. Gate entry denied.`
+        );
+      }
+      localBookingsStore[idxLive].bookingStatus = 'COMPLETED';
       return {
         message: 'Ticket scanned successfully. Customer checked in for event.',
-        data: localBookingsStore[idx],
+        data: localBookingsStore[idxLive],
       };
     }
+
+    const idxTest = localTestTicketsStore.findIndex((b) => b.bookingCode === bookingCode);
+    if (idxTest !== -1) {
+      if (localTestTicketsStore[idxTest].bookingStatus === 'COMPLETED') {
+        throw new Error('Ticket has ALREADY been scanned and checked in. Entry denied.');
+      }
+      if (localTestTicketsStore[idxTest].bookingStatus === 'CANCELLED') {
+        throw new Error('Booking is CANCELLED. Entry denied.');
+      }
+      if (localTestTicketsStore[idxTest].paymentStatus !== 'PAID') {
+        throw new Error(
+          `Payment status is '${localTestTicketsStore[idxTest].paymentStatus}'. Gate entry denied.`
+        );
+      }
+      localTestTicketsStore[idxTest].bookingStatus = 'COMPLETED';
+      return {
+        message: 'Ticket scanned successfully. Customer checked in for event.',
+        data: localTestTicketsStore[idxTest],
+      };
+    }
+
     throw new Error('Booking not found for check-in');
   },
 

@@ -411,7 +411,7 @@ const SudokuPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, 
                     backgroundColor: isSelected
                       ? isDark
                         ? 'rgba(166,226,245,0.25)'
-                        : 'rgba(37,99,235,0.15)'
+                        : 'rgba(250,204,21,0.15)'
                       : isError
                         ? isDark
                           ? 'rgba(244,67,54,0.25)'
@@ -419,7 +419,7 @@ const SudokuPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, 
                         : highlight
                           ? isDark
                             ? 'rgba(255,255,255,0.06)'
-                            : 'rgba(37,99,235,0.05)'
+                            : 'rgba(234,179,8,0.05)'
                           : 'transparent',
                     color: isError
                       ? '#f44336'
@@ -428,8 +428,10 @@ const SudokuPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, 
                           ? '#ffffff'
                           : '#1c1445'
                         : isDark
-                          ? '#a6e2f5'
-                          : '#2563eb',
+                          ? '#facc15'
+                          : isDark
+                            ? '#facc15'
+                            : '#b45309',
                     transition: 'background 0.15s',
                     ...getBorderStyle(r, c),
                   }}
@@ -458,8 +460,8 @@ const SudokuPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, 
               fontSize: '1rem',
               fontFamily: 'monospace',
               borderRadius: '8px',
-              borderColor: isDark ? 'rgba(166,226,245,0.4)' : 'rgba(37,99,235,0.4)',
-              color: isDark ? '#a6e2f5' : '#2563eb',
+              borderColor: isDark ? 'rgba(250,204,21,0.4)' : 'rgba(234,179,8,0.4)',
+              color: isDark ? '#facc15' : '#b45309',
             }}
           >
             {n}
@@ -510,7 +512,7 @@ const SudokuPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, 
             sx={{
               textTransform: 'none',
               borderRadius: '8px',
-              color: isDark ? '#a6e2f5' : '#2563eb',
+              color: isDark ? '#facc15' : '#b45309',
               fontWeight: 600,
             }}
           >
@@ -1805,13 +1807,13 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
           px: 2,
           py: 0.8,
           borderRadius: '10px',
-          backgroundColor: isDark ? 'rgba(166,226,245,0.08)' : 'rgba(37,99,235,0.06)',
-          border: isDark ? '1px solid rgba(166,226,245,0.2)' : '1px solid rgba(37,99,235,0.15)',
+          backgroundColor: isDark ? 'rgba(250,204,21,0.1)' : 'rgba(234,179,8,0.06)',
+          border: isDark ? '1px solid rgba(250,204,21,0.2)' : '1px solid rgba(234,179,8,0.15)',
           maxWidth: 480,
           textAlign: 'center',
         }}
       >
-        <HelpOutline sx={{ fontSize: '1.1rem', color: isDark ? '#a6e2f5' : '#2563eb' }} />
+        <HelpOutline sx={{ fontSize: '1.1rem', color: isDark ? '#facc15' : '#b45309' }} />
         <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#334155' }}>
           {t.howToPlayZip}
         </Typography>
@@ -1845,7 +1847,9 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
                     : isCurrentTarget
                       ? isDark
                         ? '#0284c7'
-                        : '#2563eb'
+                        : isDark
+                          ? '#facc15'
+                          : '#b45309'
                       : isDark
                         ? 'rgba(255,255,255,0.08)'
                         : 'rgba(0,0,0,0.06)',
@@ -1959,12 +1963,12 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
                         ? 'rgba(56,189,248,0.12)'
                         : 'rgba(255,255,255,0.02)'
                       : inPath
-                        ? 'rgba(37,99,235,0.08)'
+                        ? 'rgba(234,179,8,0.08)'
                         : '#ffffff',
                     cursor: 'pointer',
                     transition: 'background 0.1s',
                     '&:hover': {
-                      backgroundColor: isDark ? 'rgba(56,189,248,0.2)' : 'rgba(37,99,235,0.15)',
+                      backgroundColor: isDark ? 'rgba(56,189,248,0.2)' : 'rgba(234,179,8,0.15)',
                     },
                   }}
                 >
@@ -1979,7 +1983,9 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
                           : isTarget
                             ? isDark
                               ? '#38bdf8'
-                              : '#2563eb'
+                              : isDark
+                                ? '#facc15'
+                                : '#b45309'
                             : isDark
                               ? 'rgba(255,255,255,0.15)'
                               : '#e2e8f0',
@@ -2038,7 +2044,7 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
             <polyline
               points={pathPoints}
               fill="none"
-              stroke={isDark ? '#38bdf8' : '#2563eb'}
+              stroke={isDark ? '#38bdf8' : isDark ? '#facc15' : '#b45309'}
               strokeWidth={Math.max(5, cellSize * 0.2)}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -2131,7 +2137,7 @@ const ZipPlayer: React.FC<{ content: any; isDark: boolean; t: Record<string, str
             sx={{
               textTransform: 'none',
               borderRadius: '8px',
-              color: showSolution ? '#f59e0b' : isDark ? '#a6e2f5' : '#2563eb',
+              color: showSolution ? '#f59e0b' : isDark ? '#facc15' : '#b45309',
               fontWeight: 600,
             }}
           >
@@ -2200,7 +2206,7 @@ export const LevelPlayModal: React.FC<LevelPlayModalProps> = ({
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <PlayArrow sx={{ color: isDark ? '#a6e2f5' : '#2563eb', fontSize: '1.5rem' }} />
+          <PlayArrow sx={{ color: isDark ? '#facc15' : '#b45309', fontSize: '1.5rem' }} />
           <Box>
             <Typography variant="h6" component="span" fontWeight={700} sx={{ color: colorText }}>
               {level.title || `Level ${level.levelNumber}`}
@@ -2212,8 +2218,8 @@ export const LevelPlayModal: React.FC<LevelPlayModalProps> = ({
                 sx={{
                   fontSize: '0.7rem',
                   fontWeight: 700,
-                  backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(37,99,235,0.1)',
-                  color: isDark ? '#a6e2f5' : '#2563eb',
+                  backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(234,179,8,0.1)',
+                  color: isDark ? '#facc15' : '#b45309',
                 }}
               />
               <Chip
@@ -2279,8 +2285,8 @@ export const LevelPlayModal: React.FC<LevelPlayModalProps> = ({
             textTransform: 'none',
             borderRadius: '10px',
             fontWeight: 600,
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
           }}
         >
           {t.closePreview}

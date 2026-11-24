@@ -14,15 +14,17 @@ import {
 } from '@mui/material';
 import { PlayCircleOutline, FavoriteBorder, ChatBubbleOutline } from '@mui/icons-material';
 import { UploadedReel } from '../domain/reels.model';
+import { inhouseReelsTranslations } from '../translations/inhouseReelsTranslations';
+import { useLanguageStore } from '@/core/storage/language-store';
 
 interface InhouseReelsTableProps {
   data: UploadedReel[];
   loading: boolean;
   isDark: boolean;
-  t: any;
+  t?: any;
   onEdit: (reel: UploadedReel) => void;
-  onDelete: (id: string) => void;
-  onToggleStatus: (reel: UploadedReel) => void;
+  onDelete: (id: string, confirmMessage?: string, failMessage?: string) => void;
+  onToggleStatus: (reel: UploadedReel, failMessage?: string) => void;
 }
 
 export const InhouseReelsTable: React.FC<InhouseReelsTableProps> = ({
@@ -34,6 +36,10 @@ export const InhouseReelsTable: React.FC<InhouseReelsTableProps> = ({
   onDelete,
   onToggleStatus,
 }) => {
+  const { language: currentLang } = useLanguageStore();
+  const activeLangKey = (currentLang as keyof typeof inhouseReelsTranslations) || 'en';
+  const tableT = inhouseReelsTranslations[activeLangKey] || inhouseReelsTranslations.en;
+
   return (
     <TableContainer
       component={Paper}
@@ -49,25 +55,25 @@ export const InhouseReelsTable: React.FC<InhouseReelsTableProps> = ({
         <TableHead sx={{ backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)' }}>
           <TableRow>
             <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
-              Video
+              {tableT.videoCol}
             </TableCell>
             <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
-              Title / Description
+              {tableT.titleDescCol}
             </TableCell>
             <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
-              Duration
+              {tableT.durationCol}
             </TableCell>
             <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
-              Metrics
+              {tableT.metricsCol}
             </TableCell>
             <TableCell sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}>
-              Status
+              {tableT.statusCol}
             </TableCell>
             <TableCell
               sx={{ color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
               align="center"
             >
-              Actions
+              {tableT.actionsCol}
             </TableCell>
           </TableRow>
         </TableHead>
@@ -79,7 +85,7 @@ export const InhouseReelsTable: React.FC<InhouseReelsTableProps> = ({
                 align="center"
                 sx={{ py: 6, color: isDark ? '#d0caeb' : '#5c548a' }}
               >
-                <Typography>Loading...</Typography>
+                <Typography>{tableT.loading}</Typography>
               </TableCell>
             </TableRow>
           ) : data.length === 0 ? (
@@ -89,7 +95,7 @@ export const InhouseReelsTable: React.FC<InhouseReelsTableProps> = ({
                 align="center"
                 sx={{ py: 6, color: isDark ? '#d0caeb' : '#5c548a' }}
               >
-                <Typography>No in-house reels found</Typography>
+                <Typography>{tableT.noReelsFound}</Typography>
               </TableCell>
             </TableRow>
           ) : (
@@ -142,14 +148,14 @@ export const InhouseReelsTable: React.FC<InhouseReelsTableProps> = ({
                       {row.title}
                     </Typography>
                     <Chip
-                      label={(row.language || row.lang || 'te').toUpperCase()}
+                      label={(row.language_code || row.language || row.lang || 'te').toUpperCase()}
                       size="small"
                       sx={{
                         height: '18px',
                         fontSize: '0.65rem',
                         fontWeight: 700,
                         backgroundColor: isDark ? 'rgba(166,226,245,0.12)' : 'rgba(28,20,69,0.06)',
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                         border: isDark
                           ? '1px solid rgba(166,226,245,0.3)'
                           : '1px solid rgba(28,20,69,0.15)',
@@ -166,7 +172,7 @@ export const InhouseReelsTable: React.FC<InhouseReelsTableProps> = ({
                       overflow: 'hidden',
                     }}
                   >
-                    {row.description || 'No description'}
+                    {row.description || tableT.noDesc}
                   </Typography>
                 </TableCell>
                 <TableCell sx={{ color: isDark ? '#d0caeb' : '#1c1445' }}>
@@ -189,7 +195,7 @@ export const InhouseReelsTable: React.FC<InhouseReelsTableProps> = ({
                   <Button
                     size="small"
                     variant={row.publishing?.isActive ? 'contained' : 'outlined'}
-                    onClick={() => onToggleStatus(row)}
+                    onClick={() => onToggleStatus(row, tableT.failedToUpdateStatus)}
                     sx={{
                       textTransform: 'none',
                       borderRadius: '8px',
@@ -217,7 +223,7 @@ export const InhouseReelsTable: React.FC<InhouseReelsTableProps> = ({
                       },
                     }}
                   >
-                    {row.publishing?.isActive ? 'Active' : 'Inactive'}
+                    {row.publishing?.isActive ? tableT.active : tableT.inactive}
                   </Button>
                 </TableCell>
                 <TableCell align="center">
@@ -228,24 +234,26 @@ export const InhouseReelsTable: React.FC<InhouseReelsTableProps> = ({
                       onClick={() => row.videoUrl && window.open(row.videoUrl, '_blank')}
                       sx={{ textTransform: 'none', color: isDark ? '#d0caeb' : '#5c548a' }}
                     >
-                      View
+                      {tableT.view}
                     </Button>
                     <Button
                       size="small"
                       variant="text"
                       onClick={() => onEdit(row)}
-                      sx={{ textTransform: 'none', color: isDark ? '#a6e2f5' : '#2563eb' }}
+                      sx={{ textTransform: 'none', color: isDark ? '#facc15' : '#b45309' }}
                     >
-                      Edit
+                      {tableT.edit}
                     </Button>
                     <Button
                       size="small"
                       variant="text"
                       color="error"
-                      onClick={() => row.id && onDelete(row.id)}
+                      onClick={() =>
+                        row.id && onDelete(row.id, tableT.confirmDelete, tableT.failedToDelete)
+                      }
                       sx={{ textTransform: 'none' }}
                     >
-                      Delete
+                      {tableT.delete}
                     </Button>
                   </Box>
                 </TableCell>

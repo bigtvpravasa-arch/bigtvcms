@@ -287,7 +287,7 @@ export const CricketTab: React.FC<CricketTabProps> = ({
         <Card
           sx={{
             borderRadius: '16px',
-            backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#ffffff',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#ffffff',
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
             boxShadow: isDark ? '0 8px 24px rgba(0,0,0,0.2)' : '0 4px 16px rgba(0,0,0,0.04)',
           }}
@@ -327,7 +327,7 @@ export const CricketTab: React.FC<CricketTabProps> = ({
         <Card
           sx={{
             borderRadius: '16px',
-            backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#ffffff',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#ffffff',
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
             boxShadow: isDark ? '0 8px 24px rgba(0,0,0,0.2)' : '0 4px 16px rgba(0,0,0,0.04)',
           }}
@@ -367,7 +367,7 @@ export const CricketTab: React.FC<CricketTabProps> = ({
         <Card
           sx={{
             borderRadius: '16px',
-            backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#ffffff',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#ffffff',
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
             boxShadow: isDark ? '0 8px 24px rgba(0,0,0,0.2)' : '0 4px 16px rgba(0,0,0,0.04)',
           }}
@@ -407,7 +407,7 @@ export const CricketTab: React.FC<CricketTabProps> = ({
         <Card
           sx={{
             borderRadius: '16px',
-            backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#ffffff',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#ffffff',
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
             boxShadow: isDark ? '0 8px 24px rgba(0,0,0,0.2)' : '0 4px 16px rgba(0,0,0,0.04)',
           }}
@@ -474,9 +474,9 @@ export const CricketTab: React.FC<CricketTabProps> = ({
               px: 2.5,
               py: 0.75,
               borderRadius: '10px',
-              backgroundColor: activeSubTab === 'live' ? '#2563eb' : 'transparent',
-              color: activeSubTab === 'live' ? '#ffffff' : isDark ? '#d0caeb' : '#475569',
-              boxShadow: activeSubTab === 'live' ? '0 4px 12px rgba(37,99,235,0.3)' : 'none',
+              backgroundColor: activeSubTab === 'live' ? '#facc15' : 'transparent',
+              color: activeSubTab === 'live' ? '#1a1300' : isDark ? '#fde68a' : '#78350f',
+              boxShadow: activeSubTab === 'live' ? '0 4px 12px rgba(250,204,21,0.3)' : 'none',
             }}
           >
             Live Matches Feed ({allLiveItems.length})
@@ -580,19 +580,19 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                     fontSize: '0.8rem',
                     borderRadius: '8px',
                     backgroundColor: selected
-                      ? '#2563eb'
+                      ? '#facc15'
                       : isDark
                         ? 'rgba(255,255,255,0.05)'
                         : '#f8fafc',
-                    color: selected ? '#ffffff' : isDark ? '#d0caeb' : '#475569',
+                    color: selected ? '#1a1300' : isDark ? '#fde68a' : '#78350f',
                     borderColor: selected
-                      ? '#2563eb'
+                      ? '#facc15'
                       : isDark
                         ? 'rgba(255,255,255,0.1)'
                         : 'rgba(0,0,0,0.1)',
                     '&:hover': {
                       backgroundColor: selected
-                        ? '#1d4ed8'
+                        ? '#fde047'
                         : isDark
                           ? 'rgba(255,255,255,0.08)'
                           : '#f1f5f9',
@@ -614,7 +614,7 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                 p: 6,
                 textAlign: 'center',
                 borderRadius: '16px',
-                backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#f8fafc',
+                backgroundColor: isDark ? 'rgba(28,22,3,0.3)' : '#f8fafc',
                 border: isDark
                   ? '1px dashed rgba(255,255,255,0.15)'
                   : '1px dashed rgba(0,0,0,0.15)',
@@ -662,7 +662,7 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                     key={matchId}
                     sx={{
                       borderRadius: '16px',
-                      backgroundColor: isDark ? 'rgba(38,28,86,0.6)' : '#ffffff',
+                      backgroundColor: isDark ? 'rgba(28,22,3,0.6)' : '#ffffff',
                       border: published
                         ? '2px solid #10b981'
                         : isDark
@@ -804,7 +804,7 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                             sx={{
                               fontFamily: 'monospace',
                               fontWeight: 800,
-                              color: '#2563eb',
+                              color: isDark ? '#facc15' : '#b45309',
                             }}
                           >
                             {t1ScoreStr}
@@ -1004,10 +1004,10 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                                 borderRadius: '10px',
                                 px: 2,
                                 py: 0.6,
-                                backgroundColor: '#2563eb',
-                                color: '#ffffff',
+                                backgroundColor: '#facc15',
+                                color: '#1a1300',
                                 '&:hover': {
-                                  backgroundColor: '#1d4ed8',
+                                  backgroundColor: '#fde047',
                                 },
                               }}
                             >
@@ -1065,7 +1065,7 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                 p: 6,
                 textAlign: 'center',
                 borderRadius: '16px',
-                backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#f8fafc',
+                backgroundColor: isDark ? 'rgba(28,22,3,0.3)' : '#f8fafc',
                 border: isDark
                   ? '1px dashed rgba(255,255,255,0.15)'
                   : '1px dashed rgba(0,0,0,0.15)',
@@ -1098,7 +1098,7 @@ export const CricketTab: React.FC<CricketTabProps> = ({
               sx={{
                 borderRadius: '16px',
                 overflow: 'hidden',
-                backgroundColor: isDark ? 'rgba(38,28,86,0.6)' : '#ffffff',
+                backgroundColor: isDark ? 'rgba(28,22,3,0.6)' : '#ffffff',
                 border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
                 boxShadow: isDark ? '0 8px 24px rgba(0,0,0,0.2)' : '0 4px 16px rgba(0,0,0,0.04)',
               }}
@@ -1198,7 +1198,7 @@ export const CricketTab: React.FC<CricketTabProps> = ({
                                   sx={{
                                     fontFamily: 'monospace',
                                     fontWeight: 800,
-                                    color: '#2563eb',
+                                    color: isDark ? '#facc15' : '#b45309',
                                   }}
                                 >
                                   {match.team1Score || 'Yet to bat'}

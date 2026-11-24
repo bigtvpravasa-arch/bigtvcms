@@ -197,7 +197,7 @@ export const TeluguTTSStudio: React.FC = () => {
               borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)',
             },
             '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: isDark ? '#a6e2f5' : '#1c1445',
+              borderColor: isDark ? '#facc15' : '#1a1300',
             },
           }}
           InputProps={{
@@ -240,7 +240,7 @@ export const TeluguTTSStudio: React.FC = () => {
               borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)',
             },
             '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: isDark ? '#a6e2f5' : '#1c1445',
+              borderColor: isDark ? '#facc15' : '#1a1300',
             },
           }}
           InputProps={{
@@ -294,13 +294,13 @@ export const TeluguTTSStudio: React.FC = () => {
             fontSize: '0.92rem',
             py: 1,
             px: 2.5,
-            backgroundColor: isDark ? '#a6e2f5' : '#2563eb',
-            color: isDark ? '#110d29' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#b45309',
+            color: isDark ? '#161202' : '#ffffff',
             boxShadow: isDark
               ? '0 4px 14px rgba(166,226,245,0.3)'
-              : '0 4px 14px rgba(37,99,235,0.35)',
+              : '0 4px 14px rgba(250,204,21,0.35)',
             '&:hover': {
-              backgroundColor: isDark ? '#8bd8f0' : '#1d4ed8',
+              backgroundColor: isDark ? '#fde047' : '#92400e',
             },
             whiteSpace: 'nowrap',
           }}
@@ -323,13 +323,13 @@ export const TeluguTTSStudio: React.FC = () => {
             mb: 3,
             p: 2,
             borderRadius: '16px',
-            backgroundColor: isDark ? 'rgba(37,99,235,0.2)' : '#eff6ff',
+            backgroundColor: isDark ? 'rgba(250,204,21,0.15)' : '#fef9c3',
             border: isDark ? '1px solid rgba(59,130,246,0.3)' : '1px solid #bfdbfe',
           }}
         >
           <Typography
             variant="subtitle2"
-            sx={{ fontWeight: 700, mb: 1, color: isDark ? '#93c5fd' : '#1d4ed8' }}
+            sx={{ fontWeight: 700, mb: 1, color: isDark ? '#fde047' : '#92400e' }}
           >
             {t.playingHeader}
           </Typography>
@@ -345,7 +345,7 @@ export const TeluguTTSStudio: React.FC = () => {
       {/* Audio History Table View */}
       <Box
         sx={{
-          backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+          backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
           border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
           borderRadius: '20px',
           overflow: 'hidden',
@@ -418,8 +418,8 @@ export const TeluguTTSStudio: React.FC = () => {
                     transition: 'all 0.2s ease',
                     backgroundColor: isCurrent
                       ? isDark
-                        ? 'rgba(37,99,235,0.2)'
-                        : 'rgba(37,99,235,0.05)'
+                        ? 'rgba(250,204,21,0.2)'
+                        : 'rgba(234,179,8,0.05)'
                       : 'transparent',
                     '&:hover': {
                       backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(28,20,69,0.02)',
@@ -536,14 +536,14 @@ export const TeluguTTSStudio: React.FC = () => {
                             isCurrent && isPlaying
                               ? 'rgba(239,68,68,0.2)'
                               : isDark
-                                ? 'rgba(37,99,235,0.2)'
-                                : 'rgba(37,99,235,0.1)',
-                          color: isCurrent && isPlaying ? '#ef5350' : '#2563eb',
+                                ? 'rgba(250,204,21,0.2)'
+                                : 'rgba(234,179,8,0.1)',
+                          color: isCurrent && isPlaying ? '#ef5350' : '#facc15',
                           '&:hover': {
                             backgroundColor:
                               isCurrent && isPlaying
                                 ? 'rgba(239,68,68,0.3)'
-                                : 'rgba(37,99,235,0.3)',
+                                : 'rgba(250,204,21,0.3)',
                           },
                         }}
                       >
@@ -628,8 +628,8 @@ export const TeluguTTSStudio: React.FC = () => {
                 borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
               },
               '& .Mui-selected': {
-                backgroundColor: isDark ? '#a6e2f5 !important' : '#2563eb !important',
-                color: isDark ? '#110d29 !important' : '#ffffff !important',
+                backgroundColor: isDark ? '#facc15 !important' : '#1a1300 !important',
+                color: isDark ? '#1a1300 !important' : '#ffffff !important',
                 fontWeight: 700,
               },
             }}

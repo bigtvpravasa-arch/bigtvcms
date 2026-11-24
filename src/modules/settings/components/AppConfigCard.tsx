@@ -24,7 +24,7 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
     return (
       <Card
         sx={{
-          backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#f4f3f8',
+          backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#f4f3f8',
           borderRadius: '16px',
           p: 3,
           display: 'flex',
@@ -41,7 +41,7 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
   return (
     <Card
       sx={{
-        backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#f4f3f8',
+        backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#f4f3f8',
         border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
         borderRadius: '16px',
       }}
@@ -51,7 +51,7 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
           sx={{ display: 'flex', alignItems: 'center', gap: 1.5, justifyContent: 'space-between' }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-            <ToggleOn sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: 28 }} />
+            <ToggleOn sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: 28 }} />
             <Typography
               variant="h6"
               sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}
@@ -73,10 +73,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateConfig('webEnable', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -94,10 +94,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateConfig('eventsEnable', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -115,10 +115,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateConfig('bannersEnable', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -136,10 +136,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateConfig('language', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -157,10 +157,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateConfig('aitag', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -178,10 +178,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateConfig('videos', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -199,10 +199,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateConfig('englishLanguage', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -224,10 +224,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateConfig('epaper', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -245,10 +245,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateConfig('livetvvideos', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -266,10 +266,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateConfig('livetvcount', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -287,10 +287,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateConfig('folkNight', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -308,10 +308,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateConfig('cricket', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -343,10 +343,10 @@ export const AppConfigCard: React.FC<AppConfigCardProps> = ({ isDark }) => {
                     onChange={(e) => updateExtraFlag('betaSearch', e.target.checked)}
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />

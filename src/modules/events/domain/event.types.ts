@@ -171,6 +171,7 @@ export interface BookingItem {
   };
   verifyUrl?: string;
   qrCodeBase64?: string;
+  testScenario?: string;
   createdAt: string;
   updatedAt?: string;
 }

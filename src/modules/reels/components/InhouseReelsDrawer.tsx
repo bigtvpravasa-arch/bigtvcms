@@ -1,10 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Drawer,
   Box,
   Typography,
   IconButton,
-  Divider,
   TextField,
   Switch,
   Button,
@@ -21,15 +20,18 @@ import { Movie, Close, CloudUpload } from '@mui/icons-material';
 import { UploadedReel } from '../domain/reels.model';
 import { eventsApiClient } from '@/core/api/api-client';
 import { UploadService } from '@/modules/media/services/upload.service';
+import { inhouseReelsTranslations } from '../translations/inhouseReelsTranslations';
+import { useLanguageStore } from '@/core/storage/language-store';
 
 interface InhouseReelsDrawerProps {
   open: boolean;
   isEditMode: boolean;
   selectedReel: UploadedReel | null;
   onClose: () => void;
-  onSuccess: () => void;
+  onSuccess: (savedLang?: string) => void;
   isDark: boolean;
-  t: any;
+  t?: any;
+  defaultLang?: string;
 }
 
 export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
@@ -40,7 +42,12 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
   onSuccess,
   isDark,
   t,
+  defaultLang,
 }) => {
+  const { language: currentLang } = useLanguageStore();
+  const activeLangKey = (currentLang as keyof typeof inhouseReelsTranslations) || 'en';
+  const drawerT = inhouseReelsTranslations[activeLangKey] || inhouseReelsTranslations.en;
+
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -61,10 +68,15 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
   useEffect(() => {
     if (open) {
       if (isEditMode && selectedReel) {
+        const reelLang =
+          selectedReel.language_code ||
+          selectedReel.language ||
+          selectedReel.lang ||
+          (defaultLang && defaultLang !== 'all' ? defaultLang : 'te');
         setFormData({
           title: selectedReel.title || '',
           description: selectedReel.description || '',
-          language: selectedReel.language || selectedReel.lang || 'te',
+          language: reelLang,
           videoUrl: selectedReel.videoUrl || '',
           thumbnailUrl: selectedReel.thumbnailUrl || '',
           durationSeconds: selectedReel.durationSeconds ? String(selectedReel.durationSeconds) : '',
@@ -75,10 +87,16 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
           hashtags: selectedReel.hashtags || [],
         });
       } else {
+        const initialLang =
+          defaultLang && defaultLang !== 'all'
+            ? defaultLang
+            : currentLang && ['te', 'en', 'hi', 'ml'].includes(currentLang)
+              ? currentLang
+              : 'te';
         setFormData({
           title: '',
           description: '',
-          language: 'te',
+          language: initialLang,
           videoUrl: '',
           thumbnailUrl: '',
           durationSeconds: '',
@@ -90,7 +108,7 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
         });
       }
     }
-  }, [open, isEditMode, selectedReel]);
+  }, [open, isEditMode, selectedReel, defaultLang, currentLang]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked, type } = e.target;
@@ -106,10 +124,10 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
 
     setUploadingVideo(true);
     try {
-      const formData = new FormData();
-      formData.append('file', file);
+      const uploadFormData = new FormData();
+      uploadFormData.append('file', file);
 
-      const response = await eventsApiClient.post<any>('/reels/upload-video', formData, {
+      const response = await eventsApiClient.post<any>('/reels/upload-video', uploadFormData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
@@ -118,7 +136,7 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
       }
     } catch (error) {
       console.error('Failed to upload video:', error);
-      alert('Failed to upload video');
+      alert(drawerT.failedToUploadVideo);
     } finally {
       setUploadingVideo(false);
     }
@@ -134,7 +152,7 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
       setFormData((prev) => ({ ...prev, thumbnailUrl: url }));
     } catch (error) {
       console.error('Failed to upload image:', error);
-      alert('Failed to upload thumbnail');
+      alert(drawerT.failedToUploadThumbnail);
     } finally {
       setUploadingImage(false);
     }
@@ -142,18 +160,19 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
 
   const handleSubmit = async () => {
     if (!formData.title || !formData.videoUrl) {
-      alert('Title and Video are required');
+      alert(drawerT.titleAndVideoRequired);
       return;
     }
 
-    const payload: Partial<UploadedReel> = {
+    const payload: Partial<UploadedReel> & Record<string, any> = {
       title: formData.title,
       description: formData.description,
       language: formData.language || 'te',
       lang: formData.language || 'te',
+      language_code: formData.language || 'te',
       videoUrl: formData.videoUrl,
       thumbnailUrl: formData.thumbnailUrl,
-      durationSeconds: parseInt(formData.durationSeconds) || 0,
+      durationSeconds: parseInt(formData.durationSeconds, 10) || 0,
       hashtags: formData.hashtags,
       publishing: {
         status: formData.isActive ? 'published' : 'draft',
@@ -175,11 +194,11 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
       } else {
         await eventsApiClient.post('/reels', payload);
       }
-      onSuccess();
+      onSuccess(formData.language);
       onClose();
     } catch (error: any) {
       console.error('Failed to save reel:', error);
-      alert(error.message || 'Failed to save reel');
+      alert(error.message || drawerT.failedToSave);
     }
   };
 
@@ -196,7 +215,7 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
         '&:hover fieldset': {
           borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
         },
-        '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+        '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
       },
       '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
     },
@@ -225,7 +244,7 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
           px: 3,
           py: 2.5,
           borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
-          backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#f4f3f8',
+          backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#f4f3f8',
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -240,7 +259,7 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
               justifyContent: 'center',
             }}
           >
-            <Movie sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.1rem' }} />
+            <Movie sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: '1.1rem' }} />
           </Box>
           <Box>
             <Typography
@@ -252,10 +271,10 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
                 lineHeight: 1.2,
               }}
             >
-              {isEditMode ? 'Edit In-house Reel' : 'Add In-house Reel'}
+              {isEditMode ? drawerT.editInhouseReel : drawerT.addInhouseReel}
             </Typography>
             <Typography variant="caption" sx={{ color: isDark ? '#d0caeb' : '#9e9e9e' }}>
-              Upload video and enter details
+              {drawerT.uploadAndDetails}
             </Typography>
           </Box>
         </Box>
@@ -265,102 +284,13 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
       </Box>
 
       <Box sx={{ flex: 1, overflowY: 'auto', p: 3, display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ mb: 3 }}>
-          <Typography
-            variant="subtitle2"
-            sx={{ mb: 1, color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
-          >
-            Video File *
-          </Typography>
-          {formData.videoUrl ? (
-            <Box
-              sx={{
-                p: 2,
-                borderRadius: '12px',
-                border: isDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid rgba(0,0,0,0.2)',
-                backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#f5f5f5',
-              }}
-            >
-              <video
-                src={formData.videoUrl}
-                controls
-                style={{ width: '100%', borderRadius: '8px' }}
-              />
-              <Button
-                size="small"
-                color="error"
-                onClick={() => setFormData((p) => ({ ...p, videoUrl: '' }))}
-                sx={{ mt: 1 }}
-              >
-                Remove Video
-              </Button>
-            </Box>
-          ) : (
-            <Button
-              component="label"
-              variant="outlined"
-              fullWidth
-              disabled={uploadingVideo}
-              startIcon={uploadingVideo ? <CircularProgress size={20} /> : <CloudUpload />}
-              sx={{ height: 100, borderStyle: 'dashed' }}
-            >
-              {uploadingVideo ? 'Uploading Video...' : 'Upload Video (.mp4, .mov)'}
-              <input type="file" hidden accept="video/*" onChange={handleVideoUpload} />
-            </Button>
-          )}
-        </Box>
-
-        <Box sx={{ mb: 3 }}>
-          <Typography
-            variant="subtitle2"
-            sx={{ mb: 1, color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
-          >
-            Thumbnail Image
-          </Typography>
-          {formData.thumbnailUrl ? (
-            <Box
-              sx={{
-                p: 2,
-                borderRadius: '12px',
-                border: isDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid rgba(0,0,0,0.2)',
-                backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#f5f5f5',
-              }}
-            >
-              <img
-                src={formData.thumbnailUrl}
-                alt="Thumbnail"
-                style={{ width: '100%', borderRadius: '8px' }}
-              />
-              <Button
-                size="small"
-                color="error"
-                onClick={() => setFormData((p) => ({ ...p, thumbnailUrl: '' }))}
-                sx={{ mt: 1 }}
-              >
-                Remove Image
-              </Button>
-            </Box>
-          ) : (
-            <Button
-              component="label"
-              variant="outlined"
-              fullWidth
-              disabled={uploadingImage}
-              startIcon={uploadingImage ? <CircularProgress size={20} /> : <CloudUpload />}
-              sx={{ height: 100, borderStyle: 'dashed' }}
-            >
-              {uploadingImage ? 'Uploading Image...' : 'Upload Thumbnail (.jpg, .png)'}
-              <input type="file" hidden accept="image/*" onChange={handleImageUpload} />
-            </Button>
-          )}
-        </Box>
-
-        <FormControl fullWidth size="small" sx={{ mb: 2 }}>
+        {/* Language Selection */}
+        <FormControl fullWidth size="small" sx={{ mb: 2.5 }}>
           <InputLabel sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
-            Language (Selection Code) *
+            {drawerT.languageCode} *
           </InputLabel>
           <Select
-            label="Language (Selection Code) *"
+            label={`${drawerT.languageCode} *`}
             name="language"
             value={formData.language}
             onChange={(e) => setFormData((p) => ({ ...p, language: e.target.value as string }))}
@@ -372,10 +302,10 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
                 borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)',
               },
               '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                borderColor: isDark ? '#facc15' : '#1a1300',
               },
               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                borderColor: isDark ? '#facc15' : '#1a1300',
               },
               '& .MuiSelect-icon': {
                 color: isDark ? '#d0caeb' : '#5c548a',
@@ -391,22 +321,137 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
               },
             }}
           >
-            <MenuItem value="te">🇮🇳 Telugu (తెలుగు) - te</MenuItem>
-            <MenuItem value="en">🇬🇧 English - en</MenuItem>
-            <MenuItem value="hi">🇮🇳 Hindi (हिंदी) - hi</MenuItem>
-            <MenuItem value="ml">🇮🇳 Malayalam (മലയാളം) - ml</MenuItem>
+            <MenuItem value="te">{drawerT.telugu}</MenuItem>
+            <MenuItem value="en">{drawerT.english}</MenuItem>
+            <MenuItem value="hi">{drawerT.hindi}</MenuItem>
+            <MenuItem value="ml">{drawerT.malayalam}</MenuItem>
           </Select>
         </FormControl>
 
+        {/* Video Upload + URL options */}
+        <Box sx={{ mb: 3 }}>
+          <Typography
+            variant="subtitle2"
+            sx={{ mb: 1, color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+          >
+            {drawerT.videoFile} *
+          </Typography>
+          {formData.videoUrl ? (
+            <Box
+              sx={{
+                p: 2,
+                borderRadius: '12px',
+                border: isDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid rgba(0,0,0,0.2)',
+                backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#f5f5f5',
+                mb: 1.5,
+              }}
+            >
+              <video
+                src={formData.videoUrl}
+                controls
+                style={{ width: '100%', maxHeight: '200px', borderRadius: '8px' }}
+              />
+              <Button
+                size="small"
+                color="error"
+                onClick={() => setFormData((p) => ({ ...p, videoUrl: '' }))}
+                sx={{ mt: 1, textTransform: 'none' }}
+              >
+                {drawerT.removeVideo}
+              </Button>
+            </Box>
+          ) : (
+            <Button
+              component="label"
+              variant="outlined"
+              fullWidth
+              disabled={uploadingVideo}
+              startIcon={uploadingVideo ? <CircularProgress size={20} /> : <CloudUpload />}
+              sx={{ height: 80, borderStyle: 'dashed', mb: 1.5, borderRadius: '10px' }}
+            >
+              {uploadingVideo ? drawerT.uploadingVideo : drawerT.uploadVideo}
+              <input type="file" hidden accept="video/*" onChange={handleVideoUpload} />
+            </Button>
+          )}
+          <TextField
+            label={drawerT.videoUrlLabel}
+            placeholder="https://..."
+            name="videoUrl"
+            value={formData.videoUrl}
+            onChange={handleChange}
+            {...textFieldProps}
+          />
+        </Box>
+
+        {/* Thumbnail Upload + URL options */}
+        <Box sx={{ mb: 3 }}>
+          <Typography
+            variant="subtitle2"
+            sx={{ mb: 1, color: isDark ? '#d0caeb' : '#5c548a', fontWeight: 600 }}
+          >
+            {drawerT.thumbnailImage}
+          </Typography>
+          {formData.thumbnailUrl ? (
+            <Box
+              sx={{
+                p: 2,
+                borderRadius: '12px',
+                border: isDark ? '1px solid rgba(255,255,255,0.2)' : '1px solid rgba(0,0,0,0.2)',
+                backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : '#f5f5f5',
+                mb: 1.5,
+              }}
+            >
+              <img
+                src={formData.thumbnailUrl}
+                alt="Thumbnail"
+                style={{
+                  width: '100%',
+                  maxHeight: '180px',
+                  objectFit: 'contain',
+                  borderRadius: '8px',
+                }}
+              />
+              <Button
+                size="small"
+                color="error"
+                onClick={() => setFormData((p) => ({ ...p, thumbnailUrl: '' }))}
+                sx={{ mt: 1, textTransform: 'none' }}
+              >
+                {drawerT.removeThumbnail}
+              </Button>
+            </Box>
+          ) : (
+            <Button
+              component="label"
+              variant="outlined"
+              fullWidth
+              disabled={uploadingImage}
+              startIcon={uploadingImage ? <CircularProgress size={20} /> : <CloudUpload />}
+              sx={{ height: 80, borderStyle: 'dashed', mb: 1.5, borderRadius: '10px' }}
+            >
+              {uploadingImage ? drawerT.uploadingThumbnail : drawerT.uploadThumbnail}
+              <input type="file" hidden accept="image/*" onChange={handleImageUpload} />
+            </Button>
+          )}
+          <TextField
+            label={drawerT.thumbnailUrlLabel}
+            placeholder="https://..."
+            name="thumbnailUrl"
+            value={formData.thumbnailUrl}
+            onChange={handleChange}
+            {...textFieldProps}
+          />
+        </Box>
+
         <TextField
-          label="Title *"
+          label={`${drawerT.title} *`}
           name="title"
           value={formData.title}
           onChange={handleChange}
           {...textFieldProps}
         />
         <TextField
-          label="Description"
+          label={drawerT.description}
           name="description"
           value={formData.description}
           onChange={handleChange}
@@ -415,7 +460,7 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
           {...textFieldProps}
         />
         <TextField
-          label="Duration (Seconds)"
+          label={drawerT.durationSeconds}
           name="durationSeconds"
           value={formData.durationSeconds}
           onChange={(e) =>
@@ -448,7 +493,7 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
           renderInput={(params) => (
             <TextField
               {...params}
-              label="Hashtags"
+              label={drawerT.hashtags}
               placeholder="Select or type..."
               {...textFieldProps}
             />
@@ -465,7 +510,7 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
                 color="primary"
               />
             }
-            label="Active (Published)"
+            label={drawerT.activePublished}
             sx={{ color: isDark ? '#d0caeb' : '#5c548a', ml: 0 }}
           />
           <FormControlLabel
@@ -477,7 +522,7 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
                 color="primary"
               />
             }
-            label="Allow Comments"
+            label={drawerT.allowComments}
             sx={{ color: isDark ? '#d0caeb' : '#5c548a', ml: 0 }}
           />
           <FormControlLabel
@@ -489,7 +534,19 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
                 color="primary"
               />
             }
-            label="Allow Sharing"
+            label={drawerT.allowSharing}
+            sx={{ color: isDark ? '#d0caeb' : '#5c548a', ml: 0 }}
+          />
+          <FormControlLabel
+            control={
+              <Switch
+                checked={formData.allowDownloads}
+                onChange={handleChange}
+                name="allowDownloads"
+                color="primary"
+              />
+            }
+            label={drawerT.allowDownloads}
             sx={{ color: isDark ? '#d0caeb' : '#5c548a', ml: 0 }}
           />
         </Box>
@@ -516,7 +573,7 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
             borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)',
           }}
         >
-          Cancel
+          {drawerT.cancel}
         </Button>
         <Button
           variant="contained"
@@ -526,11 +583,11 @@ export const InhouseReelsDrawer: React.FC<InhouseReelsDrawerProps> = ({
             borderRadius: '10px',
             textTransform: 'none',
             fontWeight: 600,
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
           }}
         >
-          {isEditMode ? 'Save Changes' : 'Create Reel'}
+          {isEditMode ? drawerT.saveChanges : drawerT.createReel}
         </Button>
       </Box>
     </Drawer>

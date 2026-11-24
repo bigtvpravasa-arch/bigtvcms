@@ -290,9 +290,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
       data-testid="sidebar"
       sx={{
         width: '240px',
-        backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#f4f3f8',
+        backgroundColor: isDark ? 'rgba(28, 22, 3, 0.85)' : '#fcfbf7',
         backdropFilter: isDark ? 'blur(20px)' : 'none',
-        borderRight: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+        borderRight: isDark
+          ? '1px solid rgba(250, 204, 21, 0.15)'
+          : '1px solid rgba(217, 119, 6, 0.15)',
         display: 'flex',
         flexDirection: 'column',
         pt: 1,
@@ -321,7 +323,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
         />
       </Box>
       <Divider
-        sx={{ mb: 1.5, borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)' }}
+        sx={{
+          mb: 1.5,
+          borderColor: isDark ? 'rgba(250, 204, 21, 0.12)' : 'rgba(217, 119, 6, 0.12)',
+        }}
       />
 
       {/* Main Menu List */}
@@ -349,18 +354,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                   p: 1.5,
                   borderRadius: '12px',
                   cursor: 'pointer',
-                  color: isActive ? '#ffffff' : isDark ? '#d0caeb' : '#5c548a',
-                  backgroundColor: isActive ? '#2563eb' : 'transparent',
+                  color: isActive ? '#1a1300' : isDark ? '#fde68a' : '#78350f',
+                  background: isActive
+                    ? 'linear-gradient(135deg, #facc15 0%, #eab308 100%)'
+                    : 'transparent',
                   fontWeight: isActive ? 700 : 500,
-                  boxShadow: isActive ? '0 4px 12px rgba(37, 99, 235, 0.35)' : 'none',
+                  boxShadow: isActive ? '0 4px 15px rgba(234, 179, 8, 0.35)' : 'none',
                   transition: 'all 0.2s ease',
                   '&:hover': {
-                    backgroundColor: isActive
-                      ? '#1d4ed8'
+                    background: isActive
+                      ? 'linear-gradient(135deg, #fde047 0%, #d97706 100%)'
                       : isDark
-                        ? 'rgba(255,255,255,0.08)'
-                        : 'rgba(0,0,0,0.06)',
-                    color: isActive ? '#ffffff' : isDark ? '#ffffff' : '#1c1445',
+                        ? 'rgba(234, 179, 8, 0.12)'
+                        : 'rgba(234, 179, 8, 0.08)',
+                    color: isActive ? '#1a1300' : isDark ? '#ffffff' : '#1a1300',
                   },
                 }}
               >
@@ -391,29 +398,29 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                 userSelect: 'none',
                 color: isAnySubItemActive
                   ? isDark
-                    ? '#a6e2f5'
-                    : '#2563eb'
+                    ? '#facc15'
+                    : '#b45309'
                   : isDark
-                    ? '#d0caeb'
-                    : '#5c548a',
+                    ? '#fde68a'
+                    : '#78350f',
                 backgroundColor:
                   isAnySubItemActive && !appConfigOpen
                     ? isDark
-                      ? 'rgba(37, 99, 235, 0.15)'
-                      : 'rgba(37, 99, 235, 0.08)'
+                      ? 'rgba(234, 179, 8, 0.15)'
+                      : 'rgba(234, 179, 8, 0.08)'
                     : isDark
                       ? 'rgba(255,255,255,0.03)'
                       : 'rgba(0,0,0,0.02)',
                 border: isAnySubItemActive
                   ? isDark
-                    ? '1px solid rgba(166,226,245,0.3)'
-                    : '1px solid rgba(37,99,235,0.3)'
+                    ? '1px solid rgba(250, 204, 21, 0.4)'
+                    : '1px solid rgba(217, 119, 6, 0.35)'
                   : '1px solid transparent',
                 fontWeight: isAnySubItemActive ? 700 : 600,
                 transition: 'all 0.2s ease',
                 '&:hover': {
-                  backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.05)',
-                  color: isDark ? '#ffffff' : '#1c1445',
+                  backgroundColor: isDark ? 'rgba(234, 179, 8, 0.12)' : 'rgba(234, 179, 8, 0.06)',
+                  color: isDark ? '#ffffff' : '#1a1300',
                 },
               }}
             >
@@ -432,16 +439,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                     fontSize: '0.68rem',
                     fontWeight: 800,
                     borderRadius: '6px',
-                    backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)',
-                    color: isDark ? '#d0caeb' : '#64748b',
+                    backgroundColor: isDark ? 'rgba(234, 179, 8, 0.15)' : 'rgba(234, 179, 8, 0.1)',
+                    color: isDark ? '#facc15' : '#b45309',
                   }}
                 >
                   {visibleSubItems.length}
                 </Box>
                 {appConfigOpen ? (
-                  <ExpandLess sx={{ fontSize: 18, color: isDark ? '#9e96c7' : '#94a3b8' }} />
+                  <ExpandLess sx={{ fontSize: 18, color: isDark ? '#facc15' : '#b45309' }} />
                 ) : (
-                  <ExpandMore sx={{ fontSize: 18, color: isDark ? '#9e96c7' : '#94a3b8' }} />
+                  <ExpandMore sx={{ fontSize: 18, color: isDark ? '#facc15' : '#b45309' }} />
                 )}
               </Box>
             </Box>
@@ -457,8 +464,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                   ml: 1.5,
                   pl: 1.5,
                   borderLeft: isDark
-                    ? '2px solid rgba(255,255,255,0.12)'
-                    : '2px solid rgba(37,99,235,0.18)',
+                    ? '2px solid rgba(250, 204, 21, 0.25)'
+                    : '2px solid rgba(217, 119, 6, 0.25)',
                 }}
               >
                 {visibleSubItems.map((sub) => {
@@ -483,19 +490,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                           px: 1.5,
                           borderRadius: '10px',
                           cursor: 'pointer',
-                          color: isSubActive ? '#ffffff' : isDark ? '#d0caeb' : '#5c548a',
-                          backgroundColor: isSubActive ? '#2563eb' : 'transparent',
+                          color: isSubActive ? '#1a1300' : isDark ? '#fde68a' : '#78350f',
+                          background: isSubActive
+                            ? 'linear-gradient(135deg, #facc15 0%, #eab308 100%)'
+                            : 'transparent',
                           fontWeight: isSubActive ? 700 : 500,
                           fontSize: '0.85rem',
-                          boxShadow: isSubActive ? '0 3px 10px rgba(37, 99, 235, 0.35)' : 'none',
+                          boxShadow: isSubActive ? '0 3px 10px rgba(234, 179, 8, 0.35)' : 'none',
                           transition: 'all 0.15s ease',
                           '&:hover': {
-                            backgroundColor: isSubActive
-                              ? '#1d4ed8'
+                            background: isSubActive
+                              ? 'linear-gradient(135deg, #fde047 0%, #d97706 100%)'
                               : isDark
-                                ? 'rgba(255,255,255,0.08)'
-                                : 'rgba(0,0,0,0.05)',
-                            color: isSubActive ? '#ffffff' : isDark ? '#ffffff' : '#1c1445',
+                                ? 'rgba(234, 179, 8, 0.12)'
+                                : 'rgba(234, 179, 8, 0.06)',
+                            color: isSubActive ? '#1a1300' : isDark ? '#ffffff' : '#1a1300',
                           },
                         }}
                       >
@@ -532,13 +541,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                 cursor: 'pointer',
                 color:
                   normalizedPath === '/settings' || normalizedPath.startsWith('/settings')
-                    ? '#ffffff'
+                    ? '#1a1300'
                     : isDark
-                      ? '#d0caeb'
-                      : '#5c548a',
-                backgroundColor:
+                      ? '#fde68a'
+                      : '#78350f',
+                background:
                   normalizedPath === '/settings' || normalizedPath.startsWith('/settings')
-                    ? '#2563eb'
+                    ? 'linear-gradient(135deg, #facc15 0%, #eab308 100%)'
                     : 'transparent',
                 fontWeight:
                   normalizedPath === '/settings' || normalizedPath.startsWith('/settings')
@@ -546,18 +555,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
                     : 500,
                 boxShadow:
                   normalizedPath === '/settings' || normalizedPath.startsWith('/settings')
-                    ? '0 4px 12px rgba(37, 99, 235, 0.35)'
+                    ? '0 4px 15px rgba(234, 179, 8, 0.35)'
                     : 'none',
                 transition: 'all 0.2s ease',
                 '&:hover': {
-                  backgroundColor:
+                  background:
                     normalizedPath === '/settings'
-                      ? '#1d4ed8'
+                      ? 'linear-gradient(135deg, #fde047 0%, #d97706 100%)'
                       : isDark
-                        ? 'rgba(255,255,255,0.08)'
-                        : 'rgba(0,0,0,0.06)',
+                        ? 'rgba(234, 179, 8, 0.12)'
+                        : 'rgba(234, 179, 8, 0.08)',
                   color:
-                    normalizedPath === '/settings' ? '#ffffff' : isDark ? '#ffffff' : '#1c1445',
+                    normalizedPath === '/settings' ? '#1a1300' : isDark ? '#ffffff' : '#1a1300',
                 },
               }}
             >

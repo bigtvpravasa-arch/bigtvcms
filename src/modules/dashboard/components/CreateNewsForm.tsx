@@ -1962,7 +1962,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
       return (
         <Box
           sx={{
-            backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#ffffff',
+            backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#ffffff',
             border: isDark
               ? '1px solid rgba(255, 255, 255, 0.08)'
               : '1px solid rgba(0, 0, 0, 0.08)',
@@ -1981,7 +1981,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
     return (
       <Box
         sx={{
-          backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#ffffff',
+          backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#ffffff',
           border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
           borderRadius: '20px',
           overflow: 'hidden',
@@ -2003,7 +2003,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
             borderBottom: isDark
               ? '1px solid rgba(255,255,255,0.08)'
               : '1px solid rgba(0,0,0,0.08)',
-            backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#f4f3f8',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#f4f3f8',
           }}
         >
           <Typography
@@ -2038,7 +2038,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
               >
                 <Typography
                   variant="subtitle2"
-                  sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700 }}
+                  sx={{ color: isDark ? '#facc15' : '#1a1300', fontWeight: 700 }}
                 >
                   {t.lblSummary}
                 </Typography>
@@ -2172,7 +2172,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           backgroundColor: isDark
                             ? 'rgba(166,226,245,0.15)'
                             : 'rgba(28,20,69,0.06)',
-                          color: isDark ? '#a6e2f5' : '#1c1445',
+                          color: isDark ? '#facc15' : '#1a1300',
                         }}
                       />
                     ))}
@@ -2624,7 +2624,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
             gap: 2,
             flexShrink: 0,
             borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
-            backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#fafafa',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.3)' : '#fafafa',
           }}
         >
           {uploadError && (
@@ -2664,7 +2664,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                       ? 'rgba(255,255,255,0.1)'
                       : 'rgba(0,0,0,0.07)'
                     : isDark
-                      ? '#a6e2f5'
+                      ? '#facc15'
                       : '#1c1445',
                 color:
                   publishMode === 'draft'
@@ -2697,7 +2697,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
   return (
     <Box
       sx={{
-        backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#ffffff',
+        backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#ffffff',
         border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
         borderRadius: '20px',
         overflow: 'hidden',
@@ -2746,7 +2746,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                       borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: errors.language ? '#f44336' : isDark ? '#a6e2f5' : '#1c1445',
+                      borderColor: errors.language ? '#f44336' : isDark ? '#facc15' : '#1a1300',
                     },
                   },
                   '& .MuiInputLabel-root': {
@@ -2843,7 +2843,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                             backgroundColor: isDark
                               ? 'rgba(166,226,245,0.25)'
                               : 'rgba(28,20,69,0.1)',
-                            color: isDark ? '#a6e2f5' : '#1c1445',
+                            color: isDark ? '#facc15' : '#1a1300',
                           }}
                         />
                       ))}
@@ -2868,7 +2868,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                   '&:hover fieldset': {
                     borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                   },
-                  '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                  '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                 },
                 '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
                 '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
@@ -2969,7 +2969,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                             backgroundColor: isDark
                               ? 'rgba(166,226,245,0.25)'
                               : 'rgba(28,20,69,0.1)',
-                            color: isDark ? '#a6e2f5' : '#1c1445',
+                            color: isDark ? '#facc15' : '#1a1300',
                           }}
                         />
                       ))}
@@ -2994,7 +2994,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                   '&:hover fieldset': {
                     borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                   },
-                  '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                  '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                 },
                 '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
                 '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
@@ -3100,7 +3100,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                             backgroundColor: isDark
                               ? 'rgba(166,226,245,0.25)'
                               : 'rgba(28,20,69,0.1)',
-                            color: isDark ? '#a6e2f5' : '#1c1445',
+                            color: isDark ? '#facc15' : '#1a1300',
                           }}
                         />
                       ))}
@@ -3119,7 +3119,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                   '&:hover fieldset': {
                     borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                   },
-                  '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                  '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                 },
                 '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
               }}
@@ -3176,7 +3176,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     '&:hover fieldset': {
                       borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                     },
-                    '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                    '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                   },
                   '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
                 }}
@@ -3245,7 +3245,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
               <Typography
                 variant="body2"
                 sx={{
-                  color: isDark ? '#a6e2f5' : '#1c1445',
+                  color: isDark ? '#facc15' : '#1a1300',
                   fontWeight: 700,
                   mb: 1.5,
                   display: 'flex',
@@ -3299,8 +3299,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         size="small"
                         sx={{
                           color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
-                          '&.Mui-checked': { color: isDark ? '#a6e2f5' : '#1c1445' },
-                          '&.MuiCheckbox-indeterminate': { color: isDark ? '#a6e2f5' : '#1c1445' },
+                          '&.Mui-checked': { color: isDark ? '#facc15' : '#1a1300' },
+                          '&.MuiCheckbox-indeterminate': { color: isDark ? '#facc15' : '#1a1300' },
                         }}
                       />
                     }
@@ -3344,7 +3344,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                             size="small"
                             sx={{
                               color: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
-                              '&.Mui-checked': { color: isDark ? '#a6e2f5' : '#1c1445' },
+                              '&.Mui-checked': { color: isDark ? '#facc15' : '#1a1300' },
                             }}
                           />
                         }
@@ -3379,7 +3379,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                   <Typography
                     variant="body2"
                     sx={{
-                      color: isDark ? '#a6e2f5' : '#1c1445',
+                      color: isDark ? '#facc15' : '#1a1300',
                       fontWeight: 700,
                       mb: 1,
                       display: 'flex',
@@ -3430,7 +3430,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           '&:hover fieldset': {
                             borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                           },
-                          '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                          '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                         },
                       }}
                     />
@@ -3460,7 +3460,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                               ? '2px solid #ffffff'
                               : '1px solid rgba(0,0,0,0.2)',
                           boxShadow:
-                            colorCode?.toUpperCase() === preset ? '0 0 0 2px #a6e2f5' : 'none',
+                            colorCode?.toUpperCase() === preset ? '0 0 0 2px #facc15' : 'none',
                           transition: 'transform 0.15s ease',
                           '&:hover': { transform: 'scale(1.15)' },
                         }}
@@ -3481,7 +3481,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                 <Typography
                   variant="body2"
                   sx={{
-                    color: isDark ? '#a6e2f5' : '#1c1445',
+                    color: isDark ? '#facc15' : '#1a1300',
                     fontWeight: 700,
                     mb: 1,
                     display: 'flex',
@@ -3504,7 +3504,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           borderRadius: '10px',
                           cursor: 'pointer',
                           border: isSelected
-                            ? `2px solid ${isDark ? '#a6e2f5' : '#1c1445'}`
+                            ? `2px solid ${isDark ? '#facc15' : '#1a1300'}`
                             : isDark
                               ? '1px solid rgba(255,255,255,0.1)'
                               : '1px solid rgba(0,0,0,0.1)',
@@ -3517,7 +3517,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                               : '#ffffff',
                           color: isSelected
                             ? isDark
-                              ? '#a6e2f5'
+                              ? '#facc15'
                               : '#1c1445'
                             : isDark
                               ? '#d0caeb'
@@ -3547,7 +3547,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                               backgroundColor: isDark
                                 ? 'rgba(166,226,245,0.15)'
                                 : 'rgba(28,20,69,0.08)',
-                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              color: isDark ? '#facc15' : '#1a1300',
                               px: 0.8,
                               py: 0.2,
                               borderRadius: '4px',
@@ -3578,7 +3578,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     <Typography
                       variant="caption"
                       sx={{
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                         fontWeight: 600,
                         display: 'block',
                         mb: 0.8,
@@ -3625,8 +3625,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         fontSize: '0.7rem',
                         color: scheduleTime
                           ? isDark
-                            ? '#a6e2f5'
-                            : '#1c1445'
+                            ? '#facc15'
+                            : '#1a1300'
                           : isDark
                             ? '#d0caeb'
                             : '#5c548a',
@@ -3690,10 +3690,10 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     size="small"
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -3750,10 +3750,10 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     size="small"
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -3814,10 +3814,10 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           size="small"
                           sx={{
                             '& .MuiSwitch-switchBase.Mui-checked': {
-                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              color: isDark ? '#facc15' : '#1a1300',
                             },
                             '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                              backgroundColor: isDark ? '#facc15' : '#1a1300',
                             },
                           }}
                         />
@@ -3849,7 +3849,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                               <Box
                                 component="span"
                                 sx={{
-                                  color: isDark ? '#a6e2f5' : '#5c548a',
+                                  color: isDark ? '#facc15' : '#78350f',
                                   mr: 0.5,
                                   fontSize: '0.9rem',
                                 }}
@@ -3879,12 +3879,12 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                                 borderColor: errors.webUrl
                                   ? '#f44336'
                                   : isDark
-                                    ? '#a6e2f5'
+                                    ? '#facc15'
                                     : '#1c1445',
                               },
                             },
                             '& .MuiInputLabel-root': {
-                              color: errors.webUrl ? '#f44336' : isDark ? '#a6e2f5' : '#5c548a',
+                              color: errors.webUrl ? '#f44336' : isDark ? '#facc15' : '#78350f',
                             },
                             '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
                           }}
@@ -3906,7 +3906,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                   <Typography
                     variant="body2"
                     sx={{
-                      color: isDark ? '#a6e2f5' : '#1c1445',
+                      color: isDark ? '#facc15' : '#1a1300',
                       fontWeight: 700,
                       mb: 1.2,
                       fontSize: '0.82rem',
@@ -4131,7 +4131,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         <Box
                           component="span"
                           sx={{
-                            color: isDark ? '#a6e2f5' : '#5c548a',
+                            color: isDark ? '#facc15' : '#78350f',
                             mr: 0.5,
                             fontSize: '0.9rem',
                           }}
@@ -4156,11 +4156,11 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           borderColor: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(28,20,69,0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: errors.videoUrl ? '#f44336' : isDark ? '#a6e2f5' : '#1c1445',
+                          borderColor: errors.videoUrl ? '#f44336' : isDark ? '#facc15' : '#1a1300',
                         },
                       },
                       '& .MuiInputLabel-root': {
-                        color: errors.videoUrl ? '#f44336' : isDark ? '#a6e2f5' : '#5c548a',
+                        color: errors.videoUrl ? '#f44336' : isDark ? '#facc15' : '#78350f',
                       },
                       '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
                     }}
@@ -4185,7 +4185,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                 >
                   <Typography
                     variant="subtitle2"
-                    sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600 }}
+                    sx={{ color: isDark ? '#facc15' : '#1a1300', fontWeight: 600 }}
                   >
                     Show Alert Details
                   </Typography>
@@ -4201,7 +4201,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         color: isDark ? '#fff' : '#000',
                         backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#fff',
                       },
-                      '& .MuiInputLabel-root': { color: isDark ? '#a6e2f5' : '#5c548a' },
+                      '& .MuiInputLabel-root': { color: isDark ? '#facc15' : '#78350f' },
                     }}
                   />
                   <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
@@ -4217,7 +4217,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           color: isDark ? '#fff' : '#000',
                           backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#fff',
                         },
-                        '& .MuiInputLabel-root': { color: isDark ? '#a6e2f5' : '#5c548a' },
+                        '& .MuiInputLabel-root': { color: isDark ? '#facc15' : '#78350f' },
                       }}
                     />
                     <TextField
@@ -4232,14 +4232,14 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           color: isDark ? '#fff' : '#000',
                           backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#fff',
                         },
-                        '& .MuiInputLabel-root': { color: isDark ? '#a6e2f5' : '#5c548a' },
+                        '& .MuiInputLabel-root': { color: isDark ? '#facc15' : '#78350f' },
                       }}
                     />
                   </Box>
                   <Box>
                     <Typography
                       variant="body2"
-                      sx={{ color: isDark ? '#a6e2f5' : '#5c548a', mb: 1, fontWeight: 500 }}
+                      sx={{ color: isDark ? '#facc15' : '#78350f', mb: 1, fontWeight: 500 }}
                     >
                       Reminder Options
                     </Typography>
@@ -4325,7 +4325,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: errors.title ? '#f44336' : isDark ? '#a6e2f5' : '#1c1445',
+                          borderColor: errors.title ? '#f44336' : isDark ? '#facc15' : '#1a1300',
                         },
                       },
                       '& .MuiInputLabel-root': {
@@ -4367,7 +4367,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                       <Typography
                         variant="caption"
                         sx={{
-                          color: isDark ? '#a6e2f5' : '#1c1445',
+                          color: isDark ? '#facc15' : '#1a1300',
                           fontWeight: 600,
                           display: 'block',
                           mb: 0.5,
@@ -4450,7 +4450,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         <Typography
                           variant="caption"
                           sx={{
-                            color: isDark ? '#a6e2f5' : '#1c1445',
+                            color: isDark ? '#facc15' : '#1a1300',
                             fontWeight: 600,
                             display: 'block',
                             mb: 0.5,
@@ -4500,8 +4500,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         fontWeight: 600,
                         color: sendNotification
                           ? isDark
-                            ? '#a6e2f5'
-                            : '#1c1445'
+                            ? '#facc15'
+                            : '#1a1300'
                           : isDark
                             ? '#d0caeb'
                             : '#5c548a',
@@ -4516,10 +4516,10 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                       inputProps={{ 'aria-label': t.lblSendNotification }}
                       sx={{
                         '& .MuiSwitch-switchBase.Mui-checked': {
-                          color: isDark ? '#a6e2f5' : '#1c1445',
+                          color: isDark ? '#facc15' : '#1a1300',
                         },
                         '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                          backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                          backgroundColor: isDark ? '#facc15' : '#1a1300',
                         },
                       }}
                     />
@@ -4551,7 +4551,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           <Box
                             component="span"
                             sx={{
-                              color: isDark ? '#a6e2f5' : '#5c548a',
+                              color: isDark ? '#facc15' : '#78350f',
                               mr: 0.5,
                               fontSize: '0.9rem',
                             }}
@@ -4579,7 +4579,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                             borderColor: errors.imageAdUrl
                               ? '#f44336'
                               : isDark
-                                ? '#a6e2f5'
+                                ? '#facc15'
                                 : '#1c1445',
                           },
                         },
@@ -4641,8 +4641,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                               borderColor: errors.imageTitle
                                 ? '#f44336'
                                 : isDark
-                                  ? '#a6e2f5'
-                                  : '#1c1445',
+                                  ? '#facc15'
+                                  : '#1a1300',
                             },
                           },
                           '& .MuiInputLabel-root': {
@@ -4684,7 +4684,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           <Typography
                             variant="caption"
                             sx={{
-                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              color: isDark ? '#facc15' : '#1a1300',
                               fontWeight: 600,
                               display: 'block',
                               mb: 0.5,
@@ -4737,8 +4737,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           fontWeight: 600,
                           color: showImageTitle
                             ? isDark
-                              ? '#a6e2f5'
-                              : '#1c1445'
+                              ? '#facc15'
+                              : '#1a1300'
                             : isDark
                               ? '#d0caeb'
                               : '#5c548a',
@@ -4756,10 +4756,10 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         inputProps={{ 'aria-label': t.lblImageTitle }}
                         sx={{
                           '& .MuiSwitch-switchBase.Mui-checked': {
-                            color: isDark ? '#a6e2f5' : '#1c1445',
+                            color: isDark ? '#facc15' : '#1a1300',
                           },
                           '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                            backgroundColor: isDark ? '#facc15' : '#1a1300',
                           },
                         }}
                       />
@@ -4826,11 +4826,11 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         textTransform: 'none',
                         fontSize: '0.75rem',
                         py: 0.3,
-                        borderColor: '#a6e2f5',
-                        color: '#a6e2f5',
+                        borderColor: '#facc15',
+                        color: '#facc15',
                         '&:hover': {
-                          borderColor: '#8cd5ed',
-                          backgroundColor: 'rgba(166,226,245,0.1)',
+                          borderColor: '#fde047',
+                          backgroundColor: 'rgba(250,204,21,0.1)',
                         },
                         '&.Mui-disabled': {
                           borderColor: 'rgba(166,226,245,0.3)',
@@ -4871,7 +4871,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                       <Typography
                         variant="caption"
                         sx={{
-                          color: isDark ? '#a6e2f5' : '#1c1445',
+                          color: isDark ? '#facc15' : '#1a1300',
                           fontWeight: 600,
                           display: 'block',
                           mb: 0.5,
@@ -4894,7 +4894,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                       variant="body2"
                       sx={{
                         fontWeight: 700,
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                         fontSize: '0.85rem',
                       }}
                     >
@@ -4944,8 +4944,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                               borderColor: errors.bulletPoints
                                 ? '#f44336'
                                 : isDark
-                                  ? '#a6e2f5'
-                                  : '#1c1445',
+                                  ? '#facc15'
+                                  : '#1a1300',
                             },
                           },
                           '& .MuiInputLabel-root': {
@@ -4963,11 +4963,11 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           textTransform: 'none',
                           fontWeight: 700,
                           px: 3,
-                          backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                          color: isDark ? '#1c1445' : '#ffffff',
+                          backgroundColor: isDark ? '#facc15' : '#1a1300',
+                          color: isDark ? '#1a1300' : '#ffffff',
                           boxShadow: 'none',
                           '&:hover': {
-                            backgroundColor: isDark ? '#8cd5ed' : '#2d2270',
+                            backgroundColor: isDark ? '#fde047' : '#261e05',
                             boxShadow: 'none',
                           },
                         }}
@@ -5003,8 +5003,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                                   width: 22,
                                   height: 22,
                                   borderRadius: '50%',
-                                  backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                                  color: isDark ? '#1c1445' : '#ffffff',
+                                  backgroundColor: isDark ? '#facc15' : '#1a1300',
+                                  color: isDark ? '#1a1300' : '#ffffff',
                                   display: 'flex',
                                   alignItems: 'center',
                                   justifyContent: 'center',
@@ -5057,7 +5057,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                           <Typography
                             variant="caption"
                             sx={{
-                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              color: isDark ? '#facc15' : '#1a1300',
                               fontWeight: 600,
                               display: 'block',
                               mb: 0.5,
@@ -5111,7 +5111,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                         variant="body2"
                         sx={{
                           fontWeight: 700,
-                          color: errors.galleryImages ? '#f44336' : isDark ? '#a6e2f5' : '#1c1445',
+                          color: errors.galleryImages ? '#f44336' : isDark ? '#facc15' : '#1a1300',
                           fontSize: '0.82rem',
                         }}
                       >
@@ -5126,8 +5126,8 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                               : galleryItems.length >= 10
                                 ? '#ff9800'
                                 : isDark
-                                  ? '#a6e2f5'
-                                  : '#1c1445',
+                                  ? '#facc15'
+                                  : '#1a1300',
                           fontWeight: 600,
                           fontSize: '0.72rem',
                         }}
@@ -5247,7 +5247,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                               ? 'rgba(255,255,255,0.02)'
                               : 'rgba(28,20,69,0.02)',
                             '&:hover': {
-                              borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                              borderColor: isDark ? '#facc15' : '#1a1300',
                               backgroundColor: isDark
                                 ? 'rgba(166,226,245,0.05)'
                                 : 'rgba(28,20,69,0.04)',
@@ -5350,14 +5350,14 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
                     onDrop={handleDrop}
                     onClick={() => fileInputRef.current?.click()}
                     sx={{
-                      border: `2px dashed ${errors.image ? '#f44336' : dragOver ? (isDark ? '#a6e2f5' : '#1c1445') : isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)'}`,
+                      border: `2px dashed ${errors.image ? '#f44336' : dragOver ? (isDark ? '#facc15' : '#1a1300') : isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)'}`,
                       borderRadius: '10px',
                       p: 5,
                       textAlign: 'center',
                       cursor: 'pointer',
                       backgroundColor: dragOver ? 'rgba(166,226,245,0.06)' : 'rgba(28,20,69,0.02)',
                       '&:hover': {
-                        borderColor: errors.image ? '#f44336' : isDark ? '#a6e2f5' : '#1c1445',
+                        borderColor: errors.image ? '#f44336' : isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   >
@@ -5399,7 +5399,7 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
           display: 'flex',
           gap: 2,
           borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
-          backgroundColor: isDark ? 'rgba(38, 28, 86, 0.3)' : '#fafafa',
+          backgroundColor: isDark ? 'rgba(28, 22, 3, 0.3)' : '#fafafa',
         }}
       >
         <Button
@@ -5425,10 +5425,10 @@ export const CreateNewsForm: React.FC<CreateNewsFormProps> = ({
             borderRadius: '12px',
             textTransform: 'none',
             fontWeight: 700,
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
             boxShadow: 'none',
-            '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270', boxShadow: 'none' },
+            '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05', boxShadow: 'none' },
           }}
         >
           {isEditMode ? 'Update News' : t.btnSubmit}

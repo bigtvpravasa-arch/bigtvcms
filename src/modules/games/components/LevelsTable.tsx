@@ -170,7 +170,7 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
                         variant="body2"
                         sx={{
                           fontWeight: 700,
-                          color: isDark ? '#a6e2f5' : '#2563eb',
+                          color: isDark ? '#facc15' : '#b45309',
                           fontFamily: 'monospace',
                         }}
                       >
@@ -243,7 +243,7 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
                         variant="body2"
                         sx={{
                           fontWeight: 700,
-                          color: isDark ? '#93c5fd' : '#1d4ed8',
+                          color: isDark ? '#fde047' : '#92400e',
                           fontFamily: 'monospace',
                           fontSize: '0.85rem',
                           cursor: 'pointer',
@@ -394,7 +394,7 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
                         <IconButton
                           size="small"
                           onClick={() => onPlay(row)}
-                          sx={{ color: isDark ? '#a6e2f5' : '#2563eb' }}
+                          sx={{ color: isDark ? '#facc15' : '#b45309' }}
                           aria-label="Play Level"
                         >
                           <PlayCircle fontSize="small" />
@@ -450,7 +450,7 @@ export const LevelsTable: React.FC<LevelsTableProps> = ({
                         onClick={() => onEdit(row)}
                         sx={{
                           textTransform: 'none',
-                          color: isDark ? '#a6e2f5' : '#2563eb',
+                          color: isDark ? '#facc15' : '#b45309',
                           fontWeight: 600,
                         }}
                       >

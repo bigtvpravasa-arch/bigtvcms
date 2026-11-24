@@ -111,9 +111,15 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
       maxWidth="sm"
       PaperProps={{
         sx: {
-          backgroundColor: isDark ? '#140e36' : '#ffffff',
-          color: isDark ? '#ffffff' : '#1c1445',
-          borderRadius: '16px',
+          backgroundColor: isDark ? 'rgba(28, 22, 3, 0.96)' : '#ffffff',
+          color: isDark ? '#ffffff' : '#1a1300',
+          border: isDark
+            ? '1px solid rgba(250, 204, 21, 0.25)'
+            : '1px solid rgba(217, 119, 6, 0.2)',
+          borderRadius: '20px',
+          boxShadow: isDark
+            ? '0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(234, 179, 8, 0.15)'
+            : '0 10px 40px rgba(0, 0, 0, 0.1)',
         },
       }}
     >
@@ -152,15 +158,19 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
             value={fileName}
             onChange={(e) => setFileName(e.target.value)}
             disabled={loading || uploading}
-            InputLabelProps={{ sx: { color: isDark ? '#a5b4fc' : '#5c548a' } }}
+            InputLabelProps={{ sx: { color: isDark ? '#fde68a' : '#78350f' } }}
             sx={{
               '& .MuiOutlinedInput-root': {
-                color: isDark ? '#ffffff' : '#1c1445',
+                color: isDark ? '#ffffff' : '#1a1300',
                 '& fieldset': {
-                  borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)',
+                  borderColor: isDark ? 'rgba(250, 204, 21, 0.25)' : 'rgba(217, 119, 6, 0.25)',
                 },
                 '&:hover fieldset': {
-                  borderColor: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                  borderColor: isDark ? 'rgba(250, 204, 21, 0.5)' : 'rgba(217, 119, 6, 0.5)',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#facc15',
+                  boxShadow: '0 0 10px rgba(250, 204, 21, 0.25)',
                 },
               },
             }}
@@ -173,15 +183,19 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
             value={viewCount}
             onChange={(e) => setViewCount(parseInt(e.target.value, 10) || 0)}
             disabled={loading || uploading}
-            InputLabelProps={{ sx: { color: isDark ? '#a5b4fc' : '#5c548a' } }}
+            InputLabelProps={{ sx: { color: isDark ? '#fde68a' : '#78350f' } }}
             sx={{
               '& .MuiOutlinedInput-root': {
-                color: isDark ? '#ffffff' : '#1c1445',
+                color: isDark ? '#ffffff' : '#1a1300',
                 '& fieldset': {
-                  borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)',
+                  borderColor: isDark ? 'rgba(250, 204, 21, 0.25)' : 'rgba(217, 119, 6, 0.25)',
                 },
                 '&:hover fieldset': {
-                  borderColor: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                  borderColor: isDark ? 'rgba(250, 204, 21, 0.5)' : 'rgba(217, 119, 6, 0.5)',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#facc15',
+                  boxShadow: '0 0 10px rgba(250, 204, 21, 0.25)',
                 },
               },
             }}
@@ -273,12 +287,12 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
                 }
                 sx={{
                   borderRadius: '8px',
-                  borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.25)',
-                  color: isDark ? '#ffffff' : '#1c1445',
+                  borderColor: isDark ? 'rgba(250, 204, 21, 0.3)' : 'rgba(217, 119, 6, 0.3)',
+                  color: isDark ? '#ffffff' : '#1a1300',
                   textTransform: 'none',
                   '&:hover': {
-                    borderColor: isDark ? '#a5b4fc' : '#2563eb',
-                    backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(37,99,235,0.05)',
+                    borderColor: '#facc15',
+                    backgroundColor: isDark ? 'rgba(234, 179, 8, 0.15)' : 'rgba(234, 179, 8, 0.08)',
                   },
                 }}
               >
@@ -304,26 +318,30 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
               value={thumbnailUrl}
               onChange={(e) => setThumbnailUrl(e.target.value)}
               disabled={loading || uploading}
-              InputLabelProps={{ sx: { color: isDark ? '#a5b4fc' : '#5c548a' } }}
+              InputLabelProps={{ sx: { color: isDark ? '#fde68a' : '#78350f' } }}
               InputProps={{
                 startAdornment: (
                   <ImageOutlined
                     sx={{
                       mr: 1,
                       fontSize: 20,
-                      color: isDark ? '#94a3b8' : '#64748b',
+                      color: isDark ? '#fde68a' : '#78350f',
                     }}
                   />
                 ),
               }}
               sx={{
                 '& .MuiOutlinedInput-root': {
-                  color: isDark ? '#ffffff' : '#1c1445',
+                  color: isDark ? '#ffffff' : '#1a1300',
                   '& fieldset': {
-                    borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)',
+                    borderColor: isDark ? 'rgba(250, 204, 21, 0.25)' : 'rgba(217, 119, 6, 0.25)',
                   },
                   '&:hover fieldset': {
-                    borderColor: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                    borderColor: isDark ? 'rgba(250, 204, 21, 0.5)' : 'rgba(217, 119, 6, 0.5)',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#facc15',
+                    boxShadow: '0 0 10px rgba(250, 204, 21, 0.25)',
                   },
                 },
               }}
@@ -344,9 +362,15 @@ export const VideoEditModal: React.FC<VideoEditModalProps> = ({
           disabled={loading || uploading}
           variant="contained"
           sx={{
-            borderRadius: '8px',
-            backgroundColor: '#2563eb',
-            '&:hover': { backgroundColor: '#1d4ed8' },
+            borderRadius: '10px',
+            fontWeight: 700,
+            background: 'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
+            color: '#1a1300',
+            boxShadow: '0 4px 15px rgba(234, 179, 8, 0.35)',
+            '&:hover': {
+              background: 'linear-gradient(135deg, #fde047 0%, #d97706 100%)',
+              boxShadow: '0 6px 20px rgba(234, 179, 8, 0.5)',
+            },
           }}
         >
           {loading ? t.saving || 'Saving...' : t.save || 'Save'}

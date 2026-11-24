@@ -158,7 +158,7 @@ export const RatingsPage: React.FC = () => {
         display: 'flex',
         height: '100vh',
         width: '100%',
-        backgroundColor: isDark ? '#110d29' : '#f8fafc',
+        backgroundColor: isDark ? '#161202' : '#f8fafc',
         overflow: 'hidden',
       }}
     >
@@ -196,7 +196,7 @@ export const RatingsPage: React.FC = () => {
               p: { xs: 2, sm: 3 },
               borderRadius: '20px',
               background: isDark
-                ? 'linear-gradient(135deg, rgba(38,28,86,0.85) 0%, rgba(20,14,48,0.95) 100%)'
+                ? 'linear-gradient(135deg, rgba(28,22,3,0.85) 0%, rgba(20,14,48,0.95) 100%)'
                 : 'linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%)',
               border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.06)',
               boxShadow: isDark ? '0 12px 32px rgba(0,0,0,0.3)' : '0 6px 20px rgba(0,0,0,0.04)',
@@ -254,7 +254,7 @@ export const RatingsPage: React.FC = () => {
                 '& .MuiTabs-indicator': {
                   height: 3,
                   borderRadius: '3px 3px 0 0',
-                  background: 'linear-gradient(90deg, #2563eb 0%, #3b82f6 100%)',
+                  background: 'linear-gradient(90deg, #facc15 0%, #eab308 100%)',
                 },
               }}
             >

@@ -208,7 +208,7 @@ export const ReelsPage: React.FC = () => {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        backgroundColor: isDark ? '#161202' : '#ffffff',
         transition: 'all 0.3s ease',
       }}
     >
@@ -244,10 +244,10 @@ export const ReelsPage: React.FC = () => {
                 fontSize: '0.95rem',
               },
               '& .Mui-selected': {
-                color: isDark ? '#a6e2f5 !important' : '#1c1445 !important',
+                color: isDark ? '#facc15 !important' : '#1c1445 !important',
               },
               '& .MuiTabs-indicator': {
-                backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                backgroundColor: isDark ? '#facc15' : '#1a1300',
               },
             }}
           >
@@ -350,10 +350,10 @@ export const ReelsPage: React.FC = () => {
                       borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)',
                     },
                     '&:hover .MuiOutlinedInput-notchedOutline': {
-                      borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                      borderColor: isDark ? '#facc15' : '#1a1300',
                     },
                     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                      borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                      borderColor: isDark ? '#facc15' : '#1a1300',
                     },
                     '& .MuiSelect-icon': {
                       color: isDark ? '#d0caeb' : '#5c548a',
@@ -401,9 +401,9 @@ export const ReelsPage: React.FC = () => {
                     borderRadius: '12px',
                     textTransform: 'none',
                     fontWeight: 600,
-                    backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                    color: isDark ? '#1c1445' : '#ffffff',
-                    '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                    backgroundColor: isDark ? '#facc15' : '#1a1300',
+                    color: isDark ? '#1a1300' : '#ffffff',
+                    '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
                   }}
                 >
                   {t.addReel}
@@ -444,8 +444,8 @@ export const ReelsPage: React.FC = () => {
                       },
                       '&.Mui-selected': {
                         backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
-                        color: isDark ? '#a6e2f5' : '#1c1445',
-                        borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
+                        borderColor: isDark ? '#facc15' : '#1a1300',
                         '&:hover': {
                           backgroundColor: isDark
                             ? 'rgba(166,226,245,0.25)'

@@ -33,7 +33,7 @@ export const LevelViewDialog: React.FC<LevelViewDialogProps> = ({
 
   const bgModal = isDark ? '#1a1140' : '#ffffff';
   const colorText = isDark ? '#ffffff' : '#1c1445';
-  const colorLabel = isDark ? '#a6e2f5' : '#5c548a';
+  const colorLabel = isDark ? '#facc15' : '#78350f';
 
   return (
     <Dialog
@@ -155,7 +155,7 @@ export const LevelViewDialog: React.FC<LevelViewDialogProps> = ({
               </Typography>
               <Typography
                 variant="h6"
-                sx={{ color: isDark ? '#93c5fd' : '#1d4ed8', fontWeight: 700, mt: 0.5 }}
+                sx={{ color: isDark ? '#fde047' : '#92400e', fontWeight: 700, mt: 0.5 }}
               >
                 {level.stats?.membersPlayed ?? 0}
               </Typography>
@@ -250,8 +250,8 @@ export const LevelViewDialog: React.FC<LevelViewDialogProps> = ({
           sx={{
             textTransform: 'none',
             borderRadius: '8px',
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
             fontWeight: 600,
           }}
         >

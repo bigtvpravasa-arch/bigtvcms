@@ -196,7 +196,7 @@ export const PostTypesPage: React.FC = () => {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        backgroundColor: isDark ? '#161202' : '#ffffff',
         transition: 'all 0.3s ease',
       }}
     >
@@ -252,7 +252,7 @@ export const PostTypesPage: React.FC = () => {
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     color: isDark ? '#ffffff' : '#111111',
-                    backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+                    backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
                     borderRadius: '12px',
                     border: isDark
                       ? '1px solid rgba(255,255,255,0.08)'
@@ -271,7 +271,7 @@ export const PostTypesPage: React.FC = () => {
                   minWidth: 140,
                   '& .MuiOutlinedInput-root': {
                     color: isDark ? '#ffffff' : '#111111',
-                    backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+                    backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
                     borderRadius: '12px',
                     border: isDark
                       ? '1px solid rgba(255,255,255,0.08)'
@@ -294,13 +294,13 @@ export const PostTypesPage: React.FC = () => {
                 borderRadius: '12px',
                 px: 3,
                 py: 1,
-                backgroundColor: '#2563eb',
-                color: '#ffffff',
+                backgroundColor: '#facc15',
+                color: '#1a1300',
                 fontWeight: 600,
                 textTransform: 'none',
-                boxShadow: '0 4px 12px rgba(37,99,235,0.3)',
+                boxShadow: '0 4px 12px rgba(250, 204, 21, 0.3)',
                 '&:hover': {
-                  backgroundColor: '#1d4ed8',
+                  backgroundColor: '#fde047',
                 },
               }}
             >

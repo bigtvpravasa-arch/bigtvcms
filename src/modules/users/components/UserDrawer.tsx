@@ -125,7 +125,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
           px: 3,
           py: 2.5,
           borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
-          backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#f4f3f8',
+          backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#f4f3f8',
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -140,7 +140,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
               justifyContent: 'center',
             }}
           >
-            <People sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.1rem' }} />
+            <People sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: '1.1rem' }} />
           </Box>
           <Box>
             <Typography
@@ -263,7 +263,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
               sx={{
-                border: `2px dashed ${errors.image ? '#f44336' : dragOver ? (isDark ? '#a6e2f5' : '#1c1445') : isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.18)'}`,
+                border: `2px dashed ${errors.image ? '#f44336' : dragOver ? (isDark ? '#facc15' : '#1a1300') : isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.18)'}`,
                 borderRadius: '12px',
                 p: 3,
                 textAlign: 'center',
@@ -274,7 +274,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
                     ? 'rgba(244,67,54,0.04)'
                     : 'rgba(28,20,69,0.04)',
                 '&:hover': {
-                  borderColor: errors.image ? '#f44336' : isDark ? '#a6e2f5' : '#1c1445',
+                  borderColor: errors.image ? '#f44336' : isDark ? '#facc15' : '#1a1300',
                 },
               }}
             >
@@ -316,7 +316,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
             <Typography
               variant="caption"
               sx={{
-                color: isDark ? '#a6e2f5' : '#1c1445',
+                color: isDark ? '#facc15' : '#1a1300',
                 fontWeight: 700,
                 display: 'block',
                 mb: 0.6,
@@ -347,7 +347,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
                   '&:hover fieldset': {
                     borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                   },
-                  '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                  '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                 },
                 '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
               }}
@@ -366,7 +366,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
             <Typography
               variant="caption"
               sx={{
-                color: isDark ? '#a6e2f5' : '#1c1445',
+                color: isDark ? '#facc15' : '#1a1300',
                 fontWeight: 700,
                 display: 'block',
                 mb: 0.6,
@@ -397,7 +397,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
                   '&:hover fieldset': {
                     borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                   },
-                  '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                  '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                 },
                 '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
               }}
@@ -424,7 +424,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
             <Typography
               variant="caption"
               sx={{
-                color: isDark ? '#a6e2f5' : '#1c1445',
+                color: isDark ? '#facc15' : '#1a1300',
                 fontWeight: 700,
                 display: 'block',
                 mb: 0.6,
@@ -456,7 +456,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
                   '&:hover fieldset': {
                     borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                   },
-                  '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                  '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                 },
                 '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
               }}
@@ -475,7 +475,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
             <Typography
               variant="caption"
               sx={{
-                color: isDark ? '#a6e2f5' : '#1c1445',
+                color: isDark ? '#facc15' : '#1a1300',
                 fontWeight: 700,
                 display: 'block',
                 mb: 0.6,
@@ -506,7 +506,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
                   '&:hover fieldset': {
                     borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                   },
-                  '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                  '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                 },
                 '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
               }}
@@ -534,7 +534,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
             <Typography
               variant="caption"
               sx={{
-                color: isDark ? '#a6e2f5' : '#1c1445',
+                color: isDark ? '#facc15' : '#1a1300',
                 fontWeight: 700,
                 display: 'block',
                 mb: 0.6,
@@ -566,7 +566,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
                   '&:hover fieldset': {
                     borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                   },
-                  '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                  '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                 },
                 '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
               }}
@@ -599,7 +599,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
             <Typography
               variant="caption"
               sx={{
-                color: isDark ? '#a6e2f5' : '#1c1445',
+                color: isDark ? '#facc15' : '#1a1300',
                 fontWeight: 700,
                 display: 'block',
                 mb: 0.6,
@@ -624,7 +624,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
                   '&:hover fieldset': {
                     borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                   },
-                  '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                  '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                 },
               }}
               InputProps={{
@@ -658,7 +658,7 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
           display: 'flex',
           gap: 2,
           borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
-          backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#fafafa',
+          backgroundColor: isDark ? 'rgba(28,22,3,0.3)' : '#fafafa',
         }}
       >
         <Button
@@ -685,11 +685,11 @@ export const UserDrawer: React.FC<UserDrawerProps> = ({
             borderRadius: '12px',
             textTransform: 'none',
             fontWeight: 700,
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
             boxShadow: 'none',
-            '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270', boxShadow: 'none' },
-            '&.Mui-disabled': { opacity: 0.7, color: isDark ? '#1c1445' : '#ffffff' },
+            '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05', boxShadow: 'none' },
+            '&.Mui-disabled': { opacity: 0.7, color: isDark ? '#1a1300' : '#ffffff' },
           }}
         >
           {isUploading

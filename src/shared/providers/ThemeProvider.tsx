@@ -30,15 +30,15 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       palette: {
         mode,
         primary: {
-          main: mode === 'dark' ? '#a6e2f5' : '#1c1445', // Premium teal on dark, dark violet on light
+          main: mode === 'dark' ? '#facc15' : '#d97706', // Warm Gold on dark, Warm Amber on light (Login Flow)
         },
         background: {
-          default: mode === 'dark' ? '#110d29' : '#ffffff', // Sleek dark violet base, pure white on light
-          paper: mode === 'dark' ? '#261c56' : '#ffffff', // Solid dark purple on dark, pure white on light
+          default: mode === 'dark' ? '#161202' : '#fcfbf7', // Warm Charcoal base on dark, Warm Cream on light
+          paper: mode === 'dark' ? '#231b05' : '#ffffff', // Warm dark amber on dark, pure white on light
         },
         text: {
-          primary: mode === 'dark' ? '#ffffff' : '#1c1445',
-          secondary: mode === 'dark' ? '#d0caeb' : '#5c548a',
+          primary: mode === 'dark' ? '#ffffff' : '#1a1300',
+          secondary: mode === 'dark' ? '#fde68a' : '#78350f',
         },
       },
       typography: {
@@ -53,15 +53,26 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
               padding: '10px 24px',
               fontWeight: 600,
             },
+            containedPrimary: {
+              background: 'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
+              color: '#1a1300',
+              fontWeight: 700,
+              boxShadow: '0 4px 15px rgba(234, 179, 8, 0.35)',
+              '&:hover': {
+                background: 'linear-gradient(135deg, #fde047 0%, #d97706 100%)',
+                boxShadow: '0 6px 20px rgba(234, 179, 8, 0.5)',
+              },
+            },
           },
         },
         MuiOutlinedInput: {
           styleOverrides: {
             root: {
               borderRadius: '8px',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+              backgroundColor: mode === 'dark' ? 'rgba(255, 255, 255, 0.04)' : '#ffffff',
               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#a6e2f5',
+                borderColor: '#facc15',
+                boxShadow: '0 0 10px rgba(250, 204, 21, 0.25)',
               },
             },
           },
@@ -70,22 +81,31 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
           styleOverrides: {
             root: {
               backgroundImage: 'none',
+              borderColor: mode === 'dark' ? 'rgba(250, 204, 21, 0.2)' : 'rgba(217, 119, 6, 0.15)',
             },
           },
         },
         MuiPopover: {
           styleOverrides: {
             paper: {
-              backgroundColor: mode === 'dark' ? '#261c56' : '#ffffff',
+              backgroundColor: mode === 'dark' ? '#231b05' : '#ffffff',
               backgroundImage: 'none',
+              border:
+                mode === 'dark'
+                  ? '1px solid rgba(250, 204, 21, 0.25)'
+                  : '1px solid rgba(217, 119, 6, 0.15)',
             },
           },
         },
         MuiMenu: {
           styleOverrides: {
             paper: {
-              backgroundColor: mode === 'dark' ? '#261c56' : '#ffffff',
+              backgroundColor: mode === 'dark' ? '#231b05' : '#ffffff',
               backgroundImage: 'none',
+              border:
+                mode === 'dark'
+                  ? '1px solid rgba(250, 204, 21, 0.25)'
+                  : '1px solid rgba(217, 119, 6, 0.15)',
             },
           },
         },
@@ -93,12 +113,14 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
           styleOverrides: {
             root: {
               '&:hover': {
-                backgroundColor: mode === 'dark' ? '#382b7a' : '#f0eff5', // Solid opaque hover color
+                backgroundColor: mode === 'dark' ? 'rgba(234, 179, 8, 0.15)' : '#fef9c3',
               },
               '&.Mui-selected': {
-                backgroundColor: mode === 'dark' ? '#1c1445' : '#e4e2ed', // Solid opaque selection color
+                backgroundColor: mode === 'dark' ? 'rgba(234, 179, 8, 0.25)' : '#fde047',
+                color: mode === 'dark' ? '#facc15' : '#1a1300',
+                fontWeight: 700,
                 '&:hover': {
-                  backgroundColor: mode === 'dark' ? '#382b7a' : '#f0eff5',
+                  backgroundColor: mode === 'dark' ? 'rgba(234, 179, 8, 0.35)' : '#fde047',
                 },
               },
             },
@@ -107,19 +129,19 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         MuiTooltip: {
           styleOverrides: {
             tooltip: {
-              backgroundColor: mode === 'dark' ? '#261c56' : '#1c1445', // Solid non-transparent background
-              color: '#ffffff',
+              backgroundColor: mode === 'dark' ? '#231b05' : '#1a1300',
+              color: mode === 'dark' ? '#fde68a' : '#ffffff',
               fontSize: '0.8rem',
               borderRadius: '8px',
               border:
                 mode === 'dark'
-                  ? '1px solid rgba(255, 255, 255, 0.15)'
-                  : '1px solid rgba(0, 0, 0, 0.08)',
-              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+                  ? '1px solid rgba(250, 204, 21, 0.25)'
+                  : '1px solid rgba(0, 0, 0, 0.1)',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
               padding: '8px 12px',
             },
             arrow: {
-              color: mode === 'dark' ? '#261c56' : '#1c1445',
+              color: mode === 'dark' ? '#231b05' : '#1a1300',
             },
           },
         },

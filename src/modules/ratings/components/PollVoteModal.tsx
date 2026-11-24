@@ -80,11 +80,11 @@ export const PollVoteModal: React.FC<PollVoteModalProps> = ({
                 width: 36,
                 height: 36,
                 borderRadius: '10px',
-                backgroundColor: '#2563eb',
+                backgroundColor: '#facc15',
+                color: '#1a1300',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#fff',
               }}
             >
               <HowToVote fontSize="small" />
@@ -117,14 +117,14 @@ export const PollVoteModal: React.FC<PollVoteModalProps> = ({
                   backgroundColor:
                     selectedOption === opt.option
                       ? isDark
-                        ? 'rgba(37,99,235,0.2)'
-                        : 'rgba(37,99,235,0.08)'
+                        ? 'rgba(250,204,21,0.2)'
+                        : 'rgba(234,179,8,0.08)'
                       : isDark
                         ? 'rgba(255,255,255,0.03)'
                         : '#f8fafc',
                   border:
                     selectedOption === opt.option
-                      ? '1.5px solid #2563eb'
+                      ? '1.5px solid #facc15'
                       : isDark
                         ? '1px solid rgba(255,255,255,0.06)'
                         : '1px solid rgba(0,0,0,0.06)',
@@ -163,7 +163,7 @@ export const PollVoteModal: React.FC<PollVoteModalProps> = ({
             type="submit"
             variant="contained"
             sx={{
-              background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+              background: 'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
               color: '#ffffff',
               fontWeight: 600,
             }}

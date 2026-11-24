@@ -17,6 +17,7 @@ import {
   InputLabel,
   Tabs,
   Tab,
+  CircularProgress,
 } from '@mui/material';
 import {
   Search,
@@ -29,6 +30,8 @@ import {
   Settings,
   BookOnline,
   QrCodeScanner,
+  Science,
+  Refresh,
 } from '@mui/icons-material';
 import { useLanguageStore } from '@/core/storage/language-store';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
@@ -46,6 +49,7 @@ import { BookingStatusModal } from './BookingStatusModal';
 import { CreateBookingModal } from './CreateBookingModal';
 import { TicketQrModal } from './TicketQrModal';
 import { QrCheckInModal } from './QrCheckInModal';
+import { TestTicketsTable } from './TestTicketsTable';
 import { Loader } from '@/shared/components/Loader';
 import { eventTranslations } from '../translations';
 
@@ -115,6 +119,11 @@ export const EventsTab: React.FC = () => {
     handleCheckIn,
     syncingInventory,
     handleSyncInventory,
+    folkNightSubTab,
+    setFolkNightSubTab,
+    testTickets,
+    isResettingTestTickets,
+    handleResetTestTickets,
 
     // Tickets
     tickets,
@@ -177,7 +186,7 @@ export const EventsTab: React.FC = () => {
                 color: isDark ? '#94a3b8' : '#64748b',
                 minHeight: 44,
                 '&.Mui-selected': {
-                  color: isDark ? '#60a5fa' : '#2563eb',
+                  color: isDark ? '#fde047' : '#b45309',
                 },
               },
             }}
@@ -188,6 +197,12 @@ export const EventsTab: React.FC = () => {
               icon={<BookOnline />}
               iconPosition="start"
               value="bookings"
+            />
+            <Tab
+              label={t.tabTestTickets || 'QA Test Tickets (30)'}
+              icon={<Science />}
+              iconPosition="start"
+              value="testTickets"
             />
             <Tab
               label={t.tabTickets}
@@ -213,9 +228,10 @@ export const EventsTab: React.FC = () => {
                 py: 1,
                 fontWeight: 700,
                 textTransform: 'none',
-                backgroundColor: '#2563eb',
-                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
-                '&:hover': { backgroundColor: '#1d4ed8' },
+                backgroundColor: '#facc15',
+                color: '#1a1300',
+                boxShadow: '0 4px 14px rgba(250, 204, 21, 0.35)',
+                '&:hover': { backgroundColor: '#fde047' },
               }}
             >
               {t.addEvent}
@@ -264,6 +280,30 @@ export const EventsTab: React.FC = () => {
             </Box>
           )}
 
+          {activeTab === 'testTickets' && (
+            <Button
+              variant="outlined"
+              startIcon={isResettingTestTickets ? <CircularProgress size={16} /> : <Refresh />}
+              onClick={handleResetTestTickets}
+              disabled={isResettingTestTickets}
+              sx={{
+                borderRadius: '12px',
+                px: 2.5,
+                py: 1,
+                fontWeight: 700,
+                textTransform: 'none',
+                borderColor: '#f59e0b',
+                color: '#f59e0b',
+                '&:hover': {
+                  borderColor: '#d97706',
+                  backgroundColor: 'rgba(245, 158, 11, 0.08)',
+                },
+              }}
+            >
+              {t.btnResetTestTickets || 'Reset Test Tickets'}
+            </Button>
+          )}
+
           {activeTab === 'tickets' && (
             <Button
               variant="contained"
@@ -275,9 +315,10 @@ export const EventsTab: React.FC = () => {
                 py: 1,
                 fontWeight: 700,
                 textTransform: 'none',
-                backgroundColor: '#2563eb',
-                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
-                '&:hover': { backgroundColor: '#1d4ed8' },
+                backgroundColor: '#facc15',
+                color: '#1a1300',
+                boxShadow: '0 4px 14px rgba(250, 204, 21, 0.35)',
+                '&:hover': { backgroundColor: '#fde047' },
               }}
             >
               {t.addTicket}
@@ -320,7 +361,7 @@ export const EventsTab: React.FC = () => {
                 <Grid item xs={12} sm={6} md={3}>
                   <Card
                     sx={{
-                      backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+                      backgroundColor: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
                       backdropFilter: isDark ? 'blur(16px)' : 'none',
                       borderRadius: 3,
                       border: isDark
@@ -357,7 +398,7 @@ export const EventsTab: React.FC = () => {
                 <Grid item xs={12} sm={6} md={3}>
                   <Card
                     sx={{
-                      backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+                      backgroundColor: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
                       backdropFilter: isDark ? 'blur(16px)' : 'none',
                       borderRadius: 3,
                       border: isDark
@@ -394,7 +435,7 @@ export const EventsTab: React.FC = () => {
                 <Grid item xs={12} sm={6} md={3}>
                   <Card
                     sx={{
-                      backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+                      backgroundColor: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
                       backdropFilter: isDark ? 'blur(16px)' : 'none',
                       borderRadius: 3,
                       border: isDark
@@ -431,7 +472,7 @@ export const EventsTab: React.FC = () => {
                 <Grid item xs={12} sm={6} md={3}>
                   <Card
                     sx={{
-                      backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+                      backgroundColor: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
                       backdropFilter: isDark ? 'blur(16px)' : 'none',
                       borderRadius: 3,
                       border: isDark
@@ -541,84 +582,198 @@ export const EventsTab: React.FC = () => {
           {/* ======================================================= */}
           {activeTab === 'bookings' && (
             <Box>
-              <BookingAnalyticsCards
-                stats={bookingStats}
-                onSyncInventory={handleSyncInventory}
-                isSyncing={syncingInventory}
-                translations={t}
-              />
-
-              {/* Search & Filter Row */}
-              <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap', alignItems: 'center' }}>
-                <TextField
-                  placeholder={t.searchPlaceholder || 'Search booking code, customer, mobile...'}
-                  value={bookingSearch}
-                  onChange={(e) => setBookingSearch(e.target.value)}
-                  size="small"
-                  sx={{ flexGrow: 1, minWidth: 260 }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Search sx={{ color: isDark ? '#94a3b8' : '#64748b' }} />
-                      </InputAdornment>
-                    ),
+              {/* Secondary Tab Switcher under Folk Night: Live Orders, Test Tickets, Analytics */}
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  mb: 2.5,
+                  p: 0.5,
+                  borderRadius: 2.5,
+                  backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#f1f5f9',
+                  border: isDark
+                    ? '1px solid rgba(255,255,255,0.06)'
+                    : '1px solid rgba(0,0,0,0.06)',
+                  flexWrap: 'wrap',
+                  gap: 1,
+                }}
+              >
+                <Tabs
+                  value={folkNightSubTab}
+                  onChange={(_, val) => setFolkNightSubTab(val)}
+                  sx={{
+                    minHeight: 40,
+                    '& .MuiTab-root': {
+                      textTransform: 'none',
+                      fontWeight: 700,
+                      fontSize: '0.88rem',
+                      minHeight: 38,
+                      py: 0.8,
+                      px: 2,
+                      borderRadius: 2,
+                      color: isDark ? '#94a3b8' : '#64748b',
+                      '&.Mui-selected': {
+                        backgroundColor: isDark ? '#231b05' : '#ffffff',
+                        color: isDark ? '#facc15' : '#ea580c',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                      },
+                    },
+                    '& .MuiTabs-indicator': {
+                      display: 'none',
+                    },
                   }}
-                />
+                >
+                  <Tab
+                    value="live"
+                    label={`🟢 ${t.subtabLiveOrders || 'Live Orders (20)'}`}
+                  />
+                  <Tab
+                    value="testTickets"
+                    label={`🧪 ${t.subtabTestTickets || 'QA Test Tickets (30)'}`}
+                  />
+                  <Tab
+                    value="analytics"
+                    label={`📊 ${t.subtabAnalytics || 'Event Analytics'}`}
+                  />
+                </Tabs>
 
-                <FormControl size="small" sx={{ minWidth: 160 }}>
-                  <InputLabel>{t.filterPaymentStatus || 'Payment Status'}</InputLabel>
-                  <Select
-                    value={selectedPaymentStatus}
-                    label={t.filterPaymentStatus || 'Payment Status'}
-                    onChange={(e) => setSelectedPaymentStatus(e.target.value)}
+                {folkNightSubTab === 'testTickets' && (
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    startIcon={isResettingTestTickets ? <CircularProgress size={16} /> : <Refresh />}
+                    onClick={handleResetTestTickets}
+                    disabled={isResettingTestTickets}
+                    sx={{
+                      borderRadius: 2,
+                      textTransform: 'none',
+                      fontWeight: 700,
+                      borderColor: '#f59e0b',
+                      color: '#f59e0b',
+                      '&:hover': {
+                        borderColor: '#d97706',
+                        backgroundColor: 'rgba(245, 158, 11, 0.08)',
+                      },
+                    }}
                   >
-                    <MenuItem value="ALL">{t.allPaymentStatuses || 'All Payments'}</MenuItem>
-                    <MenuItem value="PAID">PAID</MenuItem>
-                    <MenuItem value="PENDING">PENDING</MenuItem>
-                    <MenuItem value="FAILED">FAILED</MenuItem>
-                    <MenuItem value="REFUNDED">REFUNDED</MenuItem>
-                  </Select>
-                </FormControl>
-
-                <FormControl size="small" sx={{ minWidth: 160 }}>
-                  <InputLabel>{t.filterBookingStatus || 'Booking Status'}</InputLabel>
-                  <Select
-                    value={selectedBookingStatus}
-                    label={t.filterBookingStatus || 'Booking Status'}
-                    onChange={(e) => setSelectedBookingStatus(e.target.value)}
-                  >
-                    <MenuItem value="ALL">{t.allBookingStatuses || 'All Bookings'}</MenuItem>
-                    <MenuItem value="CONFIRMED">CONFIRMED</MenuItem>
-                    <MenuItem value="COMPLETED">COMPLETED</MenuItem>
-                    <MenuItem value="PENDING">PENDING</MenuItem>
-                    <MenuItem value="CANCELLED">CANCELLED</MenuItem>
-                  </Select>
-                </FormControl>
+                    {t.btnResetTestTickets || 'Reset Test Tickets'}
+                  </Button>
+                )}
               </Box>
 
-              <BookingsTable
-                bookings={bookings}
-                onOpenStatusModal={handleOpenStatusModal}
-                onOpenTicketQrModal={handleOpenTicketQrModal}
-                onCheckIn={handleCheckIn}
-                translations={t}
-              />
-
-              {bookingTotalPages > 1 && (
-                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-                  <Pagination
-                    count={bookingTotalPages}
-                    page={bookingPage}
-                    onChange={(_, val) => setBookingPage(val)}
-                    color="primary"
+              {folkNightSubTab === 'testTickets' ? (
+                <TestTicketsTable
+                  testTickets={testTickets}
+                  onOpenTicketQrModal={handleOpenTicketQrModal}
+                  onCheckIn={handleCheckIn}
+                  onResetTestTickets={handleResetTestTickets}
+                  isResetting={isResettingTestTickets}
+                  translations={t}
+                />
+              ) : folkNightSubTab === 'analytics' ? (
+                <BookingAnalyticsCards
+                  stats={bookingStats}
+                  onSyncInventory={handleSyncInventory}
+                  isSyncing={syncingInventory}
+                  translations={t}
+                />
+              ) : (
+                <>
+                  <BookingAnalyticsCards
+                    stats={bookingStats}
+                    onSyncInventory={handleSyncInventory}
+                    isSyncing={syncingInventory}
+                    translations={t}
                   />
-                </Box>
+
+                  {/* Search & Filter Row */}
+                  <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap', alignItems: 'center' }}>
+                    <TextField
+                      placeholder={t.searchPlaceholder || 'Search booking code, customer, mobile...'}
+                      value={bookingSearch}
+                      onChange={(e) => setBookingSearch(e.target.value)}
+                      size="small"
+                      sx={{ flexGrow: 1, minWidth: 260 }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <Search sx={{ color: isDark ? '#94a3b8' : '#64748b' }} />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+
+                    <FormControl size="small" sx={{ minWidth: 160 }}>
+                      <InputLabel>{t.filterPaymentStatus || 'Payment Status'}</InputLabel>
+                      <Select
+                        value={selectedPaymentStatus}
+                        label={t.filterPaymentStatus || 'Payment Status'}
+                        onChange={(e) => setSelectedPaymentStatus(e.target.value)}
+                      >
+                        <MenuItem value="ALL">{t.allPaymentStatuses || 'All Payments'}</MenuItem>
+                        <MenuItem value="PAID">PAID</MenuItem>
+                        <MenuItem value="PENDING">PENDING</MenuItem>
+                        <MenuItem value="FAILED">FAILED</MenuItem>
+                        <MenuItem value="REFUNDED">REFUNDED</MenuItem>
+                      </Select>
+                    </FormControl>
+
+                    <FormControl size="small" sx={{ minWidth: 160 }}>
+                      <InputLabel>{t.filterBookingStatus || 'Booking Status'}</InputLabel>
+                      <Select
+                        value={selectedBookingStatus}
+                        label={t.filterBookingStatus || 'Booking Status'}
+                        onChange={(e) => setSelectedBookingStatus(e.target.value)}
+                      >
+                        <MenuItem value="ALL">{t.allBookingStatuses || 'All Bookings'}</MenuItem>
+                        <MenuItem value="CONFIRMED">CONFIRMED</MenuItem>
+                        <MenuItem value="COMPLETED">COMPLETED</MenuItem>
+                        <MenuItem value="PENDING">PENDING</MenuItem>
+                        <MenuItem value="CANCELLED">CANCELLED</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+
+                  <BookingsTable
+                    bookings={bookings}
+                    onOpenStatusModal={handleOpenStatusModal}
+                    onOpenTicketQrModal={handleOpenTicketQrModal}
+                    onCheckIn={handleCheckIn}
+                    translations={t}
+                  />
+
+                  {bookingTotalPages > 1 && (
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+                      <Pagination
+                        count={bookingTotalPages}
+                        page={bookingPage}
+                        onChange={(_, val) => setBookingPage(val)}
+                        color="primary"
+                      />
+                    </Box>
+                  )}
+                </>
               )}
             </Box>
           )}
 
           {/* ======================================================= */}
-          {/* 3. TICKETS SUB-TAB */}
+          {/* 3. QA TEST TICKETS TOP-LEVEL SUB-TAB */}
+          {/* ======================================================= */}
+          {activeTab === 'testTickets' && (
+            <TestTicketsTable
+              testTickets={testTickets}
+              onOpenTicketQrModal={handleOpenTicketQrModal}
+              onCheckIn={handleCheckIn}
+              onResetTestTickets={handleResetTestTickets}
+              isResetting={isResettingTestTickets}
+              translations={t}
+            />
+          )}
+
+          {/* ======================================================= */}
+          {/* 4. TICKETS SUB-TAB */}
           {/* ======================================================= */}
           {activeTab === 'tickets' && (
             <Box>

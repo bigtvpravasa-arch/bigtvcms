@@ -286,7 +286,7 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
         sx={{
           border: '2px dashed',
           borderColor: isDragOver
-            ? '#2563eb'
+            ? '#facc15'
             : isDark
               ? 'rgba(255, 255, 255, 0.18)'
               : 'rgba(0, 0, 0, 0.18)',
@@ -296,8 +296,8 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
           cursor: disabled || isUploading || isFull ? 'not-allowed' : 'pointer',
           backgroundColor: isDragOver
             ? isDark
-              ? 'rgba(37, 99, 235, 0.15)'
-              : 'rgba(37, 99, 235, 0.08)'
+              ? 'rgba(250, 204, 21, 0.15)'
+              : 'rgba(234, 179, 8, 0.08)'
             : isDark
               ? 'rgba(255, 255, 255, 0.02)'
               : 'rgba(0, 0, 0, 0.02)',
@@ -337,7 +337,7 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
                 width: 44,
                 height: 44,
                 borderRadius: '50%',
-                backgroundColor: isDark ? 'rgba(59, 130, 246, 0.15)' : 'rgba(37, 99, 235, 0.1)',
+                backgroundColor: isDark ? 'rgba(250, 204, 21, 0.15)' : 'rgba(234, 179, 8, 0.1)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -483,11 +483,11 @@ export const MovieReviewGalleryUploader: React.FC<MovieReviewGalleryUploaderProp
                       sx={{
                         width: '100%',
                         height: '100%',
-                        backgroundColor: isDark ? 'rgba(37,99,235,0.2)' : 'rgba(37,99,235,0.1)',
+                        backgroundColor: isDark ? 'rgba(250,204,21,0.2)' : 'rgba(234,179,8,0.1)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: '#2563eb',
+                        color: isDark ? '#facc15' : '#b45309',
                       }}
                     >
                       <PlayCircleFilled sx={{ fontSize: '1.8rem' }} />

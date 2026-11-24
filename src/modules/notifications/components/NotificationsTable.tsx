@@ -168,7 +168,7 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
   return (
     <Box
       sx={{
-        backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#ffffff',
+        backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#ffffff',
         border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
         borderRadius: '20px',
         overflow: 'hidden',
@@ -301,7 +301,7 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
                     <Box sx={{ p: 1, maxWidth: '300px' }}>
                       <Typography
                         variant="subtitle2"
-                        sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#1c1445', mb: 0.8 }}
+                        sx={{ fontWeight: 700, color: isDark ? '#facc15' : '#1a1300', mb: 0.8 }}
                       >
                         {row.title}
                       </Typography>
@@ -363,7 +363,7 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
                   <Typography
                     variant="caption"
                     sx={{
-                      color: isDark ? '#a6e2f5' : '#1c1445',
+                      color: isDark ? '#facc15' : '#1a1300',
                       fontWeight: 700,
                       fontSize: '0.72rem',
                     }}
@@ -391,7 +391,7 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
                       <IconButton
                         size="small"
                         onClick={() => onCopyLink(row.link)}
-                        sx={{ p: 0.2, color: isDark ? '#a6e2f5' : '#2563eb' }}
+                        sx={{ p: 0.2, color: isDark ? '#facc15' : '#b45309' }}
                       >
                         <ContentCopy sx={{ fontSize: '0.75rem' }} />
                       </IconButton>
@@ -459,8 +459,8 @@ export const NotificationsTable: React.FC<NotificationsTableProps> = ({
                       size="small"
                       onClick={() => onViewItem(row)}
                       sx={{
-                        color: isDark ? '#a6e2f5' : '#1976d2',
-                        backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(25,118,210,0.08)',
+                        color: isDark ? '#facc15' : '#b45309',
+                        backgroundColor: isDark ? 'rgba(250,204,21,0.12)' : 'rgba(234,179,8,0.08)',
                         borderRadius: '8px',
                         p: 0.6,
                         '&:hover': {

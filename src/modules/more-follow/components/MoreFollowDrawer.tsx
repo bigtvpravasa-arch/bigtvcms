@@ -132,7 +132,7 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
       borderRadius: '10px',
       '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)' },
       '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)' },
-      '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+      '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
     },
     '& .MuiInputLabel-root': { color: isDark ? '#d0caeb' : '#5c548a' },
   };
@@ -202,7 +202,7 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
 
           <Typography
             variant="subtitle2"
-            sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700 }}
+            sx={{ color: isDark ? '#facc15' : '#1a1300', fontWeight: 700 }}
           >
             {t.menuNamesLabel || 'Menu Names (Multilingual)'}
           </Typography>
@@ -370,7 +370,7 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
                   border: `2px dashed ${
                     dragOver
                       ? isDark
-                        ? '#a6e2f5'
+                        ? '#facc15'
                         : '#1c1445'
                       : isDark
                         ? 'rgba(255,255,255,0.2)'
@@ -389,7 +389,7 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
                       : '#fafafa',
                   transition: 'all 0.2s ease',
                   '&:hover': {
-                    borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                    borderColor: isDark ? '#facc15' : '#1a1300',
                     backgroundColor: isDark ? 'rgba(166,226,245,0.05)' : 'rgba(28,20,69,0.02)',
                   },
                 }}
@@ -398,7 +398,7 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
                   <Box
                     sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}
                   >
-                    <CircularProgress size={28} sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }} />
+                    <CircularProgress size={28} sx={{ color: isDark ? '#facc15' : '#1a1300' }} />
                     <Typography variant="body2" sx={{ color: isDark ? '#d0caeb' : '#5c548a' }}>
                       Uploading image...
                     </Typography>
@@ -413,7 +413,7 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
                         height: 44,
                         borderRadius: '50%',
                         backgroundColor: isDark ? 'rgba(166,226,245,0.12)' : 'rgba(28,20,69,0.06)',
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -443,10 +443,10 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
                 onChange={(e) => setIsActive(e.target.checked)}
                 sx={{
                   '& .MuiSwitch-switchBase.Mui-checked': {
-                    color: isDark ? '#a6e2f5' : '#1c1445',
+                    color: isDark ? '#facc15' : '#1a1300',
                   },
                   '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                    backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                    backgroundColor: isDark ? '#facc15' : '#1a1300',
                   },
                 }}
               />
@@ -489,8 +489,8 @@ export const MoreFollowDrawer: React.FC<MoreFollowDrawerProps> = ({
             variant="contained"
             sx={{
               borderRadius: '10px',
-              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-              color: isDark ? '#1c1445' : '#ffffff',
+              backgroundColor: isDark ? '#facc15' : '#1a1300',
+              color: isDark ? '#1a1300' : '#ffffff',
               fontWeight: 700,
               '&:hover': {
                 backgroundColor: isDark ? '#8ad4eb' : '#2b1f66',

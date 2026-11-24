@@ -87,7 +87,7 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
                       transition: 'transform 0.2s ease, boxShadow 0.2s ease',
                       '&:hover': {
                         transform: 'scale(1.08)',
-                        boxShadow: '0 4px 12px rgba(37,99,235,0.3)',
+                        boxShadow: '0 4px 12px rgba(250, 204, 21, 0.3)',
                       },
                     }}
                   >
@@ -152,7 +152,7 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
                       transition: 'transform 0.2s ease, boxShadow 0.2s ease',
                       '&:hover': {
                         transform: 'scale(1.08)',
-                        boxShadow: '0 4px 12px rgba(37,99,235,0.3)',
+                        boxShadow: '0 4px 12px rgba(250, 204, 21, 0.3)',
                       },
                     }}
                   >
@@ -227,7 +227,7 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
               sx={{
                 backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#f4f3f8',
                 '& th': {
-                  color: isDark ? '#a6e2f5' : '#1c1445',
+                  color: isDark ? '#facc15' : '#1a1300',
                   fontWeight: 700,
                   fontSize: '0.85rem',
                   py: 2,
@@ -292,7 +292,7 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
                         variant="body2"
                         sx={{
                           fontWeight: 700,
-                          color: isDark ? '#a6e2f5' : '#2563eb',
+                          color: isDark ? '#facc15' : '#b45309',
                           fontFamily: 'monospace',
                           fontSize: '0.8rem',
                         }}
@@ -313,7 +313,7 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
                     {renderBannerGridGroup(
                       'BigTV Banners',
                       row.bigTvBanner,
-                      isDark ? '#a6e2f5' : '#2563eb'
+                      isDark ? '#facc15' : '#b45309'
                     )}
                   </TableCell>
 
@@ -338,7 +338,7 @@ export const AdsDynapixTable: React.FC<AdsDynapixTableProps> = ({
                         <IconButton
                           size="small"
                           onClick={() => handleEditBanner(row)}
-                          sx={{ color: isDark ? '#a6e2f5' : '#2563eb' }}
+                          sx={{ color: isDark ? '#facc15' : '#b45309' }}
                         >
                           <Edit fontSize="small" />
                         </IconButton>

@@ -14,6 +14,8 @@ import { BookingStatusModal } from '../components/BookingStatusModal';
 import { CreateBookingModal } from '../components/CreateBookingModal';
 import { TicketQrModal } from '../components/TicketQrModal';
 import { QrCheckInModal } from '../components/QrCheckInModal';
+import { TestTicketsTable } from '../components/TestTicketsTable';
+import { createInitialTestTickets } from '../data/testTicketsData';
 import {
   eventsRepository,
   FOLK_NIGHT_EVENT_ID,
@@ -142,7 +144,10 @@ jest.mock('@/core/api/api-client', () => {
           },
         });
       }
-      if (url.startsWith('/bookings/') && !url.includes('/admin/stats')) {
+      if (
+        (url === '/bookings' || url.startsWith('/bookings/')) &&
+        !url.includes('/admin/stats')
+      ) {
         return Promise.reject(new Error('Network error'));
       }
       return Promise.resolve({
@@ -295,6 +300,44 @@ describe('Events Feature Module & Folk Night Show Booking', () => {
 
       const syncResult = await eventsRepository.syncInventory();
       expect(syncResult.success).toBe(true);
+    });
+
+    it('manages isolated QA test tickets (userId: 79833) and verifies scan scenarios', async () => {
+      const initialTickets = await eventsRepository.getTestTickets();
+      expect(initialTickets.length).toBe(30);
+
+      // Verify valid confirmed ticket
+      const validVerify = await eventsRepository.verifyQrCode('BKS-FN7901');
+      expect(validVerify.isValid).toBe(true);
+      expect(validVerify.reason).toContain('Valid Ticket QR Code');
+
+      // Verify already scanned ticket
+      const completedVerify = await eventsRepository.verifyQrCode('BKS-FN7908');
+      expect(completedVerify.isValid).toBe(false);
+      expect(completedVerify.reason).toContain('ALREADY');
+
+      // Verify cancelled ticket
+      const cancelledVerify = await eventsRepository.verifyQrCode('BKS-FN7910');
+      expect(cancelledVerify.isValid).toBe(false);
+      expect(cancelledVerify.reason).toContain('CANCELLED');
+
+      // Verify pending payment ticket
+      const pendingVerify = await eventsRepository.verifyQrCode('BKS-FN7909');
+      expect(pendingVerify.isValid).toBe(false);
+      expect(pendingVerify.reason).toContain('PENDING');
+
+      // Check-in valid test ticket
+      const checkInRes = await eventsRepository.checkInTicket('BKS-FN7901');
+      expect(checkInRes.data.bookingStatus).toBe('COMPLETED');
+
+      // Second check-in must fail
+      await expect(eventsRepository.checkInTicket('BKS-FN7901')).rejects.toThrow(/ALREADY/);
+
+      // Reset test tickets
+      const resetList = await eventsRepository.resetTestTickets();
+      expect(resetList.length).toBe(30);
+      const afterReset = resetList.find((t) => t.bookingCode === 'BKS-FN7901');
+      expect(afterReset?.bookingStatus).toBe('CONFIRMED');
     });
   });
 
@@ -716,29 +759,91 @@ describe('Events Feature Module & Folk Night Show Booking', () => {
       expect(screen.getAllByText('FESTIVE50')[0]).toBeInTheDocument();
       expect(screen.getByText('50% OFF')).toBeInTheDocument();
     });
+
+    it('renders TestTicketsTable with test scenarios, handles filter, copy, view QR, check-in, and reset', async () => {
+      const mockTickets = createInitialTestTickets();
+      const onOpenQr = jest.fn();
+      const onCheckIn = jest.fn().mockResolvedValue({ message: 'Success' });
+      const onReset = jest.fn();
+
+      render(
+        <TestTicketsTable
+          testTickets={mockTickets}
+          onOpenTicketQrModal={onOpenQr}
+          onCheckIn={onCheckIn}
+          onResetTestTickets={onReset}
+          isResetting={false}
+          translations={{
+            testSandboxTitle: 'Isolated Test Sandbox (userId: 79833)',
+            btnResetTestTickets: 'Reset Test Tickets',
+          }}
+        />
+      );
+
+      expect(screen.getByText(/Isolated Test Sandbox \(userId: 79833\)/i)).toBeInTheDocument();
+      expect(screen.getByText('BKS-FN7901')).toBeInTheDocument();
+      expect(screen.getAllByText(/Single seat entry/i)[0]).toBeInTheDocument();
+
+      // Trigger QR modal
+      const qrBtns = screen.getAllByRole('button', { name: /QR Pass/i });
+      fireEvent.click(qrBtns[0]);
+      expect(onOpenQr).toHaveBeenCalledWith(
+        expect.objectContaining({ bookingCode: 'BKS-FN7901' })
+      );
+
+      // Trigger check-in
+      const checkInBtns = screen.getAllByRole('button', { name: /Check-in/i });
+      fireEvent.click(checkInBtns[0]);
+      await waitFor(() => {
+        expect(onCheckIn).toHaveBeenCalledWith('BKS-FN7901');
+      });
+
+      // Trigger Reset
+      const resetBtn = screen.getByRole('button', { name: /Reset Test Tickets/i });
+      fireEvent.click(resetBtn);
+      await waitFor(() => {
+        expect(onReset).toHaveBeenCalled();
+      });
+    }, 15000);
   });
 
   describe('EventsPage Component & Tab Switching', () => {
-    it('renders top tabs (Events, Folk Night Bookings, Ticket Types, Discount Coupons, App Config) and switches tabs', async () => {
+    it('renders top tabs (Events, Folk Night Bookings, QA Test Tickets, Ticket Types, Discount Coupons, App Config) and switches tabs', async () => {
       render(<EventsPage />);
 
       expect(screen.getByText(/Events & Booking CMS/i)).toBeInTheDocument();
 
       // Check tab buttons
       const bookingsTab = screen.getByRole('tab', { name: /Folk Night Bookings|Bookings/i });
-      const ticketTab = screen.getByRole('tab', { name: /Ticket Types|Tickets/i });
+      const testTab = screen.getByRole('tab', { name: /QA Test Tickets/i });
+      const ticketTab = screen.getByRole('tab', { name: /^Ticket Types$|^Tickets$/i });
       const couponTab = screen.getByRole('tab', { name: /Discount Coupons|Coupons/i });
       const configTab = screen.getByRole('tab', { name: /App Config|Config/i });
 
       expect(bookingsTab).toBeInTheDocument();
+      expect(testTab).toBeInTheDocument();
       expect(ticketTab).toBeInTheDocument();
       expect(couponTab).toBeInTheDocument();
       expect(configTab).toBeInTheDocument();
+
+      // Switch to QA Test Tickets top tab
+      fireEvent.click(testTab);
+      await waitFor(() => {
+        expect(screen.getByText(/Isolated Test Sandbox/i)).toBeInTheDocument();
+        expect(screen.getByText('BKS-FN7901')).toBeInTheDocument();
+      });
 
       // Switch to Folk Night Bookings tab
       fireEvent.click(bookingsTab);
       await waitFor(() => {
         expect(screen.getByText(/BIGTV Folk Night 2026/i)).toBeInTheDocument();
+      });
+
+      // Switch to subtab QA Test Tickets inside Folk Night Bookings
+      const subtabsTest = screen.getAllByRole('tab', { name: /QA Test Tickets/i });
+      fireEvent.click(subtabsTest[subtabsTest.length - 1]);
+      await waitFor(() => {
+        expect(screen.getByText('BKS-FN7901')).toBeInTheDocument();
       });
 
       // Switch to Ticket Types tab
@@ -758,6 +863,6 @@ describe('Events Feature Module & Folk Night Show Booking', () => {
       await waitFor(() => {
         expect(screen.getByTestId('app-config-panel')).toBeInTheDocument();
       });
-    });
+    }, 15000);
   });
 });

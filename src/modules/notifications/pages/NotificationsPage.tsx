@@ -322,7 +322,7 @@ export const NotificationsPage: React.FC = () => {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        backgroundColor: isDark ? '#161202' : '#ffffff',
         color: isDark ? '#ffffff' : '#1c1445',
         transition: 'all 0.3s ease',
       }}
@@ -349,7 +349,7 @@ export const NotificationsPage: React.FC = () => {
             /* ── Notification Detail View Panel ── */
             <Box
               sx={{
-                backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#ffffff',
+                backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#ffffff',
                 border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
                 borderRadius: '20px',
                 overflow: 'hidden',
@@ -367,7 +367,7 @@ export const NotificationsPage: React.FC = () => {
                   borderBottom: isDark
                     ? '1px solid rgba(255,255,255,0.08)'
                     : '1px solid rgba(0,0,0,0.08)',
-                  backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#f4f3f8',
+                  backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#f4f3f8',
                 }}
               >
                 <IconButton
@@ -398,7 +398,7 @@ export const NotificationsPage: React.FC = () => {
               </Box>
 
               {/* Side-by-side Details + Phone Simulator */}
-              <Box sx={{ p: 3, backgroundColor: isDark ? 'rgba(38,28,86,0.2)' : '#f5f5f7' }}>
+              <Box sx={{ p: 3, backgroundColor: isDark ? 'rgba(28,22,3,0.2)' : '#f5f5f7' }}>
                 <Grid container spacing={4} alignItems="stretch">
                   {/* Left: Summary Panel */}
                   <Grid item xs={12} md={7}>
@@ -410,7 +410,7 @@ export const NotificationsPage: React.FC = () => {
                         border: isDark
                           ? '1px solid rgba(255,255,255,0.08)'
                           : '1px solid rgba(0,0,0,0.08)',
-                        backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+                        backgroundColor: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
                         display: 'flex',
                         flexDirection: 'column',
                         gap: 2.5,
@@ -419,7 +419,7 @@ export const NotificationsPage: React.FC = () => {
                       <Typography
                         variant="subtitle1"
                         sx={{
-                          color: isDark ? '#a6e2f5' : '#1c1445',
+                          color: isDark ? '#facc15' : '#1a1300',
                           fontWeight: 700,
                           fontSize: '1rem',
                         }}
@@ -492,7 +492,7 @@ export const NotificationsPage: React.FC = () => {
                           </Typography>
                           <Typography
                             variant="body2"
-                            sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 700 }}
+                            sx={{ color: isDark ? '#facc15' : '#1a1300', fontWeight: 700 }}
                           >
                             Post #{viewingItem.postId}
                           </Typography>
@@ -547,7 +547,7 @@ export const NotificationsPage: React.FC = () => {
                           <IconButton
                             size="small"
                             onClick={() => handleCopyLink(viewingItem.link)}
-                            sx={{ color: '#2563eb' }}
+                            sx={{ color: isDark ? '#facc15' : '#b45309' }}
                           >
                             <ContentCopy sx={{ fontSize: '0.9rem' }} />
                           </IconButton>
@@ -793,12 +793,12 @@ export const NotificationsPage: React.FC = () => {
                         borderRadius: '10px',
                         px: 2,
                         py: 0.6,
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                        color: isDark ? '#1c1445' : '#ffffff',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
+                        color: isDark ? '#1a1300' : '#ffffff',
                         borderColor: 'transparent',
                         boxShadow: 'none',
                         '&:hover': {
-                          backgroundColor: isDark ? '#8cd5ed' : '#2d2270',
+                          backgroundColor: isDark ? '#fde047' : '#261e05',
                           boxShadow: 'none',
                         },
                       }}
@@ -928,11 +928,11 @@ export const NotificationsPage: React.FC = () => {
                     textTransform: 'none',
                     fontWeight: 700,
                     fontSize: '0.82rem',
-                    backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                    color: isDark ? '#1c1445' : '#ffffff',
+                    backgroundColor: isDark ? '#facc15' : '#1a1300',
+                    color: isDark ? '#1a1300' : '#ffffff',
                     boxShadow: 'none',
                     '&:hover': {
-                      backgroundColor: isDark ? '#8cd5ed' : '#2d2270',
+                      backgroundColor: isDark ? '#fde047' : '#261e05',
                       boxShadow: 'none',
                     },
                   }}
@@ -991,8 +991,8 @@ export const NotificationsPage: React.FC = () => {
                             fontWeight: 600,
                             borderRadius: '8px',
                             '&.Mui-selected': {
-                              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                              color: isDark ? '#1c1445' : '#ffffff',
+                              backgroundColor: isDark ? '#facc15' : '#1a1300',
+                              color: isDark ? '#1a1300' : '#ffffff',
                             },
                           },
                         }}

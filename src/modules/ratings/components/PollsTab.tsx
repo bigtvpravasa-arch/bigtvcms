@@ -101,7 +101,7 @@ export const PollsTab: React.FC<PollsTabProps> = ({
         <Card
           sx={{
             borderRadius: '16px',
-            backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#ffffff',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#ffffff',
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
             boxShadow: isDark ? '0 8px 24px rgba(0,0,0,0.2)' : '0 4px 16px rgba(0,0,0,0.04)',
           }}
@@ -141,7 +141,7 @@ export const PollsTab: React.FC<PollsTabProps> = ({
         <Card
           sx={{
             borderRadius: '16px',
-            backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#ffffff',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#ffffff',
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
             boxShadow: isDark ? '0 8px 24px rgba(0,0,0,0.2)' : '0 4px 16px rgba(0,0,0,0.04)',
           }}
@@ -181,7 +181,7 @@ export const PollsTab: React.FC<PollsTabProps> = ({
         <Card
           sx={{
             borderRadius: '16px',
-            backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#ffffff',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#ffffff',
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
             boxShadow: isDark ? '0 8px 24px rgba(0,0,0,0.2)' : '0 4px 16px rgba(0,0,0,0.04)',
           }}
@@ -221,7 +221,7 @@ export const PollsTab: React.FC<PollsTabProps> = ({
         <Card
           sx={{
             borderRadius: '16px',
-            backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#ffffff',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#ffffff',
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
             boxShadow: isDark ? '0 8px 24px rgba(0,0,0,0.2)' : '0 4px 16px rgba(0,0,0,0.04)',
           }}
@@ -329,10 +329,10 @@ export const PollsTab: React.FC<PollsTabProps> = ({
           startIcon={<Add />}
           onClick={onAddPoll}
           sx={{
-            background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+            background: 'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
             color: '#ffffff',
             fontWeight: 600,
-            boxShadow: '0 4px 14px rgba(37,99,235,0.35)',
+            boxShadow: '0 4px 14px rgba(250, 204, 21, 0.35)',
             textTransform: 'none',
             px: 3,
             py: 1,
@@ -351,7 +351,7 @@ export const PollsTab: React.FC<PollsTabProps> = ({
             p: 6,
             textAlign: 'center',
             borderRadius: '16px',
-            backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#f8fafc',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.3)' : '#f8fafc',
             border: isDark ? '1px dashed rgba(255,255,255,0.15)' : '1px dashed rgba(0,0,0,0.15)',
           }}
         >
@@ -369,7 +369,7 @@ export const PollsTab: React.FC<PollsTabProps> = ({
                 key={poll.id}
                 sx={{
                   borderRadius: '16px',
-                  backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#ffffff',
+                  backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#ffffff',
                   border: isDark
                     ? '1px solid rgba(255,255,255,0.08)'
                     : '1px solid rgba(0,0,0,0.08)',
@@ -378,8 +378,8 @@ export const PollsTab: React.FC<PollsTabProps> = ({
                   flexDirection: 'column',
                   transition: 'all 0.2s ease',
                   '&:hover': {
-                    borderColor: isDark ? 'rgba(37,99,235,0.5)' : 'rgba(37,99,235,0.3)',
-                    boxShadow: '0 10px 28px rgba(37,99,235,0.12)',
+                    borderColor: isDark ? 'rgba(250,204,21,0.5)' : 'rgba(234,179,8,0.3)',
+                    boxShadow: '0 10px 28px rgba(250, 204, 21, 0.12)',
                   },
                 }}
               >
@@ -489,7 +489,7 @@ export const PollsTab: React.FC<PollsTabProps> = ({
                               backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : '#e2e8f0',
                               '& .MuiLinearProgress-bar': {
                                 borderRadius: 3,
-                                background: 'linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)',
+                                background: 'linear-gradient(90deg, #fde047 0%, #eab308 100%)',
                               },
                             }}
                           />
@@ -536,7 +536,7 @@ export const PollsTab: React.FC<PollsTabProps> = ({
                         <IconButton
                           size="small"
                           onClick={() => onEditPoll(poll)}
-                          sx={{ color: '#2563eb' }}
+                          sx={{ color: isDark ? '#facc15' : '#b45309' }}
                         >
                           <Edit fontSize="small" />
                         </IconButton>

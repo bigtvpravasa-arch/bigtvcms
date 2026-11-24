@@ -37,7 +37,7 @@ export const AppConfigPanel: React.FC<AppConfigPanelProps> = ({
       <Grid item xs={12} md={6}>
         <Card
           sx={{
-            backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
             backdropFilter: isDark ? 'blur(16px)' : 'none',
             borderRadius: 3,
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
@@ -170,7 +170,7 @@ export const AppConfigPanel: React.FC<AppConfigPanelProps> = ({
       <Grid item xs={12} md={6}>
         <Card
           sx={{
-            backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+            backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
             backdropFilter: isDark ? 'blur(16px)' : 'none',
             borderRadius: 3,
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',

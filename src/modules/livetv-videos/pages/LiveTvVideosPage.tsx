@@ -19,14 +19,13 @@ import {
   DialogContentText,
   DialogActions,
   Chip,
-  Card,
-  CardContent,
-  CardActions,
   Avatar,
   CircularProgress,
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Tooltip,
+  IconButton,
 } from '@mui/material';
 import {
   Search,
@@ -37,7 +36,7 @@ import {
   DeleteSweep,
   Sync,
   ExpandMore,
-  Language as LanguageIcon,
+  FilterListOff,
 } from '@mui/icons-material';
 import { useLanguageStore } from '@/core/storage/language-store';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
@@ -68,6 +67,7 @@ const translations = {
     syncSuccessMsg: 'Videos synced successfully for',
     alreadySyncedMsg: 'Videos for this tag are already synced',
     searchPlaceholder: 'Search videos by file name...',
+    clearFilters: 'Clear Filters',
     totalVideos: 'Total Videos',
     editTag: 'Edit Tag',
     deleteTag: 'Delete Tag',
@@ -123,6 +123,9 @@ const translations = {
     errorFileNameRequired: 'File name is required',
     errorInvalidViewCount: 'View count cannot be negative',
     errorVideoIdMissing: 'Video ID is missing. Cannot update.',
+    showing: 'Showing',
+    of: 'of',
+    items: 'items',
   },
   te: {
     pageTitle: 'వీడియో ట్యాగ్‌లు & స్ట్రీమ్ నిర్వహణ',
@@ -141,6 +144,7 @@ const translations = {
     syncSuccessMsg: 'వీడియోలు విజయవంతంగా సమకాలీకరించబడ్డాయి:',
     alreadySyncedMsg: 'ఈ ట్యాగ్ కోసం వీడియోలు ఇప్పటికే సమకాలీకరించబడ్డాయి',
     searchPlaceholder: 'ఫైల్ పేరు ద్వారా వీడియోలను శోధించండి...',
+    clearFilters: 'ఫిల్టర్‌లను తొలగించు',
     totalVideos: 'మొత్తం వీడియోలు',
     editTag: 'ట్యాగ్‌ని సవరించు',
     deleteTag: 'ట్యాగ్‌ని తొలగించు',
@@ -196,6 +200,9 @@ const translations = {
     errorFileNameRequired: 'ఫైల్ పేరు అవసరం',
     errorInvalidViewCount: 'వీక్షణల సంఖ్య రుణాత్మకంగా ఉండకూడదు',
     errorVideoIdMissing: 'వీడియో ID లేదు. నవీకరించడం సాధ్యం కాదు.',
+    showing: 'చూపిస్తున్నవి',
+    of: 'నుండి',
+    items: 'వీడియోలు',
   },
   hi: {
     pageTitle: 'वीडियो टैग और स्ट्रीम प्रबंधन',
@@ -214,6 +221,7 @@ const translations = {
     syncSuccessMsg: 'के लिए वीडियो सफलतापूर्वक सिंक किए गए:',
     alreadySyncedMsg: 'इस टैग के वीडियो पहले से ही सिंक हैं',
     searchPlaceholder: 'फ़ाइल नाम से वीडियो खोजें...',
+    clearFilters: 'फ़िल्टर हटाएं',
     totalVideos: 'कुल वीडियो',
     editTag: 'टैग संपादित करें',
     deleteTag: 'टैग हटाएं',
@@ -268,6 +276,9 @@ const translations = {
     errorFileNameRequired: 'फ़ाइल नाम आवश्यक है',
     errorInvalidViewCount: 'व्यू काउंट नकारात्मक नहीं हो सकता',
     errorVideoIdMissing: 'वीडियो आईडी अनुपलब्ध है। अद्यतन नहीं किया जा सकता।',
+    showing: 'दिखा रहा है',
+    of: 'का',
+    items: 'आइटम',
   },
   ml: {
     pageTitle: 'വീഡിയോ ടാഗുകളും സ്ട്രീം മാനേജ്മെൻ്റും',
@@ -286,6 +297,7 @@ const translations = {
     syncSuccessMsg: 'വീഡിയോകൾ വിജയകരമായി സമന്വയിപ്പിച്ചു:',
     alreadySyncedMsg: 'ഈ ടാഗിനായുള്ള വീഡിയോകൾ ഇതിനകം സമന്വയിപ്പിച്ചു',
     searchPlaceholder: 'ഫയലിന്റെ പേര് ഉപയോഗിച്ച് വീഡിയോകൾ തിരയുക...',
+    clearFilters: 'ഫിൽട്ടറുകൾ നീക്കം ചെയ്യുക',
     totalVideos: 'ആകെ വീഡിയോകൾ',
     editTag: 'ടാഗ് എഡിറ്റുചെയ്യുക',
     deleteTag: 'ടാഗ് ഡിലീറ്റ് ചെയ്യുക',
@@ -340,6 +352,9 @@ const translations = {
     errorFileNameRequired: 'ഫയൽ നാമം ആവശ്യമാണ്',
     errorInvalidViewCount: 'കാഴ്ചകളുടെ എണ്ണം നെഗറ്റീവ് ആകാൻ പാടില്ല',
     errorVideoIdMissing: 'വീഡിയോ ഐഡി ലഭ്യമല്ല. അപ്ഡേറ്റ് ചെയ്യാൻ കഴിയില്ല.',
+    showing: 'കാണിക്കുന്നത്',
+    of: 'ൽ',
+    items: 'ഇനങ്ങൾ',
   },
 };
 
@@ -437,12 +452,6 @@ export const LiveTvVideosPage: React.FC = () => {
     return ['te', 'ml', 'en'];
   }, [language]);
 
-  const tabValue = useMemo(() => {
-    if (selectedLanguage === 'all' && allowedLanguages.length > 1) return 'all';
-    if (allowedLanguages.includes(selectedLanguage as TagLanguage)) return selectedLanguage;
-    return allowedLanguages[0] || 'te';
-  }, [selectedLanguage, allowedLanguages]);
-
   const selectedTag = tags.find((t) => t.slug === selectedTagSlug);
 
   const confirmDeleteTag = () => {
@@ -455,9 +464,9 @@ export const LiveTvVideosPage: React.FC = () => {
   const renderLanguageBadge = (lang?: string) => {
     const code = (lang || 'te').toLowerCase();
     let label = t.teluguBadge;
-    let bg = 'rgba(37, 99, 235, 0.15)';
-    let color = isDark ? '#93c5fd' : '#1d4ed8';
-    let border = isDark ? 'rgba(147, 197, 253, 0.3)' : 'rgba(37, 99, 235, 0.3)';
+    let bg = isDark ? 'rgba(234, 179, 8, 0.15)' : 'rgba(234, 179, 8, 0.12)';
+    let color = isDark ? '#facc15' : '#b45309';
+    let border = isDark ? 'rgba(250, 204, 21, 0.35)' : 'rgba(217, 119, 6, 0.35)';
 
     if (code === 'ml') {
       label = t.malayalamBadge;
@@ -487,96 +496,92 @@ export const LiveTvVideosPage: React.FC = () => {
     );
   };
 
+  const recordsPerPage = 20;
+
   return (
     <Box
       sx={{
         display: 'flex',
-        flexDirection: 'column',
         height: '100vh',
-        backgroundColor: isDark ? '#140e36' : '#f4f3f8',
-        color: isDark ? '#ffffff' : '#1c1445',
+        overflow: 'hidden',
+        background: isDark
+          ? 'radial-gradient(circle at 10% 20%, rgba(234, 179, 8, 0.1) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.12) 0%, transparent 45%), linear-gradient(135deg, #161202 0%, #261e05 45%, #181300 100%)'
+          : '#fffdfa',
+        color: isDark ? '#ffffff' : '#1a1300',
+        transition: 'all 0.3s ease',
       }}
     >
-      <Header />
-      <Box sx={{ display: 'flex', flexGrow: 1, overflow: 'hidden' }}>
-        <Sidebar activeHref="/livetvvideos" />
+      {/* Fixed Sidebar Panel */}
+      <Sidebar activeHref="/livetvvideos" />
 
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            p: { xs: 2, sm: 3, md: 4 },
-            overflowY: 'auto',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 3,
-          }}
-        >
+      {/* Main Content Area */}
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Top Header with Page Title matching Notification UI */}
+        <Header title={t.pageTitle} />
+
+        {/* Scrollable Body Area matching Notification UI */}
+        <Box sx={{ pt: 2, px: 2, pb: 4, flex: 1, overflowY: 'auto' }}>
           {!canAccess ? (
             <Box
               sx={{
                 p: 5,
                 textAlign: 'center',
-                backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+                backgroundColor: isDark ? 'rgba(28, 22, 3, 0.72)' : '#ffffff',
                 borderRadius: '20px',
-                border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
+                border: isDark
+                  ? '1px solid rgba(250, 204, 21, 0.25)'
+                  : '1px solid rgba(217, 119, 6, 0.2)',
+                boxShadow: isDark
+                  ? '0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(234, 179, 8, 0.1)'
+                  : '0 8px 30px rgba(217, 119, 6, 0.08)',
                 my: 'auto',
               }}
             >
               <Lock sx={{ fontSize: 60, color: '#ef4444', mb: 2 }} />
-              <Typography variant="h5" sx={{ fontWeight: 700, mb: 1 }}>
+              <Typography
+                variant="h5"
+                sx={{ fontWeight: 700, mb: 1, color: isDark ? '#ffffff' : '#1a1300' }}
+              >
                 {t.accessDeniedTitle}
               </Typography>
-              <Typography variant="body1" sx={{ opacity: 0.8 }}>
+              <Typography variant="body1" sx={{ color: isDark ? '#fde68a' : '#78350f' }}>
                 {t.accessDeniedDesc}
               </Typography>
             </Box>
           ) : (
             <>
-              {/* Header Section */}
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: { xs: 'column', sm: 'row' },
-                  justifyContent: 'space-between',
-                  alignItems: { xs: 'flex-start', sm: 'center' },
-                  gap: 2,
-                }}
-              >
-                <Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 0.5 }}>
-                    <LiveTv sx={{ color: isDark ? '#93c5fd' : '#2563eb', fontSize: 32 }} />
-                    <Typography
-                      variant="h4"
-                      sx={{ fontWeight: 800, fontSize: { xs: '1.5rem', md: '2rem' } }}
-                    >
-                      {t.pageTitle}
-                    </Typography>
-                  </Box>
-                  <Typography variant="body2" sx={{ opacity: 0.7 }}>
-                    {t.pageSubtitle}
+              {/* Header Banner Section */}
+              <Box sx={{ mb: 2 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 0.5 }}>
+                  <LiveTv
+                    sx={{
+                      color: '#facc15',
+                      fontSize: 28,
+                      filter: isDark ? 'drop-shadow(0 0 10px rgba(250, 204, 21, 0.45))' : 'none',
+                    }}
+                  />
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      fontWeight: 800,
+                      fontSize: { xs: '1.25rem', md: '1.5rem' },
+                      color: isDark ? '#ffffff' : '#1a1300',
+                    }}
+                  >
+                    {t.pageTitle}
                   </Typography>
                 </Box>
-
-                <Button
-                  variant="contained"
-                  startIcon={<AddCircleOutline />}
-                  onClick={() => setCreateTagModalOpen(true)}
-                  sx={{
-                    borderRadius: '12px',
-                    px: 3,
-                    py: 1.2,
-                    textTransform: 'none',
-                    fontWeight: 700,
-                    backgroundColor: '#2563eb',
-                    boxShadow: '0 4px 14px rgba(37, 99, 235, 0.4)',
-                    '&:hover': {
-                      backgroundColor: '#1d4ed8',
-                    },
-                  }}
-                >
-                  {t.createTagBtn}
-                </Button>
+                <Typography variant="body2" sx={{ color: isDark ? '#fde68a' : '#78350f' }}>
+                  {t.pageSubtitle}
+                </Typography>
               </Box>
 
               {/* Action Notifications */}
@@ -584,7 +589,7 @@ export const LiveTvVideosPage: React.FC = () => {
                 <Alert
                   severity="error"
                   onClose={() => setActionError(null)}
-                  sx={{ borderRadius: '14px' }}
+                  sx={{ borderRadius: '12px', mb: 2 }}
                 >
                   {actionError}
                 </Alert>
@@ -593,7 +598,7 @@ export const LiveTvVideosPage: React.FC = () => {
                 <Alert
                   severity="success"
                   onClose={() => setActionSuccess(null)}
-                  sx={{ borderRadius: '14px' }}
+                  sx={{ borderRadius: '12px', mb: 2 }}
                 >
                   {actionSuccess}
                 </Alert>
@@ -602,37 +607,440 @@ export const LiveTvVideosPage: React.FC = () => {
                 <Alert
                   severity="info"
                   onClose={() => setActionInfo(null)}
-                  sx={{ borderRadius: '14px' }}
+                  sx={{ borderRadius: '12px', mb: 2 }}
                 >
                   {actionInfo}
                 </Alert>
               )}
 
+              {/* ── Language Filter Tabs (Single-Row Pills matching Notification UI & Login Flow Colors) ── */}
+              {allowedLanguages.length > 1 && (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    gap: 1,
+                    mb: 2,
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  {allowedLanguages.includes('te') && (
+                    <Button
+                      variant="contained"
+                      size="small"
+                      onClick={() => setSelectedLanguage('te')}
+                      sx={{
+                        textTransform: 'none',
+                        fontWeight: selectedLanguage === 'te' ? 700 : 500,
+                        fontSize: '0.8rem',
+                        borderRadius: '10px',
+                        px: 2,
+                        py: 0.6,
+                        backgroundColor:
+                          selectedLanguage === 'te'
+                            ? '#facc15'
+                            : isDark
+                              ? 'rgba(255, 255, 255, 0.06)'
+                              : 'rgba(234, 179, 8, 0.08)',
+                        color:
+                          selectedLanguage === 'te' ? '#1a1300' : isDark ? '#fde68a' : '#78350f',
+                        border: '1px solid',
+                        borderColor:
+                          selectedLanguage === 'te'
+                            ? '#facc15'
+                            : isDark
+                              ? 'rgba(250, 204, 21, 0.2)'
+                              : 'rgba(217, 119, 6, 0.25)',
+                        boxShadow:
+                          selectedLanguage === 'te' ? '0 4px 15px rgba(234, 179, 8, 0.35)' : 'none',
+                        '&:hover': {
+                          backgroundColor:
+                            selectedLanguage === 'te'
+                              ? '#fde047'
+                              : isDark
+                                ? 'rgba(234, 179, 8, 0.15)'
+                                : 'rgba(234, 179, 8, 0.14)',
+                          borderColor: '#facc15',
+                          boxShadow:
+                            selectedLanguage === 'te'
+                              ? '0 6px 18px rgba(234, 179, 8, 0.45)'
+                              : 'none',
+                        },
+                      }}
+                    >
+                      {t.teluguTab}
+                    </Button>
+                  )}
+
+                  {allowedLanguages.includes('ml') && (
+                    <Button
+                      variant="contained"
+                      size="small"
+                      onClick={() => setSelectedLanguage('ml')}
+                      sx={{
+                        textTransform: 'none',
+                        fontWeight: selectedLanguage === 'ml' ? 700 : 500,
+                        fontSize: '0.8rem',
+                        borderRadius: '10px',
+                        px: 2,
+                        py: 0.6,
+                        backgroundColor:
+                          selectedLanguage === 'ml'
+                            ? '#facc15'
+                            : isDark
+                              ? 'rgba(255, 255, 255, 0.06)'
+                              : 'rgba(234, 179, 8, 0.08)',
+                        color:
+                          selectedLanguage === 'ml' ? '#1a1300' : isDark ? '#fde68a' : '#78350f',
+                        border: '1px solid',
+                        borderColor:
+                          selectedLanguage === 'ml'
+                            ? '#facc15'
+                            : isDark
+                              ? 'rgba(250, 204, 21, 0.2)'
+                              : 'rgba(217, 119, 6, 0.25)',
+                        boxShadow:
+                          selectedLanguage === 'ml' ? '0 4px 15px rgba(234, 179, 8, 0.35)' : 'none',
+                        '&:hover': {
+                          backgroundColor:
+                            selectedLanguage === 'ml'
+                              ? '#fde047'
+                              : isDark
+                                ? 'rgba(234, 179, 8, 0.15)'
+                                : 'rgba(234, 179, 8, 0.14)',
+                          borderColor: '#facc15',
+                          boxShadow:
+                            selectedLanguage === 'ml'
+                              ? '0 6px 18px rgba(234, 179, 8, 0.45)'
+                              : 'none',
+                        },
+                      }}
+                    >
+                      {t.malayalamTab}
+                    </Button>
+                  )}
+
+                  {allowedLanguages.includes('en') && (
+                    <Button
+                      variant="contained"
+                      size="small"
+                      onClick={() => setSelectedLanguage('en')}
+                      sx={{
+                        textTransform: 'none',
+                        fontWeight: selectedLanguage === 'en' ? 700 : 500,
+                        fontSize: '0.8rem',
+                        borderRadius: '10px',
+                        px: 2,
+                        py: 0.6,
+                        backgroundColor:
+                          selectedLanguage === 'en'
+                            ? '#facc15'
+                            : isDark
+                              ? 'rgba(255, 255, 255, 0.06)'
+                              : 'rgba(234, 179, 8, 0.08)',
+                        color:
+                          selectedLanguage === 'en' ? '#1a1300' : isDark ? '#fde68a' : '#78350f',
+                        border: '1px solid',
+                        borderColor:
+                          selectedLanguage === 'en'
+                            ? '#facc15'
+                            : isDark
+                              ? 'rgba(250, 204, 21, 0.2)'
+                              : 'rgba(217, 119, 6, 0.25)',
+                        boxShadow:
+                          selectedLanguage === 'en' ? '0 4px 15px rgba(234, 179, 8, 0.35)' : 'none',
+                        '&:hover': {
+                          backgroundColor:
+                            selectedLanguage === 'en'
+                              ? '#fde047'
+                              : isDark
+                                ? 'rgba(234, 179, 8, 0.15)'
+                                : 'rgba(234, 179, 8, 0.14)',
+                          borderColor: '#facc15',
+                          boxShadow:
+                            selectedLanguage === 'en'
+                              ? '0 6px 18px rgba(234, 179, 8, 0.45)'
+                              : 'none',
+                        },
+                      }}
+                    >
+                      {t.englishTab}
+                    </Button>
+                  )}
+
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() => setSelectedLanguage('all')}
+                    sx={{
+                      textTransform: 'none',
+                      fontWeight: selectedLanguage === 'all' ? 700 : 500,
+                      fontSize: '0.8rem',
+                      borderRadius: '10px',
+                      px: 2,
+                      py: 0.6,
+                      backgroundColor:
+                        selectedLanguage === 'all'
+                          ? '#facc15'
+                          : isDark
+                            ? 'rgba(255, 255, 255, 0.06)'
+                            : 'rgba(234, 179, 8, 0.08)',
+                      color:
+                        selectedLanguage === 'all' ? '#1a1300' : isDark ? '#fde68a' : '#78350f',
+                      border: '1px solid',
+                      borderColor:
+                        selectedLanguage === 'all'
+                          ? '#facc15'
+                          : isDark
+                            ? 'rgba(250, 204, 21, 0.2)'
+                            : 'rgba(217, 119, 6, 0.25)',
+                      boxShadow:
+                        selectedLanguage === 'all' ? '0 4px 15px rgba(234, 179, 8, 0.35)' : 'none',
+                      '&:hover': {
+                        backgroundColor:
+                          selectedLanguage === 'all'
+                            ? '#fde047'
+                            : isDark
+                              ? 'rgba(234, 179, 8, 0.15)'
+                              : 'rgba(234, 179, 8, 0.14)',
+                        borderColor: '#facc15',
+                        boxShadow:
+                          selectedLanguage === 'all'
+                            ? '0 6px 18px rgba(234, 179, 8, 0.45)'
+                            : 'none',
+                      },
+                    }}
+                  >
+                    {t.allLanguagesTab}
+                  </Button>
+                </Box>
+              )}
+
+              {/* ── Single-Line Filter Panel with Action Buttons matching Notification UI & Login Flow Colors ── */}
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 1,
+                  mb: 2.5,
+                  alignItems: 'center',
+                  flexWrap: { xs: 'wrap', md: 'nowrap' },
+                }}
+              >
+                {/* 1. Live Search */}
+                <TextField
+                  placeholder={t.searchPlaceholder}
+                  variant="outlined"
+                  size="small"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  sx={{
+                    width: { xs: '100%', sm: '260px' },
+                    flexShrink: 0,
+                    '& .MuiOutlinedInput-root': {
+                      color: isDark ? '#ffffff' : '#1a1300',
+                      backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
+                      borderRadius: '10px',
+                      fontSize: '0.75rem',
+                      height: '34px',
+                      '& fieldset': {
+                        borderColor: isDark
+                          ? 'rgba(250, 204, 21, 0.25)'
+                          : 'rgba(217, 119, 6, 0.25)',
+                      },
+                      '&:hover fieldset': {
+                        borderColor: isDark ? 'rgba(250, 204, 21, 0.5)' : 'rgba(217, 119, 6, 0.5)',
+                      },
+                      '&.Mui-focused fieldset': {
+                        borderColor: '#facc15',
+                        boxShadow: '0 0 10px rgba(250, 204, 21, 0.25)',
+                      },
+                    },
+                    '& .MuiInputBase-input': { py: 0.6, px: 1, fontSize: '0.75rem' },
+                  }}
+                  InputProps={{
+                    endAdornment: (
+                      <Search sx={{ color: isDark ? '#facc15' : '#d97706', fontSize: '0.95rem' }} />
+                    ),
+                  }}
+                />
+
+                {/* Clear Filter Button */}
+                {searchQuery && (
+                  <Tooltip title={t.clearFilters || 'Clear Filters'}>
+                    <IconButton
+                      onClick={() => setSearchQuery('')}
+                      sx={{
+                        width: '34px',
+                        height: '34px',
+                        borderRadius: '10px',
+                        color: '#f44336',
+                        backgroundColor: isDark ? 'rgba(244,67,54,0.12)' : 'rgba(244,67,54,0.08)',
+                        border: isDark
+                          ? '1px solid rgba(244,67,54,0.3)'
+                          : '1px solid rgba(244,67,54,0.3)',
+                        '&:hover': { backgroundColor: 'rgba(244,67,54,0.2)' },
+                        flexShrink: 0,
+                      }}
+                    >
+                      <FilterListOff sx={{ fontSize: '1.1rem' }} />
+                    </IconButton>
+                  </Tooltip>
+                )}
+
+                {/* Right: Action Buttons matching Notification UI & Login Flow Warm Palette */}
+                <Box
+                  sx={{
+                    ml: { xs: 0, md: 'auto' },
+                    display: 'flex',
+                    gap: 1,
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                    width: { xs: '100%', md: 'auto' },
+                  }}
+                >
+                  {selectedTag && (
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      startIcon={
+                        isSyncing ? <CircularProgress size={14} /> : <Sync sx={{ fontSize: 16 }} />
+                      }
+                      disabled={isSyncing}
+                      onClick={() => handleDailySync(selectedTag.slug)}
+                      sx={{
+                        borderRadius: '10px',
+                        height: '34px',
+                        px: 1.8,
+                        textTransform: 'none',
+                        fontWeight: 700,
+                        fontSize: '0.8rem',
+                        borderColor: isDark ? 'rgba(250, 204, 21, 0.4)' : 'rgba(217, 119, 6, 0.4)',
+                        color: isDark ? '#fef9c3' : '#92400e',
+                        backgroundColor: isDark
+                          ? 'rgba(234, 179, 8, 0.08)'
+                          : 'rgba(234, 179, 8, 0.05)',
+                        '&:hover': {
+                          borderColor: '#facc15',
+                          backgroundColor: isDark
+                            ? 'rgba(234, 179, 8, 0.2)'
+                            : 'rgba(234, 179, 8, 0.14)',
+                          boxShadow: '0 0 15px rgba(234, 179, 8, 0.25)',
+                        },
+                      }}
+                    >
+                      {isSyncing ? t.syncingBtn : t.dailySyncBtn}
+                    </Button>
+                  )}
+
+                  {selectedTag && (
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      startIcon={<Edit sx={{ fontSize: 16 }} />}
+                      onClick={() => handleOpenEditTagModal(selectedTag)}
+                      sx={{
+                        borderRadius: '10px',
+                        height: '34px',
+                        px: 1.5,
+                        textTransform: 'none',
+                        fontWeight: 700,
+                        fontSize: '0.8rem',
+                        borderColor: isDark ? 'rgba(250, 204, 21, 0.3)' : 'rgba(217, 119, 6, 0.3)',
+                        color: isDark ? '#fde68a' : '#78350f',
+                        backgroundColor: isDark ? 'rgba(255, 255, 255, 0.04)' : '#ffffff',
+                        '&:hover': {
+                          borderColor: '#facc15',
+                          backgroundColor: isDark
+                            ? 'rgba(234, 179, 8, 0.15)'
+                            : 'rgba(234, 179, 8, 0.08)',
+                          boxShadow: '0 0 12px rgba(234, 179, 8, 0.2)',
+                        },
+                      }}
+                    >
+                      {t.editTag}
+                    </Button>
+                  )}
+
+                  {selectedTag && (
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      size="small"
+                      startIcon={<DeleteSweep sx={{ fontSize: 16 }} />}
+                      onClick={() => setDeleteConfirmOpen(true)}
+                      sx={{
+                        borderRadius: '10px',
+                        height: '34px',
+                        px: 1.5,
+                        textTransform: 'none',
+                        fontWeight: 700,
+                        fontSize: '0.8rem',
+                      }}
+                    >
+                      {t.deleteTag}
+                    </Button>
+                  )}
+
+                  <Button
+                    id="create-tag-btn"
+                    variant="contained"
+                    startIcon={<AddCircleOutline sx={{ fontSize: '1rem' }} />}
+                    onClick={() => setCreateTagModalOpen(true)}
+                    sx={{
+                      borderRadius: '10px',
+                      height: '34px',
+                      px: 2,
+                      textTransform: 'none',
+                      fontWeight: 700,
+                      fontSize: '0.82rem',
+                      background: 'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
+                      color: '#1a1300',
+                      boxShadow: '0 4px 15px rgba(234, 179, 8, 0.35)',
+                      transition: 'all 0.2s ease',
+                      '&:hover': {
+                        background: 'linear-gradient(135deg, #fde047 0%, #d97706 100%)',
+                        boxShadow: '0 8px 25px rgba(234, 179, 8, 0.5)',
+                        transform: 'translateY(-1px)',
+                      },
+                    }}
+                  >
+                    {t.createTagBtn}
+                  </Button>
+                </Box>
+              </Box>
+
               {/* Categorized Accordions if "All Languages" is selected */}
               {selectedLanguage === 'all' && (
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, mb: 2 }}>
                   {/* Telugu Group */}
                   <Accordion
                     defaultExpanded
                     sx={{
-                      backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#ffffff',
-                      color: isDark ? '#ffffff' : '#1c1445',
+                      backgroundColor: isDark ? 'rgba(28, 22, 3, 0.72)' : '#ffffff',
+                      color: isDark ? '#ffffff' : '#1a1300',
                       borderRadius: '16px !important',
                       border: isDark
-                        ? '1px solid rgba(255,255,255,0.08)'
-                        : '1px solid rgba(0,0,0,0.08)',
+                        ? '1px solid rgba(250, 204, 21, 0.25)'
+                        : '1px solid rgba(217, 119, 6, 0.2)',
                       '&:before': { display: 'none' },
                     }}
                   >
                     <AccordionSummary
-                      expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}
+                      expandIcon={<ExpandMore sx={{ color: isDark ? '#facc15' : '#b45309' }} />}
                     >
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                         <Typography sx={{ fontWeight: 700 }}>{t.teluguShowsHeading}</Typography>
                         <Chip
                           size="small"
                           label={`${segregatedTags.te?.length || 0}`}
-                          sx={{ fontWeight: 700, height: 22 }}
+                          sx={{
+                            fontWeight: 700,
+                            height: 22,
+                            backgroundColor: isDark
+                              ? 'rgba(234, 179, 8, 0.15)'
+                              : 'rgba(234, 179, 8, 0.12)',
+                            color: isDark ? '#facc15' : '#b45309',
+                          }}
                         />
                       </Box>
                     </AccordionSummary>
@@ -648,6 +1056,28 @@ export const LiveTvVideosPage: React.FC = () => {
                                 textTransform: 'none',
                                 fontWeight: 700,
                                 borderRadius: '10px',
+                                ...(selectedTagSlug === tag.slug
+                                  ? {
+                                      background:
+                                        'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
+                                      color: '#1a1300',
+                                      boxShadow: '0 4px 15px rgba(234, 179, 8, 0.35)',
+                                    }
+                                  : {
+                                      borderColor: isDark
+                                        ? 'rgba(250, 204, 21, 0.25)'
+                                        : 'rgba(217, 119, 6, 0.25)',
+                                      color: isDark ? '#fde68a' : '#78350f',
+                                      backgroundColor: isDark
+                                        ? 'rgba(255, 255, 255, 0.04)'
+                                        : '#ffffff',
+                                      '&:hover': {
+                                        borderColor: '#facc15',
+                                        backgroundColor: isDark
+                                          ? 'rgba(234, 179, 8, 0.12)'
+                                          : 'rgba(234, 179, 8, 0.08)',
+                                      },
+                                    }),
                               }}
                             >
                               {tag.name}
@@ -665,24 +1095,31 @@ export const LiveTvVideosPage: React.FC = () => {
                   {/* Malayalam Group */}
                   <Accordion
                     sx={{
-                      backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#ffffff',
-                      color: isDark ? '#ffffff' : '#1c1445',
+                      backgroundColor: isDark ? 'rgba(28, 22, 3, 0.72)' : '#ffffff',
+                      color: isDark ? '#ffffff' : '#1a1300',
                       borderRadius: '16px !important',
                       border: isDark
-                        ? '1px solid rgba(255,255,255,0.08)'
-                        : '1px solid rgba(0,0,0,0.08)',
+                        ? '1px solid rgba(250, 204, 21, 0.25)'
+                        : '1px solid rgba(217, 119, 6, 0.2)',
                       '&:before': { display: 'none' },
                     }}
                   >
                     <AccordionSummary
-                      expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}
+                      expandIcon={<ExpandMore sx={{ color: isDark ? '#facc15' : '#b45309' }} />}
                     >
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                         <Typography sx={{ fontWeight: 700 }}>{t.malayalamShowsHeading}</Typography>
                         <Chip
                           size="small"
                           label={`${segregatedTags.ml?.length || 0}`}
-                          sx={{ fontWeight: 700, height: 22 }}
+                          sx={{
+                            fontWeight: 700,
+                            height: 22,
+                            backgroundColor: isDark
+                              ? 'rgba(234, 179, 8, 0.15)'
+                              : 'rgba(234, 179, 8, 0.12)',
+                            color: isDark ? '#facc15' : '#b45309',
+                          }}
                         />
                       </Box>
                     </AccordionSummary>
@@ -698,6 +1135,28 @@ export const LiveTvVideosPage: React.FC = () => {
                                 textTransform: 'none',
                                 fontWeight: 700,
                                 borderRadius: '10px',
+                                ...(selectedTagSlug === tag.slug
+                                  ? {
+                                      background:
+                                        'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
+                                      color: '#1a1300',
+                                      boxShadow: '0 4px 15px rgba(234, 179, 8, 0.35)',
+                                    }
+                                  : {
+                                      borderColor: isDark
+                                        ? 'rgba(250, 204, 21, 0.25)'
+                                        : 'rgba(217, 119, 6, 0.25)',
+                                      color: isDark ? '#fde68a' : '#78350f',
+                                      backgroundColor: isDark
+                                        ? 'rgba(255, 255, 255, 0.04)'
+                                        : '#ffffff',
+                                      '&:hover': {
+                                        borderColor: '#facc15',
+                                        backgroundColor: isDark
+                                          ? 'rgba(234, 179, 8, 0.12)'
+                                          : 'rgba(234, 179, 8, 0.08)',
+                                      },
+                                    }),
                               }}
                             >
                               {tag.name}
@@ -715,24 +1174,31 @@ export const LiveTvVideosPage: React.FC = () => {
                   {/* English Group */}
                   <Accordion
                     sx={{
-                      backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#ffffff',
-                      color: isDark ? '#ffffff' : '#1c1445',
+                      backgroundColor: isDark ? 'rgba(28, 22, 3, 0.72)' : '#ffffff',
+                      color: isDark ? '#ffffff' : '#1a1300',
                       borderRadius: '16px !important',
                       border: isDark
-                        ? '1px solid rgba(255,255,255,0.08)'
-                        : '1px solid rgba(0,0,0,0.08)',
+                        ? '1px solid rgba(250, 204, 21, 0.25)'
+                        : '1px solid rgba(217, 119, 6, 0.2)',
                       '&:before': { display: 'none' },
                     }}
                   >
                     <AccordionSummary
-                      expandIcon={<ExpandMore sx={{ color: isDark ? '#fff' : '#1c1445' }} />}
+                      expandIcon={<ExpandMore sx={{ color: isDark ? '#facc15' : '#b45309' }} />}
                     >
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                         <Typography sx={{ fontWeight: 700 }}>{t.englishShowsHeading}</Typography>
                         <Chip
                           size="small"
                           label={`${segregatedTags.en?.length || 0}`}
-                          sx={{ fontWeight: 700, height: 22 }}
+                          sx={{
+                            fontWeight: 700,
+                            height: 22,
+                            backgroundColor: isDark
+                              ? 'rgba(234, 179, 8, 0.15)'
+                              : 'rgba(234, 179, 8, 0.12)',
+                            color: isDark ? '#facc15' : '#b45309',
+                          }}
                         />
                       </Box>
                     </AccordionSummary>
@@ -748,6 +1214,28 @@ export const LiveTvVideosPage: React.FC = () => {
                                 textTransform: 'none',
                                 fontWeight: 700,
                                 borderRadius: '10px',
+                                ...(selectedTagSlug === tag.slug
+                                  ? {
+                                      background:
+                                        'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
+                                      color: '#1a1300',
+                                      boxShadow: '0 4px 15px rgba(234, 179, 8, 0.35)',
+                                    }
+                                  : {
+                                      borderColor: isDark
+                                        ? 'rgba(250, 204, 21, 0.25)'
+                                        : 'rgba(217, 119, 6, 0.25)',
+                                      color: isDark ? '#fde68a' : '#78350f',
+                                      backgroundColor: isDark
+                                        ? 'rgba(255, 255, 255, 0.04)'
+                                        : '#ffffff',
+                                      '&:hover': {
+                                        borderColor: '#facc15',
+                                        backgroundColor: isDark
+                                          ? 'rgba(234, 179, 8, 0.12)'
+                                          : 'rgba(234, 179, 8, 0.08)',
+                                      },
+                                    }),
                               }}
                             >
                               {tag.name}
@@ -765,11 +1253,12 @@ export const LiveTvVideosPage: React.FC = () => {
               )}
 
               {/* Tag Selector Tabs for Single-Language mode */}
-              {selectedLanguage !== 'all' && (
+              {selectedLanguage !== 'all' && tags.length > 0 && (
                 <Box
                   sx={{
                     borderBottom: 1,
-                    borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                    borderColor: isDark ? 'rgba(250, 204, 21, 0.2)' : 'rgba(217, 119, 6, 0.2)',
+                    mb: 2.5,
                   }}
                 >
                   <Tabs
@@ -778,18 +1267,22 @@ export const LiveTvVideosPage: React.FC = () => {
                     variant="scrollable"
                     scrollButtons="auto"
                     sx={{
+                      minHeight: '40px',
                       '& .MuiTab-root': {
                         textTransform: 'none',
                         fontWeight: 700,
-                        fontSize: '0.95rem',
-                        color: isDark ? '#a5b4fc' : '#5c548a',
+                        fontSize: '0.85rem',
+                        minHeight: '38px',
+                        py: 0.5,
+                        px: 1.8,
+                        color: isDark ? '#fde68a' : '#78350f',
                         '&.Mui-selected': {
-                          color: isDark ? '#ffffff' : '#2563eb',
+                          color: isDark ? '#facc15' : '#b45309',
                         },
                       },
                       '& .MuiTabs-indicator': {
-                        backgroundColor: '#2563eb',
-                        height: 3,
+                        backgroundColor: '#facc15',
+                        height: 2.5,
                       },
                     }}
                   >
@@ -809,171 +1302,70 @@ export const LiveTvVideosPage: React.FC = () => {
                 </Box>
               )}
 
-              {/* Selected Tag Single-Line Toolbar: Tag Name, Search Bar & Actions (No Card Styling) */}
+              {/* Selected Tag Header info */}
               {selectedTag ? (
                 <Box
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'space-between',
-                    flexWrap: { xs: 'wrap', md: 'nowrap' },
-                    gap: 2,
-                    py: 0.5,
+                    gap: 1.5,
+                    mb: 1.5,
                   }}
                 >
-                  {/* Left: Tag Name & Badges */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexShrink: 0 }}>
-                    {selectedTag.thumbnailUrl ? (
-                      <Avatar
-                        src={selectedTag.thumbnailUrl}
-                        variant="rounded"
-                        sx={{ width: 38, height: 38, borderRadius: '10px' }}
-                      />
-                    ) : (
-                      <Avatar
-                        variant="rounded"
-                        sx={{
-                          width: 38,
-                          height: 38,
-                          borderRadius: '10px',
-                          backgroundColor: isDark
-                            ? 'rgba(147,197,253,0.15)'
-                            : 'rgba(37,99,235,0.1)',
-                          color: isDark ? '#93c5fd' : '#2563eb',
-                        }}
-                      >
-                        <LiveTv fontSize="small" />
-                      </Avatar>
-                    )}
-
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <Typography variant="h6" sx={{ fontWeight: 800, fontSize: '1.15rem' }}>
-                        {selectedTag.name}
-                      </Typography>
-                      {renderLanguageBadge(selectedTag.language)}
-                      <Chip
-                        size="small"
-                        label={`${stats.total || 0}`}
-                        title={t.totalVideos}
-                        sx={{
-                          fontWeight: 700,
-                          height: 22,
-                          fontSize: '0.72rem',
-                          backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)',
-                          color: isDark ? '#cbd5e1' : '#475569',
-                        }}
-                      />
-                    </Box>
-                  </Box>
-
-                  {/* Middle: Search Bar */}
-                  <TextField
-                    size="small"
-                    placeholder={t.searchPlaceholder}
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <Search sx={{ color: isDark ? '#a5b4fc' : '#64748b', fontSize: 20 }} />
-                        </InputAdornment>
-                      ),
-                    }}
-                    sx={{
-                      flex: { xs: '1 1 100%', md: '1 1 auto' },
-                      maxWidth: { md: 400 },
-                      '& .MuiOutlinedInput-root': {
-                        borderRadius: '12px',
-                        backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#ffffff',
-                        color: isDark ? '#ffffff' : '#1c1445',
-                        '& fieldset': {
-                          borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
-                        },
-                        '&:hover fieldset': {
-                          borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.25)',
-                        },
-                        '&.Mui-focused fieldset': {
-                          borderColor: '#2563eb',
-                        },
-                      },
-                    }}
-                  />
-
-                  {/* Right: Action Buttons */}
-                  <Box sx={{ display: 'flex', gap: 1.2, alignItems: 'center', flexShrink: 0 }}>
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      startIcon={
-                        isSyncing ? <CircularProgress size={14} /> : <Sync sx={{ fontSize: 18 }} />
-                      }
-                      disabled={isSyncing}
-                      onClick={() => handleDailySync(selectedTag.slug)}
+                  {selectedTag.thumbnailUrl ? (
+                    <Avatar
+                      src={selectedTag.thumbnailUrl}
+                      variant="rounded"
+                      sx={{ width: 36, height: 36, borderRadius: '8px' }}
+                    />
+                  ) : (
+                    <Avatar
+                      variant="rounded"
                       sx={{
-                        borderRadius: '10px',
-                        textTransform: 'none',
-                        fontWeight: 700,
-                        height: 38,
-                        px: 1.8,
-                        borderColor: isDark ? 'rgba(147,197,253,0.4)' : 'rgba(37,99,235,0.4)',
-                        color: isDark ? '#93c5fd' : '#2563eb',
-                        '&:hover': {
-                          borderColor: '#2563eb',
-                          backgroundColor: isDark ? 'rgba(37,99,235,0.1)' : 'rgba(37,99,235,0.06)',
-                        },
+                        width: 36,
+                        height: 36,
+                        borderRadius: '8px',
+                        backgroundColor: isDark
+                          ? 'rgba(234, 179, 8, 0.15)'
+                          : 'rgba(234, 179, 8, 0.12)',
+                        color: '#facc15',
                       }}
                     >
-                      {isSyncing ? t.syncingBtn : t.dailySyncBtn}
-                    </Button>
-
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      startIcon={<Edit sx={{ fontSize: 18 }} />}
-                      onClick={() => handleOpenEditTagModal(selectedTag)}
-                      sx={{
-                        borderRadius: '10px',
-                        textTransform: 'none',
-                        fontWeight: 700,
-                        height: 38,
-                        px: 1.8,
-                        borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)',
-                        color: isDark ? '#ffffff' : '#1c1445',
-                        '&:hover': {
-                          borderColor: isDark ? '#ffffff' : '#1c1445',
-                          backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)',
-                        },
-                      }}
+                      <LiveTv fontSize="small" />
+                    </Avatar>
+                  )}
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1a1300' }}
                     >
-                      {t.editTag}
-                    </Button>
-
-                    <Button
-                      variant="outlined"
-                      color="error"
+                      {selectedTag.name}
+                    </Typography>
+                    {renderLanguageBadge(selectedTag.language)}
+                    <Chip
                       size="small"
-                      startIcon={<DeleteSweep sx={{ fontSize: 18 }} />}
-                      onClick={() => setDeleteConfirmOpen(true)}
+                      label={`${stats.total || 0} ${t.items || 'items'}`}
                       sx={{
-                        borderRadius: '10px',
-                        textTransform: 'none',
                         fontWeight: 700,
-                        height: 38,
-                        px: 1.8,
+                        height: 22,
+                        fontSize: '0.72rem',
+                        backgroundColor: isDark
+                          ? 'rgba(234, 179, 8, 0.12)'
+                          : 'rgba(234, 179, 8, 0.08)',
+                        color: isDark ? '#fde68a' : '#78350f',
+                        border: isDark
+                          ? '1px solid rgba(250, 204, 21, 0.2)'
+                          : '1px solid rgba(217, 119, 6, 0.15)',
                       }}
-                    >
-                      {t.deleteTag}
-                    </Button>
+                    />
                   </Box>
                 </Box>
               ) : (
-                <Box
-                  sx={{
-                    py: 3,
-                    textAlign: 'center',
-                  }}
-                >
-                  <Typography variant="body1" sx={{ opacity: 0.7 }}>
+                <Box sx={{ py: 3, textAlign: 'center' }}>
+                  <Typography
+                    variant="body1"
+                    sx={{ color: isDark ? '#fde68a' : '#78350f', opacity: 0.8 }}
+                  >
                     {tags.length === 0 ? t.noTagsFound : t.selectTagPrompt}
                   </Typography>
                 </Box>
@@ -981,7 +1373,7 @@ export const LiveTvVideosPage: React.FC = () => {
 
               {/* Table View */}
               {loading ? (
-                <Loader />
+                <Loader message="Loading streaming videos..." minHeight="300px" />
               ) : (
                 selectedTag && (
                   <LiveTvVideosTable
@@ -995,17 +1387,56 @@ export const LiveTvVideosPage: React.FC = () => {
                 )
               )}
 
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+              {/* Footer Pagination — matching Notification UI & Login Flow Styling */}
+              {stats.total > 0 && (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    mt: 2.5,
+                    px: 1,
+                    flexWrap: 'wrap',
+                    gap: 2,
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: isDark ? '#fde68a' : '#78350f',
+                      fontWeight: 600,
+                      fontSize: '0.82rem',
+                    }}
+                  >
+                    {t.showing || 'Showing'} {(page - 1) * recordsPerPage + 1}–
+                    {Math.min(page * recordsPerPage, stats.total)} {t.of || 'of'} {stats.total}{' '}
+                    {t.items || 'items'}
+                  </Typography>
+
                   <Pagination
                     count={totalPages}
                     page={page}
                     onChange={(_, val) => setPage(val)}
-                    color="primary"
+                    shape="rounded"
                     sx={{
                       '& .MuiPaginationItem-root': {
-                        color: isDark ? '#ffffff' : '#1c1445',
+                        color: isDark ? '#fde68a' : '#1a1300',
+                        fontWeight: 600,
+                        borderRadius: '8px',
+                        '&:hover': {
+                          backgroundColor: isDark
+                            ? 'rgba(234, 179, 8, 0.2)'
+                            : 'rgba(234, 179, 8, 0.14)',
+                        },
+                        '&.Mui-selected': {
+                          backgroundColor: '#facc15 !important',
+                          color: '#1a1300 !important',
+                          fontWeight: 700,
+                          boxShadow: '0 2px 8px rgba(234, 179, 8, 0.35)',
+                          '&:hover': {
+                            backgroundColor: '#fde047 !important',
+                          },
+                        },
                       },
                     }}
                   />
@@ -1060,9 +1491,15 @@ export const LiveTvVideosPage: React.FC = () => {
                 onClose={() => setDeleteConfirmOpen(false)}
                 PaperProps={{
                   sx: {
-                    backgroundColor: isDark ? '#140e36' : '#ffffff',
-                    color: isDark ? '#ffffff' : '#1c1445',
-                    borderRadius: '16px',
+                    backgroundColor: isDark ? 'rgba(28, 22, 3, 0.96)' : '#ffffff',
+                    color: isDark ? '#ffffff' : '#1a1300',
+                    border: isDark
+                      ? '1px solid rgba(250, 204, 21, 0.25)'
+                      : '1px solid rgba(217, 119, 6, 0.2)',
+                    borderRadius: '20px',
+                    boxShadow: isDark
+                      ? '0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(234, 179, 8, 0.15)'
+                      : '0 10px 40px rgba(0, 0, 0, 0.1)',
                   },
                 }}
               >
@@ -1070,14 +1507,14 @@ export const LiveTvVideosPage: React.FC = () => {
                   {t.deleteConfirmTitle}
                 </DialogTitle>
                 <DialogContent>
-                  <DialogContentText sx={{ color: isDark ? '#d0caeb' : '#475569' }}>
+                  <DialogContentText sx={{ color: isDark ? '#fde68a' : '#78350f' }}>
                     {t.deleteConfirmDesc}
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions sx={{ p: 2 }}>
                   <Button
                     onClick={() => setDeleteConfirmOpen(false)}
-                    sx={{ color: isDark ? '#94a3b8' : undefined }}
+                    sx={{ color: isDark ? '#fde68a' : undefined }}
                   >
                     {t.cancel}
                   </Button>

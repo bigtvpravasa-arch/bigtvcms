@@ -31,14 +31,14 @@ export const ReporterViewDialog: React.FC<ReporterViewDialogProps> = ({
 
   const bgModal = isDark ? '#1a1140' : '#ffffff';
   const colorText = isDark ? '#ffffff' : '#1c1445';
-  const colorLabel = isDark ? '#a6e2f5' : '#5c548a';
+  const colorLabel = isDark ? '#facc15' : '#78350f';
 
   const renderLanguageBadge = (lang?: string) => {
     const code = (lang || 'te').toLowerCase();
     let label = 'Telugu';
-    let bg = 'rgba(37, 99, 235, 0.15)';
-    let color = isDark ? '#93c5fd' : '#1d4ed8';
-    let border = isDark ? 'rgba(147, 197, 253, 0.3)' : 'rgba(37, 99, 235, 0.3)';
+    let bg = 'rgba(234, 179, 8, 0.15)';
+    let color = isDark ? '#fde047' : '#92400e';
+    let border = isDark ? 'rgba(250, 204, 21, 0.3)' : 'rgba(234, 179, 8, 0.3)';
 
     if (code === 'ml') {
       label = 'Malayalam';
@@ -222,8 +222,8 @@ export const ReporterViewDialog: React.FC<ReporterViewDialogProps> = ({
           sx={{
             textTransform: 'none',
             borderRadius: '8px',
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
           }}
         >
           Close

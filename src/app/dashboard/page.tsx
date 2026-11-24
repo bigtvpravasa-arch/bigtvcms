@@ -1525,7 +1525,7 @@ export default function DashboardPage() {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        backgroundColor: isDark ? '#161202' : '#ffffff',
         transition: 'all 0.3s ease',
       }}
     >
@@ -1797,7 +1797,7 @@ export default function DashboardPage() {
             /* ── Post Detail View Panel ── */
             <Box
               sx={{
-                backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#ffffff',
+                backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#ffffff',
                 border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
                 borderRadius: '20px',
                 overflow: 'hidden',
@@ -1815,7 +1815,7 @@ export default function DashboardPage() {
                   borderBottom: isDark
                     ? '1px solid rgba(255,255,255,0.08)'
                     : '1px solid rgba(0,0,0,0.08)',
-                  backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#f4f3f8',
+                  backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#f4f3f8',
                 }}
               >
                 <IconButton
@@ -1865,7 +1865,7 @@ export default function DashboardPage() {
               </Box>
 
               {/* Side-by-side: Publish Summary + Mobile Phone Simulator */}
-              <Box sx={{ p: 3, backgroundColor: isDark ? 'rgba(38,28,86,0.2)' : '#f5f5f7' }}>
+              <Box sx={{ p: 3, backgroundColor: isDark ? 'rgba(28,22,3,0.2)' : '#f5f5f7' }}>
                 <Grid container spacing={4} alignItems="stretch">
                   {/* ── Left: Publish Summary Panel ── */}
                   <Grid item xs={12} md={7}>
@@ -1877,7 +1877,7 @@ export default function DashboardPage() {
                         border: isDark
                           ? '1px solid rgba(255,255,255,0.08)'
                           : '1px solid rgba(0,0,0,0.08)',
-                        backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+                        backgroundColor: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
                         display: 'flex',
                         flexDirection: 'column',
                         gap: 2.5,
@@ -1887,7 +1887,7 @@ export default function DashboardPage() {
                       <Typography
                         variant="subtitle1"
                         sx={{
-                          color: isDark ? '#a6e2f5' : '#1c1445',
+                          color: isDark ? '#facc15' : '#1a1300',
                           fontWeight: 700,
                           fontSize: '1rem',
                         }}
@@ -2016,7 +2016,7 @@ export default function DashboardPage() {
                                 backgroundColor: isDark
                                   ? 'rgba(166,226,245,0.15)'
                                   : 'rgba(28,20,69,0.07)',
-                                color: isDark ? '#a6e2f5' : '#1c1445',
+                                color: isDark ? '#facc15' : '#1a1300',
                                 borderRadius: '8px',
                                 px: 1.2,
                                 py: 0.35,
@@ -2533,11 +2533,11 @@ export default function DashboardPage() {
                   }}
                 >
                   <CheckBoxIcon
-                    sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }}
+                    sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: '1.2rem' }}
                   />
                   <Typography
                     variant="body2"
-                    sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#1c1445', flexShrink: 0 }}
+                    sx={{ fontWeight: 700, color: isDark ? '#facc15' : '#1a1300', flexShrink: 0 }}
                   >
                     {t.bulkSelected(selectedIds.size)}
                   </Typography>
@@ -2837,9 +2837,9 @@ export default function DashboardPage() {
                       width: '34px',
                       height: '34px',
                       borderRadius: '10px',
-                      backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                      color: isDark ? '#1c1445' : '#ffffff',
-                      '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                      backgroundColor: isDark ? '#facc15' : '#1a1300',
+                      color: isDark ? '#1a1300' : '#ffffff',
+                      '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
                     }}
                   >
                     <PostAdd sx={{ fontSize: '1.2rem' }} />
@@ -2850,7 +2850,7 @@ export default function DashboardPage() {
               {/* Table Data Board Container — Reels-style flex layout */}
               <Box
                 sx={{
-                  backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#ffffff',
+                  backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#ffffff',
                   border: isDark
                     ? '1px solid rgba(255, 255, 255, 0.08)'
                     : '1px solid rgba(0, 0, 0, 0.08)',
@@ -2888,7 +2888,7 @@ export default function DashboardPage() {
                         sx={{
                           color: isDark ? '#d0caeb' : '#5c548a',
                           '&.Mui-checked, &.MuiCheckbox-indeterminate': {
-                            color: isDark ? '#a6e2f5' : '#1c1445',
+                            color: isDark ? '#facc15' : '#1a1300',
                           },
                           p: 0,
                         }}
@@ -2957,7 +2957,7 @@ export default function DashboardPage() {
                               onChange={() => handleToggleSelect(post.id)}
                               sx={{
                                 color: isDark ? '#d0caeb' : '#5c548a',
-                                '&.Mui-checked': { color: isDark ? '#a6e2f5' : '#1c1445' },
+                                '&.Mui-checked': { color: isDark ? '#facc15' : '#1a1300' },
                                 p: 0,
                               }}
                             />
@@ -3074,7 +3074,7 @@ export default function DashboardPage() {
                                     variant="subtitle2"
                                     sx={{
                                       fontWeight: 700,
-                                      color: isDark ? '#a6e2f5' : '#1c1445',
+                                      color: isDark ? '#facc15' : '#1a1300',
                                       mb: 0.8,
                                     }}
                                   >
@@ -3142,7 +3142,7 @@ export default function DashboardPage() {
                               <Typography
                                 variant="caption"
                                 sx={{
-                                  color: isDark ? '#a6e2f5' : '#1c1445',
+                                  color: isDark ? '#facc15' : '#1a1300',
                                   fontWeight: 700,
                                   fontSize: '0.72rem',
                                 }}
@@ -3197,7 +3197,7 @@ export default function DashboardPage() {
                                 size="small"
                                 onClick={() => setViewingPost(post)}
                                 sx={{
-                                  color: isDark ? '#a6e2f5' : '#1976d2',
+                                  color: isDark ? '#facc15' : '#b45309',
                                   backgroundColor: isDark
                                     ? 'rgba(166,226,245,0.1)'
                                     : 'rgba(25,118,210,0.08)',
@@ -3311,8 +3311,8 @@ export default function DashboardPage() {
                         backgroundColor: isDark
                           ? 'rgba(166, 226, 245, 0.15)'
                           : 'rgba(28, 20, 69, 0.1)',
-                        color: isDark ? '#a6e2f5' : '#1c1445',
-                        borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
+                        borderColor: isDark ? '#facc15' : '#1a1300',
                         '&:hover': {
                           backgroundColor: isDark
                             ? 'rgba(166, 226, 245, 0.25)'

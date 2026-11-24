@@ -30,9 +30,15 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
       fullWidth
       PaperProps={{
         sx: {
-          backgroundColor: isDark ? '#140e36' : '#ffffff',
-          color: isDark ? '#ffffff' : '#1c1445',
+          backgroundColor: isDark ? 'rgba(28, 22, 3, 0.96)' : '#ffffff',
+          color: isDark ? '#ffffff' : '#1a1300',
+          border: isDark
+            ? '1px solid rgba(250, 204, 21, 0.25)'
+            : '1px solid rgba(217, 119, 6, 0.2)',
           borderRadius: '20px',
+          boxShadow: isDark
+            ? '0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(234, 179, 8, 0.15)'
+            : '0 10px 40px rgba(0, 0, 0, 0.1)',
           overflow: 'hidden',
         },
       }}
@@ -44,7 +50,7 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
         <Typography component="span" variant="h6" sx={{ fontWeight: 700 }}>
           {video.fileName}
         </Typography>
-        <IconButton onClick={onClose} sx={{ color: isDark ? '#ffffff' : '#1c1445' }}>
+        <IconButton onClick={onClose} sx={{ color: isDark ? '#ffffff' : '#1a1300' }}>
           <Close />
         </IconButton>
       </DialogTitle>

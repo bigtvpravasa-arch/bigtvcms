@@ -99,7 +99,7 @@ export const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
           px: 3,
           py: 2.5,
           borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
-          backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#f4f3f8',
+          backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#f4f3f8',
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -114,7 +114,7 @@ export const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
               justifyContent: 'center',
             }}
           >
-            <CategoryIcon sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.1rem' }} />
+            <CategoryIcon sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: '1.1rem' }} />
           </Box>
           <Box>
             <Typography
@@ -237,7 +237,7 @@ export const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
               sx={{
-                border: `2px dashed ${errors.imageUrl && !uploadedImage ? '#f44336' : dragOver ? (isDark ? '#a6e2f5' : '#1c1445') : isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.18)'}`,
+                border: `2px dashed ${errors.imageUrl && !uploadedImage ? '#f44336' : dragOver ? (isDark ? '#facc15' : '#1a1300') : isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.18)'}`,
                 borderRadius: '12px',
                 p: 3,
                 textAlign: 'center',
@@ -251,7 +251,7 @@ export const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
                     : '#fafafa',
                 transition: 'all 0.2s ease',
                 '&:hover': {
-                  borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                  borderColor: isDark ? '#facc15' : '#1a1300',
                   backgroundColor: isDark ? 'rgba(166,226,245,0.04)' : 'rgba(28,20,69,0.02)',
                 },
               }}
@@ -317,7 +317,7 @@ export const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
                 <Typography
                   variant="caption"
                   sx={{
-                    color: isDark ? '#a6e2f5' : '#1c1445',
+                    color: isDark ? '#facc15' : '#1a1300',
                     fontWeight: 700,
                     display: 'block',
                     mb: 0.6,
@@ -348,7 +348,7 @@ export const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
                       '&:hover fieldset': {
                         borderColor: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(28,20,69,0.4)',
                       },
-                      '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                      '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                     },
                     '& .MuiFormHelperText-root': { color: '#f44336', mx: 0 },
                   }}
@@ -365,7 +365,7 @@ export const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
                             backgroundColor: isDark
                               ? 'rgba(166,226,245,0.12)'
                               : 'rgba(28,20,69,0.08)',
-                            color: isDark ? '#a6e2f5' : '#1c1445',
+                            color: isDark ? '#facc15' : '#1a1300',
                           }}
                         >
                           {flag}
@@ -388,7 +388,7 @@ export const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
           display: 'flex',
           gap: 2,
           borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
-          backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#fafafa',
+          backgroundColor: isDark ? 'rgba(28,22,3,0.3)' : '#fafafa',
         }}
       >
         <Button
@@ -415,11 +415,11 @@ export const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
             borderRadius: '12px',
             textTransform: 'none',
             fontWeight: 700,
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
             boxShadow: 'none',
-            '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270', boxShadow: 'none' },
-            '&.Mui-disabled': { opacity: 0.7, color: isDark ? '#1c1445' : '#ffffff' },
+            '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05', boxShadow: 'none' },
+            '&.Mui-disabled': { opacity: 0.7, color: isDark ? '#1a1300' : '#ffffff' },
           }}
         >
           {isUploading

@@ -48,7 +48,7 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
   return (
     <Box
       sx={{
-        backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+        backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
         border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
         borderRadius: '20px',
         overflow: 'hidden',
@@ -228,7 +228,7 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
                         : isDark
                           ? 'rgba(166,226,245,0.12)'
                           : 'rgba(28,20,69,0.08)',
-                      color: isYouTube ? '#ff3333' : isDark ? '#a6e2f5' : '#1c1445',
+                      color: isYouTube ? '#ff3333' : isDark ? '#facc15' : '#1a1300',
                       border: `1px solid ${isYouTube ? 'rgba(255,0,0,0.25)' : 'rgba(0,0,0,0.1)'}`,
                     }}
                   />
@@ -240,7 +240,7 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
                       fontSize: '0.65rem',
                       fontWeight: 700,
                       backgroundColor: isDark ? 'rgba(166,226,245,0.12)' : 'rgba(28,20,69,0.06)',
-                      color: isDark ? '#a6e2f5' : '#1c1445',
+                      color: isDark ? '#facc15' : '#1a1300',
                       border: isDark
                         ? '1px solid rgba(166,226,245,0.3)'
                         : '1px solid rgba(28,20,69,0.15)',
@@ -286,8 +286,8 @@ export const ReelsTable: React.FC<ReelsTableProps> = ({
                       size="small"
                       onClick={() => handleViewClick(reel)}
                       sx={{
-                        color: isDark ? '#a6e2f5' : '#1976d2',
-                        backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(25,118,210,0.08)',
+                        color: isDark ? '#facc15' : '#b45309',
+                        backgroundColor: isDark ? 'rgba(250,204,21,0.12)' : 'rgba(234,179,8,0.08)',
                         borderRadius: '8px',
                         p: 0.6,
                         '&:hover': {

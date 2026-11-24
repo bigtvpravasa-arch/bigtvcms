@@ -202,7 +202,7 @@ export default function SeriesDetailsPageContent() {
   if (loading) {
     return (
       <Box
-        sx={{ display: 'flex', height: '100vh', backgroundColor: isDark ? '#110d29' : '#ffffff' }}
+        sx={{ display: 'flex', height: '100vh', backgroundColor: isDark ? '#161202' : '#ffffff' }}
       >
         <Sidebar activeHref="/movies" />
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -219,7 +219,7 @@ export default function SeriesDetailsPageContent() {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        backgroundColor: isDark ? '#161202' : '#ffffff',
         transition: 'all 0.3s ease',
       }}
     >
@@ -248,7 +248,7 @@ export default function SeriesDetailsPageContent() {
             sx={{
               mb: 2.5,
               textTransform: 'none',
-              color: isDark ? '#a6e2f5' : '#1c1445',
+              color: isDark ? '#facc15' : '#1a1300',
               fontWeight: 600,
             }}
           >
@@ -258,7 +258,7 @@ export default function SeriesDetailsPageContent() {
           {/* Series Hero Overview Card */}
           <Box
             sx={{
-              backgroundColor: isDark ? 'rgba(38, 28, 86, 0.45)' : '#ffffff',
+              backgroundColor: isDark ? 'rgba(28, 22, 3, 0.45)' : '#ffffff',
               border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
               borderRadius: '24px',
               p: 3,
@@ -322,7 +322,7 @@ export default function SeriesDetailsPageContent() {
               {/* Stats badges */}
               <Box sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap', mb: 2 }}>
                 <Chip
-                  icon={<Tv sx={{ fontSize: '1rem', color: isDark ? '#a6e2f5' : '#1c1445' }} />}
+                  icon={<Tv sx={{ fontSize: '1rem', color: isDark ? '#facc15' : '#1a1300' }} />}
                   label={`${episodes.length} ${t.episodes}`}
                   size="small"
                   sx={{
@@ -353,7 +353,7 @@ export default function SeriesDetailsPageContent() {
                     label={g}
                     size="small"
                     variant="outlined"
-                    sx={{ borderRadius: '6px', color: isDark ? '#a6e2f5' : '#1c1445' }}
+                    sx={{ borderRadius: '6px', color: isDark ? '#facc15' : '#1a1300' }}
                   />
                 ))}
               </Box>
@@ -372,7 +372,7 @@ export default function SeriesDetailsPageContent() {
             }}
           >
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-              <Tv sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.8rem' }} />
+              <Tv sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: '1.8rem' }} />
               <Typography
                 variant="h5"
                 sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1c1445' }}
@@ -385,7 +385,7 @@ export default function SeriesDetailsPageContent() {
                 sx={{
                   borderRadius: '6px',
                   backgroundColor: isDark ? 'rgba(166,226,245,0.12)' : 'rgba(28,20,69,0.08)',
-                  color: isDark ? '#a6e2f5' : '#1c1445',
+                  color: isDark ? '#facc15' : '#1a1300',
                   fontWeight: 700,
                 }}
               />
@@ -412,9 +412,9 @@ export default function SeriesDetailsPageContent() {
                 py: 0.9,
                 textTransform: 'none',
                 fontWeight: 700,
-                backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                color: isDark ? '#1c1445' : '#ffffff',
-                '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                backgroundColor: isDark ? '#facc15' : '#1a1300',
+                color: isDark ? '#1a1300' : '#ffffff',
+                '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
               }}
             >
               {t.addEpisode}
@@ -458,14 +458,14 @@ export default function SeriesDetailsPageContent() {
                     gap: 2.5,
                     p: 2,
                     borderRadius: '16px',
-                    backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#ffffff',
+                    backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#ffffff',
                     border: isDark
                       ? '1px solid rgba(255,255,255,0.08)'
                       : '1px solid rgba(0,0,0,0.08)',
                     boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
                     transition: 'all 0.2s ease',
                     '&:hover': {
-                      borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                      borderColor: isDark ? '#facc15' : '#1a1300',
                       transform: 'translateY(-2px)',
                     },
                   }}
@@ -521,7 +521,7 @@ export default function SeriesDetailsPageContent() {
                           fontSize: '0.72rem',
                           borderRadius: '6px',
                           backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
-                          color: isDark ? '#a6e2f5' : '#1c1445',
+                          color: isDark ? '#facc15' : '#1a1300',
                         }}
                       />
                       <Typography
@@ -577,9 +577,9 @@ export default function SeriesDetailsPageContent() {
                           textTransform: 'none',
                           fontWeight: 700,
                           fontSize: '0.8rem',
-                          backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                          color: isDark ? '#1c1445' : '#ffffff',
-                          '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                          backgroundColor: isDark ? '#facc15' : '#1a1300',
+                          color: isDark ? '#1a1300' : '#ffffff',
+                          '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
                         }}
                       >
                         {t.playVideo}
@@ -754,7 +754,7 @@ export default function SeriesDetailsPageContent() {
                     fontWeight: 800,
                     fontSize: '0.75rem',
                     backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
-                    color: isDark ? '#a6e2f5' : '#1c1445',
+                    color: isDark ? '#facc15' : '#1a1300',
                   }}
                 />
                 <Typography variant="h6" sx={{ fontWeight: 700, fontSize: '1.1rem' }}>
@@ -809,7 +809,7 @@ export default function SeriesDetailsPageContent() {
               </Typography>
               <Typography
                 variant="caption"
-                sx={{ color: isDark ? '#a6e2f5' : '#1976d2', fontWeight: 700 }}
+                sx={{ color: isDark ? '#facc15' : '#b45309', fontWeight: 700 }}
               >
                 Duration: {playingEpisode.duration || 45} mins
               </Typography>

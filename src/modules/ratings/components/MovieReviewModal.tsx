@@ -447,10 +447,10 @@ export const MovieReviewModal: React.FC<MovieReviewModalProps> = ({
             variant="contained"
             disabled={isSaving}
             sx={{
-              background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+              background: 'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
               color: '#ffffff',
               fontWeight: 600,
-              boxShadow: '0 4px 14px rgba(37,99,235,0.35)',
+              boxShadow: '0 4px 14px rgba(250, 204, 21, 0.35)',
             }}
           >
             {isSaving ? t.saving : t.btnSave}

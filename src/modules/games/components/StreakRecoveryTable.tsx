@@ -139,7 +139,7 @@ export const StreakRecoveryTable: React.FC<StreakRecoveryTableProps> = ({
               >
                 <TableCell
                   sx={{
-                    color: isDark ? '#a6e2f5' : '#1c1445',
+                    color: isDark ? '#facc15' : '#1a1300',
                     fontWeight: 600,
                     fontFamily: 'monospace',
                   }}

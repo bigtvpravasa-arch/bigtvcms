@@ -200,7 +200,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
             cursor: disabled || isUploading ? 'default' : 'pointer',
             transition: 'all 0.2s ease',
             '&:hover': {
-              borderColor: isDark ? '#a6e2f5' : '#1c1445',
+              borderColor: isDark ? '#facc15' : '#1a1300',
               backgroundColor: isDark ? 'rgba(166,226,245,0.06)' : 'rgba(28,20,69,0.04)',
             },
           }}
@@ -210,7 +210,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
               <Typography
                 variant="caption"
                 sx={{
-                  color: isDark ? '#a6e2f5' : '#1c1445',
+                  color: isDark ? '#facc15' : '#1a1300',
                   fontWeight: 600,
                   display: 'block',
                   mb: 1,
@@ -227,7 +227,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
           ) : (
             <>
               <CloudUpload
-                sx={{ fontSize: '2.2rem', color: isDark ? '#a6e2f5' : '#1c1445', mb: 0.5 }}
+                sx={{ fontSize: '2.2rem', color: isDark ? '#facc15' : '#1a1300', mb: 0.5 }}
               />
               <Typography
                 variant="body2"

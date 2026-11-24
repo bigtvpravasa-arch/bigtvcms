@@ -212,8 +212,8 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
                 ? 'rgba(237, 108, 2, 0.2)'
                 : isDark
                   ? 'rgba(166,226,245,0.18)'
-                  : 'rgba(37,99,235,0.12)',
-              color: isFull ? '#ff9800' : isDark ? '#a6e2f5' : '#2563eb',
+                  : 'rgba(234,179,8,0.12)',
+              color: isFull ? '#ff9800' : isDark ? '#facc15' : '#b45309',
             }}
           />
         </Box>
@@ -242,12 +242,14 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
                   : 'rgba(0,0,0,0.1)'
                 : isDark
                   ? 'rgba(166,226,245,0.3)'
-                  : '#2563eb',
-              color: isDark ? '#a6e2f5' : '#2563eb',
-              backgroundColor: isDark ? 'rgba(166,226,245,0.04)' : 'rgba(37,99,235,0.04)',
+                  : isDark
+                    ? '#facc15'
+                    : '#b45309',
+              color: isDark ? '#facc15' : '#b45309',
+              backgroundColor: isDark ? 'rgba(250,204,21,0.08)' : 'rgba(234,179,8,0.06)',
               '&:hover': {
-                borderColor: isDark ? '#a6e2f5' : '#2563eb',
-                backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(37,99,235,0.08)',
+                borderColor: isDark ? '#facc15' : '#b45309',
+                backgroundColor: isDark ? 'rgba(250,204,21,0.12)' : 'rgba(234,179,8,0.08)',
               },
             }}
           >
@@ -278,7 +280,7 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
                 variant="caption"
                 sx={{
                   fontWeight: 700,
-                  color: isDark ? '#a6e2f5' : '#2563eb',
+                  color: isDark ? '#facc15' : '#b45309',
                   display: 'block',
                   mb: 1.5,
                   textTransform: 'uppercase',
@@ -365,9 +367,9 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
                                   setPreviewUrl(imageSrc);
                                 }}
                                 sx={{
-                                  color: '#ffffff',
-                                  backgroundColor: 'rgba(37,99,235,0.9)',
-                                  '&:hover': { backgroundColor: '#2563eb' },
+                                  backgroundColor: '#facc15',
+                                  color: '#1a1300',
+                                  '&:hover': { backgroundColor: '#fde047' },
                                 }}
                               >
                                 <Visibility fontSize="small" />
@@ -427,8 +429,8 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
                               fontWeight: 800,
                               backgroundColor: isDark
                                 ? 'rgba(166,226,245,0.2)'
-                                : 'rgba(37,99,235,0.15)',
-                              color: isDark ? '#a6e2f5' : '#2563eb',
+                                : 'rgba(234,179,8,0.15)',
+                              color: isDark ? '#facc15' : '#b45309',
                             }}
                           />
                         </Box>
@@ -473,7 +475,7 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
         PaperProps={{
           sx: {
             width: { xs: '100%', sm: 680, md: 740 },
-            backgroundColor: isDark ? '#110d29' : '#ffffff',
+            backgroundColor: isDark ? '#161202' : '#ffffff',
             color: isDark ? '#ffffff' : '#1c1445',
             p: 3.5,
             display: 'flex',
@@ -563,7 +565,8 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
               textColor="inherit"
               TabIndicatorProps={{
                 style: {
-                  backgroundColor: activeTab === 0 ? '#2563eb' : '#4caf50',
+                  backgroundColor: activeTab === 0 ? '#facc15' : '#4caf50',
+                  color: activeTab === 0 ? '#1a1300' : '#ffffff',
                   height: 3,
                   borderRadius: 3,
                 },
@@ -572,7 +575,7 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
               <Tab
                 label={
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Tv sx={{ color: '#2563eb' }} />
+                    <Tv sx={{ color: isDark ? '#facc15' : '#b45309' }} />
                     <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
                       {t.bigTvSectionTitle}
                     </Typography>
@@ -582,8 +585,8 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
                       sx={{
                         height: 20,
                         fontWeight: 800,
-                        backgroundColor: isDark ? 'rgba(37,99,235,0.25)' : 'rgba(37,99,235,0.12)',
-                        color: isDark ? '#a6e2f5' : '#2563eb',
+                        backgroundColor: isDark ? 'rgba(250,204,21,0.25)' : 'rgba(234,179,8,0.12)',
+                        color: isDark ? '#facc15' : '#b45309',
                       }}
                     />
                   </Box>
@@ -621,14 +624,14 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
                 'bigTvBanner',
                 'HBanner',
                 t.hBannerLabel,
-                <ViewCarousel sx={{ color: '#2563eb' }} />
+                <ViewCarousel sx={{ color: isDark ? '#facc15' : '#b45309' }} />
               )}
 
               {renderUploadSlotCard(
                 'bigTvBanner',
                 'VBanner',
                 t.vBannerLabel,
-                <FitScreen sx={{ color: '#2563eb' }} />
+                <FitScreen sx={{ color: isDark ? '#facc15' : '#b45309' }} />
               )}
             </Box>
           )}
@@ -663,7 +666,7 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
             gap: 2,
             flexShrink: 0,
             borderTop: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
-            backgroundColor: isDark ? '#110d29' : '#ffffff',
+            backgroundColor: isDark ? '#161202' : '#ffffff',
           }}
         >
           <Button
@@ -691,11 +694,11 @@ export const AdsDynapixDrawer: React.FC<AdsDynapixDrawerProps> = ({
               fontWeight: 800,
               px: 3.5,
               py: 1,
-              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-              color: isDark ? '#1c1445' : '#ffffff',
-              boxShadow: '0 4px 14px rgba(37,99,235,0.3)',
+              backgroundColor: isDark ? '#facc15' : '#1a1300',
+              color: isDark ? '#1a1300' : '#ffffff',
+              boxShadow: '0 4px 14px rgba(250,204,21,0.3)',
               '&:hover': {
-                backgroundColor: isDark ? '#8cd5ed' : '#2d2270',
+                backgroundColor: isDark ? '#fde047' : '#261e05',
               },
             }}
           >

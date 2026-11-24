@@ -55,7 +55,7 @@ export const PostTypeDrawer: React.FC<PostTypeDrawerProps> = ({
       {/* Header */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <Article sx={{ color: isDark ? '#93c5fd' : '#2563eb', fontSize: 28 }} />
+          <Article sx={{ color: isDark ? '#fde047' : '#b45309', fontSize: 28 }} />
           <Typography variant="h6" sx={{ fontWeight: 700 }}>
             {isEditMode ? (t.editPostType ?? 'Edit Post Type') : (t.addPostType ?? 'Add Post Type')}
           </Typography>
@@ -168,12 +168,12 @@ export const PostTypeDrawer: React.FC<PostTypeDrawerProps> = ({
             sx={{
               borderRadius: '12px',
               py: 1.2,
-              backgroundColor: '#2563eb',
-              color: '#ffffff',
+              backgroundColor: '#facc15',
+              color: '#1a1300',
               fontWeight: 600,
-              boxShadow: '0 4px 12px rgba(37,99,235,0.3)',
+              boxShadow: '0 4px 12px rgba(250, 204, 21, 0.3)',
               '&:hover': {
-                backgroundColor: '#1d4ed8',
+                backgroundColor: '#fde047',
               },
             }}
           >

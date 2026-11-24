@@ -42,7 +42,7 @@ export const TicketsTable: React.FC<TicketsTableProps> = ({
     <TableContainer
       component={Paper}
       sx={{
-        backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+        backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
         backdropFilter: isDark ? 'blur(16px)' : 'none',
         borderRadius: 3,
         border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
@@ -191,7 +191,7 @@ export const TicketsTable: React.FC<TicketsTableProps> = ({
                       <IconButton
                         size="small"
                         onClick={() => onEdit(tkt)}
-                        sx={{ color: isDark ? '#93c5fd' : '#2563eb' }}
+                        sx={{ color: isDark ? '#fde047' : '#b45309' }}
                       >
                         <Edit fontSize="small" />
                       </IconButton>

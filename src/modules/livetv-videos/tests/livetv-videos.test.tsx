@@ -1349,9 +1349,24 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
       expect(screen.getAllByText('DNA Daily News')[0]).toBeInTheDocument();
     });
 
-    // Test search filter input change
+    // Test search filter input change and clear filter
     const searchInput = screen.getByPlaceholderText(/Search videos by file name/i);
     fireEvent.change(searchInput, { target: { value: 'news_show_1' } });
+
+    const clearBtn = screen.queryByLabelText(/Clear Filters/i);
+    if (clearBtn) {
+      fireEvent.click(clearBtn);
+    }
+
+    // Test clicking language pills
+    const mlTabBtn = screen.queryByRole('button', { name: /Malayalam \(ml\)/i });
+    if (mlTabBtn) fireEvent.click(mlTabBtn);
+    const enTabBtn = screen.queryByRole('button', { name: /English \(en\)/i });
+    if (enTabBtn) fireEvent.click(enTabBtn);
+    const allTabBtn = screen.queryByRole('button', { name: /All Languages/i });
+    if (allTabBtn) fireEvent.click(allTabBtn);
+    const teTabBtn = screen.queryByRole('button', { name: /Telugu \(te\)/i });
+    if (teTabBtn) fireEvent.click(teTabBtn);
 
     // Test pagination page click if available
     const page2Btn = screen.queryByRole('button', { name: /Go to page 2/i });

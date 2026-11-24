@@ -193,7 +193,7 @@ export const PollModal: React.FC<PollModalProps> = ({ open, poll, isSaving, onCl
                 width: 38,
                 height: 38,
                 borderRadius: '10px',
-                background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                background: 'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -362,7 +362,7 @@ export const PollModal: React.FC<PollModalProps> = ({ open, poll, isSaving, onCl
             variant="contained"
             disabled={isSaving}
             sx={{
-              background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+              background: 'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
               color: '#ffffff',
               fontWeight: 600,
             }}

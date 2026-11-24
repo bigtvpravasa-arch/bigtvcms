@@ -34,10 +34,10 @@ const getRoleStyles = (role: string | undefined, isDark: boolean) => {
     epaper_creator: '#4caf50',
     movie_creator: '#ff9800',
     notification_creator: '#3f51b5',
-    adsdynapic: '#2563eb',
-    ads_dynapic: '#2563eb',
-    adsdynapix: '#2563eb',
-    ads_dynapix: '#2563eb',
+    adsdynapic: '#eab308',
+    ads_dynapic: '#eab308',
+    adsdynapix: '#eab308',
+    ads_dynapix: '#eab308',
     creator: '#00bcd4',
   };
 
@@ -91,7 +91,7 @@ export const UserTable: React.FC<UserTableProps> = ({
   return (
     <Box
       sx={{
-        backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+        backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
         border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
         borderRadius: '20px',
         overflow: 'hidden',
@@ -202,7 +202,7 @@ export const UserTable: React.FC<UserTableProps> = ({
                       fontWeight: 600,
                       fontSize: '0.75rem',
                       backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)',
-                      color: isDark ? '#a6e2f5' : '#1c1445',
+                      color: isDark ? '#facc15' : '#1a1300',
                     }}
                   />
                 </Box>
@@ -324,7 +324,7 @@ export const UserTable: React.FC<UserTableProps> = ({
                     aria-label="Edit creator"
                     onClick={() => handleEditClick(user)}
                     sx={{
-                      color: isDark ? '#a6e2f5' : '#1c1445',
+                      color: isDark ? '#facc15' : '#1a1300',
                       backgroundColor: isDark ? 'rgba(166,226,245,0.08)' : 'rgba(28,20,69,0.06)',
                       borderRadius: '8px',
                       p: 0.6,

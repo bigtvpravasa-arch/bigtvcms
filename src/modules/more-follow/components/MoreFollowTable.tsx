@@ -40,7 +40,7 @@ export const MoreFollowTable: React.FC<MoreFollowTableProps> = ({
   return (
     <Box
       sx={{
-        backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+        backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
         border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
         borderRadius: '20px',
         overflow: 'hidden',
@@ -131,7 +131,7 @@ export const MoreFollowTable: React.FC<MoreFollowTableProps> = ({
                       fontSize: '0.72rem',
                       fontWeight: 700,
                       backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(28,20,69,0.08)',
-                      color: isDark ? '#a6e2f5' : '#1c1445',
+                      color: isDark ? '#facc15' : '#1a1300',
                       borderRadius: '6px',
                     }}
                   />
@@ -148,7 +148,7 @@ export const MoreFollowTable: React.FC<MoreFollowTableProps> = ({
                       height: 42,
                       borderRadius: '10px',
                       backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(28,20,69,0.06)',
-                      color: isDark ? '#a6e2f5' : '#1c1445',
+                      color: isDark ? '#facc15' : '#1a1300',
                     }}
                   >
                     <RssFeed fontSize="small" />
@@ -250,10 +250,10 @@ export const MoreFollowTable: React.FC<MoreFollowTableProps> = ({
                     size="small"
                     sx={{
                       '& .MuiSwitch-switchBase.Mui-checked': {
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                       },
                       '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                        backgroundColor: isDark ? '#facc15' : '#1a1300',
                       },
                     }}
                   />
@@ -265,7 +265,7 @@ export const MoreFollowTable: React.FC<MoreFollowTableProps> = ({
                     size="small"
                     onClick={() => handleEditClick(item)}
                     sx={{
-                      color: isDark ? '#a6e2f5' : '#1c1445',
+                      color: isDark ? '#facc15' : '#1a1300',
                       '&:hover': {
                         backgroundColor: isDark ? 'rgba(166,226,245,0.1)' : 'rgba(28,20,69,0.06)',
                       },

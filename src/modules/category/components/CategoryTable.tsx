@@ -69,7 +69,7 @@ export const CategoryTable: React.FC<CategoryTableProps> = ({
   return (
     <Box
       sx={{
-        backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+        backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
         border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
         borderRadius: '20px',
         overflow: 'hidden',
@@ -228,7 +228,7 @@ export const CategoryTable: React.FC<CategoryTableProps> = ({
                             : 'rgba(0,0,0,0.03)',
                         color: lang.present
                           ? isDark
-                            ? '#a6e2f5'
+                            ? '#facc15'
                             : '#1c1445'
                           : isDark
                             ? 'rgba(255, 255, 255, 0.15)'

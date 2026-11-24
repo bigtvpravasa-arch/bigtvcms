@@ -27,7 +27,7 @@ export default function CreateContentPage() {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        backgroundColor: isDark ? '#161202' : '#ffffff',
         transition: 'all 0.3s ease',
       }}
     >

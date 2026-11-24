@@ -199,7 +199,7 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <NewspaperIcon sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.8rem' }} />
+          <NewspaperIcon sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: '1.8rem' }} />
           <Box>
             <Typography variant="h6" sx={{ fontWeight: 700, fontSize: '1.1rem', lineHeight: 1.2 }}>
               {title}
@@ -221,7 +221,7 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
                 fontWeight: 700,
                 fontSize: '0.8rem',
                 backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.08)',
-                color: isDark ? '#a6e2f5' : '#1c1445',
+                color: isDark ? '#facc15' : '#1a1300',
               }}
             />
           )}
@@ -321,7 +321,7 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
                       size="small"
                       onClick={handleZoomOut}
                       disabled={zoom <= 0.5}
-                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }}
+                      sx={{ color: isDark ? '#facc15' : '#1a1300' }}
                     >
                       <ZoomOut fontSize="small" />
                     </IconButton>
@@ -345,7 +345,7 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
                   <IconButton
                     size="small"
                     onClick={handleResetZoom}
-                    sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }}
+                    sx={{ color: isDark ? '#facc15' : '#1a1300' }}
                   >
                     <RestartAlt fontSize="small" />
                   </IconButton>
@@ -357,7 +357,7 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
                       size="small"
                       onClick={handleZoomIn}
                       disabled={zoom >= 3.0}
-                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }}
+                      sx={{ color: isDark ? '#facc15' : '#1a1300' }}
                     >
                       <ZoomIn fontSize="small" />
                     </IconButton>
@@ -461,7 +461,7 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
                         transition: 'all 0.2s ease',
                         border: isSelected
                           ? isDark
-                            ? '2px solid #a6e2f5'
+                            ? '2px solid #facc15'
                             : '2px solid #1c1445'
                           : isDark
                             ? '1px solid rgba(255,255,255,0.08)'
@@ -503,7 +503,7 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
                             fontWeight: isSelected ? 700 : 500,
                             color: isSelected
                               ? isDark
-                                ? '#a6e2f5'
+                                ? '#facc15'
                                 : '#1c1445'
                               : isDark
                                 ? '#d0caeb'
@@ -520,8 +520,8 @@ export const EpaperReaderDialog: React.FC<EpaperReaderDialogProps> = ({
                               height: '18px',
                               fontSize: '0.65rem',
                               fontWeight: 700,
-                              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                              color: isDark ? '#1c1445' : '#ffffff',
+                              backgroundColor: isDark ? '#facc15' : '#1a1300',
+                              color: isDark ? '#1a1300' : '#ffffff',
                             }}
                           />
                         )}

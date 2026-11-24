@@ -545,7 +545,7 @@ export default function EpapersPage() {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        backgroundColor: isDark ? '#161202' : '#ffffff',
         transition: 'all 0.3s ease',
       }}
     >
@@ -686,9 +686,9 @@ export default function EpapersPage() {
                 borderRadius: '12px',
                 textTransform: 'none',
                 fontWeight: 600,
-                backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                color: isDark ? '#1c1445' : '#ffffff',
-                '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                backgroundColor: isDark ? '#facc15' : '#1a1300',
+                color: isDark ? '#1a1300' : '#ffffff',
+                '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
               }}
             >
               {t.addEpaper}
@@ -701,7 +701,7 @@ export default function EpapersPage() {
           ) : (
             <Box
               sx={{
-                backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+                backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
                 border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
                 borderRadius: '20px',
                 overflow: 'hidden',
@@ -784,7 +784,7 @@ export default function EpapersPage() {
                               backgroundColor: isDark
                                 ? 'rgba(166,226,245,0.12)'
                                 : 'rgba(28,20,69,0.06)',
-                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              color: isDark ? '#facc15' : '#1a1300',
                             }}
                           >
                             {item.id}
@@ -850,7 +850,7 @@ export default function EpapersPage() {
                               backgroundColor: isDark
                                 ? 'rgba(166,226,245,0.15)'
                                 : 'rgba(28,20,69,0.08)',
-                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              color: isDark ? '#facc15' : '#1a1300',
                             }}
                           />
                         </Box>
@@ -875,7 +875,7 @@ export default function EpapersPage() {
                               textTransform: 'none',
                               fontSize: '0.75rem',
                               fontWeight: 600,
-                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              color: isDark ? '#facc15' : '#1a1300',
                             }}
                           >
                             {item.paperImages?.length || 0}
@@ -922,14 +922,14 @@ export default function EpapersPage() {
                           <IconButton
                             size="small"
                             onClick={() => openGallery(item)}
-                            sx={{ color: isDark ? '#a6e2f5' : '#1c1445', mr: 0.5 }}
+                            sx={{ color: isDark ? '#facc15' : '#1a1300', mr: 0.5 }}
                           >
                             <Visibility fontSize="small" />
                           </IconButton>
                           <IconButton
                             size="small"
                             onClick={() => handleEditClick(item)}
-                            sx={{ color: isDark ? '#a6e2f5' : '#1c1445', mr: 0.5 }}
+                            sx={{ color: isDark ? '#facc15' : '#1a1300', mr: 0.5 }}
                           >
                             <Edit fontSize="small" />
                           </IconButton>
@@ -975,8 +975,8 @@ export default function EpapersPage() {
                   },
                   '&.Mui-selected': {
                     backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
-                    color: isDark ? '#a6e2f5' : '#1c1445',
-                    borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                    color: isDark ? '#facc15' : '#1a1300',
+                    borderColor: isDark ? '#facc15' : '#1a1300',
                     '&:hover': {
                       backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.15)',
                     },
@@ -1041,7 +1041,7 @@ export default function EpapersPage() {
           }}
           onClick={() => fileInputRef.current?.click()}
           sx={{
-            border: dragOver ? '2px dashed #2563eb' : '2px dashed rgba(150, 150, 150, 0.4)',
+            border: dragOver ? '2px dashed #facc15' : '2px dashed rgba(150, 150, 150, 0.4)',
             borderRadius: '12px',
             p: 3,
             textAlign: 'center',
@@ -1179,7 +1179,7 @@ export default function EpapersPage() {
               backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#f8fafc',
               mb: 2,
               '&:hover': {
-                borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                borderColor: isDark ? '#facc15' : '#1a1300',
               },
             }}
           >
@@ -1269,9 +1269,9 @@ export default function EpapersPage() {
             onClick={handleSubmitForm}
             sx={{
               borderRadius: '10px',
-              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-              color: isDark ? '#1c1445' : '#ffffff',
-              '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+              backgroundColor: isDark ? '#facc15' : '#1a1300',
+              color: isDark ? '#1a1300' : '#ffffff',
+              '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
             }}
           >
             {isEditMode ? t.updateEpaperBtn : t.saveEpaperBtn}

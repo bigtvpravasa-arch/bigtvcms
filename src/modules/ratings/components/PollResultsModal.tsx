@@ -143,13 +143,13 @@ export const PollResultsModal: React.FC<PollResultsModalProps> = ({ open, data, 
                   borderRadius: '12px',
                   backgroundColor: isUserChoice
                     ? isDark
-                      ? 'rgba(37,99,235,0.15)'
-                      : 'rgba(37,99,235,0.08)'
+                      ? 'rgba(250,204,21,0.15)'
+                      : 'rgba(234,179,8,0.08)'
                     : isDark
                       ? 'rgba(255,255,255,0.02)'
                       : '#ffffff',
                   border: isUserChoice
-                    ? '1.5px solid #2563eb'
+                    ? '1.5px solid #facc15'
                     : isDark
                       ? '1px solid rgba(255,255,255,0.06)'
                       : '1px solid rgba(0,0,0,0.06)',
@@ -176,7 +176,10 @@ export const PollResultsModal: React.FC<PollResultsModalProps> = ({ open, data, 
                       />
                     )}
                   </Box>
-                  <Typography variant="subtitle2" sx={{ fontWeight: 800, color: '#2563eb' }}>
+                  <Typography
+                    variant="subtitle2"
+                    sx={{ fontWeight: 800, color: isDark ? '#facc15' : '#b45309' }}
+                  >
                     {percentage}%
                   </Typography>
                 </Box>
@@ -190,7 +193,7 @@ export const PollResultsModal: React.FC<PollResultsModalProps> = ({ open, data, 
                     backgroundColor: isDark ? 'rgba(255,255,255,0.08)' : '#e2e8f0',
                     '& .MuiLinearProgress-bar': {
                       borderRadius: 4,
-                      background: 'linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%)',
+                      background: 'linear-gradient(90deg, #facc15 0%, #eab308 100%)',
                     },
                   }}
                 />

@@ -87,7 +87,7 @@ export const EventsTable: React.FC<EventsTableProps> = ({
     <TableContainer
       component={Paper}
       sx={{
-        backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+        backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
         backdropFilter: isDark ? 'blur(16px)' : 'none',
         borderRadius: 3,
         border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
@@ -156,7 +156,7 @@ export const EventsTable: React.FC<EventsTableProps> = ({
                       sx={{
                         fontFamily: 'monospace',
                         fontWeight: 600,
-                        color: isDark ? '#818cf8' : '#2563eb',
+                        color: isDark ? '#fde047' : '#b45309',
                       }}
                     >
                       {evt.code}
@@ -265,7 +265,7 @@ export const EventsTable: React.FC<EventsTableProps> = ({
                       <IconButton
                         size="small"
                         onClick={() => onEdit(evt)}
-                        sx={{ color: isDark ? '#93c5fd' : '#2563eb' }}
+                        sx={{ color: isDark ? '#fde047' : '#b45309' }}
                       >
                         <Edit fontSize="small" />
                       </IconButton>

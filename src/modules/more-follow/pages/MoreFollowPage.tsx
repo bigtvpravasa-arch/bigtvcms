@@ -212,7 +212,7 @@ export const MoreFollowPage: React.FC = () => {
                 textAlign: 'center',
                 p: 4,
                 borderRadius: '24px',
-                backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#ffffff',
+                backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#ffffff',
                 border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
                 boxShadow: '0 12px 40px rgba(0,0,0,0.15)',
               }}
@@ -293,7 +293,7 @@ export const MoreFollowPage: React.FC = () => {
                     height: 44,
                     borderRadius: '12px',
                     backgroundColor: isDark ? 'rgba(166,226,245,0.12)' : 'rgba(28,20,69,0.08)',
-                    color: isDark ? '#a6e2f5' : '#1c1445',
+                    color: isDark ? '#facc15' : '#1a1300',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -329,8 +329,8 @@ export const MoreFollowPage: React.FC = () => {
                   borderRadius: '12px',
                   px: 2.5,
                   py: 1.2,
-                  backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                  color: isDark ? '#1c1445' : '#ffffff',
+                  backgroundColor: isDark ? '#facc15' : '#1a1300',
+                  color: isDark ? '#1a1300' : '#ffffff',
                   fontWeight: 700,
                   fontSize: '0.88rem',
                   textTransform: 'none',
@@ -351,7 +351,7 @@ export const MoreFollowPage: React.FC = () => {
                   sx={{
                     p: 2,
                     borderRadius: '16px',
-                    backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+                    backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
                     border: isDark
                       ? '1px solid rgba(255,255,255,0.08)'
                       : '1px solid rgba(0,0,0,0.08)',
@@ -376,7 +376,7 @@ export const MoreFollowPage: React.FC = () => {
                   sx={{
                     p: 2,
                     borderRadius: '16px',
-                    backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+                    backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
                     border: isDark
                       ? '1px solid rgba(255,255,255,0.08)'
                       : '1px solid rgba(0,0,0,0.08)',
@@ -401,7 +401,7 @@ export const MoreFollowPage: React.FC = () => {
                   sx={{
                     p: 2,
                     borderRadius: '16px',
-                    backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+                    backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
                     border: isDark
                       ? '1px solid rgba(255,255,255,0.08)'
                       : '1px solid rgba(0,0,0,0.08)',
@@ -438,14 +438,14 @@ export const MoreFollowPage: React.FC = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Search sx={{ color: isDark ? '#a6e2f5' : '#5c548a' }} />
+                    <Search sx={{ color: isDark ? '#facc15' : '#78350f' }} />
                   </InputAdornment>
                 ),
               }}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   color: isDark ? '#ffffff' : '#1c1445',
-                  backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+                  backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
                   borderRadius: '12px',
                   '& fieldset': {
                     borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
@@ -453,7 +453,7 @@ export const MoreFollowPage: React.FC = () => {
                   '&:hover fieldset': {
                     borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(28,20,69,0.3)',
                   },
-                  '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#1c1445' },
+                  '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#1a1300' },
                 },
               }}
             />
@@ -489,7 +489,7 @@ export const MoreFollowPage: React.FC = () => {
                         color: isDark ? '#ffffff' : '#1c1445',
                       },
                       '& .Mui-selected': {
-                        backgroundColor: isDark ? '#a6e2f5 !important' : '#1c1445 !important',
+                        backgroundColor: isDark ? '#facc15 !important' : '#1c1445 !important',
                         color: isDark ? '#1c1445 !important' : '#ffffff !important',
                         fontWeight: 700,
                       },

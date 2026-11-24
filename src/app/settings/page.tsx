@@ -248,7 +248,7 @@ export default function SettingsPage() {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        backgroundColor: isDark ? '#161202' : '#ffffff',
         transition: 'all 0.3s ease',
       }}
     >
@@ -287,7 +287,7 @@ export default function SettingsPage() {
             <Grid item xs={12} md={6}>
               <Card
                 sx={{
-                  backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#f4f3f8',
+                  backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#f4f3f8',
                   border: isDark
                     ? '1px solid rgba(255, 255, 255, 0.08)'
                     : '1px solid rgba(0, 0, 0, 0.08)',
@@ -296,7 +296,7 @@ export default function SettingsPage() {
               >
                 <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                    <LanguageIcon sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }} />
+                    <LanguageIcon sx={{ color: isDark ? '#facc15' : '#1a1300' }} />
                     <Typography
                       variant="h6"
                       sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}
@@ -352,7 +352,7 @@ export default function SettingsPage() {
                     >
                       <Typography
                         variant="caption"
-                        sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontWeight: 600 }}
+                        sx={{ color: isDark ? '#facc15' : '#1a1300', fontWeight: 600 }}
                       >
                         ✓{' '}
                         {currentLang === 'en'
@@ -373,7 +373,7 @@ export default function SettingsPage() {
             <Grid item xs={12} md={6}>
               <Card
                 sx={{
-                  backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#f4f3f8',
+                  backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#f4f3f8',
                   border: isDark
                     ? '1px solid rgba(255, 255, 255, 0.08)'
                     : '1px solid rgba(0, 0, 0, 0.08)',
@@ -382,7 +382,7 @@ export default function SettingsPage() {
               >
                 <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                    <ColorLens sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }} />
+                    <ColorLens sx={{ color: isDark ? '#facc15' : '#1a1300' }} />
                     <Typography
                       variant="h6"
                       sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}
@@ -409,11 +409,11 @@ export default function SettingsPage() {
                       variant="outlined"
                       onClick={toggleTheme}
                       sx={{
-                        color: isDark ? '#a6e2f5' : '#1c1445',
-                        borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
+                        borderColor: isDark ? '#facc15' : '#1a1300',
                         borderRadius: '12px',
                         '&:hover': {
-                          borderColor: isDark ? '#8cd5ed' : '#110d29',
+                          borderColor: isDark ? '#8cd5ed' : '#161202',
                           backgroundColor: isDark
                             ? 'rgba(166,226,245,0.08)'
                             : 'rgba(28,20,69,0.05)',
@@ -431,7 +431,7 @@ export default function SettingsPage() {
             <Grid item xs={12} md={6}>
               <Card
                 sx={{
-                  backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#f4f3f8',
+                  backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#f4f3f8',
                   border: isDark
                     ? '1px solid rgba(255, 255, 255, 0.08)'
                     : '1px solid rgba(0, 0, 0, 0.08)',
@@ -440,7 +440,7 @@ export default function SettingsPage() {
               >
                 <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                    <Notifications sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }} />
+                    <Notifications sx={{ color: isDark ? '#facc15' : '#1a1300' }} />
                     <Typography
                       variant="h6"
                       sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}
@@ -459,10 +459,10 @@ export default function SettingsPage() {
                           onChange={(e) => setNotificationsEnabled(e.target.checked)}
                           sx={{
                             '& .MuiSwitch-switchBase.Mui-checked': {
-                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              color: isDark ? '#facc15' : '#1a1300',
                             },
                             '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                              backgroundColor: isDark ? '#facc15' : '#1a1300',
                             },
                           }}
                         />
@@ -480,10 +480,10 @@ export default function SettingsPage() {
                           onChange={(e) => setEmailAlerts(e.target.checked)}
                           sx={{
                             '& .MuiSwitch-switchBase.Mui-checked': {
-                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              color: isDark ? '#facc15' : '#1a1300',
                             },
                             '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                              backgroundColor: isDark ? '#facc15' : '#1a1300',
                             },
                           }}
                         />
@@ -503,7 +503,7 @@ export default function SettingsPage() {
             <Grid item xs={12} md={6}>
               <Card
                 sx={{
-                  backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#f4f3f8',
+                  backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#f4f3f8',
                   border: isDark
                     ? '1px solid rgba(255, 255, 255, 0.08)'
                     : '1px solid rgba(0, 0, 0, 0.08)',
@@ -512,7 +512,7 @@ export default function SettingsPage() {
               >
                 <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                    <Security sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }} />
+                    <Security sx={{ color: isDark ? '#facc15' : '#1a1300' }} />
                     <Typography
                       variant="h6"
                       sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}
@@ -531,10 +531,10 @@ export default function SettingsPage() {
                           onChange={(e) => setSoundEnabled(e.target.checked)}
                           sx={{
                             '& .MuiSwitch-switchBase.Mui-checked': {
-                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              color: isDark ? '#facc15' : '#1a1300',
                             },
                             '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                              backgroundColor: isDark ? '#facc15' : '#1a1300',
                             },
                           }}
                         />
@@ -552,10 +552,10 @@ export default function SettingsPage() {
                           onChange={(e) => setTwoFactor(e.target.checked)}
                           sx={{
                             '& .MuiSwitch-switchBase.Mui-checked': {
-                              color: isDark ? '#a6e2f5' : '#1c1445',
+                              color: isDark ? '#facc15' : '#1a1300',
                             },
                             '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-                              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+                              backgroundColor: isDark ? '#facc15' : '#1a1300',
                             },
                           }}
                         />

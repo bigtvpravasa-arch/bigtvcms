@@ -36,7 +36,7 @@ export const ImagePreviewModal: React.FC<ImagePreviewModalProps> = ({
       fullWidth
       PaperProps={{
         sx: {
-          backgroundColor: isDark ? '#110d29' : '#ffffff',
+          backgroundColor: isDark ? '#161202' : '#ffffff',
           color: isDark ? '#ffffff' : '#1c1445',
           borderRadius: '16px',
           overflow: 'hidden',
@@ -56,7 +56,7 @@ export const ImagePreviewModal: React.FC<ImagePreviewModalProps> = ({
         <Typography
           component="span"
           variant="subtitle1"
-          sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#2563eb' }}
+          sx={{ fontWeight: 700, color: isDark ? '#facc15' : '#b45309' }}
         >
           {title}
         </Typography>
@@ -67,7 +67,7 @@ export const ImagePreviewModal: React.FC<ImagePreviewModalProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             size="small"
-            sx={{ color: isDark ? '#a6e2f5' : '#2563eb' }}
+            sx={{ color: isDark ? '#facc15' : '#b45309' }}
           >
             <OpenInNew fontSize="small" />
           </IconButton>
@@ -124,8 +124,8 @@ export const ImagePreviewModal: React.FC<ImagePreviewModalProps> = ({
             borderRadius: '8px',
             textTransform: 'none',
             fontWeight: 600,
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
           }}
         >
           Close

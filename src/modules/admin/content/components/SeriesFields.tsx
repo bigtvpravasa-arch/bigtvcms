@@ -24,7 +24,7 @@ export const SeriesFields: React.FC<SeriesFieldsProps> = ({
         sx={{
           borderRadius: '12px',
           backgroundColor: isDark ? 'rgba(59,130,246,0.12)' : 'rgba(59,130,246,0.08)',
-          color: isDark ? '#a6e2f5' : '#1e3a8a',
+          color: isDark ? '#facc15' : '#1e3a8a',
           border: isDark ? '1px solid rgba(59,130,246,0.25)' : '1px solid rgba(59,130,246,0.2)',
         }}
       >

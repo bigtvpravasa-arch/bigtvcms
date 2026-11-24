@@ -24,7 +24,7 @@ export const AnalyticsPage: React.FC = () => {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        backgroundColor: isDark ? '#110d29' : '#f8fafc',
+        backgroundColor: isDark ? '#161202' : '#f8fafc',
         transition: 'all 0.3s ease',
       }}
     >

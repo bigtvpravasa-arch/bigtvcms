@@ -148,7 +148,7 @@ export const GenerateLevelsModal: React.FC<GenerateLevelsModalProps> = ({
         backgroundColor: isDark ? 'rgba(255,255,255,0.03)' : '#ffffff',
         '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)' },
         '&:hover fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)' },
-        '&.Mui-focused fieldset': { borderColor: isDark ? '#a6e2f5' : '#2563eb' },
+        '&.Mui-focused fieldset': { borderColor: isDark ? '#facc15' : '#b45309' },
       },
     },
   };
@@ -171,7 +171,7 @@ export const GenerateLevelsModal: React.FC<GenerateLevelsModalProps> = ({
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <AutoAwesome sx={{ color: isDark ? '#a6e2f5' : '#2563eb' }} />
+          <AutoAwesome sx={{ color: isDark ? '#facc15' : '#b45309' }} />
           <Typography variant="h6" component="span" fontWeight="bold">
             Auto-Generate Levels ({gameId})
           </Typography>
@@ -337,8 +337,8 @@ export const GenerateLevelsModal: React.FC<GenerateLevelsModalProps> = ({
           variant="contained"
           disabled={loading}
           sx={{
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
             textTransform: 'none',
             borderRadius: '8px',
             fontWeight: 600,

@@ -176,11 +176,11 @@ export const GamesTab: React.FC = () => {
               py: 1,
               px: 2.5,
               '&.Mui-selected': {
-                color: isDark ? '#a6e2f5' : '#2563eb',
+                color: isDark ? '#facc15' : '#b45309',
               },
             },
             '& .MuiTabs-indicator': {
-              backgroundColor: isDark ? '#a6e2f5' : '#2563eb',
+              backgroundColor: isDark ? '#facc15' : '#b45309',
               height: 3,
               borderRadius: '3px 3px 0 0',
             },
@@ -273,9 +273,9 @@ export const GamesTab: React.FC = () => {
                   borderRadius: '12px',
                   textTransform: 'none',
                   fontWeight: 600,
-                  backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                  color: isDark ? '#1c1445' : '#ffffff',
-                  '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                  backgroundColor: isDark ? '#facc15' : '#1a1300',
+                  color: isDark ? '#1a1300' : '#ffffff',
+                  '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
                 }}
               >
                 {t.addGame}
@@ -313,8 +313,8 @@ export const GamesTab: React.FC = () => {
                       borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
                       '&.Mui-selected': {
                         backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
-                        color: isDark ? '#a6e2f5' : '#1c1445',
-                        borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
+                        borderColor: isDark ? '#facc15' : '#1a1300',
                       },
                     },
                   }}
@@ -340,19 +340,19 @@ export const GamesTab: React.FC = () => {
                 sx={{
                   p: 2,
                   borderRadius: '14px',
-                  backgroundColor: isDark ? 'rgba(37, 99, 235, 0.12)' : '#eff6ff',
+                  backgroundColor: isDark ? 'rgba(250, 204, 21, 0.12)' : '#fef9c3',
                   border: isDark ? '1px solid rgba(59, 130, 246, 0.25)' : '1px solid #bfdbfe',
                 }}
               >
                 <Typography
                   variant="caption"
-                  sx={{ color: isDark ? '#93c5fd' : '#1e40af', fontWeight: 600 }}
+                  sx={{ color: isDark ? '#fde047' : '#92400e', fontWeight: 600 }}
                 >
                   {t.totalPlayed || 'Total Played'}
                 </Typography>
                 <Typography
                   variant="h5"
-                  sx={{ color: isDark ? '#bfdbfe' : '#1d4ed8', fontWeight: 800, mt: 0.5 }}
+                  sx={{ color: isDark ? '#fde68a' : '#92400e', fontWeight: 800, mt: 0.5 }}
                 >
                   {levelsAggregateStats.totalPlayed}
                 </Typography>
@@ -555,8 +555,8 @@ export const GamesTab: React.FC = () => {
                   borderRadius: '12px',
                   textTransform: 'none',
                   fontWeight: 600,
-                  borderColor: isDark ? '#a6e2f5' : '#2563eb',
-                  color: isDark ? '#a6e2f5' : '#2563eb',
+                  borderColor: isDark ? '#facc15' : '#b45309',
+                  color: isDark ? '#facc15' : '#b45309',
                 }}
               >
                 {t.autoGenerate}
@@ -585,9 +585,9 @@ export const GamesTab: React.FC = () => {
                   borderRadius: '12px',
                   textTransform: 'none',
                   fontWeight: 600,
-                  backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                  color: isDark ? '#1c1445' : '#ffffff',
-                  '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                  backgroundColor: isDark ? '#facc15' : '#1a1300',
+                  color: isDark ? '#1a1300' : '#ffffff',
+                  '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
                 }}
               >
                 {t.addLevel}
@@ -627,8 +627,8 @@ export const GamesTab: React.FC = () => {
                       borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
                       '&.Mui-selected': {
                         backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
-                        color: isDark ? '#a6e2f5' : '#1c1445',
-                        borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
+                        borderColor: isDark ? '#facc15' : '#1a1300',
                       },
                     },
                   }}
@@ -762,8 +762,8 @@ export const GamesTab: React.FC = () => {
                       borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
                       '&.Mui-selected': {
                         backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
-                        color: isDark ? '#a6e2f5' : '#1c1445',
-                        borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
+                        borderColor: isDark ? '#facc15' : '#1a1300',
                       },
                     },
                   }}

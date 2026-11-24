@@ -168,6 +168,7 @@ export interface UploadedReel {
   durationSeconds: number;
   language?: string;
   lang?: string;
+  language_code?: string;
   brand?: BrandInfo;
   publishing?: PublishingInfo;
   analytics?: AnalyticsInfo;

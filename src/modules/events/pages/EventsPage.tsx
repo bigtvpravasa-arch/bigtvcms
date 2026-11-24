@@ -199,9 +199,10 @@ export const EventsPage: React.FC = () => {
                     py: 1.2,
                     fontWeight: 700,
                     textTransform: 'none',
-                    backgroundColor: '#2563eb',
-                    boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
-                    '&:hover': { backgroundColor: '#1d4ed8' },
+                    backgroundColor: '#facc15',
+                    color: '#1a1300',
+                    boxShadow: '0 4px 14px rgba(250, 204, 21, 0.35)',
+                    '&:hover': { backgroundColor: '#fde047' },
                   }}
                 >
                   {t.addEvent}
@@ -261,9 +262,10 @@ export const EventsPage: React.FC = () => {
                     py: 1.2,
                     fontWeight: 700,
                     textTransform: 'none',
-                    backgroundColor: '#2563eb',
-                    boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
-                    '&:hover': { backgroundColor: '#1d4ed8' },
+                    backgroundColor: '#facc15',
+                    color: '#1a1300',
+                    boxShadow: '0 4px 14px rgba(250, 204, 21, 0.35)',
+                    '&:hover': { backgroundColor: '#fde047' },
                   }}
                 >
                   {t.addTicket}
@@ -314,7 +316,7 @@ export const EventsPage: React.FC = () => {
                   color: isDark ? '#94a3b8' : '#64748b',
                   minHeight: 48,
                   '&.Mui-selected': {
-                    color: isDark ? '#60a5fa' : '#2563eb',
+                    color: isDark ? '#fde047' : '#b45309',
                   },
                 },
               }}
@@ -356,7 +358,7 @@ export const EventsPage: React.FC = () => {
                     <Grid item xs={12} sm={6} md={3}>
                       <Card
                         sx={{
-                          backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+                          backgroundColor: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
                           backdropFilter: isDark ? 'blur(16px)' : 'none',
                           borderRadius: 3,
                           border: isDark
@@ -393,7 +395,7 @@ export const EventsPage: React.FC = () => {
                     <Grid item xs={12} sm={6} md={3}>
                       <Card
                         sx={{
-                          backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+                          backgroundColor: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
                           backdropFilter: isDark ? 'blur(16px)' : 'none',
                           borderRadius: 3,
                           border: isDark
@@ -430,7 +432,7 @@ export const EventsPage: React.FC = () => {
                     <Grid item xs={12} sm={6} md={3}>
                       <Card
                         sx={{
-                          backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+                          backgroundColor: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
                           backdropFilter: isDark ? 'blur(16px)' : 'none',
                           borderRadius: 3,
                           border: isDark
@@ -467,7 +469,7 @@ export const EventsPage: React.FC = () => {
                     <Grid item xs={12} sm={6} md={3}>
                       <Card
                         sx={{
-                          backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+                          backgroundColor: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
                           backdropFilter: isDark ? 'blur(16px)' : 'none',
                           borderRadius: 3,
                           border: isDark

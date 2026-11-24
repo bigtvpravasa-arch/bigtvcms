@@ -271,9 +271,9 @@ export const ReportersPage: React.FC = () => {
   const renderLanguageBadge = (lang?: string) => {
     const code = (lang || 'te').toLowerCase();
     let label = t.teluguBadge;
-    let bg = 'rgba(37, 99, 235, 0.15)';
-    let color = isDark ? '#93c5fd' : '#1d4ed8';
-    let border = isDark ? 'rgba(147, 197, 253, 0.3)' : 'rgba(37, 99, 235, 0.3)';
+    let bg = 'rgba(234, 179, 8, 0.15)';
+    let color = isDark ? '#fde047' : '#92400e';
+    let border = isDark ? 'rgba(250, 204, 21, 0.3)' : 'rgba(234, 179, 8, 0.3)';
 
     if (code === 'ml') {
       label = t.malayalamBadge;
@@ -309,7 +309,7 @@ export const ReportersPage: React.FC = () => {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        backgroundColor: isDark ? '#110d29' : '#f4f3f8',
+        backgroundColor: isDark ? '#161202' : '#f4f3f8',
         transition: 'all 0.3s ease',
       }}
     >
@@ -365,9 +365,9 @@ export const ReportersPage: React.FC = () => {
                     borderRadius: '12px',
                     px: 2.2,
                     py: 0.9,
-                    backgroundColor: '#2563eb',
-                    color: '#ffffff',
-                    boxShadow: '0 4px 12px rgba(37, 99, 235, 0.35)',
+                    backgroundColor: '#facc15',
+                    color: '#1a1300',
+                    boxShadow: '0 4px 12px rgba(250, 204, 21, 0.35)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: 1,
@@ -458,10 +458,10 @@ export const ReportersPage: React.FC = () => {
                 borderRadius: '12px',
                 textTransform: 'none',
                 fontWeight: 600,
-                backgroundColor: '#2563eb',
-                color: '#ffffff',
-                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.4)',
-                '&:hover': { backgroundColor: '#1d4ed8' },
+                backgroundColor: '#facc15',
+                color: '#1a1300',
+                boxShadow: '0 4px 14px rgba(250, 204, 21, 0.4)',
+                '&:hover': { backgroundColor: '#fde047' },
               }}
             >
               {t.addReporter}
@@ -652,7 +652,7 @@ export const ReportersPage: React.FC = () => {
                               size="small"
                               variant="text"
                               onClick={() => handleEditClick(row)}
-                              sx={{ textTransform: 'none', color: isDark ? '#a6e2f5' : '#2563eb' }}
+                              sx={{ textTransform: 'none', color: isDark ? '#facc15' : '#b45309' }}
                             >
                               {t.edit}
                             </Button>
@@ -693,8 +693,8 @@ export const ReportersPage: React.FC = () => {
                     },
                     '&.Mui-selected': {
                       backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
-                      color: isDark ? '#a6e2f5' : '#1c1445',
-                      borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                      color: isDark ? '#facc15' : '#1a1300',
+                      borderColor: isDark ? '#facc15' : '#1a1300',
                       '&:hover': {
                         backgroundColor: isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.15)',
                       },
@@ -731,7 +731,7 @@ export const ReportersPage: React.FC = () => {
         onClose={() => setDeleteConfirmOpen(false)}
         PaperProps={{
           sx: {
-            backgroundColor: isDark ? '#140e36' : '#ffffff',
+            backgroundColor: isDark ? 'rgba(28, 22, 3, 0.96)' : '#ffffff',
             color: isDark ? '#ffffff' : '#1c1445',
             borderRadius: '16px',
           },

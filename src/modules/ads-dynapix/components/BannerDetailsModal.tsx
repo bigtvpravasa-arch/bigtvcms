@@ -48,7 +48,7 @@ export const BannerDetailsModal: React.FC<BannerDetailsModalProps> = ({
       >
         <Typography
           variant="subtitle2"
-          sx={{ fontWeight: 700, color: isDark ? '#a6e2f5' : '#2563eb', mb: 1 }}
+          sx={{ fontWeight: 700, color: isDark ? '#facc15' : '#b45309', mb: 1 }}
         >
           {title}
         </Typography>
@@ -77,12 +77,12 @@ export const BannerDetailsModal: React.FC<BannerDetailsModalProps> = ({
                   clickable
                   size="small"
                   sx={{
-                    backgroundColor: isDark ? 'rgba(37,99,235,0.2)' : 'rgba(37,99,235,0.1)',
+                    backgroundColor: isDark ? 'rgba(250,204,21,0.2)' : 'rgba(234,179,8,0.1)',
                     color: isDark ? '#ffffff' : '#1c1445',
                     fontWeight: 500,
                     fontSize: '0.75rem',
                     '&:hover': {
-                      backgroundColor: isDark ? 'rgba(37,99,235,0.4)' : 'rgba(37,99,235,0.2)',
+                      backgroundColor: isDark ? 'rgba(250,204,21,0.4)' : 'rgba(234,179,8,0.2)',
                     },
                   }}
                 />
@@ -173,7 +173,7 @@ export const BannerDetailsModal: React.FC<BannerDetailsModalProps> = ({
             <Typography
               component="div"
               variant="caption"
-              sx={{ color: isDark ? '#a6e2f5' : '#2563eb', fontWeight: 600 }}
+              sx={{ color: isDark ? '#facc15' : '#b45309', fontWeight: 600 }}
             >
               ID: {banner.id}
             </Typography>
@@ -207,8 +207,8 @@ export const BannerDetailsModal: React.FC<BannerDetailsModalProps> = ({
               borderRadius: '12px',
               textTransform: 'none',
               fontWeight: 600,
-              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-              color: isDark ? '#1c1445' : '#ffffff',
+              backgroundColor: isDark ? '#facc15' : '#1a1300',
+              color: isDark ? '#1a1300' : '#ffffff',
             }}
           >
             Close

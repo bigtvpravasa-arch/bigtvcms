@@ -165,7 +165,7 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
             borderBottom: isDark
               ? '1px solid rgba(255, 255, 255, 0.08)'
               : '1px solid rgba(0, 0, 0, 0.08)',
-            backgroundColor: isDark ? 'rgba(38, 28, 86, 0.2)' : '#fbfbfb',
+            backgroundColor: isDark ? 'rgba(28, 22, 3, 0.2)' : '#fbfbfb',
           }}
         >
           <Tooltip title="Bold">
@@ -436,7 +436,7 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
               sx={{
                 color: isCodeMode
                   ? isDark
-                    ? '#a6e2f5'
+                    ? '#facc15'
                     : '#1c1445'
                   : isDark
                     ? '#d0caeb'
@@ -469,7 +469,7 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
               fontFamily: 'Consolas, Courier New, monospace',
               fontSize: '0.82rem',
               backgroundColor: isDark ? '#1a162c' : '#ffffff',
-              color: isDark ? '#a6e2f5' : '#1c1445',
+              color: isDark ? '#facc15' : '#1a1300',
               resize: 'vertical',
             }}
           />
@@ -497,7 +497,7 @@ export const HtmlEditor: React.FC<HtmlEditorProps> = ({
                 display: 'block',
               },
               '& a': {
-                color: isDark ? '#60a5fa' : '#2563eb',
+                color: isDark ? '#fde047' : '#b45309',
                 textDecoration: 'underline',
                 cursor: 'pointer',
               },

@@ -163,7 +163,7 @@ export const AdsDynapixPage: React.FC = () => {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        backgroundColor: isDark ? '#161202' : '#ffffff',
         transition: 'all 0.3s ease',
       }}
     >
@@ -301,9 +301,9 @@ export const AdsDynapixPage: React.FC = () => {
                     borderRadius: '12px',
                     textTransform: 'none',
                     fontWeight: 700,
-                    backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                    color: isDark ? '#1c1445' : '#ffffff',
-                    '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                    backgroundColor: isDark ? '#facc15' : '#1a1300',
+                    color: isDark ? '#1a1300' : '#ffffff',
+                    '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
                   }}
                 >
                   {t.addBannerBtn}
@@ -345,8 +345,8 @@ export const AdsDynapixPage: React.FC = () => {
                       },
                       '&.Mui-selected': {
                         backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(28,20,69,0.1)',
-                        color: isDark ? '#a6e2f5' : '#1c1445',
-                        borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
+                        borderColor: isDark ? '#facc15' : '#1a1300',
                       },
                     },
                   }}

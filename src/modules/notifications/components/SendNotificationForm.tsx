@@ -175,7 +175,7 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
           borderBottom: isDark
             ? '1px solid rgba(255, 255, 255, 0.08)'
             : '1px solid rgba(0, 0, 0, 0.08)',
-          backgroundColor: isDark ? 'rgba(38, 28, 86, 0.7)' : '#f8f7ff',
+          backgroundColor: isDark ? 'rgba(28, 22, 3, 0.7)' : '#f8f7ff',
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.2 }}>
@@ -443,7 +443,7 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
           borderTop: isDark
             ? '1px solid rgba(255, 255, 255, 0.08)'
             : '1px solid rgba(0, 0, 0, 0.08)',
-          backgroundColor: isDark ? 'rgba(38, 28, 86, 0.5)' : '#fafafa',
+          backgroundColor: isDark ? 'rgba(28, 22, 3, 0.5)' : '#fafafa',
         }}
       >
         <Button
@@ -469,10 +469,10 @@ export const SendNotificationForm: React.FC<SendNotificationFormProps> = ({
             borderRadius: '10px',
             textTransform: 'none',
             fontWeight: 700,
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
             boxShadow: 'none',
-            '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270', boxShadow: 'none' },
+            '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05', boxShadow: 'none' },
           }}
         >
           {loading ? 'Sending...' : t.btnSendNotification || 'Send Notification'}

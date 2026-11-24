@@ -38,7 +38,7 @@ export const PostTypeTable: React.FC<PostTypeTableProps> = ({
   return (
     <Box
       sx={{
-        backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+        backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
         border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
         borderRadius: '20px',
         overflow: 'hidden',
@@ -198,14 +198,14 @@ export const PostTypeTable: React.FC<PostTypeTableProps> = ({
                           onClick={() => handleEditClick(row)}
                           size="small"
                           sx={{
-                            color: isDark ? '#93c5fd' : '#2563eb',
+                            color: isDark ? '#fde047' : '#b45309',
                             backgroundColor: isDark
                               ? 'rgba(59,130,246,0.1)'
-                              : 'rgba(37,99,235,0.08)',
+                              : 'rgba(234,179,8,0.08)',
                             '&:hover': {
                               backgroundColor: isDark
                                 ? 'rgba(59,130,246,0.2)'
-                                : 'rgba(37,99,235,0.15)',
+                                : 'rgba(234,179,8,0.15)',
                             },
                           }}
                         >

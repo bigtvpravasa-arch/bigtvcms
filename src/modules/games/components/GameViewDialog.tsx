@@ -33,7 +33,7 @@ export const GameViewDialog: React.FC<GameViewDialogProps> = ({
 
   const bgModal = isDark ? '#1a1140' : '#ffffff';
   const colorText = isDark ? '#ffffff' : '#1c1445';
-  const colorLabel = isDark ? '#a6e2f5' : '#5c548a';
+  const colorLabel = isDark ? '#facc15' : '#78350f';
 
   return (
     <Dialog
@@ -67,8 +67,8 @@ export const GameViewDialog: React.FC<GameViewDialogProps> = ({
             sx={{
               width: 72,
               height: 72,
-              bgcolor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(37,99,235,0.1)',
-              color: isDark ? '#a6e2f5' : '#2563eb',
+              bgcolor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(234,179,8,0.1)',
+              color: isDark ? '#facc15' : '#b45309',
             }}
           >
             <SportsEsports sx={{ fontSize: 36 }} />
@@ -176,8 +176,8 @@ export const GameViewDialog: React.FC<GameViewDialogProps> = ({
           sx={{
             textTransform: 'none',
             borderRadius: '8px',
-            backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-            color: isDark ? '#1c1445' : '#ffffff',
+            backgroundColor: isDark ? '#facc15' : '#1a1300',
+            color: isDark ? '#1a1300' : '#ffffff',
             fontWeight: 600,
           }}
         >

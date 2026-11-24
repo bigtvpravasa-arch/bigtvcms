@@ -486,7 +486,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
               gap: '0.6rem',
             }}
           >
-            <Activity style={{ color: isDark ? '#a6e2f5' : '#2563eb' }} size={24} />
+            <Activity style={{ color: isDark ? '#facc15' : '#b45309' }} size={24} />
             {t.eventGraphsTitle}
           </h2>
           <p
@@ -508,7 +508,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
               display: 'inline-flex',
               padding: '3px',
               borderRadius: '8px',
-              background: isDark ? 'rgba(38,28,86,0.5)' : '#e2e8f0',
+              background: isDark ? 'rgba(28,22,3,0.5)' : '#e2e8f0',
               border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #cbd5e1',
             }}
           >
@@ -530,7 +530,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
                   cursor: 'pointer',
                   transition: 'all 0.2s',
                   background:
-                    daysWindow === tw.val ? (isDark ? '#2563eb' : '#ffffff') : 'transparent',
+                    daysWindow === tw.val ? (isDark ? '#facc15' : '#ffffff') : 'transparent',
                   color:
                     daysWindow === tw.val
                       ? isDark
@@ -560,7 +560,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
               padding: '7px 14px',
               borderRadius: '8px',
               border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid #cbd5e1',
-              background: isDark ? 'rgba(38,28,86,0.6)' : '#ffffff',
+              background: isDark ? 'rgba(28,22,3,0.6)' : '#ffffff',
               color: isDark ? '#ffffff' : '#0f172a',
               fontSize: '0.825rem',
               fontWeight: 600,
@@ -585,7 +585,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
         {/* Total Catalog Types */}
         <div
           style={{
-            background: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+            background: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
             borderRadius: '12px',
             padding: '1.1rem',
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e2e8f0',
@@ -627,7 +627,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
         {/* Active Events In Window */}
         <div
           style={{
-            background: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+            background: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
             borderRadius: '12px',
             padding: '1.1rem',
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e2e8f0',
@@ -672,7 +672,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
         {/* Total Batch Volume */}
         <div
           style={{
-            background: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+            background: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
             borderRadius: '12px',
             padding: '1.1rem',
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e2e8f0',
@@ -714,7 +714,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
         {/* Top Trending Event */}
         <div
           style={{
-            background: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+            background: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
             borderRadius: '12px',
             padding: '1.1rem',
             border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e2e8f0',
@@ -762,7 +762,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
       {/* Search and Category Filter Toolbar */}
       <div
         style={{
-          background: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+          background: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
           borderRadius: '12px',
           padding: '1rem',
           border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e2e8f0',
@@ -834,7 +834,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
                 type="checkbox"
                 checked={activeOnly}
                 onChange={(e) => setActiveOnly(e.target.checked)}
-                style={{ cursor: 'pointer', accentColor: '#2563eb' }}
+                style={{ cursor: 'pointer', accentColor: isDark ? '#facc15' : '#b45309' }}
               />
               {t.activeEventsCount} ({catalogKpi.activeCount})
             </label>
@@ -883,10 +883,10 @@ export const AnalyticsEventGraphs: React.FC = () => {
                   cursor: 'pointer',
                   background: isSelected
                     ? isDark
-                      ? 'rgba(38,28,86,0.9)'
+                      ? 'rgba(28,22,3,0.9)'
                       : '#eff6ff'
                     : isDark
-                      ? 'rgba(38,28,86,0.2)'
+                      ? 'rgba(28,22,3,0.2)'
                       : '#ffffff',
                   color: isSelected
                     ? isDark
@@ -943,7 +943,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
             padding: '4rem 1rem',
             textAlign: 'center',
             color: isDark ? '#d0caeb' : '#64748b',
-            background: isDark ? 'rgba(38,28,86,0.2)' : '#ffffff',
+            background: isDark ? 'rgba(28,22,3,0.2)' : '#ffffff',
             borderRadius: '12px',
             border: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid #e2e8f0',
           }}
@@ -968,7 +968,7 @@ export const AnalyticsEventGraphs: React.FC = () => {
               <div
                 key={event.eventName}
                 style={{
-                  background: isDark ? 'rgba(38,28,86,0.38)' : '#ffffff',
+                  background: isDark ? 'rgba(28,22,3,0.38)' : '#ffffff',
                   borderRadius: '14px',
                   padding: '1.15rem',
                   border: isDark
@@ -1074,8 +1074,10 @@ export const AnalyticsEventGraphs: React.FC = () => {
                         fontWeight: 700,
                         color: hasHits
                           ? isDark
-                            ? '#a6e2f5'
-                            : '#2563eb'
+                            ? '#facc15'
+                            : isDark
+                              ? '#facc15'
+                              : '#b45309'
                           : isDark
                             ? '#64748b'
                             : '#94a3b8',

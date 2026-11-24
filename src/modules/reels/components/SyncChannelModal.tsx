@@ -127,7 +127,7 @@ export const SyncChannelModal: React.FC<SyncChannelModalProps> = ({
           px: 3,
           py: 2.5,
           borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
-          backgroundColor: isDark ? 'rgba(38,28,86,0.5)' : '#f4f3f8',
+          backgroundColor: isDark ? 'rgba(28,22,3,0.5)' : '#f4f3f8',
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -167,7 +167,7 @@ export const SyncChannelModal: React.FC<SyncChannelModalProps> = ({
           <Typography
             variant="caption"
             sx={{
-              color: isDark ? '#a6e2f5' : '#1c1445',
+              color: isDark ? '#facc15' : '#1a1300',
               fontWeight: 700,
               display: 'block',
               mb: 0.6,
@@ -196,7 +196,7 @@ export const SyncChannelModal: React.FC<SyncChannelModalProps> = ({
           <Typography
             variant="caption"
             sx={{
-              color: isDark ? '#a6e2f5' : '#1c1445',
+              color: isDark ? '#facc15' : '#1a1300',
               fontWeight: 700,
               display: 'block',
               mb: 0.6,
@@ -218,10 +218,10 @@ export const SyncChannelModal: React.FC<SyncChannelModalProps> = ({
                 borderColor: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.15)',
               },
               '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                borderColor: isDark ? '#facc15' : '#1a1300',
               },
               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                borderColor: isDark ? '#facc15' : '#1a1300',
               },
               '& .MuiSelect-icon': {
                 color: isDark ? '#d0caeb' : '#5c548a',
@@ -248,7 +248,7 @@ export const SyncChannelModal: React.FC<SyncChannelModalProps> = ({
           <Typography
             variant="caption"
             sx={{
-              color: isDark ? '#a6e2f5' : '#1c1445',
+              color: isDark ? '#facc15' : '#1a1300',
               fontWeight: 700,
               display: 'block',
               mb: 0.6,
@@ -281,7 +281,7 @@ export const SyncChannelModal: React.FC<SyncChannelModalProps> = ({
           py: 2,
           gap: 1.5,
           borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
-          backgroundColor: isDark ? 'rgba(38,28,86,0.3)' : '#fafafa',
+          backgroundColor: isDark ? 'rgba(28,22,3,0.3)' : '#fafafa',
         }}
       >
         <Button

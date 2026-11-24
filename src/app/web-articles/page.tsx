@@ -457,7 +457,7 @@ export default function WebArticlesPage() {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        backgroundColor: isDark ? '#110d29' : '#ffffff',
+        backgroundColor: isDark ? '#161202' : '#ffffff',
         transition: 'all 0.3s ease',
       }}
     >
@@ -508,7 +508,7 @@ export default function WebArticlesPage() {
           ) : viewingPost ? (
             <Box
               sx={{
-                backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#ffffff',
+                backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#ffffff',
                 border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
                 borderRadius: '20px',
                 p: 3,
@@ -537,7 +537,7 @@ export default function WebArticlesPage() {
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: 0.5,
-                      color: '#2563eb',
+                      color: isDark ? '#facc15' : '#b45309',
                       textDecoration: 'none',
                     }}
                   >
@@ -563,7 +563,7 @@ export default function WebArticlesPage() {
                 }}
               >
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                  <WebIcon sx={{ fontSize: 28, color: '#2563eb' }} />
+                  <WebIcon sx={{ fontSize: 28, color: isDark ? '#facc15' : '#b45309' }} />
                   <Typography
                     variant="h6"
                     sx={{ fontWeight: 700, color: isDark ? '#ffffff' : '#1c1445' }}
@@ -574,8 +574,10 @@ export default function WebArticlesPage() {
                     label={`${filteredPosts.length}`}
                     size="small"
                     sx={{
-                      backgroundColor: isDark ? 'rgba(37, 99, 235, 0.2)' : 'rgba(37, 99, 235, 0.1)',
-                      color: '#2563eb',
+                      backgroundColor: isDark
+                        ? 'rgba(250, 204, 21, 0.2)'
+                        : 'rgba(234, 179, 8, 0.1)',
+                      color: isDark ? '#facc15' : '#b45309',
                       fontWeight: 700,
                     }}
                   />
@@ -610,7 +612,7 @@ export default function WebArticlesPage() {
                       backgroundColor:
                         selectedSourceLang === 'te'
                           ? isDark
-                            ? '#a6e2f5'
+                            ? '#facc15'
                             : '#1c1445'
                           : isDark
                             ? 'rgba(255,255,255,0.04)'
@@ -660,7 +662,7 @@ export default function WebArticlesPage() {
                       backgroundColor:
                         selectedSourceLang === 'ml'
                           ? isDark
-                            ? '#a6e2f5'
+                            ? '#facc15'
                             : '#1c1445'
                           : isDark
                             ? 'rgba(255,255,255,0.04)'
@@ -708,7 +710,7 @@ export default function WebArticlesPage() {
                   flexWrap: 'wrap',
                   p: 2,
                   borderRadius: '16px',
-                  backgroundColor: isDark ? 'rgba(38, 28, 86, 0.25)' : '#f8fafc',
+                  backgroundColor: isDark ? 'rgba(28, 22, 3, 0.25)' : '#f8fafc',
                   border: isDark
                     ? '1px solid rgba(255,255,255,0.06)'
                     : '1px solid rgba(0,0,0,0.06)',
@@ -781,8 +783,8 @@ export default function WebArticlesPage() {
                     px: 2.5,
                     mb: 2,
                     borderRadius: '12px',
-                    backgroundColor: isDark ? 'rgba(37, 99, 235, 0.25)' : 'rgba(37, 99, 235, 0.1)',
-                    border: '1px solid rgba(37, 99, 235, 0.3)',
+                    backgroundColor: isDark ? 'rgba(250, 204, 21, 0.25)' : 'rgba(234, 179, 8, 0.1)',
+                    border: '1px solid rgba(250, 204, 21, 0.3)',
                   }}
                 >
                   <Typography
@@ -815,7 +817,7 @@ export default function WebArticlesPage() {
                     py: 8,
                     px: 2,
                     borderRadius: '16px',
-                    backgroundColor: isDark ? 'rgba(38, 28, 86, 0.2)' : '#f8fafc',
+                    backgroundColor: isDark ? 'rgba(28, 22, 3, 0.2)' : '#f8fafc',
                     border: isDark
                       ? '1px dashed rgba(255,255,255,0.1)'
                       : '1px dashed rgba(0,0,0,0.1)',
@@ -834,7 +836,7 @@ export default function WebArticlesPage() {
                     border: isDark
                       ? '1px solid rgba(255,255,255,0.08)'
                       : '1px solid rgba(0,0,0,0.08)',
-                    backgroundColor: isDark ? 'rgba(38, 28, 86, 0.25)' : '#ffffff',
+                    backgroundColor: isDark ? 'rgba(28, 22, 3, 0.25)' : '#ffffff',
                   }}
                 >
                   {/* Table Header */}
@@ -849,7 +851,7 @@ export default function WebArticlesPage() {
                       borderBottom: isDark
                         ? '1px solid rgba(255,255,255,0.08)'
                         : '1px solid rgba(0,0,0,0.08)',
-                      backgroundColor: isDark ? 'rgba(38, 28, 86, 0.4)' : '#f1f5f9',
+                      backgroundColor: isDark ? 'rgba(28, 22, 3, 0.4)' : '#f1f5f9',
                       alignItems: 'center',
                     }}
                   >
@@ -899,8 +901,8 @@ export default function WebArticlesPage() {
                             : '1px solid rgba(0,0,0,0.05)',
                           backgroundColor: isSelected
                             ? isDark
-                              ? 'rgba(37, 99, 235, 0.15)'
-                              : 'rgba(37, 99, 235, 0.05)'
+                              ? 'rgba(250, 204, 21, 0.15)'
+                              : 'rgba(234, 179, 8, 0.05)'
                             : 'transparent',
                           '&:hover': {
                             backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.02)',
@@ -993,7 +995,7 @@ export default function WebArticlesPage() {
                               rel="noopener noreferrer"
                               sx={{
                                 fontSize: '0.8rem',
-                                color: '#2563eb',
+                                color: isDark ? '#facc15' : '#b45309',
                                 display: 'inline-flex',
                                 alignItems: 'center',
                                 gap: 0.5,

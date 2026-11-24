@@ -91,7 +91,7 @@ export default function AppConfigPage() {
               borderRadius: '20px',
               mb: 3.5,
               background: isDark
-                ? 'linear-gradient(135deg, rgba(38,28,86,0.85) 0%, rgba(20,14,48,0.95) 100%)'
+                ? 'linear-gradient(135deg, rgba(28,22,3,0.85) 0%, rgba(20,14,48,0.95) 100%)'
                 : 'linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%)',
               border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.06)',
               boxShadow: isDark ? '0 12px 32px rgba(0,0,0,0.3)' : '0 6px 20px rgba(0,0,0,0.04)',
@@ -103,12 +103,12 @@ export default function AppConfigPage() {
                   width: 52,
                   height: 52,
                   borderRadius: '16px',
-                  background: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)',
+                  background: 'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#ffffff',
-                  boxShadow: '0 8px 20px rgba(37,99,235,0.35)',
+                  color: '#1a1300',
+                  boxShadow: '0 8px 20px rgba(250, 204, 21, 0.35)',
                 }}
               >
                 <Tune sx={{ fontSize: 30 }} />
@@ -140,7 +140,7 @@ export default function AppConfigPage() {
                     sx={{
                       height: '100%',
                       borderRadius: '16px',
-                      backgroundColor: isDark ? 'rgba(38,28,86,0.45)' : '#ffffff',
+                      backgroundColor: isDark ? 'rgba(28,22,3,0.45)' : '#ffffff',
                       border: isDark
                         ? '1px solid rgba(255,255,255,0.08)'
                         : '1px solid rgba(0,0,0,0.08)',

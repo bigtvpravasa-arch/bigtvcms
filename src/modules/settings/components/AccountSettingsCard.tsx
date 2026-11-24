@@ -172,7 +172,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
   return (
     <Card
       sx={{
-        backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#f4f3f8',
+        backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#f4f3f8',
         border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
         borderRadius: '16px',
         transition: 'all 0.3s ease',
@@ -184,7 +184,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
         sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <PersonOutline sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }} />
+          <PersonOutline sx={{ color: isDark ? '#facc15' : '#1a1300' }} />
           <Typography variant="h6" sx={{ color: isDark ? '#ffffff' : '#1c1445', fontWeight: 600 }}>
             {t.accountTitle}
           </Typography>
@@ -225,7 +225,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                 startAdornment: (
                   <InputAdornment position="start">
                     <PersonOutline
-                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }}
+                      sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: '1.2rem' }}
                     />
                   </InputAdornment>
                 ),
@@ -239,7 +239,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                     borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)',
                   },
                   '&:hover fieldset': {
-                    borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                    borderColor: isDark ? '#facc15' : '#1a1300',
                   },
                 },
               }}
@@ -261,7 +261,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                 startAdornment: (
                   <InputAdornment position="start">
                     <LockOutlined
-                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }}
+                      sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: '1.2rem' }}
                     />
                   </InputAdornment>
                 ),
@@ -271,7 +271,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                       aria-label="toggle current password visibility"
                       onClick={() => setShowCurrentPassword((prev) => !prev)}
                       edge="end"
-                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }}
+                      sx={{ color: isDark ? '#facc15' : '#1a1300' }}
                     >
                       {showCurrentPassword ? (
                         <VisibilityOff fontSize="small" />
@@ -291,7 +291,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                     borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)',
                   },
                   '&:hover fieldset': {
-                    borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                    borderColor: isDark ? '#facc15' : '#1a1300',
                   },
                 },
               }}
@@ -313,7 +313,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                 startAdornment: (
                   <InputAdornment position="start">
                     <LockOutlined
-                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }}
+                      sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: '1.2rem' }}
                     />
                   </InputAdornment>
                 ),
@@ -323,7 +323,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                       aria-label="toggle new password visibility"
                       onClick={() => setShowNewPassword((prev) => !prev)}
                       edge="end"
-                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }}
+                      sx={{ color: isDark ? '#facc15' : '#1a1300' }}
                     >
                       {showNewPassword ? (
                         <VisibilityOff fontSize="small" />
@@ -343,7 +343,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                     borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)',
                   },
                   '&:hover fieldset': {
-                    borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                    borderColor: isDark ? '#facc15' : '#1a1300',
                   },
                 },
               }}
@@ -365,7 +365,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                 startAdornment: (
                   <InputAdornment position="start">
                     <LockOutlined
-                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.2rem' }}
+                      sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: '1.2rem' }}
                     />
                   </InputAdornment>
                 ),
@@ -375,7 +375,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                       aria-label="toggle confirm password visibility"
                       onClick={() => setShowConfirmPassword((prev) => !prev)}
                       edge="end"
-                      sx={{ color: isDark ? '#a6e2f5' : '#1c1445' }}
+                      sx={{ color: isDark ? '#facc15' : '#1a1300' }}
                     >
                       {showConfirmPassword ? (
                         <VisibilityOff fontSize="small" />
@@ -395,7 +395,7 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
                     borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)',
                   },
                   '&:hover fieldset': {
-                    borderColor: isDark ? '#a6e2f5' : '#1c1445',
+                    borderColor: isDark ? '#facc15' : '#1a1300',
                   },
                 },
               }}
@@ -411,8 +411,8 @@ export const AccountSettingsCard: React.FC<AccountSettingsCardProps> = ({ isDark
             startIcon={<SaveIcon />}
             sx={{
               borderRadius: '12px',
-              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-              color: isDark ? '#110d29' : '#ffffff',
+              backgroundColor: isDark ? '#facc15' : '#1a1300',
+              color: isDark ? '#161202' : '#ffffff',
               fontWeight: 600,
               textTransform: 'none',
               px: 3,

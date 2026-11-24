@@ -113,7 +113,7 @@ export const MoviesDrawer: React.FC<MoviesDrawerProps> = ({
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <LocalMovies sx={{ color: isDark ? '#a6e2f5' : '#1c1445', fontSize: '1.5rem' }} />
+          <LocalMovies sx={{ color: isDark ? '#facc15' : '#1a1300', fontSize: '1.5rem' }} />
           <Typography variant="h6" sx={{ fontWeight: 700 }}>
             {isEditMode ? 'Edit Movie Record' : 'Create New Content'}
           </Typography>
@@ -430,9 +430,9 @@ export const MoviesDrawer: React.FC<MoviesDrawerProps> = ({
                 borderRadius: '10px',
                 textTransform: 'none',
                 fontWeight: 600,
-                backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                color: isDark ? '#1c1445' : '#ffffff',
-                '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                backgroundColor: isDark ? '#facc15' : '#1a1300',
+                color: isDark ? '#1a1300' : '#ffffff',
+                '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
               }}
             >
               {isEditMode ? 'Update Movie' : 'Create Movie'}

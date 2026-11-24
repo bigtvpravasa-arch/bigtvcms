@@ -116,9 +116,15 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
       fullWidth
       PaperProps={{
         sx: {
-          backgroundColor: isDark ? '#140e36' : '#ffffff',
-          color: isDark ? '#ffffff' : '#1c1445',
+          backgroundColor: isDark ? 'rgba(28, 22, 3, 0.96)' : '#ffffff',
+          color: isDark ? '#ffffff' : '#1a1300',
+          border: isDark
+            ? '1px solid rgba(250, 204, 21, 0.25)'
+            : '1px solid rgba(217, 119, 6, 0.2)',
           borderRadius: '20px',
+          boxShadow: isDark
+            ? '0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(234, 179, 8, 0.15)'
+            : '0 10px 40px rgba(0, 0, 0, 0.1)',
         },
       }}
     >
@@ -129,7 +135,7 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
         <IconButton
           onClick={onClose}
           disabled={isSubmitting}
-          sx={{ color: isDark ? '#ffffff' : '#1c1445' }}
+          sx={{ color: isDark ? '#ffffff' : '#1a1300' }}
         >
           <Close />
         </IconButton>
@@ -149,7 +155,9 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
             }}
             sx={{
               '& .MuiOutlinedInput-root': {
-                '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.2)' : undefined },
+                '& fieldset': {
+                  borderColor: isDark ? 'rgba(250, 204, 21, 0.25)' : 'rgba(217, 119, 6, 0.25)',
+                },
               },
             }}
           />
@@ -167,7 +175,9 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
             }}
             sx={{
               '& .MuiOutlinedInput-root': {
-                '& fieldset': { borderColor: isDark ? 'rgba(255,255,255,0.1)' : undefined },
+                '& fieldset': {
+                  borderColor: isDark ? 'rgba(250, 204, 21, 0.15)' : 'rgba(217, 119, 6, 0.15)',
+                },
               },
             }}
           />
@@ -186,19 +196,22 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
               onChange={(e) => setLanguage(e.target.value as TagLanguage)}
               disabled={isSubmitting || effectiveAllowed.length === 1}
               sx={{
-                color: isDark ? '#ffffff' : '#1c1445',
+                color: isDark ? '#ffffff' : '#1a1300',
                 '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: isDark ? 'rgba(255,255,255,0.2)' : undefined,
+                  borderColor: isDark ? 'rgba(250, 204, 21, 0.25)' : 'rgba(217, 119, 6, 0.25)',
                 },
                 '& .MuiSvgIcon-root': {
-                  color: isDark ? '#ffffff' : undefined,
+                  color: isDark ? '#facc15' : undefined,
                 },
               }}
               MenuProps={{
                 PaperProps: {
                   sx: {
-                    backgroundColor: isDark ? '#1a1340' : '#ffffff',
-                    color: isDark ? '#ffffff' : '#1c1445',
+                    backgroundColor: isDark ? 'rgba(28, 22, 3, 0.96)' : '#ffffff',
+                    color: isDark ? '#ffffff' : '#1a1300',
+                    border: isDark
+                      ? '1px solid rgba(250, 204, 21, 0.25)'
+                      : '1px solid rgba(217, 119, 6, 0.2)',
                   },
                 },
               }}
@@ -295,9 +308,23 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
           onClick={handleSubmit}
           variant="contained"
           disabled={isSubmitting}
-          sx={{ backgroundColor: '#2563eb', '&:hover': { backgroundColor: '#1d4ed8' } }}
+          sx={{
+            background: 'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
+            color: '#1a1300',
+            fontWeight: 700,
+            borderRadius: '10px',
+            boxShadow: '0 4px 15px rgba(234, 179, 8, 0.35)',
+            '&:hover': {
+              background: 'linear-gradient(135deg, #fde047 0%, #d97706 100%)',
+              boxShadow: '0 6px 20px rgba(234, 179, 8, 0.5)',
+            },
+          }}
         >
-          {isSubmitting ? <CircularProgress size={24} /> : t.save || 'Save'}
+          {isSubmitting ? (
+            <CircularProgress size={24} sx={{ color: '#1a1300' }} />
+          ) : (
+            t.save || 'Save'
+          )}
         </Button>
       </DialogActions>
     </Dialog>

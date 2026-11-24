@@ -398,7 +398,7 @@ export const ContentForm: React.FC<ContentFormProps> = ({
   return (
     <Box
       sx={{
-        backgroundColor: isDark ? 'rgba(38, 28, 86, 0.35)' : '#ffffff',
+        backgroundColor: isDark ? 'rgba(28, 22, 3, 0.35)' : '#ffffff',
         border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
         borderRadius: '20px',
         p: { xs: 2.5, md: 4 },
@@ -427,15 +427,15 @@ export const ContentForm: React.FC<ContentFormProps> = ({
               color: isDark ? '#d0caeb' : '#5c548a',
               minHeight: '48px',
               px: { xs: 1.5, sm: 2.5 },
-              '&.Mui-selected': { color: isDark ? '#a6e2f5' : '#1c1445' },
+              '&.Mui-selected': { color: isDark ? '#facc15' : '#1a1300' },
             },
             '& .MuiTabs-indicator': {
-              backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
+              backgroundColor: isDark ? '#facc15' : '#1a1300',
               height: '3px',
               borderRadius: '3px',
             },
             '& .MuiTabs-scrollButtons': {
-              color: isDark ? '#a6e2f5' : '#1c1445',
+              color: isDark ? '#facc15' : '#1a1300',
             },
           }}
         >
@@ -780,9 +780,9 @@ export const ContentForm: React.FC<ContentFormProps> = ({
                   textTransform: 'none',
                   fontWeight: 700,
                   fontSize: '0.95rem',
-                  backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                  color: isDark ? '#1c1445' : '#ffffff',
-                  '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                  backgroundColor: isDark ? '#facc15' : '#1a1300',
+                  color: isDark ? '#1a1300' : '#ffffff',
+                  '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
                 }}
               >
                 {isSubmitting ? 'Saving...' : t.saveMovie}
@@ -1126,9 +1126,9 @@ export const ContentForm: React.FC<ContentFormProps> = ({
                   textTransform: 'none',
                   fontWeight: 700,
                   fontSize: '0.95rem',
-                  backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                  color: isDark ? '#1c1445' : '#ffffff',
-                  '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                  backgroundColor: isDark ? '#facc15' : '#1a1300',
+                  color: isDark ? '#1a1300' : '#ffffff',
+                  '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
                 }}
               >
                 {isSubmitting ? 'Saving...' : t.saveSeries}
@@ -1163,9 +1163,9 @@ export const ContentForm: React.FC<ContentFormProps> = ({
                   textTransform: 'none',
                   fontWeight: 700,
                   fontSize: '0.95rem',
-                  backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                  color: isDark ? '#1c1445' : '#ffffff',
-                  '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                  backgroundColor: isDark ? '#facc15' : '#1a1300',
+                  color: isDark ? '#1a1300' : '#ffffff',
+                  '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
                 }}
               >
                 {isSubmitting ? 'Saving...' : t.saveEpisode}
@@ -1225,9 +1225,9 @@ export const ContentForm: React.FC<ContentFormProps> = ({
                   textTransform: 'none',
                   fontWeight: 700,
                   fontSize: '0.95rem',
-                  backgroundColor: isDark ? '#a6e2f5' : '#1c1445',
-                  color: isDark ? '#1c1445' : '#ffffff',
-                  '&:hover': { backgroundColor: isDark ? '#8cd5ed' : '#2d2270' },
+                  backgroundColor: isDark ? '#facc15' : '#1a1300',
+                  color: isDark ? '#1a1300' : '#ffffff',
+                  '&:hover': { backgroundColor: isDark ? '#fde047' : '#261e05' },
                 }}
               >
                 {isSubmitting ? 'Saving...' : t.saveTrailer}

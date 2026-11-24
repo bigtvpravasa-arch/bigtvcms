@@ -303,7 +303,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
     <>
       <Box
         sx={{
-          backgroundColor: isDark ? 'rgba(38,28,86,0.35)' : '#ffffff',
+          backgroundColor: isDark ? 'rgba(28,22,3,0.35)' : '#ffffff',
           border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
           borderRadius: '20px',
           overflow: 'hidden',
@@ -484,7 +484,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                         fontWeight: 700,
                         fontSize: '0.72rem',
                         backgroundColor: isDark ? 'rgba(166,226,245,0.12)' : 'rgba(28,20,69,0.08)',
-                        color: isDark ? '#a6e2f5' : '#1c1445',
+                        color: isDark ? '#facc15' : '#1a1300',
                         border: `1px solid ${isDark ? 'rgba(166,226,245,0.25)' : 'rgba(28,20,69,0.15)'}`,
                       }}
                     />
@@ -495,7 +495,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                       {activeTab === 'series' ? (
                         <Layers
-                          sx={{ fontSize: '0.9rem', color: isDark ? '#a6e2f5' : '#1c1445' }}
+                          sx={{ fontSize: '0.9rem', color: isDark ? '#facc15' : '#1a1300' }}
                         />
                       ) : (
                         <PlayArrow
@@ -538,7 +538,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                         size="small"
                         onClick={() => handleViewClick(movie)}
                         sx={{
-                          color: isDark ? '#a6e2f5' : '#1976d2',
+                          color: isDark ? '#facc15' : '#b45309',
                           backgroundColor: isDark
                             ? 'rgba(166,226,245,0.1)'
                             : 'rgba(25,118,210,0.08)',
@@ -669,7 +669,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                     fontWeight: 700,
                     fontSize: '0.75rem',
                     backgroundColor: isDark ? 'rgba(166,226,245,0.15)' : 'rgba(25,118,210,0.1)',
-                    color: isDark ? '#a6e2f5' : '#1976d2',
+                    color: isDark ? '#facc15' : '#b45309',
                   }}
                 />
                 <Chip
@@ -820,7 +820,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                   </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                  <AccessTime sx={{ color: isDark ? '#a6e2f5' : '#1976d2', fontSize: '1rem' }} />
+                  <AccessTime sx={{ color: isDark ? '#facc15' : '#b45309', fontSize: '1rem' }} />
                   <Typography
                     variant="body2"
                     sx={{ fontWeight: 600, color: isDark ? '#d0caeb' : '#555' }}
@@ -831,7 +831,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                 {selectedMovie.releaseDate && (
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     <CalendarToday
-                      sx={{ color: isDark ? '#a6e2f5' : '#1976d2', fontSize: '1rem' }}
+                      sx={{ color: isDark ? '#facc15' : '#b45309', fontSize: '1rem' }}
                     />
                     <Typography
                       variant="body2"
@@ -855,7 +855,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
               <Box sx={{ mb: 3 }}>
                 <Typography
                   variant="subtitle2"
-                  sx={{ fontWeight: 700, mb: 0.5, color: isDark ? '#a6e2f5' : '#1976d2' }}
+                  sx={{ fontWeight: 700, mb: 0.5, color: isDark ? '#facc15' : '#b45309' }}
                 >
                   {tView.description}
                 </Typography>
@@ -883,7 +883,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                 <Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 0.8 }}>
                     <CategoryIcon
-                      sx={{ fontSize: '0.95rem', color: isDark ? '#a6e2f5' : '#1976d2' }}
+                      sx={{ fontSize: '0.95rem', color: isDark ? '#facc15' : '#b45309' }}
                     />
                     <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: '0.85rem' }}>
                       {tView.genres}
@@ -901,7 +901,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                           backgroundColor: isDark
                             ? 'rgba(166,226,245,0.12)'
                             : 'rgba(25,118,210,0.08)',
-                          color: isDark ? '#a6e2f5' : '#1976d2',
+                          color: isDark ? '#facc15' : '#b45309',
                         }}
                       />
                     ))}
@@ -911,7 +911,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                 <Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 0.8 }}>
                     <LanguageIcon
-                      sx={{ fontSize: '0.95rem', color: isDark ? '#a6e2f5' : '#1976d2' }}
+                      sx={{ fontSize: '0.95rem', color: isDark ? '#facc15' : '#b45309' }}
                     />
                     <Typography variant="subtitle2" sx={{ fontWeight: 700, fontSize: '0.85rem' }}>
                       {tView.languages}
@@ -950,7 +950,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                       }}
                     >
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <Tv sx={{ fontSize: '1.1rem', color: isDark ? '#a6e2f5' : '#1976d2' }} />
+                        <Tv sx={{ fontSize: '1.1rem', color: isDark ? '#facc15' : '#b45309' }} />
                         <Typography
                           variant="subtitle2"
                           sx={{
@@ -1012,7 +1012,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                                     ? 'rgba(255,255,255,0.04)'
                                     : '#f8f7ff',
                                 border: isSelected
-                                  ? `2px solid ${isDark ? '#a6e2f5' : '#1976d2'}`
+                                  ? `2px solid ${isDark ? '#facc15' : '#b45309'}`
                                   : isDark
                                     ? '1px solid rgba(255,255,255,0.08)'
                                     : '1px solid rgba(0,0,0,0.08)',
@@ -1022,7 +1022,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                                 '&:hover': {
                                   transform: 'translateY(-3px)',
                                   boxShadow: '0 8px 20px rgba(0,0,0,0.2)',
-                                  borderColor: isDark ? '#a6e2f5' : '#1976d2',
+                                  borderColor: isDark ? '#facc15' : '#b45309',
                                 },
                               }}
                             >
@@ -1073,7 +1073,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                                     fontWeight: 800,
                                     fontSize: '0.68rem',
                                     backgroundColor: 'rgba(0,0,0,0.75)',
-                                    color: '#a6e2f5',
+                                    color: '#facc15',
                                     backdropFilter: 'blur(4px)',
                                   }}
                                 />
@@ -1098,7 +1098,7 @@ export const MoviesTable: React.FC<MoviesTableProps> = ({
                               {/* Episode Duration */}
                               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                                 <AccessTime
-                                  sx={{ fontSize: '0.8rem', color: isDark ? '#a6e2f5' : '#1976d2' }}
+                                  sx={{ fontSize: '0.8rem', color: isDark ? '#facc15' : '#b45309' }}
                                 />
                                 <Typography
                                   variant="caption"

@@ -77,29 +77,33 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
   const [actionInfo, setActionInfo] = useState<string | null>(null);
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [simulatedTime, setSimulatedTime] = useState('');
   const [page, setPage] = useState(1);
   const [rowsPerPage] = useState(10);
 
   // Modals state
   const [createTagModalOpen, setCreateTagModalOpen] = useState(false);
   const [editTagModalOpen, setEditTagModalOpen] = useState(false);
+  const [timingModalOpen, setTimingModalOpen] = useState(false);
   const [playerModalOpen, setPlayerModalOpen] = useState(false);
 
   const [activeTagForEdit, setActiveTagForEdit] = useState<VideoTag | null>(null);
+  const [activeTagForTiming, setActiveTagForTiming] = useState<VideoTag | null>(null);
   const [activeVideoForPlayer, setActiveVideoForPlayer] = useState<TagVideo | null>(null);
 
   const [editVideoModalOpen, setEditVideoModalOpen] = useState(false);
   const [activeVideoForEdit, setActiveVideoForEdit] = useState<TagVideo | null>(null);
 
-  // 1. Fetch tags for current language
+  // 1. Fetch tags for current language (with optional simulated time preview)
   const fetchTags = useCallback(
-    async (lang: LanguageCode = selectedLanguage) => {
+    async (lang: LanguageCode = selectedLanguage, time?: string) => {
       setLoading(true);
+      const effectiveTime = time !== undefined ? time : simulatedTime;
       try {
         if (lang === 'all') {
           const [allTags, segregated] = await Promise.all([
-            liveTvVideosRepository.getVideoTags('all'),
-            liveTvVideosRepository.getSegregatedVideoTags(),
+            liveTvVideosRepository.getVideoTags('all', effectiveTime || undefined),
+            liveTvVideosRepository.getSegregatedVideoTags(effectiveTime || undefined),
           ]);
           setTags(allTags || []);
           setSegregatedTags(segregated || { te: [], ml: [], en: [] });
@@ -112,7 +116,10 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
             setVideos([]);
           }
         } else {
-          const fetchedTags = await liveTvVideosRepository.getVideoTags(lang);
+          const fetchedTags = await liveTvVideosRepository.getVideoTags(
+            lang,
+            effectiveTime || undefined
+          );
           // Strict client-side filter: Ensure ONLY tags belonging to this language are retained
           const strictlyFiltered = (fetchedTags || []).filter((t) => (t.language || 'te') === lang);
           setTags(strictlyFiltered);
@@ -131,7 +138,7 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
         setLoading(false);
       }
     },
-    [selectedLanguage]
+    [selectedLanguage, simulatedTime]
   );
 
   useEffect(() => {
@@ -365,9 +372,57 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
     }
   };
 
+  const handleSimulatedTimeChange = (time: string) => {
+    setSimulatedTime(time);
+    setPage(1);
+    fetchTags(selectedLanguage, time);
+  };
+
   const handleOpenEditTagModal = (tag: VideoTag) => {
     setActiveTagForEdit(tag);
     setEditTagModalOpen(true);
+  };
+
+  const handleOpenTimingModal = (tag: VideoTag) => {
+    setActiveTagForTiming(tag);
+    setTimingModalOpen(true);
+  };
+
+  const handleUpdateTagTiming = async (
+    slug: string,
+    startTime: string | null,
+    endTime: string | null
+  ) => {
+    setActionError(null);
+    try {
+      const updatedTag = await liveTvVideosRepository.updateVideoTagTiming(
+        slug,
+        startTime,
+        endTime
+      );
+      const updatedLang = updatedTag.language || 'te';
+
+      if (selectedLanguage === 'all') {
+        setTags((prev) => prev.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t)));
+        setSegregatedTags((prev) => {
+          const next: SegregatedVideoTags = {
+            te: prev.te.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t)),
+            ml: prev.ml.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t)),
+            en: prev.en.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t)),
+          };
+          return next;
+        });
+      } else {
+        setTags((prev) => prev.map((t) => (t.slug === slug ? { ...t, ...updatedTag } : t)));
+      }
+
+      setActionSuccess('Video tag timing updated successfully');
+      setTimingModalOpen(false);
+      return updatedTag;
+    } catch (err: any) {
+      setActionError(err.message || 'Failed to update video tag timing');
+      throw err;
+    }
   };
 
   const handleOpenEditVideoModal = (video: TagVideo) => {
@@ -416,6 +471,9 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
     setActionInfo,
     searchQuery,
     setSearchQuery,
+    simulatedTime,
+    setSimulatedTime,
+    handleSimulatedTimeChange,
     page,
     setPage,
     totalPages,
@@ -426,21 +484,26 @@ export function useLiveTvVideosController(initialLanguage?: LanguageCode) {
     setCreateTagModalOpen,
     editTagModalOpen,
     setEditTagModalOpen,
+    timingModalOpen,
+    setTimingModalOpen,
     playerModalOpen,
     setPlayerModalOpen,
     editVideoModalOpen,
     setEditVideoModalOpen,
     activeTagForEdit,
+    activeTagForTiming,
     activeVideoForPlayer,
     activeVideoForEdit,
     // Handlers
     handleCreateTag,
     handleUpdateTag,
+    handleUpdateTagTiming,
     handleDeleteTag,
     handleDailySync,
     handlePlayVideo,
     handleDeleteVideo,
     handleOpenEditTagModal,
+    handleOpenTimingModal,
     handleOpenEditVideoModal,
     handleUpdateVideo,
     fetchTags,

@@ -12,6 +12,8 @@ export interface CreateVideoTagDto {
   slug: string;
   description?: string;
   language?: TagLanguage;
+  startTime?: string | null;
+  endTime?: string | null;
   thumbnail?: File | null;
   thumbnailUrl?: string;
 }
@@ -20,8 +22,15 @@ export interface UpdateVideoTagDto {
   name?: string;
   language?: TagLanguage;
   description?: string;
+  startTime?: string | null;
+  endTime?: string | null;
   thumbnail?: File | null;
   thumbnailUrl?: string;
+}
+
+export interface UpdateVideoTagTimingDto {
+  startTime?: string | null;
+  endTime?: string | null;
 }
 
 export interface UpdateTagVideoDto {
@@ -32,13 +41,18 @@ export interface UpdateTagVideoDto {
 
 export class LiveTvVideosRepository {
   /**
-   * GET /video-tags?language={code}
+   * GET /video-tags?language={code}&time={HH:mm}
    * Default language is 'te' (Telugu)
    */
-  public async getVideoTags(language: LanguageCode = 'te'): Promise<VideoTag[]> {
+  public async getVideoTags(language: LanguageCode = 'te', time?: string): Promise<VideoTag[]> {
     try {
+      const params: Record<string, string> = { language, lan: language };
+      if (time) {
+        params.time = time;
+        params.currentTime = time;
+      }
       const res = await videoApiClient.get<{ success: boolean; data: VideoTag[] }>('/video-tags', {
-        params: { language, lan: language },
+        params,
       });
       if (res && res.data && Array.isArray(res.data)) {
         return res.data;
@@ -53,13 +67,15 @@ export class LiveTvVideosRepository {
   }
 
   /**
-   * GET /video-tags/segregated
+   * GET /video-tags/segregated?time={HH:mm}
    * Returns video tags grouped by language code ('te', 'ml', 'en')
    */
-  public async getSegregatedVideoTags(): Promise<SegregatedVideoTags> {
+  public async getSegregatedVideoTags(time?: string): Promise<SegregatedVideoTags> {
     try {
+      const params = time ? { time, currentTime: time } : undefined;
       const res = await videoApiClient.get<{ success: boolean; data: SegregatedVideoTags }>(
-        '/video-tags/segregated'
+        '/video-tags/segregated',
+        params ? { params } : undefined
       );
       if (res && res.data) {
         return res.data;
@@ -102,6 +118,12 @@ export class LiveTvVideosRepository {
         formData.append('slug', payload.slug);
         formData.append('description', payload.description || '');
         formData.append('language', payload.language || 'te');
+        if (payload.startTime !== undefined && payload.startTime !== null) {
+          formData.append('startTime', payload.startTime);
+        }
+        if (payload.endTime !== undefined && payload.endTime !== null) {
+          formData.append('endTime', payload.endTime);
+        }
         formData.append('thumbnail', payload.thumbnail);
         data = formData;
         headers['Content-Type'] = 'multipart/form-data';
@@ -111,6 +133,8 @@ export class LiveTvVideosRepository {
           slug: payload.slug,
           description: payload.description || '',
           language: payload.language || 'te',
+          ...(payload.startTime !== undefined ? { startTime: payload.startTime } : {}),
+          ...(payload.endTime !== undefined ? { endTime: payload.endTime } : {}),
           ...(payload.thumbnailUrl ? { thumbnailUrl: payload.thumbnailUrl } : {}),
         };
       }
@@ -157,6 +181,8 @@ export class LiveTvVideosRepository {
         if (payload.name) formData.append('name', payload.name);
         if (payload.description !== undefined) formData.append('description', payload.description);
         if (payload.language) formData.append('language', payload.language);
+        if (payload.startTime !== undefined) formData.append('startTime', payload.startTime || '');
+        if (payload.endTime !== undefined) formData.append('endTime', payload.endTime || '');
         formData.append('thumbnail', payload.thumbnail);
         data = formData;
         headers['Content-Type'] = 'multipart/form-data';
@@ -165,6 +191,8 @@ export class LiveTvVideosRepository {
           ...(payload.name ? { name: payload.name } : {}),
           ...(payload.description !== undefined ? { description: payload.description } : {}),
           ...(payload.language ? { language: payload.language } : {}),
+          ...(payload.startTime !== undefined ? { startTime: payload.startTime } : {}),
+          ...(payload.endTime !== undefined ? { endTime: payload.endTime } : {}),
           ...(payload.thumbnailUrl ? { thumbnailUrl: payload.thumbnailUrl } : {}),
         };
       }
@@ -182,6 +210,36 @@ export class LiveTvVideosRepository {
         throw new Error(err.response.data.message);
       }
       throw new Error('Failed to update video tag');
+    }
+    throw new Error('Unexpected response format');
+  }
+
+  /**
+   * PUT /video-tags/:slug/timing
+   * Dedicated lightweight endpoint for updating show broadcast timings
+   */
+  public async updateVideoTagTiming(
+    slug: string,
+    startTime: string | null,
+    endTime: string | null
+  ): Promise<VideoTag> {
+    try {
+      const res = await videoApiClient.put<{ success: boolean; data: VideoTag }>(
+        `/video-tags/${slug}/timing`,
+        {
+          startTime: startTime || null,
+          endTime: endTime || null,
+        },
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+      if (res && res.data) {
+        return res.data;
+      }
+    } catch (err: any) {
+      if (err.response?.data?.message) {
+        throw new Error(err.response.data.message);
+      }
+      throw new Error('Failed to update video tag timing');
     }
     throw new Error('Unexpected response format');
   }

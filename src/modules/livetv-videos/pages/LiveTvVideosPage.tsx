@@ -37,6 +37,7 @@ import {
   Sync,
   ExpandMore,
   FilterListOff,
+  AccessTime,
 } from '@mui/icons-material';
 import { useLanguageStore } from '@/core/storage/language-store';
 import { useAppTheme } from '@/shared/providers/ThemeProvider';
@@ -46,6 +47,7 @@ import { LiveTvVideosTable } from '../components/LiveTvVideosTable';
 import { VideoPlayerModal } from '../components/VideoPlayerModal';
 import { TagCreateModal } from '../components/TagCreateModal';
 import { TagEditModal } from '../components/TagEditModal';
+import { TagTimingModal } from '../components/TagTimingModal';
 import { VideoEditModal } from '../components/VideoEditModal';
 import { Loader } from '@/shared/components/Loader';
 import { LanguageCode, TagLanguage, VideoTag } from '../domain/LiveTvVideo';
@@ -126,6 +128,17 @@ const translations = {
     showing: 'Showing',
     of: 'of',
     items: 'items',
+    startTimeLabel: 'Broadcast Start Time',
+    endTimeLabel: 'Broadcast End Time',
+    editTiming: 'Set Timing',
+    editTimingModalTitle: 'Show Timings Schedule',
+    timingUpdatedSuccess: 'Video tag timing updated successfully',
+    clearTiming: 'Clear Timing',
+    liveBadge: 'LIVE NOW',
+    simulateTimePlaceholder: 'Simulate Time (HH:mm)',
+    simulateTimeTooltip: 'Simulate IST time to preview active shows (e.g. 07:30)',
+    clearSimulation: 'Reset Simulation',
+    timingLabel: 'Timing',
   },
   te: {
     pageTitle: 'వీడియో ట్యాగ్‌లు & స్ట్రీమ్ నిర్వహణ',
@@ -203,6 +216,17 @@ const translations = {
     showing: 'చూపిస్తున్నవి',
     of: 'నుండి',
     items: 'వీడియోలు',
+    startTimeLabel: 'ప్రసార ప్రారంభ సమయం',
+    endTimeLabel: 'ప్రసార ముగింపు సమయం',
+    editTiming: 'సమయాన్ని సెట్ చేయండి',
+    editTimingModalTitle: 'షో సమయాల షెడ్యూల్',
+    timingUpdatedSuccess: 'వీడియో ట్యాగ్ సమయం విజయవంతంగా నవీకరించబడింది',
+    clearTiming: 'సమయాన్ని తీసివేయండి',
+    liveBadge: 'ప్రత్యక్ష ప్రసారం',
+    simulateTimePlaceholder: 'సమయాన్ని అనుకరించండి (HH:mm)',
+    simulateTimeTooltip: 'యాక్టివ్ షోలను ప్రివ్యూ చేయడానికి IST సమయాన్ని అనుకరించండి (ఉదా. 07:30)',
+    clearSimulation: 'సిమ్యులేషన్‌ను రీసెట్ చేయండి',
+    timingLabel: 'సమయం',
   },
   hi: {
     pageTitle: 'वीडियो टैग और स्ट्रीम प्रबंधन',
@@ -279,6 +303,17 @@ const translations = {
     showing: 'दिखा रहा है',
     of: 'का',
     items: 'आइटम',
+    startTimeLabel: 'प्रसारण प्रारंभ समय',
+    endTimeLabel: 'प्रसारण समाप्ति समय',
+    editTiming: 'समय निर्धारित करें',
+    editTimingModalTitle: 'शो समय सारणी',
+    timingUpdatedSuccess: 'वीडियो टैग समय सफलतापूर्वक अपडेट किया गया',
+    clearTiming: 'समय हटाएं',
+    liveBadge: 'लाइव प्रसारण',
+    simulateTimePlaceholder: 'समय सिमुलेट करें (HH:mm)',
+    simulateTimeTooltip: 'सक्रिय शो देखने के लिए IST समय का अनुकरण करें (उदा. 07:30)',
+    clearSimulation: 'सिमुलेशन रीसेट करें',
+    timingLabel: 'समय',
   },
   ml: {
     pageTitle: 'വീഡിയോ ടാഗുകളും സ്ട്രീം മാനേജ്മെൻ്റും',
@@ -355,6 +390,17 @@ const translations = {
     showing: 'കാണിക്കുന്നത്',
     of: 'ൽ',
     items: 'ഇനങ്ങൾ',
+    startTimeLabel: 'സംപ്രേക്ഷണ ആരംഭ സമയം',
+    endTimeLabel: 'സംപ്രേക്ഷണ അവസാന സമയം',
+    editTiming: 'സമയം ക്രമീകരിക്കുക',
+    editTimingModalTitle: 'ഷോ സമയക്രമം',
+    timingUpdatedSuccess: 'വീడియో ടാഗ് സമയം വിജയകരമായി അപ്‌ഡേറ്റുചെയ്‌തു',
+    clearTiming: 'സമയം മായ്‌ക്കുക',
+    liveBadge: 'തത്സമയം',
+    simulateTimePlaceholder: 'സമയം അനുകരിക്കുക (HH:mm)',
+    simulateTimeTooltip: 'സജീവ ഷോകൾ പ്രിവ്യൂ ചെയ്യുന്നതിനായി IST സമയം അനുകരിക്കുക (ഉദാ. 07:30)',
+    clearSimulation: 'സിമുലേഷൻ പുനഃക്രമീകരിക്കുക',
+    timingLabel: 'സമയം',
   },
 };
 
@@ -383,6 +429,8 @@ export const LiveTvVideosPage: React.FC = () => {
     setActionInfo,
     searchQuery,
     setSearchQuery,
+    simulatedTime,
+    handleSimulatedTimeChange,
     page,
     setPage,
     totalPages,
@@ -393,21 +441,26 @@ export const LiveTvVideosPage: React.FC = () => {
     setCreateTagModalOpen,
     editTagModalOpen,
     setEditTagModalOpen,
+    timingModalOpen,
+    setTimingModalOpen,
     playerModalOpen,
     setPlayerModalOpen,
     editVideoModalOpen,
     setEditVideoModalOpen,
     activeTagForEdit,
+    activeTagForTiming,
     activeVideoForPlayer,
     activeVideoForEdit,
     // Handlers
     handleCreateTag,
     handleUpdateTag,
+    handleUpdateTagTiming,
     handleDeleteTag,
     handleDailySync,
     handlePlayVideo,
     handleDeleteVideo,
     handleOpenEditTagModal,
+    handleOpenTimingModal,
     handleOpenEditVideoModal,
     handleUpdateVideo,
   } = useLiveTvVideosController();
@@ -459,6 +512,66 @@ export const LiveTvVideosPage: React.FC = () => {
       handleDeleteTag(selectedTagSlug);
     }
     setDeleteConfirmOpen(false);
+  };
+
+  const renderLiveBadge = () => (
+    <Chip
+      size="small"
+      label={
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+          <Box
+            sx={{
+              width: 6,
+              height: 6,
+              borderRadius: '50%',
+              backgroundColor: '#22c55e',
+              boxShadow: '0 0 6px #22c55e',
+            }}
+          />
+          <span>{t.liveBadge || 'LIVE NOW'}</span>
+        </Box>
+      }
+      sx={{
+        fontWeight: 800,
+        fontSize: '0.68rem',
+        height: 20,
+        backgroundColor: isDark ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.15)',
+        color: isDark ? '#4ade80' : '#15803d',
+        border: isDark ? '1px solid rgba(74, 222, 128, 0.4)' : '1px solid rgba(34, 197, 94, 0.35)',
+        boxShadow: isDark ? '0 0 8px rgba(74, 222, 128, 0.25)' : 'none',
+      }}
+    />
+  );
+
+  const renderTimingChip = (startTime?: string | null, endTime?: string | null) => {
+    if (!startTime && !endTime) return null;
+    const text =
+      startTime && endTime ? `${startTime} - ${endTime} IST` : `${startTime || endTime} IST`;
+    return (
+      <Chip
+        size="small"
+        icon={
+          <AccessTime
+            sx={{
+              fontSize: '13px !important',
+              color: isDark ? '#fde68a !important' : '#78350f !important',
+            }}
+          />
+        }
+        label={text}
+        sx={{
+          fontWeight: 600,
+          fontSize: '0.72rem',
+          height: 22,
+          backgroundColor: isDark ? 'rgba(234, 179, 8, 0.12)' : 'rgba(234, 179, 8, 0.08)',
+          color: isDark ? '#fde68a' : '#78350f',
+          border: isDark
+            ? '1px solid rgba(250, 204, 21, 0.2)'
+            : '1px solid rgba(217, 119, 6, 0.18)',
+          borderRadius: '6px',
+        }}
+      />
+    );
   };
 
   const renderLanguageBadge = (lang?: string) => {
@@ -887,6 +1000,83 @@ export const LiveTvVideosPage: React.FC = () => {
                   </Tooltip>
                 )}
 
+                {/* 2. Simulated Time Preview */}
+                <Tooltip
+                  title={
+                    t.simulateTimeTooltip ||
+                    'Simulate IST time to preview active shows (e.g. 07:30)'
+                  }
+                >
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    <TextField
+                      type="time"
+                      size="small"
+                      value={simulatedTime}
+                      onChange={(e) => handleSimulatedTimeChange(e.target.value)}
+                      placeholder={t.simulateTimePlaceholder}
+                      InputLabelProps={{ shrink: true }}
+                      sx={{
+                        width: { xs: '130px', sm: '145px' },
+                        flexShrink: 0,
+                        '& .MuiOutlinedInput-root': {
+                          color: isDark ? '#ffffff' : '#1a1300',
+                          backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#ffffff',
+                          borderRadius: '10px',
+                          fontSize: '0.75rem',
+                          height: '34px',
+                          '& fieldset': {
+                            borderColor: simulatedTime
+                              ? '#22c55e'
+                              : isDark
+                                ? 'rgba(250, 204, 21, 0.25)'
+                                : 'rgba(217, 119, 6, 0.25)',
+                          },
+                          '&:hover fieldset': {
+                            borderColor: isDark
+                              ? 'rgba(250, 204, 21, 0.5)'
+                              : 'rgba(217, 119, 6, 0.5)',
+                          },
+                          '&.Mui-focused fieldset': {
+                            borderColor: '#facc15',
+                            boxShadow: '0 0 10px rgba(250, 204, 21, 0.25)',
+                          },
+                        },
+                        '& .MuiInputBase-input': { py: 0.6, px: 1, fontSize: '0.75rem' },
+                      }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <AccessTime
+                              sx={{ color: isDark ? '#facc15' : '#d97706', fontSize: '0.95rem' }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                    {simulatedTime && (
+                      <Tooltip title={t.clearSimulation || 'Reset Simulation'}>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleSimulatedTimeChange('')}
+                          sx={{
+                            width: '34px',
+                            height: '34px',
+                            borderRadius: '10px',
+                            color: '#f44336',
+                            backgroundColor: isDark
+                              ? 'rgba(244,67,54,0.12)'
+                              : 'rgba(244,67,54,0.08)',
+                            border: '1px solid rgba(244,67,54,0.3)',
+                            '&:hover': { backgroundColor: 'rgba(244,67,54,0.2)' },
+                          }}
+                        >
+                          <FilterListOff sx={{ fontSize: '1rem' }} />
+                        </IconButton>
+                      </Tooltip>
+                    )}
+                  </Box>
+                </Tooltip>
+
                 {/* Right: Action Buttons matching Notification UI & Login Flow Warm Palette */}
                 <Box
                   sx={{
@@ -929,6 +1119,35 @@ export const LiveTvVideosPage: React.FC = () => {
                       }}
                     >
                       {isSyncing ? t.syncingBtn : t.dailySyncBtn}
+                    </Button>
+                  )}
+
+                  {selectedTag && (
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      startIcon={<AccessTime sx={{ fontSize: 16 }} />}
+                      onClick={() => handleOpenTimingModal(selectedTag)}
+                      sx={{
+                        borderRadius: '10px',
+                        height: '34px',
+                        px: 1.5,
+                        textTransform: 'none',
+                        fontWeight: 700,
+                        fontSize: '0.8rem',
+                        borderColor: isDark ? 'rgba(250, 204, 21, 0.3)' : 'rgba(217, 119, 6, 0.3)',
+                        color: isDark ? '#fde68a' : '#78350f',
+                        backgroundColor: isDark ? 'rgba(255, 255, 255, 0.04)' : '#ffffff',
+                        '&:hover': {
+                          borderColor: '#facc15',
+                          backgroundColor: isDark
+                            ? 'rgba(234, 179, 8, 0.15)'
+                            : 'rgba(234, 179, 8, 0.08)',
+                          boxShadow: '0 0 12px rgba(234, 179, 8, 0.2)',
+                        },
+                      }}
+                    >
+                      {t.editTiming}
                     </Button>
                   )}
 
@@ -1080,7 +1299,10 @@ export const LiveTvVideosPage: React.FC = () => {
                                     }),
                               }}
                             >
-                              {tag.name}
+                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
+                                <span>{tag.name}</span>
+                                {(tag.isLive || tag.isActive) && renderLiveBadge()}
+                              </Box>
                             </Button>
                           ))
                         ) : (
@@ -1159,7 +1381,10 @@ export const LiveTvVideosPage: React.FC = () => {
                                     }),
                               }}
                             >
-                              {tag.name}
+                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
+                                <span>{tag.name}</span>
+                                {(tag.isLive || tag.isActive) && renderLiveBadge()}
+                              </Box>
                             </Button>
                           ))
                         ) : (
@@ -1238,7 +1463,10 @@ export const LiveTvVideosPage: React.FC = () => {
                                     }),
                               }}
                             >
-                              {tag.name}
+                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
+                                <span>{tag.name}</span>
+                                {(tag.isLive || tag.isActive) && renderLiveBadge()}
+                              </Box>
                             </Button>
                           ))
                         ) : (
@@ -1292,6 +1520,7 @@ export const LiveTvVideosPage: React.FC = () => {
                         label={
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                             <span>{tag.name}</span>
+                            {(tag.isLive || tag.isActive) && renderLiveBadge()}
                             {renderLanguageBadge(tag.language)}
                           </Box>
                         }
@@ -1334,13 +1563,15 @@ export const LiveTvVideosPage: React.FC = () => {
                       <LiveTv fontSize="small" />
                     </Avatar>
                   )}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
                     <Typography
                       variant="subtitle1"
                       sx={{ fontWeight: 800, color: isDark ? '#ffffff' : '#1a1300' }}
                     >
                       {selectedTag.name}
                     </Typography>
+                    {(selectedTag.isLive || selectedTag.isActive) && renderLiveBadge()}
+                    {renderTimingChip(selectedTag.startTime, selectedTag.endTime)}
                     {renderLanguageBadge(selectedTag.language)}
                     <Chip
                       size="small"
@@ -1466,6 +1697,15 @@ export const LiveTvVideosPage: React.FC = () => {
                 isDark={isDark}
                 t={t}
                 allowedLanguages={allowedLanguages}
+              />
+
+              <TagTimingModal
+                open={timingModalOpen}
+                onClose={() => setTimingModalOpen(false)}
+                tag={activeTagForTiming}
+                onSave={handleUpdateTagTiming}
+                isDark={isDark}
+                t={t}
               />
 
               <VideoPlayerModal

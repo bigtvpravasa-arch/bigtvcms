@@ -4,6 +4,7 @@ import { LiveTvVideosPage } from '../pages/LiveTvVideosPage';
 import { LiveTvVideosTable } from '../components/LiveTvVideosTable';
 import { TagCreateModal } from '../components/TagCreateModal';
 import { TagEditModal } from '../components/TagEditModal';
+import { TagTimingModal } from '../components/TagTimingModal';
 import { VideoPlayerModal } from '../components/VideoPlayerModal';
 import { VideoEditModal } from '../components/VideoEditModal';
 import { useLiveTvVideosController } from '../hooks/useLiveTvVideosController';
@@ -42,12 +43,14 @@ jest.mock('@/core/api/api-client', () => ({
     post: jest.fn(),
     patch: jest.fn(),
     delete: jest.fn(),
+    put: jest.fn(),
   },
   apiClient: {
     get: jest.fn(),
     post: jest.fn(),
     patch: jest.fn(),
     delete: jest.fn(),
+    put: jest.fn(),
   },
 }));
 
@@ -59,6 +62,10 @@ const mockTeluguTags: VideoTag[] = [
     language: 'te',
     description: 'Prime time Telugu news show',
     thumbnailUrl: 'https://api.pravasamedia.com/thumb.jpg',
+    startTime: '06:00',
+    endTime: '09:00',
+    isLive: true,
+    isActive: true,
     createdAt: '2026-09-16T11:20:17.883Z',
     updatedAt: '2026-10-26T08:43:03.294Z',
     postUrl: 'https://app.bigtv24x7.com/livebigtv?slug=DNA',
@@ -205,6 +212,25 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
     (videoApiClient.delete as jest.Mock).mockResolvedValue({
       success: true,
       message: 'Deleted successfully',
+    });
+
+    (videoApiClient.put as jest.Mock).mockImplementation((url: string, data?: any) => {
+      if (url.includes('/timing')) {
+        return Promise.resolve({
+          data: {
+            id: 'test-id-1',
+            name: 'DNA Daily News',
+            slug: 'DNA',
+            language: 'te',
+            startTime: data?.startTime,
+            endTime: data?.endTime,
+            isLive: true,
+            isActive: true,
+            updatedAt: new Date().toISOString(),
+          },
+        });
+      }
+      return Promise.resolve({ data: {} });
     });
 
     act(() => {
@@ -1804,5 +1830,439 @@ describe('LiveTvVideos Module - Multi-Language Video Tags System', () => {
     const res = await liveTvVideosRepository.syncTagVideos('DNA');
     expect(res.isInfo).toBe(true);
     expect(res.message).toBe('Already synced');
+  });
+
+  it('renders TagTimingModal, allows setting and clearing timings, and submits successfully', async () => {
+    const onSave = jest.fn().mockResolvedValue({});
+    const onClose = jest.fn();
+    const tag: VideoTag = {
+      id: 'tag-1',
+      name: 'Suprabhatam News',
+      slug: 'suprabhatam',
+      language: 'te',
+      startTime: '06:00',
+      endTime: '09:00',
+      createdAt: '2026-01-01',
+      updatedAt: '2026-01-01',
+    };
+
+    const { rerender } = render(
+      <TagTimingModal
+        open={true}
+        onClose={onClose}
+        tag={tag}
+        onSave={onSave}
+        isDark={true}
+        t={{
+          editTimingModalTitle: 'Show Timings Schedule',
+          startTimeLabel: 'Broadcast Start Time',
+          endTimeLabel: 'Broadcast End Time',
+          clearTiming: 'Clear Timing',
+          cancel: 'Cancel',
+          save: 'Save',
+        }}
+      />
+    );
+
+    expect(screen.getByText('Show Timings Schedule')).toBeInTheDocument();
+    expect(screen.getByText('Suprabhatam News')).toBeInTheDocument();
+    expect(screen.getByText(/Slug: suprabhatam/i)).toBeInTheDocument();
+
+    const startInput = screen.getByLabelText(/Broadcast Start Time/i) as HTMLInputElement;
+    const endInput = screen.getByLabelText(/Broadcast End Time/i) as HTMLInputElement;
+
+    expect(startInput.value).toBe('06:00');
+    expect(endInput.value).toBe('09:00');
+
+    // Change start and end times
+    fireEvent.change(startInput, { target: { value: '07:00' } });
+    fireEvent.change(endInput, { target: { value: '10:00' } });
+
+    // Submit save
+    const saveBtn = screen.getByRole('button', { name: 'Save' });
+    await act(async () => {
+      fireEvent.click(saveBtn);
+    });
+
+    expect(onSave).toHaveBeenCalledWith('suprabhatam', '07:00', '10:00');
+
+    // Clear timing button test
+    const clearBtn = screen.getByText('Clear Timing');
+    fireEvent.click(clearBtn);
+    expect(startInput.value).toBe('');
+    expect(endInput.value).toBe('');
+
+    await act(async () => {
+      fireEvent.click(saveBtn);
+    });
+    expect(onSave).toHaveBeenCalledWith('suprabhatam', null, null);
+
+    // Cancel test
+    const cancelBtn = screen.getByText('Cancel');
+    fireEvent.click(cancelBtn);
+    expect(onClose).toHaveBeenCalled();
+
+    // Rerender with tag=null
+    rerender(
+      <TagTimingModal
+        open={true}
+        onClose={onClose}
+        tag={null}
+        onSave={onSave}
+        isDark={false}
+        t={{
+          editTimingModalTitle: 'Show Timings Schedule',
+        }}
+      />
+    );
+
+    // Click save when tag is null
+    const saveBtnNull = screen.getByRole('button', { name: 'Save' });
+    await act(async () => {
+      fireEvent.click(saveBtnNull);
+    });
+  });
+
+  it('handles TagTimingModal submission error and displays error message', async () => {
+    const onSave = jest.fn().mockRejectedValue(new Error('Invalid timing window'));
+    const onClose = jest.fn();
+    const tag: VideoTag = {
+      id: 'tag-1',
+      name: 'Suprabhatam',
+      slug: 'suprabhatam',
+      language: 'te',
+      createdAt: '2026-01-01',
+      updatedAt: '2026-01-01',
+    };
+
+    render(
+      <TagTimingModal
+        open={true}
+        onClose={onClose}
+        tag={tag}
+        onSave={onSave}
+        isDark={false}
+        t={{
+          editTimingModalTitle: 'Show Timings Schedule',
+          startTimeLabel: 'Broadcast Start Time',
+          endTimeLabel: 'Broadcast End Time',
+          save: 'Save',
+        }}
+      />
+    );
+
+    const startInput = screen.getByLabelText(/Broadcast Start Time/i);
+    fireEvent.change(startInput, { target: { value: '12:00' } });
+
+    const saveBtn = screen.getByRole('button', { name: 'Save' });
+    await act(async () => {
+      fireEvent.click(saveBtn);
+    });
+
+    expect(screen.getByText('Invalid timing window')).toBeInTheDocument();
+  });
+
+  it('tests TagCreateModal and TagEditModal timing input fields', async () => {
+    const onSaveCreate = jest.fn().mockResolvedValue({});
+    const onCloseCreate = jest.fn();
+
+    const { unmount } = render(
+      <TagCreateModal
+        open={true}
+        onClose={onCloseCreate}
+        onSave={onSaveCreate}
+        isDark={false}
+        t={{
+          createTagModalTitle: 'Create Video Tag',
+          tagNameLabel: 'Tag Name',
+          tagSlugLabel: 'Tag Slug',
+          descriptionLabel: 'Description',
+          startTimeLabel: 'Broadcast Start Time',
+          endTimeLabel: 'Broadcast End Time',
+          save: 'Save',
+        }}
+      />
+    );
+
+    const nameInput = screen.getByLabelText(/Tag Name/i);
+    const startInput = screen.getByLabelText(/Broadcast Start Time/i);
+    const endInput = screen.getByLabelText(/Broadcast End Time/i);
+
+    fireEvent.change(nameInput, { target: { value: 'Early Morning News' } });
+    fireEvent.change(startInput, { target: { value: '05:00' } });
+    fireEvent.change(endInput, { target: { value: '07:00' } });
+
+    const saveBtn = screen.getByRole('button', { name: 'Save' });
+    await act(async () => {
+      fireEvent.click(saveBtn);
+    });
+
+    expect(onSaveCreate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        name: 'Early Morning News',
+        slug: 'early-morning-news',
+        startTime: '05:00',
+        endTime: '07:00',
+      })
+    );
+
+    unmount();
+
+    // Test TagEditModal with timings
+    const onSaveEdit = jest.fn().mockResolvedValue({});
+    const onCloseEdit = jest.fn();
+    const tag: VideoTag = {
+      id: 'tag-edit-1',
+      name: 'Morning News',
+      slug: 'morning-news',
+      language: 'te',
+      startTime: '06:00',
+      endTime: '08:00',
+      createdAt: '2026-01-01',
+      updatedAt: '2026-01-01',
+    };
+
+    render(
+      <TagEditModal
+        open={true}
+        onClose={onCloseEdit}
+        tag={tag}
+        onSave={onSaveEdit}
+        isDark={false}
+        t={{
+          editTagModalTitle: 'Edit Video Tag',
+          tagNameLabel: 'Tag Name',
+          tagSlugLabel: 'Tag Slug',
+          descriptionLabel: 'Description',
+          startTimeLabel: 'Broadcast Start Time',
+          endTimeLabel: 'Broadcast End Time',
+          save: 'Save',
+        }}
+      />
+    );
+
+    const editStart = screen.getByLabelText(/Broadcast Start Time/i);
+    const editEnd = screen.getByLabelText(/Broadcast End Time/i);
+
+    fireEvent.change(editStart, { target: { value: '06:30' } });
+    fireEvent.change(editEnd, { target: { value: '08:30' } });
+
+    const editSaveBtn = screen.getByRole('button', { name: 'Save' });
+    await act(async () => {
+      fireEvent.click(editSaveBtn);
+    });
+
+    expect(onSaveEdit).toHaveBeenCalledWith(
+      'morning-news',
+      expect.objectContaining({
+        name: 'Morning News',
+        startTime: '06:30',
+        endTime: '08:30',
+      })
+    );
+  });
+
+  it('tests liveTvVideosRepository timing endpoints and parameters', async () => {
+    // 1. getVideoTags with time simulation
+    (videoApiClient.get as jest.Mock).mockResolvedValueOnce({
+      data: [{ id: 'tag-1', name: 'Show', slug: 'show', startTime: '07:00', isLive: true }],
+    });
+    const tagsWithTime = await liveTvVideosRepository.getVideoTags('te', '07:30');
+    expect(videoApiClient.get).toHaveBeenCalledWith('/video-tags', {
+      params: { language: 'te', lan: 'te', time: '07:30', currentTime: '07:30' },
+    });
+    expect(tagsWithTime[0].isLive).toBe(true);
+
+    // 2. getSegregatedVideoTags with time simulation
+    (videoApiClient.get as jest.Mock).mockResolvedValueOnce({
+      data: { te: [], ml: [], en: [] },
+    });
+    await liveTvVideosRepository.getSegregatedVideoTags('14:00');
+    expect(videoApiClient.get).toHaveBeenCalledWith('/video-tags/segregated', {
+      params: { time: '14:00', currentTime: '14:00' },
+    });
+
+    // 3. updateVideoTagTiming
+    (videoApiClient.put as jest.Mock).mockResolvedValueOnce({
+      data: {
+        id: 'tag-1',
+        name: 'Show',
+        slug: 'show',
+        startTime: '08:00',
+        endTime: '10:00',
+      },
+    });
+    const updatedTiming = await liveTvVideosRepository.updateVideoTagTiming(
+      'show',
+      '08:00',
+      '10:00'
+    );
+    expect(updatedTiming.startTime).toBe('08:00');
+    expect(videoApiClient.put).toHaveBeenCalledWith(
+      '/video-tags/show/timing',
+      { startTime: '08:00', endTime: '10:00' },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+
+    // 4. updateVideoTagTiming server error
+    (videoApiClient.put as jest.Mock).mockRejectedValueOnce({
+      response: { data: { message: 'Timing overlap conflict' } },
+    });
+    await expect(
+      liveTvVideosRepository.updateVideoTagTiming('show', '08:00', '10:00')
+    ).rejects.toThrow('Timing overlap conflict');
+
+    // 5. updateVideoTagTiming fallback error
+    (videoApiClient.put as jest.Mock).mockRejectedValueOnce(new Error('Network error'));
+    await expect(
+      liveTvVideosRepository.updateVideoTagTiming('show', '08:00', '10:00')
+    ).rejects.toThrow('Failed to update video tag timing');
+
+    // 6. createVideoTag with startTime & endTime in JSON and FormData
+    const mockFile = new File(['dummy'], 'thumb.jpg', { type: 'image/jpeg' });
+    (videoApiClient.post as jest.Mock).mockResolvedValueOnce({
+      data: { id: 'tag-form', name: 'Form Tag', slug: 'form-tag' },
+    });
+    await liveTvVideosRepository.createVideoTag({
+      name: 'Form Tag',
+      slug: 'form-tag',
+      startTime: '06:00',
+      endTime: '09:00',
+      thumbnail: mockFile,
+    });
+
+    // 7. updateVideoTag with startTime & endTime in FormData
+    (videoApiClient.patch as jest.Mock).mockResolvedValueOnce({
+      data: { id: 'tag-form', name: 'Form Tag', slug: 'form-tag' },
+    });
+    await liveTvVideosRepository.updateVideoTag('form-tag', {
+      name: 'Form Tag Updated',
+      startTime: '07:00',
+      endTime: '10:00',
+      thumbnail: mockFile,
+    });
+  });
+
+  it('tests useLiveTvVideosController timing actions and simulation', async () => {
+    const { result } = renderHook(() => useLiveTvVideosController('te'));
+
+    await waitFor(() => {
+      expect(result.current.tags.length).toBeGreaterThan(0);
+    });
+
+    // Open timing modal
+    const targetTag = result.current.tags[0];
+    act(() => {
+      result.current.handleOpenTimingModal(targetTag);
+    });
+    expect(result.current.timingModalOpen).toBe(true);
+    expect(result.current.activeTagForTiming?.slug).toBe(targetTag.slug);
+
+    // Update timing in single-language view
+    (videoApiClient.put as jest.Mock).mockResolvedValueOnce({
+      data: {
+        ...targetTag,
+        startTime: '09:00',
+        endTime: '12:00',
+      },
+    });
+
+    await act(async () => {
+      await result.current.handleUpdateTagTiming(targetTag.slug, '09:00', '12:00');
+    });
+
+    expect(result.current.timingModalOpen).toBe(false);
+    expect(result.current.actionSuccess).toBe('Video tag timing updated successfully');
+
+    // Test simulation change
+    await act(async () => {
+      result.current.handleSimulatedTimeChange('10:30');
+    });
+    expect(result.current.simulatedTime).toBe('10:30');
+
+    // Test updateVideoTagTiming error branch
+    (videoApiClient.put as jest.Mock).mockRejectedValueOnce({
+      response: { data: { message: 'Update failed' } },
+    });
+    await act(async () => {
+      await expect(
+        result.current.handleUpdateTagTiming(targetTag.slug, '09:00', '12:00')
+      ).rejects.toThrow('Update failed');
+    });
+    expect(result.current.actionError).toBe('Update failed');
+
+    // Test in 'all' languages mode
+    await act(async () => {
+      result.current.setSelectedLanguage('all');
+    });
+    await waitFor(() => {
+      expect(result.current.selectedLanguage).toBe('all');
+    });
+
+    (videoApiClient.put as jest.Mock).mockResolvedValueOnce({
+      data: {
+        ...targetTag,
+        startTime: '10:00',
+        endTime: '13:00',
+      },
+    });
+    await act(async () => {
+      await result.current.handleUpdateTagTiming(targetTag.slug, '10:00', '13:00');
+    });
+  });
+
+  it('renders LIVE NOW badge and timing chip in LiveTvVideosPage and opens timing modal', async () => {
+    await act(async () => {
+      render(
+        <ThemeProvider>
+          <LiveTvVideosPage />
+        </ThemeProvider>
+      );
+    });
+
+    // Verify LIVE NOW badge is rendered because mockTeluguTags has isLive: true
+    await waitFor(() => {
+      expect(screen.getAllByText('LIVE NOW').length).toBeGreaterThan(0);
+    });
+
+    // Verify timing chip is rendered: "06:00 - 09:00 IST"
+    expect(screen.getAllByText('06:00 - 09:00 IST').length).toBeGreaterThan(0);
+
+    // Verify Set Timing button is present and clickable
+    const setTimingBtn = screen.getByRole('button', { name: /Set Timing/i });
+    expect(setTimingBtn).toBeInTheDocument();
+
+    await act(async () => {
+      fireEvent.click(setTimingBtn);
+    });
+
+    // Timing modal should now be open
+    expect(screen.getByText('Show Timings Schedule')).toBeInTheDocument();
+
+    // Verify Time Simulation input field and change simulated time
+    const timeSimulationInputs = document.querySelectorAll('input[type="time"]');
+    expect(timeSimulationInputs.length).toBeGreaterThan(0);
+
+    const simTimeInput = timeSimulationInputs[0] as HTMLInputElement;
+    await act(async () => {
+      fireEvent.change(simTimeInput, { target: { value: '08:00' } });
+    });
+    expect(simTimeInput.value).toBe('08:00');
+
+    // Reset simulation via reset button
+    const resetSimBtn = screen.getByTestId('FilterListOffIcon');
+    await act(async () => {
+      fireEvent.click(resetSimBtn.closest('button')!);
+    });
+
+    // Switch to All Languages tab
+    const allLangsTab = screen.getByText('All Languages');
+    await act(async () => {
+      fireEvent.click(allLangsTab);
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Telugu Shows (Default)')).toBeInTheDocument();
+    });
   });
 });

@@ -9,6 +9,10 @@ export interface VideoTag {
   language?: TagLanguage;
   thumbnailUrl?: string | null;
   postUrl?: string;
+  startTime?: string | null;
+  endTime?: string | null;
+  isLive?: boolean;
+  isActive?: boolean;
   createdAt: string;
   updatedAt: string;
 }

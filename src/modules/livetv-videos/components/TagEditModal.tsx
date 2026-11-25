@@ -47,6 +47,8 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
   const [name, setName] = useState('');
   const [language, setLanguage] = useState<TagLanguage>('te');
   const [description, setDescription] = useState('');
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -66,11 +68,15 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
       setName(tag.name || '');
       setLanguage(tag.language || 'te');
       setDescription(tag.description || '');
+      setStartTime(tag.startTime || '');
+      setEndTime(tag.endTime || '');
       setPreview(tag.thumbnailUrl || null);
     } else {
       setName('');
       setLanguage('te');
       setDescription('');
+      setStartTime('');
+      setEndTime('');
       setPreview(null);
     }
     setFile(null);
@@ -96,6 +102,8 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
         name: name.trim(),
         language,
         description: description.trim(),
+        startTime: startTime.trim() ? startTime.trim() : null,
+        endTime: endTime.trim() ? endTime.trim() : null,
         thumbnail: file,
       });
       setFile(null);
@@ -253,6 +261,48 @@ export const TagEditModal: React.FC<TagEditModalProps> = ({
               },
             }}
           />
+
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <TextField
+              label={t.startTimeLabel || 'Broadcast Start Time'}
+              type="time"
+              fullWidth
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+              disabled={isSubmitting}
+              InputLabelProps={{ shrink: true, style: { color: isDark ? '#94a3b8' : undefined } }}
+              InputProps={{
+                style: { color: isDark ? '#ffffff' : undefined },
+              }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: isDark ? 'rgba(250, 204, 21, 0.25)' : 'rgba(217, 119, 6, 0.25)',
+                  },
+                },
+              }}
+            />
+
+            <TextField
+              label={t.endTimeLabel || 'Broadcast End Time'}
+              type="time"
+              fullWidth
+              value={endTime}
+              onChange={(e) => setEndTime(e.target.value)}
+              disabled={isSubmitting}
+              InputLabelProps={{ shrink: true, style: { color: isDark ? '#94a3b8' : undefined } }}
+              InputProps={{
+                style: { color: isDark ? '#ffffff' : undefined },
+              }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: isDark ? 'rgba(250, 204, 21, 0.25)' : 'rgba(217, 119, 6, 0.25)',
+                  },
+                },
+              }}
+            />
+          </Box>
 
           <Box>
             <Typography variant="body2" sx={{ mb: 1, color: isDark ? '#94a3b8' : undefined }}>

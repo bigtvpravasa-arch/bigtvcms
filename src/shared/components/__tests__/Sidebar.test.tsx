@@ -64,7 +64,7 @@ describe('Sidebar Component - Role Based Navigation', () => {
       </ThemeProvider>
     );
 
-    expect(screen.getByText('Analytics')).toBeInTheDocument();
+    expect(screen.queryByText('Analytics')).not.toBeInTheDocument();
     expect(screen.getByText('Create News')).toBeInTheDocument();
     expect(screen.getByText('BigTV Special')).toBeInTheDocument();
     expect(screen.getByText('Reels')).toBeInTheDocument();
@@ -95,7 +95,7 @@ describe('Sidebar Component - Role Based Navigation', () => {
       </ThemeProvider>
     );
 
-    expect(screen.getByText('Analytics')).toBeInTheDocument();
+    expect(screen.queryByText('Analytics')).not.toBeInTheDocument();
     expect(screen.getByText('Create News')).toBeInTheDocument();
     expect(screen.getByText('BigTV Special')).toBeInTheDocument();
     expect(screen.getByText('Reels')).toBeInTheDocument();
@@ -149,7 +149,7 @@ describe('Sidebar Component - Role Based Navigation', () => {
       </ThemeProvider>
     );
 
-    expect(screen.getByText('అనలిటిక్స్')).toBeInTheDocument();
+    expect(screen.queryByText('అనలిటిక్స్')).not.toBeInTheDocument();
     expect(screen.getByText('బిగ్ టీవీ స్పెషల్')).toBeInTheDocument();
     expect(screen.getByText('వెబ్ కథనాలు')).toBeInTheDocument();
     expect(screen.getByText('ఈ-పేపర్లు')).toBeInTheDocument();
@@ -173,7 +173,7 @@ describe('Sidebar Component - Role Based Navigation', () => {
       </ThemeProvider>
     );
 
-    expect(screen.getByText('एनालिटिक्स')).toBeInTheDocument();
+    expect(screen.queryByText('एनालिटिक्स')).not.toBeInTheDocument();
     expect(screen.getByText('समाचार बनाएं')).toBeInTheDocument();
     expect(screen.getByText('बिग टीवी स्पेशल')).toBeInTheDocument();
     expect(screen.getByText('वेब लेख')).toBeInTheDocument();
@@ -198,7 +198,7 @@ describe('Sidebar Component - Role Based Navigation', () => {
       </ThemeProvider>
     );
 
-    expect(screen.getByText('അനലിറ്റിക്‌സ്')).toBeInTheDocument();
+    expect(screen.queryByText('അനലിറ്റിക്‌സ്')).not.toBeInTheDocument();
     expect(screen.getByText('വാർത്ത സൃഷ്ടിക്കുക')).toBeInTheDocument();
     expect(screen.getByText('ബിഗ് ടിവി സ്പെഷ്യൽ')).toBeInTheDocument();
     expect(screen.getByText('വെബ് ലേഖനങ്ങൾ')).toBeInTheDocument();

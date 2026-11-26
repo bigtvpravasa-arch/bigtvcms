@@ -16,7 +16,6 @@ import {
   AutoAwesome,
   Category as CategoryIcon,
   Settings,
-  Analytics as AnalyticsIcon,
   Movie,
   Web as WebIcon,
   Newspaper as NewspaperIcon,
@@ -156,7 +155,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
 
   // Main Top-level menu items (excluding items moved to App Config)
   const allMainMenuItems = [
-    { text: t.menuAnalytics, icon: <AnalyticsIcon />, href: '/analytics' },
     { text: t.menuCreate, icon: <AddCircleOutline />, href: '/dashboard' },
     { text: t.menuNotifications, icon: <NotificationsIcon />, href: '/notifications' },
     { text: t.menuRatings, icon: <StarRate />, href: '/ratings' },
@@ -211,7 +209,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeHref }) => {
   const adsDynapixCreatorHrefs = ['/ads-dynapix'];
 
   const adminHrefs = [
-    '/analytics',
     '/dashboard',
     '/notifications',
     '/ratings',
